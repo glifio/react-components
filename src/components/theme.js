@@ -277,3 +277,118 @@ const theme = {
 }
 
 export default theme
+
+/* EVERYTHING BELOW HERE IS THEMEV2 */
+
+// safe to change
+const deviceWidthPxs = {
+  phone: 480,
+  tablet: 868,
+  desktop: 1124
+}
+
+const margins = {
+  phone: {
+    sm: '',
+    small: '',
+    md: '8px',
+    medium: '8px',
+    default: '8px',
+    lg: '16px',
+    large: '16px'
+  },
+  default: {
+    sm: '',
+    small: '',
+    md: '10px',
+    medium: '10px',
+    default: '10px',
+    lg: '20px',
+    large: '20px'
+  },
+  tablet: {
+    sm: '',
+    small: '',
+    md: '10px',
+    medium: '10px',
+    default: '10px',
+    lg: '20px',
+    large: '20px'
+  },
+  desktop: {
+    sm: '',
+    small: '',
+    md: '10px',
+    medium: '10px',
+    default: '10px',
+    lg: '20px',
+    large: '20px'
+  }
+}
+
+const fontSizes = {
+  phone: {
+    sm: '13px',
+    small: '13px',
+    md: '18px',
+    medium: '18px',
+    default: '16px',
+    lg: '20px',
+    large: '20px'
+  },
+  default: {
+    sm: '13px',
+    small: '13px',
+    md: '26px',
+    medium: '26px',
+    default: '18px',
+    lg: '28px',
+    large: '28px'
+  },
+  tablet: {
+    sm: '13px',
+    small: '13px',
+    md: '26px',
+    medium: '26px',
+    default: '18px',
+    lg: '28px',
+    large: '28px'
+  },
+  desktop: {
+    sm: '13px',
+    small: '13px',
+    md: '26px',
+    medium: '26px',
+    default: '18px',
+    lg: '28px',
+    large: '28px'
+  }
+}
+
+// dont change
+export const devices = {
+  gt: {
+    phone: `${deviceWidthPxs.phone + 1}px`,
+    tablet: `${deviceWidthPxs.tablet + 1}px`,
+    desktop: `${deviceWidthPxs.desktop + 1}px`
+  },
+  ls: {
+    phone: `${deviceWidthPxs.phone - 1}px`,
+    tablet: `${deviceWidthPxs.tablet - 1}px`,
+    desktop: `${deviceWidthPxs.desktop - 1}px`
+  },
+  phone: `${deviceWidthPxs.phone}px`,
+  tablet: `${deviceWidthPxs.tablet}px`,
+  desktop: `${deviceWidthPxs.desktop}px`
+}
+
+// these are
+// one of size = sm, default, md, lg
+// one of device = phone, tablet, desktop
+export function margin(size = 'default', device = 'default') {
+  return margins[device][size]
+}
+
+export function fontSize(size = 'default', device = 'default') {
+  return fontSizes[device][size]
+}

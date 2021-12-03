@@ -1,22 +1,20 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-
-import AppTile from './index'
+import { AppTilesWrapper } from './AppTilesWrapper'
+import { AppTile } from './index'
 
 export default {
   title: 'AppTile/AppTile',
   component: AppTile,
-  decorators: [
-    Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
-    )
-  ],
+  decorators: [Story => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <AppTile {...args} />
+const Template = args => (
+  <AppTilesWrapper>
+    <AppTile {...args} />{' '}
+  </AppTilesWrapper>
+)
 
 export const Base = Template.bind({})
 Base.args = {
