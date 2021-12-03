@@ -1,0 +1,4 @@
+dist/*
+!dist/.keep
+coverage
+storybook-static

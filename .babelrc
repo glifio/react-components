@@ -1,0 +1,20 @@
+{
+  "presets": [
+    [
+      "next/babel",
+      {
+        "transform-runtime": {
+          "absoluteRuntime": false
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "styled-components",
+      {
+        "ssr": true
+      }
+    ]
+  ]
+}
