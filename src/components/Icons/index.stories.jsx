@@ -12,7 +12,8 @@ import {
   IconMessageStatus as IconMessageStatusComp,
   IconLedger as IconLedgerComp,
   IconViewAddress as IconViewAddressComp,
-  IconEdit as IconEditComp
+  IconEdit as IconEditComp,
+  AppIconHeaderFooter as AppIconHeaderFooterComp
 } from './index'
 
 export default {
@@ -87,3 +88,5 @@ IconEdit.args = {
   fill: 'yellow',
   stroke: 'blue'
 }
+
+export const AppIconHeaderFooter = args => <AppIconHeaderFooterComp {...args} />

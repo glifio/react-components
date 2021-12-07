@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { devices, fontSize, margin } from '../theme'
-import AppIcon from '../AppIcon'
+import { devices, margin } from '../theme'
+import { AppIconHeaderFooter } from '../Icons'
 
 const Ul = styled.ul`
   list-style-type: none;
@@ -56,7 +56,7 @@ const Copyright = styled.div`
   }
 `
 
-const AppIconStyled = styled(AppIcon)`
+const AppIconStyled = styled(AppIconHeaderFooter)`
   @media (max-width: ${devices.tablet}) {
     margin-bottom: 2em;
   }
@@ -71,7 +71,7 @@ const AppIconStyled = styled(AppIcon)`
 export default function Footer() {
   return (
     <FooterWrapper>
-      <AppIconStyled iconPath='./logo-glif-white.svg' />
+      <AppIconStyled />
       <FooterContent>
         <Ul>
           <Li>

@@ -2,8 +2,9 @@ import { forwardRef } from 'react'
 import { oneOf, string } from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 import { space, color, layout, flexbox, border, position } from 'styled-system'
+import logoGlifWhite from './svgs/logo-glif-white.svg'
 
-import theme from '../theme'
+import theme, { devices } from '../theme'
 
 const IconBase = styled.svg`
   ${position}
@@ -440,4 +441,50 @@ export const IconEdit = forwardRef((props, ref) => {
 IconEdit.propTypes = {
   fill: string,
   stroke: string
+}
+
+const AppIconHeaderFooterImg = styled.img`
+  height: auto;
+
+  @media (max-width: ${devices.phone}) {
+    width: 25px;
+  }
+
+  @media (min-width: ${devices.gt.phone}) and (max-width: ${devices.tablet}) {
+    width: 30px;
+  }
+
+  @media (min-width: ${devices.gt.tablet}) {
+    width: 40px;
+  }
+
+  @media (max-width: ${devices.tablet}) {
+    margin-bottom: 2em;
+  }
+
+  @media (min-width: ${devices.gt.tablet}) {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+  }
+`
+
+const AppIconHeaderFooterWrapper = styled.div`
+  @media (max-width: ${devices.tablet}) {
+    margin-bottom: 2em;
+  }
+
+  @media (min-width: ${devices.gt.tablet}) {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+  }
+`
+
+export const AppIconHeaderFooter = () => {
+  return (
+    <AppIconHeaderFooterWrapper>
+      <AppIconHeaderFooterImg src={logoGlifWhite} />
+    </AppIconHeaderFooterWrapper>
+  )
 }
