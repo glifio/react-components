@@ -2,8 +2,8 @@ import { forwardRef } from 'react'
 import { oneOf, string } from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 import { space, color, layout, flexbox, border, position } from 'styled-system'
-import logoGlifWhite from './svgs/logo-glif-white.svg'
-import logoGlifDark from './svgs/logo-glif-dark.svg'
+import logoGlifWhite from '../../static/svgs/logo-glif-white.svg'
+import logoGlifDark from '../../static/svgs/logo-glif-dark.svg'
 
 import theme, { devices } from '../theme'
 
