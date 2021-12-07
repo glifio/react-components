@@ -2,3 +2,4 @@ dist/*
 !dist/.keep
 coverage
 storybook-static
+node_modules
