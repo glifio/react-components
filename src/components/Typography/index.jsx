@@ -118,26 +118,56 @@ const globalHeaderStyles = `
 
 export const H1 = styled.h1`
   ${globalHeaderStyles}
+
+  ${color}
+  ${typography}
+  ${layout}
+  ${space}
 `
 
 export const H2 = styled.h2`
   ${globalHeaderStyles}
+
+  ${color}
+  ${typography}
+  ${layout}
+  ${space}
 `
 
 export const H3 = styled.h3`
   ${globalHeaderStyles}
+
+  ${color}
+  ${typography}
+  ${layout}
+  ${space}
 `
 
 export const H4 = styled.h4`
   ${globalHeaderStyles}
+
+  ${color}
+  ${typography}
+  ${layout}
+  ${space}
 `
 
 export const H5 = styled.h5`
   ${globalHeaderStyles}
+
+  ${color}
+  ${typography}
+  ${layout}
+  ${space}
 `
 
 export const H6 = styled.h6`
   ${globalHeaderStyles}
+
+  ${color}
+  ${typography}
+  ${layout}
+  ${space}
 `
 
 export const P = styled.p`
@@ -146,4 +176,9 @@ export const P = styled.p`
   & + p {
     margin-top: 1em;
   }
+
+  ${color}
+  ${typography}
+  ${layout}
+  ${space}
 `

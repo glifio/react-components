@@ -27,6 +27,7 @@ const FooterWrapper = styled.footer`
   padding: 30px;
   color: white;
   position: relative;
+  margin-top: ${margin()};
 `
 
 const FooterContent = styled.div`

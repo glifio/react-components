@@ -22,13 +22,13 @@ export default function AppHeader() {
         }}
       >
         <a>
-          <Button small round black>
+          <Button large round black>
             Blog
           </Button>
         </a>
         <a>
           <Button
-            small
+            large
             round
             black
             style={{
@@ -40,7 +40,7 @@ export default function AppHeader() {
         </a>
         <a>
           <Button
-            small
+            large
             round
             black
             style={{
