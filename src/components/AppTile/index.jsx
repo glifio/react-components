@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { AppTileWrapper } from './AppTileWrapper'
+import { fontSize, margin } from '../theme'
+
 import {
   AppTitleContent,
   AppTitleHeader,
@@ -30,14 +32,25 @@ export function AppTile({
       <AppTitleContent small={small} large={large} soon={soon}>
         <AppTitleHeader soon={soon} style={{ justifyContent: 'flex-end' }}>
           <div style={{ textAlign: 'right' }}>
-            <h2 style={{ fontSize: 'inherit' }}>{title}</h2>
+            <h2
+              style={{
+                fontSize: fontSize('medium'),
+                fontWeight: 'normal',
+                margin: 0,
+                opacity: soon ? '0.3' : '1'
+              }}
+            >
+              {title}
+            </h2>
             {oldTileName && (
               <h3
                 style={{
-                  fontSize: 'inherit',
+                  fontSize: fontSize('medium'),
+                  fontWeight: 'normal',
                   opacity: '1%',
                   textDecoration: 'line-through',
-                  lineHeight: 1
+                  lineHeight: 1,
+                  margin: 0
                 }}
               >
                 {oldTileName}
@@ -45,7 +58,29 @@ export function AppTile({
             )}
           </div>
         </AppTitleHeader>
-        <AppTitleImg src={imgSrc} alt='' />
+
+        {soon && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              width: '100%',
+              height: '100%',
+              color: '#fff',
+              zIndex: '2',
+              padding: margin(),
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              opacity: '.5'
+            }}
+          >
+            (Soon)
+          </div>
+        )}
+
+        <AppTitleImg src={imgSrc} alt='' soon={soon} />
       </AppTitleContent>
       <AppTitleHover>{description}</AppTitleHover>
     </AppTileWrapper>

@@ -28,6 +28,7 @@ export const AppTitleHeader = styled.header`
   align-items: flex-start;
   position: relative;
   z-index: 2;
+  font-size: ${fontSize('medium')};
 
   ${props => props.soon && 'opacity: 0.3'}
 
@@ -106,7 +107,6 @@ export const AppTitleHover = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    pointer-events: none;
     border-radius: 10px;
   }
   @media (min-width: ${devices.gt.phone}) and (hover: hover) {
