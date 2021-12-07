@@ -454,37 +454,18 @@ const AppIconHeaderFooterImg = styled.img`
     width: 30px;
   }
 
+  @media (max-width: ${devices.tablet}) {
+    margin-bottom: 2em;
+  }
+
   @media (min-width: ${devices.gt.tablet}) {
+    position: absolute;
+    left: 30px;
+    top: 30px;
     width: 40px;
-  }
-
-  @media (max-width: ${devices.tablet}) {
-    margin-bottom: 2em;
-  }
-
-  @media (min-width: ${devices.gt.tablet}) {
-    position: absolute;
-    left: 30px;
-    top: 30px;
-  }
-`
-
-const AppIconHeaderFooterWrapper = styled.div`
-  @media (max-width: ${devices.tablet}) {
-    margin-bottom: 2em;
-  }
-
-  @media (min-width: ${devices.gt.tablet}) {
-    position: absolute;
-    left: 30px;
-    top: 30px;
   }
 `
 
 export const AppIconHeaderFooter = () => {
-  return (
-    <AppIconHeaderFooterWrapper>
-      <AppIconHeaderFooterImg src={logoGlifWhite} />
-    </AppIconHeaderFooterWrapper>
-  )
+  return <AppIconHeaderFooterImg src={logoGlifWhite} />
 }
