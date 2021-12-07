@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { devices, margin } from '../theme'
 import { AppIconHeaderFooter } from '../Icons'
+import FooterSubscribe from './FooterSubscribe'
 
 const Ul = styled.ul`
   list-style-type: none;
@@ -30,6 +31,7 @@ const FooterWrapper = styled.footer`
 
 const FooterContent = styled.div`
   @media (min-width: ${devices.gt.tablet}) {
+    max-width: 670px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: ${margin()};
@@ -71,6 +73,7 @@ const AppIconStyled = styled(AppIconHeaderFooter)`
 export default function Footer() {
   return (
     <FooterWrapper>
+      <FooterSubscribe />
       <AppIconStyled />
       <FooterContent>
         <Ul>
