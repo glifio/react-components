@@ -47,7 +47,7 @@ export function AppTile({
         </AppTitleHeader>
         <AppTitleImg src={imgSrc} alt='' />
       </AppTitleContent>
-      <AppTitleHover className='appTileHover'>{description}</AppTitleHover>
+      <AppTitleHover>{description}</AppTitleHover>
     </AppTileWrapper>
   )
 }

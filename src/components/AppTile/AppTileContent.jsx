@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { devices, fontSize, margin } from '../theme'
 
 export const AppTitleImg = styled.img`
@@ -12,10 +12,10 @@ export const AppTitleImg = styled.img`
 
   ${props =>
     props.soon &&
-    `
-    opacity: 0.3;
-    filter: blur(30px);
-  `}
+    css`
+      opacity: 0.3;
+      filter: blur(30px);
+    `}
 `
 
 AppTitleImg.propTypes = {
@@ -29,11 +29,7 @@ export const AppTitleHeader = styled.header`
   position: relative;
   z-index: 2;
 
-  ${props =>
-    props.soon &&
-    `
-    opacity: 0.3
-  `}
+  ${props => props.soon && 'opacity: 0.3'}
 
   @media (max-width: ${devices.phone}) {
     padding: ${margin()};
@@ -54,16 +50,16 @@ export const AppTitleContent = styled.div`
 
   ${props =>
     props.large &&
-    `
-    position: relative;
-    width: 100%;
-    height: 100%;
-  `}
+    css`
+      position: relative;
+      width: 100%;
+      height: 100%;
+    `}
 
   @media (max-width: ${devices.phone}) {
     ${props =>
       props.small &&
-      `
+      css`
         height: 90vw;
         position: relative;
       `}
@@ -72,7 +68,7 @@ export const AppTitleContent = styled.div`
   @media (min-width: ${devices.gt.phone}) {
     ${props =>
       props.small &&
-      `
+      css`
         position: absolute;
         width: 100%;
         height: 100%;

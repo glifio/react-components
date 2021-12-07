@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { devices, fontSize, margin } from '../theme'
 
 export const AppTileWrapper = styled.a`
@@ -21,23 +21,19 @@ export const AppTileWrapper = styled.a`
   @media (max-width: ${devices.phone}) {
     ${props =>
       props.small &&
-      `
+      css`
         width: 70vw;
         scroll-snap-align: start;
         padding-left: ${margin('default', 'phone')};
         flex-shrink: 0;
       `}
 
-    ${props =>
-      props.soon &&
-      `
-        display: none;
-      `}
+    ${props => props.soon && 'display: none;'}
   }
 
   ${props =>
     props.large &&
-    `
+    css`
       padding-bottom: 0;
       overflow: hidden;
     `}
