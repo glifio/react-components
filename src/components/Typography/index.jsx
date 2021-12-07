@@ -3,7 +3,7 @@ import { color, typography, layout, space, border } from 'styled-system'
 import styled from 'styled-components'
 import { node, oneOf, number } from 'prop-types'
 
-import theme from '../theme'
+import theme, { fontSize } from '../theme'
 
 const H1Base = styled.h1`
   ${color}
@@ -108,3 +108,42 @@ export const Highlight = styled.span`
 Highlight.propTypes = {
   fontSize: number.isRequired
 }
+
+const globalHeaderStyles = `
+  font-size: ${fontSize('medium')};
+  font-weight: 600;
+  text-rendering: optimizeLegibility;
+  line-height: inherit;
+`
+
+export const H1 = styled.h1`
+  ${globalHeaderStyles}
+`
+
+export const H2 = styled.h2`
+  ${globalHeaderStyles}
+`
+
+export const H3 = styled.h3`
+  ${globalHeaderStyles}
+`
+
+export const H4 = styled.h4`
+  ${globalHeaderStyles}
+`
+
+export const H5 = styled.h5`
+  ${globalHeaderStyles}
+`
+
+export const H6 = styled.h6`
+  ${globalHeaderStyles}
+`
+
+export const P = styled.p`
+  line-height: 1.3em;
+
+  & + p {
+    margin-top: 1em;
+  }
+`

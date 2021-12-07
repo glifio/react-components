@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { AppTileWrapper } from './AppTileWrapper'
-import { fontSize, margin } from '../theme'
+import { margin } from '../theme'
 
+import { H2, H3, P } from '../Typography'
 import {
   AppTitleContent,
   AppTitleHeader,
@@ -18,7 +19,8 @@ export function AppTile({
   title,
   small,
   large,
-  soon
+  soon,
+  beta
 }) {
   return (
     <AppTileWrapper
@@ -32,20 +34,18 @@ export function AppTile({
       <AppTitleContent small={small} large={large} soon={soon}>
         <AppTitleHeader soon={soon} style={{ justifyContent: 'flex-end' }}>
           <div style={{ textAlign: 'right' }}>
-            <h2
+            <H2
               style={{
-                fontSize: fontSize('medium'),
                 fontWeight: 'normal',
                 margin: 0,
                 opacity: soon ? '0.3' : '1'
               }}
             >
               {title}
-            </h2>
+            </H2>
             {oldTileName && (
-              <h3
+              <H3
                 style={{
-                  fontSize: fontSize('medium'),
                   fontWeight: 'normal',
                   opacity: '1%',
                   textDecoration: 'line-through',
@@ -54,13 +54,25 @@ export function AppTile({
                 }}
               >
                 {oldTileName}
-              </h3>
+              </H3>
+            )}
+            {beta && (
+              <H3
+                style={{
+                  fontWeight: 'normal',
+                  opacity: '1%',
+                  lineHeight: 1,
+                  margin: 0
+                }}
+              >
+                Beta
+              </H3>
             )}
           </div>
         </AppTitleHeader>
 
         {soon && (
-          <div
+          <P
             style={{
               position: 'absolute',
               top: '0',
@@ -77,7 +89,7 @@ export function AppTile({
             }}
           >
             (Soon)
-          </div>
+          </P>
         )}
 
         <AppTitleImg src={imgSrc} alt='' soon={soon} />
@@ -88,7 +100,8 @@ export function AppTile({
 }
 
 AppTile.defaultProps = {
-  oldTileName: ''
+  oldTileName: '',
+  small: true
 }
 
 AppTile.propTypes = {
@@ -99,5 +112,6 @@ AppTile.propTypes = {
   oldTileName: PropTypes.string,
   small: PropTypes.bool,
   large: PropTypes.bool,
-  soon: PropTypes.bool
+  soon: PropTypes.bool,
+  beta: PropTypes.bool
 }
