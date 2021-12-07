@@ -3,6 +3,7 @@ import { oneOf, string } from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 import { space, color, layout, flexbox, border, position } from 'styled-system'
 import logoGlifWhite from './svgs/logo-glif-white.svg'
+import logoGlifDark from './svgs/logo-glif-dark.svg'
 
 import theme, { devices } from '../theme'
 
@@ -466,6 +467,18 @@ const AppIconHeaderFooterImg = styled.img`
   }
 `
 
-export const AppIconHeaderFooter = () => {
-  return <AppIconHeaderFooterImg src={logoGlifWhite} />
+export const AppIconHeaderFooter = ({ iconStyle }) => {
+  return (
+    <AppIconHeaderFooterImg
+      src={iconStyle === 'light' ? logoGlifWhite : logoGlifDark}
+    />
+  )
+}
+
+AppIconHeaderFooter.defaultProps = {
+  iconStyle: 'light'
+}
+
+AppIconHeaderFooter.propTypes = {
+  iconStyle: oneOf(['light', 'dark'])
 }
