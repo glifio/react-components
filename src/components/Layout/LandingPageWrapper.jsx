@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { devices, margin } from '../theme'
+import { devices, space } from '../theme'
 
 export const LandingPageContainer = styled.div`
   min-height: 100%;
@@ -9,7 +9,7 @@ export const LandingPageContainer = styled.div`
 `
 
 export const LandingPageContentContainer = styled.div`
-  padding: ${margin()};
+  padding: ${space()};
 
   @media (min-width: ${devices.gt.tablet}) {
     display: flex;

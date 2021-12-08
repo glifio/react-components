@@ -20,11 +20,14 @@ const SubscribeInput = styled.input`
   color: white;
 `
 
-const SubscribeSubmit = styled.button`
+const SubscribeSubmit = styled.button.attrs(() => ({
+  type: 'submit'
+}))`
   background: transparent;
   border: 0;
   color: white;
   padding: 0 0 15px 0;
+  cursor: pointer;
 `
 
 const SubscribeMessage = styled.div`

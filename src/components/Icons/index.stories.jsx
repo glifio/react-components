@@ -13,7 +13,8 @@ import {
   IconLedger as IconLedgerComp,
   IconViewAddress as IconViewAddressComp,
   IconEdit as IconEditComp,
-  AppIconHeaderFooter as AppIconHeaderFooterComp
+  AppIconHeaderFooter as AppIconHeaderFooterComp,
+  IconCaution as IconCautionComp
 } from './index'
 
 export default {
@@ -90,3 +91,5 @@ IconEdit.args = {
 }
 
 export const AppIconHeaderFooter = args => <AppIconHeaderFooterComp {...args} />
+
+export const IconCaution = args => <IconCautionComp {...args} />

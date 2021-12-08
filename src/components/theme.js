@@ -31,11 +31,13 @@ export const baseColors = {
   },
   orange: {
     light: '#FF9E80',
-    dark: '#661800'
+    dark: '#661800',
+    mid: '#FFA826'
   },
   yellow: {
     light: '#FFDC99',
-    deep: '#FCA703'
+    deep: '#FCA703',
+    mid: '#F7C103'
   },
   purple: {
     light: '#E0D7FE',
@@ -288,7 +290,7 @@ const deviceWidthPxs = {
   desktop: 1124
 }
 
-const margins = {
+const spaces = {
   phone: {
     sm: '',
     small: '',
@@ -386,8 +388,8 @@ export const devices = {
 // these are
 // one of size = sm, default, md, lg
 // one of device = phone, tablet, desktop
-export function margin(size = 'default', device = 'default') {
-  return margins[device][size]
+export function space(size = 'default', device = 'default') {
+  return spaces[device][size]
 }
 
 export function fontSize(size = 'default', device = 'default') {

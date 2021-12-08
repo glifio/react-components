@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { devices, margin } from '../theme'
+import { devices, space } from '../theme'
 import { AppIconHeaderFooter } from '../Icons'
 import FooterSubscribe from './FooterSubscribe'
 
@@ -27,7 +27,7 @@ const FooterWrapper = styled.footer`
   padding: 30px;
   color: white;
   position: relative;
-  margin-top: ${margin()};
+  margin-top: ${space()};
 `
 
 const FooterContent = styled.div`
@@ -35,7 +35,7 @@ const FooterContent = styled.div`
     max-width: 670px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: ${margin()};
+    gap: ${space()};
     margin: 0 auto;
   }
 `

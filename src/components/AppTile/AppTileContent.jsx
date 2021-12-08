@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { devices, fontSize, margin } from '../theme'
+import { devices, fontSize, space } from '../theme'
 
 export const AppTitleImg = styled.img`
   height: 100%;
@@ -33,10 +33,10 @@ export const AppTitleHeader = styled.header`
   ${props => props.soon && 'opacity: 0.3'}
 
   @media (max-width: ${devices.phone}) {
-    padding: ${margin()};
+    padding: ${space()};
   }
   @media (min-width: ${devices.gt.phone}) {
-    padding: ${margin('large')};
+    padding: ${space('large')};
   }
 `
 
@@ -119,7 +119,7 @@ export const AppTitleHover = styled.div`
     width: 100%;
     height: 100%;
     color: #fff;
-    padding: ${margin('large')};
+    padding: ${space('large')};
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { devices, fontSize, margin } from '../theme'
+import { devices, fontSize, space } from '../theme'
 
 export const AppTileWrapper = styled.a`
   position: relative;
@@ -24,7 +24,7 @@ export const AppTileWrapper = styled.a`
       css`
         width: 70vw;
         scroll-snap-align: start;
-        padding-left: ${margin('default', 'phone')};
+        padding-left: ${space('default', 'phone')};
         flex-shrink: 0;
       `}
 
