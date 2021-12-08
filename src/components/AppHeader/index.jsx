@@ -1,6 +1,6 @@
 import { AppIconHeaderFooter } from '../Icons'
 import Button from '../Button/V2'
-import { margin } from '../theme'
+import { space } from '../theme'
 
 export default function AppHeader() {
   return (
@@ -32,7 +32,7 @@ export default function AppHeader() {
             round
             black
             style={{
-              marginLeft: margin('default')
+              marginLeft: space('default')
             }}
           >
             Code
@@ -44,7 +44,7 @@ export default function AppHeader() {
             round
             black
             style={{
-              marginLeft: margin('default')
+              marginLeft: space('default')
             }}
           >
             Nodes
