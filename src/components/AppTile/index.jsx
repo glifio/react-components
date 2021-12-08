@@ -47,7 +47,7 @@ export function AppTile({
               <H3
                 style={{
                   fontWeight: 'normal',
-                  opacity: '1%',
+                  opacity: '0.4',
                   textDecoration: 'line-through',
                   lineHeight: 1,
                   margin: 0
