@@ -47,7 +47,7 @@ export function AppTile({
               <H3
                 style={{
                   fontWeight: 'normal',
-                  opacity: '0.4',
+                  opacity: '0.5',
                   textDecoration: 'line-through',
                   lineHeight: 1,
                   margin: 0
@@ -60,7 +60,7 @@ export function AppTile({
               <H3
                 style={{
                   fontWeight: 'normal',
-                  opacity: '1%',
+                  opacity: '0.5',
                   lineHeight: 1,
                   margin: 0
                 }}
@@ -94,7 +94,7 @@ export function AppTile({
 
         <AppTitleImg src={imgSrc} alt='' soon={soon} />
       </AppTitleContent>
-      <AppTitleHover>{description}</AppTitleHover>
+      <AppTitleHover large={large}>{description}</AppTitleHover>
     </AppTileWrapper>
   )
 }

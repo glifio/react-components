@@ -83,9 +83,25 @@ AppTitleContent.propTypes = {
 }
 
 export const AppTitleHover = styled.div`
-  &:hover {
-    opacity: 1;
-  }
+  ${props =>
+    !props.large
+      ? css`
+          @media (min-width: ${devices.gt.phone}) and (hover: hover) {
+            opacity: 0;
+            transition: opacity 0.4s;
+            background: rgba(0, 0, 0, 0.7);
+          }
+          @media (min-width: ${devices.gt.phone}) and (hover: none) {
+            background: rgba(0, 0, 0, 0.6);
+          }
+
+          &:hover {
+            opacity: 1;
+          }
+        `
+      : `
+      pointer-events: none;
+    `}
 
   z-index: 1;
   line-height: 1.3em;
@@ -109,12 +125,12 @@ export const AppTitleHover = styled.div`
     justify-content: flex-end;
     border-radius: 10px;
   }
-  @media (min-width: ${devices.gt.phone}) and (hover: hover) {
-    opacity: 0;
-    transition: opacity 0.4s;
-    background: rgba(0, 0, 0, 0.7);
-  }
-  @media (min-width: ${devices.gt.phone}) and (hover: none) {
-    background: rgba(0, 0, 0, 0.6);
-  }
 `
+
+AppTitleHover.propTypes = {
+  large: PropTypes.bool
+}
+
+AppTitleHover.defaultProps = {
+  large: false
+}

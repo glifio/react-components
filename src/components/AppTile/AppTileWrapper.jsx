@@ -34,6 +34,8 @@ export const AppTileWrapper = styled.a`
   ${props =>
     props.large &&
     css`
+      cursor: default;
+      pointer-events: none;
       padding-bottom: 0;
       overflow: hidden;
     `}

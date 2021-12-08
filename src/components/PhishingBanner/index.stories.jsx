@@ -20,5 +20,5 @@ const Template = args => <PhishingBanner {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  url: 'https://wallet.glif.io'
+  href: 'https://wallet.glif.io'
 }

@@ -26,7 +26,8 @@ export const baseColors = {
   },
   red: {
     light: '#FC6D6F',
-    dark: '#660000'
+    dark: '#660000',
+    base: '#ff4242'
   },
   orange: {
     light: '#FF9E80',

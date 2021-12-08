@@ -22,7 +22,7 @@ Safe.args = {
   description: 'A Filecoin multisig wallet.',
   oldTileName: 'Vault',
   href: '/',
-  imgSrc: '/static/bg-safe.png',
+  imgSrc: '/static/bg-wallet.png',
   small: true
 }
 
@@ -31,7 +31,7 @@ Wallet.args = {
   title: 'Wallet',
   description: 'A Filecoin wallet.',
   href: '/',
-  imgSrc: '/static/bg-safe.png',
+  imgSrc: '/static/bg-wallet.png',
   small: true
 }
 
@@ -40,7 +40,7 @@ Beta.args = {
   title: 'Transaction History',
   description: 'A Filecoin transaction history.',
   href: '/',
-  imgSrc: '/static/bg-safe.png',
+  imgSrc: '/static/bg-wallet.png',
   beta: true,
   small: true
 }
@@ -50,7 +50,7 @@ Soon.args = {
   title: 'Dex',
   description: 'A Filecoin dex.',
   href: '/',
-  imgSrc: '/static/bg-safe.png',
+  imgSrc: '/static/bg-wallet.png',
   soon: true,
   small: true
 }
@@ -60,8 +60,8 @@ Large.args = {
   title: 'Dex',
   description: 'A Filecoin dex.',
   href: '/',
-  imgSrc: '/static/bg-safe.png',
-  small: true
+  imgSrc: '/static/bg-wallet.png',
+  large: true
 }
 
 const TemplateMul = args => (
@@ -78,5 +78,5 @@ Gallery.args = {
   title: 'Wallet',
   description: 'A Filecoin wallet.',
   href: '/',
-  imgSrc: '/static/bg-safe.png'
+  imgSrc: '/static/bg-wallet.png'
 }

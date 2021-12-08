@@ -177,6 +177,15 @@ export const P = styled.p`
     margin-top: 1em;
   }
 
+  a {
+    color: inherit;
+    font-size: inherit;
+    text-decoration: underline;
+    &:hover {
+      color: ${props => props.theme.colors.core.primary};
+    }
+  }
+
   ${color}
   ${typography}
   ${layout}
