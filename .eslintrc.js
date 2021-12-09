@@ -1,34 +1,7 @@
 module.exports = {
-  env: {
-    browser: true,
-    es6: true,
-    jest: true
-  },
-  extends: [
-    'plugin:prettier/recommended',
-    'plugin:react/recommended',
-    'plugin:jsx-a11y/recommended',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:react/recommended',
-    'airbnb',
-    'prettier',
-    'prettier/react'
-  ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
-  },
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module',
-    allowImportExportEverywhere: false
-  },
-  plugins: ['prettier', 'react', 'jsx-a11y', 'react-hooks'],
+  extends: ['plugin:prettier/recommended', 'next/core-web-vitals', 'prettier'],
+  plugins: ['prettier'],
+  parser: '@typescript-eslint/parser',
   rules: {
     'prettier/prettier': 'error',
     'react/jsx-uses-react': 'off',
@@ -52,10 +25,11 @@ module.exports = {
     'import/no-named-as-default': 0,
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
+    'import/no-anonymous-default-export': 0,
     'no-unused-vars': [
       'error',
       {
-        varsIgnorePattern: '^React$'
+        argsIgnorePattern: '^_'
       }
     ]
   }
