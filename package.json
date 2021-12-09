@@ -15,7 +15,7 @@
     "clean": "./node_modules/.bin/rimraf dist/* && mkdirp dist",
     "build": "run-s clean build:*",
     "build:babel": "./node_modules/.bin/babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --source-maps --ignore 'src/**/*.stories.jsx','src/**/*.test.jsx','src/test-utils/**/*'",
-    "build:types": "./node_modules/.bin/tsc --emitDeclarationOnly",
+    "build:types": "./node_modules/.bin/tsc --emitDeclarationOnly && rm ./dist/tsconfig.tsbuildinfo",
     "watch": "npm run clean && run-p watch:*",
     "watch:babel": "npm run build:babel -- --watch",
     "start": "npm run watch",
