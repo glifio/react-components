@@ -1,26 +1,20 @@
-/* eslint-disable max-classes-per-file */
-/* eslint-disable-next-line import/no-extraneous-dependencies */
 const BigNumber = require('bignumber.js')
 
 export const mocks = {
   cacheConversionRate: jest.fn().mockImplementation(() => {
     return Promise.resolve()
   }),
-  toFIL: jest.fn().mockImplementation(amount => {
-    /* eslint-disable-next-line no-use-before-define */
+  toFIL: jest.fn().mockImplementation((amount) => {
     return new FilecoinNumber(amount, 'fil').dividedBy(5)
   }),
-  fromFIL: jest.fn().mockImplementation(amount => {
-    /* eslint-disable-next-line no-use-before-define */
+  fromFIL: jest.fn().mockImplementation((amount) => {
     return new FilecoinNumber(amount, 'fil').multipliedBy(5)
   })
 }
 
 class MockConverter {
   cacheConversionRate = mocks.cacheConversionRate
-
   toFIL = mocks.toFIL
-
   fromFIL = mocks.fromFIL
 }
 
@@ -50,9 +44,7 @@ class FilecoinNumber extends BigNumber {
   }
 
   toFil = () => this.toString()
-
   toPicoFil = () => this.shiftedBy(12).toString()
-
   toAttoFil = () => this.shiftedBy(18).toFixed(0, 1)
 }
 

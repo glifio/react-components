@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['plugin:prettier/recommended', 'next/core-web-vitals', 'prettier'],
-  plugins: ['prettier'],
+  plugins: ['@typescript-eslint', 'prettier'],
   parser: '@typescript-eslint/parser',
   rules: {
     'prettier/prettier': 'error',
@@ -11,7 +11,8 @@ module.exports = {
     'arrow-parens': 0,
     'implicit-arrow-linebreak': 0,
     'react/jsx-props-no-spreading': 0,
-    'no-shadow': 1,
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
     'react/destructuring-assignment': 0,
     'react/require-default-props': 0,
     'import/prefer-default-export': 0,

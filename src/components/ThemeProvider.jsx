@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types'
 import { ThemeProvider as StyledThemeProvider } from 'styled-components'
-import theme from './theme'
+import { theme as defaultTheme } from './theme'
 
-/* eslint-disable no-shadow */
 const ThemeProvider = ({ children, theme, ...rest }) => {
   return (
     <StyledThemeProvider theme={theme} {...rest}>
@@ -17,7 +16,7 @@ ThemeProvider.propTypes = {
 }
 
 ThemeProvider.defaultProps = {
-  theme,
+  theme: defaultTheme,
   children: <></>
 }
 
