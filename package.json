@@ -57,7 +57,7 @@
     "jest": "^26.5.3",
     "jest-styled-components": "7.0.2",
     "mkdirp": "^1.0.4",
-    "next": "^10.0.0",
+    "next": "^12.0.7",
     "normalize.css": "^8.0.1",
     "npm-run-all2": "^5.0.1",
     "prettier": "^2.1.2",
