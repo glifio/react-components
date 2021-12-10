@@ -1,6 +1,7 @@
 import { cleanup, render, act, fireEvent } from '@testing-library/react'
 import Address from '.'
 import noop from '../../utils/noop'
+import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
 describe('Receive', () => {
@@ -8,7 +9,7 @@ describe('Receive', () => {
 
   test('it renders correctly', () => {
     const { container } = render(
-      <ThemeProvider>
+      <ThemeProvider theme={theme}>
         <Address
           address='t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy'
           close={noop}
@@ -21,7 +22,7 @@ describe('Receive', () => {
 
   test('it reveals the address when the user clicks reveal', () => {
     const { container, getByText } = render(
-      <ThemeProvider>
+      <ThemeProvider theme={theme}>
         <Address
           address='t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy'
           close={noop}
