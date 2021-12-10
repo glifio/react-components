@@ -35,7 +35,7 @@ describe('nodeConnectedWidget', () => {
 
     test('it renders connecting state', () => {
       const res = render(
-        <ThemeProvider>
+        <ThemeProvider theme={theme}>
           <NodeConnectedWidget apiAddress='https://node.glif.io/02/rpc/v0' />
         </ThemeProvider>
       )
@@ -47,7 +47,7 @@ describe('nodeConnectedWidget', () => {
       let res
       await act(async () => {
         res = render(
-          <ThemeProvider>
+          <ThemeProvider theme={theme}>
             <NodeConnectedWidget
               onConnectionStrengthChange={onChangeSpy}
               apiAddress='https://node.glif.io/02/rpc/v0'
@@ -70,7 +70,7 @@ describe('nodeConnectedWidget', () => {
       let res
       await act(async () => {
         res = render(
-          <ThemeProvider>
+          <ThemeProvider theme={theme}>
             <NodeConnectedWidget
               onConnectionStrengthChange={onChangeSpy}
               apiAddress='https://node.glif.io/02/rpc/v0'

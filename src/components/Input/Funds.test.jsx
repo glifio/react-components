@@ -198,10 +198,8 @@ describe('Funds input', () => {
     test('it sets error when more FIL is entered than what is in balance', async () => {
       const value = new FilecoinNumber('0', 'fil')
       const balance = new FilecoinNumber('2', 'fil')
-      let res
       await act(async () => {
-        /* eslint-disable-next-line no-unused-vars */
-        res = render(
+        render(
           <ThemeProvider theme={theme}>
             <Funds
               name='amount'
@@ -234,10 +232,8 @@ describe('Funds input', () => {
     test('it empties error with valid input value after insufficent balance error', async () => {
       const value = new FilecoinNumber('0', 'fil')
       const balance = new FilecoinNumber('2', 'fil')
-      let res
       await act(async () => {
-        /* eslint-disable-next-line no-unused-vars */
-        res = render(
+        render(
           <ThemeProvider theme={theme}>
             <Funds
               name='amount'

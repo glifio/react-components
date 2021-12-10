@@ -18,7 +18,11 @@ const addComparisonOperator = (endNum, originalNum) => {
     return endNum
 }
 
-export default (bigNumber, dp = 3, pretty = true) => {
+export default (
+  bigNumber: BigNumber | string | number,
+  dp: number = 3,
+  pretty: boolean = true
+): BigNumber | string | number => {
   if (!bigNumber) throw new Error('No number passed to big number')
   if (!BigNumber.isBigNumber(bigNumber)) return bigNumber
   if (!pretty) return bigNumber.toString()
