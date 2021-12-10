@@ -16,7 +16,9 @@
     "downlevelIteration": true,
     "outDir": "./dist",
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "sourceRoot": "src/",
+    "sourceMap": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": [
@@ -26,6 +28,10 @@
     "**/__tests__",
     "**/dist",
     "**/lib",
-    "**/module"
+    "**/module",
+    "**/__mocks__",
+    "**/test-utils",
+    "storybook-static",
+    ".storybook"
   ]
 }
