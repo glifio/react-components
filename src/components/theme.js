@@ -294,36 +294,36 @@ const spaces = {
   phone: {
     sm: '',
     small: '',
+    default: '8px',
     md: '8px',
     medium: '8px',
-    default: '8px',
-    lg: '16px',
-    large: '16px'
+    lg: '20px',
+    large: '20px'
   },
   default: {
     sm: '',
     small: '',
+    default: '10px',
     md: '10px',
     medium: '10px',
-    default: '10px',
     lg: '20px',
     large: '20px'
   },
   tablet: {
     sm: '',
     small: '',
+    default: '10px',
     md: '10px',
     medium: '10px',
-    default: '10px',
     lg: '20px',
     large: '20px'
   },
   desktop: {
     sm: '',
     small: '',
+    default: '10px',
     md: '10px',
     medium: '10px',
-    default: '10px',
     lg: '20px',
     large: '20px'
   }
@@ -333,36 +333,36 @@ const fontSizes = {
   phone: {
     sm: '13px',
     small: '13px',
+    default: '16px',
     md: '18px',
     medium: '18px',
-    default: '16px',
     lg: '20px',
     large: '20px'
   },
   default: {
     sm: '13px',
     small: '13px',
+    default: '18px',
     md: '26px',
     medium: '26px',
-    default: '18px',
     lg: '28px',
     large: '28px'
   },
   tablet: {
     sm: '13px',
     small: '13px',
+    default: '18px',
     md: '26px',
     medium: '26px',
-    default: '18px',
     lg: '28px',
     large: '28px'
   },
   desktop: {
     sm: '13px',
     small: '13px',
+    default: '18px',
     md: '26px',
     medium: '26px',
-    default: '18px',
     lg: '28px',
     large: '28px'
   }
