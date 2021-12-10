@@ -368,6 +368,8 @@ const fontSizes = {
   }
 }
 
+export const maxWidth = '1450px'
+
 // dont change
 export const devices = {
   gt: {

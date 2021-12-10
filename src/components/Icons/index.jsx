@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
-import { oneOf, string } from 'prop-types'
-import styled, { keyframes } from 'styled-components'
+import { oneOf, string, PropTypes } from 'prop-types'
+import styled, { keyframes, css } from 'styled-components'
 import { space, color, layout, flexbox, border, position } from 'styled-system'
 
 import theme, { devices, baseColors } from '../theme'
@@ -458,14 +458,19 @@ const AppIconHeaderFooterSvg = styled.svg`
   }
 
   @media (min-width: ${devices.gt.tablet}) {
-    position: absolute;
-    left: 30px;
-    top: 30px;
+
     width: 40px;
-  }
+
+    ${props =>
+      props.footer &&
+      css`
+        position: absolute;
+        left: 30px;
+        top: 30px;
+      `}
 `
 
-export const AppIconHeaderFooter = ({ iconStyle }) => {
+export const AppIconHeaderFooter = ({ iconStyle, footer }) => {
   if (iconStyle === 'light')
     return (
       <AppIconHeaderFooterSvg
@@ -475,6 +480,7 @@ export const AppIconHeaderFooter = ({ iconStyle }) => {
         version='1.1'
         xmlns='http://www.w3.org/2000/svg'
         xmlnsXlink='http://www.w3.org/1999/xlink'
+        footer={footer}
       >
         <>
           <title>logo-glif</title>
@@ -520,6 +526,7 @@ export const AppIconHeaderFooter = ({ iconStyle }) => {
       viewBox='0 0 52 71'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
+      footer={footer}
     >
       <>
         <title>logo-glif</title>
@@ -546,11 +553,13 @@ export const AppIconHeaderFooter = ({ iconStyle }) => {
 }
 
 AppIconHeaderFooter.defaultProps = {
-  iconStyle: 'light'
+  iconStyle: 'light',
+  footer: false
 }
 
 AppIconHeaderFooter.propTypes = {
-  iconStyle: oneOf(['light', 'dark'])
+  iconStyle: oneOf(['light', 'dark']),
+  footer: PropTypes.bool
 }
 
 export const IconCaution = forwardRef((props, ref) => (

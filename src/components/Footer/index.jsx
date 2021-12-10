@@ -75,7 +75,7 @@ export default function Footer() {
   return (
     <FooterWrapper>
       <FooterSubscribe />
-      <AppIconStyled />
+      <AppIconStyled footer />
       <FooterContent>
         <Ul>
           <Li>

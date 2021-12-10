@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
-
-import { fontSize } from '../theme'
+import { fontSize, devices } from '../theme'
 
 const ButtonV2 = styled.button`
   text-align: center;
@@ -18,22 +17,37 @@ const ButtonV2 = styled.button`
       font-size: ${fontSize('medium')};
       height: 56px;
       padding: 0 1.6em;
+
+      @media (max-width: ${devices.phone}) {
+        font-size: ${fontSize('medium', 'phone')};
+      }
+
+      @media (min-width: ${devices.gt.tablet}) {
+        font-size: ${fontSize('medium')};
+      }
     `};
 
   ${props =>
     props.small &&
     css`
-      font-size: ${fontSize('default')};
       height: auto;
       padding: 0.4em 1.6em;
+
+      @media (max-width: ${devices.phone}) {
+        font-size: ${fontSize('default', 'phone')};
+      }
+
+      @media (min-width: ${devices.gt.tablet}) {
+        font-size: ${fontSize('default')};
+      }
     `};
 
   ${props =>
     props.black &&
     css`
       border: 1px solid black;
-      background: white;
       color: black;
+      background: transparent;
 
       ${!props.disabled &&
       `&:hover {

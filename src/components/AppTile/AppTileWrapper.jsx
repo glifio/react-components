@@ -7,15 +7,30 @@ export const AppTileWrapper = styled.a`
   font-size: ${fontSize('large')};
   line-height: 1.3em;
   display: block;
+  text-decoration: none;
+  color: inherit;
 
   &:hover {
     opacity: 1;
   }
 
-  @media (min-width: ${devices.gt.phone}) {
+  @media (min-width: ${devices.gt.tablet}) {
     width: 100%;
     overflow: hidden;
     padding-bottom: 144%;
+  }
+
+  @media (max-width: ${devices.tablet}) {
+    ${props =>
+      props.small &&
+      css`
+        width: 45vw;
+        scroll-snap-align: start;
+        padding-left: ${space('default', 'default')};
+        flex-shrink: 0;
+      `}
+
+    ${props => props.soon && 'display: none;'}
   }
 
   @media (max-width: ${devices.phone}) {

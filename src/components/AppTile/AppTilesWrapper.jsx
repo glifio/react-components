@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { devices, space } from '../theme'
 
 export const AppTilesWrapper = styled.div`
-  @media (max-width: ${devices.phone}) {
+  @media (max-width: ${devices.tablet}) {
     display: flex;
     white-space: nowrap;
     overflow-x: scroll;
@@ -21,15 +21,10 @@ export const AppTilesWrapper = styled.div`
       display: none;
     }
   }
-  @media (min-width: ${devices.gt.phone}) {
+  @media (min-width: ${devices.gt.tablet}) {
     display: grid;
     grid-gap: ${space()};
     gap: ${space()};
-  }
-  @media (min-width: ${devices.gt.phone}) and (max-width: ${devices.desktop}) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (min-width: ${devices.gt.desktop}) {
     grid-template-columns: repeat(3, 1fr);
   }
 `

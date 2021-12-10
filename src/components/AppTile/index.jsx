@@ -32,13 +32,14 @@ export function AppTile({
       soon={soon}
     >
       <AppTitleContent small={small} large={large} soon={soon}>
-        <AppTitleHeader soon={soon} style={{ justifyContent: 'flex-end' }}>
-          <div style={{ textAlign: 'right' }}>
+        <AppTitleHeader soon={soon}>
+          <div>
             <H2
               style={{
                 fontWeight: 'normal',
                 margin: 0,
-                opacity: soon ? '0.3' : '1'
+                opacity: soon ? '0.3' : '1',
+                textDecoration: 'none'
               }}
             >
               {title}
@@ -47,7 +48,7 @@ export function AppTile({
               <H3
                 style={{
                   fontWeight: 'normal',
-                  opacity: '0.5',
+                  opacity: '0.3',
                   textDecoration: 'line-through',
                   lineHeight: 1,
                   margin: 0

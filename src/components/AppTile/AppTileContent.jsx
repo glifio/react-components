@@ -29,11 +29,12 @@ export const AppTitleHeader = styled.header`
   position: relative;
   z-index: 2;
   font-size: ${fontSize('medium')};
+  line-height: 1;
 
   ${props => props.soon && 'opacity: 0.3'}
 
   @media (max-width: ${devices.phone}) {
-    padding: ${space()};
+    padding: ${space('default', 'phone')};
   }
   @media (min-width: ${devices.gt.phone}) {
     padding: ${space('large')};
@@ -48,6 +49,7 @@ export const AppTitleContent = styled.div`
   color: #fff;
   background: #000;
   border-radius: 10px;
+  overflow: hidden;
 
   ${props =>
     props.large &&
@@ -56,6 +58,15 @@ export const AppTitleContent = styled.div`
       width: 100%;
       height: 100%;
     `}
+
+  @media (max-width: ${devices.tablet}) {
+    ${props =>
+      props.small &&
+      css`
+        height: 60vw;
+        position: relative;
+      `}
+  }
 
   @media (max-width: ${devices.phone}) {
     ${props =>
@@ -66,7 +77,7 @@ export const AppTitleContent = styled.div`
       `}
   }
 
-  @media (min-width: ${devices.gt.phone}) {
+  @media (min-width: ${devices.gt.tablet}) {
     ${props =>
       props.small &&
       css`
@@ -106,13 +117,13 @@ export const AppTitleHover = styled.div`
   z-index: 1;
   line-height: 1.3em;
 
-  @media (max-width: ${devices.phone}) {
+  @media (max-width: ${devices.tablet}) {
     width: 100%;
     white-space: normal;
     font-size: ${fontSize('small', 'phone')};
-    padding: 15px 5px 0 30px;
+    padding: 15px 5px 0 ${space('default', 'phone')};
   }
-  @media (min-width: ${devices.gt.phone}) {
+  @media (min-width: ${devices.gt.tablet}) {
     position: absolute;
     top: 0;
     left: 0;
