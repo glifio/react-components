@@ -94,6 +94,10 @@ AppTitleContent.propTypes = {
 }
 
 export const AppTitleHover = styled.div`
+  z-index: 1;
+  font-size: ${fontSize('medium')};
+  line-height: 1.3;
+
   ${props =>
     !props.large
       ? css`
@@ -114,9 +118,6 @@ export const AppTitleHover = styled.div`
       pointer-events: none;
     `}
 
-  z-index: 1;
-  line-height: 1.3em;
-
   @media (max-width: ${devices.tablet}) {
     width: 100%;
     white-space: normal;
@@ -135,6 +136,11 @@ export const AppTitleHover = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     border-radius: 10px;
+    background-image: url(${props => props.imgSrcHover});
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
   }
 `
 

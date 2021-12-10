@@ -14,11 +14,21 @@ export const AppTileWrapper = styled.a`
     opacity: 1;
   }
 
+  ${props =>
+    props.large &&
+    css`
+      height: 100%;
+    `}
+
   @media (min-width: ${devices.gt.tablet}) {
     width: 100%;
     overflow: hidden;
-    padding-bottom: 144%;
-  }
+
+    ${props =>
+      props.small &&
+      css`
+        padding-bottom: 144%;
+      `}
 
   @media (max-width: ${devices.tablet}) {
     ${props =>

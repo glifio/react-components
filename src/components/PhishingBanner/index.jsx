@@ -9,14 +9,17 @@ const PhishingBannerContainer = styled.div`
   color: white;
   font-size: var(--type-small);
   line-height: 1.4;
+  grid-area: banner;
+  border-radius: 10px;
+  overflow: hidden;
 
   @media (max-width: ${devices.tablet}) {
-    padding: 10px 20px;
+    padding: 0 20px;
   }
 
   @media (min-width: ${devices.gt.tablet}) {
     text-align: center;
-    padding: 5px 20px;
+    padding: 0 20px;
   }
 `
 
@@ -30,8 +33,7 @@ const PhishingText = styled(P)`
   }
 `
 
-export default function PhishingBanner({ href }) {
-  const [closed, setClosed] = useState(false)
+export default function PhishingBanner({ href, closed, setClosed }) {
   return (
     <>
       {!closed ? (
@@ -73,5 +75,12 @@ export default function PhishingBanner({ href }) {
 }
 
 PhishingBanner.propTypes = {
-  href: PropTypes.string.isRequired
+  href: PropTypes.string.isRequired,
+  closed: PropTypes.bool,
+  setClosed: PropTypes.func
+}
+
+PhishingBanner.defaultProps = {
+  closed: false,
+  setClosed: () => {}
 }

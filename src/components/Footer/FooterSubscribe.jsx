@@ -1,9 +1,13 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import { devices } from '../theme'
 
 const Subscribe = styled.form`
-  max-width: 670px;
   margin: 0 auto 25px auto;
+
+  @media (min-width: ${devices.gt.tablet}) {
+    max-width: 670px;
+  }
 `
 
 const SubscribeInputWrapper = styled.div`

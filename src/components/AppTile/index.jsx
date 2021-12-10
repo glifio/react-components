@@ -15,6 +15,7 @@ export function AppTile({
   description,
   oldTileName,
   imgSrc,
+  imgSrcHover,
   href,
   title,
   small,
@@ -95,7 +96,9 @@ export function AppTile({
 
         <AppTitleImg src={imgSrc} alt='' soon={soon} />
       </AppTitleContent>
-      <AppTitleHover large={large}>{description}</AppTitleHover>
+      <AppTitleHover large={large} imgSrcHover={imgSrcHover}>
+        {description}
+      </AppTitleHover>
     </AppTileWrapper>
   )
 }
