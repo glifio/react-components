@@ -1,6 +1,18 @@
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 import { devices, fontSize, space } from '../theme'
+
+const transitionIn = keyframes`
+from {
+  opacity: 0;
+  transform: scale(1.25)
+}
+
+to {
+  opacity: 1;
+  transform: scale(1.35)
+}
+`
 
 export const AppTitleImg = styled.img`
   height: 100%;
@@ -10,11 +22,33 @@ export const AppTitleImg = styled.img`
   position: absolute;
   top: 0;
 
+  &.default {
+    ${props =>
+      props.soon &&
+      css`
+        opacity: 0.3;
+        filter: blur(30px);
+      `}
+  }
+
+  &.hover {
+    ${props =>
+      props.large &&
+      css`
+        opacity: 0;
+        animation-name: ${transitionIn};
+        animation-delay: 0.5s;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      `}
+  }
+
   ${props =>
-    props.soon &&
+    props.title === 'Sender' &&
     css`
-      opacity: 0.3;
-      filter: blur(30px);
+      margin-top: -15%;
+      margin-left: 4%;
     `}
 `
 
@@ -93,7 +127,7 @@ AppTitleContent.propTypes = {
   large: PropTypes.bool
 }
 
-export const AppTitleHover = styled.div`
+export const AppTitleDescription = styled.div`
   z-index: 1;
   font-size: ${fontSize('medium')};
   line-height: 1.3;
@@ -103,11 +137,7 @@ export const AppTitleHover = styled.div`
       ? css`
           @media (min-width: ${devices.gt.phone}) and (hover: hover) {
             opacity: 0;
-            transition: opacity 0.4s;
-            background: rgba(0, 0, 0, 0.7);
-          }
-          @media (min-width: ${devices.gt.phone}) and (hover: none) {
-            background: rgba(0, 0, 0, 0.6);
+            transition: opacity 0.5s;
           }
 
           &:hover {
@@ -136,18 +166,21 @@ export const AppTitleHover = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     border-radius: 10px;
-    background-image: url(${props => props.imgSrcHover});
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0;
+
+    ${props =>
+      props.small &&
+      css`
+        opacity: 0;
+      `}
   }
 `
 
-AppTitleHover.propTypes = {
-  large: PropTypes.bool
+AppTitleDescription.propTypes = {
+  large: PropTypes.bool,
+  small: PropTypes.bool
 }
 
-AppTitleHover.defaultProps = {
-  large: false
+AppTitleDescription.defaultProps = {
+  large: false,
+  small: true
 }

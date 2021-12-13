@@ -22,16 +22,18 @@ Safe.args = {
   description: 'A Filecoin multisig wallet.',
   oldTileName: 'Vault',
   href: '/',
-  imgSrc: '/static/bg-wallet.png',
+  imgSrc: '/static/bg-safe.jpg',
+  imgSrcHover: '/static/bg-safe-hover.jpg',
   small: true
 }
 
 export const Wallet = Template.bind({})
 Wallet.args = {
-  title: 'Wallet',
+  title: 'Sender',
   description: 'A Filecoin wallet.',
   href: '/',
-  imgSrc: '/static/bg-wallet.png',
+  imgSrc: '/static/bg-sender.jpg',
+  imgSrcHover: '/static/bg-sender-hover.jpg',
   small: true
 }
 
@@ -75,8 +77,9 @@ const TemplateMul = args => (
 
 export const Gallery = TemplateMul.bind({})
 Gallery.args = {
-  title: 'Wallet',
+  title: 'Sender',
   description: 'A Filecoin wallet.',
   href: '/',
-  imgSrc: '/static/bg-wallet.png'
+  imgSrc: '/static/bg-sender.jpg',
+  imgSrcHover: '/static/bg-sender-hover.jpg'
 }

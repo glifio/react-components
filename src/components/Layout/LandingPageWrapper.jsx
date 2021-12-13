@@ -21,7 +21,6 @@ export const LandingPageContentContainer = styled.div`
     ${props =>
       !props.phishingBannerClosed &&
       css`
-        grid-template-rows: auto;
         grid-template-rows: 50px auto;
         grid-template-areas:
           'banner banner'

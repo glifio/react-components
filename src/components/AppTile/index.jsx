@@ -7,7 +7,7 @@ import { H2, H3, P } from '../Typography'
 import {
   AppTitleContent,
   AppTitleHeader,
-  AppTitleHover,
+  AppTitleDescription,
   AppTitleImg
 } from './AppTileContent'
 
@@ -94,11 +94,22 @@ export function AppTile({
           </P>
         )}
 
-        <AppTitleImg src={imgSrc} alt='' soon={soon} />
+        {small && (
+          <AppTitleImg className='default' src={imgSrc} alt='' soon={soon} />
+        )}
+
+        <AppTitleImg
+          className='hover'
+          src={imgSrcHover}
+          alt=''
+          soon={soon}
+          title={title}
+          large={large}
+        />
       </AppTitleContent>
-      <AppTitleHover large={large} imgSrcHover={imgSrcHover}>
+      <AppTitleDescription large={large} small={small}>
         {description}
-      </AppTitleHover>
+      </AppTitleDescription>
     </AppTileWrapper>
   )
 }

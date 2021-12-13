@@ -10,10 +10,6 @@ export const AppTileWrapper = styled.a`
   text-decoration: none;
   color: inherit;
 
-  &:hover {
-    opacity: 1;
-  }
-
   ${props =>
     props.large &&
     css`
@@ -29,6 +25,7 @@ export const AppTileWrapper = styled.a`
       css`
         padding-bottom: 144%;
       `}
+  }
 
   @media (max-width: ${devices.tablet}) {
     ${props =>
@@ -63,6 +60,25 @@ export const AppTileWrapper = styled.a`
       pointer-events: none;
       padding-bottom: 0;
       overflow: hidden;
+    `}
+
+  ${props =>
+    props.small &&
+    css`
+      .hover {
+        opacity: 0;
+        transform: scale(1.4);
+      }
+
+      &:hover {
+        .hover {
+          opacity: 1;
+        }
+
+        .default {
+          opacity: 0;
+        }
+      }
     `}
 `
 
