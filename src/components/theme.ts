@@ -80,8 +80,8 @@ const colors = {
       color: baseColors.purple.light
     },
     'tertiary-selected': {
-      background: baseColors.purple.primary,
-      borderColor: baseColors.purple.primary,
+      background: baseColors.purple.mid,
+      borderColor: baseColors.purple.mid,
       color: baseColors.purple.light
     }
   },
