@@ -15,7 +15,7 @@ import {
   IconEdit as IconEditComp,
   AppIconHeaderFooter as AppIconHeaderFooterComp,
   IconCaution as IconCautionComp
-} from './index'
+} from '.'
 
 export default {
   title: 'Icon/Icon',

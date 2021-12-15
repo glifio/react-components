@@ -1,14 +1,12 @@
-import { forwardRef } from 'react'
 import Glyph from '.'
 
-const ErrorGlyph = forwardRef(({ ...props }, ref) => (
+const ErrorGlyph = ({ ...props }) => (
   <Glyph
     {...props}
-    ref={ref}
     acronym='Er'
     backgroundColor='status.fail.background'
     color='status.fail.foreground'
   />
-))
+)
 
 export default ErrorGlyph

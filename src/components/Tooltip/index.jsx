@@ -1,4 +1,3 @@
-import { forwardRef } from 'react'
 import styled from 'styled-components'
 import { color as styledColor, border } from 'styled-system'
 import { string } from 'prop-types'
@@ -58,10 +57,10 @@ const TooltipContainer = styled.a`
   } */
 `
 
-const Tooltip = forwardRef(({ content, color, ...props }, ref) => {
+const Tooltip = ({ content, color, ...props }) => {
   return (
     <Box position='relative' mx={2}>
-      <TooltipContainer color={color} aria-label='Tooltip' ref={ref} {...props}>
+      <TooltipContainer color={color} aria-label='Tooltip' {...props}>
         <Text m={0} color={color}>
           ?
         </Text>
@@ -74,7 +73,7 @@ const Tooltip = forwardRef(({ content, color, ...props }, ref) => {
       </TooltipContent>
     </Box>
   )
-})
+}
 
 Tooltip.propTypes = {
   content: string.isRequired,

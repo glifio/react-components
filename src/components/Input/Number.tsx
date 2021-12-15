@@ -33,7 +33,7 @@ export const RawNumberInput = styled(BaseInput)`
   -moz-appearance: textfield;
 `
 
-export const NumberInput = forwardRef(
+export const NumberInput = forwardRef<HTMLInputElement, any>(
   (
     {
       denom,
@@ -54,7 +54,7 @@ export const NumberInput = forwardRef(
     ref
   ) => {
     return (
-      <InputWrapper ref={ref} {...props}>
+      <InputWrapper {...props}>
         <Box position='relative' display='flex' alignItems='center'>
           {label && (
             <Box
@@ -88,6 +88,7 @@ export const NumberInput = forwardRef(
               borderBottomLeftRadius={bottom && !middle && 2}
               borderTopLeftRadius={top && !middle && 2}
               px={3}
+              ref={ref}
             />
             {denom && (
               <DenomTag

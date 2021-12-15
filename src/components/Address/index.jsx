@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { space, color, layout, border, flexbox } from 'styled-system'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
@@ -46,10 +46,10 @@ const InlineButton = styled.button.attrs(() => ({
   ${flexbox}
 `
 
-const Address = forwardRef(({ address, ...props }, ref) => {
+const Address = ({ address, ...props }) => {
   const [showAddress, setShowAddress] = useState(false)
   return (
-    <Wrapper ref={ref} {...props}>
+    <Wrapper {...props}>
       {showAddress ? (
         <Text pl={1} pr={2}>
           {address}
@@ -72,7 +72,7 @@ const Address = forwardRef(({ address, ...props }, ref) => {
       </Box>
     </Wrapper>
   )
-})
+}
 
 Address.propTypes = {
   /**

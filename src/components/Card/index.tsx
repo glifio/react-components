@@ -1,7 +1,11 @@
 import { forwardRef } from 'react'
 import Box from '../Box'
 
-const Card = forwardRef(({ ...props }, ref) => (
+type CardProps = {
+  [x: string]: any
+}
+
+const Card = forwardRef<HTMLDivElement, CardProps>(({ ...props }, ref) => (
   <Box
     display='inline-block'
     width={300}

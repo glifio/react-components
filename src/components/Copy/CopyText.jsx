@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 import { bool, string } from 'prop-types'
 import Box from '../Box'
@@ -32,10 +32,10 @@ export const LabelCopy = styled(Label)`
   }
 `
 
-export const CopyText = forwardRef(({ text, hideCopyText, ...props }, ref) => {
+export const CopyText = ({ text, hideCopyText, ...props }) => {
   const [copied, setCopied] = useState(false)
   return (
-    <Box ref={ref} display='flex' alignItems='center' {...props}>
+    <Box display='flex' alignItems='center' {...props}>
       <Copy
         display='flex'
         alignItems='center'
@@ -62,7 +62,7 @@ export const CopyText = forwardRef(({ text, hideCopyText, ...props }, ref) => {
       </Copy>
     </Box>
   )
-})
+}
 
 CopyText.propTypes = {
   text: string.isRequired,

@@ -1,4 +1,3 @@
-import { forwardRef } from 'react'
 import { string, func, bool, oneOf } from 'prop-types'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import Box from '../Box'
@@ -13,74 +12,68 @@ import {
   IMPORT_SINGLE_KEY
 } from '../../constants'
 
-const AccountCard = forwardRef(
-  (
-    {
-      address,
-      onAccountSwitch,
-      onShowOnLedger,
-      ledgerBusy,
-      walletType,
-      ...props
-    },
-    ref
-  ) => {
-    return (
+const AccountCard = ({
+  address,
+  onAccountSwitch,
+  onShowOnLedger,
+  ledgerBusy,
+  walletType,
+  ...props
+}) => {
+  return (
+    <Box
+      display='flex'
+      flexDirection='column'
+      justifyContent='space-between'
+      width='300px'
+      height='300px'
+      borderRadius={3}
+      p={3}
+      color='card.account.color'
+      bg='card.account.background'
+      boxShadow={1}
+      {...props}
+    >
       <Box
         display='flex'
-        flexDirection='column'
-        justifyContent='space-between'
-        width='300px'
-        height='300px'
-        borderRadius={3}
-        p={3}
+        alignItems='center'
+        justifyContent='flex-start'
         color='card.account.color'
-        bg='card.account.background'
-        boxShadow={1}
-        ref={ref}
-        {...props}
       >
-        <Box
-          display='flex'
-          alignItems='center'
-          justifyContent='flex-start'
-          color='card.account.color'
-        >
-          <Glyph mr={3} color='card.account.color' acronym='Ac' />
-          <Text>Account</Text>
-        </Box>
-        <Box color='card.account.color'>
-          <Text m={0}>Your Address</Text>
-          <CopyAddress address={address} />
-        </Box>
-        <Box display='flex'>
-          {walletType !== IMPORT_SINGLE_KEY && (
-            <Button
-              variant='tertiary'
-              title='Switch'
-              onClick={onAccountSwitch}
-              height='max-content'
-              p={2}
-              py={2}
-            />
-          )}
-          {walletType === LEDGER && (
-            <Button
-              variant='tertiary'
-              title={ledgerBusy ? 'Check Device' : 'Show on Device'}
-              onClick={onShowOnLedger}
-              height='max-content'
-              ml={2}
-              p={2}
-              py={2}
-              disabled={ledgerBusy}
-            />
-          )}
-        </Box>
+        <Glyph mr={3} color='card.account.color' acronym='Ac' />
+        <Text>Account</Text>
       </Box>
-    )
-  }
-)
+      <Box color='card.account.color'>
+        <Text m={0}>Your Address</Text>
+        <CopyAddress address={address} />
+      </Box>
+      <Box display='flex'>
+        {walletType !== IMPORT_SINGLE_KEY && (
+          <Button
+            variant='tertiary'
+            title='Switch'
+            onClick={onAccountSwitch}
+            height='max-content'
+            p={2}
+            py={2}
+          />
+        )}
+        {walletType === LEDGER && (
+          <Button
+            variant='tertiary'
+            title={ledgerBusy ? 'Check Device' : 'Show on Device'}
+            onClick={onShowOnLedger}
+            height='max-content'
+            ml={2}
+            p={2}
+            py={2}
+            disabled={ledgerBusy}
+          />
+        )}
+      </Box>
+    </Box>
+  )
+}
 
 AccountCard.propTypes = {
   /**

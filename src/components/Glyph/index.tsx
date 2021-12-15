@@ -10,7 +10,7 @@ const GlyphText = styled.h3`
   font-size: ${props => props.theme.fontSizes[4]};
 `
 
-const Glyph = forwardRef(
+const Glyph = forwardRef<HTMLDivElement, any>(
   ({ acronym, Icon, color, backgroundColor, ...props }, ref) => (
     <Box
       display='flex'

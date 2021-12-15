@@ -1,4 +1,3 @@
-import { forwardRef } from 'react'
 import { string } from 'prop-types'
 import Box from '../Box'
 import { Title as AccountAddress } from '../Typography'
@@ -8,9 +7,9 @@ import { CopyText } from './CopyText'
 
 export * from './CopyText'
 
-export const CopyAddress = forwardRef(({ address, ...props }, ref) => {
+export const CopyAddress = ({ address, ...props }) => {
   return (
-    <Box ref={ref} display='flex' alignItems='center' {...props}>
+    <Box display='flex' alignItems='center' {...props}>
       <AccountAddress
         fontWeight={1}
         fontSize={3}
@@ -23,7 +22,7 @@ export const CopyAddress = forwardRef(({ address, ...props }, ref) => {
       <CopyText text={address} color={props.color} />
     </Box>
   )
-})
+}
 
 CopyAddress.propTypes = {
   address: ADDRESS_PROPTYPE,

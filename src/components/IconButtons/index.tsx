@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import styled from 'styled-components'
-import { func, node, string } from 'prop-types'
+import { func, node, object, oneOfType, string } from 'prop-types'
 import { layout, space, border, flexbox, position } from 'styled-system'
 import {
   IconClose,
@@ -26,15 +26,22 @@ const IconButtonBase = styled.button`
   ${position}
 `
 
-const IconButton = forwardRef(({ onClick, Icon, ...props }, ref) => (
-  <IconButtonBase display='inline-block' onClick={onClick} ref={ref} {...props}>
-    <Icon stroke={props.stroke} fill={props.fill} />
-  </IconButtonBase>
-))
+const IconButton = forwardRef<HTMLButtonElement, any>(
+  ({ onClick, Icon, ...props }, ref) => (
+    <IconButtonBase
+      display='inline-block'
+      onClick={onClick}
+      ref={ref}
+      {...props}
+    >
+      <Icon stroke={props.stroke} fill={props.fill} />
+    </IconButtonBase>
+  )
+)
 
 const IconButtonProps = {
   onClick: func.isRequired,
-  Icon: node,
+  Icon: oneOfType([node, object]),
   stroke: string,
   fill: string
 }

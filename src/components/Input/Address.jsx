@@ -1,12 +1,9 @@
-import { forwardRef } from 'react'
 import { func, string, bool } from 'prop-types'
 import TextInput from './Text'
 
-const Address = forwardRef(({ value, label, error, ...props }, ref) => {
-  return (
-    <TextInput ref={ref} label={label} value={value} error={error} {...props} />
-  )
-})
+const Address = ({ value, label, error, ...props }) => {
+  return <TextInput label={label} value={value} error={error} {...props} />
+}
 
 Address.propTypes = {
   onChange: func,

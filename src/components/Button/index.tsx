@@ -3,7 +3,16 @@ import { func, bool, string, oneOf } from 'prop-types'
 import BaseButton from './BaseButton'
 import theme from '../theme'
 
-const Button = forwardRef(
+type ButtonProps = {
+  disabled: boolean
+  onClick: () => void
+  variant: string
+  title: string
+  type: string
+  [x: string]: any
+}
+
+const Button = forwardRef<HTMLButtonElement, HTMLButtonElement & ButtonProps>(
   ({ disabled, onClick, variant, title, type, ...props }, ref) => (
     <BaseButton
       variant={variant}

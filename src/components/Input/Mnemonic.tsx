@@ -5,9 +5,9 @@ import TextInput from './Text'
 import Box from '../Box'
 import BaseButton from '../Button/BaseButton'
 
-const Mnemonic = forwardRef(
+const Mnemonic = forwardRef<HTMLInputElement, any>(
   ({ onChange, value, placeholder, error, setError, valid, ...props }, ref) => {
-    const timer = useRef()
+    const timer = useRef<any>()
     const [reveal, setReveal] = useState(false)
 
     const validate = mnemonic => {

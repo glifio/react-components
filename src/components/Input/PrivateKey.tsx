@@ -3,7 +3,7 @@ import { func, string, bool } from 'prop-types'
 import TextInput from './Text'
 import Box from '../Box'
 
-const PrivateKey = forwardRef(
+const PrivateKey = forwardRef<HTMLInputElement, any>(
   ({ onChange, value, placeholder, error, setError, valid, ...props }, ref) => {
     return (
       <Box display='flex' flexDirection='column' alignItems='flex-end'>

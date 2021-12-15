@@ -8,13 +8,25 @@ import { Text, Label } from '../Typography'
 import { FILECOIN_NUMBER_PROP } from '../../customPropTypes'
 import noop from '../../utils/noop'
 
-const formatFilValue = number => {
+const formatFilValue = (number?: FilecoinNumber | string | number) => {
   if (!number) return ''
   if (FilecoinNumber.isBigNumber(number)) return number.toFil()
   return number
 }
 
-const Funds = forwardRef(
+type FundsInputProps = {
+  onAmountChange: (_: FilecoinNumber) => void
+  balance: FilecoinNumber | string | number
+  error?: string
+  setError: (_: string) => void
+  disabled?: boolean
+  valid: boolean
+  amount: FilecoinNumber | string | number
+  label: string
+  [x: string]: any
+}
+
+const Funds = forwardRef<HTMLInputElement, FundsInputProps>(
   (
     {
       onAmountChange,
@@ -33,7 +45,7 @@ const Funds = forwardRef(
       amount && amount > 0 ? new FilecoinNumber(amount, 'attofil') : ''
 
     const [filAmount, setFilAmount] = useState(initialFilAmount)
-    const timeout = useRef()
+    const timeout = useRef<any>()
 
     const checkBalance = val => {
       if (!val || new BigNumber(val).isEqualTo(0)) {
@@ -99,7 +111,6 @@ const Funds = forwardRef(
         minHeight='120px'
         alignItems='center'
         borderColor='input.border'
-        ref={ref}
         {...props}
       >
         <Box
@@ -155,6 +166,7 @@ const Funds = forwardRef(
               {...props}
               my={0}
               px={3}
+              ref={ref}
             />
             <DenomTag
               top='0px'

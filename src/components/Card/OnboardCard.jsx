@@ -1,7 +1,6 @@
-import { forwardRef } from 'react'
 import Box from '../Box'
 
-const OnboardCard = forwardRef(({ ...props }, ref) => (
+const OnboardCard = ({ ...props }) => (
   <Box
     display='inline-block'
     width='100%'
@@ -12,9 +11,8 @@ const OnboardCard = forwardRef(({ ...props }, ref) => (
     borderRadius={2}
     borderWidth={1}
     overflow='hidden'
-    ref={ref}
     {...props}
   />
-))
+)
 
 export default OnboardCard
