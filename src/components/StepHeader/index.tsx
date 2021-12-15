@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 
 import { Menu, MenuItem } from '../Menu'
@@ -8,6 +8,18 @@ import Glyph from '../Glyph'
 import ErrorGlyph from '../Glyph/ErrorGlyph'
 import { Title } from '../Typography'
 import Box from '../Box'
+
+type StepHeaderProps = {
+  currentStep: number
+  glyphAcronym: string
+  Icon: ReactNode
+  loading: boolean
+  totalSteps: number
+  showStepper: boolean
+  title: string
+  error: string
+  [x: string]: any
+}
 
 const StepHeader = ({
   currentStep,
@@ -19,7 +31,7 @@ const StepHeader = ({
   title,
   error,
   ...props
-}) => {
+}: Partial<StepHeaderProps>) => {
   return (
     <Menu
       display='flex'

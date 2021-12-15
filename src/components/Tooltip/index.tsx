@@ -57,7 +57,11 @@ const TooltipContainer = styled.a`
   } */
 `
 
-const Tooltip = ({ content, color, ...props }) => {
+const Tooltip = ({
+  content,
+  color,
+  ...props
+}: Partial<{ content: string; color: string; [x: string]: any }>) => {
   return (
     <Box position='relative' mx={2}>
       <TooltipContainer color={color} aria-label='Tooltip' {...props}>
