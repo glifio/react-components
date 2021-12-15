@@ -8,8 +8,6 @@
 
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
-import reportError from '../../utils/reportError'
-
 export default async (apiAddress, token = '') => {
   const client = new LotusRPCEngine({
     apiAddress,
@@ -21,12 +19,12 @@ export default async (apiAddress, token = '') => {
     if (chainHead.Height) return 2
     return 0
   } catch (err) {
-    reportError(
-      '@glif/react-components/src/components/NodeConnected/connectionStrength.js:1',
-      false,
-      err.message,
-      err.stack
-    )
+    // reportError(
+    //   '@glif/react-components/src/components/NodeConnected/connectionStrength.js:1',
+    //   false,
+    //   err.message,
+    //   err.stack
+    // )
     return 0
   }
 }

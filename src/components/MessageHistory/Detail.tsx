@@ -7,6 +7,7 @@ import { P } from '../Typography'
 export default function MessageDetail(
   props: MessageBase & { parent?: string; child?: string }
 ) {
+  console.log(props)
   return (
     <Box>
       <P>Message Overview</P>

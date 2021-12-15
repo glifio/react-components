@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 import calcConnectionStrength from './connectionStrength'
 import noop from '../../utils/noop'
-import reportError from '../../utils/reportError'
 import Box from '../Box'
 import { Text } from '../Typography'
 
@@ -65,7 +64,7 @@ const NodeConnectedWidget = ({
 
           return pollConnection()
         } catch (err) {
-          reportError('NodeConnectedWidget:1', false, err.message, err.stack)
+          // reportError('NodeConnectedWidget:1', false, err.message, err.stack)
         }
       }, pollTimer)
     },

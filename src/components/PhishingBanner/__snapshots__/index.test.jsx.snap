@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Phishing Banner renders the phishing banner 1`] = `
+.c2 {
+  line-height: 1.3em;
+}
+
+.c2 + p {
+  margin-top: 1em;
+}
+
+.c2 a {
+  color: inherit;
+  font-size: inherit;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c2 a:hover {
+  color: #5E26FF;
+}
+
+.c0 {
+  background: #ff4242;
+  color: white;
+  font-size: var(--type-small);
+  line-height: 1.4;
+  grid-area: banner;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.c3 {
+  display: inline-block;
+}
+
+.c3 > a {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  cursor: pointer;
+  color: inherit;
+}
+
+@media (max-width:868px) {
+  .c0 {
+    padding: 0 20px;
+  }
+}
+
+@media (min-width:869px) {
+  .c0 {
+    text-align: center;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width:868px) {
+  .c1 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <p
+      class="c2 c3"
+      style="display: inline-block;"
+    >
+      For your protection, please check your browser's URL bar that you're visiting
+       
+      <a
+        href="https://wallet.glif.io"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        https://wallet.glif.io
+      </a>
+    </p>
+    <button
+      style="margin-left: 30px; display: inline-block; cursor: pointer; background: none; color: white;"
+      type="button"
+    >
+      close
+    </button>
+  </div>
+</div>
+`;

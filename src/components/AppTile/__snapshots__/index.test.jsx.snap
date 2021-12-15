@@ -1,0 +1,290 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppTile renders the AppTile 1`] = `
+.c1 {
+  position: relative;
+  font-size: 28px;
+  line-height: 1.3em;
+  display: block;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+.c1 .hover {
+  opacity: 0;
+  -webkit-transform: scale(1.4);
+  -ms-transform: scale(1.4);
+  transform: scale(1.4);
+}
+
+.c1:hover .hover {
+  opacity: 1;
+}
+
+.c1:hover .default {
+  opacity: 0;
+}
+
+.c4 {
+  font-size: 26px;
+  font-weight: 600;
+  text-rendering: optimizeLegibility;
+  line-height: inherit;
+}
+
+.c5 {
+  font-size: 26px;
+  font-weight: 600;
+  text-rendering: optimizeLegibility;
+  line-height: inherit;
+}
+
+.c6 {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.c2 {
+  color: #fff;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.c7 {
+  z-index: 1;
+  font-size: 26px;
+  line-height: 1.3;
+}
+
+.c7:hover {
+  opacity: 1;
+}
+
+@media (max-width:868px) {
+  .c0 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    white-space: nowrap;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    -webkit-scrollbar-width: none;
+    -moz-scrollbar-width: none;
+    -ms-scrollbar-width: none;
+    scrollbar-width: none;
+    width: calc(100% + 8px);
+    margin-left: calc(8px * -1);
+    margin-top: calc(20px * 2);
+    margin-bottom: calc(20px * 2);
+    padding: 0 8px;
+    -ms-scroll-snap-type: x mandatory;
+    -webkit-scroll-snap-type: x mandatory;
+    -moz-scroll-snap-type: x mandatory;
+    -ms-scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory;
+  }
+
+  .c0::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (min-width:869px) {
+  .c0 {
+    display: grid;
+    grid-gap: 10px;
+    gap: 10px;
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+
+@media (min-width:869px) {
+  .c1 {
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 144%;
+  }
+}
+
+@media (max-width:868px) {
+  .c1 {
+    width: 45vw;
+    -webkit-scroll-snap-align: start;
+    -moz-scroll-snap-align: start;
+    -ms-scroll-snap-align: start;
+    scroll-snap-align: start;
+    padding-left: 10px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width:480px) {
+  .c1 {
+    width: 70vw;
+    -webkit-scroll-snap-align: start;
+    -moz-scroll-snap-align: start;
+    -ms-scroll-snap-align: start;
+    scroll-snap-align: start;
+    padding-left: 8px;
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width:480px) {
+  .c3 {
+    padding: 8px;
+  }
+}
+
+@media (min-width:481px) {
+  .c3 {
+    padding: 20px;
+  }
+}
+
+@media (max-width:868px) {
+  .c2 {
+    height: 60vw;
+    position: relative;
+  }
+}
+
+@media (max-width:480px) {
+  .c2 {
+    height: 90vw;
+    position: relative;
+  }
+}
+
+@media (min-width:869px) {
+  .c2 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (min-width:481px) and (hover:hover) {
+  .c7 {
+    opacity: 0;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+  }
+}
+
+@media (max-width:868px) {
+  .c7 {
+    width: 100%;
+    white-space: normal;
+    font-size: 13px;
+    padding: 15px 5px 0 8px;
+  }
+}
+
+@media (min-width:869px) {
+  .c7 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    padding: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    border-radius: 10px;
+    opacity: 0;
+  }
+}
+
+<div
+  class="c0"
+>
+  <a
+    class="c1"
+    data-testid="app-tile-wrapper"
+    href="/"
+    rel="noreferrer"
+    target="_blank"
+  >
+    <div
+      class="c2"
+    >
+      <header
+        class="c3"
+      >
+        <div>
+          <h2
+            class="c4"
+            style="font-weight: normal; margin: 0px; opacity: 1; text-decoration: none;"
+          >
+            Safe
+          </h2>
+          <h3
+            class="c5"
+            style="font-weight: normal; opacity: 0.3; text-decoration: line-through; line-height: 1; margin: 0px;"
+          >
+            Vault
+          </h3>
+        </div>
+      </header>
+      <img
+        alt=""
+        class="c6 default"
+        src="/static/bg-safe.jpg"
+      />
+      <img
+        alt=""
+        class="c6 hover"
+        src="/static/bg-safe-hover.jpg"
+        title="Safe"
+      />
+    </div>
+    <div
+      class="c7"
+    >
+      A Filecoin multisig wallet.
+    </div>
+  </a>
+   
+</div>
+`;

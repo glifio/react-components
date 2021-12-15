@@ -25,6 +25,7 @@ export function AppTile({
 }) {
   return (
     <AppTileWrapper
+      data-testid='app-tile-wrapper'
       href={href}
       target='_blank'
       rel='noreferrer'
@@ -122,7 +123,7 @@ AppTile.defaultProps = {
 AppTile.propTypes = {
   description: PropTypes.string.isRequired,
   imgSrc: PropTypes.string.isRequired,
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
   title: PropTypes.string.isRequired,
   oldTileName: PropTypes.string,
   small: PropTypes.bool,

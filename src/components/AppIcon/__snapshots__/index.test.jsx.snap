@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppIcon renders the AppIcon 1`] = `
+.c0 {
+  height: auto;
+}
+
+@media (max-width:480px) {
+  .c0 {
+    width: 25px;
+  }
+}
+
+@media (min-width:481px) and (max-width:868px) {
+  .c0 {
+    width: 30px;
+  }
+}
+
+@media (min-width:869px) {
+  .c0 {
+    width: 40px;
+  }
+}
+
+<img
+  class="c0"
+/>
+`;

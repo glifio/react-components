@@ -7,19 +7,7 @@ import { DenomTag } from './Number'
 import { forwardRef } from 'react'
 
 const TextInput = forwardRef<HTMLInputElement, any>(
-  (
-    {
-      denom,
-      value,
-      label,
-      error,
-      disabled,
-      /* eslint-disable-next-line no-unused-vars */
-      name,
-      ...props
-    },
-    ref
-  ) => (
+  ({ denom, value, label, error, disabled, ...props }, ref) => (
     <>
       <InputWrapper>
         <Box display='flex' alignItems='center'>

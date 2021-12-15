@@ -24,7 +24,8 @@ Safe.args = {
   href: '/',
   imgSrc: '/static/bg-safe.jpg',
   imgSrcHover: '/static/bg-safe-hover.jpg',
-  small: true
+  small: true,
+  large: false
 }
 
 export const Wallet = Template.bind({})
