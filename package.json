@@ -54,7 +54,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.1",
     "jest": "^26.5.3",
-    "jest-styled-components": "7.0.2",
+    "jest-styled-components": "7.0.8",
     "mkdirp": "^1.0.4",
     "next": "^12.0.7",
     "normalize.css": "^8.0.1",
