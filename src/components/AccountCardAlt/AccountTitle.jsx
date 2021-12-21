@@ -3,7 +3,7 @@ import { number, bool, string } from 'prop-types'
 import Box from '../Box'
 import { Text, Title } from '../Typography'
 
-const AccountTitle = ({ index, legacy, path }) => {
+const AccountTitle = ({ index, legacy, path, nDefaultWallets }) => {
   return (
     <Box display='flex' flexDirection='column'>
       {index === 0 && (
@@ -11,12 +11,12 @@ const AccountTitle = ({ index, legacy, path }) => {
           Default
         </Title>
       )}
-      {index > 0 && index <= 4 && (
+      {index > 0 && index < nDefaultWallets && (
         <Title fontSize={4} my={0}>
           Account {index}
         </Title>
       )}
-      {index > 4 && (
+      {index >= nDefaultWallets && (
         <Title fontSize={4} my={0}>
           Created Account
         </Title>
@@ -36,7 +36,7 @@ const AccountTitle = ({ index, legacy, path }) => {
             </i>
           </>
         )}
-        {!legacy && index > 4 && (
+        {!legacy && index >= nDefaultWallets && (
           <i>
             <Text p={0} m={0}>
               {path}
@@ -51,6 +51,7 @@ const AccountTitle = ({ index, legacy, path }) => {
 AccountTitle.propTypes = {
   index: number.isRequired,
   path: string.isRequired,
+  nDefaultWallets: number.isRequired,
   legacy: bool
 }
 

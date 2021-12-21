@@ -16,8 +16,8 @@ import { StyledATag } from '../Link'
 import { CopyText } from '../Copy'
 import AccountTitle from './AccountTitle'
 
-const calcGlyphAcronym = index => {
-  if (index < 5) return index.toString()
+const calcGlyphAcronym = (index, nDefaultWallets) => {
+  if (index < nDefaultWallets) return index.toString()
   return 'Cr'
 }
 
@@ -32,6 +32,7 @@ const AccountCardAlt = ({
   legacy,
   jsonRpcEndpoint,
   path,
+  nDefaultWallets,
   ...props
 }) => {
   const { data, error: balanceFetchingError } = useSWR(
@@ -67,9 +68,14 @@ const AccountCardAlt = ({
           <Glyph
             mr={3}
             color={selected ? 'card.account.color' : 'colors.core.black'}
-            acronym={calcGlyphAcronym(index)}
+            acronym={calcGlyphAcronym(index, nDefaultWallets)}
           />
-          <AccountTitle index={index} legacy={legacy} path={path} />
+          <AccountTitle
+            index={index}
+            legacy={legacy}
+            path={path}
+            nDefaultWallets={nDefaultWallets}
+          />
         </Box>
         <Box display='flex' flexDirection='row' justifyContent='center'>
           <StyledATag
@@ -127,12 +133,14 @@ AccountCardAlt.propTypes = {
   onClick: func.isRequired,
   selected: bool,
   jsonRpcEndpoint: string,
-  legacy: bool
+  legacy: bool,
+  nDefaultWallets: number
 }
 
 AccountCardAlt.defaultProps = {
   selected: false,
-  legacy: false
+  legacy: false,
+  nDefaultWallets: 5
 }
 
 export default AccountCardAlt
