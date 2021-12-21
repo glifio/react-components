@@ -17,7 +17,7 @@ type StepHeaderProps = {
   totalSteps: number
   showStepper: boolean
   title: string
-  error: string
+  error: boolean | string
   [x: string]: any
 }
 
