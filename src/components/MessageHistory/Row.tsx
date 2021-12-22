@@ -59,7 +59,7 @@ export default function MessageHistoryRow({
   to,
   value,
   status,
-  feePaid,
+  totalCost,
   inspectingAddress,
   cidHref,
   addressHref
@@ -82,12 +82,12 @@ export default function MessageHistoryRow({
 
       <P>{timestamp}</P>
       <AddressWOptionalLink
-        address={from}
+        address={from.address}
         addressHref={addressHref}
         inspectingAddress={inspectingAddress}
       />
       <AddressWOptionalLink
-        address={to}
+        address={to.address}
         addressHref={addressHref}
         inspectingAddress={inspectingAddress}
       />
@@ -95,7 +95,7 @@ export default function MessageHistoryRow({
       {status === 'PENDING' ? (
         <P>(pending)</P>
       ) : (
-        <P>{new FilecoinNumber(feePaid, 'attofil').toFil()}</P>
+        <P>{new FilecoinNumber(totalCost, 'attofil').toFil()}</P>
       )}
     </Box>
   )

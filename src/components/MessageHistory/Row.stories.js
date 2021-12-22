@@ -30,10 +30,16 @@ GenericRow.args = {
   method: 'transfer',
   height: '234125',
   timestamp: '23516427',
-  from: 'f1b64l7up4oov74ignqfadshkge7h7aifwsaapjzd',
-  to: 'f1b64l7up4oov74ignqfadshkge7h7aivdsjiownio',
+  from: {
+    address: 'f1b64l7up4oov74ignqfadshkge7h7aifwsaapjzd',
+    id: 'f0467876'
+  },
+  to: {
+    address: 'f1b64l7up4oov74ignqfadshkge7h7aivdsjiownio',
+    id: 'f078987'
+  },
   value: '13547168198490157',
-  feePaid: '21375685904209'
+  totalCost: '21375685904209'
 }
 
 export const SearchedRow = Template.bind({})
@@ -42,10 +48,16 @@ SearchedRow.args = {
   method: 'transfer',
   height: '234125',
   age: '23516427',
-  from: 'f1b64l7up4oov74ignqfadshkge7h7aifwsaapjzd',
-  to: 'f1b64l7up4oov74ignqfadshkge7h7aivdsjiownio',
+  from: {
+    address: 'f1b64l7up4oov74ignqfadshkge7h7aifwsaapjzd',
+    id: 'f0467876'
+  },
+  to: {
+    address: 'f1b64l7up4oov74ignqfadshkge7h7aivdsjiownio',
+    id: 'f078987'
+  },
   value: '13547168198490157',
-  fee: '21375685904209',
+  totalCost: '21375685904209',
   inspectingAddress: 'f1b64l7up4oov74ignqfadshkge7h7aifwsaapjzd'
 }
 
@@ -55,10 +67,16 @@ PendingRow.args = {
   method: 'transfer',
   height: '234125',
   age: '23516427',
-  from: 'f1b64l7up4oov74ignqfadshkge7h7aifwsaapjzd',
-  to: 'f1b64l7up4oov74ignqfadshkge7h7aivdsjiownio',
+  from: {
+    address: 'f1b64l7up4oov74ignqfadshkge7h7aifwsaapjzd',
+    id: 'f0467876'
+  },
+  to: {
+    address: 'f1b64l7up4oov74ignqfadshkge7h7aivdsjiownio',
+    id: 'f078987'
+  },
   value: '13547168198490157',
-  fee: '21375685904209',
+  totalCost: '21375685904209',
   inspectingAddress: 'f1b64l7up4oov74ignqfadshkge7h7aifwsaapjzd',
   pending: true
 }
