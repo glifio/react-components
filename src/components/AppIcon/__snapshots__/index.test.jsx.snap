@@ -11,13 +11,13 @@ exports[`AppIcon renders the AppIcon 1`] = `
   }
 }
 
-@media (min-width:481px) and (max-width:868px) {
+@media (min-width:480px) and (max-width:868px) {
   .c0 {
     width: 30px;
   }
 }
 
-@media (min-width:869px) {
+@media (min-width:868px) {
   .c0 {
     width: 40px;
   }

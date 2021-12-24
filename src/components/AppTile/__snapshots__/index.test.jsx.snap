@@ -18,14 +18,6 @@ exports[`AppTile renders the AppTile 1`] = `
   transform: scale(1.4);
 }
 
-.c1:hover .hover {
-  opacity: 1;
-}
-
-.c1:hover .default {
-  opacity: 0;
-}
-
 .c4 {
   font-size: 26px;
   font-weight: 600;
@@ -115,7 +107,7 @@ exports[`AppTile renders the AppTile 1`] = `
   }
 }
 
-@media (min-width:869px) {
+@media (min-width:868px) {
   .c0 {
     display: grid;
     grid-gap: 10px;
@@ -124,7 +116,7 @@ exports[`AppTile renders the AppTile 1`] = `
   }
 }
 
-@media (min-width:869px) {
+@media (min-width:868px) {
   .c1 {
     width: 100%;
     overflow: hidden;
@@ -160,13 +152,27 @@ exports[`AppTile renders the AppTile 1`] = `
   }
 }
 
+@media (hover:hover) {
+  .c1:hover .hover {
+    opacity: 1;
+  }
+
+  .c1:hover .default {
+    opacity: 0;
+  }
+}
+
+@media (hover:hover) {
+
+}
+
 @media (max-width:480px) {
   .c3 {
     padding: 8px;
   }
 }
 
-@media (min-width:481px) {
+@media (min-width:480px) {
   .c3 {
     padding: 20px;
   }
@@ -186,7 +192,7 @@ exports[`AppTile renders the AppTile 1`] = `
   }
 }
 
-@media (min-width:869px) {
+@media (min-width:868px) {
   .c2 {
     position: absolute;
     width: 100%;
@@ -194,7 +200,7 @@ exports[`AppTile renders the AppTile 1`] = `
   }
 }
 
-@media (min-width:481px) and (hover:hover) {
+@media (min-width:480px) and (hover:hover) {
   .c7 {
     opacity: 0;
     -webkit-transition: opacity 0.5s;
@@ -211,7 +217,7 @@ exports[`AppTile renders the AppTile 1`] = `
   }
 }
 
-@media (min-width:869px) {
+@media (min-width:868px) {
   .c7 {
     position: absolute;
     top: 0;
