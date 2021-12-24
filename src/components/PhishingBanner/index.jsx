@@ -17,7 +17,7 @@ const PhishingBannerContainer = styled.div`
     padding: 0 20px;
   }
 
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     text-align: center;
     padding: 0 20px;
   }

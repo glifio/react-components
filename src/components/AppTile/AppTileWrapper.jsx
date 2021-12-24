@@ -16,7 +16,7 @@ export const AppTileWrapper = styled.a`
       height: 100%;
     `}
 
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     width: 100%;
     overflow: hidden;
 
@@ -70,13 +70,14 @@ export const AppTileWrapper = styled.a`
         transform: scale(1.4);
       }
 
-      &:hover {
-        .hover {
-          opacity: 1;
-        }
-
-        .default {
-          opacity: 0;
+      @media (hover: hover) {
+        &:hover {
+          .hover {
+            opacity: 1;
+          }
+          .default {
+            opacity: 0;
+          }
         }
       }
     `}

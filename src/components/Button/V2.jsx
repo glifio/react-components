@@ -22,7 +22,7 @@ const ButtonV2 = styled.button`
         font-size: ${fontSize('medium', 'phone')};
       }
 
-      @media (min-width: ${devices.gt.tablet}) {
+      @media (min-width: ${devices.tablet}) {
         font-size: ${fontSize('medium')};
       }
     `};
@@ -37,7 +37,7 @@ const ButtonV2 = styled.button`
         font-size: ${fontSize('default', 'phone')};
       }
 
-      @media (min-width: ${devices.gt.tablet}) {
+      @media (min-width: ${devices.tablet}) {
         font-size: ${fontSize('default')};
       }
     `};

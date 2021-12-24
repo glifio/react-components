@@ -31,17 +31,19 @@ export const AppTitleImg = styled.img`
       `}
   }
 
-  &.hover {
-    ${props =>
-      props.large &&
-      css`
-        opacity: 0;
-        animation-name: ${transitionIn};
-        animation-delay: 0.5s;
-        animation-duration: 3s;
-        animation-fill-mode: forwards;
-        transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-      `}
+  @media (hover: hover) {
+    &.hover {
+      ${props =>
+        props.large &&
+        css`
+          opacity: 0;
+          animation-name: ${transitionIn};
+          animation-delay: 0.5s;
+          animation-duration: 3s;
+          animation-fill-mode: forwards;
+          transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        `}
+    }
   }
 
   ${props =>
@@ -70,7 +72,7 @@ export const AppTitleHeader = styled.header`
   @media (max-width: ${devices.phone}) {
     padding: ${space('default', 'phone')};
   }
-  @media (min-width: ${devices.gt.phone}) {
+  @media (min-width: ${devices.phone}) {
     padding: ${space('large')};
   }
 `
@@ -111,7 +113,7 @@ export const AppTitleContent = styled.div`
       `}
   }
 
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     ${props =>
       props.small &&
       css`
@@ -135,7 +137,7 @@ export const AppTitleDescription = styled.div`
   ${props =>
     !props.large
       ? css`
-          @media (min-width: ${devices.gt.phone}) and (hover: hover) {
+          @media (min-width: ${devices.phone}) and (hover: hover) {
             opacity: 0;
             transition: opacity 0.5s;
           }
@@ -154,7 +156,7 @@ export const AppTitleDescription = styled.div`
     font-size: ${fontSize('small', 'phone')};
     padding: 15px 5px 0 ${space('default', 'phone')};
   }
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     position: absolute;
     top: 0;
     left: 0;

@@ -462,7 +462,7 @@ const AppIconHeaderFooterSvg = styled.svg`
     width: 25px;
   }
 
-  @media (min-width: ${devices.gt.phone}) and (max-width: ${devices.tablet}) {
+  @media (min-width: ${devices.phone}) and (max-width: ${devices.tablet}) {
     width: 30px;
   }
 
@@ -470,7 +470,7 @@ const AppIconHeaderFooterSvg = styled.svg`
     margin-bottom: 2em;
   }
 
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
 
     width: 40px;
 

@@ -352,16 +352,6 @@ export const maxWidth = '1450px'
 
 // dont change
 export const devices = {
-  gt: {
-    phone: `${deviceWidthPxs.phone + 1}px`,
-    tablet: `${deviceWidthPxs.tablet + 1}px`,
-    desktop: `${deviceWidthPxs.desktop + 1}px`
-  },
-  ls: {
-    phone: `${deviceWidthPxs.phone - 1}px`,
-    tablet: `${deviceWidthPxs.tablet - 1}px`,
-    desktop: `${deviceWidthPxs.desktop - 1}px`
-  },
   phone: `${deviceWidthPxs.phone}px`,
   tablet: `${deviceWidthPxs.tablet}px`,
   desktop: `${deviceWidthPxs.desktop}px`

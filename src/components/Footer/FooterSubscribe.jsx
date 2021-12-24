@@ -5,7 +5,7 @@ import { devices } from '../theme'
 const Subscribe = styled.form`
   margin: 0 auto 25px auto;
 
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     max-width: 670px;
   }
 `

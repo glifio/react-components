@@ -14,7 +14,7 @@ export const LandingPageContentContainer = styled.div`
   gap: ${space()};
   display: grid;
 
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     min-height: 100vh;
     grid-template-columns: 1fr 1fr;
 

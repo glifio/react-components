@@ -21,7 +21,7 @@ export const AppTilesWrapper = styled.div`
       display: none;
     }
   }
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     display: grid;
     grid-gap: ${space()};
     gap: ${space()};

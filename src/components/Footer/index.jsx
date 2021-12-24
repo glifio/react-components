@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { devices, space } from '../theme'
 import { AppIconHeaderFooter } from '../Icons'
-import FooterSubscribe from './FooterSubscribe'
 
 const Ul = styled.ul`
   list-style-type: none;
@@ -31,7 +30,7 @@ const FooterWrapper = styled.footer`
 `
 
 const FooterContent = styled.div`
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     max-width: 670px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -50,7 +49,7 @@ const Copyright = styled.div`
   text-transform: uppercase;
   display: block;
 
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     margin-top: 1em;
   }
 
@@ -64,7 +63,7 @@ const AppIconStyled = styled(AppIconHeaderFooter)`
     margin-bottom: 2em;
   }
 
-  @media (min-width: ${devices.gt.tablet}) {
+  @media (min-width: ${devices.tablet}) {
     position: absolute;
     left: 30px;
     top: 30px;
@@ -73,49 +72,66 @@ const AppIconStyled = styled(AppIconHeaderFooter)`
 
 export default function Footer() {
   return (
-    <FooterWrapper>
-      <FooterSubscribe />
-      <AppIconStyled footer />
-      <FooterContent>
-        <Ul>
-          <Li>
-            <A href='#'>Blog</A>
-          </Li>
-          <Li>
-            <A href='#'>Code</A>
-          </Li>
-          <Li>
-            <A href='#'>Nodes</A>
-          </Li>
-          <Li>
-            <A href='#'>Contact</A>
-          </Li>
-        </Ul>
+    <>
+      <FooterWrapper>
+        <AppIconStyled footer />
+        <FooterContent>
+          <Ul>
+            <Li>
+              <A
+                href='https://blog.glif.io'
+                target='_blank'
+                rel='noopenner noreferrer'
+              >
+                Blog
+              </A>
+            </Li>
+            <Li>
+              <A
+                href='https://github.com/glifio'
+                target='_blank'
+                rel='noopenner noreferrer'
+              >
+                Code
+              </A>
+            </Li>
+            <Li>
+              <A
+                href='https://lotus.filecoin.io/docs/developers/hosted-lotus/'
+                target='_blank'
+                rel='noopenner noreferrer'
+              >
+                Nodes
+              </A>
+            </Li>
+            <Li>
+              <A href='mailto:squad@glif.io'>Contact</A>
+            </Li>
+          </Ul>
 
-        <Ul>
-          <Li>
-            <A href='#'>Wallet</A>
-          </Li>
-          <Li>
-            <A href='#'>Safe</A>
-          </Li>
-          <Li>
-            <A href='#'>Verifier</A>
-          </Li>
-        </Ul>
+          <Ul>
+            <Li>
+              <A href='#'>Wallet</A>
+            </Li>
+            <Li>
+              <A href='#'>Safe</A>
+            </Li>
+            <Li>
+              <A href='#'>Verifier</A>
+            </Li>
+          </Ul>
 
-        <Address>
-          GLIF
-          <br />
-          PO Box #12345
-          <br />
-          NY, NY 10002
-          <br />
-          USA
-        </Address>
+          <Address>
+            GLIF
+            <br />
+            48 Shoreline, Dubloon Rd.
+            <br />
+            Freeport, Grand Bahamas
+          </Address>
 
-        <Copyright>2021 Glif for life</Copyright>
-      </FooterContent>
-    </FooterWrapper>
+          <Copyright>2022 Glif for life</Copyright>
+        </FooterContent>
+      </FooterWrapper>
+    </>
   )
 }
