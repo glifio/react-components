@@ -1,11 +1,11 @@
-import React, { AnchorHTMLAttributes, DetailedHTMLProps } from 'react'
-import { FilecoinNumber } from '@glif/filecoin-number'
+import React, { AnchorHTMLAttributes, DetailedHTMLProps, useMemo } from 'react'
+import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import Box from '../Box'
 import { P } from '../Typography'
 import truncateAddress from '../../utils/truncateAddress'
-import { MessageBase, messagePropTypes } from './types'
+import { MessageConfirmed, MESSAGE_CONFIRMED_ROW_PROP_TYPES } from './types'
 
 // uses next/link for internal page routing
 // uses <a> tag for external page routing
@@ -52,57 +52,62 @@ function AddressWOptionalLink({
 
 export default function MessageHistoryRow({
   cid,
-  method,
+  methodName,
   height,
-  timestamp,
   from,
   to,
   value,
-  status,
-  totalCost,
   inspectingAddress,
+  block,
+  baseFeeBurn,
+  overEstimationBurn,
+  minerTip,
   cidHref,
   addressHref
-}: MessageBase & {
+}: MessageConfirmed & {
   inspectingAddress: string
   // these helper funcs are for generating hrefs from strings
   // will allow us to plop this message history component in any other requiring app
   cidHref: (cid: string) => string
   addressHref: (address: string) => string
 }) {
-  // Code here is just to throw _something_ up... can delete all of this...
-  // I'd probably use CSS grid on this?
+  const totalCost = useMemo(() => {
+    const bnBaseFeeBurn = new BigNumber(baseFeeBurn)
+    const bnOverEstimationBurn = new BigNumber(overEstimationBurn)
+    const bnMinerTip = new BigNumber(minerTip)
+    return new FilecoinNumber(
+      bnBaseFeeBurn.plus(bnOverEstimationBurn).plus(bnMinerTip),
+      'attofil'
+    ).toFil()
+  }, [baseFeeBurn, overEstimationBurn, minerTip])
+
+  // ? CSS grid ?
   return (
     <Box display='flex' flexDirection='row'>
       <Link href={cidHref(cid)}>{cid.slice()}</Link>
       <Box borderRadius='8px' background='core.primary'>
-        {method.toUpperCase()}
+        {methodName.toUpperCase()}
       </Box>
-      {status === 'PENDING' ? <P>(pending)</P> : <P>{height}</P>}
-
-      <P>{timestamp}</P>
+      <P>{height}</P>
+      <P>{block.Timestamp}</P>
       <AddressWOptionalLink
-        address={from.address}
+        address={from.robust}
         addressHref={addressHref}
         inspectingAddress={inspectingAddress}
       />
       <AddressWOptionalLink
-        address={to.address}
+        address={to.robust}
         addressHref={addressHref}
         inspectingAddress={inspectingAddress}
       />
-      <P>{new FilecoinNumber(value, 'attofil').toFil()}</P>
-      {status === 'PENDING' ? (
-        <P>(pending)</P>
-      ) : (
-        <P>{new FilecoinNumber(totalCost, 'attofil').toFil()}</P>
-      )}
+      <P>{new FilecoinNumber(value, 'fil').toFil()}</P>
+      <P>{totalCost}</P>
     </Box>
   )
 }
 
 MessageHistoryRow.propTypes = {
-  ...messagePropTypes,
+  ...MESSAGE_CONFIRMED_ROW_PROP_TYPES,
   cidHref: PropTypes.func.isRequired,
   addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string
