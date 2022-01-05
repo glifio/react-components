@@ -1,5 +1,4 @@
 export default abstract class Logger {
-
   public static debug(...args: any[]): void {
     console.debug.apply(console, args)
   }

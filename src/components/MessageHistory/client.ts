@@ -28,10 +28,10 @@ export const client = new ApolloClient({
             merge(existing: any, incoming: any) {
               try {
                 return JSON.parse(incoming)
-              } catch(e) {
+              } catch (e) {
                 const msg = e instanceof Error ? e.message : String(e)
                 Logger.error(`Failed to parse MessageConfirmed.params: ${msg}`)
-                return null;
+                return null
               }
             }
           }

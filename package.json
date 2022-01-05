@@ -1,6 +1,6 @@
 {
   "name": "@glif/react-components",
-  "version": "2.0.0-alpha.16",
+  "version": "2.0.0-alpha.18",
   "description": "Shared react components for @glif projects",
   "main": "dist/index.js",
   "repository": {
@@ -10,10 +10,11 @@
   "scripts": {
     "test": "run-s test:*",
     "test:lint": "eslint --ext .jsx,.js,.ts,.tsx ./src",
+    "lint:fix": "eslint --ext .jsx,.jsx,.ts,.tsx ./src --fix",
     "test:jest": "jest --coverage",
     "test-watch": "jest --watch",
     "clean": "rimraf dist/* && mkdirp dist",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen": "graphql-codegen --config codegen.yml && eslint ./src/generated/graphql.tsx --fix",
     "build": "run-s clean codegen build:*",
     "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --source-maps --ignore 'src/**/*.stories.jsx','src/**/*.test.jsx','src/**/*.test.js','src/**/*.test.tsx','src/**/*.test.ts','src/test-utils/**/*'",
     "build:types": "tsc --emitDeclarationOnly",
