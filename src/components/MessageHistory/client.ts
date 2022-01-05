@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
+import Logger from '../../utils/logger'
 
 export const client = new ApolloClient({
   uri: 'https://graph.glif.host/query',
@@ -14,6 +15,24 @@ export const client = new ApolloClient({
             // the existing list items.
             merge(existing = [], incoming) {
               return [...existing, ...incoming]
+            }
+          }
+        }
+      },
+      MessageConfirmed: {
+        fields: {
+          params: {
+            // The params field is expected to be a JSON string
+            // or null. Both are safe to pass to JSON parse. The
+            // result should be a valid javascript object or null.
+            merge(existing: any, incoming: any) {
+              try {
+                return JSON.parse(incoming)
+              } catch(e) {
+                const msg = e instanceof Error ? e.message : String(e)
+                Logger.error(`Failed to parse MessageConfirmed.params: ${msg}`)
+                return null;
+              }
             }
           }
         }
