@@ -1,0 +1,6 @@
+overwrite: true
+schema: "https://graph.glif.host/query"
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript"

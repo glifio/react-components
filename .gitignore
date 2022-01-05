@@ -3,3 +3,4 @@ dist/*
 coverage
 storybook-static
 node_modules
+src/generated/*
