@@ -76,6 +76,7 @@ export const MESSAGE_CONFIRMED = gql`
       block {
         Timestamp
       }
+      params
     }
   }
 `
