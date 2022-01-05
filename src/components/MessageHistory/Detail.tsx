@@ -1,13 +1,12 @@
 import React, { FC, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { ApolloProvider, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { MessageConfirmed } from './types'
 import { MESSAGE_CONFIRMED } from './queries'
 import Box from '../Box'
 import { P, H2 } from '../Typography'
 import ButtonV2 from '../Button/V2'
-import { client } from './client'
 
 const SeeMore = styled(P).attrs(() => ({
   color: 'core.primary',
@@ -40,7 +39,7 @@ type MessageDetailProps = {
   cancel?: () => void
 }
 
-function MessageDetail(props: MessageDetailProps) {
+export default function MessageDetail(props: MessageDetailProps) {
   const { loading, error, data } = useQuery<
     { message: MessageConfirmed },
     { cid: string }
@@ -84,12 +83,4 @@ MessageDetail.propTypes = {
   cid: PropTypes.string.isRequired,
   speedUp: PropTypes.func,
   cancel: PropTypes.func
-}
-
-export default function MessageDetailProvider(props: MessageDetailProps) {
-  return (
-    <ApolloProvider client={client}>
-      <MessageDetail {...props} />
-    </ApolloProvider>
-  )
 }

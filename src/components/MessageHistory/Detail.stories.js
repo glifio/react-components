@@ -1,5 +1,7 @@
+import { ApolloProvider } from '@apollo/client'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
+import { client } from './client'
 
 import MessageDetail from './Detail'
 
@@ -8,9 +10,11 @@ export default {
   component: MessageDetail,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
+      <ApolloProvider client={client}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+        </div>
+      </ApolloProvider>
     )
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }
