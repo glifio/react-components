@@ -42,39 +42,37 @@ function MessageHistoryTable(props: MessageHistoryTableProps) {
   if (error) return <p>Error :( {error.message}</p>
 
   return (
-    <ApolloProvider client={client}>
-      <Box>
-        {/* ? CSS GRID ? */}
-        <MessageRowColumnTitles />
-        {/* Pending transaction rows could go here if we like this setup */}
-        {data?.messagesConfirmed?.map(tx => {
-          return (
-            <MessageConfirmedRow
-              addressHref={props.addressHref}
-              cidHref={props.cidHref}
-              inspectingAddress={props.address}
-              key={tx.cid}
-              {...tx}
-            />
-          )
-        })}
-        {!lastPage && (
-          <ButtonV2
-            onClick={() => {
-              fetchMore({
-                variables: {
-                  offset: offset + DEFAULT_LIMIT
-                }
-              })
+    <Box>
+      {/* ? CSS GRID ? */}
+      <MessageRowColumnTitles />
+      {/* Pending transaction rows could go here if we like this setup */}
+      {data?.messagesConfirmed?.map(tx => {
+        return (
+          <MessageConfirmedRow
+            addressHref={props.addressHref}
+            cidHref={props.cidHref}
+            inspectingAddress={props.address}
+            key={tx.cid}
+            {...tx}
+          />
+        )
+      })}
+      {!lastPage && (
+        <ButtonV2
+          onClick={() => {
+            fetchMore({
+              variables: {
+                offset: offset + DEFAULT_LIMIT
+              }
+            })
 
-              setOffset(offset + DEFAULT_LIMIT)
-            }}
-          >
-            Fetch more
-          </ButtonV2>
-        )}
-      </Box>
-    </ApolloProvider>
+            setOffset(offset + DEFAULT_LIMIT)
+          }}
+        >
+          Fetch more
+        </ButtonV2>
+      )}
+    </Box>
   )
 }
 

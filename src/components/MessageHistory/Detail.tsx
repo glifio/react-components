@@ -51,34 +51,32 @@ function MessageDetail(props: MessageDetailProps) {
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( {error.message}</p>
   return (
-    <ApolloProvider client={client}>
-      <Box>
-        <H2 color='core.primary'>Message Overview</H2>
-        {props.speedUp && <ButtonV2 onClick={props.speedUp}>Speed up</ButtonV2>}
-        {props.cancel && <ButtonV2 onClick={props.cancel}>Cancel</ButtonV2>}
-        {/* ? CSS GRID ? */}
-        <span>
-          <P>CID</P>
-          <P>{props.cid}</P>
-        </span>
-        <span>
-          <P>Status and Confidence</P>
-          <Status exitCode={data.message.exitCode} />
-          <Confidence height={data.message.height} />
-        </span>
-        {/* Details go here */}
-        {seeMore ? (
-          <SeeMore onClick={() => setSeeMore(!seeMore)}>
-            Click to see less
-          </SeeMore>
-        ) : (
-          <SeeMore onClick={() => setSeeMore(!seeMore)}>
-            Click to see more
-          </SeeMore>
-        )}
-        {seeMore && <>{/* See more details */}</>}
-      </Box>
-    </ApolloProvider>
+    <Box>
+      <H2 color='core.primary'>Message Overview</H2>
+      {props.speedUp && <ButtonV2 onClick={props.speedUp}>Speed up</ButtonV2>}
+      {props.cancel && <ButtonV2 onClick={props.cancel}>Cancel</ButtonV2>}
+      {/* ? CSS GRID ? */}
+      <span>
+        <P>CID</P>
+        <P>{props.cid}</P>
+      </span>
+      <span>
+        <P>Status and Confidence</P>
+        <Status exitCode={data.message.exitCode} />
+        <Confidence height={data.message.height} />
+      </span>
+      {/* Details go here */}
+      {seeMore ? (
+        <SeeMore onClick={() => setSeeMore(!seeMore)}>
+          Click to see less
+        </SeeMore>
+      ) : (
+        <SeeMore onClick={() => setSeeMore(!seeMore)}>
+          Click to see more
+        </SeeMore>
+      )}
+      {seeMore && <>{/* See more details */}</>}
+    </Box>
   )
 }
 
