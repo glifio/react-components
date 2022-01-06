@@ -61,8 +61,8 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const { data, loading, error } = useMessageQuery({
     variables: {
       cid: props.cid
-    },
-  });
+    }
+  })
   const totalCost = useMemo(() => {
     const bnBaseFeeBurn = new BigNumber(data.message.baseFeeBurn)
     const bnOverEstimationBurn = new BigNumber(data.message.overEstimationBurn)

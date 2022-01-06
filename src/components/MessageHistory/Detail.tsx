@@ -40,7 +40,7 @@ type MessageDetailProps = {
 export default function MessageDetail(props: MessageDetailProps) {
   const { data, loading, error } = useMessageQuery({
     variables: {
-       cid: props.cid
+      cid: props.cid
     }
   })
 
