@@ -1,11 +1,11 @@
 import React, { AnchorHTMLAttributes, DetailedHTMLProps, useMemo } from 'react'
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
+import { useMessageQuery } from '../../generated/graphql'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import Box from '../Box'
 import { P } from '../Typography'
 import truncateAddress from '../../utils/truncateAddress'
-import { MessageConfirmed, MESSAGE_CONFIRMED_ROW_PROP_TYPES } from './types'
 
 // uses next/link for internal page routing
 // uses <a> tag for external page routing
@@ -50,64 +50,56 @@ function AddressWOptionalLink({
   )
 }
 
-export default function MessageHistoryRow({
-  cid,
-  methodName,
-  height,
-  from,
-  to,
-  value,
-  inspectingAddress,
-  block,
-  baseFeeBurn,
-  overEstimationBurn,
-  minerTip,
-  cidHref,
-  addressHref
-}: MessageConfirmed & {
-  inspectingAddress: string
-  // these helper funcs are for generating hrefs from strings
-  // will allow us to plop this message history component in any other requiring app
+type MessageHistoryRowProps = {
+  cid: string
   cidHref: (cid: string) => string
   addressHref: (address: string) => string
-}) {
+  inspectingAddress: string
+}
+
+export default function MessageHistoryRow(props: MessageHistoryRowProps) {
+  const { data, loading, error } = useMessageQuery({
+    variables: {
+      cid: props.cid
+    },
+  });
   const totalCost = useMemo(() => {
-    const bnBaseFeeBurn = new BigNumber(baseFeeBurn)
-    const bnOverEstimationBurn = new BigNumber(overEstimationBurn)
-    const bnMinerTip = new BigNumber(minerTip)
+    const bnBaseFeeBurn = new BigNumber(data.message.baseFeeBurn)
+    const bnOverEstimationBurn = new BigNumber(data.message.overEstimationBurn)
+    const bnMinerTip = new BigNumber(data.message.minerTip)
     return new FilecoinNumber(
       bnBaseFeeBurn.plus(bnOverEstimationBurn).plus(bnMinerTip),
       'attofil'
     ).toFil()
-  }, [baseFeeBurn, overEstimationBurn, minerTip])
+  }, [data])
 
   // ? CSS grid ?
   return (
     <Box display='flex' flexDirection='row'>
-      <Link href={cidHref(cid)}>{cid.slice()}</Link>
+      <Link href={props.cidHref(props.cid)}>{props.cid.slice()}</Link>
       <Box borderRadius='8px' background='core.primary'>
-        {methodName.toUpperCase()}
+        {data.message.methodName.toUpperCase()}
       </Box>
-      <P>{height}</P>
-      <P>{block.Timestamp}</P>
+      <P>{data.message.height}</P>
+      <P>{data.message.block.Timestamp}</P>
       <AddressWOptionalLink
-        address={from.robust}
-        addressHref={addressHref}
-        inspectingAddress={inspectingAddress}
+        address={data.message.from.robust}
+        addressHref={props.addressHref}
+        inspectingAddress={props.inspectingAddress}
       />
       <AddressWOptionalLink
-        address={to.robust}
-        addressHref={addressHref}
-        inspectingAddress={inspectingAddress}
+        address={data.message.to.robust}
+        addressHref={props.addressHref}
+        inspectingAddress={props.inspectingAddress}
       />
-      <P>{new FilecoinNumber(value, 'fil').toFil()}</P>
+      <P>{new FilecoinNumber(data.message.value, 'fil').toFil()}</P>
       <P>{totalCost}</P>
     </Box>
   )
 }
 
 MessageHistoryRow.propTypes = {
-  ...MESSAGE_CONFIRMED_ROW_PROP_TYPES,
+  cid: PropTypes.string.isRequired,
   cidHref: PropTypes.func.isRequired,
   addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string
