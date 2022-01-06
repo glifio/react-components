@@ -65,7 +65,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   })
 
   const totalCost = useMemo(() => {
-    if (!data?.message) return '';
+    if (!data?.message) return ''
     const bnBaseFeeBurn = new BigNumber(data.message.baseFeeBurn)
     const bnOverEstimationBurn = new BigNumber(data.message.overEstimationBurn)
     const bnMinerTip = new BigNumber(data.message.minerTip)
