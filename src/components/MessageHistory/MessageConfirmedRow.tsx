@@ -63,7 +63,9 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
       cid: props.cid
     }
   })
+
   const totalCost = useMemo(() => {
+    if (!data?.message) return '';
     const bnBaseFeeBurn = new BigNumber(data.message.baseFeeBurn)
     const bnOverEstimationBurn = new BigNumber(data.message.overEstimationBurn)
     const bnMinerTip = new BigNumber(data.message.minerTip)
@@ -72,6 +74,9 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
       'attofil'
     ).toFil()
   }, [data])
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error :( {error.message}</p>
 
   // ? CSS grid ?
   return (
