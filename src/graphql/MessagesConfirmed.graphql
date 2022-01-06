@@ -1,0 +1,34 @@
+query MessagesConfirmed($address: String!, $limit: Int!, $offset: Int!) {
+  messagesConfirmed(address: $address, limit: $limit, offset: $offset) {
+    cid
+    height
+    from {
+      robust
+      id
+    }
+    to {
+      robust
+      id
+    }
+    value
+    gasFeeCap
+    gasPremium
+    gasLimit
+    methodName
+    method
+    actorFamily
+    exitCode
+    gasUsed
+    parentBaseFee
+    baseFeeBurn
+    overEstimationBurn
+    minerPenalty
+    minerTip
+    refund
+    gasRefund
+    gasBurned
+    block {
+      Timestamp
+    }
+  }
+}
