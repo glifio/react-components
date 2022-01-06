@@ -1,9 +1,9 @@
 import { ApolloProvider } from '@apollo/client'
+import { client } from './client'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
 import MessageHistory from './index'
-import { client } from './client'
 
 export default {
   title: 'MessageHistory/Table',
