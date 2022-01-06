@@ -6,7 +6,7 @@ import { MessageConfirmed } from './types'
 import { MESSAGE_CONFIRMED } from './queries'
 import Box from '../Box'
 import { P, H2 } from '../Typography'
-import { ButtonV2 } from '..'
+import ButtonV2 from '../Button/V2'
 
 const SeeMore = styled(P).attrs(() => ({
   color: 'core.primary',
@@ -33,11 +33,13 @@ const Confidence: FC<{ height: number }> = ({ height }) => {
   )
 }
 
-export default function MessageDetail(props: {
+type MessageDetailProps = {
   cid: string
   speedUp?: () => void
   cancel?: () => void
-}) {
+}
+
+export default function MessageDetail(props: MessageDetailProps) {
   const { loading, error, data } = useQuery<
     { message: MessageConfirmed },
     { cid: string }
