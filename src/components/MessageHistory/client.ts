@@ -21,7 +21,11 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
         }
       }
     },
+    Message: {
+      keyFields: ['cid']
+    },
     MessageConfirmed: {
+      keyFields: ['cid'],
       fields: {
         params: {
           // The params field is expected to be a JSON string
@@ -38,6 +42,9 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
           }
         }
       }
+    },
+    MessagePending: {
+      keyFields: ['cid']
     }
   }
 }
