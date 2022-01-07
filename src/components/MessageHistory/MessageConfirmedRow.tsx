@@ -3,9 +3,9 @@ import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import Box from '../Box'
-import { P } from '../Typography'
+import { TR, TD, P } from '../Typography'
 import truncateAddress from '../../utils/truncateAddress'
-import { MessageConfirmed, MESSAGE_CONFIRMED_ROW_PROP_TYPES } from './types'
+import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from './types'
 
 // uses next/link for internal page routing
 // uses <a> tag for external page routing
@@ -50,64 +50,76 @@ function AddressWOptionalLink({
   )
 }
 
-export default function MessageHistoryRow({
-  cid,
-  methodName,
-  height,
-  from,
-  to,
-  value,
-  inspectingAddress,
-  block,
-  baseFeeBurn,
-  overEstimationBurn,
-  minerTip,
-  cidHref,
-  addressHref
-}: MessageConfirmed & {
-  inspectingAddress: string
-  // these helper funcs are for generating hrefs from strings
-  // will allow us to plop this message history component in any other requiring app
-  cidHref: (cid: string) => string
-  addressHref: (address: string) => string
-}) {
+export default function MessageHistoryRow(props: MessageHistoryRowProps) {
+  const { message, cidHref, addressHref, inspectingAddress } = props
   const totalCost = useMemo(() => {
-    const bnBaseFeeBurn = new BigNumber(baseFeeBurn)
-    const bnOverEstimationBurn = new BigNumber(overEstimationBurn)
-    const bnMinerTip = new BigNumber(minerTip)
+    const bnBaseFeeBurn = new BigNumber(message.baseFeeBurn)
+    const bnOverEstimationBurn = new BigNumber(message.overEstimationBurn)
+    const bnMinerTip = new BigNumber(message.minerTip)
     return new FilecoinNumber(
       bnBaseFeeBurn.plus(bnOverEstimationBurn).plus(bnMinerTip),
       'attofil'
     ).toFil()
-  }, [baseFeeBurn, overEstimationBurn, minerTip])
+  }, [message])
 
-  // ? CSS grid ?
   return (
-    <Box display='flex' flexDirection='row'>
-      <Link href={cidHref(cid)}>{cid.slice()}</Link>
-      <Box borderRadius='8px' background='core.primary'>
-        {methodName.toUpperCase()}
-      </Box>
-      <P>{height}</P>
-      <P>{block.Timestamp}</P>
-      <AddressWOptionalLink
-        address={from.robust}
-        addressHref={addressHref}
-        inspectingAddress={inspectingAddress}
-      />
-      <AddressWOptionalLink
-        address={to.robust}
-        addressHref={addressHref}
-        inspectingAddress={inspectingAddress}
-      />
-      <P>{new FilecoinNumber(value, 'fil').toFil()}</P>
-      <P>{totalCost}</P>
-    </Box>
+    <TR>
+      <TD>
+        <Link href={cidHref(message.cid)}>
+          <a
+            style={{
+              display: 'inline-block',
+              maxWidth: '10rem',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}
+          >
+            {message.cid.slice()}
+          </a>
+        </Link>
+      </TD>
+      <TD>
+        <Box
+          height='2em'
+          lineHeight='2em'
+          borderRadius='1em'
+          px='1.5em'
+          bg='core.secondary'
+        >
+          {message.methodName.toUpperCase()}
+        </Box>
+      </TD>
+      <TD>{message.height}</TD>
+      <TD>{message.block.Timestamp}</TD>
+      <TD>
+        <AddressWOptionalLink
+          address={message.from.robust}
+          addressHref={addressHref}
+          inspectingAddress={inspectingAddress}
+        />
+      </TD>
+      <TD>
+        <AddressWOptionalLink
+          address={message.to.robust}
+          addressHref={addressHref}
+          inspectingAddress={inspectingAddress}
+        />
+      </TD>
+      <TD>{new FilecoinNumber(message.value, 'fil').toFil()} FIL</TD>
+      <TD>{totalCost}</TD>
+    </TR>
   )
 }
 
+type MessageHistoryRowProps = {
+  message: MessageConfirmedRow
+  cidHref: (cid: string) => string
+  addressHref: (address: string) => string
+  inspectingAddress: string
+}
+
 MessageHistoryRow.propTypes = {
-  ...MESSAGE_CONFIRMED_ROW_PROP_TYPES,
+  message: MESSAGE_CONFIRMED_ROW_PROP_TYPE,
   cidHref: PropTypes.func.isRequired,
   addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string

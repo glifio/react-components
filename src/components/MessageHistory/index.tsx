@@ -1,13 +1,12 @@
 import { useMemo, useState } from 'react'
-import { useQuery } from '@apollo/client'
+import { useMessagesConfirmedQuery } from '../../generated/graphql'
 import PropTypes from 'prop-types'
 import Box from '../Box'
-import { MESSAGES_CONFIRMED, MessagesConfirmedVars } from './queries'
-import { MessageConfirmed } from './types'
 import MessageConfirmedRow from './MessageConfirmedRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import ButtonV2 from '../Button/V2'
+import { TABLE } from '../Typography'
 
 type MessageHistoryTableProps = {
   address: string
@@ -21,10 +20,7 @@ const DEFAULT_LIMIT = 10
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   const [offset, setOffset] = useState(props.offset)
-  const { loading, error, data, fetchMore } = useQuery<
-    { messagesConfirmed: MessageConfirmed[] },
-    MessagesConfirmedVars
-  >(MESSAGES_CONFIRMED, {
+  const { data, loading, error, fetchMore } = useMessagesConfirmedQuery({
     variables: {
       address: props.address,
       limit: DEFAULT_LIMIT,
@@ -37,39 +33,41 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     [data?.messagesConfirmed?.length]
   )
 
+  function onClickLoadMore() {
+    fetchMore({
+      variables: {
+        offset: offset + DEFAULT_LIMIT
+      }
+    })
+    setOffset(offset + DEFAULT_LIMIT)
+  }
+
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( {error.message}</p>
 
   return (
     <Box>
-      {/* ? CSS GRID ? */}
-      <MessageRowColumnTitles />
-      {/* Pending transaction rows could go here if we like this setup */}
-      {data?.messagesConfirmed?.map(tx => {
-        return (
-          <MessageConfirmedRow
-            addressHref={props.addressHref}
-            cidHref={props.cidHref}
-            inspectingAddress={props.address}
-            key={tx.cid}
-            {...tx}
-          />
-        )
-      })}
+      <TABLE>
+        <MessageRowColumnTitles />
+        <tbody>
+          {/* Pending transaction rows could go here if we like this setup */}
+          {data?.messagesConfirmed?.map(message => (
+            <MessageConfirmedRow
+              key={message.cid}
+              message={message}
+              cidHref={props.cidHref}
+              addressHref={props.addressHref}
+              inspectingAddress={props.address}
+            />
+          ))}
+        </tbody>
+      </TABLE>
       {!lastPage && (
-        <ButtonV2
-          onClick={() => {
-            fetchMore({
-              variables: {
-                offset: offset + DEFAULT_LIMIT
-              }
-            })
-
-            setOffset(offset + DEFAULT_LIMIT)
-          }}
-        >
-          Fetch more
-        </ButtonV2>
+        <Box pt='4.5rem' textAlign='center'>
+          <ButtonV2 onClick={onClickLoadMore} display='inline-block' px='18rem'>
+            Load more
+          </ButtonV2>
+        </Box>
       )}
     </Box>
   )

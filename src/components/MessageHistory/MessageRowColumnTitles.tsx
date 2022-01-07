@@ -1,17 +1,18 @@
-import { H2 } from '../Typography'
-import Box from '../Box'
+import { TR, TH } from '../Typography'
 
 export function MessageRowColumnTitles() {
   return (
-    <Box display='flex' flexDirection='row'>
-      <H2>CID</H2>
-      <H2>Method</H2>
-      <H2>Height</H2>
-      <H2>Age</H2>
-      <H2>From</H2>
-      <H2>To</H2>
-      <H2>Value</H2>
-      <H2>Txn Fee</H2>
-    </Box>
+    <thead>
+      <TR>
+        <TH>CID</TH>
+        <TH>Method</TH>
+        <TH>Height</TH>
+        <TH>Age</TH>
+        <TH>From</TH>
+        <TH>To</TH>
+        <TH>Value</TH>
+        <TH>Txn Fee</TH>
+      </TR>
+    </thead>
   )
 }

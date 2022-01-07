@@ -1,9 +1,7 @@
 import React, { FC, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useQuery } from '@apollo/client'
-import { MessageConfirmed } from './types'
-import { MESSAGE_CONFIRMED } from './queries'
+import { useMessageQuery } from '../../generated/graphql'
 import Box from '../Box'
 import { P, H2 } from '../Typography'
 import ButtonV2 from '../Button/V2'
@@ -40,10 +38,11 @@ type MessageDetailProps = {
 }
 
 export default function MessageDetail(props: MessageDetailProps) {
-  const { loading, error, data } = useQuery<
-    { message: MessageConfirmed },
-    { cid: string }
-  >(MESSAGE_CONFIRMED, { variables: { cid: props.cid } })
+  const { data, loading, error } = useMessageQuery({
+    variables: {
+      cid: props.cid
+    }
+  })
 
   const [seeMore, setSeeMore] = useState(false)
 
