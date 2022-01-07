@@ -198,10 +198,10 @@ export const TR = styled.tr`
 `
 
 export const TH = styled.th`
+  color: ${props => props.theme.colors.gray.medium};
   font-size: 1.25rem;
   font-weight: 400;
   text-align: left;
-  color: ${props => props.theme.colors.gray.medium};
   white-space: nowrap;
   padding-right: 3rem;
 
@@ -211,12 +211,21 @@ export const TH = styled.th`
 `
 
 export const TD = styled.td`
+  color: ${props => props.theme.colors.gray.dark};
   font-size: 1rem;
   white-space: nowrap;
   padding-right: 3rem;
 
   &:last-child {
     padding-right: 0;
+  }
+
+  a {
+    color: ${props => props.theme.colors.core.primary};
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `
 

@@ -65,10 +65,14 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   return (
     <TR>
       <TD>
-        <Link href={cidHref(message.cid)}>{message.cid.slice()}</Link>
+        <Link href={cidHref(message.cid)}>
+          <a style={{ display: 'inline-block', maxWidth: '10rem', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            {message.cid.slice()}
+          </a>
+        </Link>
       </TD>
       <TD>
-        <Box borderRadius='8px' background='core.primary'>
+        <Box height='2em' lineHeight='2em' borderRadius='1em' px='1.5em' bg='core.secondary'>
           {message.methodName.toUpperCase()}
         </Box>
       </TD>
@@ -88,7 +92,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           inspectingAddress={inspectingAddress}
         />
       </TD>
-      <TD>{new FilecoinNumber(message.value, 'fil').toFil()}</TD>
+      <TD>{new FilecoinNumber(message.value, 'fil').toFil()} FIL</TD>
       <TD>{totalCost}</TD>
     </TR>
   )
