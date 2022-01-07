@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useMessageQuery } from '../../generated/graphql'
 import Box from '../Box'
-import { P, H2 } from '../Typography'
+import { P, H2, HR } from '../Typography'
 import ButtonV2 from '../Button/V2'
 
 const SeeMore = styled(P).attrs(() => ({
@@ -48,9 +48,11 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( {error.message}</p>
+
   return (
     <Box>
       <H2 color='core.primary'>Message Overview</H2>
+      <HR />
       {props.speedUp && <ButtonV2 onClick={props.speedUp}>Speed up</ButtonV2>}
       {props.cancel && <ButtonV2 onClick={props.cancel}>Cancel</ButtonV2>}
       {/* ? CSS GRID ? */}
@@ -63,6 +65,7 @@ export default function MessageDetail(props: MessageDetailProps) {
         <Status exitCode={data.message.exitCode} />
         <Confidence height={data.message.height} />
       </span>
+      <HR />
       {/* Details go here */}
       {seeMore ? (
         <SeeMore onClick={() => setSeeMore(!seeMore)}>
