@@ -21,6 +21,9 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
         }
       }
     },
+    Block: {
+      keyFields: ['Cid']
+    },
     Message: {
       keyFields: ['cid']
     },

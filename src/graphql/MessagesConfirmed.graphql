@@ -3,12 +3,12 @@ query MessagesConfirmed($address: String!, $limit: Int!, $offset: Int!) {
     cid
     height
     from {
-      robust
       id
+      robust
     }
     to {
-      robust
       id
+      robust
     }
     value
     gasFeeCap
@@ -28,7 +28,9 @@ query MessagesConfirmed($address: String!, $limit: Int!, $offset: Int!) {
     gasRefund
     gasBurned
     block {
+      Cid
       Timestamp
     }
+    params
   }
 }

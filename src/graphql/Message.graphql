@@ -3,12 +3,12 @@ query Message($cid: String!) {
     cid
     height
     from {
-      robust
       id
+      robust
     }
     to {
-      robust
       id
+      robust
     }
     value
     gasFeeCap
@@ -28,6 +28,7 @@ query Message($cid: String!) {
     gasRefund
     gasBurned
     block {
+      Cid
       Timestamp
     }
     params
