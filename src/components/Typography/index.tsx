@@ -187,6 +187,39 @@ export const H6 = styled.h6`
   ${space}
 `
 
+export const TABLE = styled.table`
+  border-bottom: 1px solid ${props => props.theme.colors.gray.medium}80;
+  border-collapse: collapse;
+`
+
+export const TR = styled.tr`
+  height: 4.5rem;
+  border-top: 1px solid ${props => props.theme.colors.gray.medium}80;
+`
+
+export const TH = styled.th`
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: left;
+  color: ${props => props.theme.colors.gray.medium};
+  white-space: nowrap;
+  padding-right: 3rem;
+
+  &:last-child {
+    padding-right: 0;
+  }
+`
+
+export const TD = styled.td`
+  font-size: 1rem;
+  white-space: nowrap;
+  padding-right: 3rem;
+
+  &:last-child {
+    padding-right: 0;
+  }
+`
+
 export const P = styled.p`
   line-height: 1.3em;
 

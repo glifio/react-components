@@ -6,6 +6,7 @@ import MessageConfirmedRow from './MessageConfirmedRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import ButtonV2 from '../Button/V2'
+import { TABLE } from '../Typography'
 
 type MessageHistoryTableProps = {
   address: string
@@ -37,20 +38,21 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 
   return (
     <Box>
-      {/* ? CSS GRID ? */}
-      <MessageRowColumnTitles />
-      {/* Pending transaction rows could go here if we like this setup */}
-      {data?.messagesConfirmed?.map(message => {
-        return (
-          <MessageConfirmedRow
-            key={message.cid}
-            cid={message.cid}
-            cidHref={props.cidHref}
-            addressHref={props.addressHref}
-            inspectingAddress={props.address}
-          />
-        )
-      })}
+      <TABLE>
+        <MessageRowColumnTitles />
+        <tbody>
+          {/* Pending transaction rows could go here if we like this setup */}
+          {data?.messagesConfirmed?.map(message => (
+            <MessageConfirmedRow
+              key={message.cid}
+              message={message}
+              cidHref={props.cidHref}
+              addressHref={props.addressHref}
+              inspectingAddress={props.address}
+            />
+          ))}
+        </tbody>
+      </TABLE>
       {!lastPage && (
         <ButtonV2
           onClick={() => {
