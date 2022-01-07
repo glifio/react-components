@@ -1,4 +1,4 @@
-import { TR, TH } from '../Typography'
+import { TR, TH } from './table'
 
 export function MessageRowColumnTitles() {
   return (

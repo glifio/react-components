@@ -6,7 +6,7 @@ import MessageConfirmedRow from './MessageConfirmedRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import ButtonV2 from '../Button/V2'
-import { TABLE } from '../Typography'
+import { TABLE } from './table'
 
 type MessageHistoryTableProps = {
   address: string

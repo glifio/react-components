@@ -3,7 +3,7 @@ import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import Box from '../Box'
-import { TR, TD, P } from '../Typography'
+import { TR, TD } from './table'
 import truncateAddress from '../../utils/truncateAddress'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from './types'
 
@@ -40,7 +40,7 @@ function AddressWOptionalLink({
   addressHref: (address: string) => string
 }) {
   if (address === inspectingAddress) {
-    return <P>{truncateAddress(address)}</P>
+    return <span>{truncateAddress(address)}</span>
   }
 
   return (
