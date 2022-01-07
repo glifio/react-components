@@ -33,6 +33,15 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     [data?.messagesConfirmed?.length]
   )
 
+  function onClickLoadMore() {
+    fetchMore({
+      variables: {
+        offset: offset + DEFAULT_LIMIT
+      }
+    })
+    setOffset(offset + DEFAULT_LIMIT)
+  }
+
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( {error.message}</p>
 
@@ -54,19 +63,11 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
         </tbody>
       </TABLE>
       {!lastPage && (
-        <ButtonV2
-          onClick={() => {
-            fetchMore({
-              variables: {
-                offset: offset + DEFAULT_LIMIT
-              }
-            })
-
-            setOffset(offset + DEFAULT_LIMIT)
-          }}
-        >
-          Fetch more
-        </ButtonV2>
+        <Box pt='4.5rem' textAlign='center'>
+          <ButtonV2 onClick={onClickLoadMore} display='inline-block' px='18rem'>
+            Load more
+          </ButtonV2>
+        </Box>
       )}
     </Box>
   )

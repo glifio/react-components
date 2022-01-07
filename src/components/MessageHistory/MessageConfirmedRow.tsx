@@ -66,13 +66,26 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
     <TR>
       <TD>
         <Link href={cidHref(message.cid)}>
-          <a style={{ display: 'inline-block', maxWidth: '10rem', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+          <a
+            style={{
+              display: 'inline-block',
+              maxWidth: '10rem',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis'
+            }}
+          >
             {message.cid.slice()}
           </a>
         </Link>
       </TD>
       <TD>
-        <Box height='2em' lineHeight='2em' borderRadius='1em' px='1.5em' bg='core.secondary'>
+        <Box
+          height='2em'
+          lineHeight='2em'
+          borderRadius='1em'
+          px='1.5em'
+          bg='core.secondary'
+        >
           {message.methodName.toUpperCase()}
         </Box>
       </TD>
