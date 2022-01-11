@@ -105,7 +105,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           inspectingAddress={inspectingAddress}
         />
       </TD>
-      <TD>{new FilecoinNumber(message.value, 'fil').toFil()} FIL</TD>
+      <TD>{new FilecoinNumber(message.value, 'attofil').toFil()} FIL</TD>
       <TD>{totalCost}</TD>
     </TR>
   )
