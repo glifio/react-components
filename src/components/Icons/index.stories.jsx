@@ -14,7 +14,8 @@ import {
   IconViewAddress as IconViewAddressComp,
   IconEdit as IconEditComp,
   AppIconHeaderFooter as AppIconHeaderFooterComp,
-  IconCaution as IconCautionComp
+  IconCaution as IconCautionComp,
+  IconMetaMaskFlask as IconMetaMaskComp
 } from '.'
 
 export default {
@@ -93,3 +94,5 @@ IconEdit.args = {
 export const AppIconHeaderFooter = args => <AppIconHeaderFooterComp {...args} />
 
 export const IconCaution = args => <IconCautionComp {...args} />
+
+export const IconMetaMask = args => <IconMetaMaskComp {...args} />
