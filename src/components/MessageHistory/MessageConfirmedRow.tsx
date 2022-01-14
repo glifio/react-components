@@ -51,7 +51,8 @@ function AddressWOptionalLink({
 }
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
-  const { message, cidHref, addressHref, inspectingAddress } = props
+  const { message, time, cidHref, addressHref, inspectingAddress } = props
+
   const totalCost = useMemo(() => {
     const bnBaseFeeBurn = new BigNumber(message.baseFeeBurn)
     const bnOverEstimationBurn = new BigNumber(message.overEstimationBurn)
@@ -61,6 +62,19 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
       'attofil'
     ).toFil()
   }, [message])
+
+  const age = useMemo(() => {
+    if (!message.block.Timestamp) return ''
+    const t = time - message.block.Timestamp
+    const d = Math.floor(t / 60 / 60 / 24)
+    const h = Math.floor(t / 60 / 60) % 24
+    const m = Math.floor(t / 60) % 60
+    const s = t % 60
+    if (d) return `${d} days ${h} hours ago`
+    if (h) return `${h} hours ${m} mins ago`
+    if (m) return `${m} mins ${s} secs ago`
+    return `${s} secs ago`
+  }, [message.block.Timestamp, time])
 
   return (
     <TR>
@@ -90,7 +104,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         </Box>
       </TD>
       <TD>{message.height}</TD>
-      <TD>{message.block.Timestamp}</TD>
+      <TD>{age}</TD>
       <TD>
         <AddressWOptionalLink
           address={message.from.robust}
@@ -113,6 +127,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
 
 type MessageHistoryRowProps = {
   message: MessageConfirmedRow
+  time: number
   cidHref: (cid: string) => string
   addressHref: (address: string) => string
   inspectingAddress: string
@@ -120,6 +135,7 @@ type MessageHistoryRowProps = {
 
 MessageHistoryRow.propTypes = {
   message: MESSAGE_CONFIRMED_ROW_PROP_TYPE,
+  time: PropTypes.number.isRequired,
   cidHref: PropTypes.func.isRequired,
   addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string

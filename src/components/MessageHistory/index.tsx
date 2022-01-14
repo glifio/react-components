@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { useMessagesConfirmedQuery } from '../../generated/graphql'
 import PropTypes from 'prop-types'
 import Box from '../Box'
@@ -19,6 +19,7 @@ type MessageHistoryTableProps = {
 const DEFAULT_LIMIT = 10
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
+  const [time, setTime] = useState(Math.floor(Date.now() / 1000))
   const [offset, setOffset] = useState(props.offset)
   const { data, loading, error, fetchMore } = useMessagesConfirmedQuery({
     variables: {
@@ -26,6 +27,14 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
       limit: DEFAULT_LIMIT,
       offset: props.offset
     }
+  })
+
+  useEffect(() => {
+    const interval = setInterval(
+      () => setTime(Math.floor(Date.now() / 1000)),
+      1000
+    )
+    return () => clearInterval(interval)
   })
 
   const lastPage = useMemo(
@@ -55,6 +64,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
             <MessageConfirmedRow
               key={message.cid}
               message={message}
+              time={time}
               cidHref={props.cidHref}
               addressHref={props.addressHref}
               inspectingAddress={props.address}
