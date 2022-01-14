@@ -2,10 +2,15 @@ import React, { AnchorHTMLAttributes, DetailedHTMLProps, useMemo } from 'react'
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
+import * as dayjs from 'dayjs'
+import * as relativeTime from 'dayjs/plugin/relativeTime'
 import Box from '../Box'
 import { TR, TD } from './table'
 import truncateAddress from '../../utils/truncateAddress'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from './types'
+
+// add RelativeTime plugin to Day.js
+dayjs.extend(relativeTime.default)
 
 // uses next/link for internal page routing
 // uses <a> tag for external page routing
@@ -63,18 +68,13 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
     ).toFil()
   }, [message])
 
-  const age = useMemo(() => {
-    if (!message.block.Timestamp) return ''
-    const t = time - message.block.Timestamp
-    const d = Math.floor(t / 60 / 60 / 24)
-    const h = Math.floor(t / 60 / 60) % 24
-    const m = Math.floor(t / 60) % 60
-    const s = t % 60
-    if (d) return `${d} days ${h} hours ago`
-    if (h) return `${h} hours ${m} mins ago`
-    if (m) return `${m} mins ${s} secs ago`
-    return `${s} secs ago`
-  }, [message.block.Timestamp, time])
+  const age = useMemo(
+    () =>
+      message.block.Timestamp
+        ? dayjs.unix(message.block.Timestamp).from(time)
+        : '',
+    [message.block.Timestamp, time]
+  )
 
   return (
     <TR>

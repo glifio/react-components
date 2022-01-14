@@ -19,7 +19,7 @@ type MessageHistoryTableProps = {
 const DEFAULT_LIMIT = 10
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
-  const [time, setTime] = useState(Math.floor(Date.now() / 1000))
+  const [time, setTime] = useState(Date.now())
   const [offset, setOffset] = useState(props.offset)
   const { data, loading, error, fetchMore } = useMessagesConfirmedQuery({
     variables: {
@@ -30,10 +30,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   })
 
   useEffect(() => {
-    const interval = setInterval(
-      () => setTime(Math.floor(Date.now() / 1000)),
-      1000
-    )
+    const interval = setInterval(() => setTime(Date.now()), 1000)
     return () => clearInterval(interval)
   })
 
