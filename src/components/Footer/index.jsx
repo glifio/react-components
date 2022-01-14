@@ -124,8 +124,6 @@ export default function Footer() {
           <Address>
             GLIF
             <br />
-            48 Shoreline, Dubloon Rd.
-            <br />
             Freeport, Grand Bahamas
           </Address>
 
