@@ -1,0 +1,36 @@
+query Message($cid: String!) {
+  message(cid: $cid) {
+    cid
+    height
+    from {
+      id
+      robust
+    }
+    to {
+      id
+      robust
+    }
+    value
+    gasFeeCap
+    gasPremium
+    gasLimit
+    methodName
+    method
+    actorFamily
+    exitCode
+    gasUsed
+    parentBaseFee
+    baseFeeBurn
+    overEstimationBurn
+    minerPenalty
+    minerTip
+    refund
+    gasRefund
+    gasBurned
+    block {
+      Cid
+      Timestamp
+    }
+    params
+  }
+}

@@ -1,57 +1,42 @@
 import PropTypes from 'prop-types'
+import { Block, MessageConfirmed } from '../../generated/graphql'
 
-export type MessageStatus = 'PENDING' | 'CONFIRMED'
-export type MessageExit = 'SUCCESS' | 'ERROR'
-export type MessageConf = 'LOW' | 'MEDIUM' | 'HIGH'
-
-export type Actor = {
-  id: string
-  address: string
+export type MessageConfirmedRow = Pick<
+  MessageConfirmed,
+  | 'cid'
+  | 'methodName'
+  | 'height'
+  | 'from'
+  | 'to'
+  | 'value'
+  | 'baseFeeBurn'
+  | 'overEstimationBurn'
+  | 'minerTip'
+> & {
+  block: Pick<Block, 'Cid' | 'Timestamp'>
 }
 
-export interface MessageBase {
-  cid: string
-  method: string
-  height: string
-  timestamp: string
-  from: Actor
-  to: Actor
-  value: string
-  gasPremium: string
-  gasLimit: string
-  gasFeeCap: string
-  status: MessageStatus
-  confidence?: MessageConf
-  gas_burned?: string
-  gas_refund?: string
-  base_fee_burn?: string
-  gas_used?: string
-  over_estimation_burn?: string
-  exit?: MessageExit
-  exitErr?: string
-  totalCost?: string
-  params?: Record<string, string>
-}
+export const ADDRESS_PROP_TYPE = PropTypes.shape({
+  id: PropTypes.string,
+  robust: PropTypes.string
+})
 
-export const messagePropTypes = {
+export const BLOCK_PROP_TYPE = PropTypes.shape({
+  Cid: PropTypes.string.isRequired,
+  Height: PropTypes.number,
+  Miner: PropTypes.string,
+  Timestamp: PropTypes.number.isRequired
+})
+
+export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
   cid: PropTypes.string.isRequired,
-  method: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
-  age: PropTypes.string.isRequired,
-  from: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
+  methodName: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
+  block: BLOCK_PROP_TYPE.isRequired,
+  from: ADDRESS_PROP_TYPE.isRequired,
+  to: ADDRESS_PROP_TYPE.isRequired,
   value: PropTypes.string.isRequired,
-  gasPremium: PropTypes.string.isRequired,
-  gasLimit: PropTypes.string.isRequired,
-  gasFeeCap: PropTypes.string.isRequired,
-  status: PropTypes.oneOf(['CONFIRMED', 'PENDING']).isRequired,
-  params: PropTypes.object,
-  totalCost: PropTypes.string,
-  gas_burned: PropTypes.string,
-  gas_refund: PropTypes.string,
-  base_fee_burn: PropTypes.string,
-  gas_used: PropTypes.string,
-  over_estimation_burn: PropTypes.string,
-  exit: PropTypes.oneOf(['SUCCESS', 'ERROR']),
-  exitErr: PropTypes.string
-}
+  baseFeeBurn: PropTypes.string.isRequired,
+  overEstimationBurn: PropTypes.string.isRequired,
+  minerTip: PropTypes.string.isRequired
+})

@@ -208,3 +208,8 @@ export const P = styled.p`
   ${layout}
   ${space}
 `
+
+export const HR = styled.hr`
+  border: none;
+  border-top: 1px solid ${props => props.theme.colors.gray.medium}80;
+`

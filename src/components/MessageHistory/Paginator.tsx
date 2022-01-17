@@ -6,7 +6,7 @@ import Box from '../Box'
 type PaginatorProps = {
   currentPage: number
   totalPages: number
-  onPageChange: (_: number) => void
+  onPageChange: (page: number) => void
 }
 
 export default function Paginator(props: PaginatorProps) {

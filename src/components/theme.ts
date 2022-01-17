@@ -140,6 +140,11 @@ const colors = {
   // gonna start slowly migrating colors from their inheritance vars above
   blue: {
     muted700: '#d9e0f2'
+  },
+  gray: {
+    light: '#C4C4C4',
+    medium: '#949598',
+    dark: '#666666'
   }
 }
 
