@@ -6,7 +6,7 @@ import InputWrapper from './InputWrapper'
 import { DenomTag } from './Number'
 import { forwardRef } from 'react'
 
-const TextInput = forwardRef<HTMLInputElement, any>(
+const TextInput = forwardRef<string, any>(
   ({ denom, value, label, error, disabled, ...props }, ref) => (
     <>
       <InputWrapper>
@@ -26,7 +26,7 @@ const TextInput = forwardRef<HTMLInputElement, any>(
             <BaseInput
               px={3}
               borderRadius={2}
-              value={value}
+              value={value || undefined}
               disabled={disabled}
               error={error}
               ref={ref}

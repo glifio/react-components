@@ -33,7 +33,11 @@ const PhishingText = styled(P)`
   }
 `
 
+const SAFE = 'https://safe.glif.io'
+const SENDER = 'https://sender.glif.io'
+
 export default function PhishingBanner({ href, closed, setClosed }) {
+  if (href !== SAFE && href !== SENDER) return null
   return (
     <>
       {!closed ? (
@@ -50,7 +54,7 @@ export default function PhishingBanner({ href, closed, setClosed }) {
               For your protection, please check your browser&apos;s URL bar that
               you&apos;re visiting{' '}
               <a href={href} target='_blank' rel='noopener noreferrer'>
-                https://wallet.glif.io
+                {href}
               </a>
             </PhishingText>
             <button

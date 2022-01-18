@@ -87,6 +87,8 @@ export const NumberInput = forwardRef<HTMLInputElement, any>(
               placeholder={placeholder}
               borderBottomLeftRadius={bottom && !middle && 2}
               borderTopLeftRadius={top && !middle && 2}
+              borderTopRightRadius={top && bottom && 2}
+              borderBottomRightRadius={top && bottom && 2}
               px={3}
               ref={ref}
             />

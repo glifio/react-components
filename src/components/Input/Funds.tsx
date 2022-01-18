@@ -23,6 +23,7 @@ type FundsInputProps = {
   valid: boolean
   amount: FilecoinNumber | string | number
   label: string
+  allowZeroValue: boolean
   [x: string]: any
 }
 
@@ -37,6 +38,7 @@ const Funds = forwardRef<HTMLInputElement, FundsInputProps>(
       valid,
       amount,
       label,
+      allowZeroValue,
       ...props
     },
     ref
@@ -48,7 +50,11 @@ const Funds = forwardRef<HTMLInputElement, FundsInputProps>(
     const timeout = useRef<any>()
 
     const checkBalance = val => {
-      if (!val || new BigNumber(val).isEqualTo(0)) {
+      if (!val) {
+        setError('Please enter a valid amount.')
+        return false
+      }
+      if (!allowZeroValue && new BigNumber(val).isEqualTo(0)) {
         setError('Please enter a valid amount.')
         return false
       }
@@ -207,7 +213,8 @@ Funds.propTypes = {
   disabled: bool,
   valid: bool,
   amount: oneOfType([string, FILECOIN_NUMBER_PROP]),
-  label: string
+  label: string,
+  allowZeroValue: bool
 }
 
 Funds.defaultProps = {
@@ -216,7 +223,8 @@ Funds.defaultProps = {
   setError: noop,
   onAmountChange: noop,
   amount: '',
-  label: 'Amount'
+  label: 'Amount',
+  allowZeroValue: false
 }
 
 export default Funds
