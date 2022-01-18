@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { layout, space } from 'styled-system'
 import PropTypes from 'prop-types'
 import { fontSize, devices } from '../theme'
 
@@ -69,6 +70,9 @@ const ButtonV2 = styled.button`
       opacity: 0.5;
       cursor: default;
     `}
+
+  ${layout}
+  ${space}
 `
 
 ButtonV2.propTypes = {
