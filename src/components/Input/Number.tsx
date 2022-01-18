@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, useMemo } from 'react'
 import { func, string, bool } from 'prop-types'
 import styled from 'styled-components'
 import BaseInput from './BaseInput'
@@ -53,6 +53,11 @@ export const NumberInput = forwardRef<HTMLInputElement, any>(
     },
     ref
   ) => {
+    const inputVal = useMemo(() => {
+      if (typeof value === 'number') {
+        return value || ''
+      } else return undefined
+    }, [value])
     return (
       <InputWrapper {...props}>
         <Box position='relative' display='flex' alignItems='center'>
@@ -79,7 +84,7 @@ export const NumberInput = forwardRef<HTMLInputElement, any>(
             <RawNumberInput
               type='number'
               onChange={onChange}
-              value={value}
+              value={inputVal}
               valid={valid}
               disabled={disabled}
               error={error}
@@ -114,8 +119,8 @@ export const NumberInput = forwardRef<HTMLInputElement, any>(
 
 NumberInput.propTypes = {
   onChange: func,
-  label: string,
   value: string,
+  label: string,
   placeholder: string,
   disabled: bool,
   error: string,
@@ -128,9 +133,7 @@ NumberInput.propTypes = {
 }
 
 NumberInput.defaultProps = {
-  value: '',
   disabled: false,
-  onChange: () => {},
   setError: () => {},
   label: '',
   top: true,

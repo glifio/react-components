@@ -1,10 +1,16 @@
-import { forwardRef } from 'react'
+import { forwardRef, useMemo } from 'react'
 import { func, string, bool } from 'prop-types'
 import TextInput from './Text'
 import Box from '../Box'
 
 const PrivateKey = forwardRef<HTMLInputElement, any>(
   ({ onChange, value, placeholder, error, setError, valid, ...props }, ref) => {
+    // this allows us to handle controlled and uncontrolled inputs for use with refs
+    const inputVal = useMemo(() => {
+      if (typeof value === 'string') {
+        return value || ''
+      } else return undefined
+    }, [value])
     return (
       <Box display='flex' flexDirection='column' alignItems='flex-end'>
         <TextInput
@@ -15,7 +21,7 @@ const PrivateKey = forwardRef<HTMLInputElement, any>(
           ref={ref}
           label='Private key'
           onChange={onChange}
-          value={value}
+          value={inputVal}
           placeholder={placeholder}
           valid={valid}
           width={12}
@@ -29,17 +35,15 @@ const PrivateKey = forwardRef<HTMLInputElement, any>(
 
 PrivateKey.propTypes = {
   onChange: func,
-  setError: func,
   value: string,
+  setError: func,
   error: string,
   placeholder: string,
   valid: bool
 }
 
 PrivateKey.defaultProps = {
-  value: '',
   placeholder: 'Your private key',
-  onChange: () => {},
   setError: () => {}
 }
 
