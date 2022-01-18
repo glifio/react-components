@@ -19,7 +19,7 @@
     "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --source-maps --ignore 'src/**/*.stories.jsx','src/**/*.test.jsx','src/**/*.test.js','src/**/*.test.tsx','src/**/*.test.ts','src/test-utils/**/*'",
     "build:types": "tsc --emitDeclarationOnly",
     "watch": "npm run clean && run-p watch:*",
-    "watch:babel": "npm run build:babel -- --watch",
+    "watch:babel": "npm run codegen && npm run build:babel -- --watch",
     "start": "npm run watch",
     "storybook": "start-storybook -s ./src/public -p 6006",
     "deploy:storybook": "storybook-to-ghpages",
