@@ -5,7 +5,7 @@ import {
   MsigTransaction,
   useMessagesConfirmedQuery,
   useMsigPendingQuery
-} from '../../generated/graphql'
+} from '../../../generated/graphql'
 
 const DEFAULT_LIMIT = 10
 const DEFAULT_OFFSET = 0
@@ -16,27 +16,17 @@ export type CompleteProposal = {
 }
 
 export const useCompletedProposals = (address: string) => {
-  const [offset, setOffset] = useState(DEFAULT_OFFSET)
-
-  function onClickLoadMore() {
-    fetchMoreMsigTransactions({
-      variables: {
-        offset: offset + DEFAULT_LIMIT
-      }
-    })
-    setOffset(offset + DEFAULT_LIMIT)
-  }
+  const [assemblingProposals, setAssemblingProposals] = useState(false)
 
   const {
     data: msigData,
     loading: msigDataLoading,
-    error: msigDataError,
-    fetchMore: fetchMoreMsigTransactions
+    error: msigDataError
   } = useMsigPendingQuery({
     variables: {
       address: address,
-      limit: DEFAULT_LIMIT,
-      offset: DEFAULT_OFFSET
+      limit: Number.MAX_SAFE_INTEGER,
+      offset: 0
     },
     pollInterval: 0
   })
@@ -63,11 +53,12 @@ export const useCompletedProposals = (address: string) => {
   useEffect(() => {
     const assembleCompleteProposals = async () => {
       // keep track of proposalIDs and their index in original array
-      let proposalIDsWIdxs: { id: number; idx: number }[] =
-        msigData.msigPending.map((proposal, idx) => ({
+      let proposalIDsWIdxs: { id: number; idx: number }[] = msigData.msigPending
+        .map((proposal, idx) => ({
           id: proposal.id as number,
           idx
         }))
+        .sort((a, b) => a.id - b.id)
       // keep track of each proposal id to find
       let currentProposalToFind = proposalIDsWIdxs[0].id
       // keep track of all the proposal ids weve found in confirmed messages
@@ -75,8 +66,12 @@ export const useCompletedProposals = (address: string) => {
       // keep track of message confirmed pagination
       let messageConfirmedOffset = 0
 
+      let messagesConfirmed = cloneDeep<MessageConfirmed[]>(
+        messageConfirmedData.messagesConfirmed as MessageConfirmed[]
+      )
+
       while (proposalIDsWIdxs.length > 0) {
-        messageConfirmedData.messagesConfirmed.forEach(message => {
+        messagesConfirmed.forEach(message => {
           // if we find a proposal...
           if ((message.method as number) === 2) {
             // mark it as found (ids happen in order)
@@ -109,20 +104,24 @@ export const useCompletedProposals = (address: string) => {
 
         // if we havent found matching msgs for all the proposals were looking for
         if (proposalIDsWIdxs.length > 0) {
-          await fetchMoreMessagesConfirmed({
+          const { data } = await fetchMoreMessagesConfirmed({
             variables: {
               offset: messageConfirmedOffset + DEFAULT_LIMIT
             }
           })
+          messagesConfirmed = data.messagesConfirmed as MessageConfirmed[]
           // mark the paginator
           messageConfirmedOffset += 1
         }
       }
     }
-    if (!msigDataLoading && !messageConfirmedLoading) {
+    if (!msigDataLoading && !messageConfirmedLoading && !assemblingProposals) {
+      setAssemblingProposals(true)
       assembleCompleteProposals()
     }
   }, [
+    assemblingProposals,
+    setAssemblingProposals,
     msigData,
     messageConfirmedData,
     fetchMoreMessagesConfirmed,
@@ -149,7 +148,6 @@ export const useCompletedProposals = (address: string) => {
   return {
     completedProposals,
     error: msigDataError || messageConfirmedError,
-    loading,
-    onClickLoadMore
+    loading
   }
 }

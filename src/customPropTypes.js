@@ -10,6 +10,11 @@ export const ADDRESS_PROPTYPE = (props, propName, componentName) => {
   return null
 }
 
+export const GRAPHQL_ADDRESS_PROP_TYPE = shape({
+  id: string,
+  robust: string
+})
+
 export const FILECOIN_NUMBER_PROP = (props, propName, componentName) => {
   // instanceof prop checking is broken in nextjs on server side render cycles
   const representsANum = Number.isNaN(Number(props[propName].toString()))

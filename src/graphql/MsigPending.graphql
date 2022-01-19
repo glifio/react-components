@@ -1,0 +1,10 @@
+query MsigPending($address: String!, $limit: Int!, $offset: Int!) {
+  msigPending(address: $address, limit: $limit, offset: $offset) {
+    id
+    to
+    from
+    method
+    params
+    approved
+  }
+}

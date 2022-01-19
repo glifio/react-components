@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { P } from '../Typography'
-import Box from '../Box'
+import { P } from '../../Typography'
+import Box from '../../Box'
 
 type PaginatorProps = {
   currentPage: number

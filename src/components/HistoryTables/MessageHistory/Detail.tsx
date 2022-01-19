@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useMessageQuery } from '../../generated/graphql'
-import Box from '../Box'
-import { P, H2, HR } from '../Typography'
-import ButtonV2 from '../Button/V2'
+import { useMessageQuery } from '../../../generated/graphql'
+import Box from '../../Box'
+import { P, H2, HR } from '../../Typography'
+import ButtonV2 from '../../Button/V2'
 
 const SeeMore = styled(P).attrs(() => ({
   color: 'core.primary',
