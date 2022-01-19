@@ -6,7 +6,7 @@ export function MessageRowColumnTitles() {
       <TR>
         <TH>ID</TH>
         <TH>Method</TH>
-        {/* <TH>Age</TH> */}
+        <TH>Age</TH>
         <TH>From</TH>
         <TH>To</TH>
         <TH>Value</TH>

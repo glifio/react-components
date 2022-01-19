@@ -1,24 +1,62 @@
 import React, { useMemo } from 'react'
-import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
+import { FilecoinNumber } from '@glif/filecoin-number'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
+import { useRouter } from 'next/router'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import Box from '../../Box'
 import { TR, TD } from '../table'
 import { AddressWOptionalLink } from '../../Link/SmartLink'
-import { MsigTransaction } from '../../../generated/graphql'
+import { MessageConfirmed, MsigTransaction } from '../../../generated/graphql'
+import {
+  MESSAGE_CONFIRMED_ROW_PROP_TYPE,
+  PROPOSAL_ROW_PROP_TYPE
+} from '../types'
+import { getMethodName } from '../methodName'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
 export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
-  const { msigTransaction, cidHref } = props
+  const {
+    proposal,
+    messageConfirmed,
+    idHref,
+    time,
+    addressHref,
+    inspectingAddress
+  } = props
+
+  const age = useMemo(
+    () =>
+      messageConfirmed.block.Timestamp
+        ? dayjs.unix(messageConfirmed.block.Timestamp).from(time)
+        : '',
+    [messageConfirmed.block.Timestamp, time]
+  )
+
+  const router = useRouter()
+
   return (
-    <TR>
+    <TR
+      css={`
+        &:hover {
+          cursor: pointer;
+        }
+      `}
+      onClick={() => {
+        if (props?.idHref(proposal.id).charAt(0) === '/') {
+          router.push(idHref(proposal.id))
+        } else {
+          window.open(idHref(proposal.id), '_blank')
+        }
+      }}
+    >
       <TD>
-        <Link href={cidHref(msigTransaction.id)}>
+        <Link href={idHref(proposal.id)}>
           <a
+            onClick={e => e.stopPropagation()}
             style={{
               display: 'inline-block',
               maxWidth: '10rem',
@@ -26,7 +64,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
               textOverflow: 'ellipsis'
             }}
           >
-            {msigTransaction.id}
+            {proposal.id}
           </a>
         </Link>
       </TD>
@@ -38,41 +76,46 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
           px='1.5em'
           bg='core.secondary'
         >
-          {'message.methodName.toUpperCase()'}
+          {getMethodName('/msig', proposal.method)}
         </Box>
       </TD>
-      <TD>{'message.height'}</TD>
+      <TD>{age}</TD>
       <TD>
         <AddressWOptionalLink
-          address={msigTransaction.from.robust}
+          onClick={e => e.stopPropagation()}
+          address={messageConfirmed.from.robust}
           addressHref={addressHref}
           inspectingAddress={inspectingAddress}
         />
       </TD>
       <TD>
         <AddressWOptionalLink
-          address={message.to.robust}
+          onClick={e => e.stopPropagation()}
+          address={messageConfirmed.to.robust}
           addressHref={addressHref}
           inspectingAddress={inspectingAddress}
         />
       </TD>
-      <TD>{new FilecoinNumber(message.value, 'attofil').toFil()} FIL</TD>
-      <TD>{totalCost}</TD>
+      <TD>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</TD>
+      <TD>{proposal.approved?.length}</TD>
     </TR>
   )
 }
 
 type ProposalHistoryRowProps = {
-  msigTransaction: MsigTransaction
-  cidHref: (cid: string) => string
+  proposal: MsigTransaction
+  messageConfirmed: MessageConfirmed
+  idHref: (id: number) => string
   addressHref: (address: string) => string
   inspectingAddress?: string
+  time: number
 }
 
 ProposalHistoryRow.propTypes = {
-  message: MESSAGE_CONFIRMED_ROW_PROP_TYPE,
+  messageConfirmed: MESSAGE_CONFIRMED_ROW_PROP_TYPE.isRequired,
+  proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
   time: PropTypes.number.isRequired,
-  cidHref: PropTypes.func.isRequired,
+  idHref: PropTypes.func.isRequired,
   addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string
 }
