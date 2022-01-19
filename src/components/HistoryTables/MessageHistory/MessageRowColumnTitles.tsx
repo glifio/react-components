@@ -9,6 +9,7 @@ export function MessageRowColumnTitles() {
         <TH>Height</TH>
         <TH>Age</TH>
         <TH>From</TH>
+        <TH></TH>
         <TH>To</TH>
         <TH>Value</TH>
         <TH>Txn Fee</TH>

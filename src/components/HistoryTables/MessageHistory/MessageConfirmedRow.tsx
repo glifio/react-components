@@ -25,6 +25,11 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
     ).toFil()
   }, [message])
 
+  const incoming = useMemo(
+    () => message.to.robust === inspectingAddress,
+    [message.to.robust, inspectingAddress]
+  )
+
   const age = useMemo(
     () =>
       message.block.Timestamp
@@ -68,6 +73,18 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           addressHref={addressHref}
           inspectingAddress={inspectingAddress}
         />
+      </TD>
+      <TD>
+        <Box
+          height='2em'
+          lineHeight='2em'
+          borderRadius='1em'
+          px='1.5em'
+          bg={incoming ? 'green.light' : 'yellow.light'}
+          color={incoming ? 'green.primary' : 'yellow.deep'}
+        >
+          {incoming ? 'IN' : 'OUT'}
+        </Box>
       </TD>
       <TD>
         <AddressWOptionalLink
