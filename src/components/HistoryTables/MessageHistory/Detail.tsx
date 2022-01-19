@@ -5,6 +5,7 @@ import { useMessageQuery } from '../../../generated/graphql'
 import Box from '../../Box'
 import { P, H2, HR } from '../../Typography'
 import ButtonV2 from '../../Button/V2'
+import { IconSpeedUp, IconCancel } from '../../Icons'
 
 const SeeMore = styled(P).attrs(() => ({
   color: 'core.primary',
@@ -38,23 +39,38 @@ type MessageDetailProps = {
 }
 
 export default function MessageDetail(props: MessageDetailProps) {
+  const [seeMore, setSeeMore] = useState(false)
   const { data, loading, error } = useMessageQuery({
     variables: {
       cid: props.cid
     }
   })
 
-  const [seeMore, setSeeMore] = useState(false)
-
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( {error.message}</p>
 
   return (
     <Box>
-      <H2 color='core.primary'>Message Overview</H2>
+      <Box display='flex' alignItems='center' justifyContent='space-between' gridGap='1rem'>
+        <H2 color='core.primary' fontSize='1.5rem' margin='0'>
+          Message Overview
+        </H2>
+        <Box display='flex' gridGap='1rem'>
+          {props.speedUp && (
+            <ButtonV2 fontSize='1.5rem'>
+              <IconSpeedUp width='1.75rem' />
+              Speed up
+            </ButtonV2>
+          )}
+          {props.cancel && (
+            <ButtonV2 fontSize='1.5rem'>
+              <IconCancel width='1.25rem' />
+              Cancel
+            </ButtonV2>
+          )}
+        </Box>
+      </Box>
       <HR />
-      {props.speedUp && <ButtonV2 onClick={props.speedUp}>Speed up</ButtonV2>}
-      {props.cancel && <ButtonV2 onClick={props.cancel}>Cancel</ButtonV2>}
       {/* ? CSS GRID ? */}
       <span>
         <P>CID</P>
