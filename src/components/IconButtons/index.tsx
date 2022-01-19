@@ -66,5 +66,4 @@ ButtonViewAddress.propTypes = IconButtonProps
 export const ButtonEdit = ({ ...props }) => (
   <IconButton Icon={IconEdit} {...props} />
 )
-
 ButtonEdit.propTypes = IconButtonProps
