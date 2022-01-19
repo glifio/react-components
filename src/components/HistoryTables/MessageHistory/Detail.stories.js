@@ -11,16 +11,20 @@ export default {
   decorators: [
     Story => (
       <ApolloProvider client={client}>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-        </div>
+        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
       </ApolloProvider>
     )
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <MessageDetail {...args} />
+const Template = args => (
+  <MessageDetail
+    speedUp={() => {}}
+    cancel={() => {}}
+    {...args}
+  />
+)
 
 export const Detail = Template.bind({})
 Detail.args = {
