@@ -51,7 +51,12 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   return (
     <Box>
-      <Box display='flex' alignItems='center' justifyContent='space-between' gridGap='1rem'>
+      <Box
+        display='flex'
+        alignItems='center'
+        justifyContent='space-between'
+        gridGap='1rem'
+      >
         <H2 color='core.primary' fontSize='1.5rem' margin='0'>
           Message Overview
         </H2>
