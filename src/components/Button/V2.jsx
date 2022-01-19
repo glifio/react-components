@@ -4,42 +4,30 @@ import PropTypes from 'prop-types'
 import { fontSize, devices } from '../theme'
 
 const ButtonV2 = styled.button`
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
   border-radius: ${props => (props.round ? '100px' : '8px')};
 
   ${props =>
     props.large &&
     css`
       font-size: ${fontSize('medium')};
-      height: 56px;
-      padding: 0 1.6em;
 
       @media (max-width: ${devices.phone}) {
         font-size: ${fontSize('medium', 'phone')};
-      }
-
-      @media (min-width: ${devices.tablet}) {
-        font-size: ${fontSize('medium')};
       }
     `};
 
   ${props =>
     props.small &&
     css`
-      height: auto;
-      padding: 0.4em 1.6em;
+      font-size: ${fontSize('default')};
 
       @media (max-width: ${devices.phone}) {
         font-size: ${fontSize('default', 'phone')};
-      }
-
-      @media (min-width: ${devices.tablet}) {
-        font-size: ${fontSize('default')};
       }
     `};
 

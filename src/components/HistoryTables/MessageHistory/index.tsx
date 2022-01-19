@@ -71,7 +71,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
       </TABLE>
       {!lastPage && (
         <Box pt='4.5rem' textAlign='center'>
-          <ButtonV2 onClick={onClickLoadMore} display='inline-block' px='18rem'>
+          <ButtonV2 onClick={onClickLoadMore} px='18rem'>
             Load more
           </ButtonV2>
         </Box>
