@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { GRAPHQL_ADDRESS_PROP_TYPE } from '../../customPropTypes'
 import { Block, MessageConfirmed } from '../../generated/graphql'
 
 export type MessageConfirmedRow = Pick<
@@ -16,11 +17,6 @@ export type MessageConfirmedRow = Pick<
   block: Pick<Block, 'Cid' | 'Timestamp'>
 }
 
-export const ADDRESS_PROP_TYPE = PropTypes.shape({
-  id: PropTypes.string,
-  robust: PropTypes.string
-})
-
 export const BLOCK_PROP_TYPE = PropTypes.shape({
   Cid: PropTypes.string.isRequired,
   Height: PropTypes.number,
@@ -33,8 +29,8 @@ export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
   methodName: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   block: BLOCK_PROP_TYPE.isRequired,
-  from: ADDRESS_PROP_TYPE.isRequired,
-  to: ADDRESS_PROP_TYPE.isRequired,
+  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   value: PropTypes.string.isRequired,
   baseFeeBurn: PropTypes.string.isRequired,
   overEstimationBurn: PropTypes.string.isRequired,

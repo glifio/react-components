@@ -1,12 +1,12 @@
 import { useMemo, useState, useEffect } from 'react'
-import { useMessagesConfirmedQuery } from '../../generated/graphql'
+import { useMessagesConfirmedQuery } from '../../../generated/graphql'
 import PropTypes from 'prop-types'
-import Box from '../Box'
+import Box from '../../Box'
 import MessageConfirmedRow from './MessageConfirmedRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
-import { ADDRESS_PROPTYPE } from '../../customPropTypes'
-import ButtonV2 from '../Button/V2'
-import { TABLE } from './table'
+import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
+import ButtonV2 from '../../Button/V2'
+import { TABLE } from '../table'
 
 type MessageHistoryTableProps = {
   address: string

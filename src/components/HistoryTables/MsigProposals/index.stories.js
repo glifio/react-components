@@ -1,13 +1,13 @@
 import { ApolloProvider } from '@apollo/client'
-import { client } from './client'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
+import { client } from '../apolloClient'
+import theme from '../../theme'
+import ThemeProvider from '../../ThemeProvider'
 
-import MessageConfirmedRow from './MessageConfirmedRow'
+import ProposalHistory from './index'
 
 export default {
-  title: 'MessageHistory/MessageConfirmedRow',
-  component: MessageConfirmedRow,
+  title: 'ProposalHistory/Table',
+  component: ProposalHistory,
   decorators: [
     Story => (
       <ApolloProvider client={client}>
@@ -21,15 +21,14 @@ export default {
 }
 
 const Template = args => (
-  <MessageConfirmedRow
-    {...args}
+  <ProposalHistory
     addressHref={address => `/#/history/${address}`}
     cidHref={cid => `/#/detail/${cid}`}
+    {...args}
   />
 )
 
-export const GenericRow = Template.bind({})
-GenericRow.args = {
-  cid: 'bafy2bzacebf6orovs3hpx6teptxanwighhq7aui4b5vqwbgkq6vl5qc324cv4',
-  inspectingAddress: 'f1b64l7up4oov74ignqfadshkge7h7aifwsaapjzd'
+export const Base = Template.bind({})
+Base.args = {
+  address: 't2i43oi6rnf2s6rp544rcegfbcdp5l62cayz2btmy'
 }

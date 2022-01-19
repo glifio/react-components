@@ -1,59 +1,16 @@
-import React, { AnchorHTMLAttributes, DetailedHTMLProps, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import Box from '../Box'
-import { TR, TD } from './table'
-import truncateAddress from '../../utils/truncateAddress'
-import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from './types'
+import Box from '../../Box'
+import { TR, TD } from '../table'
+import { AddressWOptionalLink } from '../../Link/SmartLink'
+import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
-
-// uses next/link for internal page routing
-// uses <a> tag for external page routing
-function SmartLink(
-  props: DetailedHTMLProps<
-    AnchorHTMLAttributes<HTMLAnchorElement>,
-    HTMLAnchorElement
-  >
-) {
-  if (props?.href.charAt(0) === '/') {
-    return (
-      <Link href={props.href} {...props}>
-        {props.children}
-      </Link>
-    )
-  }
-
-  return (
-    <a href={props.href} target='_blank' rel='noreferrer noopener' {...props}>
-      {props.children}
-    </a>
-  )
-}
-
-function AddressWOptionalLink({
-  address,
-  addressHref,
-  inspectingAddress
-}: {
-  address: string
-  inspectingAddress: string
-  addressHref: (address: string) => string
-}) {
-  if (address === inspectingAddress) {
-    return <span>{truncateAddress(address)}</span>
-  }
-
-  return (
-    <SmartLink href={addressHref(address)}>
-      {truncateAddress(address)}
-    </SmartLink>
-  )
-}
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const { message, time, cidHref, addressHref, inspectingAddress } = props

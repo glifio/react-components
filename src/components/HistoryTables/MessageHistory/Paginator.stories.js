@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
+import theme from '../../theme'
+import ThemeProvider from '../../ThemeProvider'
 
 import Paginator from './Paginator'
 

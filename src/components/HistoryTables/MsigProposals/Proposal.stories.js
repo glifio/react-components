@@ -1,13 +1,13 @@
 import { ApolloProvider } from '@apollo/client'
-import { client } from './client'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
+import { client } from '../apolloClient'
+import theme from '../../theme'
+import ThemeProvider from '../../ThemeProvider'
 
-import MessageDetail from './Detail'
+import Proposal from './Proposal'
 
 export default {
-  title: 'MessageHistory/MessageDetail',
-  component: MessageDetail,
+  title: 'ProposalHistory/Proposal',
+  component: Proposal,
   decorators: [
     Story => (
       <ApolloProvider client={client}>
@@ -20,7 +20,7 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <MessageDetail {...args} />
+const Template = args => <Proposal {...args} />
 
 export const Detail = Template.bind({})
 Detail.args = {
