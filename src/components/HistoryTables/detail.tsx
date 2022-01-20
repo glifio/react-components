@@ -6,7 +6,6 @@ import ButtonV2 from '../Button/V2'
 import { Badge } from './generic'
 import { IconSpeedUp, IconCancel, IconCheck } from '../Icons'
 
-
 /**
  * Head
  * Top row of the detail page, displaying
@@ -52,7 +51,6 @@ Head.propTypes = {
   cancel: PropTypes.func
 }
 
-
 /**
  * Line
  * Content row of the detail page
@@ -62,7 +60,7 @@ export const Line = ({ label, children }: LineProps) => (
     <Box minWidth='200px' flex='0 1 25%'>
       {label}
     </Box>
-    <Box flex='0 1' display='flex' alignItems='center' gridGap='1em'>
+    <Box flex='1 1' display='flex' alignItems='center' gridGap='0.75em'>
       {children}
     </Box>
   </Box>
@@ -77,7 +75,6 @@ Line.propTypes = {
   label: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
 }
-
 
 /**
  * Status
@@ -100,7 +97,6 @@ type StatusProps = {
 Status.propTypes = {
   exitCode: PropTypes.number.isRequired
 }
-
 
 /**
  * Confirmations
