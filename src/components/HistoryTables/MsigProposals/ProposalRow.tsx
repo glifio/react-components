@@ -45,15 +45,17 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
         }
       `}
       onClick={() => {
-        if (props?.idHref(proposal.id).charAt(0) === '/') {
-          router.push(idHref(proposal.id))
+        if (
+          props?.idHref(proposal.id, messageConfirmed.cid).charAt(0) === '/'
+        ) {
+          router.push(idHref(proposal.id, messageConfirmed.cid))
         } else {
-          window.open(idHref(proposal.id), '_blank')
+          window.open(idHref(proposal.id, messageConfirmed.cid), '_blank')
         }
       }}
     >
       <TD>
-        <SmartLink href={idHref(proposal.id)}>
+        <SmartLink href={idHref(proposal.id, messageConfirmed.cid)}>
           <a
             onClick={e => e.stopPropagation()}
             style={{
@@ -75,7 +77,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
           px='1.5em'
           bg='core.secondary'
         >
-          {getMethodName('/msig', proposal.method)}
+          {getMethodName('/multisig', proposal.method)}
         </Box>
       </TD>
       <TD>{age}</TD>
@@ -94,9 +96,10 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
 }
 
 type ProposalHistoryRowProps = {
+  key: any
   proposal: MsigTransaction
   messageConfirmed: MessageConfirmed
-  idHref: (id: number) => string
+  idHref: (id: number, cid: string) => string
   addressHref: (address: string) => string
   inspectingAddress?: string
   time: number

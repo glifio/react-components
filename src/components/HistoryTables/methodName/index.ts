@@ -8,7 +8,7 @@ export const getMethodName = (
 ): string => {
   let methodName = ''
 
-  if (actorCode.includes('/msig')) {
+  if (actorCode.includes('/multisig')) {
     methodName = msigActorCodes[methodNum]
   }
 

@@ -12,7 +12,7 @@ type ProposalHistoryTableProps = {
   offset?: number
   // allows custom navigation
   addressHref: (address: string) => string
-  idHref: (cid: number) => string
+  idHref: (id: number, cid: string) => string
 }
 
 export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
