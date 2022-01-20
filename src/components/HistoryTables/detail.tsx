@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { H2 } from '../Typography'
 import Box from '../Box'
 import ButtonV2 from '../Button/V2'
-import { IconSpeedUp, IconCancel } from '../Icons'
+import { Badge } from './generic'
+import { IconSpeedUp, IconCancel, IconCheck } from '../Icons'
 
+
+/**
+ * Head
+ * Top row of the detail page, displaying
+ * the title and Speed up / Cancel buttons
+ */
 export const Head = ({ title, speedUp, cancel }: HeadProps) => (
   <Box
     display='flex'
@@ -45,6 +52,11 @@ Head.propTypes = {
   cancel: PropTypes.func
 }
 
+
+/**
+ * Line
+ * Content row of the detail page
+ */
 export const Line = ({ label, children }: LineProps) => (
   <Box display='flex' alignItems='center' gridGap='1em' my='1em'>
     <Box minWidth='200px' flex='0 1 25%'>
@@ -64,4 +76,52 @@ type LineProps = {
 Line.propTypes = {
   label: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired
+}
+
+
+/**
+ * Status
+ * Badge displaying the current status of the message
+ */
+export const Status = ({ exitCode }: StatusProps) => {
+  const success = useMemo(() => exitCode === 0, [exitCode])
+  return (
+    <Badge color={success ? 'green' : 'red'}>
+      {success && <IconCheck width='1.1875rem' />}
+      {success ? 'SUCCESS' : 'ERROR'}
+    </Badge>
+  )
+}
+
+type StatusProps = {
+  exitCode: number
+}
+
+Status.propTypes = {
+  exitCode: PropTypes.number.isRequired
+}
+
+
+/**
+ * Confirmations
+ * Badge displaying the current confirmations of the message
+ */
+export const Confirmations = ({ count, total }: ConfirmationsProps) => {
+  const confirmed = useMemo(() => count >= total, [count, total])
+  return (
+    <Badge color={confirmed ? 'green' : 'yellow'}>
+      {confirmed && <IconCheck width='1.1875rem' />}
+      {count} / {total} Confirmations
+    </Badge>
+  )
+}
+
+type ConfirmationsProps = {
+  count: number
+  total: number
+}
+
+Confirmations.propTypes = {
+  count: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired
 }
