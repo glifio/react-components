@@ -60,6 +60,7 @@ export const Line = ({ label, children }: LineProps) => (
     display='flex'
     alignItems='center'
     gridGap='1em'
+    lineHeight='2em'
     my='1em'
     css={`
       a {
@@ -68,6 +69,9 @@ export const Line = ({ label, children }: LineProps) => (
         &:hover {
           text-decoration: underline;
         }
+      }
+      .gray {
+        color: ${props => props.theme.colors.gray.medium};
       }
     `}
   >

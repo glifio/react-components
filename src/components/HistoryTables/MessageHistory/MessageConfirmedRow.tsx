@@ -79,7 +79,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         />
       </TD>
       <TD>{new FilecoinNumber(message.value, 'attofil').toFil()} FIL</TD>
-      <TD>{totalCost}</TD>
+      <TD>{totalCost} FIL</TD>
     </TR>
   )
 }
