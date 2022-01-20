@@ -1,5 +1,16 @@
-export type ActorCode = '/msig'
+import { msigActorCodes } from './MultisigActorCodes'
 
-export const getMethodName = (actorCode: ActorCode, methodNum: number) => {
-  return 'Proposal'
+export type ActorCode = string
+
+export const getMethodName = (
+  actorCode: ActorCode,
+  methodNum: number
+): string => {
+  let methodName = ''
+
+  if (actorCode.includes('/msig')) {
+    methodName = msigActorCodes[methodNum]
+  }
+
+  return methodName
 }

@@ -1,13 +1,12 @@
 import React, { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import Box from '../../Box'
 import { TR, TD } from '../table'
-import { AddressWOptionalLink } from '../../Link/SmartLink'
+import { AddressWOptionalLink, SmartLink } from '../../Link/SmartLink'
 import { MessageConfirmed, MsigTransaction } from '../../../generated/graphql'
 import {
   MESSAGE_CONFIRMED_ROW_PROP_TYPE,
@@ -54,7 +53,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
       }}
     >
       <TD>
-        <Link href={idHref(proposal.id)}>
+        <SmartLink href={idHref(proposal.id)}>
           <a
             onClick={e => e.stopPropagation()}
             style={{
@@ -66,7 +65,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
           >
             {proposal.id}
           </a>
-        </Link>
+        </SmartLink>
       </TD>
       <TD>
         <Box
@@ -84,14 +83,6 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
         <AddressWOptionalLink
           onClick={e => e.stopPropagation()}
           address={messageConfirmed.from.robust}
-          addressHref={addressHref}
-          inspectingAddress={inspectingAddress}
-        />
-      </TD>
-      <TD>
-        <AddressWOptionalLink
-          onClick={e => e.stopPropagation()}
-          address={messageConfirmed.to.robust}
           addressHref={addressHref}
           inspectingAddress={inspectingAddress}
         />
