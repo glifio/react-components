@@ -56,7 +56,21 @@ Head.propTypes = {
  * Content row of the detail page
  */
 export const Line = ({ label, children }: LineProps) => (
-  <Box display='flex' alignItems='center' gridGap='1em' my='1em'>
+  <Box
+    display='flex'
+    alignItems='center'
+    gridGap='1em'
+    my='1em'
+    css={`
+      a {
+        color: ${props => props.theme.colors.core.primary};
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    `}
+  >
     <Box minWidth='200px' flex='0 1 25%'>
       {label}
     </Box>
