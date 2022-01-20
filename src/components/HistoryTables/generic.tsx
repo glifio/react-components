@@ -4,12 +4,16 @@ import Box from '../Box'
 
 export const Badge = ({ color, children }: BadgeProps) => (
   <Box
+    display='flex'
+    alignItems='center'
+    gridGap='0.75em'
     height='2em'
     lineHeight='2em'
     borderRadius='1em'
     px='1.5em'
     bg={`${color}.light`}
     color={`${color}.medium`}
+    style={{ whiteSpace: 'nowrap' }}
   >
     {children}
   </Box>
