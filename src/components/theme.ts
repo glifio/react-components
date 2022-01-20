@@ -159,6 +159,11 @@ const colors = {
     medium: '#C59900',
     deep: '#FCA703',
     mid: '#F7C103'
+  },
+  purple: {
+    light: '#E0D7FE',
+    medium: '#5E26FF',
+    deep: '#290a85'
   }
 }
 
