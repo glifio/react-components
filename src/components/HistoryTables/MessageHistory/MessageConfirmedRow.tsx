@@ -6,6 +6,7 @@ import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import Box from '../../Box'
 import { TR, TD } from '../table'
+import { Badge } from '../generic'
 import { AddressWOptionalLink } from '../../Link/SmartLink'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
 
@@ -55,15 +56,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         </Link>
       </TD>
       <TD>
-        <Box
-          height='2em'
-          lineHeight='2em'
-          borderRadius='1em'
-          px='1.5em'
-          bg='core.secondary'
-        >
-          {message.methodName.toUpperCase()}
-        </Box>
+        <Badge color='purple'>{message.methodName.toUpperCase()}</Badge>
       </TD>
       <TD>{message.height}</TD>
       <TD>{age}</TD>
@@ -75,16 +68,9 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         />
       </TD>
       <TD>
-        <Box
-          height='2em'
-          lineHeight='2em'
-          borderRadius='1em'
-          px='1.5em'
-          bg={incoming ? 'green.light' : 'yellow.light'}
-          color={incoming ? 'green.medium' : 'yellow.medium'}
-        >
+        <Badge color={incoming ? 'green' : 'yellow'}>
           {incoming ? 'IN' : 'OUT'}
-        </Box>
+        </Badge>
       </TD>
       <TD>
         <AddressWOptionalLink
