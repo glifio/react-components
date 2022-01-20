@@ -81,7 +81,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           borderRadius='1em'
           px='1.5em'
           bg={incoming ? 'green.light' : 'yellow.light'}
-          color={incoming ? 'green.primary' : 'yellow.deep'}
+          color={incoming ? 'green.medium' : 'yellow.medium'}
         >
           {incoming ? 'IN' : 'OUT'}
         </Box>

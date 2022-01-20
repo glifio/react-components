@@ -150,11 +150,13 @@ const colors = {
     primary: '#1AD08F',
     light: '#D2F5ED',
     muted: '#85e0cb',
+    medium: '#007B39',
     dark: '#007056',
     darker: '#08442F'
   },
   yellow: {
     light: '#FFDC99',
+    medium: '#C59900',
     deep: '#FCA703',
     mid: '#F7C103'
   }
