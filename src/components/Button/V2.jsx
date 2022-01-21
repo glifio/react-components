@@ -6,6 +6,7 @@ import { fontSize, devices } from '../theme'
 const ButtonV2 = styled.button`
   cursor: pointer;
   display: inline-flex;
+  justify-content: center;
   align-items: center;
   gap: 0.75rem;
   padding: 0.5em 0.75em;
