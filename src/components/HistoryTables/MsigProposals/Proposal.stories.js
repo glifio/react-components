@@ -19,11 +19,7 @@ export default {
 }
 
 const Template = args => (
-  <Proposal
-    speedUp={() => {}}
-    cancel={() => {}}
-    {...args}
-  />
+  <Proposal speedUp={() => {}} cancel={() => {}} {...args} />
 )
 
 export const Detail = Template.bind({})
