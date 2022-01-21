@@ -171,7 +171,7 @@ export const Confirmations = ({ count, total }: ConfirmationsProps) => {
   return (
     <Badge color={confirmed ? 'green' : 'yellow'}>
       {confirmed && <IconCheck width='1.1875rem' />}
-      {count} / {total} Confirmations
+      {Math.min(count, total)} / {total} Confirmations
     </Badge>
   )
 }
