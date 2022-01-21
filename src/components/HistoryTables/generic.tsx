@@ -6,11 +6,12 @@ export const Badge = ({ color, children }: BadgeProps) => (
   <Box
     display='flex'
     alignItems='center'
+    justifyContent='center'
     gridGap='0.75em'
     height='2em'
     lineHeight='2em'
     borderRadius='1em'
-    px='1.5em'
+    px='1em'
     bg={`${color}.light`}
     color={`${color}.medium`}
     style={{ whiteSpace: 'nowrap' }}
