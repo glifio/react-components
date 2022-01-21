@@ -53,8 +53,8 @@ export default function PhishingBanner({ href, closed, setClosed }) {
           >
             {(href === SAFE || href === SENDER) && (
               <PhishingText style={{ display: 'inline-block' }}>
-                For your protection, please check your browser&apos;s URL bar that
-                you&apos;re visiting{' '}
+                For your protection, please check your browser&apos;s URL bar
+                that you&apos;re visiting{' '}
                 <a href={href} target='_blank' rel='noopener noreferrer'>
                   {href}
                 </a>

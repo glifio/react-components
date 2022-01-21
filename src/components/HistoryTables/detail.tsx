@@ -112,7 +112,14 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
     {Object.entries(params).map(([key, value]) => {
       switch (key.toLowerCase()) {
         case 'params':
-          return <Parameters params={value} depth={depth + 1} />
+          return value ? (
+            <>
+              <Line label='Parameters'></Line>
+              <Parameters params={value} depth={depth + 1} />
+            </>
+          ) : (
+            <Line label='Parameters'>&mdash;</Line>
+          )
         case 'method':
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>

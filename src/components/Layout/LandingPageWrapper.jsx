@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { devices, space } from '../theme'
 
 export const LandingPageContainer = styled.div`
