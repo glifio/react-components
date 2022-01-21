@@ -32,7 +32,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           <a
             style={{
               display: 'inline-block',
-              maxWidth: '10rem',
+              maxWidth: '8rem',
               overflow: 'hidden',
               textOverflow: 'ellipsis'
             }}
