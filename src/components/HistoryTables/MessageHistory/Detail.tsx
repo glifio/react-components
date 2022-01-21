@@ -1,4 +1,3 @@
-import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import React, { useState, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
@@ -11,6 +10,12 @@ import { IconClock } from '../../Icons'
 import { P, HR } from '../../Typography'
 import { Badge } from '../generic'
 import { Head, Line, Status, Confirmations } from '../detail'
+import {
+  attoFilToFil,
+  getTotalCost,
+  getGasPercentage,
+  formatNumber
+} from '../utils'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -29,35 +34,26 @@ export default function MessageDetail(props: MessageDetailProps) {
   const { data, loading, error } = useMessageQuery({
     variables: { cid }
   })
-
-  const totalCost = useMemo(() => {
-    if (!data?.message) return ''
-    const bnBaseFeeBurn = new BigNumber(data.message.baseFeeBurn)
-    const bnOverEstimationBurn = new BigNumber(data.message.overEstimationBurn)
-    const bnMinerTip = new BigNumber(data.message.minerTip)
-    return new FilecoinNumber(
-      bnBaseFeeBurn.plus(bnOverEstimationBurn).plus(bnMinerTip),
-      'attofil'
-    ).toFil()
-  }, [data?.message])
-
-  const gasPercentage = useMemo(() => {
-    if (!data?.message) return ''
-    const gasLimit = new BigNumber(data.message.gasLimit)
-    const gasUsed = new BigNumber(data.message.gasUsed)
-    return gasUsed.dividedBy(gasLimit).times(100).toFixed(1)
-  }, [data?.message])
-
+  const value = useMemo(
+    () => (data?.message.value ? attoFilToFil(data?.message.value) : ''),
+    [data?.message.value]
+  )
+  const totalCost = useMemo(
+    () => (data?.message ? getTotalCost(data.message) : ''),
+    [data?.message]
+  )
+  const gasPercentage = useMemo(
+    () => (data?.message ? getGasPercentage(data.message) : ''),
+    [data?.message]
+  )
   const timestamp = useMemo(
     () => data?.message.block.Timestamp ?? null,
     [data?.message.block.Timestamp]
   )
-
   const date = useMemo(
     () => (timestamp ? dayjs.unix(timestamp).toString() : ''),
     [timestamp]
   )
-
   const age = useMemo(
     () => (timestamp ? dayjs.unix(timestamp).from(time) : ''),
     [timestamp, time]
@@ -99,10 +95,8 @@ export default function MessageDetail(props: MessageDetailProps) {
         >{`(${data.message.to.id})`}</Link>
       </Line>
       <HR />
-      <Line label='Value'>
-        {new FilecoinNumber(data.message.value, 'attofil').toFil()} FIL
-      </Line>
-      <Line label='Transaction Fee'>{totalCost} FIL</Line>
+      <Line label='Value'>{value}</Line>
+      <Line label='Transaction Fee'>{totalCost}</Line>
       <Line label='Method'>
         <Badge color='purple'>{data.message.methodName.toUpperCase()}</Badge>
       </Line>
@@ -114,40 +108,28 @@ export default function MessageDetail(props: MessageDetailProps) {
       {seeMore && (
         <>
           <Line label='Gas Limit & Usage by Txn'>
-            {data.message.gasLimit}
+            {formatNumber(data.message.gasLimit)}
             <span className='gray'>|</span>
-            {data.message.gasUsed} attoFil
-            <span>({gasPercentage}%)</span>
+            {formatNumber(data.message.gasUsed)} attoFil
+            <span>({gasPercentage})</span>
           </Line>
           <Line label='Gas Fees'>
             <span className='gray'>Premium</span>
-            {new FilecoinNumber(
-              data.message.gasPremium,
-              'attofil'
-            ).toFil()}{' '}
-            attoFIL
+            {formatNumber(data.message.gasPremium)} attoFIL
           </Line>
           <Line label=''>
             <span className='gray'>Fee Cap</span>
-            {new FilecoinNumber(data.message.gasFeeCap, 'attofil').toFil()}{' '}
-            attoFIL
+            {formatNumber(data.message.gasFeeCap)} attoFIL
           </Line>
           <Line label=''>
             <span className='gray'>Base</span>
-            {new FilecoinNumber(
-              data.message.baseFeeBurn,
-              'attofil'
-            ).toFil()}{' '}
-            attoFIL
+            {formatNumber(data.message.baseFeeBurn)} attoFIL
           </Line>
           <Line label='Gas Burnt'>
-            {new FilecoinNumber(data.message.gasBurned, 'attofil').toFil()}{' '}
-            attoFIL
+            {formatNumber(data.message.gasBurned)} attoFIL
           </Line>
           <HR />
-          <Line label='Parameters'>
-            {JSON.stringify(data.message.params)}
-          </Line>
+          <Line label='Parameters'>{JSON.stringify(data.message.params)}</Line>
         </>
       )}
     </Box>

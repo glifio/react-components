@@ -25,3 +25,8 @@ export function getGasPercentage(
   const gasUsed = new BigNumber(message.gasUsed)
   return gasUsed.dividedBy(gasLimit).times(100).toFixed(1) + '%'
 }
+
+export function formatNumber(input: string | number | BigNumber): string {
+  const bigNr = input instanceof BigNumber ? input : new BigNumber(input)
+  return bigNr.toFormat()
+}
