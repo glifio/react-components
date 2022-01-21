@@ -4,7 +4,10 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import { useMessageQuery } from '../../../generated/graphql'
+import {
+  useMessageQuery,
+  useChainHeadSubscription
+} from '../../../generated/graphql'
 import Box from '../../Box'
 import { IconClock } from '../../Icons'
 import { P, HR } from '../../Typography'
@@ -28,11 +31,14 @@ const SeeMore = styled(P).attrs(() => ({
 `
 
 export default function MessageDetail(props: MessageDetailProps) {
-  const { cid, speedUp, cancel, addressHref } = props
+  const { cid, speedUp, cancel, addressHref, confirmations } = props
   const [time, setTime] = useState(Date.now())
   const [seeMore, setSeeMore] = useState(false)
   const { data, loading, error } = useMessageQuery({
     variables: { cid }
+  })
+  const chainHeadSubscription = useChainHeadSubscription({
+    variables: {}
   })
   const value = useMemo(
     () => (data?.message.value ? attoFilToFil(data?.message.value) : ''),
@@ -58,6 +64,13 @@ export default function MessageDetail(props: MessageDetailProps) {
     () => (timestamp ? dayjs.unix(timestamp).from(time) : ''),
     [timestamp, time]
   )
+  const confirmationCount = useMemo(
+    () =>
+      chainHeadSubscription.data?.chainHead.height && data?.message.height
+        ? chainHeadSubscription.data.chainHead.height - data.message.height
+        : 0,
+    [data?.message.height, chainHeadSubscription.data?.chainHead.height]
+  )
 
   useEffect(() => {
     const interval = setInterval(() => setTime(Date.now()), 1000)
@@ -74,7 +87,7 @@ export default function MessageDetail(props: MessageDetailProps) {
       <Line label='CID'>{cid}</Line>
       <Line label='Status and Confirmations'>
         <Status exitCode={data.message.exitCode} />
-        <Confirmations count={11} total={50} />
+        <Confirmations count={confirmationCount} total={confirmations} />
       </Line>
       <Line label='Height'>{data.message.height}</Line>
       <Line label='Timestamp'>
@@ -142,11 +155,13 @@ type MessageDetailProps = {
   speedUp?: () => void
   cancel?: () => void
   addressHref: (address: string) => string
+  confirmations: number
 }
 
 MessageDetail.propTypes = {
   cid: PropTypes.string.isRequired,
   speedUp: PropTypes.func,
   cancel: PropTypes.func,
-  addressHref: PropTypes.func.isRequired
+  addressHref: PropTypes.func.isRequired,
+  confirmations: PropTypes.number.isRequired
 }

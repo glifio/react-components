@@ -23,6 +23,7 @@ const Template = args => (
     speedUp={() => {}}
     cancel={() => {}}
     addressHref={address => `/#/history/${address}`}
+    confirmations={50}
     {...args}
   />
 )
