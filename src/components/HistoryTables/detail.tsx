@@ -114,11 +114,11 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
         case 'params':
           return value ? (
             <>
-              <Line label='Parameters'></Line>
-              <Parameters params={value} depth={depth + 1} />
+              <Line key={`${depth}-${key}-1`} label='Parameters'></Line>
+              <Parameters key={`${depth}-${key}-2`} params={value} depth={depth + 1} />
             </>
           ) : (
-            <Line label='Parameters'>&mdash;</Line>
+            <Line key={`${depth}-${key}`} label='Parameters'>&mdash;</Line>
           )
         case 'method':
           return (
