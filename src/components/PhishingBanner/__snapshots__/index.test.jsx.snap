@@ -80,11 +80,11 @@ exports[`Phishing Banner renders the phishing banner 1`] = `
       For your protection, please check your browser's URL bar that you're visiting
        
       <a
-        href="https://wallet.glif.io"
+        href="https://sender.glif.io"
         rel="noopener noreferrer"
         target="_blank"
       >
-        https://wallet.glif.io
+        https://sender.glif.io
       </a>
     </p>
     <button

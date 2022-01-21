@@ -6,9 +6,8 @@ export function MessageRowColumnTitles() {
       <TR>
         <TH>ID</TH>
         <TH>Method</TH>
-        {/* <TH>Age</TH> */}
-        <TH>From</TH>
-        <TH>To</TH>
+        <TH>Age</TH>
+        <TH>Proposer</TH>
         <TH>Value</TH>
         <TH># Approvals</TH>
       </TR>
