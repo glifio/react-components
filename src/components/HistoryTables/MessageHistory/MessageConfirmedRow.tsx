@@ -7,7 +7,7 @@ import { TR, TD } from '../table'
 import { Badge } from '../generic'
 import { AddressWOptionalLink } from '../../Link/SmartLink'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
-import { attoFilToFil, getTotalCost } from '../utils'
+import { attoFilToFil, getTotalCostShort } from '../utils'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -15,7 +15,7 @@ dayjs.extend(relativeTime.default)
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const { message, time, cidHref, addressHref, inspectingAddress } = props
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
-  const totalCost = useMemo(() => getTotalCost(message), [message])
+  const totalCost = useMemo(() => getTotalCostShort(message), [message])
   const incoming = useMemo(
     () => message.to.robust === inspectingAddress,
     [message.to.robust, inspectingAddress]
