@@ -142,14 +142,7 @@ export default function MessageDetail(props: MessageDetailProps) {
             {formatNumber(data.message.gasBurned)} attoFIL
           </Line>
           <HR />
-          {data.message.params ? (
-            <>
-              <Line label='Parameters'></Line>
-              <Parameters params={data.message.params as Object} depth={1} />
-            </>
-          ) : (
-            <Line label='Parameters'>&mdash;</Line>
-          )}
+          <Parameters params={{ params: data.message.params }} depth={0} />
         </>
       )}
     </Box>
