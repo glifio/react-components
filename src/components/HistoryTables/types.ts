@@ -36,3 +36,11 @@ export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
   overEstimationBurn: PropTypes.string.isRequired,
   minerTip: PropTypes.string.isRequired
 })
+
+export const PROPOSAL_ROW_PROP_TYPE = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  method: PropTypes.number.isRequired,
+  params: PropTypes.object,
+  to: PropTypes.string.isRequired,
+  approved: PropTypes.arrayOf(PropTypes.string)
+})

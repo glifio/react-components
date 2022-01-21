@@ -17,6 +17,7 @@ query MessagesConfirmed($address: String!, $limit: Int!, $offset: Int!) {
     methodName
     method
     actorFamily
+    actorName
     exitCode
     gasUsed
     parentBaseFee

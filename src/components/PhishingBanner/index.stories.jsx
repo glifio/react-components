@@ -20,7 +20,7 @@ const Template = args => <PhishingBanner {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  href: 'https://wallet.glif.io',
+  href: 'https://sender.glif.io',
   closed: false,
   setClosed: () => {}
 }

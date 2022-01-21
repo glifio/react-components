@@ -6,5 +6,6 @@ query MsigPending($address: String!, $limit: Int!, $offset: Int!) {
     method
     params
     approved
+    value
   }
 }

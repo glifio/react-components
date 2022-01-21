@@ -27,18 +27,20 @@ export function SmartLink(
 export function AddressWOptionalLink({
   address,
   addressHref,
-  inspectingAddress
+  inspectingAddress,
+  onClick
 }: {
   address: string
   inspectingAddress: string
   addressHref: (address: string) => string
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }) {
   if (address === inspectingAddress) {
     return <span>{truncateAddress(address)}</span>
   }
 
   return (
-    <SmartLink href={addressHref(address)}>
+    <SmartLink onClick={onClick} href={addressHref(address)}>
       {truncateAddress(address)}
     </SmartLink>
   )
