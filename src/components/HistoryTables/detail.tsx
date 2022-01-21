@@ -85,13 +85,18 @@ export const Line = ({ label, children }: LineProps) => (
 )
 
 type LineProps = {
-  label: string
-  children: React.ReactNode
+  label?: string
+  children?: React.ReactNode
 }
 
 Line.propTypes = {
-  label: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired
+  label: PropTypes.string,
+  children: PropTypes.node
+}
+
+Line.defaultProps = {
+  label: '',
+  children: <></>
 }
 
 /**
