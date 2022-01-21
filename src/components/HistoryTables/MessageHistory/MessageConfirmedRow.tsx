@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
@@ -8,33 +7,21 @@ import { TR, TD } from '../table'
 import { Badge } from '../generic'
 import { AddressWOptionalLink } from '../../Link/SmartLink'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
+import { attoFilToFil, getTotalCost } from '../utils'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const { message, time, cidHref, addressHref, inspectingAddress } = props
-
-  const totalCost = useMemo(() => {
-    const bnBaseFeeBurn = new BigNumber(message.baseFeeBurn)
-    const bnOverEstimationBurn = new BigNumber(message.overEstimationBurn)
-    const bnMinerTip = new BigNumber(message.minerTip)
-    return new FilecoinNumber(
-      bnBaseFeeBurn.plus(bnOverEstimationBurn).plus(bnMinerTip),
-      'attofil'
-    ).toFil()
-  }, [message])
-
+  const value = useMemo(() => attoFilToFil(message.value), [message.value])
+  const totalCost = useMemo(() => getTotalCost(message), [message])
   const incoming = useMemo(
     () => message.to.robust === inspectingAddress,
     [message.to.robust, inspectingAddress]
   )
-
   const age = useMemo(
-    () =>
-      message.block.Timestamp
-        ? dayjs.unix(message.block.Timestamp).from(time)
-        : '',
+    () => dayjs.unix(message.block.Timestamp).from(time),
     [message.block.Timestamp, time]
   )
 
@@ -78,8 +65,8 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           inspectingAddress={inspectingAddress}
         />
       </TD>
-      <TD>{new FilecoinNumber(message.value, 'attofil').toFil()} FIL</TD>
-      <TD>{totalCost} FIL</TD>
+      <TD>{value}</TD>
+      <TD>{totalCost}</TD>
     </TR>
   )
 }
