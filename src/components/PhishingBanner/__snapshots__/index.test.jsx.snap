@@ -24,14 +24,16 @@ exports[`Phishing Banner renders the phishing banner 1`] = `
   background: #ff4242;
   color: white;
   font-size: var(--type-small);
-  line-height: 1.4;
-  grid-area: banner;
+  line-height: 50px;
   border-radius: 10px;
   overflow: hidden;
+  padding: 0 20px;
+  height: 50px;
 }
 
 .c3 {
   display: inline-block;
+  margin: 0;
 }
 
 .c3 > a {
@@ -41,16 +43,15 @@ exports[`Phishing Banner renders the phishing banner 1`] = `
   color: inherit;
 }
 
-@media (max-width:868px) {
-  .c0 {
-    padding: 0 20px;
-  }
+.c3 > a:hover {
+  color: inherit;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 @media (min-width:868px) {
   .c0 {
     text-align: center;
-    padding: 0 20px;
   }
 }
 
@@ -88,7 +89,7 @@ exports[`Phishing Banner renders the phishing banner 1`] = `
       </a>
     </p>
     <button
-      style="margin-left: 30px; display: inline-block; cursor: pointer; background: none; color: white;"
+      style="margin-left: 30px; display: inline-block; cursor: pointer; background: none; color: white; height: 50px;"
       type="button"
     >
       close
