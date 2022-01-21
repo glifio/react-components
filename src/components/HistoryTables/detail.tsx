@@ -55,13 +55,14 @@ Head.propTypes = {
  * Line
  * Content row of the detail page
  */
-export const Line = ({ label, children }: LineProps) => (
+export const Line = ({ label, depth, children }: LineProps) => (
   <Box
     display='flex'
     alignItems='center'
     gridGap='1em'
     lineHeight='2em'
     my='1em'
+    pl={`${depth * 5}%`}
     css={`
       a {
         color: ${props => props.theme.colors.core.primary};
@@ -86,17 +87,57 @@ export const Line = ({ label, children }: LineProps) => (
 
 type LineProps = {
   label?: string
+  depth?: number
   children?: React.ReactNode
 }
 
 Line.propTypes = {
   label: PropTypes.string,
+  depth: PropTypes.number,
   children: PropTypes.node
 }
 
 Line.defaultProps = {
   label: '',
+  depth: 0,
   children: <></>
+}
+
+/**
+ * Parameters
+ * Parameter rows of the detail page
+ */
+export const Parameters = ({ params, depth }: ParametersProps) => (
+  <>
+    {Object.entries(params).map(([key, value]) => {
+      switch (key.toLowerCase()) {
+        case 'params':
+          return <Parameters params={value} depth={depth + 1} />
+        case 'method':
+          return (
+            <Line label={key} depth={depth}>
+              <Badge color='purple'>{value}</Badge>
+            </Line>
+          )
+        default:
+          return (
+            <Line label={key} depth={depth}>
+              {value}
+            </Line>
+          )
+      }
+    })}
+  </>
+)
+
+type ParametersProps = {
+  params: object
+  depth: number
+}
+
+Parameters.propTypes = {
+  params: PropTypes.object.isRequired,
+  depth: PropTypes.number.isRequired
 }
 
 /**

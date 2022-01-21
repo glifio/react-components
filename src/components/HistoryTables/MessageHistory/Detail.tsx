@@ -9,7 +9,7 @@ import Box from '../../Box'
 import { IconClock } from '../../Icons'
 import { P, HR } from '../../Typography'
 import { Badge } from '../generic'
-import { Head, Line, Status, Confirmations } from '../detail'
+import { Head, Line, Status, Confirmations, Parameters } from '../detail'
 import {
   attoFilToFil,
   getTotalCost,
@@ -129,7 +129,8 @@ export default function MessageDetail(props: MessageDetailProps) {
             {formatNumber(data.message.gasBurned)} attoFIL
           </Line>
           <HR />
-          <Line label='Parameters'>{JSON.stringify(data.message.params)}</Line>
+          <Line label='Parameters'></Line>
+          <Parameters params={data.message.params as Object} depth={1} />
         </>
       )}
     </Box>
