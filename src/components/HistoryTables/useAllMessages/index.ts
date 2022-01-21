@@ -59,9 +59,20 @@ export const usePendingMessages = (address: string) => {
 export const useAllMessages = (address: string, _offset: number = 0) => {
   // these pending messages might have recently confirmed low conf messages... filter them out
   const _pendingMsgs = usePendingMessages(address)
-  const lowConfidenceMsgs = useStateListMessagesQuery({
-    variables: { address }
-  })
+  // const lowConfidenceMsgs = useStateListMessagesQuery({
+  //   variables: { address }
+  // })
+
+  const lowConfidenceMsgs = useMemo(
+    () => ({
+      data: {
+        stateListMessages: [] as MessageConfirmed[]
+      },
+      loading: false,
+      error: null
+    }),
+    []
+  )
 
   // pluck confirmed messages from the pending message list
   const pendingMsgs = useMemo(() => {

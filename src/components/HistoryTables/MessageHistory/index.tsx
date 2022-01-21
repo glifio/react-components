@@ -1,8 +1,8 @@
 import { useMemo, useState, useEffect } from 'react'
-import { useMessagesConfirmedQuery } from '../../../generated/graphql'
 import PropTypes from 'prop-types'
 import Box from '../../Box'
 import MessageConfirmedRow from './MessageConfirmedRow'
+import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import ButtonV2 from '../../Button/V2'
@@ -45,7 +45,15 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
       <TABLE>
         <MessageRowColumnTitles />
         <tbody>
-          {/* Pending transaction rows could go here if we like this setup */}
+          {pendingMsgs?.map(message => (
+            <MessagePendingRow
+              key={message.cid}
+              message={message}
+              cidHref={props.cidHref}
+              addressHref={props.addressHref}
+              inspectingAddress={props.address}
+            />
+          ))}
           {messages?.map(message => (
             <MessageConfirmedRow
               key={message.cid}
