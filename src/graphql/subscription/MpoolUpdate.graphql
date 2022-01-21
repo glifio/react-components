@@ -1,0 +1,18 @@
+subscription MpoolUpdate($address: String!) {
+  mpoolUpdate(address: $address) {
+    type
+    message {
+      cid
+      from
+      to
+      method
+      nonce
+      value
+      version
+      gasLimit
+      gasFeeCap
+      gasPremium
+      params
+    }
+  }
+}

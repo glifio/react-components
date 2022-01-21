@@ -7,6 +7,7 @@ import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import ButtonV2 from '../../Button/V2'
 import { TABLE } from '../table'
+import { useAllMessages } from '../useAllMessages'
 
 type MessageHistoryTableProps = {
   address: string
@@ -20,14 +21,11 @@ const DEFAULT_LIMIT = 10
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   const [time, setTime] = useState(Date.now())
-  const [offset, setOffset] = useState(props.offset)
-  const { data, loading, error, fetchMore } = useMessagesConfirmedQuery({
-    variables: {
-      address: props.address,
-      limit: DEFAULT_LIMIT,
-      offset: props.offset
-    }
-  })
+
+  const { messages, pendingMsgs, loading, error, fetchMore } = useAllMessages(
+    props.address,
+    props.offset
+  )
 
   useEffect(() => {
     const interval = setInterval(() => setTime(Date.now()), 1000)
@@ -35,18 +33,9 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   })
 
   const lastPage = useMemo(
-    () => data?.messagesConfirmed?.length < DEFAULT_LIMIT,
-    [data?.messagesConfirmed?.length]
+    () => messages?.length < DEFAULT_LIMIT,
+    [messages?.length]
   )
-
-  function onClickLoadMore() {
-    fetchMore({
-      variables: {
-        offset: offset + DEFAULT_LIMIT
-      }
-    })
-    setOffset(offset + DEFAULT_LIMIT)
-  }
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( {error.message}</p>
@@ -57,7 +46,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
         <MessageRowColumnTitles />
         <tbody>
           {/* Pending transaction rows could go here if we like this setup */}
-          {data?.messagesConfirmed?.map(message => (
+          {messages?.map(message => (
             <MessageConfirmedRow
               key={message.cid}
               message={message}
@@ -71,7 +60,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
       </TABLE>
       {!lastPage && (
         <Box pt='4.5rem' textAlign='center'>
-          <ButtonV2 onClick={onClickLoadMore} display='inline-block' px='18rem'>
+          <ButtonV2 onClick={fetchMore} display='inline-block' px='18rem'>
             Load more
           </ButtonV2>
         </Box>

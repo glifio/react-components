@@ -1,0 +1,37 @@
+query StateListMessages($address: String!) {
+  stateListMessages(address: $address) {
+    cid
+    height
+    from {
+      id
+      robust
+    }
+    to {
+      id
+      robust
+    }
+    value
+    gasFeeCap
+    gasPremium
+    gasLimit
+    methodName
+    method
+    actorFamily
+    actorName
+    exitCode
+    gasUsed
+    parentBaseFee
+    baseFeeBurn
+    overEstimationBurn
+    minerPenalty
+    minerTip
+    refund
+    gasRefund
+    gasBurned
+    block {
+      Cid
+      Timestamp
+    }
+    params
+  }
+}
