@@ -115,13 +115,13 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
           return <Parameters params={value} depth={depth + 1} />
         case 'method':
           return (
-            <Line label={key} depth={depth}>
+            <Line key={`${depth}-${key}`} label={key} depth={depth}>
               <Badge color='purple'>{value}</Badge>
             </Line>
           )
         default:
           return (
-            <Line label={key} depth={depth}>
+            <Line key={`${depth}-${key}`} label={key} depth={depth}>
               {value}
             </Line>
           )
