@@ -54,7 +54,8 @@ export const NumberInput = forwardRef<HTMLInputElement, any>(
     ref
   ) => {
     const inputVal = useMemo(() => {
-      if (typeof value === 'number') {
+      // our numbered inputs are very odd and occasionally take strings...
+      if (typeof value === 'number' || typeof value === 'string') {
         return value || ''
       } else return undefined
     }, [value])
@@ -92,8 +93,8 @@ export const NumberInput = forwardRef<HTMLInputElement, any>(
               placeholder={placeholder}
               borderBottomLeftRadius={bottom && !middle && 2}
               borderTopLeftRadius={top && !middle && 2}
-              borderTopRightRadius={top && bottom && 2}
-              borderBottomRightRadius={top && bottom && 2}
+              borderTopRightRadius={!denom && top && bottom && 2}
+              borderBottomRightRadius={!denom && top && bottom && 2}
               px={3}
               ref={ref}
             />
