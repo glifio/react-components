@@ -19,6 +19,7 @@ import {
   getGasPercentage,
   formatNumber
 } from '../utils'
+import { getMethodName } from '../methodName'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -72,6 +73,11 @@ export default function MessageDetail(props: MessageDetailProps) {
     [data?.message.height, chainHeadSubscription.data?.chainHead.height]
   )
 
+  const methodName = useMemo(
+    () => getMethodName(data?.message.actorName, data?.message.method),
+    [data?.message.actorName, data?.message.method]
+  )
+
   useEffect(() => {
     const interval = setInterval(() => setTime(Date.now()), 1000)
     return () => clearInterval(interval)
@@ -111,7 +117,7 @@ export default function MessageDetail(props: MessageDetailProps) {
       <Line label='Value'>{value}</Line>
       <Line label='Transaction Fee'>{totalCost}</Line>
       <Line label='Method'>
-        <Badge color='purple'>{data.message.methodName.toUpperCase()}</Badge>
+        <Badge color='purple'>{methodName.toUpperCase()}</Badge>
       </Line>
       <HR />
       <SeeMore onClick={() => setSeeMore(!seeMore)}>

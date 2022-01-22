@@ -14,9 +14,7 @@ query MessagesConfirmed($address: String!, $limit: Int!, $offset: Int!) {
     gasFeeCap
     gasPremium
     gasLimit
-    methodName
     method
-    actorFamily
     actorName
     exitCode
     gasUsed

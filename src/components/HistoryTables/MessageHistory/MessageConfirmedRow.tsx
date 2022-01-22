@@ -8,6 +8,7 @@ import { Badge } from '../generic'
 import { AddressWOptionalLink } from '../../Link/SmartLink'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
 import { attoFilToFil, getTotalCostShort } from '../utils'
+import { getMethodName } from '../methodName'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -23,6 +24,11 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const age = useMemo(
     () => dayjs.unix(message.block.Timestamp).from(time),
     [message.block.Timestamp, time]
+  )
+
+  const methodName = useMemo(
+    () => getMethodName(props.message.actorName, props.message.method),
+    [props.message.actorName, props.message.method]
   )
 
   return (
@@ -42,13 +48,13 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         </Link>
       </TD>
       <TD>
-        <Badge color='purple'>{message.methodName.toUpperCase()}</Badge>
+        <Badge color='purple'>{methodName.toUpperCase()}</Badge>
       </TD>
       <TD>{message.height}</TD>
       <TD>{age}</TD>
       <TD>
         <AddressWOptionalLink
-          address={message.from.robust}
+          address={message.from?.robust || message.from.id}
           addressHref={addressHref}
           inspectingAddress={inspectingAddress}
         />
@@ -60,7 +66,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
       </TD>
       <TD>
         <AddressWOptionalLink
-          address={message.to.robust}
+          address={message.to?.robust || message.to.id}
           addressHref={addressHref}
           inspectingAddress={inspectingAddress}
         />

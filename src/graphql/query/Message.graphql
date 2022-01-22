@@ -14,9 +14,8 @@ query Message($cid: String!) {
     gasFeeCap
     gasPremium
     gasLimit
-    methodName
     method
-    actorFamily
+    actorName
     exitCode
     gasUsed
     parentBaseFee
