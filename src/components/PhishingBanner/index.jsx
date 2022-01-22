@@ -8,28 +8,30 @@ const PhishingBannerContainer = styled.div`
   background: ${baseColors.red.base};
   color: white;
   font-size: var(--type-small);
-  line-height: 1.4;
-  grid-area: banner;
+  line-height: 50px;
   border-radius: 10px;
   overflow: hidden;
-
-  @media (max-width: ${devices.tablet}) {
-    padding: 0 20px;
-  }
+  padding: 0 20px;
+  height: 50px;
 
   @media (min-width: ${devices.tablet}) {
     text-align: center;
-    padding: 0 20px;
   }
 `
 
 const PhishingText = styled(P)`
   display: inline-block;
+  margin: 0;
 
   > a {
     text-decoration: underline;
     cursor: pointer;
     color: inherit;
+
+    &:hover {
+      color: inherit;
+      text-decoration: none;
+    }
   }
 `
 
@@ -37,10 +39,9 @@ const SAFE = 'https://safe.glif.io'
 const SENDER = 'https://sender.glif.io'
 
 export default function PhishingBanner({ href, closed, setClosed }) {
-  if (href !== SAFE && href !== SENDER) return null
   return (
     <>
-      {!closed ? (
+      {!closed && (
         <PhishingBannerContainer>
           <div
             css={`
@@ -50,13 +51,15 @@ export default function PhishingBanner({ href, closed, setClosed }) {
               }
             `}
           >
-            <PhishingText style={{ display: 'inline-block' }}>
-              For your protection, please check your browser&apos;s URL bar that
-              you&apos;re visiting{' '}
-              <a href={href} target='_blank' rel='noopener noreferrer'>
-                {href}
-              </a>
-            </PhishingText>
+            {(href === SAFE || href === SENDER) && (
+              <PhishingText style={{ display: 'inline-block' }}>
+                For your protection, please check your browser&apos;s URL bar
+                that you&apos;re visiting{' '}
+                <a href={href} target='_blank' rel='noopener noreferrer'>
+                  {href}
+                </a>
+              </PhishingText>
+            )}
             <button
               type='button'
               style={{
@@ -65,7 +68,8 @@ export default function PhishingBanner({ href, closed, setClosed }) {
                 cursor: 'pointer',
                 border: 'none',
                 background: 'none',
-                color: 'white'
+                color: 'white',
+                height: '50px'
               }}
               onClick={() => setClosed(true)}
             >
@@ -73,7 +77,7 @@ export default function PhishingBanner({ href, closed, setClosed }) {
             </button>
           </div>
         </PhishingBannerContainer>
-      ) : null}
+      )}
     </>
   )
 }

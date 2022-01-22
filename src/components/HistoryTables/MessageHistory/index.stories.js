@@ -11,9 +11,7 @@ export default {
   decorators: [
     Story => (
       <ApolloProvider client={client}>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-        </div>
+        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
       </ApolloProvider>
     )
   ],

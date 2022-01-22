@@ -1,10 +1,28 @@
-import React, { FC, useState } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useMessageQuery } from '../../../generated/graphql'
+import Link from 'next/link'
+import * as dayjs from 'dayjs'
+import * as relativeTime from 'dayjs/plugin/relativeTime'
+import {
+  useMessageQuery,
+  useChainHeadSubscription
+} from '../../../generated/graphql'
 import Box from '../../Box'
-import { P, H2, HR } from '../../Typography'
-import ButtonV2 from '../../Button/V2'
+import { IconClock } from '../../Icons'
+import { P, HR } from '../../Typography'
+import { Badge } from '../generic'
+import { Head, Line, Status, Confirmations, Parameters } from '../detail'
+import {
+  attoFilToFil,
+  getTotalCost,
+  getGasPercentage,
+  formatNumber
+} from '../utils'
+import { getMethodName } from '../methodName'
+
+// add RelativeTime plugin to Day.js
+dayjs.extend(relativeTime.default)
 
 const SeeMore = styled(P).attrs(() => ({
   color: 'core.primary',
@@ -13,21 +31,129 @@ const SeeMore = styled(P).attrs(() => ({
   cursor: pointer;
 `
 
-const Status: FC<{ exitCode: number }> = ({ exitCode }) => {
-  return (
-    <div>
-      <P>{exitCode === 0 ? 'SUCCESS' : 'ERROR'}</P>
-    </div>
+export default function MessageDetail(props: MessageDetailProps) {
+  const { cid, speedUp, cancel, addressHref, confirmations } = props
+  const [time, setTime] = useState(Date.now())
+  const [seeMore, setSeeMore] = useState(false)
+  const { data, loading, error } = useMessageQuery({
+    variables: { cid }
+  })
+  const chainHeadSubscription = useChainHeadSubscription({
+    variables: {}
+  })
+  const value = useMemo(
+    () => (data?.message.value ? attoFilToFil(data?.message.value) : ''),
+    [data?.message.value]
   )
-}
+  const totalCost = useMemo(
+    () => (data?.message ? getTotalCost(data.message) : ''),
+    [data?.message]
+  )
+  const gasPercentage = useMemo(
+    () => (data?.message ? getGasPercentage(data.message) : ''),
+    [data?.message]
+  )
+  const timestamp = useMemo(
+    () => data?.message.block.Timestamp ?? null,
+    [data?.message.block.Timestamp]
+  )
+  const date = useMemo(
+    () => (timestamp ? dayjs.unix(timestamp).toString() : ''),
+    [timestamp]
+  )
+  const age = useMemo(
+    () => (timestamp ? dayjs.unix(timestamp).from(time) : ''),
+    [timestamp, time]
+  )
+  const confirmationCount = useMemo(
+    () =>
+      chainHeadSubscription.data?.chainHead.height && data?.message.height
+        ? chainHeadSubscription.data.chainHead.height - data.message.height
+        : 0,
+    [data?.message.height, chainHeadSubscription.data?.chainHead.height]
+  )
 
-// TODO - goal 4
-// eslint-disable-next-line
-const Confidence: FC<{ height: number }> = ({ height }) => {
+  const methodName = useMemo(
+    () => getMethodName(data?.message.actorName, data?.message.method),
+    [data?.message.actorName, data?.message.method]
+  )
+
+  useEffect(() => {
+    const interval = setInterval(() => setTime(Date.now()), 1000)
+    return () => clearInterval(interval)
+  })
+
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error :( {error.message}</p>
+
   return (
-    <div>
-      <P>High</P>
-    </div>
+    <Box>
+      <Head title='Message Overview' speedUp={speedUp} cancel={cancel} />
+      <HR />
+      <Line label='CID'>{cid}</Line>
+      <Line label='Status and Confirmations'>
+        <Status exitCode={data.message.exitCode} />
+        <Confirmations count={confirmationCount} total={confirmations} />
+      </Line>
+      <Line label='Height'>{data.message.height}</Line>
+      <Line label='Timestamp'>
+        <IconClock width='1.125em' />
+        {age} ({date})
+      </Line>
+      <HR />
+      <Line label='From'>
+        {data.message.from.robust}
+        <Link
+          href={addressHref(data.message.from.robust)}
+        >{`(${data.message.from.id})`}</Link>
+      </Line>
+      <Line label='To'>
+        {data.message.to.robust}
+        <Link
+          href={addressHref(data.message.to.robust)}
+        >{`(${data.message.to.id})`}</Link>
+      </Line>
+      <HR />
+      <Line label='Value'>{value}</Line>
+      <Line label='Transaction Fee'>{totalCost}</Line>
+      {!loading && methodName && (
+        <Line label='Method'>
+          <Badge color='purple'>{methodName.toUpperCase()}</Badge>
+        </Line>
+      )}
+      <HR />
+      <SeeMore onClick={() => setSeeMore(!seeMore)}>
+        Click to see {seeMore ? 'less ↑' : 'more ↓'}
+      </SeeMore>
+      <HR />
+      {seeMore && (
+        <>
+          <Line label='Gas Limit & Usage by Txn'>
+            {formatNumber(data.message.gasLimit)}
+            <span className='gray'>|</span>
+            {formatNumber(data.message.gasUsed)} attoFil
+            <span>({gasPercentage})</span>
+          </Line>
+          <Line label='Gas Fees'>
+            <span className='gray'>Premium</span>
+            {formatNumber(data.message.gasPremium)} attoFIL
+          </Line>
+          <Line label=''>
+            <span className='gray'>Fee Cap</span>
+            {formatNumber(data.message.gasFeeCap)} attoFIL
+          </Line>
+          <Line label=''>
+            <span className='gray'>Base</span>
+            {formatNumber(data.message.baseFeeBurn)} attoFIL
+          </Line>
+          <Line label='Gas Burnt'>
+            {formatNumber(data.message.gasBurned)} attoFIL
+          </Line>
+          <HR />
+          <Parameters params={{ params: data.message.params }} depth={0} />
+        </>
+      )}
+    </Box>
   )
 }
 
@@ -35,54 +161,14 @@ type MessageDetailProps = {
   cid: string
   speedUp?: () => void
   cancel?: () => void
-}
-
-export default function MessageDetail(props: MessageDetailProps) {
-  const { data, loading, error } = useMessageQuery({
-    variables: {
-      cid: props.cid
-    }
-  })
-
-  const [seeMore, setSeeMore] = useState(false)
-
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :( {error.message}</p>
-
-  return (
-    <Box>
-      <H2 color='core.primary'>Message Overview</H2>
-      <HR />
-      {props.speedUp && <ButtonV2 onClick={props.speedUp}>Speed up</ButtonV2>}
-      {props.cancel && <ButtonV2 onClick={props.cancel}>Cancel</ButtonV2>}
-      {/* ? CSS GRID ? */}
-      <span>
-        <P>CID</P>
-        <P>{props.cid}</P>
-      </span>
-      <span>
-        <P>Status and Confidence</P>
-        <Status exitCode={data.message.exitCode} />
-        <Confidence height={data.message.height} />
-      </span>
-      <HR />
-      {/* Details go here */}
-      {seeMore ? (
-        <SeeMore onClick={() => setSeeMore(!seeMore)}>
-          Click to see less
-        </SeeMore>
-      ) : (
-        <SeeMore onClick={() => setSeeMore(!seeMore)}>
-          Click to see more
-        </SeeMore>
-      )}
-      {seeMore && <>{/* See more details */}</>}
-    </Box>
-  )
+  addressHref: (address: string) => string
+  confirmations: number
 }
 
 MessageDetail.propTypes = {
   cid: PropTypes.string.isRequired,
   speedUp: PropTypes.func,
-  cancel: PropTypes.func
+  cancel: PropTypes.func,
+  addressHref: PropTypes.func.isRequired,
+  confirmations: PropTypes.number.isRequired
 }

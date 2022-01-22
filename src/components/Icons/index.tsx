@@ -943,3 +943,90 @@ IconMetaMaskFlask.defaultProps = {
   width: '175',
   height: '165'
 }
+
+export const IconSpeedUp = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
+  <IconBase
+    width='30px'
+    height='25px'
+    viewBox='0 0 30 25'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    ref={ref}
+    {...props}
+  >
+    <path
+      d='M14.1982 13.6736C14.0714 13.9822 13.8873 14.2507 13.6605 14.4577L3.9218 23.3482C3.6505 23.5959 3.32789 23.7467 2.99012 23.7838C2.65236 23.8208 2.31279 23.7427 2.00946 23.5581C1.70613 23.3735 1.45102 23.0898 1.27273 22.7386C1.09444 22.3875 1 21.9829 1 21.5701V3.78904C1 3.37627 1.09444 2.97166 1.27273 2.62053C1.45102 2.26941 1.70613 1.98565 2.00946 1.80106C2.31279 1.61646 2.65236 1.53832 2.99012 1.57539C3.32789 1.61246 3.6505 1.76327 3.9218 2.01093L13.6605 10.9015C13.8873 11.1085 14.0714 11.377 14.1982 11.6856C14.325 11.9942 14.391 12.3345 14.391 12.6796C14.391 13.0246 14.325 13.3649 14.1982 13.6736Z'
+      stroke='#3F3F46'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+    <path
+      d='M28.8072 13.6736C28.6804 13.9822 28.4963 14.2507 28.2695 14.4577L18.5308 23.3482C18.2595 23.5959 17.9369 23.7467 17.5991 23.7838C17.2614 23.8208 16.9218 23.7427 16.6185 23.5581C16.3151 23.3735 16.06 23.0898 15.8817 22.7386C15.7035 22.3875 15.609 21.9829 15.609 21.5701V3.78904C15.609 3.37627 15.7035 2.97166 15.8817 2.62053C16.06 2.26941 16.3151 1.98565 16.6185 1.80106C16.9218 1.61646 17.2614 1.53832 17.5991 1.57539C17.9369 1.61246 18.2595 1.76327 18.5308 2.01093L28.2695 10.9015C28.4963 11.1085 28.6804 11.377 28.8072 11.6856C28.934 11.9942 29 12.3345 29 12.6796C29 13.0246 28.934 13.3649 28.8072 13.6736Z'
+      stroke='#3F3F46'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </IconBase>
+))
+
+export const IconCancel = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
+  <IconBase
+    width='22px'
+    height='28px'
+    viewBox='0 0 22 28'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    ref={ref}
+    {...props}
+  >
+    <path
+      d='M1 1.33203L21 26.028M1 26.028L21 1.33203L1 26.028Z'
+      stroke='#3F3F46'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </IconBase>
+))
+
+export const IconCheck = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
+  <IconBase
+    width='23px'
+    height='22px'
+    viewBox='0 0 23 22'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    ref={ref}
+    {...props}
+  >
+    <path
+      d='M2 12.5264L7.42857 19.544L21 2'
+      stroke='#007B39'
+      strokeWidth='3'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </IconBase>
+))
+
+export const IconClock = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
+  <IconBase
+    width='20px'
+    height='20px'
+    viewBox='0 0 20 20'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+    ref={ref}
+    {...props}
+  >
+    <path
+      d='M10 6V10L13 13M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10Z'
+      stroke='#3F3F46'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </IconBase>
+))

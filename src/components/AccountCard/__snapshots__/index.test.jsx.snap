@@ -7,7 +7,6 @@ exports[`AccountCard renders the card 1`] = `
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 8px;
-  color: purple;
   background-color: #5E26FF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -23,6 +22,12 @@ exports[`AccountCard renders the card 1`] = `
   -ms-flex-pack: justify;
   justify-content: space-between;
   box-shadow: 0 0.7px 2.2px -8px rgba(0,0,0,0.18),0 1.7px 5.4px rgba(0,0,0,0.129),0 3.1px 10.1px rgba(0,0,0,0.107),0 5.6px 18.1px rgba(0,0,0,0.09),0 10.4px 33.8px rgba(0,0,0,0.073),0 25px 81px rgba(0,0,0,0.051);
+}
+
+.c0 color {
+  light: #E0D7FE;
+  medium: #5E26FF;
+  deep: #290a85;
 }
 
 .c1 {
@@ -398,7 +403,6 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 8px;
-  color: purple;
   background-color: #5E26FF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -414,6 +418,12 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   -ms-flex-pack: justify;
   justify-content: space-between;
   box-shadow: 0 0.7px 2.2px -8px rgba(0,0,0,0.18),0 1.7px 5.4px rgba(0,0,0,0.129),0 3.1px 10.1px rgba(0,0,0,0.107),0 5.6px 18.1px rgba(0,0,0,0.09),0 10.4px 33.8px rgba(0,0,0,0.073),0 25px 81px rgba(0,0,0,0.051);
+}
+
+.c0 color {
+  light: #E0D7FE;
+  medium: #5E26FF;
+  deep: #290a85;
 }
 
 .c1 {
@@ -754,7 +764,6 @@ exports[`AccountCard renders the story 1`] = `
   border-radius: 8px;
   padding: 16px;
   margin-bottom: 8px;
-  color: purple;
   background-color: #5E26FF;
   display: -webkit-box;
   display: -webkit-flex;
@@ -770,6 +779,12 @@ exports[`AccountCard renders the story 1`] = `
   -ms-flex-pack: justify;
   justify-content: space-between;
   box-shadow: 0 0.7px 2.2px -8px rgba(0,0,0,0.18),0 1.7px 5.4px rgba(0,0,0,0.129),0 3.1px 10.1px rgba(0,0,0,0.107),0 5.6px 18.1px rgba(0,0,0,0.09),0 10.4px 33.8px rgba(0,0,0,0.073),0 25px 81px rgba(0,0,0,0.051);
+}
+
+.c0 color {
+  light: #E0D7FE;
+  medium: #5E26FF;
+  deep: #290a85;
 }
 
 .c1 {

@@ -9,7 +9,8 @@ import {
 export type MessageConfirmedRow = Pick<
   MessageConfirmed,
   | 'cid'
-  | 'methodName'
+  | 'method'
+  | 'actorName'
   | 'height'
   | 'from'
   | 'to'
@@ -35,7 +36,8 @@ export const BLOCK_PROP_TYPE = PropTypes.shape({
 
 export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
   cid: PropTypes.string.isRequired,
-  methodName: PropTypes.string.isRequired,
+  method: PropTypes.string.isRequired,
+  actorName: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
   block: BLOCK_PROP_TYPE.isRequired,
   from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,

@@ -9,14 +9,6 @@ import ButtonV2 from '../../Button/V2'
 import { TABLE } from '../table'
 import { useAllMessages } from '../useAllMessages'
 
-type MessageHistoryTableProps = {
-  address: string
-  offset?: number
-  // allows custom navigation
-  addressHref: (address: string) => string
-  cidHref: (cid: string) => string
-}
-
 const DEFAULT_LIMIT = 10
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
@@ -68,7 +60,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
       </TABLE>
       {!lastPage && (
         <Box pt='4.5rem' textAlign='center'>
-          <ButtonV2 onClick={fetchMore} display='inline-block' px='18rem'>
+          <ButtonV2 onClick={fetchMore} px='18rem'>
             Load more
           </ButtonV2>
         </Box>
@@ -77,11 +69,18 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   )
 }
 
+type MessageHistoryTableProps = {
+  offset: number
+  address: string
+  addressHref: (address: string) => string
+  cidHref: (cid: string) => string
+}
+
 MessageHistoryTable.propTypes = {
-  addressHref: PropTypes.func,
-  cidHref: PropTypes.func,
   offset: PropTypes.number,
-  address: ADDRESS_PROPTYPE
+  address: ADDRESS_PROPTYPE,
+  addressHref: PropTypes.func,
+  cidHref: PropTypes.func
 }
 
 MessageHistoryTable.defaultProps = {

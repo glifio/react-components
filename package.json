@@ -1,6 +1,6 @@
 {
   "name": "@glif/react-components",
-  "version": "2.0.0-alpha.25",
+  "version": "2.0.0-alpha.26",
   "description": "Shared react components for @glif projects",
   "main": "dist/index.js",
   "repository": {
@@ -78,7 +78,7 @@
     "@glif/filecoin-address": "latest",
     "@glif/filecoin-number": "latest",
     "@glif/filecoin-rpc-client": "latest",
-    "axios": "^0.24.0",
+    "axios": "^0.25.0",
     "bip39": "^3.0.3",
     "dayjs": "^1.9.6",
     "graphql": "^16.2.0",

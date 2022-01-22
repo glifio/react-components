@@ -145,6 +145,25 @@ const colors = {
     light: '#C4C4C4',
     medium: '#949598',
     dark: '#666666'
+  },
+  green: {
+    primary: '#1AD08F',
+    light: '#D2F5ED',
+    muted: '#85e0cb',
+    medium: '#007B39',
+    dark: '#007056',
+    darker: '#08442F'
+  },
+  yellow: {
+    light: '#FFDC99',
+    medium: '#C59900',
+    deep: '#FCA703',
+    mid: '#F7C103'
+  },
+  purple: {
+    light: '#E0D7FE',
+    medium: '#5E26FF',
+    deep: '#290a85'
   }
 }
 
