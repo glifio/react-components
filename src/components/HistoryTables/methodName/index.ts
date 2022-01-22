@@ -12,7 +12,7 @@ import { storageMarketActorCodes } from './StorageMarketActorCodes'
 export type ActorCode = string
 
 export const getMethodName = (
-  actorCode: ActorCode,
+  actorCode: ActorCode = '',
   methodNum: number
 ): string => {
   let methodName = ''

@@ -116,9 +116,11 @@ export default function MessageDetail(props: MessageDetailProps) {
       <HR />
       <Line label='Value'>{value}</Line>
       <Line label='Transaction Fee'>{totalCost}</Line>
-      <Line label='Method'>
-        <Badge color='purple'>{methodName.toUpperCase()}</Badge>
-      </Line>
+      {!loading && methodName && (
+        <Line label='Method'>
+          <Badge color='purple'>{methodName.toUpperCase()}</Badge>
+        </Line>
+      )}
       <HR />
       <SeeMore onClick={() => setSeeMore(!seeMore)}>
         Click to see {seeMore ? 'less ↑' : 'more ↓'}
