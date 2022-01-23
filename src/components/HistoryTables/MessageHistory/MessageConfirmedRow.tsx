@@ -12,14 +12,10 @@ import { useAge } from './useAge'
 import { useMethodName } from './useMethodName'
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
-  const {
-    message,
-    time,
-    cidHref,
-    addressHref,
-    inspectingAddress,
-    chainHeadSub
-  } = props
+  const { message, cidHref, addressHref, inspectingAddress, chainHeadSub } =
+    props
+  const time = useMemo(() => Date.now(), [])
+
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
   const totalCost = useMemo(() => getTotalCostShort(message), [message])
   const incoming = useMemo(
@@ -82,7 +78,6 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
 
 type MessageHistoryRowProps = {
   message: MessageConfirmedRow
-  time: number
   cidHref: (cid: string) => string
   addressHref: (address: string) => string
   inspectingAddress: string
@@ -91,7 +86,6 @@ type MessageHistoryRowProps = {
 
 MessageHistoryRow.propTypes = {
   message: MESSAGE_CONFIRMED_ROW_PROP_TYPE,
-  time: PropTypes.number.isRequired,
   cidHref: PropTypes.func.isRequired,
   addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string

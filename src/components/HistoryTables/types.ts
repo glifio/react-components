@@ -51,7 +51,8 @@ export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
 
 export const MESSAGE_PENDING_ROW_PROP_TYPE = PropTypes.shape({
   cid: PropTypes.string.isRequired,
-  method: PropTypes.number.isRequired,
+  // TODO tighten once the server is returning the same types
+  method: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   block: BLOCK_PROP_TYPE.isRequired,
   from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
@@ -60,8 +61,7 @@ export const MESSAGE_PENDING_ROW_PROP_TYPE = PropTypes.shape({
 
 export const PROPOSAL_ROW_PROP_TYPE = PropTypes.shape({
   id: PropTypes.number.isRequired,
-  // TODO tighten once the server is returning the same types
-  method: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  method: PropTypes.number.isRequired,
   params: PropTypes.object,
   to: PropTypes.string.isRequired,
   approved: PropTypes.arrayOf(PropTypes.string)

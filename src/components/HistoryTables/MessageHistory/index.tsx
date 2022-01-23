@@ -12,8 +12,6 @@ import { useAllMessages } from '../useAllMessages'
 const DEFAULT_LIMIT = 10
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
-  const time = useMemo(() => Date.now(), [])
-
   const { messages, pendingMsgs, loading, error, chainHeadSub, fetchMore } =
     useAllMessages(props.address, props.offset)
 
@@ -43,7 +41,6 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
             <MessageConfirmedRow
               key={message.cid}
               message={message}
-              time={time}
               cidHref={props.cidHref}
               addressHref={props.addressHref}
               inspectingAddress={props.address}

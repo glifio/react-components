@@ -36,6 +36,7 @@ export const usePendingMessages = (
 
   const [pendingMsgList, setPendingMsgList] = useState([...submittedMessages])
 
+  // we only update the pending message list when there is a new message to add
   const safeUpdate = useCallback(
     (newMessages: MessagePending[]) => {
       const pendingCIDs = new Set(pendingMsgList.map(({ cid }) => cid))
