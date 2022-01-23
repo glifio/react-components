@@ -1,26 +1,33 @@
-import { useMemo, useState } from 'react'
+import { SubscriptionResult } from '@apollo/client'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
   MessageConfirmed,
   useMpoolUpdateSubscription,
   usePendingMessagesQuery,
   useStateListMessagesQuery,
-  useMessagesConfirmedQuery
+  useMessagesConfirmedQuery,
+  ChainHeadSubscription,
+  useChainHeadSubscription
 } from '../../../generated/graphql'
 import { uniqueifyMsgs } from '../../../utils/uniqueifyMsgs'
 import { useSubmittedMessages } from '../PendingMsgContext'
 
 const DEFAULT_LIMIT = 10
+const WAIT_EPOCHS_BEFORE_REFRESH = 3
 
-export const usePendingMessages = (address: string) => {
+export const usePendingMessages = (
+  address: string,
+  chainHeadSubscription: SubscriptionResult<ChainHeadSubscription, any>
+) => {
   const { messages: submittedMessages } = useSubmittedMessages()
+  const pendingMsgSub = useMpoolUpdateSubscription({ variables: { address } })
+
   const pendingMsgs = usePendingMessagesQuery({
     variables: { address, offset: 0, limit: Number.MAX_SAFE_INTEGER },
     // dont poll here because we rely on the subscription and StateListMessage query for updates
     pollInterval: 0
   })
-
-  const pendingMsgSub = useMpoolUpdateSubscription({ variables: { address } })
 
   const pendingMsgList = useMemo(() => {
     // start with the messages we know about
@@ -37,14 +44,12 @@ export const usePendingMessages = (address: string) => {
     }
 
     // add any messages that came from our subscription
-    if (!pendingMsgSub?.loading) {
+    if (!pendingMsgSub?.loading && !pendingMsgSub.error) {
       if (pendingMsgSub.data.mpoolUpdate.type === 0) {
         messageList = uniqueifyMsgs(
           [...messageList] as Required<MessagePending>[],
-          [
-            // @ts-expect-error
-            pendingMsgSub.data.mpoolUpdate.message as MessagePending
-          ]
+          // @ts-ignore
+          [pendingMsgSub.data.mpoolUpdate.message as MessagePending]
         ) as MessagePending[]
       }
     }
@@ -52,44 +57,92 @@ export const usePendingMessages = (address: string) => {
     return messageList
   }, [pendingMsgSub, pendingMsgs, submittedMessages])
 
-  return pendingMsgList
+  const [shouldRefresh, setShouldRefresh] = useState(false)
+  const ref = useRef<{ cid: string; height: number }>({ cid: '', height: 0 })
+
+  // this effect gets notified of an exit from the mempool
+  // and sets a ref that we should eventually refresh our low confidence message query
+  useEffect(() => {
+    const ready =
+      !pendingMsgSub.loading &&
+      !chainHeadSubscription.loading &&
+      !pendingMsgSub.error &&
+      !chainHeadSubscription.error
+    if (ready) {
+      // if something was removed from the mpool and we didnt already hear about it...
+      if (
+        pendingMsgSub?.data?.mpoolUpdate?.type === 1 &&
+        ref?.current.cid !== pendingMsgSub.data.mpoolUpdate.message.cid
+      ) {
+        ref.current.cid = pendingMsgSub.data?.mpoolUpdate.message.cid
+        ref.current.height = Number(
+          chainHeadSubscription?.data?.chainHead.height
+        )
+      }
+    }
+  }, [chainHeadSubscription, pendingMsgSub])
+
+  // this effect listens to the chain head and sets shouldRefresh to true if we should refetch low confidence messages
+  useEffect(() => {
+    // if we have a message that recently left the mpool...
+    if (ref.current.height && ref.current.cid && !shouldRefresh) {
+      // wait the number of confirmations before refreshing low conf query
+      if (
+        ref.current.height + WAIT_EPOCHS_BEFORE_REFRESH <
+        Number(chainHeadSubscription?.data?.chainHead.height)
+      ) {
+        setShouldRefresh(true)
+      }
+    }
+  }, [chainHeadSubscription, setShouldRefresh, shouldRefresh])
+
+  return { pendingMsgList, shouldRefresh, setShouldRefresh }
 }
 
 // note this does not filter out errors for loading pending messages...
 export const useAllMessages = (address: string, _offset: number = 0) => {
+  const chainHeadSub = useChainHeadSubscription({ variables: {} })
   // these pending messages might have recently confirmed low conf messages... filter them out
-  const _pendingMsgs = usePendingMessages(address)
-  // const lowConfidenceMsgs = useStateListMessagesQuery({
-  //   variables: { address }
-  // })
+  const { pendingMsgList, shouldRefresh, setShouldRefresh } =
+    usePendingMessages(address, chainHeadSub)
 
-  const lowConfidenceMsgs = useMemo(
-    () => ({
-      data: {
-        stateListMessages: [] as MessageConfirmed[]
-      },
-      loading: false,
-      error: null
-    }),
-    []
-  )
+  const {
+    data: lowConfidenceMsgsData,
+    loading: lowConfidenceMsgsLoading,
+    error: lowConfidenceMsgsError,
+    refetch: lowConfidenceMsgsRefetch
+  } = useStateListMessagesQuery({
+    variables: { address },
+    pollInterval: 0
+  })
+
+  useEffect(() => {
+    if (shouldRefresh) {
+      setShouldRefresh(false)
+      lowConfidenceMsgsRefetch()
+    }
+  }, [shouldRefresh, setShouldRefresh, lowConfidenceMsgsRefetch])
 
   // pluck confirmed messages from the pending message list
   const pendingMsgs = useMemo(() => {
     if (
-      !lowConfidenceMsgs.loading &&
-      !!lowConfidenceMsgs?.data?.stateListMessages
+      !lowConfidenceMsgsLoading &&
+      !!lowConfidenceMsgsData?.stateListMessages
     ) {
       const confirmedCids = new Set(
-        lowConfidenceMsgs?.data?.stateListMessages.map(msg => msg.cid)
+        lowConfidenceMsgsData?.stateListMessages.map(msg => msg.cid)
       )
-      return _pendingMsgs
+      return pendingMsgList
         .filter(msg => !confirmedCids.has(msg.cid))
         .sort((a, b) => Number(b.nonce) - Number(a.nonce))
     } else {
       return []
     }
-  }, [_pendingMsgs, lowConfidenceMsgs]) as MessagePending[]
+  }, [
+    pendingMsgList,
+    lowConfidenceMsgsLoading,
+    lowConfidenceMsgsData
+  ]) as MessagePending[]
 
   const [offset, setOffset] = useState(_offset)
 
@@ -99,7 +152,8 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     error: confirmedMsgsErr,
     fetchMore
   } = useMessagesConfirmedQuery({
-    variables: { address, limit: DEFAULT_LIMIT, offset }
+    variables: { address, limit: DEFAULT_LIMIT, offset },
+    pollInterval: 0
   })
 
   function onClickLoadMore() {
@@ -112,19 +166,19 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   }
 
   const loading = useMemo(() => {
-    return confirmedMsgsLoading || lowConfidenceMsgs.loading
-  }, [confirmedMsgsLoading, lowConfidenceMsgs.loading])
+    return confirmedMsgsLoading || lowConfidenceMsgsLoading
+  }, [confirmedMsgsLoading, lowConfidenceMsgsLoading])
 
   const error = useMemo(() => {
-    return confirmedMsgsErr || lowConfidenceMsgs.error
-  }, [confirmedMsgsErr, lowConfidenceMsgs.error])
+    return confirmedMsgsErr || lowConfidenceMsgsError
+  }, [confirmedMsgsErr, lowConfidenceMsgsError])
 
   const messages = useMemo<MessageConfirmed[]>(() => {
     if (
       !confirmedMsgsLoading &&
       !confirmedMsgsErr &&
-      !lowConfidenceMsgs.loading &&
-      !lowConfidenceMsgs.error
+      !lowConfidenceMsgsLoading &&
+      !lowConfidenceMsgsError
     ) {
       // mark the CIDs we have from high confidence
       const highConfidenceCIDs = new Set(
@@ -132,9 +186,8 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
       )
 
       // dont include any from low confidence when we have high confidence
-      const filteredLowConfidenceMsgs = lowConfidenceMsgs?.data
-        ?.stateListMessages
-        ? lowConfidenceMsgs?.data?.stateListMessages.filter(
+      const filteredLowConfidenceMsgs = lowConfidenceMsgsData?.stateListMessages
+        ? lowConfidenceMsgsData?.stateListMessages.filter(
             msg => !highConfidenceCIDs.has(msg.cid)
           )
         : []
@@ -147,7 +200,21 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
       ] as MessageConfirmed[]
     }
     return []
-  }, [confirmedMsgsLoading, confirmedMsgsErr, lowConfidenceMsgs, data])
+  }, [
+    lowConfidenceMsgsData,
+    confirmedMsgsLoading,
+    confirmedMsgsErr,
+    data,
+    lowConfidenceMsgsLoading,
+    lowConfidenceMsgsError
+  ])
 
-  return { messages, pendingMsgs, fetchMore: onClickLoadMore, loading, error }
+  return {
+    chainHeadSub,
+    messages,
+    pendingMsgs,
+    fetchMore: onClickLoadMore,
+    loading,
+    error
+  }
 }

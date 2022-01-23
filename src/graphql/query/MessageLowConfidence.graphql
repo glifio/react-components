@@ -1,5 +1,5 @@
-query StateListMessages($address: String!) {
-  stateListMessages(address: $address) {
+query MessageLowConfidence($cid: String!) {
+  messageLowConfidence(cid: $cid) {
     cid
     height
     from {

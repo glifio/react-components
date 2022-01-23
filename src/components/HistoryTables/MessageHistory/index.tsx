@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react'
+import { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Box from '../../Box'
 import MessageConfirmedRow from './MessageConfirmedRow'
@@ -12,17 +12,10 @@ import { useAllMessages } from '../useAllMessages'
 const DEFAULT_LIMIT = 10
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
-  const [time, setTime] = useState(Date.now())
+  const time = useMemo(() => Date.now(), [])
 
-  const { messages, pendingMsgs, loading, error, fetchMore } = useAllMessages(
-    props.address,
-    props.offset
-  )
-
-  useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 1000)
-    return () => clearInterval(interval)
-  })
+  const { messages, pendingMsgs, loading, error, chainHeadSub, fetchMore } =
+    useAllMessages(props.address, props.offset)
 
   const lastPage = useMemo(
     () => messages?.length < DEFAULT_LIMIT,
@@ -54,6 +47,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
               cidHref={props.cidHref}
               addressHref={props.addressHref}
               inspectingAddress={props.address}
+              chainHeadSub={chainHeadSub}
             />
           ))}
         </tbody>
