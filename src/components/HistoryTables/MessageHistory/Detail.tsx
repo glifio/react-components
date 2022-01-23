@@ -1,13 +1,10 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import React, { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import {
-  useMessageQuery,
-  useChainHeadSubscription
-} from '../../../generated/graphql'
+import { useChainHeadSubscription } from '../../../generated/graphql'
 import Box from '../../Box'
 import { IconClock } from '../../Icons'
 import { P, HR } from '../../Typography'
@@ -19,7 +16,9 @@ import {
   getGasPercentage,
   formatNumber
 } from '../utils'
-import { getMethodName } from '../methodName'
+import { useMessage } from '../useAllMessages'
+import { useUnformattedDateTime } from './useAge'
+import { useMethodName } from './useMethodName'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -33,55 +32,41 @@ const SeeMore = styled(P).attrs(() => ({
 
 export default function MessageDetail(props: MessageDetailProps) {
   const { cid, speedUp, cancel, addressHref, confirmations } = props
-  const [time, setTime] = useState(Date.now())
+  const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
-  const { data, loading, error } = useMessageQuery({
-    variables: { cid }
-  })
+  const { message, loading, error } = useMessage(cid)
   const chainHeadSubscription = useChainHeadSubscription({
-    variables: {}
+    variables: {},
+    shouldResubscribe: true
   })
+
   const value = useMemo(
-    () => (data?.message.value ? attoFilToFil(data?.message.value) : ''),
-    [data?.message.value]
+    () => (message?.value ? attoFilToFil(message.value) : ''),
+    [message?.value]
   )
   const totalCost = useMemo(
-    () => (data?.message ? getTotalCost(data.message) : ''),
-    [data?.message]
+    () => (message ? getTotalCost(message) : ''),
+    [message]
   )
   const gasPercentage = useMemo(
-    () => (data?.message ? getGasPercentage(data.message) : ''),
-    [data?.message]
+    () => (message ? getGasPercentage(message) : ''),
+    [message]
   )
-  const timestamp = useMemo(
-    () => data?.message.block.Timestamp ?? null,
-    [data?.message.block.Timestamp]
+  const unformattedTime = useUnformattedDateTime(
+    chainHeadSubscription,
+    message,
+    time
   )
-  const date = useMemo(
-    () => (timestamp ? dayjs.unix(timestamp).toString() : ''),
-    [timestamp]
-  )
-  const age = useMemo(
-    () => (timestamp ? dayjs.unix(timestamp).from(time) : ''),
-    [timestamp, time]
-  )
+
   const confirmationCount = useMemo(
     () =>
-      chainHeadSubscription.data?.chainHead.height && data?.message.height
-        ? chainHeadSubscription.data.chainHead.height - data.message.height
+      chainHeadSubscription.data?.chainHead.height && !!message?.height
+        ? chainHeadSubscription.data.chainHead.height - message.height
         : 0,
-    [data?.message.height, chainHeadSubscription.data?.chainHead.height]
+    [message?.height, chainHeadSubscription.data?.chainHead.height]
   )
 
-  const methodName = useMemo(
-    () => getMethodName(data?.message.actorName, data?.message.method),
-    [data?.message.actorName, data?.message.method]
-  )
-
-  useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 1000)
-    return () => clearInterval(interval)
-  })
+  const methodName = useMethodName(message)
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( {error.message}</p>
@@ -92,26 +77,28 @@ export default function MessageDetail(props: MessageDetailProps) {
       <HR />
       <Line label='CID'>{cid}</Line>
       <Line label='Status and Confirmations'>
-        <Status exitCode={data.message.exitCode} />
+        <Status exitCode={message.exitCode} />
         <Confirmations count={confirmationCount} total={confirmations} />
       </Line>
-      <Line label='Height'>{data.message.height}</Line>
+      <Line label='Height'>{message.height}</Line>
       <Line label='Timestamp'>
         <IconClock width='1.125em' />
-        {age} ({date})
+        {unformattedTime
+          ? `${unformattedTime?.from(time)} (${unformattedTime?.toString()})`
+          : ''}
       </Line>
       <HR />
       <Line label='From'>
-        {data.message.from.robust}
+        {message.from.robust}
         <Link
-          href={addressHref(data.message.from.robust)}
-        >{`(${data.message.from.id})`}</Link>
+          href={addressHref(message.from.robust)}
+        >{`(${message.from.id})`}</Link>
       </Line>
       <Line label='To'>
-        {data.message.to.robust}
+        {message.to.robust}
         <Link
-          href={addressHref(data.message.to.robust)}
-        >{`(${data.message.to.id})`}</Link>
+          href={addressHref(message.to.robust)}
+        >{`(${message.to.id})`}</Link>
       </Line>
       <HR />
       <Line label='Value'>{value}</Line>
@@ -129,28 +116,28 @@ export default function MessageDetail(props: MessageDetailProps) {
       {seeMore && (
         <>
           <Line label='Gas Limit & Usage by Txn'>
-            {formatNumber(data.message.gasLimit)}
+            {formatNumber(message.gasLimit)}
             <span className='gray'>|</span>
-            {formatNumber(data.message.gasUsed)} attoFil
+            {formatNumber(message.gasUsed)} attoFil
             <span>({gasPercentage})</span>
           </Line>
           <Line label='Gas Fees'>
             <span className='gray'>Premium</span>
-            {formatNumber(data.message.gasPremium)} attoFIL
+            {formatNumber(message.gasPremium)} attoFIL
           </Line>
           <Line label=''>
             <span className='gray'>Fee Cap</span>
-            {formatNumber(data.message.gasFeeCap)} attoFIL
+            {formatNumber(message.gasFeeCap)} attoFIL
           </Line>
           <Line label=''>
             <span className='gray'>Base</span>
-            {formatNumber(data.message.baseFeeBurn)} attoFIL
+            {formatNumber(message.baseFeeBurn)} attoFIL
           </Line>
           <Line label='Gas Burnt'>
-            {formatNumber(data.message.gasBurned)} attoFIL
+            {formatNumber(message.gasBurned)} attoFIL
           </Line>
           <HR />
-          <Parameters params={{ params: data.message.params }} depth={0} />
+          <Parameters params={{ params: message.params }} depth={0} />
         </>
       )}
     </Box>

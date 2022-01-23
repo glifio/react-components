@@ -1,6 +1,6 @@
 {
   "name": "@glif/react-components",
-  "version": "2.0.0-alpha.26",
+  "version": "2.0.0-alpha.27",
   "description": "Shared react components for @glif projects",
   "main": "dist/index.js",
   "repository": {
@@ -79,13 +79,16 @@
     "@glif/filecoin-number": "latest",
     "@glif/filecoin-rpc-client": "latest",
     "axios": "^0.25.0",
+    "base32-decode": "^1.0.0",
     "bip39": "^3.0.3",
     "dayjs": "^1.9.6",
     "graphql": "^16.2.0",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "styled-system": "^5.1.5",
-    "swr": "^1.0.1"
+    "subscriptions-transport-ws": "^0.11.0",
+    "swr": "^1.0.1",
+    "ws": "^8.4.2"
   },
   "peerDependencies": {
     "next": ">= 9.0.0",

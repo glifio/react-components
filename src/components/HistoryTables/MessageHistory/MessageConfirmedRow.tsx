@@ -1,35 +1,32 @@
 import React, { useMemo } from 'react'
 import Link from 'next/link'
+import { SubscriptionResult } from '@apollo/client'
 import PropTypes from 'prop-types'
-import * as dayjs from 'dayjs'
-import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { TR, TD } from '../table'
 import { Badge } from '../generic'
 import { AddressWOptionalLink } from '../../Link/SmartLink'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
 import { attoFilToFil, getTotalCostShort } from '../utils'
-import { getMethodName } from '../methodName'
-
-// add RelativeTime plugin to Day.js
-dayjs.extend(relativeTime.default)
+import { ChainHeadSubscription } from '../../../generated/graphql'
+import { useAge } from './useAge'
+import { useMethodName } from './useMethodName'
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
-  const { message, time, cidHref, addressHref, inspectingAddress } = props
+  const { message, cidHref, addressHref, inspectingAddress, chainHeadSub } =
+    props
+  const time = useMemo(() => Date.now(), [])
+
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
   const totalCost = useMemo(() => getTotalCostShort(message), [message])
   const incoming = useMemo(
-    () => message.to.robust === inspectingAddress,
-    [message.to.robust, inspectingAddress]
-  )
-  const age = useMemo(
-    () => dayjs.unix(message.block.Timestamp).from(time),
-    [message.block.Timestamp, time]
+    () =>
+      message.to.robust === inspectingAddress ||
+      message.to.id === inspectingAddress,
+    [message.to, inspectingAddress]
   )
 
-  const methodName = useMemo(
-    () => getMethodName(props.message.actorName, props.message.method),
-    [props.message.actorName, props.message.method]
-  )
+  const methodName = useMethodName(message)
+  const age = useAge(chainHeadSub, message, time)
 
   return (
     <TR>
@@ -59,11 +56,13 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           inspectingAddress={inspectingAddress}
         />
       </TD>
-      <TD>
-        <Badge color={incoming ? 'green' : 'yellow'}>
-          {incoming ? 'IN' : 'OUT'}
-        </Badge>
-      </TD>
+      {props.inspectingAddress && (
+        <TD>
+          <Badge color={incoming ? 'green' : 'yellow'}>
+            {incoming ? 'IN' : 'OUT'}
+          </Badge>
+        </TD>
+      )}
       <TD>
         <AddressWOptionalLink
           address={message.to?.robust || message.to.id}
@@ -79,15 +78,14 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
 
 type MessageHistoryRowProps = {
   message: MessageConfirmedRow
-  time: number
   cidHref: (cid: string) => string
   addressHref: (address: string) => string
   inspectingAddress: string
+  chainHeadSub: SubscriptionResult<ChainHeadSubscription, any>
 }
 
 MessageHistoryRow.propTypes = {
   message: MESSAGE_CONFIRMED_ROW_PROP_TYPE,
-  time: PropTypes.number.isRequired,
   cidHref: PropTypes.func.isRequired,
   addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string

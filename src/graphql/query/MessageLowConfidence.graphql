@@ -1,5 +1,5 @@
-query Message($cid: String!) {
-  message(cid: $cid) {
+query MessageLowConfidence($cid: String!) {
+  messageLowConfidence(cid: $cid) {
     cid
     height
     from {
@@ -11,26 +11,25 @@ query Message($cid: String!) {
       robust
     }
     value
+    nonce
     gasFeeCap
     gasPremium
     gasLimit
-    actorFamily
     method
     exitCode
     gasUsed
-    parentBaseFee
     baseFeeBurn
     overEstimationBurn
     minerPenalty
     minerTip
     refund
     gasRefund
-    nonce
     gasBurned
+    params
+    actorName
     block {
       Cid
       Timestamp
     }
-    params
   }
 }

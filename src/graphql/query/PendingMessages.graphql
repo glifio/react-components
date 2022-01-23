@@ -1,0 +1,20 @@
+query PendingMessages($address: String!, $limit: Int!, $offset: Int!) {
+  pendingMessages(address: $address, limit: $limit, offset: $offset) {
+    cid
+    from {
+      id
+      robust
+    }
+    to {
+      id
+      robust
+    }
+    nonce
+    value
+    gasLimit
+    gasFeeCap
+    gasPremium
+    method
+    params
+  }
+}

@@ -1,44 +1,24 @@
-import { useMemo, useState, useEffect } from 'react'
-import { useMessagesConfirmedQuery } from '../../../generated/graphql'
+import { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import Box from '../../Box'
 import MessageConfirmedRow from './MessageConfirmedRow'
+import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import ButtonV2 from '../../Button/V2'
 import { TABLE } from '../table'
+import { useAllMessages } from '../useAllMessages'
 
 const DEFAULT_LIMIT = 10
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
-  const [time, setTime] = useState(Date.now())
-  const [offset, setOffset] = useState(props.offset)
-  const { data, loading, error, fetchMore } = useMessagesConfirmedQuery({
-    variables: {
-      address: props.address,
-      limit: DEFAULT_LIMIT,
-      offset: props.offset
-    }
-  })
-
-  useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 1000)
-    return () => clearInterval(interval)
-  })
+  const { messages, pendingMsgs, loading, error, chainHeadSub, fetchMore } =
+    useAllMessages(props.address, props.offset)
 
   const lastPage = useMemo(
-    () => data?.messagesConfirmed?.length < DEFAULT_LIMIT,
-    [data?.messagesConfirmed?.length]
+    () => messages?.length < DEFAULT_LIMIT,
+    [messages?.length]
   )
-
-  function onClickLoadMore() {
-    fetchMore({
-      variables: {
-        offset: offset + DEFAULT_LIMIT
-      }
-    })
-    setOffset(offset + DEFAULT_LIMIT)
-  }
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( {error.message}</p>
@@ -48,22 +28,30 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
       <TABLE>
         <MessageRowColumnTitles />
         <tbody>
-          {/* Pending transaction rows could go here if we like this setup */}
-          {data?.messagesConfirmed?.map(message => (
-            <MessageConfirmedRow
+          {pendingMsgs?.map(message => (
+            <MessagePendingRow
               key={message.cid}
               message={message}
-              time={time}
               cidHref={props.cidHref}
               addressHref={props.addressHref}
               inspectingAddress={props.address}
+            />
+          ))}
+          {messages?.map(message => (
+            <MessageConfirmedRow
+              key={message.cid}
+              message={message}
+              cidHref={props.cidHref}
+              addressHref={props.addressHref}
+              inspectingAddress={props.address}
+              chainHeadSub={chainHeadSub}
             />
           ))}
         </tbody>
       </TABLE>
       {!lastPage && (
         <Box pt='4.5rem' textAlign='center'>
-          <ButtonV2 onClick={onClickLoadMore} px='18rem'>
+          <ButtonV2 onClick={fetchMore} px='18rem'>
             Load more
           </ButtonV2>
         </Box>

@@ -1,0 +1,6 @@
+query Actor($address: String!) {
+  actor(address: $address) {
+    id
+    Code
+  }
+}

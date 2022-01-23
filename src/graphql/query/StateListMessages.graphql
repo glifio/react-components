@@ -1,5 +1,5 @@
-query Message($cid: String!) {
-  message(cid: $cid) {
+query StateListMessages($address: String!) {
+  stateListMessages(address: $address) {
     cid
     height
     from {
@@ -14,23 +14,16 @@ query Message($cid: String!) {
     gasFeeCap
     gasPremium
     gasLimit
-    actorFamily
     method
     exitCode
     gasUsed
-    parentBaseFee
     baseFeeBurn
     overEstimationBurn
     minerPenalty
     minerTip
     refund
     gasRefund
-    nonce
     gasBurned
-    block {
-      Cid
-      Timestamp
-    }
     params
   }
 }
