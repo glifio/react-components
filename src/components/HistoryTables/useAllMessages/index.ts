@@ -129,6 +129,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   const pendingMsgs = useMemo(() => {
     if (
       !lowConfidenceMsgsLoading &&
+      !lowConfidenceMsgsError &&
       !!lowConfidenceMsgsData?.stateListMessages
     ) {
       const confirmedCids = new Set(
@@ -142,6 +143,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     }
   }, [
     pendingMsgList,
+    lowConfidenceMsgsError,
     lowConfidenceMsgsLoading,
     lowConfidenceMsgsData
   ]) as MessagePending[]

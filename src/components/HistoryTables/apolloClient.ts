@@ -79,29 +79,34 @@ const httpLink = new HttpLink({
   uri: 'https://graph.glif.host/query'
 })
 
-const wsLink = new WebSocketLink({
-  uri: 'wss://graph.glif.host/subscriptions',
-  options: {
-    reconnect: true
-  }
-})
+const wsLink = process.browser
+  ? new WebSocketLink({
+      uri: 'wss://graph.glif.host/query',
+      options: {
+        reconnect: false,
+        lazy: true
+      }
+    })
+  : null
 
 // The split function takes three parameters:
 //
 // * A function that's called for each operation to execute
 // * The Link to use for an operation if the function returns a "truthy" value
 // * The Link to use for an operation if the function returns a "falsy" value
-const link = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query)
-    return (
-      definition.kind === 'OperationDefinition' &&
-      definition.operation === 'subscription'
+const link = process.browser //only create the split in the browser
+  ? split(
+      ({ query }) => {
+        const definition = getMainDefinition(query)
+        return (
+          definition.kind === 'OperationDefinition' &&
+          definition.operation === 'subscription'
+        )
+      },
+      wsLink,
+      httpLink
     )
-  },
-  wsLink,
-  httpLink
-)
+  : httpLink
 
 export const client = new ApolloClient({
   link,
