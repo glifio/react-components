@@ -23,7 +23,10 @@ export const usePendingMessages = (
   chainHeadSubscription: SubscriptionResult<ChainHeadSubscription, any>
 ) => {
   const { messages: submittedMessages } = useSubmittedMessages()
-  const pendingMsgSub = useMpoolUpdateSubscription({ variables: { address } })
+  const pendingMsgSub = useMpoolUpdateSubscription({
+    variables: { address },
+    shouldResubscribe: true
+  })
 
   const pendingMsgs = usePendingMessagesQuery({
     variables: { address, offset: 0, limit: Number.MAX_SAFE_INTEGER },
@@ -103,7 +106,10 @@ export const usePendingMessages = (
 
 // note this does not filter out errors for loading pending messages...
 export const useAllMessages = (address: string, _offset: number = 0) => {
-  const chainHeadSub = useChainHeadSubscription({ variables: {} })
+  const chainHeadSub = useChainHeadSubscription({
+    variables: {},
+    shouldResubscribe: true
+  })
   // these pending messages might have recently confirmed low conf messages... filter them out
   const { pendingMsgList, shouldRefresh, setShouldRefresh } =
     usePendingMessages(address, chainHeadSub)
