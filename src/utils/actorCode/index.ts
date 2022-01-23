@@ -5,9 +5,9 @@ export function decodeActorCID(cid: string): string {
     const decoded = base32Decode(cid.slice(1).toUpperCase(), 'RFC4648')
     const actorCode = new TextDecoder('utf-8').decode(decoded.slice(4))
     if (!actorCode.includes('fil/')) {
-      return actorCode
+      return 'Unknown actor'
     }
-    return 'Unknown actor'
+    return actorCode
   } catch {
     return 'Unknown actor'
   }
