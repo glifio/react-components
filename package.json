@@ -86,6 +86,7 @@
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "styled-system": "^5.1.5",
+    "subscriptions-transport-ws": "^0.11.0",
     "swr": "^1.0.1"
   },
   "peerDependencies": {

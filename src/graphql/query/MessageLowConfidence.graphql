@@ -11,6 +11,7 @@ query MessageLowConfidence($cid: String!) {
       robust
     }
     value
+    nonce
     gasFeeCap
     gasPremium
     gasLimit
@@ -25,5 +26,10 @@ query MessageLowConfidence($cid: String!) {
     gasRefund
     gasBurned
     params
+    actorName
+    block {
+      Cid
+      Timestamp
+    }
   }
 }

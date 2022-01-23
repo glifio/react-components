@@ -14,8 +14,8 @@ query Message($cid: String!) {
     gasFeeCap
     gasPremium
     gasLimit
+    actorFamily
     method
-    actorName
     exitCode
     gasUsed
     parentBaseFee
@@ -25,6 +25,7 @@ query Message($cid: String!) {
     minerTip
     refund
     gasRefund
+    nonce
     gasBurned
     block {
       Cid

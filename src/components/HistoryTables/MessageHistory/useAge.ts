@@ -11,28 +11,35 @@ dayjs.extend(relativeTime.default)
 
 const EPOCH_TO_CLOCK_TIME = 30
 
-export const useAge = (
+export const useUnformattedDateTime = (
   chainheadSub: SubscriptionResult<ChainHeadSubscription, any>,
   message: MessageConfirmedRow,
   time: number
 ) => {
-  const [age, setAge] = useState(null)
+  const [age, setAge] = useState<dayjs.Dayjs | null>(null)
 
   useEffect(() => {
-    if (message.block?.Timestamp) {
-      setAge(dayjs.unix(message.block?.Timestamp).from(time))
-    } else if (!age) {
-      if (!(chainheadSub.loading || chainheadSub.error)) {
+    if (!age && !!message) {
+      if (message.block?.Timestamp) {
+        setAge(dayjs.unix(message.block?.Timestamp))
+      } else if (!(chainheadSub.loading || chainheadSub.error)) {
         const epochsPast =
           (chainheadSub.data?.chainHead.height as number) -
           Number(message.height)
 
         const clockSecondsPast = epochsPast * EPOCH_TO_CLOCK_TIME
-        setAge(
-          dayjs(Date.now()).subtract(clockSecondsPast, 'seconds').from(time)
-        )
+        setAge(dayjs(Date.now()).subtract(clockSecondsPast, 'seconds'))
       }
     }
   }, [time, message, chainheadSub, age, setAge])
-  return age ? age : ''
+  return age
+}
+
+export const useAge = (
+  chainheadSub: SubscriptionResult<ChainHeadSubscription, any>,
+  message: MessageConfirmedRow,
+  time: number
+): string => {
+  const unformattedTime = useUnformattedDateTime(chainheadSub, message, time)
+  return unformattedTime ? unformattedTime.from(time) : ''
 }

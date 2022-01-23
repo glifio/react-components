@@ -3,8 +3,14 @@ subscription MpoolUpdate($address: String!) {
     type
     message {
       cid
-      from
-      to
+      from {
+        id
+        robust
+      }
+      to {
+        id
+        robust
+      }
       method
       nonce
       value

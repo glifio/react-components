@@ -8,7 +8,9 @@ import {
   useStateListMessagesQuery,
   useMessagesConfirmedQuery,
   ChainHeadSubscription,
-  useChainHeadSubscription
+  useChainHeadSubscription,
+  useMessageQuery,
+  useMessageLowConfidenceQuery
 } from '../../../generated/graphql'
 import { uniqueifyMsgs } from '../../../utils/uniqueifyMsgs'
 import { useSubmittedMessages } from '../PendingMsgContext'
@@ -217,4 +219,60 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     loading,
     error
   }
+}
+
+export const useMessage = (cid: string) => {
+  const {
+    data: highConfMsgData,
+    loading: highConfMsgLoading,
+    error: highConfiMsgErr
+  } = useMessageQuery({
+    variables: { cid },
+    pollInterval: 0
+  })
+
+  // const {
+  //   data: pendingMsgData,
+  //   loading: pendingMsgLoading,
+  //   error: pendingMsgErr
+  // } = useMessagePendingQuery({ variables: { cid }, pollInterval: 0 })
+
+  const {
+    data: lowConfMsgData,
+    loading: lowConfMsgLoading,
+    error: lowConfMsgErr
+  } = useMessageLowConfidenceQuery({ variables: { cid }, pollInterval: 0 })
+
+  const loading = useMemo(
+    () => highConfMsgLoading || lowConfMsgLoading,
+    [highConfMsgLoading, lowConfMsgLoading]
+  )
+
+  const error = useMemo(
+    () => highConfiMsgErr || lowConfMsgErr,
+    [highConfiMsgErr, lowConfMsgErr]
+  )
+
+  const message = useMemo<MessageConfirmed | null>(() => {
+    const ready = !(
+      highConfMsgLoading ||
+      highConfiMsgErr ||
+      lowConfMsgLoading ||
+      lowConfMsgErr
+    )
+    if (ready) {
+      return (highConfMsgData.message ||
+        lowConfMsgData.messageLowConfidence) as MessageConfirmed
+    }
+    return null
+  }, [
+    highConfMsgData,
+    lowConfMsgData,
+    highConfMsgLoading,
+    highConfiMsgErr,
+    lowConfMsgLoading,
+    lowConfMsgErr
+  ])
+
+  return { message, loading, error }
 }
