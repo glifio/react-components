@@ -7,13 +7,9 @@ import { Badge } from '../generic'
 import { AddressWOptionalLink } from '../../Link/SmartLink'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
 import { attoFilToFil, getTotalCostShort } from '../utils'
-import { getMethodName } from '../methodName'
-import { decodeActorCID } from '../../../utils'
-import {
-  ChainHeadSubscription,
-  useActorQuery
-} from '../../../generated/graphql'
+import { ChainHeadSubscription } from '../../../generated/graphql'
 import { useAge } from './useAge'
+import { useMethodName } from './useMethodName'
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const {
@@ -27,26 +23,14 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
   const totalCost = useMemo(() => getTotalCostShort(message), [message])
   const incoming = useMemo(
-    () => message.to.robust === inspectingAddress,
-    [message.to.robust, inspectingAddress]
+    () =>
+      message.to.robust === inspectingAddress ||
+      message.to.id === inspectingAddress,
+    [message.to, inspectingAddress]
   )
 
-  const actor = useActorQuery({
-    variables: { address: message.to.robust || message.to.id }
-  })
-
+  const methodName = useMethodName(message)
   const age = useAge(chainHeadSub, message, time)
-
-  const methodName = useMemo(() => {
-    if (message.actorName) {
-      return getMethodName(message.actorName, Number(message.method))
-    } else if (!(actor.loading || actor.error)) {
-      return getMethodName(
-        decodeActorCID(actor.data?.actor.Code),
-        Number(message.method)
-      )
-    } else return '...'
-  }, [message.actorName, message.method, actor])
 
   return (
     <TR>
@@ -76,11 +60,13 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           inspectingAddress={inspectingAddress}
         />
       </TD>
-      <TD>
-        <Badge color={incoming ? 'green' : 'yellow'}>
-          {incoming ? 'IN' : 'OUT'}
-        </Badge>
-      </TD>
+      {props.inspectingAddress && (
+        <TD>
+          <Badge color={incoming ? 'green' : 'yellow'}>
+            {incoming ? 'IN' : 'OUT'}
+          </Badge>
+        </TD>
+      )}
       <TD>
         <AddressWOptionalLink
           address={message.to?.robust || message.to.id}

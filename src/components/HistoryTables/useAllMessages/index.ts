@@ -1,5 +1,5 @@
 import { SubscriptionResult } from '@apollo/client'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
   MessageConfirmed,
@@ -34,33 +34,37 @@ export const usePendingMessages = (
     pollInterval: 0
   })
 
-  const pendingMsgList = useMemo(() => {
-    // start with the messages we know about
-    let messageList = [...submittedMessages]
+  const [pendingMsgList, setPendingMsgList] = useState([...submittedMessages])
 
-    // add any messages that we get from our query
-    if (!pendingMsgs?.loading && pendingMsgs.data) {
-      messageList = uniqueifyMsgs(
-        [...messageList] as Required<MessagePending>[],
-        ([
-          ...pendingMsgs?.data?.pendingMessages
-        ] as Required<MessagePending>[]) || []
-      ) as MessagePending[]
-    }
+  const safeUpdate = useCallback(
+    (newMessages: MessagePending[]) => {
+      const pendingCIDs = new Set(pendingMsgList.map(({ cid }) => cid))
 
-    // add any messages that came from our subscription
-    if (!pendingMsgSub?.loading && !pendingMsgSub.error) {
-      if (pendingMsgSub.data.mpoolUpdate.type === 0) {
-        messageList = uniqueifyMsgs(
-          [...messageList] as Required<MessagePending>[],
-          // @ts-ignore
-          [pendingMsgSub.data.mpoolUpdate.message as MessagePending]
-        ) as MessagePending[]
+      const shouldUpdate = newMessages.some(({ cid }) => !pendingCIDs.has(cid))
+
+      if (shouldUpdate) {
+        setPendingMsgList(
+          uniqueifyMsgs(
+            [...newMessages],
+            [...pendingMsgList]
+          ) as MessagePending[]
+        )
       }
-    }
+    },
+    [pendingMsgList, setPendingMsgList]
+  )
 
-    return messageList
-  }, [pendingMsgSub, pendingMsgs, submittedMessages])
+  // add any messages that we get from our query
+  if (!pendingMsgs?.loading && pendingMsgs.data) {
+    safeUpdate((pendingMsgs?.data?.pendingMessages as MessagePending[]) || [])
+  }
+
+  // add any messages that came from our subscription
+  if (!pendingMsgSub?.loading && !pendingMsgSub.error) {
+    if (pendingMsgSub.data.mpoolUpdate.type === 0) {
+      safeUpdate([pendingMsgSub.data.mpoolUpdate.message as MessagePending])
+    }
+  }
 
   const [shouldRefresh, setShouldRefresh] = useState(false)
   const ref = useRef<{ cid: string; height: number }>({ cid: '', height: 0 })
@@ -97,6 +101,8 @@ export const usePendingMessages = (
         Number(chainHeadSubscription?.data?.chainHead.height)
       ) {
         setShouldRefresh(true)
+        ref.current.height = 0
+        ref.current.cid = ''
       }
     }
   }, [chainHeadSubscription, setShouldRefresh, shouldRefresh])

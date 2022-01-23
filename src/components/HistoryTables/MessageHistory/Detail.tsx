@@ -16,9 +16,9 @@ import {
   getGasPercentage,
   formatNumber
 } from '../utils'
-import { getMethodName } from '../methodName'
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
+import { useMethodName } from './useMethodName'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -39,8 +39,6 @@ export default function MessageDetail(props: MessageDetailProps) {
     variables: {},
     shouldResubscribe: true
   })
-
-  console.log(chainHeadSubscription)
 
   const value = useMemo(
     () => (message?.value ? attoFilToFil(message.value) : ''),
@@ -68,10 +66,7 @@ export default function MessageDetail(props: MessageDetailProps) {
     [message?.height, chainHeadSubscription.data?.chainHead.height]
   )
 
-  const methodName = useMemo(
-    () => getMethodName(message?.actorName, message?.method),
-    [message?.actorName, message?.method]
-  )
+  const methodName = useMethodName(message)
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :( {error.message}</p>
