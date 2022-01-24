@@ -12,8 +12,15 @@ import { useAllMessages } from '../useAllMessages'
 const DEFAULT_LIMIT = 10
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
-  const { messages, pendingMsgs, loading, error, chainHeadSub, fetchMore } =
-    useAllMessages(props.address, props.offset)
+  const {
+    messages,
+    pendingMsgs,
+    loading,
+    error,
+    chainHeadSub,
+    fetchMore,
+    fetchingMore
+  } = useAllMessages(props.address, props.offset)
 
   const lastPage = useMemo(
     () => messages?.length < DEFAULT_LIMIT,
@@ -49,7 +56,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
           ))}
         </tbody>
       </TABLE>
-      {!lastPage && (
+      {!lastPage && !fetchingMore && (
         <Box pt='4.5rem' textAlign='center'>
           <ButtonV2 onClick={fetchMore} px='18rem'>
             Load more

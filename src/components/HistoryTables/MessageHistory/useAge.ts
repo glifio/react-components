@@ -22,7 +22,7 @@ export const useUnformattedDateTime = (
     onSubscriptionData: ({ subscriptionData }) => {
       if (!subscriptionData.loading && !subscriptionData.error) {
         let epochsPast =
-          (subscriptionData.data?.chainHead.height as number) -
+          (subscriptionData.data?.chainHead?.height as number) -
           Number(message.height)
 
         // this should never happen

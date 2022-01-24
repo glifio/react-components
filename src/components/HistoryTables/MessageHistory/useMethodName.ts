@@ -11,7 +11,7 @@ export const useMethodName = (
     variables: { address: message?.to.robust || message?.to.id },
     // this means the message came from low confidence query
     // so we have to look up the actor ourselves
-    skip: message?.cid && !!message.actorName
+    skip: !message?.cid || !!(message?.cid && message?.actorName)
   })
 
   const methodName = useMemo(() => {
