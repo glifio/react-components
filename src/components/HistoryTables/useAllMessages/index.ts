@@ -34,7 +34,7 @@ export const usePendingMessages = (
     pollInterval: 0
   })
 
-  const [pendingMsgList, setPendingMsgList] = useState([...submittedMessages])
+  const [pendingMsgList, setPendingMsgList] = useState([])
 
   // we only update the pending message list when there is a new message to add
   const safeUpdate = useCallback(
@@ -66,6 +66,13 @@ export const usePendingMessages = (
       safeUpdate([pendingMsgSub.data.mpoolUpdate.message as MessagePending])
     }
   }
+
+  // add any submitted messages
+  useEffect(() => {
+    if (submittedMessages.length) {
+      safeUpdate([...submittedMessages])
+    }
+  }, [safeUpdate, submittedMessages])
 
   const [shouldRefresh, setShouldRefresh] = useState(false)
   const ref = useRef<{ cid: string; height: number }>({ cid: '', height: 0 })

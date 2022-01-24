@@ -52,11 +52,7 @@ export default function MessageDetail(props: MessageDetailProps) {
     () => (message ? getGasPercentage(message) : ''),
     [message]
   )
-  const unformattedTime = useUnformattedDateTime(
-    chainHeadSubscription,
-    message,
-    time
-  )
+  const unformattedTime = useUnformattedDateTime(message, time)
 
   const confirmationCount = useMemo(
     () =>

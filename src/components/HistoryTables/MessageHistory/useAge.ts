@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { SubscriptionResult } from '@apollo/client'
 import dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 
 import { MessageConfirmedRow } from '../types'
-import { ChainHeadSubscription } from '../../../generated/graphql'
+import { useChainHeadSubscription } from '../../../generated/graphql'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -12,10 +11,14 @@ dayjs.extend(relativeTime.default)
 const EPOCH_TO_CLOCK_TIME = 30
 
 export const useUnformattedDateTime = (
-  chainheadSub: SubscriptionResult<ChainHeadSubscription, any>,
   message: MessageConfirmedRow,
   time: number
 ) => {
+  const chainheadSub = useChainHeadSubscription({
+    variables: {},
+    shouldResubscribe: false
+  })
+
   const [age, setAge] = useState<dayjs.Dayjs | null>(null)
 
   useEffect(() => {
@@ -23,23 +26,24 @@ export const useUnformattedDateTime = (
       if (message.block?.Timestamp) {
         setAge(dayjs.unix(message.block?.Timestamp))
       } else if (!(chainheadSub.loading || chainheadSub.error)) {
-        const epochsPast =
+        let epochsPast =
           (chainheadSub.data?.chainHead.height as number) -
           Number(message.height)
 
+        // weird race conditions...
+        if (epochsPast <= 0) {
+          epochsPast = 2
+        }
+
         const clockSecondsPast = epochsPast * EPOCH_TO_CLOCK_TIME
-        setAge(dayjs(Date.now()).subtract(clockSecondsPast, 'seconds'))
+        setAge(dayjs(time).subtract(clockSecondsPast, 'seconds'))
       }
     }
   }, [time, message, chainheadSub, age, setAge])
   return age
 }
 
-export const useAge = (
-  chainheadSub: SubscriptionResult<ChainHeadSubscription, any>,
-  message: MessageConfirmedRow,
-  time: number
-): string => {
-  const unformattedTime = useUnformattedDateTime(chainheadSub, message, time)
+export const useAge = (message: MessageConfirmedRow, time: number): string => {
+  const unformattedTime = useUnformattedDateTime(message, time)
   return unformattedTime ? unformattedTime.from(time) : ''
 }
