@@ -25,7 +25,7 @@ export function getTotalCostShort(
   message:
     | Pick<MessageConfirmed, 'baseFeeBurn' | 'overEstimationBurn' | 'minerTip'>
     | MessagePending,
-  pending: boolean
+  pending: boolean = false
 ): string {
   if (pending) return ''
   message = message as MessageConfirmed
