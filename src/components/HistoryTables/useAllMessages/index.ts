@@ -53,6 +53,7 @@ export const usePendingMessages = (
     // dont poll here because we rely on the subscription and StateListMessage query for updates
     pollInterval: 0
   })
+  console.log('PENDING MSGS FROM QUERY', { pendingMsgs })
   if (!pendingMsgs?.loading && pendingMsgs.data) {
     safeUpdate((pendingMsgs?.data?.pendingMessages as MessagePending[]) || [])
   }
@@ -70,6 +71,7 @@ export const usePendingMessages = (
 
   // from submitted messages from wallet or safe
   const { messages: submittedMessages } = useSubmittedMessages()
+  console.log('SUBMITTED MSGS FROM APP', { submittedMessages })
   useEffect(() => {
     if (submittedMessages.length) {
       safeUpdate([...submittedMessages])
@@ -117,7 +119,7 @@ export const usePendingMessages = (
       }
     }
   }, [chainHeadSubscription, setShouldRefresh, shouldRefresh])
-
+  console.log('FINAL PENDING MSG LIST', { pendingMsgList })
   return { pendingMsgList, shouldRefresh, setShouldRefresh }
 }
 
