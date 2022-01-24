@@ -10,5 +10,6 @@ query MsigPending($address: String!, $limit: Int!, $offset: Int!) {
     params
     approved
     value
+    proposalHash
   }
 }

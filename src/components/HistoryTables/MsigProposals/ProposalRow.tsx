@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
@@ -7,33 +7,15 @@ import * as relativeTime from 'dayjs/plugin/relativeTime'
 import Box from '../../Box'
 import { TR, TD } from '../table'
 import { AddressWOptionalLink, SmartLink } from '../../Link/SmartLink'
-import { MessageConfirmed, MsigTransaction } from '../../../generated/graphql'
-import {
-  MESSAGE_CONFIRMED_ROW_PROP_TYPE,
-  PROPOSAL_ROW_PROP_TYPE
-} from '../types'
+import { MsigTransaction } from '../../../generated/graphql'
+import { PROPOSAL_ROW_PROP_TYPE } from '../types'
 import { getMethodName } from '../methodName'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
 export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
-  const {
-    proposal,
-    messageConfirmed,
-    idHref,
-    time,
-    addressHref,
-    inspectingAddress
-  } = props
-
-  const age = useMemo(
-    () =>
-      messageConfirmed.block.Timestamp
-        ? dayjs.unix(messageConfirmed.block.Timestamp).from(time)
-        : '',
-    [messageConfirmed.block.Timestamp, time]
-  )
+  const { proposal, idHref, addressHref, inspectingAddress } = props
 
   const router = useRouter()
 
@@ -45,17 +27,15 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
         }
       `}
       onClick={() => {
-        if (
-          props?.idHref(proposal.id, messageConfirmed.cid).charAt(0) === '/'
-        ) {
-          router.push(idHref(proposal.id, messageConfirmed.cid))
+        if (props?.idHref(proposal.id).charAt(0) === '/') {
+          router.push(idHref(proposal.id))
         } else {
-          window.open(idHref(proposal.id, messageConfirmed.cid), '_blank')
+          window.open(idHref(proposal.id), '_blank')
         }
       }}
     >
       <TD>
-        <SmartLink href={idHref(proposal.id, messageConfirmed.cid)}>
+        <SmartLink href={idHref(proposal.id)}>
           <a
             onClick={e => e.stopPropagation()}
             style={{
@@ -80,11 +60,10 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
           {getMethodName('/multisig', proposal.method)}
         </Box>
       </TD>
-      <TD>{age}</TD>
       <TD>
         <AddressWOptionalLink
           onClick={e => e.stopPropagation()}
-          address={messageConfirmed.from.robust}
+          address={proposal.approved[0]}
           addressHref={addressHref}
           inspectingAddress={inspectingAddress}
         />
@@ -98,17 +77,13 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
 type ProposalHistoryRowProps = {
   key: any
   proposal: MsigTransaction
-  messageConfirmed: MessageConfirmed
-  idHref: (id: number, cid: string) => string
+  idHref: (id: number) => string
   addressHref: (address: string) => string
   inspectingAddress?: string
-  time: number
 }
 
 ProposalHistoryRow.propTypes = {
-  messageConfirmed: MESSAGE_CONFIRMED_ROW_PROP_TYPE.isRequired,
   proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
-  time: PropTypes.number.isRequired,
   idHref: PropTypes.func.isRequired,
   addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string

@@ -12,8 +12,7 @@ import { useAge } from './useAge'
 import { useMethodName } from './useMethodName'
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
-  const { message, cidHref, addressHref, inspectingAddress, chainHeadSub } =
-    props
+  const { message, cidHref, addressHref, inspectingAddress } = props
   const time = useMemo(() => Date.now(), [])
 
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
@@ -26,7 +25,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   )
 
   const methodName = useMethodName(message)
-  const age = useAge(chainHeadSub, message, time)
+  const age = useAge(message, time)
 
   return (
     <TR>

@@ -4,24 +4,28 @@ import { getMethodName } from '../methodName'
 import { decodeActorCID } from '../../../utils'
 import { MessageConfirmedRow, MessagePendingRow } from '../types'
 
-export const useMethodName = (
-  message: MessageConfirmedRow | (MessagePendingRow & { actorName: string })
-) => {
+type MessageForMethodNameType =
+  | Pick<MessageConfirmedRow, 'actorName' | 'to' | 'cid' | 'method'>
+  | (MessagePendingRow & { actorName?: string })
+
+export const useMethodName = (message: MessageForMethodNameType) => {
   const actor = useActorQuery({
-    variables: { address: message.to.robust || message.to.id },
-    skip: !!message?.actorName
+    variables: { address: message?.to.robust || message?.to.id },
+    // this means the message came from low confidence query
+    // so we have to look up the actor ourselves
+    skip: !message?.cid || !!(message?.cid && message?.actorName)
   })
 
   const methodName = useMemo(() => {
-    if (message.actorName) {
+    if (message?.actorName) {
       return getMethodName(message.actorName, Number(message.method))
-    } else if (!(actor.loading || actor.error)) {
+    } else if (message?.cid && !(actor.loading || actor.error)) {
       return getMethodName(
         decodeActorCID(actor.data?.actor.Code),
         Number(message.method)
       )
     } else return '...'
-  }, [message.actorName, message.method, actor])
+  }, [message?.actorName, message?.method, message?.cid, actor])
 
   return methodName
 }

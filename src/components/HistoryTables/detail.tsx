@@ -1,17 +1,25 @@
 import React, { useMemo } from 'react'
+import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import { H2 } from '../Typography'
+import { MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
 import ButtonV2 from '../Button/V2'
 import { Badge } from './generic'
-import { IconSpeedUp, IconCancel, IconCheck } from '../Icons'
+import {
+  IconSpeedUp,
+  IconCancel,
+  IconCheck,
+  IconPending,
+  IconFail
+} from '../Icons'
 
 /**
  * Head
  * Top row of the detail page, displaying
  * the title and Speed up / Cancel buttons
  */
-export const Head = ({ title, speedUp, cancel }: HeadProps) => (
+export const Head = ({ title, speedUp, cancel, pending }: HeadProps) => (
   <Box
     display='flex'
     alignItems='center'
@@ -23,17 +31,18 @@ export const Head = ({ title, speedUp, cancel }: HeadProps) => (
       {title}
     </H2>
     <Box display='flex' gridGap='1rem'>
-      {speedUp && (
-        <ButtonV2 fontSize='1.5rem'>
-          <IconSpeedUp width='1.75rem' />
-          Speed up
-        </ButtonV2>
-      )}
-      {cancel && (
-        <ButtonV2 fontSize='1.5rem'>
-          <IconCancel width='1.25rem' />
-          Cancel
-        </ButtonV2>
+      {pending && (
+        <>
+          <ButtonV2 fontSize='1.5rem' onClick={speedUp}>
+            <IconSpeedUp width='1.75rem' />
+            Speed up
+          </ButtonV2>
+
+          <ButtonV2 fontSize='1.5rem' onClick={cancel}>
+            <IconCancel width='1.25rem' />
+            Cancel
+          </ButtonV2>
+        </>
       )}
     </Box>
   </Box>
@@ -41,14 +50,77 @@ export const Head = ({ title, speedUp, cancel }: HeadProps) => (
 
 type HeadProps = {
   title: string
+  pending: boolean
   speedUp?: () => void
   cancel?: () => void
 }
 
 Head.propTypes = {
   title: PropTypes.string.isRequired,
+  pending: PropTypes.bool.isRequired,
   speedUp: PropTypes.func,
   cancel: PropTypes.func
+}
+
+Head.defaultProps = {
+  pending: false
+}
+
+export const ProposalHead = ({
+  title,
+  accept,
+  reject,
+  actionRequired
+}: ProposalHeadProps) => (
+  <Box
+    display='flex'
+    alignItems='center'
+    justifyContent='space-between'
+    gridGap='1em'
+    my='1em'
+  >
+    <H2 color='core.primary' fontSize='1.5rem' margin='0'>
+      {title}
+    </H2>
+    {actionRequired && (
+      <H2 color='core.primary' fontSize='1.5rem' margin='0'>
+        Action Required
+      </H2>
+    )}
+    <Box display='flex' gridGap='1rem'>
+      {actionRequired && (
+        <>
+          <ButtonV2 hoverColor='green' small fontSize='1.5rem' onClick={accept}>
+            <IconCheck width='1.75rem' />
+            Accept
+          </ButtonV2>
+
+          <ButtonV2 hoverColor='red' small fontSize='1.5rem' onClick={reject}>
+            <IconFail width='1.25rem' />
+            Reject
+          </ButtonV2>
+        </>
+      )}
+    </Box>
+  </Box>
+)
+
+type ProposalHeadProps = {
+  title: string
+  actionRequired: boolean
+  accept?: (proposal: MsigTransaction) => void
+  reject?: (proposal: MsigTransaction) => void
+}
+
+ProposalHead.propTypes = {
+  title: PropTypes.string.isRequired,
+  actionRequired: PropTypes.bool.isRequired,
+  accept: PropTypes.func,
+  reject: PropTypes.func
+}
+
+ProposalHead.defaultProps = {
+  actionRequired: false
 }
 
 /**
@@ -132,6 +204,12 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
               <Badge color='purple'>{value}</Badge>
             </Line>
           )
+        case 'value':
+          return (
+            <Line key={`${depth}-${key}`} label={key} depth={depth}>
+              {new FilecoinNumber(value, 'attofil').toFil()} FIL
+            </Line>
+          )
         default:
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
@@ -157,22 +235,35 @@ Parameters.propTypes = {
  * Status
  * Badge displaying the current status of the message
  */
-export const Status = ({ exitCode }: StatusProps) => {
+export const Status = ({ exitCode, pending }: StatusProps) => {
   const success = useMemo(() => exitCode === 0, [exitCode])
+  const color = useMemo(() => {
+    if (pending) return 'yellow'
+    if (success) return 'green'
+    return 'red'
+  }, [success, pending])
+
+  const statusText = useMemo(() => {
+    if (pending) return 'PENDING'
+    if (success) return 'SUCCESS'
+    return 'ERROR'
+  }, [success, pending])
   return (
-    <Badge color={success ? 'green' : 'red'}>
+    <Badge color={color}>
       {success && <IconCheck width='1.1875rem' />}
-      {success ? 'SUCCESS' : 'ERROR'}
+      {pending && <IconPending />}
+      {statusText}
     </Badge>
   )
 }
 
 type StatusProps = {
-  exitCode: number
+  exitCode?: number
+  pending: boolean
 }
 
 Status.propTypes = {
-  exitCode: PropTypes.number.isRequired
+  exitCode: PropTypes.number
 }
 
 /**

@@ -1,29 +1,27 @@
-import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Box from '../../Box'
 import ProposalRow from './ProposalRow'
-import { MessageRowColumnTitles } from './ProposalRowColumnTitles'
+import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import { TABLE } from '../table'
-import { useCompletedProposals } from './useCompletedProposals'
+import { useMsigPendingQuery } from '../../..'
 
 type ProposalHistoryTableProps = {
   address: string
   offset?: number
   // allows custom navigation
   addressHref: (address: string) => string
-  idHref: (id: number, cid: string) => string
+  idHref: (id: number) => string
 }
 
 export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
-  const [time, setTime] = useState(Date.now())
-  const { completedProposals, loading, error } = useCompletedProposals(
-    props.address
-  )
-
-  useEffect(() => {
-    const interval = setInterval(() => setTime(Date.now()), 1000)
-    return () => clearInterval(interval)
+  const { data, loading, error } = useMsigPendingQuery({
+    variables: {
+      address: props.address,
+      offset: props.offset,
+      limit: Number.MAX_SAFE_INTEGER
+    },
+    pollInterval: 0
   })
 
   if (loading) return <p>Loading...</p>
@@ -32,14 +30,12 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
   return (
     <Box>
       <TABLE>
-        <MessageRowColumnTitles />
+        <ProposalRowColumnTitles />
         <tbody>
-          {completedProposals?.map(completedProposal => (
+          {data?.msigPending.map(proposal => (
             <ProposalRow
-              key={completedProposal.proposal.id}
-              proposal={completedProposal.proposal}
-              messageConfirmed={completedProposal.messageConfirmed}
-              time={time}
+              key={proposal.id}
+              proposal={proposal}
               idHref={props.idHref}
               addressHref={props.addressHref}
               inspectingAddress={props.address}
