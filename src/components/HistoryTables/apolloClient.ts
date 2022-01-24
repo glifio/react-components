@@ -11,7 +11,7 @@ const wsLink = process.browser
   ? new WebSocketLink({
       uri: 'wss://graph.glif.host/query',
       options: {
-        reconnect: false,
+        reconnect: true,
         lazy: true
       }
     })

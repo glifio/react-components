@@ -4,9 +4,11 @@ import { getMethodName } from '../methodName'
 import { decodeActorCID } from '../../../utils'
 import { MessageConfirmedRow, MessagePendingRow } from '../types'
 
-export const useMethodName = (
-  message: MessageConfirmedRow | (MessagePendingRow & { actorName: string })
-) => {
+type MessageForMethodNameType =
+  | Pick<MessageConfirmedRow, 'actorName' | 'to' | 'cid' | 'method'>
+  | (MessagePendingRow & { actorName?: string })
+
+export const useMethodName = (message: MessageForMethodNameType) => {
   const actor = useActorQuery({
     variables: { address: message?.to.robust || message?.to.id },
     // this means the message came from low confidence query

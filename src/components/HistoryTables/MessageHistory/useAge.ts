@@ -3,7 +3,7 @@ import dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 
 import { MessageConfirmedRow } from '../types'
-import { useChainHeadSubscription } from '../../../generated/graphql'
+import { Block, useChainHeadSubscription } from '../../../generated/graphql'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -11,7 +11,9 @@ dayjs.extend(relativeTime.default)
 const EPOCH_TO_CLOCK_TIME = 30
 
 export const useUnformattedDateTime = (
-  message: MessageConfirmedRow,
+  message: Pick<MessageConfirmedRow, 'height'> & {
+    block?: Pick<Block, 'Timestamp'>
+  },
   time: number
 ) => {
   const [age, setAge] = useState<dayjs.Dayjs | null>(null)

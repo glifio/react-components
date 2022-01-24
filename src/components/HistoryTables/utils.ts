@@ -1,5 +1,5 @@
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
-import { MessageConfirmed } from '../../generated/graphql'
+import { MessageConfirmed, MessagePending } from '../../generated/graphql'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
 
 export function attoFilToFil(amount: string | number | BigNumber): string {
@@ -7,11 +7,13 @@ export function attoFilToFil(amount: string | number | BigNumber): string {
 }
 
 export function getTotalCost(
-  message: Pick<
-    MessageConfirmed,
-    'baseFeeBurn' | 'overEstimationBurn' | 'minerTip'
-  >
+  message:
+    | Pick<MessageConfirmed, 'baseFeeBurn' | 'overEstimationBurn' | 'minerTip'>
+    | MessagePending,
+  pending: boolean
 ): string {
+  if (pending) return ''
+  message = message as MessageConfirmed
   const bnBaseFeeBurn = new BigNumber(message.baseFeeBurn)
   const bnOverEstimationBurn = new BigNumber(message.overEstimationBurn)
   const bnMinerTip = new BigNumber(message.minerTip)
@@ -20,11 +22,13 @@ export function getTotalCost(
 }
 
 export function getTotalCostShort(
-  message: Pick<
-    MessageConfirmed,
-    'baseFeeBurn' | 'overEstimationBurn' | 'minerTip'
-  >
+  message:
+    | Pick<MessageConfirmed, 'baseFeeBurn' | 'overEstimationBurn' | 'minerTip'>
+    | MessagePending,
+  pending: boolean
 ): string {
+  if (pending) return ''
+  message = message as MessageConfirmed
   const bnBaseFeeBurn = new BigNumber(message.baseFeeBurn)
   const bnOverEstimationBurn = new BigNumber(message.overEstimationBurn)
   const bnMinerTip = new BigNumber(message.minerTip)
@@ -34,8 +38,11 @@ export function getTotalCostShort(
 }
 
 export function getGasPercentage(
-  message: Pick<MessageConfirmed, 'gasLimit' | 'gasUsed'>
+  message: Pick<MessageConfirmed, 'gasLimit' | 'gasUsed'> | MessagePending,
+  pending: boolean
 ): string {
+  if (pending) return ''
+  message = message as MessageConfirmed
   const gasLimit = new BigNumber(message.gasLimit)
   const gasUsed = new BigNumber(message.gasUsed)
   return gasUsed.dividedBy(gasLimit).times(100).toFixed(1) + '%'

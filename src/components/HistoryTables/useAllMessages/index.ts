@@ -10,7 +10,8 @@ import {
   ChainHeadSubscription,
   useChainHeadSubscription,
   useMessageQuery,
-  useMessageLowConfidenceQuery
+  useMessageLowConfidenceQuery,
+  usePendingMessageQuery
 } from '../../../generated/graphql'
 import { uniqueifyMsgs } from '../../../utils/uniqueifyMsgs'
 import { useSubmittedMessages } from '../PendingMsgContext'
@@ -260,48 +261,83 @@ export const useMessage = (cid: string) => {
     pollInterval: 0
   })
 
-  // const {
-  //   data: pendingMsgData,
-  //   loading: pendingMsgLoading,
-  //   error: pendingMsgErr
-  // } = useMessagePendingQuery({ variables: { cid }, pollInterval: 0 })
+  const {
+    data: pendingMsgData,
+    loading: pendingMsgLoading,
+    error: _pendingMsgErr
+  } = usePendingMessageQuery({ variables: { cid }, pollInterval: 0 })
+  const pendingMsgErr = useMemo(() => {
+    if (
+      !_pendingMsgErr ||
+      // TODO: Remove once https://github.com/glifio/graph/issues/29 is fixed
+      !_pendingMsgErr.message.toLowerCase().includes('must not be null')
+    ) {
+      return _pendingMsgErr
+    }
+    return null
+  }, [_pendingMsgErr])
+
+  const pendingMsg = useMemo(() => {
+    if (!pendingMsgLoading && !pendingMsgErr) {
+      return pendingMsgData?.pendingMessage || null
+    }
+  }, [pendingMsgData, pendingMsgLoading, pendingMsgErr])
 
   const {
     data: lowConfMsgData,
     loading: lowConfMsgLoading,
-    error: lowConfMsgErr
-  } = useMessageLowConfidenceQuery({ variables: { cid }, pollInterval: 0 })
+    error: _lowConfMsgErr
+  } = useMessageLowConfidenceQuery({
+    variables: { cid },
+    pollInterval: !!pendingMsg ? 30000 : 0,
+    skip: pendingMsgLoading
+  })
+
+  const lowConfMsgErr = useMemo(() => {
+    // this error infers we are looking for the pending message but havent found it yet...
+    if (!!pendingMsg && _lowConfMsgErr.message.includes("didn't find msg")) {
+      return
+    } else return _lowConfMsgErr
+  }, [_lowConfMsgErr, pendingMsg])
+
+  const pendingFoundInLowConfMsgs = useMemo(() => {
+    if (pendingMsg && !lowConfMsgLoading && !lowConfMsgErr) {
+      return !!lowConfMsgData.messageLowConfidence
+    }
+  }, [pendingMsg, lowConfMsgData, lowConfMsgLoading, lowConfMsgErr])
 
   const loading = useMemo(
-    () => highConfMsgLoading || lowConfMsgLoading,
-    [highConfMsgLoading, lowConfMsgLoading]
+    () => highConfMsgLoading || lowConfMsgLoading || pendingMsgLoading,
+    [highConfMsgLoading, lowConfMsgLoading, pendingMsgLoading]
   )
 
   const error = useMemo(
-    () => highConfiMsgErr || lowConfMsgErr,
-    [highConfiMsgErr, lowConfMsgErr]
+    () => highConfiMsgErr || lowConfMsgErr || pendingMsgErr,
+    [highConfiMsgErr, lowConfMsgErr, pendingMsgErr]
   )
 
-  const message = useMemo<MessageConfirmed | null>(() => {
-    const ready = !(
-      highConfMsgLoading ||
-      highConfiMsgErr ||
-      lowConfMsgLoading ||
-      lowConfMsgErr
-    )
-    if (ready) {
-      return (highConfMsgData.message ||
-        lowConfMsgData.messageLowConfidence) as MessageConfirmed
-    }
-    return null
+  const message = useMemo<MessageConfirmed | MessagePending | null>(() => {
+    const ready = !error && !loading
+    if (ready && pendingFoundInLowConfMsgs) {
+      return lowConfMsgData.messageLowConfidence as MessageConfirmed
+    } else if (ready && pendingMsg) {
+      return pendingMsg
+    } else if (ready && highConfMsgData.message) {
+      return highConfMsgData.message as MessageConfirmed
+    } else return null
   }, [
     highConfMsgData,
     lowConfMsgData,
-    highConfMsgLoading,
-    highConfiMsgErr,
-    lowConfMsgLoading,
-    lowConfMsgErr
+    loading,
+    error,
+    pendingMsg,
+    pendingFoundInLowConfMsgs
   ])
 
-  return { message, loading, error }
+  return {
+    message,
+    loading,
+    error,
+    pending: !pendingFoundInLowConfMsgs && !!pendingMsg
+  }
 }

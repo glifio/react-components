@@ -4,7 +4,10 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import { useChainHeadSubscription } from '../../../generated/graphql'
+import {
+  useChainHeadSubscription,
+  MessageConfirmed
+} from '../../../generated/graphql'
 import Box from '../../Box'
 import { IconClock } from '../../Icons'
 import { P, HR } from '../../Typography'
@@ -34,10 +37,12 @@ export default function MessageDetail(props: MessageDetailProps) {
   const { cid, speedUp, cancel, addressHref, confirmations } = props
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
-  const { message, loading, error } = useMessage(cid)
+  const { message, loading, error, pending } = useMessage(cid)
+
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
-    shouldResubscribe: true
+    shouldResubscribe: true,
+    skip: pending
   })
 
   const value = useMemo(
@@ -45,12 +50,12 @@ export default function MessageDetail(props: MessageDetailProps) {
     [message?.value]
   )
   const totalCost = useMemo(
-    () => (message ? getTotalCost(message) : ''),
-    [message]
+    () => (message ? getTotalCost(message, pending) : ''),
+    [message, pending]
   )
   const gasPercentage = useMemo(
-    () => (message ? getGasPercentage(message) : ''),
-    [message]
+    () => (message ? getGasPercentage(message, pending) : ''),
+    [message, pending]
   )
   const unformattedTime = useUnformattedDateTime(message, time)
 
@@ -69,19 +74,37 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   return (
     <Box>
-      <Head title='Message Overview' speedUp={speedUp} cancel={cancel} />
+      <Head
+        title='Message Overview'
+        pending={pending}
+        speedUp={speedUp}
+        cancel={cancel}
+      />
       <HR />
       <Line label='CID'>{cid}</Line>
       <Line label='Status and Confirmations'>
-        <Status exitCode={message.exitCode} />
-        <Confirmations count={confirmationCount} total={confirmations} />
+        <Status
+          exitCode={(message as MessageConfirmed)?.exitCode}
+          pending={pending}
+        />
+        {!pending && (
+          <Confirmations count={confirmationCount} total={confirmations} />
+        )}
       </Line>
-      <Line label='Height'>{message.height}</Line>
+      <Line label='Height'>{pending ? 'Pending' : message.height}</Line>
       <Line label='Timestamp'>
-        <IconClock width='1.125em' />
-        {unformattedTime
-          ? `${unformattedTime?.from(time)} (${unformattedTime?.toString()})`
-          : ''}
+        {pending ? (
+          'Pending'
+        ) : (
+          <>
+            <IconClock width='1.125em' />
+            {unformattedTime
+              ? `${unformattedTime?.from(
+                  time
+                )} (${unformattedTime?.toString()})`
+              : ''}
+          </>
+        )}
       </Line>
       <HR />
       <Line label='From'>
@@ -98,7 +121,7 @@ export default function MessageDetail(props: MessageDetailProps) {
       </Line>
       <HR />
       <Line label='Value'>{value}</Line>
-      <Line label='Transaction Fee'>{totalCost}</Line>
+      <Line label='Transaction Fee'>{pending ? 'Pending' : totalCost}</Line>
       {!loading && methodName && (
         <Line label='Method'>
           <Badge color='purple'>{methodName.toUpperCase()}</Badge>
@@ -114,7 +137,11 @@ export default function MessageDetail(props: MessageDetailProps) {
           <Line label='Gas Limit & Usage by Txn'>
             {formatNumber(message.gasLimit)}
             <span className='gray'>|</span>
-            {formatNumber(message.gasUsed)} attoFil
+            {pending
+              ? '?'
+              : `${formatNumber(
+                  (message as MessageConfirmed).gasUsed
+                )} attoFil`}
             <span>({gasPercentage})</span>
           </Line>
           <Line label='Gas Fees'>
@@ -125,13 +152,18 @@ export default function MessageDetail(props: MessageDetailProps) {
             <span className='gray'>Fee Cap</span>
             {formatNumber(message.gasFeeCap)} attoFIL
           </Line>
-          <Line label=''>
-            <span className='gray'>Base</span>
-            {formatNumber(message.baseFeeBurn)} attoFIL
-          </Line>
-          <Line label='Gas Burnt'>
-            {formatNumber(message.gasBurned)} attoFIL
-          </Line>
+          {!pending && (
+            <>
+              <Line label=''>
+                <span className='gray'>Base</span>
+                {formatNumber((message as MessageConfirmed).baseFeeBurn)}{' '}
+                attoFIL
+              </Line>
+              <Line label='Gas Burnt'>
+                {formatNumber((message as MessageConfirmed).gasBurned)} attoFIL
+              </Line>
+            </>
+          )}
           <HR />
           <Parameters params={{ params: message.params }} depth={0} />
         </>
