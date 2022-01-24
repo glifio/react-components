@@ -137,7 +137,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     refetch: lowConfidenceMsgsRefetch
   } = useStateListMessagesQuery({
     variables: { address },
-    pollInterval: 0
+    pollInterval: 60000
   })
 
   useEffect(() => {

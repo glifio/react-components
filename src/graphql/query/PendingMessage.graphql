@@ -1,0 +1,22 @@
+query PendingMessage($cid: String!) {
+  pendingMessage(cid: $cid) {
+    cid
+    version
+    to {
+      robust
+      id
+    }
+    from {
+      robust
+      id
+    }
+    nonce
+    value
+    gasLimit
+    gasFeeCap
+    gasPremium
+    method
+    height
+    params
+  }
+}

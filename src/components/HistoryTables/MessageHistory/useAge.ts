@@ -18,9 +18,10 @@ export const useUnformattedDateTime = (
 
   useChainHeadSubscription({
     variables: {},
+    skip: !message,
     shouldResubscribe: false,
     onSubscriptionData: ({ subscriptionData }) => {
-      if (!subscriptionData.loading && !subscriptionData.error) {
+      if (!subscriptionData.loading && !subscriptionData.error && !!message) {
         let epochsPast =
           (subscriptionData.data?.chainHead?.height as number) -
           Number(message.height)
@@ -50,5 +51,5 @@ export const useUnformattedDateTime = (
 
 export const useAge = (message: MessageConfirmedRow, time: number): string => {
   const unformattedTime = useUnformattedDateTime(message, time)
-  return unformattedTime ? unformattedTime.from(time) : ''
+  return unformattedTime ? unformattedTime.from(time) : '...'
 }
