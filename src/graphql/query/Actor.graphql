@@ -3,6 +3,5 @@ query Actor($address: String!) {
     id
     Code
     Balance
-    State
   }
 }
