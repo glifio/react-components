@@ -1,10 +1,18 @@
 import React, { useMemo } from 'react'
+import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import { H2 } from '../Typography'
+import { MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
 import ButtonV2 from '../Button/V2'
 import { Badge } from './generic'
-import { IconSpeedUp, IconCancel, IconCheck, IconPending } from '../Icons'
+import {
+  IconSpeedUp,
+  IconCancel,
+  IconCheck,
+  IconPending,
+  IconFail
+} from '../Icons'
 
 /**
  * Head
@@ -55,9 +63,64 @@ Head.propTypes = {
 }
 
 Head.defaultProps = {
-  pending: false,
-  speedUp: () => {},
-  cancel: () => {}
+  pending: false
+}
+
+export const ProposalHead = ({
+  title,
+  accept,
+  reject,
+  actionRequired
+}: ProposalHeadProps) => (
+  <Box
+    display='flex'
+    alignItems='center'
+    justifyContent='space-between'
+    gridGap='1em'
+    my='1em'
+  >
+    <H2 color='core.primary' fontSize='1.5rem' margin='0'>
+      {title}
+    </H2>
+    {actionRequired && (
+      <H2 color='core.primary' fontSize='1.5rem' margin='0'>
+        Action Required
+      </H2>
+    )}
+    <Box display='flex' gridGap='1rem'>
+      {actionRequired && (
+        <>
+          <ButtonV2 hoverColor='green' small fontSize='1.5rem' onClick={accept}>
+            <IconCheck width='1.75rem' />
+            Accept
+          </ButtonV2>
+
+          <ButtonV2 hoverColor='red' small fontSize='1.5rem' onClick={reject}>
+            <IconFail width='1.25rem' />
+            Reject
+          </ButtonV2>
+        </>
+      )}
+    </Box>
+  </Box>
+)
+
+type ProposalHeadProps = {
+  title: string
+  actionRequired: boolean
+  accept?: (proposal: MsigTransaction) => void
+  reject?: (proposal: MsigTransaction) => void
+}
+
+ProposalHead.propTypes = {
+  title: PropTypes.string.isRequired,
+  actionRequired: PropTypes.bool.isRequired,
+  accept: PropTypes.func,
+  reject: PropTypes.func
+}
+
+ProposalHead.defaultProps = {
+  actionRequired: false
 }
 
 /**
@@ -139,6 +202,12 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
               <Badge color='purple'>{value}</Badge>
+            </Line>
+          )
+        case 'value':
+          return (
+            <Line key={`${depth}-${key}`} label={key} depth={depth}>
+              {new FilecoinNumber(value, 'attofil').toFil()} FIL
             </Line>
           )
         default:

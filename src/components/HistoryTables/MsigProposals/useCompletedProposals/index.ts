@@ -16,6 +16,7 @@ export type CompleteProposal = {
   messageConfirmed: MessageConfirmed
 }
 
+/* CURRENTLY UNUSED BC PRONE TO BUGS WITH HOW STATELISTMESSAGES LAGS */
 export const useCompletedProposals = (address: string) => {
   const [assemblingProposals, setAssemblingProposals] = useState(false)
 

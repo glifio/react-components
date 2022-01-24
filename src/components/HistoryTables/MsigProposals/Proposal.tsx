@@ -1,24 +1,27 @@
-import React, { useState } from 'react'
-import Link from 'next/link'
+import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useCompletedProposal } from './useCompletedProposals'
-import ButtonV2 from '../../Button/V2'
 import Box from '../../Box'
 import { P, HR } from '../../Typography'
-import { Head, Line, Parameters } from '../detail'
+import { ProposalHead, Line, Parameters } from '../detail'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
-import { MsigTransaction } from '../../../generated/graphql'
-import { formatNumber } from '../utils'
-import { IconClock } from '../../Icons'
+import {
+  Address,
+  MsigTransaction,
+  useActorQuery,
+  useMsigPendingQuery
+} from '../../../generated/graphql'
+import { decodeActorCID } from '../../..'
+import { useStateReadStateQuery } from './useStateReadStateQuery'
+import { getMethodName } from '../methodName'
 
 type ProposalDetailProps = {
   id: number
   address: string
-  cid?: string
+  walletAddress?: string
 
-  accept?: (proposal: MsigTransaction) => void
-  reject?: (proposal: MsigTransaction) => void
+  accept: (proposal: MsigTransaction) => void
+  reject: (proposal: MsigTransaction) => void
   addressHref: (address: string) => string
   cidHref: (cid: string) => string
 }
@@ -31,81 +34,155 @@ const SeeMore = styled(P).attrs(() => ({
 `
 
 export default function ProposalDetail(props: ProposalDetailProps) {
-  const { completedProposal, loading, error } = useCompletedProposal(
-    props.id,
-    props.address,
-    props.cid
-  )
+  let {
+    data: msigTxsData,
+    loading: msigTxsLoading,
+    error: _msigTxsError
+  } = useMsigPendingQuery({
+    variables: {
+      address: props.address,
+      offset: 0,
+      limit: Number.MAX_SAFE_INTEGER
+    },
+    pollInterval: 0
+  })
+
+  /////// TODO: remove once https://github.com/glifio/graph/issues/32 gets fixed
+  const msigTxs = useMemo(() => {
+    if (!msigTxsLoading && !_msigTxsError) {
+      return {
+        msigPending: msigTxsData?.msigPending?.map(p => {
+          return {
+            ...p,
+            approved: p.approved.map(approver => ({ id: approver, robust: '' }))
+          }
+        }) as (MsigTransaction & { approved: Address[] })[]
+      }
+    }
+  }, [msigTxsData, msigTxsLoading, _msigTxsError])
+  ////////
+
+  const proposal = useMemo(() => {
+    if (!msigTxsLoading && !_msigTxsError) {
+      return msigTxs?.msigPending.find(p => p.id === props.id)
+    }
+    return null
+  }, [msigTxs, msigTxsLoading, _msigTxsError, props.id])
+
   const [seeMore, setSeeMore] = useState(false)
 
+  const {
+    data: actorData,
+    loading: actorLoading,
+    error: actorError
+  } = useActorQuery({ variables: { address: props.address } })
+
+  const {
+    data: stateData,
+    loading: stateLoading,
+    error: stateError
+  } = useStateReadStateQuery({
+    variables: { address: props.address },
+    skip:
+      !!actorError ||
+      (!actorLoading &&
+        !decodeActorCID(actorData.actor.Code).includes('multisig'))
+  })
+
+  const actionRequired = useMemo(() => {
+    if (!props.walletAddress) return false
+    if (!!proposal) {
+      return proposal.approved.some((approver: Address) => {
+        return (
+          approver.id === props.walletAddress ||
+          approver.robust === props.walletAddress
+        )
+      })
+    }
+    return false
+  }, [proposal, props.walletAddress])
+
+  const proposalFoundError = useMemo(() => {
+    if (!msigTxsLoading && !proposal) {
+      return new Error('Proposal not found')
+    }
+    return _msigTxsError
+  }, [_msigTxsError, msigTxsLoading, proposal])
+
+  const loading = useMemo(
+    () => actorLoading || msigTxsLoading || stateLoading,
+    [actorLoading, msigTxsLoading, stateLoading]
+  )
+
+  const approvalsUntilExecution = useMemo(() => {
+    if (!loading && !proposalFoundError && !stateError) {
+      return (
+        Number(stateData?.State.NumApprovalsThreshold) -
+        proposal?.approved.length
+      )
+    }
+  }, [
+    loading,
+    proposalFoundError,
+    proposal?.approved.length,
+    stateError,
+    stateData?.State.NumApprovalsThreshold
+  ])
+
+  const outerMethodName = useMemo(
+    () => getMethodName('/multisig', proposal?.method),
+    [proposal?.method]
+  )
+
   if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :( {error.message}</p>
+  if (proposalFoundError) return <p>Error :( {proposalFoundError.message}</p>
+  if (actorError) return <p>Error :( {actorError.message}</p>
+  if (stateError) return <p>Error :( {stateError.message}</p>
 
   return (
     <Box>
-      <Head title='Proposal Overview' speedUp={() => {}} cancel={() => {}} />
+      <ProposalHead
+        title='Proposal Overview'
+        accept={props.accept}
+        reject={props.reject}
+        actionRequired={actionRequired}
+      />
       <HR />
       <Line label='Proposal ID'>{props.id}</Line>
-      <Line label='Proposal CID'>
-        <Link href={props.cidHref(props.cid)}>{props.cid}</Link>
-      </Line>
-
-      <Line label='Height'>{completedProposal.messageConfirmed.height}</Line>
-      <Line label='Timestamp'>
-        <IconClock width='1.125em' />
-        {/* {age} ({date}) */}
+      {/* TODO: This should be the normal address component */}
+      <Line label='Proposer'>{proposal?.approved[0].id || 'Loading...'}</Line>
+      <Line label='Approvals until execution'>
+        {approvalsUntilExecution.toString()}
       </Line>
       <HR />
-      {/* <Line label='From'>
-        {data.message.from.robust}
-        <Link
-          href={props.addressHref(data.message.from.robust)}
-        >{`(${data.message.from.id})`}</Link>
-      </Line>
-      <Line label='To'>
-        {data.message.to.robust}
-        <Link
-          href={props.addressHref(data.message.to.robust)}
-        >{`(${data.message.to.id})`}</Link>
-      </Line>
-      <HR />
-      <Line label='Value'>{value}</Line>
-      <Line label='Transaction Fee'>{totalCost}</Line>
-      {!loading && methodName && (
-        <Line label='Method'>
-          <Badge color='purple'>{methodName.toUpperCase()}</Badge>
-        </Line>
-      )}
+      <Parameters
+        params={{
+          params: {
+            to: proposal.to.robust,
+            value: proposal.value,
+            method: outerMethodName,
+            params: proposal.params
+          }
+        }}
+        depth={1}
+      />
       <HR />
       <SeeMore onClick={() => setSeeMore(!seeMore)}>
         Click to see {seeMore ? 'less ↑' : 'more ↓'}
       </SeeMore>
-      <HR /> */}
+      <HR />
       {seeMore && (
         <>
-          {/* <Line label='Gas Limit & Usage by Txn'>
-            {formatNumber(data.message.gasLimit)}
-            <span className='gray'>|</span>
-            {formatNumber(data.message.gasUsed)} attoFil
-            <span>({gasPercentage})</span>
+          <Line label='Next Transaction ID'>{stateData?.State.NextTxnID}</Line>
+          <Line label='Approvers'>
+            {proposal?.approved.map((approver: Address) => {
+              return (
+                <Line key={`${1}-${approver.robust}`} depth={1}>
+                  {approver.robust} ({approver.id})
+                </Line>
+              )
+            })}
           </Line>
-          <Line label='Gas Fees'>
-            <span className='gray'>Premium</span>
-            {formatNumber(data.message.gasPremium)} attoFIL
-          </Line>
-          <Line label=''>
-            <span className='gray'>Fee Cap</span>
-            {formatNumber(data.message.gasFeeCap)} attoFIL
-          </Line>
-          <Line label=''>
-            <span className='gray'>Base</span>
-            {formatNumber(data.message.baseFeeBurn)} attoFIL
-          </Line>
-          <Line label='Gas Burnt'>
-            {formatNumber(data.message.gasBurned)} attoFIL
-          </Line>
-          <HR />
-          <Parameters params={{ params: data.message.params }} depth={0} /> */}
         </>
       )}
     </Box>
@@ -114,6 +191,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
 
 ProposalDetail.propTypes = {
   id: PropTypes.number.isRequired,
+  walletAddress: ADDRESS_PROPTYPE,
   cid: PropTypes.string,
   address: ADDRESS_PROPTYPE,
   addressHref: PropTypes.func.isRequired,
