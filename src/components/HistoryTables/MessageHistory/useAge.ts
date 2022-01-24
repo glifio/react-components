@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useMemo, useState } from 'react'
 import dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 
@@ -14,23 +14,20 @@ export const useUnformattedDateTime = (
   message: MessageConfirmedRow,
   time: number
 ) => {
-  const chainheadSub = useChainHeadSubscription({
-    variables: {},
-    shouldResubscribe: false
-  })
-
   const [age, setAge] = useState<dayjs.Dayjs | null>(null)
 
-  useEffect(() => {
-    if (!age && !!message) {
-      if (message.block?.Timestamp) {
-        setAge(dayjs.unix(message.block?.Timestamp))
-      } else if (!(chainheadSub.loading || chainheadSub.error)) {
+  useChainHeadSubscription({
+    variables: {},
+    shouldResubscribe: false,
+    onSubscriptionData: ({ subscriptionData }) => {
+      if (!subscriptionData.loading && !subscriptionData.error) {
         let epochsPast =
-          (chainheadSub.data?.chainHead.height as number) -
+          (subscriptionData.data?.chainHead.height as number) -
           Number(message.height)
 
-        // weird race conditions...
+        // this should never happen
+        // but in case the chainhead sub lags behind a couple epochs
+        // this ensure we dont show any "in the future" transactions
         if (epochsPast <= 0) {
           epochsPast = 2
         }
@@ -39,8 +36,16 @@ export const useUnformattedDateTime = (
         setAge(dayjs(time).subtract(clockSecondsPast, 'seconds'))
       }
     }
-  }, [time, message, chainheadSub, age, setAge])
-  return age
+  })
+
+  return useMemo(() => {
+    // use the high confidence timestamp if we have it
+    if (!!message?.block?.Timestamp) {
+      return dayjs.unix(message.block?.Timestamp)
+    }
+    // else we calculate it when the chainhead data comes in
+    return age
+  }, [age, message?.block?.Timestamp])
 }
 
 export const useAge = (message: MessageConfirmedRow, time: number): string => {
