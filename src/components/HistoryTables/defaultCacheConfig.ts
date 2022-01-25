@@ -1,6 +1,23 @@
 import { InMemoryCacheConfig } from '@apollo/client'
 import Logger from '../../utils/logger'
 
+// The params field is expected to be a JSON string
+// or null. Both are safe to pass to JSON parse. The
+// result should be a valid javascript object or null.
+const parseParams = (_: any, incoming: any) => {
+  try {
+    console.log('parsing params')
+    if (incoming) {
+      return JSON.parse(incoming)
+    }
+    return null
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e)
+    Logger.error(`Failed to parse MessageConfirmed.params: ${msg}`)
+    return null
+  }
+}
+
 export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
   typePolicies: {
     Query: {
@@ -21,24 +38,26 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
       keyFields: ['Cid']
     },
     Message: {
-      keyFields: ['cid']
+      keyFields: ['cid'],
+      fields: {
+        params: {
+          merge: parseParams
+        }
+      }
     },
     MessageConfirmed: {
       keyFields: ['cid'],
       fields: {
         params: {
-          // The params field is expected to be a JSON string
-          // or null. Both are safe to pass to JSON parse. The
-          // result should be a valid javascript object or null.
-          merge(_: any, incoming: any) {
-            try {
-              return JSON.parse(incoming)
-            } catch (e) {
-              const msg = e instanceof Error ? e.message : String(e)
-              Logger.error(`Failed to parse MessageConfirmed.params: ${msg}`)
-              return null
-            }
-          }
+          merge: parseParams
+        }
+      }
+    },
+    StateListMessages: {
+      keyFields: ['cid'],
+      fields: {
+        params: {
+          merge: parseParams
         }
       }
     },
@@ -46,23 +65,12 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
       keyFields: ['cid']
     },
     MsigPending: {
-      keyFields: ['id']
-      // fields: {
-      //   params: {
-      //     // The params field is expected to be a JSON string
-      //     // or null. Both are safe to pass to JSON parse. The
-      //     // result should be a valid javascript object or null.
-      //     merge(_: any, incoming: any) {
-      //       try {
-      //         return JSON.parse(incoming)
-      //       } catch (e) {
-      //         const msg = e instanceof Error ? e.message : String(e)
-      //         Logger.error(`Failed to parse MessageConfirmed.params: ${msg}`)
-      //         return null
-      //       }
-      //     }
-      //   }
-      // }
+      keyFields: ['id'],
+      fields: {
+        params: {
+          merge: parseParams
+        }
+      }
     }
   }
 }
