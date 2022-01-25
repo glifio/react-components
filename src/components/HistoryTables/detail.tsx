@@ -13,6 +13,7 @@ import {
   IconPending,
   IconFail
 } from '../Icons'
+import { PROPOSAL_ROW_PROP_TYPE } from './types'
 
 /**
  * Head
@@ -68,9 +69,11 @@ Head.defaultProps = {
 
 export const ProposalHead = ({
   title,
+  proposal,
   accept,
-  reject,
-  actionRequired
+  cancel,
+  actionRequired,
+  isProposer
 }: ProposalHeadProps) => (
   <Box
     display='flex'
@@ -90,15 +93,27 @@ export const ProposalHead = ({
     <Box display='flex' gridGap='1rem'>
       {actionRequired && (
         <>
-          <ButtonV2 hoverColor='green' small fontSize='1.5rem' onClick={accept}>
+          <ButtonV2
+            hoverColor='green'
+            small
+            fontSize='1.5rem'
+            onClick={() => accept(proposal)}
+          >
             <IconCheck width='1.75rem' />
             Accept
           </ButtonV2>
 
-          <ButtonV2 hoverColor='red' small fontSize='1.5rem' onClick={reject}>
-            <IconFail width='1.25rem' />
-            Reject
-          </ButtonV2>
+          {isProposer && (
+            <ButtonV2
+              hoverColor='red'
+              small
+              fontSize='1.5rem'
+              onClick={() => cancel(proposal)}
+            >
+              <IconFail width='1.25rem' />
+              Cancel
+            </ButtonV2>
+          )}
         </>
       )}
     </Box>
@@ -108,15 +123,19 @@ export const ProposalHead = ({
 type ProposalHeadProps = {
   title: string
   actionRequired: boolean
+  isProposer: boolean
+  proposal: MsigTransaction
   accept?: (proposal: MsigTransaction) => void
-  reject?: (proposal: MsigTransaction) => void
+  cancel?: (proposal: MsigTransaction) => void
 }
 
 ProposalHead.propTypes = {
   title: PropTypes.string.isRequired,
   actionRequired: PropTypes.bool.isRequired,
+  isProposer: PropTypes.bool.isRequired,
+  proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
   accept: PropTypes.func,
-  reject: PropTypes.func
+  cancel: PropTypes.func
 }
 
 ProposalHead.defaultProps = {

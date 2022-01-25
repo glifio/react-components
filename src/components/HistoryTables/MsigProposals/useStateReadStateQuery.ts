@@ -2,19 +2,20 @@ import { useState } from 'react'
 import { QueryHookOptions } from '@apollo/client'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { useEffect } from 'react'
+import { Address } from '../../../generated/graphql'
 
 const lCli = new LotusRPCEngine({
   apiAddress:
     process.env.LOTUS_NODE_JSONRPC || 'https://calibration.node.glif.io'
 })
 
-type MsigState = {
+type MsigState<T = Address> = {
   Balance: string
   State: {
     InitialBalance: string
     NextTxnID: number
     NumApprovalsThreshold: number
-    Signers: string[]
+    Signers: T[]
     StartEpoch: number
     UnlockDuration: number
   }
@@ -23,24 +24,38 @@ type MsigState = {
 /////// implemented until https://github.com/glifio/graph/issues/33
 export const useStateReadStateQuery = (
   baseOptions: QueryHookOptions<
-    MsigState,
+    MsigState<Address>,
     {
       address: string
     }
   >
-): { data: MsigState; error: Error; loading: boolean } => {
-  const [actorState, setActorState] = useState<MsigState | null>(null)
+): { data: MsigState<Address>; error: Error; loading: boolean } => {
+  const [actorState, setActorState] = useState<MsigState<Address> | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
   useEffect(() => {
     const fetchState = async () => {
       try {
-        const res = await lCli.request<MsigState>(
+        const res = await lCli.request<MsigState<string>>(
           'StateReadState',
           baseOptions.variables.address,
           null
         )
-        setActorState(res)
+
+        if (res) {
+          const signers = await Promise.all(
+            res.State.Signers.map(async (signer: string) => {
+              const robust = await lCli.request<string>(
+                'StateAccountKey',
+                signer,
+                null
+              )
+              return { id: signer, robust } as Address
+            })
+          )
+
+          setActorState({ ...res, State: { ...res.State, Signers: signers } })
+        }
       } catch (err) {
         if (err instanceof Error) setError(err)
         else setError(new Error('Failed to fetch'))
