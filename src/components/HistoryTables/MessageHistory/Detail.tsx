@@ -185,5 +185,9 @@ MessageDetail.propTypes = {
   speedUp: PropTypes.func,
   cancel: PropTypes.func,
   addressHref: PropTypes.func.isRequired,
-  confirmations: PropTypes.number.isRequired
+  confirmations: PropTypes.number
+}
+
+MessageDetail.defaultProps = {
+  confirmations: 50
 }

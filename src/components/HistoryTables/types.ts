@@ -64,5 +64,6 @@ export const PROPOSAL_ROW_PROP_TYPE = PropTypes.shape({
   method: PropTypes.number.isRequired,
   params: PropTypes.object,
   to: PropTypes.string.isRequired,
-  approved: PropTypes.arrayOf(PropTypes.string)
+  approved: PropTypes.arrayOf(PropTypes.string),
+  proposalHash: PropTypes.string.isRequired
 })

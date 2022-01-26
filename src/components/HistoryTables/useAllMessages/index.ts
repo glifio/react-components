@@ -53,7 +53,6 @@ export const usePendingMessages = (
     // dont poll here because we rely on the subscription and StateListMessage query for updates
     pollInterval: 0
   })
-  console.log('PENDING MSGS FROM QUERY', { pendingMsgs })
   if (!pendingMsgs?.loading && pendingMsgs.data) {
     safeUpdate((pendingMsgs?.data?.pendingMessages as MessagePending[]) || [])
   }
@@ -71,7 +70,6 @@ export const usePendingMessages = (
 
   // from submitted messages from wallet or safe
   const { messages: submittedMessages } = useSubmittedMessages()
-  console.log('SUBMITTED MSGS FROM APP', { submittedMessages })
   useEffect(() => {
     if (submittedMessages.length) {
       safeUpdate([...submittedMessages])
@@ -119,7 +117,6 @@ export const usePendingMessages = (
       }
     }
   }, [chainHeadSubscription, setShouldRefresh, shouldRefresh])
-  console.log('FINAL PENDING MSG LIST', { pendingMsgList })
   return { pendingMsgList, shouldRefresh, setShouldRefresh }
 }
 
@@ -163,6 +160,8 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
       return pendingMsgList
         .filter(msg => !confirmedCids.has(msg.cid))
         .sort((a, b) => Number(b.nonce) - Number(a.nonce))
+    } else if (pendingMsgList.length > 0) {
+      return pendingMsgList.sort((a, b) => Number(b.nonce) - Number(a.nonce))
     } else {
       return []
     }
@@ -297,7 +296,7 @@ export const useMessage = (cid: string) => {
 
   const lowConfMsgErr = useMemo(() => {
     // this error infers we are looking for the pending message but havent found it yet...
-    if (!!pendingMsg && _lowConfMsgErr.message.includes("didn't find msg")) {
+    if (!!pendingMsg && _lowConfMsgErr?.message.includes("didn't find msg")) {
       return
     } else return _lowConfMsgErr
   }, [_lowConfMsgErr, pendingMsg])
@@ -308,10 +307,19 @@ export const useMessage = (cid: string) => {
     }
   }, [pendingMsg, lowConfMsgData, lowConfMsgLoading, lowConfMsgErr])
 
-  const loading = useMemo(
-    () => highConfMsgLoading || lowConfMsgLoading || pendingMsgLoading,
-    [highConfMsgLoading, lowConfMsgLoading, pendingMsgLoading]
-  )
+  const loading = useMemo(() => {
+    // low confidence messages can take a long time to load
+    // if we have the message, use it
+    if (!highConfMsgLoading && !!highConfMsgData?.message) return false
+    if (!pendingMsgLoading && !!pendingMsgData?.pendingMessage) return false
+    return highConfMsgLoading || lowConfMsgLoading || pendingMsgLoading
+  }, [
+    highConfMsgLoading,
+    lowConfMsgLoading,
+    pendingMsgLoading,
+    pendingMsgData,
+    highConfMsgData
+  ])
 
   const error = useMemo(
     () => highConfiMsgErr || lowConfMsgErr || pendingMsgErr,
@@ -324,8 +332,12 @@ export const useMessage = (cid: string) => {
       return lowConfMsgData.messageLowConfidence as MessageConfirmed
     } else if (ready && pendingMsg) {
       return pendingMsg
-    } else if (ready && highConfMsgData.message) {
-      return highConfMsgData.message as MessageConfirmed
+    } else if (
+      ready &&
+      (highConfMsgData.message || lowConfMsgData.messageLowConfidence)
+    ) {
+      return (highConfMsgData.message ||
+        lowConfMsgData.messageLowConfidence) as MessageConfirmed
     } else return null
   }, [
     highConfMsgData,

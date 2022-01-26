@@ -11,7 +11,7 @@ import {
   useActorQuery,
   useMsigPendingQuery
 } from '../../../generated/graphql'
-import { decodeActorCID } from '../../..'
+import { isAddrEqual, decodeActorCID } from '../../../utils'
 import { useStateReadStateQuery } from './useStateReadStateQuery'
 import { getMethodName } from '../methodName'
 
@@ -21,9 +21,8 @@ type ProposalDetailProps = {
   walletAddress?: string
 
   accept: (proposal: MsigTransaction) => void
-  reject: (proposal: MsigTransaction) => void
+  cancel: (proposal: MsigTransaction) => void
   addressHref: (address: string) => string
-  cidHref: (cid: string) => string
 }
 
 const SeeMore = styled(P).attrs(() => ({
@@ -47,27 +46,12 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     pollInterval: 0
   })
 
-  /////// TODO: remove once https://github.com/glifio/graph/issues/32 gets fixed
-  const msigTxs = useMemo(() => {
-    if (!msigTxsLoading && !_msigTxsError) {
-      return {
-        msigPending: msigTxsData?.msigPending?.map(p => {
-          return {
-            ...p,
-            approved: p.approved.map(approver => ({ id: approver, robust: '' }))
-          }
-        }) as (MsigTransaction & { approved: Address[] })[]
-      }
-    }
-  }, [msigTxsData, msigTxsLoading, _msigTxsError])
-  ////////
-
   const proposal = useMemo(() => {
     if (!msigTxsLoading && !_msigTxsError) {
-      return msigTxs?.msigPending.find(p => p.id === props.id)
+      return msigTxsData?.msigPending.find(p => p.id === props.id)
     }
     return null
-  }, [msigTxs, msigTxsLoading, _msigTxsError, props.id])
+  }, [msigTxsData, msigTxsLoading, _msigTxsError, props.id])
 
   const [seeMore, setSeeMore] = useState(false)
 
@@ -89,25 +73,43 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         !decodeActorCID(actorData.actor.Code).includes('multisig'))
   })
 
-  const actionRequired = useMemo(() => {
-    if (!props.walletAddress) return false
-    if (!!proposal) {
-      return proposal.approved.some((approver: Address) => {
-        return (
-          approver.id === props.walletAddress ||
-          approver.robust === props.walletAddress
-        )
-      })
-    }
-    return false
-  }, [proposal, props.walletAddress])
-
   const proposalFoundError = useMemo(() => {
     if (!msigTxsLoading && !proposal) {
       return new Error('Proposal not found')
     }
     return _msigTxsError
   }, [_msigTxsError, msigTxsLoading, proposal])
+
+  const actionRequired = useMemo(() => {
+    if (proposalFoundError) return false
+    if (!props.walletAddress) return false
+    if (!!proposal && !stateLoading && !stateError) {
+      const walletAddressIsSigner = stateData.State.Signers.some(signer =>
+        isAddrEqual(signer, props.walletAddress)
+      )
+
+      const alreadyApproved = proposal.approved.some(approver =>
+        isAddrEqual(approver, props.walletAddress)
+      )
+
+      return walletAddressIsSigner && !alreadyApproved
+    }
+    return false
+  }, [
+    proposal,
+    proposalFoundError,
+    props.walletAddress,
+    stateData?.State.Signers,
+    stateLoading,
+    stateError
+  ])
+
+  const isProposer = useMemo(() => {
+    if (!proposalFoundError && !!proposal && !!props.walletAddress) {
+      return isAddrEqual(proposal.approved[0], props.walletAddress)
+    }
+    return false
+  }, [proposal, proposalFoundError, props.walletAddress])
 
   const loading = useMemo(
     () => actorLoading || msigTxsLoading || stateLoading,
@@ -144,13 +146,17 @@ export default function ProposalDetail(props: ProposalDetailProps) {
       <ProposalHead
         title='Proposal Overview'
         accept={props.accept}
-        reject={props.reject}
+        cancel={props.cancel}
+        proposal={proposal}
         actionRequired={actionRequired}
+        isProposer={isProposer}
       />
       <HR />
       <Line label='Proposal ID'>{props.id}</Line>
-      {/* TODO: This should be the normal address component */}
-      <Line label='Proposer'>{proposal?.approved[0].id || 'Loading...'}</Line>
+      <Line label='Proposer'>
+        {`${proposal?.approved[0].robust} (${proposal?.approved[0].id})` ||
+          'Loading...'}
+      </Line>
       <Line label='Approvals until execution'>
         {approvalsUntilExecution.toString()}
       </Line>
@@ -177,7 +183,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
           <Line label='Approvers'>
             {proposal?.approved.map((approver: Address) => {
               return (
-                <Line key={`${1}-${approver.robust}`} depth={1}>
+                <Line key={`${1}-${approver.robust || approver.id}`} depth={1}>
                   {approver.robust} ({approver.id})
                 </Line>
               )
@@ -195,7 +201,6 @@ ProposalDetail.propTypes = {
   cid: PropTypes.string,
   address: ADDRESS_PROPTYPE,
   addressHref: PropTypes.func.isRequired,
-  cidHref: PropTypes.func.isRequired,
   accept: PropTypes.func,
   reject: PropTypes.func
 }

@@ -63,7 +63,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
       <TD>
         <AddressWOptionalLink
           onClick={e => e.stopPropagation()}
-          address={proposal.approved[0]}
+          address={proposal.approved[0].robust || proposal.approved[0].id}
           addressHref={addressHref}
           inspectingAddress={inspectingAddress}
         />

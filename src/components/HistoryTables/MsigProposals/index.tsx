@@ -32,15 +32,17 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
       <TABLE>
         <ProposalRowColumnTitles />
         <tbody>
-          {data?.msigPending.map(proposal => (
-            <ProposalRow
-              key={proposal.id}
-              proposal={proposal}
-              idHref={props.idHref}
-              addressHref={props.addressHref}
-              inspectingAddress={props.address}
-            />
-          ))}
+          {[...data?.msigPending]
+            .sort((a, b) => a.id - b.id)
+            .map(proposal => (
+              <ProposalRow
+                key={proposal.id}
+                proposal={proposal}
+                idHref={props.idHref}
+                addressHref={props.addressHref}
+                inspectingAddress={props.address}
+              />
+            ))}
         </tbody>
       </TABLE>
     </Box>
