@@ -32,7 +32,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 
   return (
     <Box>
-      <TABLE>
+      <TABLE className="narrow">
         <MessageRowColumnTitles />
         <tbody>
           {pendingMsgs?.map(message => (

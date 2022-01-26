@@ -19,11 +19,15 @@ export const TH = styled.th`
   padding-right: 3rem;
 
   @media (max-width: 1600px) {
-    padding-right: 1.5rem;
+    table.narrow & {
+      padding-right: 1.5rem;
+    }
   }
 
   @media (max-width: 1400px) {
-    padding-right: 1rem;
+    table.narrow & {
+      padding-right: 1rem;
+    }
   }
 
   &:last-child {
@@ -38,11 +42,15 @@ export const TD = styled.td`
   padding-right: 3rem;
 
   @media (max-width: 1600px) {
-    padding-right: 1.5rem;
+    table.narrow & {
+      padding-right: 1.5rem;
+    }
   }
 
   @media (max-width: 1400px) {
-    padding-right: 1rem;
+    table.narrow & {
+      padding-right: 1rem;
+    }
   }
 
   &:last-child {
