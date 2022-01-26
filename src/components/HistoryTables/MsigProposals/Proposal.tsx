@@ -92,7 +92,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         isAddrEqual(approver, props.walletAddress)
       )
 
-      return walletAddressIsSigner || !alreadyApproved
+      return walletAddressIsSigner && !alreadyApproved
     }
     return false
   }, [

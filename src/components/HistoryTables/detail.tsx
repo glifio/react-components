@@ -92,29 +92,26 @@ export const ProposalHead = ({
     )}
     <Box display='flex' gridGap='1rem'>
       {actionRequired && (
-        <>
-          <ButtonV2
-            hoverColor='green'
-            small
-            fontSize='1.5rem'
-            onClick={() => accept(proposal)}
-          >
-            <IconCheck width='1.75rem' />
-            Accept
-          </ButtonV2>
-
-          {isProposer && (
-            <ButtonV2
-              hoverColor='red'
-              small
-              fontSize='1.5rem'
-              onClick={() => cancel(proposal)}
-            >
-              <IconFail width='1.25rem' />
-              Cancel
-            </ButtonV2>
-          )}
-        </>
+        <ButtonV2
+          hoverColor='green'
+          small
+          fontSize='1.5rem'
+          onClick={() => accept(proposal)}
+        >
+          <IconCheck width='1.75rem' />
+          Accept
+        </ButtonV2>
+      )}
+      {isProposer && (
+        <ButtonV2
+          hoverColor='red'
+          small
+          fontSize='1.5rem'
+          onClick={() => cancel(proposal)}
+        >
+          <IconFail width='1.25rem' />
+          Cancel
+        </ButtonV2>
       )}
     </Box>
   </Box>

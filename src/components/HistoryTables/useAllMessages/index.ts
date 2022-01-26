@@ -129,7 +129,6 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   // these pending messages might have recently confirmed low conf messages... filter them out
   const { pendingMsgList, shouldRefresh, setShouldRefresh } =
     usePendingMessages(address, chainHeadSub)
-  console.log('FINAL PENDING MSG LIST', { pendingMsgList })
 
   const {
     data: lowConfidenceMsgsData,
@@ -150,11 +149,6 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
 
   // pluck confirmed messages from the pending message list
   const pendingMsgs = useMemo(() => {
-    console.log(
-      'IN PENDING MESSAGES',
-      lowConfidenceMsgsLoading,
-      lowConfidenceMsgsError
-    )
     if (
       !lowConfidenceMsgsLoading &&
       !lowConfidenceMsgsError &&
@@ -166,8 +160,9 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
       return pendingMsgList
         .filter(msg => !confirmedCids.has(msg.cid))
         .sort((a, b) => Number(b.nonce) - Number(a.nonce))
+    } else if (pendingMsgList.length > 0) {
+      return pendingMsgList.sort((a, b) => Number(b.nonce) - Number(a.nonce))
     } else {
-      console.log('hit the else')
       return []
     }
   }, [
@@ -176,8 +171,6 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     lowConfidenceMsgsLoading,
     lowConfidenceMsgsData
   ]) as MessagePending[]
-
-  console.log('PENDING MSGS AFTER PLUCKING LOW CONF', pendingMsgs)
 
   const [offset, setOffset] = useState(_offset)
 
@@ -303,7 +296,7 @@ export const useMessage = (cid: string) => {
 
   const lowConfMsgErr = useMemo(() => {
     // this error infers we are looking for the pending message but havent found it yet...
-    if (!!pendingMsg && _lowConfMsgErr.message.includes("didn't find msg")) {
+    if (!!pendingMsg && _lowConfMsgErr?.message.includes("didn't find msg")) {
       return
     } else return _lowConfMsgErr
   }, [_lowConfMsgErr, pendingMsg])
