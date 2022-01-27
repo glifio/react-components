@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
+import { useRouter } from 'next/router'
 import {
   useChainHeadSubscription,
   MessageConfirmed
@@ -40,6 +41,7 @@ export default function MessageDetail(props: MessageDetailProps) {
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, loading, error, pending } = useMessage(cid)
+  const router = useRouter()
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -75,9 +77,11 @@ export default function MessageDetail(props: MessageDetailProps) {
   if (error)
     return (
       <ErrorView
-        title='Failed to load transaction'
+        title={`Failed to load message: ${cid}`}
         description={error.message}
-        sendHome={() => (window.location.href = addressHref(''))}
+        sendHome={() => {
+          router.back()
+        }}
       />
     )
 

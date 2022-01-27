@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { useRouter } from 'next/router'
 import Box from '../../Box'
 import { P, HR } from '../../Typography'
 import { ProposalHead, Line, Parameters } from '../detail'
@@ -35,6 +36,7 @@ const SeeMore = styled(P).attrs(() => ({
 `
 
 export default function ProposalDetail(props: ProposalDetailProps) {
+  const router = useRouter()
   let {
     data: msigTxsData,
     loading: msigTxsLoading,
@@ -144,12 +146,14 @@ export default function ProposalDetail(props: ProposalDetailProps) {
   )
 
   if (loading) return <LoadingScreen marginTop='10rem' />
-  if (error) 
+  if (error)
     return (
       <ErrorView
         title='Failed to load proposal'
         description={error.message}
-        sendHome={() => (window.location.href = props.addressHref(''))}
+        sendHome={() => {
+          router.back()
+        }}
       />
     )
 
