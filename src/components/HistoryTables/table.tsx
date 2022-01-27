@@ -1,3 +1,5 @@
+import { ApolloError } from '@apollo/client'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 export const TABLE = styled.table`
@@ -65,3 +67,43 @@ export const TD = styled.td`
     }
   }
 `
+
+const CAPTION = styled.caption`
+  line-height: 4.5rem;
+  text-align: center;
+  caption-side: bottom;
+  color: ${props => props.theme.colors.gray.medium};
+
+  &.error {
+    color: ${props => props.theme.colors.red.base};
+  }
+`
+
+export const TableCaption = ({
+  name,
+  loading,
+  empty,
+  error
+}: TableCaptionProps) => {
+  if (error)
+    return (
+      <CAPTION className='error'>{`${name} failed to load: ${error.message}`}</CAPTION>
+    )
+  if (loading) return <CAPTION>{`${name} is loading...`}</CAPTION>
+  if (empty) return <CAPTION>{`No records found for ${name}`}</CAPTION>
+  return <></>
+}
+
+type TableCaptionProps = {
+  name: string
+  loading: boolean
+  empty: boolean
+  error: ApolloError
+}
+
+TableCaption.propTypes = {
+  name: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  empty: PropTypes.bool.isRequired,
+  error: PropTypes.object
+}
