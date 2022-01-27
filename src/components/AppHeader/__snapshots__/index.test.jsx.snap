@@ -22,6 +22,7 @@ exports[`AppHeader renders the box 1`] = `
   gap: 0.75rem;
   padding: 0.5em 0.75em;
   border-radius: 100px;
+  white-space: nowrap;
   font-size: 26px;
   font-size: 18px;
   border: 1px solid black;
