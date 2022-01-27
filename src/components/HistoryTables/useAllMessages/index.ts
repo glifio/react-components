@@ -117,7 +117,11 @@ export const usePendingMessages = (
       }
     }
   }, [chainHeadSubscription, setShouldRefresh, shouldRefresh])
-  return { pendingMsgList, shouldRefresh, setShouldRefresh }
+  return {
+    pendingMsgList,
+    shouldRefresh,
+    setShouldRefresh
+  }
 }
 
 // note this does not filter out errors for loading pending messages...
@@ -190,7 +194,8 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     setFetchingMore(true)
     await fetchMore({
       variables: {
-        offset: offset + DEFAULT_LIMIT
+        offset: offset + DEFAULT_LIMIT,
+        limit: DEFAULT_LIMIT
       }
     })
     setOffset(offset + DEFAULT_LIMIT)
@@ -212,9 +217,11 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
       !lowConfidenceMsgsLoading &&
       !lowConfidenceMsgsError
     ) {
+      const clonedHighConfiMsgs = [...data?.messagesConfirmed]
+
       // mark the CIDs we have from high confidence
       const highConfidenceCIDs = new Set(
-        [...data?.messagesConfirmed].map(msg => msg.cid)
+        clonedHighConfiMsgs.map(msg => msg.cid)
       )
 
       // dont include any from low confidence when we have high confidence
@@ -224,11 +231,23 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
           )
         : []
 
+      // dont include duplicates if the high confidence message db updated and the offset is off by n
+      const filteredHighConfidenceMsgs = clonedHighConfiMsgs.reduce(
+        (accum, ele) => {
+          if (highConfidenceCIDs.has(ele.cid)) {
+            highConfidenceCIDs.delete(ele.cid)
+            accum.push(ele)
+            return accum
+          }
+        },
+        []
+      )
+
       // merge the two results
       return [
         // TODO remove the sort once we have that done
         ...filteredLowConfidenceMsgs.sort((a, b) => b.height - a.height),
-        ...data.messagesConfirmed
+        ...filteredHighConfidenceMsgs
       ] as MessageConfirmed[]
     }
     return []
@@ -294,6 +313,12 @@ export const useMessage = (cid: string) => {
     skip: pendingMsgLoading
   })
 
+  const {
+    pushPendingMessage,
+    messages: submittedMessages,
+    clearPendingMessage
+  } = useSubmittedMessages()
+
   const lowConfMsgErr = useMemo(() => {
     // this error infers we are looking for the pending message but havent found it yet...
     if (!!pendingMsg && _lowConfMsgErr?.message.includes("didn't find msg")) {
@@ -303,9 +328,44 @@ export const useMessage = (cid: string) => {
 
   const pendingFoundInLowConfMsgs = useMemo(() => {
     if (pendingMsg && !lowConfMsgLoading && !lowConfMsgErr) {
-      return !!lowConfMsgData.messageLowConfidence
+      return !!lowConfMsgData?.messageLowConfidence
     }
   }, [pendingMsg, lowConfMsgData, lowConfMsgLoading, lowConfMsgErr])
+
+  // this is to make sure if the message confirms in the transaction detail view
+  // the cache used in the transaction history list is up to date
+  // this is a non blocking operation, since we use refetch to get fresh data from the server
+  const { refetch } = useStateListMessagesQuery({
+    variables: { address: '' },
+    skip: true,
+    pollInterval: 0
+  })
+
+  useEffect(() => {
+    const revalidateMsgCache = async (addrTo: string, addrFrom: string) => {
+      await Promise.all([
+        refetch({ address: addrTo }),
+        refetch({ address: addrFrom })
+      ])
+    }
+    if (pendingFoundInLowConfMsgs && submittedMessages.length > 0) {
+      const message = submittedMessages.find(m => m.cid === cid)
+      if (message) {
+        clearPendingMessage(cid)
+        revalidateMsgCache(
+          message.to.robust || message.to.id,
+          message.from.robust || message.from.id
+        )
+      }
+    }
+  }, [
+    pendingFoundInLowConfMsgs,
+    clearPendingMessage,
+    submittedMessages,
+    pushPendingMessage,
+    cid,
+    refetch
+  ])
 
   const loading = useMemo(() => {
     // low confidence messages can take a long time to load
