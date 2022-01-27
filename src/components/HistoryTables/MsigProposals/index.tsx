@@ -3,7 +3,7 @@ import Box from '../../Box'
 import ProposalRow from './ProposalRow'
 import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
-import { TABLE } from '../table'
+import { TABLE, TableCaption } from '../table'
 import { useMsigPendingQuery } from '../../..'
 
 type ProposalHistoryTableProps = {
@@ -24,12 +24,15 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
     pollInterval: 0
   })
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :( {error.message} </p>
-
   return (
     <Box>
       <TABLE>
+        <TableCaption
+          name='MSIG Proposal List'
+          loading={loading}
+          error={error}
+          empty={!data?.msigPending.length}
+        />
         <ProposalRowColumnTitles />
         <tbody>
           {[...data?.msigPending]
