@@ -33,6 +33,7 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
           color='card.error.foreground'
           ml={2}
           minHeight={11}
+          style={{ wordBreak: 'break-word' }}
         >
           <Box>
             <Glyph color='status.fail.foreground' acronym='Er' />
@@ -42,7 +43,7 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
             <Text>{description}</Text>
           </Box>
 
-          <Box>
+          {linkhref && linkDisplay && (
             <StyledATag
               rel='noopener'
               target='_blank'
@@ -52,7 +53,7 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
             >
               {linkDisplay}
             </StyledATag>
-          </Box>
+          )}
         </OnboardCard>
       </Box>
       <Box>
@@ -65,8 +66,8 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
 ErrorView.propTypes = {
   description: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  linkhref: PropTypes.string.isRequired,
-  linkDisplay: PropTypes.string.isRequired,
+  linkhref: PropTypes.string,
+  linkDisplay: PropTypes.string,
   sendHome: PropTypes.func
 }
 

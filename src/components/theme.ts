@@ -141,6 +141,11 @@ const colors = {
   blue: {
     muted700: '#d9e0f2'
   },
+  red: {
+    light: '#FC6D6F',
+    dark: '#660000',
+    base: '#ff4242'
+  },
   gray: {
     light: '#C4C4C4',
     medium: '#949598',

@@ -61,9 +61,14 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
       }
     },
     MessagePending: {
-      keyFields: ['cid']
+      keyFields: ['cid'],
+      fields: {
+        params: {
+          merge: parseParams
+        }
+      }
     },
-    MsigPending: {
+    MsigTransaction: {
       keyFields: ['id'],
       fields: {
         params: {

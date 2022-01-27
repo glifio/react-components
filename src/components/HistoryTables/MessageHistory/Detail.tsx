@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
+import { useRouter } from 'next/router'
 import {
   useChainHeadSubscription,
   MessageConfirmed
@@ -22,6 +23,8 @@ import {
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
+import LoadingScreen from '../../LoadingScreen'
+import ErrorView from '../../Error'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -38,6 +41,7 @@ export default function MessageDetail(props: MessageDetailProps) {
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, loading, error, pending } = useMessage(cid)
+  const router = useRouter()
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -69,8 +73,17 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   const methodName = useMethodName(message)
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :( {error.message}</p>
+  if (loading) return <LoadingScreen marginTop='10rem' />
+  if (error)
+    return (
+      <ErrorView
+        title={`Failed to load message: ${cid}`}
+        description={error.message}
+        sendHome={() => {
+          router.back()
+        }}
+      />
+    )
 
   return (
     <Box>

@@ -65,8 +65,8 @@ const TextInput = forwardRef<string, any>(
 )
 
 TextInput.propTypes = {
-  onChange: oneOfType([func, undefined]),
-  value: oneOfType([string, undefined]),
+  onChange: oneOfType([func]),
+  value: oneOfType([string]),
   label: string,
   placeholder: string,
   disabled: bool,

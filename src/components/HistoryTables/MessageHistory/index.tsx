@@ -6,7 +6,7 @@ import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import ButtonV2 from '../../Button/V2'
-import { TABLE } from '../table'
+import { TABLE, TableCaption } from '../table'
 import { useAllMessages } from '../useAllMessages'
 
 const DEFAULT_LIMIT = 10
@@ -27,12 +27,15 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     [messages?.length]
   )
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :( {error.message}</p>
-
   return (
     <Box>
-      <TABLE>
+      <TABLE className='narrow'>
+        <TableCaption
+          name='Transaction History'
+          loading={loading}
+          error={error}
+          empty={!pendingMsgs?.length && !messages?.length}
+        />
         <MessageRowColumnTitles />
         <tbody>
           {pendingMsgs?.map(message => (

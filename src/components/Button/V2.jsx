@@ -11,6 +11,7 @@ const ButtonV2 = styled.button`
   gap: 0.75rem;
   padding: 0.5em 0.75em;
   border-radius: ${props => (props.round ? '100px' : '8px')};
+  white-space: nowrap;
 
   ${props =>
     props.large &&

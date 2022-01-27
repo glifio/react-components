@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { useRouter } from 'next/router'
 import Box from '../../Box'
 import { P, HR } from '../../Typography'
 import { ProposalHead, Line, Parameters } from '../detail'
@@ -14,6 +15,8 @@ import {
 import { isAddrEqual, decodeActorCID } from '../../../utils'
 import { useStateReadStateQuery } from './useStateReadStateQuery'
 import { getMethodName } from '../methodName'
+import LoadingScreen from '../../LoadingScreen'
+import ErrorView from '../../Error'
 
 type ProposalDetailProps = {
   id: number
@@ -33,6 +36,7 @@ const SeeMore = styled(P).attrs(() => ({
 `
 
 export default function ProposalDetail(props: ProposalDetailProps) {
+  const router = useRouter()
   let {
     data: msigTxsData,
     loading: msigTxsLoading,
@@ -116,6 +120,11 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     [actorLoading, msigTxsLoading, stateLoading]
   )
 
+  const error: Error | null = useMemo(
+    () => proposalFoundError || actorError || stateError || null,
+    [proposalFoundError, actorError, stateError]
+  )
+
   const approvalsUntilExecution = useMemo(() => {
     if (!loading && !proposalFoundError && !stateError) {
       return (
@@ -136,10 +145,17 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     [proposal?.method]
   )
 
-  if (loading) return <p>Loading...</p>
-  if (proposalFoundError) return <p>Error :( {proposalFoundError.message}</p>
-  if (actorError) return <p>Error :( {actorError.message}</p>
-  if (stateError) return <p>Error :( {stateError.message}</p>
+  if (loading) return <LoadingScreen marginTop='10rem' />
+  if (error)
+    return (
+      <ErrorView
+        title='Failed to load proposal'
+        description={error.message}
+        sendHome={() => {
+          router.back()
+        }}
+      />
+    )
 
   return (
     <Box>
