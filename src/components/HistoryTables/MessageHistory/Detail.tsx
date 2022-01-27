@@ -22,6 +22,8 @@ import {
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
+import LoadingScreen from '../../LoadingScreen'
+import ErrorView from '../../Error'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -69,8 +71,15 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   const methodName = useMethodName(message)
 
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :( {error.message}</p>
+  if (loading) return <LoadingScreen marginTop='10rem' />
+  if (error)
+    return (
+      <ErrorView
+        title='Failed to load transaction'
+        description={error.message}
+        sendHome={() => (window.location.href = addressHref(''))}
+      />
+    )
 
   return (
     <Box>

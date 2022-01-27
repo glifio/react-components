@@ -14,6 +14,8 @@ import {
 import { isAddrEqual, decodeActorCID } from '../../../utils'
 import { useStateReadStateQuery } from './useStateReadStateQuery'
 import { getMethodName } from '../methodName'
+import LoadingScreen from '../../LoadingScreen'
+import ErrorView from '../../Error'
 
 type ProposalDetailProps = {
   id: number
@@ -116,6 +118,11 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     [actorLoading, msigTxsLoading, stateLoading]
   )
 
+  const error: Error | null = useMemo(
+    () => proposalFoundError || actorError || stateError || null,
+    [proposalFoundError, actorError, stateError]
+  )
+
   const approvalsUntilExecution = useMemo(() => {
     if (!loading && !proposalFoundError && !stateError) {
       return (
@@ -136,10 +143,15 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     [proposal?.method]
   )
 
-  if (loading) return <p>Loading...</p>
-  if (proposalFoundError) return <p>Error :( {proposalFoundError.message}</p>
-  if (actorError) return <p>Error :( {actorError.message}</p>
-  if (stateError) return <p>Error :( {stateError.message}</p>
+  if (loading) return <LoadingScreen marginTop='10rem' />
+  if (error) 
+    return (
+      <ErrorView
+        title='Failed to load proposal'
+        description={error.message}
+        sendHome={() => (window.location.href = props.addressHref(''))}
+      />
+    )
 
   return (
     <Box>
