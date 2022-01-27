@@ -21,7 +21,7 @@ export const useUnformattedDateTime = (
   useChainHeadSubscription({
     variables: {},
     skip: !message,
-    shouldResubscribe: false,
+    shouldResubscribe: !age,
     onSubscriptionData: ({ subscriptionData }) => {
       if (!subscriptionData.loading && !subscriptionData.error && !!message) {
         let epochsPast =

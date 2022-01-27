@@ -23,9 +23,8 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
     Query: {
       fields: {
         messagesConfirmed: {
-          // Don't cache separate results based on
-          // any of this field's arguments.
-          keyArgs: false,
+          // Cache separate results based on address passed as arg
+          keyArgs: ['address'],
           // Concatenate the incoming list items with
           // the existing list items.
           merge(existing = [], incoming) {

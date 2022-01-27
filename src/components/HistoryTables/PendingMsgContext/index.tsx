@@ -5,9 +5,11 @@ import { MessagePending } from '../../../generated/graphql'
 export const PendingMsgContext = createContext<{
   messages: MessagePending[]
   pushPendingMessage: (msg: MessagePending) => void
+  clearPendingMessage: (cid: string) => void
 }>({
   messages: [],
-  pushPendingMessage: () => {}
+  pushPendingMessage: () => {},
+  clearPendingMessage: () => {}
 })
 
 export const PendingMessageProvider = ({
@@ -23,6 +25,9 @@ export const PendingMessageProvider = ({
         messages,
         pushPendingMessage: (msg: MessagePending) => {
           setMessages(msgs => [...msgs, msg])
+        },
+        clearPendingMessage: (cid: string) => {
+          setMessages(msgs => msgs.filter(m => m.cid !== cid))
         }
       }}
     >
