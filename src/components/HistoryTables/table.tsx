@@ -69,13 +69,17 @@ export const TD = styled.td`
 `
 
 const CAPTION = styled.caption`
-  line-height: 4.5rem;
+  line-height: 1.5rem;
   text-align: center;
   caption-side: bottom;
+  padding: 1rem;
+  margin: 0.5rem 0;
   color: ${props => props.theme.colors.gray.medium};
 
   &.error {
-    color: ${props => props.theme.colors.red.base};
+    background: ${props => props.theme.colors.red.light};
+    color: ${props => props.theme.colors.red.dark};
+    border-radius: 4px;
   }
 `
 
