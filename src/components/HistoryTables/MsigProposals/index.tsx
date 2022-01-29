@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types'
+import { useRouter } from 'next/router'
 import Box from '../../Box'
 import ProposalRow from './ProposalRow'
 import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import { TABLE, TableCaption } from '../table'
-import { useMsigPendingQuery } from '../../..'
+import { useMsigPendingQuery } from '../../../generated/graphql'
+import LoadingScreen from '../../LoadingScreen'
+import ErrorView from '../../Error'
 
 type ProposalHistoryTableProps = {
   address: string
@@ -23,6 +26,20 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
     },
     pollInterval: 0
   })
+
+  const router = useRouter()
+
+  if (loading) return <LoadingScreen marginTop='10rem' />
+  if (error)
+    return (
+      <ErrorView
+        title='Failed to load proposal'
+        description={error.message}
+        sendHome={() => {
+          router.back()
+        }}
+      />
+    )
 
   return (
     <Box>
