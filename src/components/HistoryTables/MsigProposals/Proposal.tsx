@@ -23,8 +23,8 @@ type ProposalDetailProps = {
   address: string
   walletAddress?: string
 
-  accept: (proposal: MsigTransaction) => void
-  cancel: (proposal: MsigTransaction) => void
+  accept: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
+  cancel: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
   addressHref: (address: string) => string
 }
 
@@ -165,6 +165,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         cancel={props.cancel}
         proposal={proposal}
         actionRequired={actionRequired}
+        approvalsUntilExecution={approvalsUntilExecution}
         isProposer={isProposer}
       />
       <HR />

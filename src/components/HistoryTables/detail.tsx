@@ -73,6 +73,7 @@ export const ProposalHead = ({
   accept,
   cancel,
   actionRequired,
+  approvalsUntilExecution,
   isProposer
 }: ProposalHeadProps) => (
   <Box
@@ -96,7 +97,7 @@ export const ProposalHead = ({
           hoverColor='green'
           small
           fontSize='1.5rem'
-          onClick={() => accept(proposal)}
+          onClick={() => accept(proposal, approvalsUntilExecution)}
         >
           <IconCheck width='1.75rem' />
           Accept
@@ -107,7 +108,7 @@ export const ProposalHead = ({
           hoverColor='red'
           small
           fontSize='1.5rem'
-          onClick={() => cancel(proposal)}
+          onClick={() => cancel(proposal, approvalsUntilExecution)}
         >
           <IconFail width='1.25rem' />
           Cancel
@@ -122,8 +123,9 @@ type ProposalHeadProps = {
   actionRequired: boolean
   isProposer: boolean
   proposal: MsigTransaction
-  accept?: (proposal: MsigTransaction) => void
-  cancel?: (proposal: MsigTransaction) => void
+  approvalsUntilExecution: number
+  accept?: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
+  cancel?: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
 }
 
 ProposalHead.propTypes = {
@@ -131,6 +133,7 @@ ProposalHead.propTypes = {
   actionRequired: PropTypes.bool.isRequired,
   isProposer: PropTypes.bool.isRequired,
   proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
+  approvalsUntilExecution: PropTypes.number.isRequired,
   accept: PropTypes.func,
   cancel: PropTypes.func
 }
