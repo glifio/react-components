@@ -100,7 +100,7 @@ export const ProposalHead = ({
           onClick={() => accept(proposal, approvalsUntilExecution)}
         >
           <IconCheck width='1.75rem' />
-          Accept
+          Approve
         </ButtonV2>
       )}
       {isProposer && (
