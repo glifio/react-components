@@ -15,6 +15,7 @@ export const Badge = ({ color, children }: BadgeProps) => (
     bg={`${color}.light`}
     color={`${color}.medium`}
     style={{ whiteSpace: 'nowrap' }}
+    textAlign='center'
   >
     {children}
   </Box>

@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { P } from '../Typography'
 import { baseColors, devices } from '../theme'
+import { logger } from '../../logger'
 
 const PhishingBannerContainer = styled.div`
   background: ${baseColors.red.base};
@@ -35,10 +36,12 @@ const PhishingText = styled(P)`
   }
 `
 
-const SAFE = 'https://safe.glif.io'
-const SENDER = 'https://sender.glif.io'
-
 export default function PhishingBanner({ href, closed, setClosed }) {
+  useEffect(() => {
+    if (!href.includes('glif.io')) {
+      logger.error('PHISHING DETECTED')
+    }
+  }, [href])
   return (
     <>
       {!closed && (
@@ -51,7 +54,7 @@ export default function PhishingBanner({ href, closed, setClosed }) {
               }
             `}
           >
-            {(href === SAFE || href === SENDER) && (
+            {href.includes('glif.io') && (
               <PhishingText style={{ display: 'inline-block' }}>
                 For your protection, please check your browser&apos;s URL bar
                 that you&apos;re visiting{' '}

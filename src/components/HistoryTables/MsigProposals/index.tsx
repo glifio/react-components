@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types'
-import { useRouter } from 'next/router'
 import Box from '../../Box'
 import ProposalRow from './ProposalRow'
 import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import { TABLE, TableCaption } from '../table'
 import { useMsigPendingQuery } from '../../../generated/graphql'
-import LoadingScreen from '../../LoadingScreen'
-import ErrorView from '../../Error'
 
 type ProposalHistoryTableProps = {
   address: string
@@ -27,20 +24,6 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
     pollInterval: 0
   })
 
-  const router = useRouter()
-
-  if (loading) return <LoadingScreen marginTop='10rem' />
-  if (error)
-    return (
-      <ErrorView
-        title='Failed to load proposal'
-        description={error.message}
-        sendHome={() => {
-          router.back()
-        }}
-      />
-    )
-
   return (
     <Box>
       <TABLE>
@@ -52,17 +35,18 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
         />
         <ProposalRowColumnTitles />
         <tbody>
-          {[...data?.msigPending]
-            .sort((a, b) => a.id - b.id)
-            .map(proposal => (
-              <ProposalRow
-                key={proposal.id}
-                proposal={proposal}
-                idHref={props.idHref}
-                addressHref={props.addressHref}
-                inspectingAddress={props.address}
-              />
-            ))}
+          {data &&
+            [...data?.msigPending]
+              .sort((a, b) => a.id - b.id)
+              .map(proposal => (
+                <ProposalRow
+                  key={proposal.id}
+                  proposal={proposal}
+                  idHref={props.idHref}
+                  addressHref={props.addressHref}
+                  inspectingAddress={props.address}
+                />
+              ))}
         </tbody>
       </TABLE>
     </Box>
