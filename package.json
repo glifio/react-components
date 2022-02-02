@@ -78,6 +78,7 @@
     "@glif/filecoin-address": "latest",
     "@glif/filecoin-number": "latest",
     "@glif/filecoin-rpc-client": "latest",
+    "@glif/logger": "^2.0.0-alpha.16",
     "axios": "^0.25.0",
     "base32-decode": "^1.0.0",
     "bip39": "^3.0.3",
