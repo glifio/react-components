@@ -41,6 +41,32 @@ const ButtonV2 = styled.button`
     `}
 
   ${props =>
+    props.green &&
+    css`
+      color: white;
+      border-color: ${props.theme.colors.green.primary};
+      background: ${props.theme.colors.green.primary};
+      &:hover {
+        color: ${props.theme.colors.green.primary};
+        border-color: ${props.theme.colors.green.primary};
+        background: white;
+      }
+    `}
+
+  ${props =>
+    props.red &&
+    css`
+      color: white;
+      border-color: ${props.theme.colors.red.base};
+      background: ${props.theme.colors.red.base};
+      &:hover {
+        color: ${props.theme.colors.red.base};
+        border-color: ${props.theme.colors.red.base};
+        background: white;
+      }
+    `}
+
+  ${props =>
     props.disabled &&
     css`
       cursor: default;
@@ -56,12 +82,16 @@ const ButtonV2 = styled.button`
 ButtonV2.propTypes = {
   large: PropTypes.bool,
   white: PropTypes.bool,
+  green: PropTypes.bool,
+  red: PropTypes.bool,
   disabled: PropTypes.bool
 }
 
 ButtonV2.defaultProps = {
   large: false,
   white: false,
+  green: false,
+  red: false,
   disabled: false
 }
 
