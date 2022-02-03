@@ -1,64 +1,52 @@
 import styled, { css } from 'styled-components'
 import { layout, space } from 'styled-system'
 import PropTypes from 'prop-types'
-import { fontSize, devices } from '../theme'
 
 const ButtonV2 = styled.button`
-  cursor: pointer;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
+
+  cursor: pointer;
+
   gap: 0.75rem;
   padding: 0.5em 0.75em;
-  border-radius: ${props => (props.round ? '100px' : '8px')};
-  white-space: nowrap;
+  
+  border: 1px solid black;
+  border-radius: 8px;
+  
+  color: black;
+  background: transparent;
+
+  ${props =>
+    css`
+      &:hover {
+        color: ${props.theme.colors.core.primary};
+        border-color: ${props.theme.colors.core.primary};
+      }
+    `}
 
   ${props =>
     props.large &&
     css`
-      font-size: ${fontSize('medium')};
-
-      @media (max-width: ${devices.phone}) {
-        font-size: ${fontSize('medium', 'phone')};
-      }
-    `};
-
-  ${props =>
-    props.small &&
-    css`
-      font-size: ${fontSize('default')};
-
-      @media (max-width: ${devices.phone}) {
-        font-size: ${fontSize('default', 'phone')};
-      }
-    `};
-
-  ${props =>
-    props.black &&
-    css`
-      border: 1px solid black;
-      color: black;
-      background: transparent;
-
-      ${!props.disabled &&
-      `&:hover {
-        color: ${props.theme.colors.core.primary};
-        border-color: ${props.theme.colors.core.primary};
-      }`}
-    `};
+      font-size: 1.25em;
+    `}
 
   ${props =>
     props.white &&
     css`
-      border: 1px solid white;
       color: white;
-    `};
+      border-color: white;
+    `}
 
   ${props =>
     props.disabled &&
     css`
-      opacity: 0.5;
       cursor: default;
+      color: ${props.theme.colors.gray.medium};
+      border-color: ${props.theme.colors.gray.medium};
+      pointer-events: none;
     `}
 
   ${layout}
@@ -66,16 +54,15 @@ const ButtonV2 = styled.button`
 `
 
 ButtonV2.propTypes = {
-  round: PropTypes.bool,
-  small: PropTypes.bool,
   large: PropTypes.bool,
-  black: PropTypes.bool,
-  white: PropTypes.bool
+  white: PropTypes.bool,
+  disabled: PropTypes.bool
 }
 
 ButtonV2.defaultProps = {
-  large: true,
-  black: true
+  large: false,
+  white: false,
+  disabled: false
 }
 
 export default ButtonV2

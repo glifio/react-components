@@ -1,10 +1,10 @@
-import Button from './V2'
+import ButtonV2 from './V2'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
 export default {
-  title: 'Button/Button',
-  component: Button,
+  title: 'Button/ButtonV2',
+  component: ButtonV2,
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -15,12 +15,22 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <Button {...args}>Click me</Button>
+const Template = args => <ButtonV2 {...args}>Click me</ButtonV2>
 
 export const Base = Template.bind({})
-Base.args = {
-  round: false,
-  size: 'large',
-  color: 'black',
+Base.args = {}
+
+export const Large = Template.bind({})
+Large.args = {
+  large: true
+}
+
+export const White = Template.bind({})
+White.args = {
+  white: true
+}
+
+export const Disabled = Template.bind({})
+Disabled.args = {
   disabled: true
 }
