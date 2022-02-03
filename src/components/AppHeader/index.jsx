@@ -1,5 +1,5 @@
 import { AppIconHeaderFooter } from '../Icons'
-import Button from '../Button/V2'
+import ButtonV2 from '../Button/V2'
 import { space } from '../theme'
 
 export default function AppHeader() {
@@ -22,12 +22,12 @@ export default function AppHeader() {
         }}
       >
         <a>
-          <Button small round black>
+          <ButtonV2 small round black>
             Blog
-          </Button>
+          </ButtonV2>
         </a>
         <a>
-          <Button
+          <ButtonV2
             small
             round
             black
@@ -36,10 +36,10 @@ export default function AppHeader() {
             }}
           >
             Code
-          </Button>
+          </ButtonV2>
         </a>
         <a>
-          <Button
+          <ButtonV2
             small
             round
             black
@@ -48,7 +48,7 @@ export default function AppHeader() {
             }}
           >
             Nodes
-          </Button>
+          </ButtonV2>
         </a>
       </nav>
     </header>
