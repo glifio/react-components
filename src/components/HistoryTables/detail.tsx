@@ -35,12 +35,12 @@ export const Head = ({ title, speedUp, cancel, pending }: HeadProps) => (
       {pending && (
         <>
           <ButtonV2 fontSize='1.5rem' onClick={speedUp}>
-            <IconSpeedUp width='1.75rem' />
+            <IconSpeedUp width='1.5rem' />
             Speed up
           </ButtonV2>
 
           <ButtonV2 fontSize='1.5rem' onClick={cancel}>
-            <IconCancel width='1.25rem' />
+            <IconCancel width='1rem' />
             Cancel
           </ButtonV2>
         </>
