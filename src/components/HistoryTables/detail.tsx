@@ -95,7 +95,6 @@ export const ProposalHead = ({
       {actionRequired && (
         <ButtonV2
           hoverColor='green'
-          small
           fontSize='1.5rem'
           onClick={() => accept(proposal, approvalsUntilExecution)}
         >
@@ -106,7 +105,6 @@ export const ProposalHead = ({
       {isProposer && (
         <ButtonV2
           hoverColor='red'
-          small
           fontSize='1.5rem'
           onClick={() => cancel(proposal, approvalsUntilExecution)}
         >

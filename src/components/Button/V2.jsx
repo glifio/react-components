@@ -12,10 +12,10 @@ const ButtonV2 = styled.button`
 
   gap: 0.75rem;
   padding: 0.5em 0.75em;
-  
+
   border: 1px solid black;
   border-radius: 8px;
-  
+
   color: black;
   background: transparent;
 

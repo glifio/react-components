@@ -22,15 +22,10 @@ export default function AppHeader() {
         }}
       >
         <a>
-          <ButtonV2 small round black>
-            Blog
-          </ButtonV2>
+          <ButtonV2>Blog</ButtonV2>
         </a>
         <a>
           <ButtonV2
-            small
-            round
-            black
             style={{
               marginLeft: space('default')
             }}
@@ -40,9 +35,6 @@ export default function AppHeader() {
         </a>
         <a>
           <ButtonV2
-            small
-            round
-            black
             style={{
               marginLeft: space('default')
             }}
