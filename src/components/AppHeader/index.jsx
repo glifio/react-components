@@ -1,8 +1,26 @@
+import styled, { css } from 'styled-components'
+import PropTypes from 'prop-types'
 import { AppIconHeaderFooter } from '../Icons'
-import Button from '../Button/V2'
 import { space } from '../theme'
 
-export default function AppHeader() {
+const AppLink = styled.a`
+  padding: 0.5em 0.75em;
+  border: 1px solid black;
+  border-radius: 2em;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+
+  ${props =>
+    css`
+      &:hover {
+        color: ${props.theme.colors.core.primary};
+        border-color: ${props.theme.colors.core.primary};
+      }
+    `}
+`
+
+export default function AppHeader({ homeHref, blogHref, codeHref, nodesHref }) {
   return (
     <header
       style={{
@@ -11,46 +29,28 @@ export default function AppHeader() {
         paddingBottom: '50px'
       }}
     >
-      <a>
+      <a href={homeHref}>
         <AppIconHeaderFooter iconStyle='dark' />
       </a>
       <nav
         style={{
           display: 'flex',
           alignItems: 'flex-start',
-          alignContent: 'flex-start'
+          alignContent: 'flex-start',
+          gap: space('default')
         }}
       >
-        <a>
-          <Button small round black>
-            Blog
-          </Button>
-        </a>
-        <a>
-          <Button
-            small
-            round
-            black
-            style={{
-              marginLeft: space('default')
-            }}
-          >
-            Code
-          </Button>
-        </a>
-        <a>
-          <Button
-            small
-            round
-            black
-            style={{
-              marginLeft: space('default')
-            }}
-          >
-            Nodes
-          </Button>
-        </a>
+        {blogHref && <AppLink href={blogHref}>Blog</AppLink>}
+        {codeHref && <AppLink href={codeHref}>Code</AppLink>}
+        {nodesHref && <AppLink href={nodesHref}>Nodes</AppLink>}
       </nav>
     </header>
   )
+}
+
+AppHeader.propTypes = {
+  homeHref: PropTypes.string,
+  blogHref: PropTypes.string,
+  codeHref: PropTypes.string,
+  nodesHref: PropTypes.string
 }
