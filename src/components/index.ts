@@ -36,6 +36,7 @@ export { default as ProposalDetail } from './HistoryTables/MsigProposals/Proposa
 export * from './HistoryTables/PendingMsgContext'
 export * from './HistoryTables/methodName'
 export { defaultMessageHistoryClientCacheConfig } from './HistoryTables/defaultCacheConfig'
+export * from './NetworkConnection'
 export { default as NetworkSwitcherGlyph } from './NetworkSwitcherGlyph'
 export { default as NetworkSwitcherGlyphV2 } from './NetworkSwitcherGlyphV2'
 export { default as NodeConnectingGlyph } from './NodeConnected'
