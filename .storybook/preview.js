@@ -1,5 +1,4 @@
-import 'normalize.css'
-import '../src/global.css'
+import '@glif/base-css'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' }
