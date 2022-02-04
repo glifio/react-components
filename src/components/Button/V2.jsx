@@ -1,64 +1,129 @@
 import styled, { css } from 'styled-components'
 import { layout, space } from 'styled-system'
 import PropTypes from 'prop-types'
-import { fontSize, devices } from '../theme'
 
 const ButtonV2 = styled.button`
-  cursor: pointer;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
+  cursor: pointer;
   gap: 0.75rem;
   padding: 0.5em 0.75em;
-  border-radius: ${props => (props.round ? '100px' : '8px')};
-  white-space: nowrap;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+
+  ${props =>
+    css`
+      color: ${props.theme.colors.black};
+      border-color: ${props.theme.colors.black};
+      background: transparent;
+      svg path {
+        stroke: ${props.theme.colors.black};
+      }
+
+      &:hover {
+        color: ${props.theme.colors.core.primary};
+        border-color: ${props.theme.colors.core.primary};
+        svg path {
+          stroke: ${props.theme.colors.core.primary};
+        }
+      }
+
+      &:active {
+        color: ${props.theme.colors.white};
+        background: ${props.theme.colors.core.primary};
+        svg path {
+          stroke: ${props.theme.colors.white};
+        }
+      }
+    `}
 
   ${props =>
     props.large &&
     css`
-      font-size: ${fontSize('medium')};
-
-      @media (max-width: ${devices.phone}) {
-        font-size: ${fontSize('medium', 'phone')};
-      }
-    `};
-
-  ${props =>
-    props.small &&
-    css`
-      font-size: ${fontSize('default')};
-
-      @media (max-width: ${devices.phone}) {
-        font-size: ${fontSize('default', 'phone')};
-      }
-    `};
-
-  ${props =>
-    props.black &&
-    css`
-      border: 1px solid black;
-      color: black;
-      background: transparent;
-
-      ${!props.disabled &&
-      `&:hover {
-        color: ${props.theme.colors.core.primary};
-        border-color: ${props.theme.colors.core.primary};
-      }`}
-    `};
+      font-size: 1.25em;
+    `}
 
   ${props =>
     props.white &&
     css`
-      border: 1px solid white;
-      color: white;
-    `};
+      color: ${props.theme.colors.white};
+      border-color: ${props.theme.colors.white};
+      svg path {
+        stroke: ${props.theme.colors.white};
+      }
+    `}
+
+  ${props =>
+    props.green &&
+    css`
+      color: ${props.theme.colors.white};
+      border-color: ${props.theme.colors.green.primary};
+      background: ${props.theme.colors.green.primary};
+      svg path {
+        stroke: ${props.theme.colors.white};
+      }
+
+      &:hover {
+        color: ${props.theme.colors.white};
+        border-color: ${props.theme.colors.green.muted};
+        background: ${props.theme.colors.green.muted};
+        svg path {
+          stroke: ${props.theme.colors.white};
+        }
+      }
+
+      &:active {
+        color: ${props.theme.colors.green.primary};
+        border-color: ${props.theme.colors.green.primary};
+        background: ${props.theme.colors.white};
+        svg path {
+          stroke: ${props.theme.colors.green.primary};
+        }
+      }
+    `}
+
+  ${props =>
+    props.red &&
+    css`
+      color: ${props.theme.colors.white};
+      border-color: ${props.theme.colors.red.base};
+      background: ${props.theme.colors.red.base};
+      svg path {
+        stroke: ${props.theme.colors.white};
+      }
+
+      &:hover {
+        color: ${props.theme.colors.white};
+        border-color: ${props.theme.colors.red.light};
+        background: ${props.theme.colors.red.light};
+        svg path {
+          stroke: ${props.theme.colors.white};
+        }
+      }
+
+      &:active {
+        color: ${props.theme.colors.red.base};
+        border-color: ${props.theme.colors.red.base};
+        background: ${props.theme.colors.white};
+        svg path {
+          stroke: ${props.theme.colors.red.base};
+        }
+      }
+    `}
 
   ${props =>
     props.disabled &&
     css`
-      opacity: 0.5;
       cursor: default;
+      color: ${props.theme.colors.gray.medium};
+      border-color: ${props.theme.colors.gray.medium};
+      pointer-events: none;
+      svg path {
+        stroke: ${props.theme.colors.gray.medium};
+      }
     `}
 
   ${layout}
@@ -66,16 +131,19 @@ const ButtonV2 = styled.button`
 `
 
 ButtonV2.propTypes = {
-  round: PropTypes.bool,
-  small: PropTypes.bool,
   large: PropTypes.bool,
-  black: PropTypes.bool,
-  white: PropTypes.bool
+  white: PropTypes.bool,
+  green: PropTypes.bool,
+  red: PropTypes.bool,
+  disabled: PropTypes.bool
 }
 
 ButtonV2.defaultProps = {
-  large: true,
-  black: true
+  large: false,
+  white: false,
+  green: false,
+  red: false,
+  disabled: false
 }
 
 export default ButtonV2

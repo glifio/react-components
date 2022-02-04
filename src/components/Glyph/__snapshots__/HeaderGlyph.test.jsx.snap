@@ -35,7 +35,7 @@ exports[`HeaderGlyph renders the HeaderGlyph 1`] = `
 }
 
 .c4 {
-  color: black;
+  color: #000000;
   font-size: calc(48px + (48 - 32) * (100vw - 360px) / (1440 - 360));
   font-weight: 400;
   line-height: 1.2;
@@ -148,7 +148,7 @@ exports[`HeaderGlyph renders the story 1`] = `
 }
 
 .c4 {
-  color: black;
+  color: #000000;
   font-size: calc(48px + (48 - 32) * (100vw - 360px) / (1440 - 360));
   font-weight: 400;
   line-height: 1.2;

@@ -34,13 +34,13 @@ export const Head = ({ title, speedUp, cancel, pending }: HeadProps) => (
     <Box display='flex' gridGap='1rem'>
       {pending && (
         <>
-          <ButtonV2 fontSize='1.5rem' onClick={speedUp}>
-            <IconSpeedUp width='1.75rem' />
+          <ButtonV2 green onClick={speedUp}>
+            <IconSpeedUp width='1.25rem' />
             Speed up
           </ButtonV2>
 
-          <ButtonV2 fontSize='1.5rem' onClick={cancel}>
-            <IconCancel width='1.25rem' />
+          <ButtonV2 red onClick={cancel}>
+            <IconCancel width='0.8rem' />
             Cancel
           </ButtonV2>
         </>
@@ -94,9 +94,7 @@ export const ProposalHead = ({
     <Box display='flex' gridGap='1rem'>
       {actionRequired && (
         <ButtonV2
-          hoverColor='green'
-          small
-          fontSize='1.5rem'
+          green
           onClick={() => accept(proposal, approvalsUntilExecution)}
         >
           <IconCheck width='1.75rem' />
@@ -104,12 +102,7 @@ export const ProposalHead = ({
         </ButtonV2>
       )}
       {isProposer && (
-        <ButtonV2
-          hoverColor='red'
-          small
-          fontSize='1.5rem'
-          onClick={() => cancel(proposal, approvalsUntilExecution)}
-        >
+        <ButtonV2 red onClick={() => cancel(proposal, approvalsUntilExecution)}>
           <IconFail width='1.25rem' />
           Cancel
         </ButtonV2>

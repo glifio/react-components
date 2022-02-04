@@ -138,6 +138,8 @@ const colors = {
     inactive: baseColors.mono.lightgray
   },
   // gonna start slowly migrating colors from their inheritance vars above
+  white: '#FFFFFF',
+  black: '#000000',
   blue: {
     muted700: '#d9e0f2'
   },
