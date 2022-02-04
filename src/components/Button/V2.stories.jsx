@@ -1,6 +1,7 @@
 import ButtonV2 from './V2'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
+import { IconSpeedUp } from '../Icons'
 
 export default {
   title: 'Button/ButtonV2',
@@ -16,6 +17,12 @@ export default {
 }
 
 const Template = args => <ButtonV2 {...args}>Click me</ButtonV2>
+const TemplateIcon = args => (
+  <ButtonV2 {...args}>
+    <IconSpeedUp width='1.25rem' />
+    Click me
+  </ButtonV2>
+)
 
 export const Base = Template.bind({})
 Base.args = {}
@@ -42,5 +49,33 @@ Red.args = {
 
 export const Disabled = Template.bind({})
 Disabled.args = {
+  disabled: true
+}
+
+export const IconBase = TemplateIcon.bind({})
+IconBase.args = {}
+
+export const IconLarge = TemplateIcon.bind({})
+IconLarge.args = {
+  large: true
+}
+
+export const IconWhite = TemplateIcon.bind({})
+IconWhite.args = {
+  white: true
+}
+
+export const IconGreen = TemplateIcon.bind({})
+IconGreen.args = {
+  green: true
+}
+
+export const IconRed = TemplateIcon.bind({})
+IconRed.args = {
+  red: true
+}
+
+export const IconDisabled = TemplateIcon.bind({})
+IconDisabled.args = {
   disabled: true
 }
