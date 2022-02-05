@@ -25,6 +25,8 @@
     "node_modules",
     "**/*.test.ts",
     "**/*.spec.ts",
+    "**/*.test.tsx",
+    "**/*.spec.tsx",
     "**/__tests__",
     "**/dist",
     "**/lib",

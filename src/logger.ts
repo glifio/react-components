@@ -1,5 +1,4 @@
 import { Logger } from '@glif/logger'
-import pjson from '../package.json'
 
 const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN! as string
 const SENTRY_ENV = process.env.NEXT_PUBLIC_SENTRY_ENV! as string
@@ -10,6 +9,6 @@ export const logger = new Logger({
   sentryDsn: SENTRY_DSN,
   sentryEnv: SENTRY_ENV,
   sentryEnabled: !!ENABLE_SENTRY,
-  packageName: pjson.name,
-  packageVersion: pjson.version
+  packageName: '',
+  packageVersion: ''
 })
