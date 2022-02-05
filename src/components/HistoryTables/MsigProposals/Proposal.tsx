@@ -12,8 +12,11 @@ import {
   useActorQuery,
   useMsigPendingQuery
 } from '../../../generated/graphql'
-import { isAddrEqual, decodeActorCID } from '../../../utils'
-import { useStateReadStateQuery } from './useStateReadStateQuery'
+import {
+  isAddrEqual,
+  decodeActorCID,
+  useStateReadStateQuery
+} from '../../../utils'
 import { getMethodName } from '../methodName'
 import LoadingScreen from '../../LoadingScreen'
 import ErrorView from '../../Error'

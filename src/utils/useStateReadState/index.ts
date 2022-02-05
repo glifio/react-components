@@ -2,15 +2,20 @@ import { useState } from 'react'
 import { QueryHookOptions } from '@apollo/client'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { useEffect } from 'react'
-import { Address } from '../../../generated/graphql'
+import { Address } from '../../generated/graphql'
 
 const lCli = new LotusRPCEngine({
   apiAddress:
     process.env.LOTUS_NODE_JSONRPC || 'https://calibration.node.glif.io'
 })
 
+type CID = {
+  '/': string
+}
+
 type MsigState<T = Address> = {
   Balance: string
+  Code: CID
   State: {
     InitialBalance: string
     NextTxnID: number
