@@ -15,7 +15,8 @@ import {
   IconEdit as IconEditComp,
   AppIconHeaderFooter as AppIconHeaderFooterComp,
   IconCaution as IconCautionComp,
-  IconMetaMaskFlask as IconMetaMaskComp
+  IconMetaMaskFlask as IconMetaMaskComp,
+  IconSearch as IconSearchComp
 } from '.'
 
 export default {
@@ -96,3 +97,5 @@ export const AppIconHeaderFooter = args => <AppIconHeaderFooterComp {...args} />
 export const IconCaution = args => <IconCautionComp {...args} />
 
 export const IconMetaMask = args => <IconMetaMaskComp {...args} />
+
+export const IconSearch = args => <IconSearchComp {...args} />
