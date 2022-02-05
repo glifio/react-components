@@ -1,0 +1,6 @@
+query Address($address: String!) {
+  address(str: $address) {
+    robust
+    id
+  }
+}
