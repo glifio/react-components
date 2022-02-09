@@ -323,6 +323,12 @@ export const useMessage = (cid: string) => {
     // this error infers we are looking for the pending message but havent found it yet...
     if (!!pendingMsg && _lowConfMsgErr?.message.includes("didn't find msg")) {
       return
+    }
+    // can be removed once https://github.com/glifio/react-components/issues/150 is closed
+    else if (
+      _lowConfMsgErr?.message.toLowerCase().includes('failed to fetch')
+    ) {
+      return
     } else return _lowConfMsgErr
   }, [_lowConfMsgErr, pendingMsg])
 
