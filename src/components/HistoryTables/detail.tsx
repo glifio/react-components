@@ -195,25 +195,6 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
   <>
     {Object.entries(params).map(([key, value]) => {
       switch (key.toLowerCase()) {
-        case 'params':
-          return value ? (
-            <div key={`${depth}-${key}-1`}>
-              <Line
-                key={`${depth}-${key}-1`}
-                label='Parameters'
-                depth={depth}
-              ></Line>
-              <Parameters
-                key={`${depth}-${key}-2`}
-                params={value}
-                depth={depth + 1}
-              />
-            </div>
-          ) : (
-            <Line key={`${depth}-${key}`} label='Parameters' depth={depth}>
-              &mdash;
-            </Line>
-          )
         case 'method':
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
@@ -227,9 +208,19 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
             </Line>
           )
         default:
+          if (value && typeof value === 'object')
+            return (
+              <div key={`${depth}-${key}`}>
+                <Line
+                  label={key === 'params' ? 'Parameters' : key}
+                  depth={depth}
+                ></Line>
+                <Parameters params={value} depth={depth + 1} />
+              </div>
+            )
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
-              {value}
+              {value ?? '—'}
             </Line>
           )
       }
