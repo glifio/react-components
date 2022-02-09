@@ -215,10 +215,7 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
                   label={key === 'params' ? 'Parameters' : key}
                   depth={depth}
                 ></Line>
-                <Parameters
-                  params={value}
-                  depth={depth + 1}
-                />
+                <Parameters params={value} depth={depth + 1} />
               </div>
             )
           return (
