@@ -14,6 +14,7 @@ import {
   IconFail
 } from '../Icons'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
+import { getMethodName } from './methodName'
 
 /**
  * Head
@@ -195,14 +196,16 @@ Line.defaultProps = {
  * Parameters
  * Parameter rows of the detail page
  */
-export const Parameters = ({ params, depth }: ParametersProps) => (
+export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
   <>
     {Object.entries(params).map(([key, value]) => {
       switch (key.toLowerCase()) {
         case 'method':
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
-              <Badge color='purple'>{value}</Badge>
+              <Badge color='purple'>
+                {getMethodName(actorName, value as number)}
+              </Badge>
             </Line>
           )
         case 'value':
@@ -219,7 +222,11 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
                   label={key === 'params' ? 'Parameters' : key}
                   depth={depth}
                 ></Line>
-                <Parameters params={value} depth={depth + 1} />
+                <Parameters
+                  params={value}
+                  depth={depth + 1}
+                  actorName={actorName}
+                />
               </div>
             )
           return (
@@ -235,11 +242,13 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
 type ParametersProps = {
   params: object
   depth: number
+  actorName: string
 }
 
 Parameters.propTypes = {
   params: PropTypes.object.isRequired,
-  depth: PropTypes.number.isRequired
+  depth: PropTypes.number.isRequired,
+  actorName: PropTypes.string.isRequired
 }
 
 /**

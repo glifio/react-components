@@ -6,9 +6,11 @@ import { MessageConfirmedRow, MessagePendingRow } from '../types'
 
 type MessageForMethodNameType =
   | Pick<MessageConfirmedRow, 'actorName' | 'to' | 'cid' | 'method'>
-  | (MessagePendingRow & { actorName?: string })
+  | (MessagePendingRow & { actorName: string })
 
-export const useMethodName = (message: MessageForMethodNameType) => {
+export const useMethodName = (
+  message: MessageForMethodNameType
+): { methodName: string; actorName: string } => {
   const actor = useActorQuery({
     variables: { address: message?.to.robust || message?.to.id },
     // this means the message came from low confidence query
@@ -16,16 +18,18 @@ export const useMethodName = (message: MessageForMethodNameType) => {
     skip: !message?.cid || !!(message?.cid && message?.actorName)
   })
 
-  const methodName = useMemo(() => {
-    if (message?.actorName) {
-      return getMethodName(message.actorName, Number(message.method))
-    } else if (message?.cid && !(actor.loading || actor.error)) {
-      return getMethodName(
-        decodeActorCID(actor.data?.actor.Code),
-        Number(message.method)
-      )
-    } else return '...'
-  }, [message?.actorName, message?.method, message?.cid, actor])
+  const actorName = useMemo(() => {
+    if (message?.actorName) return message.actorName
+    else if (message?.cid && !(actor.loading || actor.error)) {
+      return decodeActorCID(actor.data?.actor.Code)
+    }
+    return ''
+  }, [message?.actorName, actor, message?.cid])
 
-  return methodName
+  const methodName = useMemo(() => {
+    if (actorName) return getMethodName(actorName, Number(message.method))
+    else return '...'
+  }, [actorName, message?.method])
+
+  return { methodName, actorName }
 }

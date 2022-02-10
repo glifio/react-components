@@ -23,7 +23,7 @@ export default function PendingMessageHistoryRow(
       message.to.id === inspectingAddress,
     [message.to, inspectingAddress]
   )
-  const methodName = useMethodName({ ...message, actorName: '' })
+  const { methodName } = useMethodName({ ...message, actorName: '' })
   return (
     <TR>
       <TD>
