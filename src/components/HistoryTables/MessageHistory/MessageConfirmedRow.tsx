@@ -24,7 +24,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
     [message.to, inspectingAddress]
   )
 
-  const methodName = useMethodName(message)
+  const { methodName } = useMethodName(message)
   const age = useAge(message, time)
 
   return (

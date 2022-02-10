@@ -141,6 +141,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     refetch: lowConfidenceMsgsRefetch
   } = useStateListMessagesQuery({
     variables: { address },
+    fetchPolicy: 'cache-and-network',
     pollInterval: 60000
   })
 
@@ -322,6 +323,12 @@ export const useMessage = (cid: string) => {
   const lowConfMsgErr = useMemo(() => {
     // this error infers we are looking for the pending message but havent found it yet...
     if (!!pendingMsg && _lowConfMsgErr?.message.includes("didn't find msg")) {
+      return
+    }
+    // can be removed once https://github.com/glifio/react-components/issues/150 is closed
+    else if (
+      _lowConfMsgErr?.message.toLowerCase().includes('failed to fetch')
+    ) {
       return
     } else return _lowConfMsgErr
   }, [_lowConfMsgErr, pendingMsg])

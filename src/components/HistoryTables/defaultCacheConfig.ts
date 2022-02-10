@@ -6,7 +6,6 @@ import Logger from '../../utils/logger'
 // result should be a valid javascript object or null.
 const parseParams = (_: any, incoming: any) => {
   try {
-    console.log('parsing params')
     if (incoming) {
       return JSON.parse(incoming)
     }

@@ -117,6 +117,9 @@ export default function Footer() {
               <A href='#'>Safe</A>
             </Li>
             <Li>
+              <A href='#'>Explorer</A>
+            </Li>
+            <Li>
               <A href='#'>Verifier</A>
             </Li>
           </Ul>

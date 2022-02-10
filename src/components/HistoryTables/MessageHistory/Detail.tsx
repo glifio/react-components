@@ -71,7 +71,14 @@ export default function MessageDetail(props: MessageDetailProps) {
     [message?.height, chainHeadSubscription.data?.chainHead.height]
   )
 
-  const methodName = useMethodName(message)
+  const { methodName, actorName } = useMethodName(
+    !!message
+      ? {
+          ...message,
+          actorName: 'actorName' in message ? message.actorName : ''
+        }
+      : null
+  )
 
   if (loading) return <LoadingScreen marginTop='10rem' />
   if (error)
@@ -178,7 +185,11 @@ export default function MessageDetail(props: MessageDetailProps) {
             </>
           )}
           <HR />
-          <Parameters params={{ params: message.params }} depth={0} />
+          <Parameters
+            params={{ params: message.params }}
+            actorName={actorName}
+            depth={0}
+          />
         </>
       )}
     </Box>

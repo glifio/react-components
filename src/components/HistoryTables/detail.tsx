@@ -14,6 +14,7 @@ import {
   IconFail
 } from '../Icons'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
+import { getMethodName } from './methodName'
 
 /**
  * Head
@@ -34,15 +35,19 @@ export const Head = ({ title, speedUp, cancel, pending }: HeadProps) => (
     <Box display='flex' gridGap='1rem'>
       {pending && (
         <>
-          <ButtonV2 green onClick={speedUp}>
-            <IconSpeedUp width='1.25rem' />
-            Speed up
-          </ButtonV2>
+          {speedUp && (
+            <ButtonV2 green onClick={speedUp}>
+              <IconSpeedUp width='1.25rem' />
+              Speed up
+            </ButtonV2>
+          )}
 
-          <ButtonV2 red onClick={cancel}>
-            <IconCancel width='0.8rem' />
-            Cancel
-          </ButtonV2>
+          {cancel && (
+            <ButtonV2 red onClick={cancel}>
+              <IconCancel width='0.8rem' />
+              Cancel
+            </ButtonV2>
+          )}
         </>
       )}
     </Box>
@@ -191,23 +196,26 @@ Line.defaultProps = {
  * Parameters
  * Parameter rows of the detail page
  */
-export const Parameters = ({ params, depth }: ParametersProps) => (
+export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
   <>
     {Object.entries(params).map(([key, value]) => {
       switch (key.toLowerCase()) {
-        case 'method':
+        case 'method': {
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
-              <Badge color='purple'>{value}</Badge>
+              <Badge color='purple'>
+                {getMethodName(actorName, value as number)}
+              </Badge>
             </Line>
           )
+        }
         case 'value':
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
               {new FilecoinNumber(value, 'attofil').toFil()} FIL
             </Line>
           )
-        default:
+        default: {
           if (value && typeof value === 'object')
             return (
               <div key={`${depth}-${key}`}>
@@ -215,14 +223,26 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
                   label={key === 'params' ? 'Parameters' : key}
                   depth={depth}
                 ></Line>
-                <Parameters params={value} depth={depth + 1} />
+                <Parameters
+                  params={value}
+                  depth={depth + 1}
+                  actorName={actorName}
+                />
               </div>
             )
+          else if (typeof value === 'boolean')
+            return (
+              <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                {value ? 'true' : 'false'}
+              </Line>
+            )
+
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
               {value ?? '—'}
             </Line>
           )
+        }
       }
     })}
   </>
@@ -231,11 +251,13 @@ export const Parameters = ({ params, depth }: ParametersProps) => (
 type ParametersProps = {
   params: object
   depth: number
+  actorName: string
 }
 
 Parameters.propTypes = {
   params: PropTypes.object.isRequired,
-  depth: PropTypes.number.isRequired
+  depth: PropTypes.number.isRequired,
+  actorName: PropTypes.string.isRequired
 }
 
 /**

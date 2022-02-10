@@ -39,6 +39,8 @@ export const getMethodName = (
     methodName = storageMarketActorCodes[methodNum]
   } else if (actorCode.includes('/system')) {
     methodName = 'internal'
+  } else {
+    methodName = methodNum.toString()
   }
 
   return methodName

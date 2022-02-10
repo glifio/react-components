@@ -15,9 +15,9 @@ import {
 import {
   isAddrEqual,
   decodeActorCID,
-  useStateReadStateQuery
+  useStateReadStateQuery,
+  MsigState
 } from '../../../utils'
-import { getMethodName } from '../methodName'
 import LoadingScreen from '../../LoadingScreen'
 import ErrorView from '../../Error'
 
@@ -72,7 +72,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     data: stateData,
     loading: stateLoading,
     error: stateError
-  } = useStateReadStateQuery({
+  } = useStateReadStateQuery<MsigState>({
     variables: { address: props.address },
     skip:
       !!actorError ||
@@ -143,11 +143,6 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     stateData?.State.NumApprovalsThreshold
   ])
 
-  const outerMethodName = useMemo(
-    () => getMethodName('/multisig', proposal?.method),
-    [proposal?.method]
-  )
-
   if (loading) return <LoadingScreen marginTop='10rem' />
   if (error)
     return (
@@ -186,10 +181,11 @@ export default function ProposalDetail(props: ProposalDetailProps) {
           params: {
             to: proposal.to.robust,
             value: proposal.value,
-            method: outerMethodName,
+            method: proposal.method,
             params: proposal.params
           }
         }}
+        actorName='/multisig'
         depth={1}
       />
       <HR />
