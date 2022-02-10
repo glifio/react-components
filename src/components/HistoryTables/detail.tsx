@@ -34,15 +34,19 @@ export const Head = ({ title, speedUp, cancel, pending }: HeadProps) => (
     <Box display='flex' gridGap='1rem'>
       {pending && (
         <>
-          <ButtonV2 green onClick={speedUp}>
-            <IconSpeedUp width='1.25rem' />
-            Speed up
-          </ButtonV2>
+          {speedUp && (
+            <ButtonV2 green onClick={speedUp}>
+              <IconSpeedUp width='1.25rem' />
+              Speed up
+            </ButtonV2>
+          )}
 
-          <ButtonV2 red onClick={cancel}>
-            <IconCancel width='0.8rem' />
-            Cancel
-          </ButtonV2>
+          {cancel && (
+            <ButtonV2 red onClick={cancel}>
+              <IconCancel width='0.8rem' />
+              Cancel
+            </ButtonV2>
+          )}
         </>
       )}
     </Box>
