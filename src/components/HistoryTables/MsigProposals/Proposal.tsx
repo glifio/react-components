@@ -15,7 +15,8 @@ import {
 import {
   isAddrEqual,
   decodeActorCID,
-  useStateReadStateQuery
+  useStateReadStateQuery,
+  MsigState
 } from '../../../utils'
 import { getMethodName } from '../methodName'
 import LoadingScreen from '../../LoadingScreen'
@@ -72,7 +73,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     data: stateData,
     loading: stateLoading,
     error: stateError
-  } = useStateReadStateQuery({
+  } = useStateReadStateQuery<MsigState>({
     variables: { address: props.address },
     skip:
       !!actorError ||

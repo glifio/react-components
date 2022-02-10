@@ -14,7 +14,7 @@ const ViewState = styled(P).attrs(() => ({
   cursor: pointer;
 `
 
-function State({ state }: { state: object }) {
+function State({ state }: { state: unknown }) {
   return (
     <>
       <pre>{JSON.stringify(state, null, 2)}</pre>
@@ -27,7 +27,7 @@ export function ActorState({ address }: { address: string }) {
     data: actorStateData,
     error: actorStateError,
     loading: actorStateLoading
-  } = useStateReadStateQuery({
+  } = useStateReadStateQuery<unknown>({
     variables: { address }
   })
 
