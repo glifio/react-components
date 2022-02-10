@@ -141,6 +141,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     refetch: lowConfidenceMsgsRefetch
   } = useStateListMessagesQuery({
     variables: { address },
+    fetchPolicy: 'cache-and-network',
     pollInterval: 60000
   })
 
