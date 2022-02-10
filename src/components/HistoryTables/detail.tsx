@@ -200,7 +200,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
   <>
     {Object.entries(params).map(([key, value]) => {
       switch (key.toLowerCase()) {
-        case 'method':
+        case 'method': {
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
               <Badge color='purple'>
@@ -208,13 +208,14 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
               </Badge>
             </Line>
           )
+        }
         case 'value':
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
               {new FilecoinNumber(value, 'attofil').toFil()} FIL
             </Line>
           )
-        default:
+        default: {
           if (value && typeof value === 'object')
             return (
               <div key={`${depth}-${key}`}>
@@ -229,11 +230,19 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
                 />
               </div>
             )
+          else if (typeof value === 'boolean')
+            return (
+              <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                {value ? 'true' : 'false'}
+              </Line>
+            )
+
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
               {value ?? '—'}
             </Line>
           )
+        }
       }
     })}
   </>
