@@ -330,6 +330,12 @@ export const useMessage = (cid: string) => {
       _lowConfMsgErr?.message.toLowerCase().includes('failed to fetch')
     ) {
       return
+    } else if (
+      _lowConfMsgErr?.message
+        .toLowerCase()
+        .includes('failed to load message: blockstore: block not found')
+    ) {
+      return
     } else return _lowConfMsgErr
   }, [_lowConfMsgErr, pendingMsg])
 
