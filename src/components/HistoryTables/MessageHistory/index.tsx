@@ -38,25 +38,27 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
         />
         <MessageRowColumnTitles />
         <tbody>
-          {pendingMsgs?.map(message => (
-            <MessagePendingRow
-              key={message.cid}
-              message={message}
-              cidHref={props.cidHref}
-              addressHref={props.addressHref}
-              inspectingAddress={props.address}
-            />
-          ))}
-          {messages?.map(message => (
-            <MessageConfirmedRow
-              key={message.cid}
-              message={message}
-              cidHref={props.cidHref}
-              addressHref={props.addressHref}
-              inspectingAddress={props.address}
-              chainHeadSub={chainHeadSub}
-            />
-          ))}
+          {!loading &&
+            pendingMsgs?.map(message => (
+              <MessagePendingRow
+                key={message.cid}
+                message={message}
+                cidHref={props.cidHref}
+                addressHref={props.addressHref}
+                inspectingAddress={props.address}
+              />
+            ))}
+          {!loading &&
+            messages?.map(message => (
+              <MessageConfirmedRow
+                key={message.cid}
+                message={message}
+                cidHref={props.cidHref}
+                addressHref={props.addressHref}
+                inspectingAddress={props.address}
+                chainHeadSub={chainHeadSub}
+              />
+            ))}
         </tbody>
       </TABLE>
       {!lastPage && !fetchingMore && (
