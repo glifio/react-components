@@ -6,11 +6,15 @@ import { space } from '../theme'
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
+  padding: ${space('default')};
+  gap: ${space('large')};
 `
 
 const Nav = styled.nav`
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
+  justify-content: flex-end;
   gap: ${space('default')};
 `
 
@@ -33,44 +37,57 @@ const Link = styled.a`
     `}
 `
 
-export default function AppHeader({ homeHref, appLinks }: AppHeaderProps) {
+export default function AppHeader(props: AppHeaderProps) {
+  const {
+    homeUrl,
+    blogUrl,
+    codeUrl,
+    nodesUrl,
+    safeUrl,
+    walletUrl,
+    verifierUrl,
+    explorerUrl
+  } = props
   return (
     <Header>
-      <a href={homeHref}>
+      <a href={homeUrl}>
         <AppIconHeaderFooter iconStyle='dark' />
       </a>
       <Nav>
-        {appLinks.map((link, index) => (
-          <Link key={index} href={link.href}>
-            {link.text}
-          </Link>
-        ))}
+        {blogUrl && <Link href={blogUrl}>Blog</Link>}
+        {codeUrl && <Link href={codeUrl}>Code</Link>}
+        {nodesUrl && <Link href={nodesUrl}>Nodes</Link>}
+        {safeUrl && <Link href={safeUrl}>Safe</Link>}
+        {walletUrl && <Link href={walletUrl}>Wallet</Link>}
+        {verifierUrl && <Link href={verifierUrl}>Verifier</Link>}
+        {explorerUrl && <Link href={explorerUrl}>Explorer</Link>}
       </Nav>
     </Header>
   )
 }
 
-interface AppLink {
-  text: string
-  href: string
-}
-
 interface AppHeaderProps {
-  homeHref: string
-  appLinks: Array<AppLink>
+  homeUrl: string
+  blogUrl?: string
+  codeUrl?: string
+  nodesUrl?: string
+  safeUrl?: string
+  walletUrl?: string
+  verifierUrl?: string
+  explorerUrl?: string
 }
-
-const APP_LINK = PropTypes.shape({
-  text: PropTypes.string.isRequired,
-  href: PropTypes.string.isRequired
-})
 
 AppHeader.propTypes = {
-  homeHref: PropTypes.string,
-  appLinks: PropTypes.arrayOf(APP_LINK)
+  homeUrl: PropTypes.string,
+  blogUrl: PropTypes.string,
+  codeUrl: PropTypes.string,
+  nodesUrl: PropTypes.string,
+  safeUrl: PropTypes.string,
+  walletUrl: PropTypes.string,
+  verifierUrl: PropTypes.string,
+  explorerUrl: PropTypes.string
 }
 
 AppHeader.defaultProps = {
-  homeHref: '/',
-  appLinks: []
+  homeUrl: '/'
 }

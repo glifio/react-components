@@ -14,6 +14,8 @@ exports[`AppHeader renders the box 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  padding: 10px;
+  gap: 20px;
 }
 
 .c2 {
@@ -21,10 +23,17 @@ exports[`AppHeader renders the box 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
   align-items: flex-start;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
   gap: 10px;
 }
 
@@ -126,6 +135,30 @@ exports[`AppHeader renders the box 1`] = `
       href="https://glif.io/nodes"
     >
       Nodes
+    </a>
+    <a
+      class="c3"
+      href="https://safe.glif.io"
+    >
+      Safe
+    </a>
+    <a
+      class="c3"
+      href="https://wallet.glif.io"
+    >
+      Wallet
+    </a>
+    <a
+      class="c3"
+      href="https://verifier.glif.io"
+    >
+      Verifier
+    </a>
+    <a
+      class="c3"
+      href="https://explorer.glif.io"
+    >
+      Explorer
     </a>
   </nav>
 </header>
