@@ -14,7 +14,6 @@ exports[`AppHeader renders the box 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 10px;
   gap: 20px;
 }
 
