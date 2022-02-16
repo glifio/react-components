@@ -6,7 +6,6 @@ import { space } from '../theme'
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  padding: ${space('default')};
   gap: ${space('large')};
 `
 
