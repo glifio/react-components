@@ -9,10 +9,10 @@ export const LandingPageOuter = styled.div`
 
   @media (min-width: ${devices.tablet}) {
     height: calc(100vh - 2 * ${space()});
-    > :first-child {
+    > * {
       flex: 0 0 auto;
     }
-    > :last-child {
+    > *:last-child {
       flex: 1 1 auto;
     }
   }
