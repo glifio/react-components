@@ -14,7 +14,18 @@ const Template = args => <AppHeader {...args} />
 export const Base = Template.bind({})
 Base.args = {
   homeHref: 'https://glif.io',
-  blogHref: 'https://glif.io/blog',
-  codeHref: 'https://glif.io/code',
-  nodesHref: 'https://glif.io/nodes'
+  appLinks: [
+    {
+      text: 'Blog',
+      href: 'https://glif.io/blog'
+    },
+    {
+      text: 'Code',
+      href: 'https://glif.io/code'
+    },
+    {
+      text: 'Nodes',
+      href: 'https://glif.io/nodes'
+    }
+  ]
 }

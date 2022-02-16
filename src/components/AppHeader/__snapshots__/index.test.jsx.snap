@@ -1,57 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AppHeader renders the box 1`] = `
-.c0 {
+.c1 {
   height: auto;
 }
 
-.c1 {
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.c3 {
   padding: 0.5em 0.75em;
+  color: black;
   border: 1px solid black;
   border-radius: 2em;
-  color: black;
-  cursor: pointer;
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c1:hover {
+.c3:hover {
   color: #5E26FF;
   border-color: #5E26FF;
 }
 
+.c3:active {
+  color: white;
+  background: #5E26FF;
+}
+
 @media (max-width:480px) {
-  .c0 {
+  .c1 {
     width: 25px;
   }
 }
 
 @media (min-width:480px) and (max-width:868px) {
-  .c0 {
+  .c1 {
     width: 30px;
   }
 }
 
 @media (max-width:868px) {
-  .c0 {
+  .c1 {
     margin-bottom: 2em;
   }
 }
 
 @media (min-width:868px) {
-  .c0 {
+  .c1 {
     width: 40px;
   }
 }
 
 <header
-  style="display: flex; justify-content: space-between; padding-bottom: 50px;"
+  class="c0"
 >
   <a
     href="https://glif.io"
   >
     <svg
-      class="c0"
+      class="c1"
       fill="none"
       height="71"
       viewBox="0 0 52 71"
@@ -80,22 +107,22 @@ exports[`AppHeader renders the box 1`] = `
     </svg>
   </a>
   <nav
-    style="display: flex; align-items: flex-start; align-content: flex-start; gap: 10px;"
+    class="c2"
   >
     <a
-      class="c1"
+      class="c3"
       href="https://glif.io/blog"
     >
       Blog
     </a>
     <a
-      class="c1"
+      class="c3"
       href="https://glif.io/code"
     >
       Code
     </a>
     <a
-      class="c1"
+      class="c3"
       href="https://glif.io/nodes"
     >
       Nodes
