@@ -1,7 +1,7 @@
+import styled, { css } from 'styled-components'
 import React, { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
-import { H2 } from '../Typography'
 import { MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
 import ButtonV2 from '../Button/V2'
@@ -16,6 +16,15 @@ import {
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
 
+export const Title = styled.h2`
+  margin: 0;
+  font-size: 1.5rem;
+  ${props =>
+    css`
+      color: ${props.theme.colors.core.primary};
+    `}
+`
+
 /**
  * Head
  * Top row of the detail page, displaying
@@ -29,9 +38,7 @@ export const Head = ({ title, speedUp, cancel, pending }: HeadProps) => (
     gridGap='1em'
     my='1em'
   >
-    <H2 color='core.primary' fontSize='1.5rem' margin='0'>
-      {title}
-    </H2>
+    <Title>{title}</Title>
     <Box display='flex' gridGap='1rem'>
       {pending && (
         <>
@@ -88,14 +95,8 @@ export const ProposalHead = ({
     gridGap='1em'
     my='1em'
   >
-    <H2 color='core.primary' fontSize='1.5rem' margin='0'>
-      {title}
-    </H2>
-    {actionRequired && (
-      <H2 color='core.primary' fontSize='1.5rem' margin='0'>
-        Action Required
-      </H2>
-    )}
+    <Title>{title}</Title>
+    {actionRequired && <Title>Action Required</Title>}
     <Box display='flex' gridGap='1rem'>
       {actionRequired && (
         <ButtonV2

@@ -8,7 +8,7 @@ import {
   Text as TextComp,
   Label as LabelComp,
   Num as NumComp,
-  Highlight as HighlightComp,
+  Highlight as HighlightComp
 } from './index'
 
 export default {

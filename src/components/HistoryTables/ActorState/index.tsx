@@ -4,8 +4,8 @@ import styled from 'styled-components'
 import { useAddressQuery } from '../../../generated/graphql'
 import { useStateReadStateQuery, decodeActorCID } from '../../../utils'
 import Box from '../../Box'
-import { H2, HR, P } from '../../Typography'
-import { Line } from '../detail'
+import { HR, P } from '../../Typography'
+import { Title, Line } from '../detail'
 
 const ViewState = styled(P).attrs(() => ({
   color: 'core.primary',
@@ -61,9 +61,7 @@ export function ActorState({ address }: { address: string }) {
 
   return (
     <Box>
-      <H2 color='core.primary' fontSize='1.5rem' margin='0'>
-        Overview
-      </H2>
+      <Title>Overview</Title>
       <HR />
       {addressData?.address.robust && (
         <Line label='Robust address'>{addressData?.address.robust}</Line>
