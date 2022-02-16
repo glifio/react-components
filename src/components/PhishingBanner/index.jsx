@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { P } from '../Typography'
@@ -36,7 +36,8 @@ const PhishingText = styled(P)`
   }
 `
 
-export default function PhishingBanner({ href, closed, setClosed }) {
+export default function PhishingBanner({ href }) {
+  const [closed, setClosed] = useState(false)
   useEffect(() => {
     if (!href.includes('glif.io')) {
       logger.error('PHISHING DETECTED')
@@ -86,12 +87,5 @@ export default function PhishingBanner({ href, closed, setClosed }) {
 }
 
 PhishingBanner.propTypes = {
-  href: PropTypes.string.isRequired,
-  closed: PropTypes.bool,
-  setClosed: PropTypes.func
-}
-
-PhishingBanner.defaultProps = {
-  closed: false,
-  setClosed: () => {}
+  href: PropTypes.string.isRequired
 }
