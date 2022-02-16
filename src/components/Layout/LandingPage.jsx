@@ -4,11 +4,11 @@ import { devices, space, fontSize } from '../theme'
 export const LandingPageOuter = styled.div`
   display: flex;
   gap: ${space()};
-  padding: ${space()};
+  margin: ${space()};
   flex-direction: column;
 
   @media (min-width: ${devices.tablet}) {
-    height: 100vh;
+    height: calc(100vh - 2 * ${space()});
     > :first-child {
       flex: 0 0 auto;
     }
