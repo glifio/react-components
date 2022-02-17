@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import PhishingBanner from '../PhishingBanner'
-import AppHeader from '../AppHeader'
+import AppHeader, { AppHeaderProps } from '../AppHeader'
 import Footer from '../Footer'
 
 import { space } from '../theme'
@@ -52,18 +52,10 @@ export function Page(props: PageProps) {
   )
 }
 
-interface PageProps {
+type PageProps = {
   children: JSX.Element | Array<JSX.Element>
   phishingUrl?: string
-  homeUrl?: string
-  blogUrl?: string
-  codeUrl?: string
-  nodesUrl?: string
-  safeUrl?: string
-  walletUrl?: string
-  verifierUrl?: string
-  explorerUrl?: string
-}
+} & AppHeaderProps
 
 Page.propTypes = {
   children: PropTypes.oneOfType([
@@ -71,14 +63,7 @@ Page.propTypes = {
     PropTypes.node
   ]),
   phishingUrl: PropTypes.string,
-  homeUrl: PropTypes.string,
-  blogUrl: PropTypes.string,
-  codeUrl: PropTypes.string,
-  nodesUrl: PropTypes.string,
-  safeUrl: PropTypes.string,
-  walletUrl: PropTypes.string,
-  verifierUrl: PropTypes.string,
-  explorerUrl: PropTypes.string
+  ...AppHeader.propTypes
 }
 
 Page.defaultProps = {

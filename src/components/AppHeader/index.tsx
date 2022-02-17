@@ -69,7 +69,7 @@ export default function AppHeader(props: AppHeaderProps) {
   )
 }
 
-interface AppHeaderProps {
+export interface AppHeaderProps {
   homeUrl?: string
   blogUrl?: string
   codeUrl?: string
