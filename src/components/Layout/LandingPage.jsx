@@ -8,7 +8,7 @@ export const LandingPageOuter = styled.div`
   flex-direction: column;
 
   @media (min-width: ${devices.tablet}) {
-    height: calc(100vh - 2 * ${space()});
+    min-height: calc(100vh - 2 * ${space()});
     > * {
       flex: 0 0 auto;
     }
