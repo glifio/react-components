@@ -47,4 +47,8 @@ export const LandingPageContent = styled.div`
     margin: 0 0 1em 0;
     font-size: ${fontSize('large')};
   }
+
+  p {
+    font-size: 1.125rem;
+  }
 `
