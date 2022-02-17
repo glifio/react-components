@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { devices, space, fontSize } from '../theme'
 
-export const LandingPageWrapper = styled.div`
+export const LandingPageWrapper = styled.main`
   display: grid;
   gap: ${space()};
   grid-template-columns: 1fr;
