@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 export const TABLE = styled.table`
+  min-width: 100%;
   border-bottom: 1px solid ${props => props.theme.colors.gray.medium}80;
   border-collapse: collapse;
 `
