@@ -49,9 +49,13 @@ export default function AppHeader(props: AppHeaderProps) {
   } = props
   return (
     <Header>
-      <a href={homeUrl}>
+      {homeUrl ? (
+        <a href={homeUrl}>
+          <AppIconHeaderFooter iconStyle='dark' />
+        </a>
+      ) : (
         <AppIconHeaderFooter iconStyle='dark' />
-      </a>
+      )}
       <Nav>
         {blogUrl && <Link href={blogUrl}>Blog</Link>}
         {codeUrl && <Link href={codeUrl}>Code</Link>}
@@ -66,7 +70,7 @@ export default function AppHeader(props: AppHeaderProps) {
 }
 
 interface AppHeaderProps {
-  homeUrl: string
+  homeUrl?: string
   blogUrl?: string
   codeUrl?: string
   nodesUrl?: string
@@ -85,8 +89,4 @@ AppHeader.propTypes = {
   walletUrl: PropTypes.string,
   verifierUrl: PropTypes.string,
   explorerUrl: PropTypes.string
-}
-
-AppHeader.defaultProps = {
-  homeUrl: '/'
 }
