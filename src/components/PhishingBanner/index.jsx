@@ -1,38 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { P } from '../Typography'
-import { baseColors, devices } from '../theme'
+import { SmartLink } from '../Link/SmartLink'
+import { baseColors } from '../theme'
 import { logger } from '../../logger'
 
 const PhishingBannerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 1.5em;
+  border-radius: 10px;
+  font-size: var(--type-small);
+  text-align: center;
   background: ${baseColors.red.base};
   color: white;
-  font-size: var(--type-small);
-  line-height: 50px;
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 0 20px;
-  height: 50px;
 
-  @media (min-width: ${devices.tablet}) {
-    text-align: center;
+  p {
+    flex: 1 1 auto;
   }
-`
 
-const PhishingText = styled(P)`
-  display: inline-block;
-  margin: 0;
-
-  > a {
-    text-decoration: underline;
-    cursor: pointer;
+  a {
     color: inherit;
+    text-decoration: underline;
 
     &:hover {
       color: inherit;
       text-decoration: none;
     }
+  }
+
+  button {
+    height: 3em;
+    padding: 0 1.5em;
+    cursor: pointer;
+    border: none;
+    color: inherit;
+    background: none;
   }
 `
 
@@ -47,39 +50,16 @@ export default function PhishingBanner({ href }) {
     <>
       {!closed && (
         <PhishingBannerContainer>
-          <div
-            css={`
-              @media (max-width: ${devices.tablet}) {
-                display: flex;
-                justify-content: center;
-              }
-            `}
-          >
-            {href.includes('glif.io') && (
-              <PhishingText style={{ display: 'inline-block' }}>
-                For your protection, please check your browser&apos;s URL bar
-                that you&apos;re visiting{' '}
-                <a href={href} target='_blank' rel='noopener noreferrer'>
-                  {href}
-                </a>
-              </PhishingText>
-            )}
-            <button
-              type='button'
-              style={{
-                marginLeft: '30px',
-                display: 'inline-block',
-                cursor: 'pointer',
-                border: 'none',
-                background: 'none',
-                color: 'white',
-                height: '50px'
-              }}
-              onClick={() => setClosed(true)}
-            >
-              close
-            </button>
-          </div>
+          {href.includes('glif.io') && (
+            <p>
+              For your protection, please check your browser&apos;s URL bar that
+              you&apos;re visiting&nbsp;
+              <SmartLink href={href}>{href}</SmartLink>
+            </p>
+          )}
+          <button type='button' onClick={() => setClosed(true)}>
+            close
+          </button>
         </PhishingBannerContainer>
       )}
     </>
