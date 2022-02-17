@@ -1,24 +1,7 @@
 import styled from 'styled-components'
 import { devices, space, fontSize } from '../theme'
 
-export const LandingPageOuter = styled.div`
-  display: flex;
-  gap: ${space()};
-  margin: ${space()};
-  flex-direction: column;
-
-  @media (min-width: ${devices.tablet}) {
-    min-height: calc(100vh - 2 * ${space()});
-    > * {
-      flex: 0 0 auto;
-    }
-    > *:last-child {
-      flex: 1 1 auto;
-    }
-  }
-`
-
-export const LandingPageInner = styled.div`
+export const LandingPageWrapper = styled.div`
   display: grid;
   gap: ${space()};
   grid-template-columns: 1fr;
