@@ -4,9 +4,8 @@ import Box from '../Box'
 
 export const Badge = ({ color, children }: BadgeProps) => (
   <Box
-    display='flex'
+    display='inline-flex'
     alignItems='center'
-    justifyContent='center'
     gridGap='0.75em'
     height='2em'
     lineHeight='2em'
