@@ -25,7 +25,7 @@ const PageInner = styled.div`
     flex: 0 0 auto;
   }
   > *:last-child {
-    flex: 1 1 auto;
+    flex: 1 0 auto;
   }
 `
 
