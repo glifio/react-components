@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import { useRouter } from 'next/router'
 import {
   useChainHeadSubscription,
   MessageConfirmed
@@ -13,7 +12,14 @@ import Box from '../../Box'
 import { IconClock } from '../../Icons'
 import { P, HR } from '../../Typography'
 import { Badge } from '../generic'
-import { Head, Line, Status, Confirmations, Parameters } from '../detail'
+import {
+  Head,
+  DetailCaption,
+  Line,
+  Status,
+  Confirmations,
+  Parameters
+} from '../detail'
 import {
   attoFilToFil,
   getTotalCost,
@@ -23,8 +29,6 @@ import {
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
-import LoadingScreen from '../../LoadingScreen'
-import ErrorView from '../../Error'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -41,7 +45,6 @@ export default function MessageDetail(props: MessageDetailProps) {
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, loading, error, pending } = useMessage(cid)
-  const router = useRouter()
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -80,18 +83,6 @@ export default function MessageDetail(props: MessageDetailProps) {
       : null
   )
 
-  if (loading) return <LoadingScreen marginTop='10rem' />
-  if (error)
-    return (
-      <ErrorView
-        title={`Failed to load message: ${cid}`}
-        description={error.message}
-        sendHome={() => {
-          router.back()
-        }}
-      />
-    )
-
   return (
     <Box>
       <Head
@@ -101,95 +92,103 @@ export default function MessageDetail(props: MessageDetailProps) {
         cancel={cancel}
       />
       <HR />
-      <Line label='CID'>{cid}</Line>
-      <Line label='Status and Confirmations'>
-        <Status
-          exitCode={(message as MessageConfirmed)?.exitCode}
-          pending={pending}
-        />
-        {!pending && (
-          <Confirmations count={confirmationCount} total={confirmations} />
-        )}
-      </Line>
-      <Line label='Height'>{pending ? 'Pending' : message.height}</Line>
-      <Line label='Timestamp'>
-        {pending ? (
-          'Pending'
-        ) : (
-          <>
-            <IconClock width='1.125em' />
-            {unformattedTime
-              ? `${unformattedTime?.from(
-                  time
-                )} (${unformattedTime?.toString()})`
-              : ''}
-          </>
-        )}
-      </Line>
-      <HR />
-      <Line label='From'>
-        {message.from.robust}
-        <Link
-          href={addressHref(message.from.robust)}
-        >{`(${message.from.id})`}</Link>
-      </Line>
-      <Line label='To'>
-        {message.to.robust}
-        <Link
-          href={addressHref(message.to.robust)}
-        >{`(${message.to.id})`}</Link>
-      </Line>
-      <HR />
-      <Line label='Value'>{value}</Line>
-      <Line label='Transaction Fee'>{pending ? 'Pending' : totalCost}</Line>
-      {!loading && methodName && (
-        <Line label='Method'>
-          <Badge color='purple'>{methodName.toUpperCase()}</Badge>
-        </Line>
-      )}
-      <HR />
-      <SeeMore onClick={() => setSeeMore(!seeMore)}>
-        Click to see {seeMore ? 'less ↑' : 'more ↓'}
-      </SeeMore>
-      <HR />
-      {seeMore && (
+      <DetailCaption name='Message Overview' loading={loading} error={error} />
+      {!loading && !error && (
         <>
-          <Line label='Gas Limit & Usage by Txn'>
-            {formatNumber(message.gasLimit)}
-            <span className='gray'>|</span>
-            {pending
-              ? '?'
-              : `${formatNumber(
-                  (message as MessageConfirmed).gasUsed
-                )} attoFil`}
-            <span>({gasPercentage})</span>
+          <Line label='CID'>{cid}</Line>
+          <Line label='Status and Confirmations'>
+            <Status
+              exitCode={(message as MessageConfirmed)?.exitCode}
+              pending={pending}
+            />
+            {!pending && (
+              <Confirmations count={confirmationCount} total={confirmations} />
+            )}
           </Line>
-          <Line label='Gas Fees'>
-            <span className='gray'>Premium</span>
-            {formatNumber(message.gasPremium)} attoFIL
+          <Line label='Height'>{pending ? 'Pending' : message.height}</Line>
+          <Line label='Timestamp'>
+            {pending ? (
+              'Pending'
+            ) : (
+              <>
+                <IconClock width='1.125em' />
+                {unformattedTime
+                  ? `${unformattedTime?.from(
+                      time
+                    )} (${unformattedTime?.toString()})`
+                  : ''}
+              </>
+            )}
           </Line>
-          <Line label=''>
-            <span className='gray'>Fee Cap</span>
-            {formatNumber(message.gasFeeCap)} attoFIL
+          <HR />
+          <Line label='From'>
+            {message.from.robust}
+            <Link
+              href={addressHref(message.from.robust)}
+            >{`(${message.from.id})`}</Link>
           </Line>
-          {!pending && (
-            <>
-              <Line label=''>
-                <span className='gray'>Base</span>
-                {formatNumber((message as MessageConfirmed).baseFeeBurn)}{' '}
-                attoFIL
-              </Line>
-              <Line label='Gas Burnt'>
-                {formatNumber((message as MessageConfirmed).gasBurned)} attoFIL
-              </Line>
-            </>
+          <Line label='To'>
+            {message.to.robust}
+            <Link
+              href={addressHref(message.to.robust)}
+            >{`(${message.to.id})`}</Link>
+          </Line>
+          <HR />
+          <Line label='Value'>{value}</Line>
+          <Line label='Transaction Fee'>{pending ? 'Pending' : totalCost}</Line>
+          {!loading && methodName && (
+            <Line label='Method'>
+              <Badge color='purple'>{methodName.toUpperCase()}</Badge>
+            </Line>
           )}
           <HR />
-          <Parameters
-            params={{ params: message.params }}
-            actorName={actorName}
-            depth={0}
-          />
+          <SeeMore onClick={() => setSeeMore(!seeMore)}>
+            Click to see {seeMore ? 'less ↑' : 'more ↓'}
+          </SeeMore>
+          <HR />
+          {seeMore && (
+            <>
+              <Line label='Gas Limit & Usage by Txn'>
+                {formatNumber(message.gasLimit)}
+                <span className='gray'>|</span>
+                {pending
+                  ? '?'
+                  : `${formatNumber(
+                      (message as MessageConfirmed).gasUsed
+                    )} attoFil`}
+                <span>({gasPercentage})</span>
+              </Line>
+              <Line label='Gas Fees'>
+                <span className='gray'>Premium</span>
+                {formatNumber(message.gasPremium)} attoFIL
+              </Line>
+              <Line label=''>
+                <span className='gray'>Fee Cap</span>
+                {formatNumber(message.gasFeeCap)} attoFIL
+              </Line>
+              {!pending && (
+                <>
+                  <Line label=''>
+                    <span className='gray'>Base</span>
+                    {formatNumber(
+                      (message as MessageConfirmed).baseFeeBurn
+                    )}{' '}
+                    attoFIL
+                  </Line>
+                  <Line label='Gas Burnt'>
+                    {formatNumber((message as MessageConfirmed).gasBurned)}{' '}
+                    attoFIL
+                  </Line>
+                </>
+              )}
+              <HR />
+              <Parameters
+                params={{ params: message.params }}
+                actorName={actorName}
+                depth={0}
+              />
+            </>
+          )}
         </>
       )}
     </Box>

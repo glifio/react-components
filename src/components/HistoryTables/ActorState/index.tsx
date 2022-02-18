@@ -80,7 +80,8 @@ export function ActorState({ address }: { address: string }) {
               State
             </Box>
             <ViewState onClick={() => setViewActorState(!viewActorState)}>
-              Click to {viewActorState ? 'hide actor state ↑' : 'see actor state ↓'}
+              Click to{' '}
+              {viewActorState ? 'hide actor state ↑' : 'see actor state ↓'}
             </ViewState>
           </Box>
           <Box>{viewActorState && <State state={actorStateData?.State} />}</Box>

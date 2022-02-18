@@ -146,11 +146,7 @@ const CAPTION = styled.div`
   }
 `
 
-export const DetailCaption = ({
-  name,
-  loading,
-  error
-}: DetailCaptionProps) => {
+export const DetailCaption = ({ name, loading, error }: DetailCaptionProps) => {
   if (error)
     return (
       <CAPTION className='error'>{`${name} failed to load: ${error.message}`}</CAPTION>
