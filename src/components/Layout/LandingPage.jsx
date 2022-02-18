@@ -31,7 +31,11 @@ export const LandingPageContent = styled.div`
     font-size: ${fontSize('large')};
   }
 
-  p {
+  > p {
     font-size: 1.125rem;
+
+    &:first-of-type {
+      margin-top: 3rem;
+    }
   }
 `
