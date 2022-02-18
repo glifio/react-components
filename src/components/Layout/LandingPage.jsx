@@ -26,9 +26,5 @@ export const LandingPageContent = styled(OneColumn)`
     &:first-of-type {
       margin-top: 3rem;
     }
-
-    &:last-of-type {
-      margin-bottom: 3rem;
-    }
   }
 `
