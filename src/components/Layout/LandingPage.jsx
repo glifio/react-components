@@ -2,11 +2,12 @@ import styled from 'styled-components'
 import { devices, space, fontSize } from '../theme'
 
 export const LandingPageWrapper = styled.main`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: ${space()};
-  grid-template-columns: 1fr;
 
   @media (min-width: ${devices.tablet}) {
+    display: grid;
     grid-template-columns: 1fr 1fr;
   }
 `
@@ -20,14 +21,14 @@ export const LandingPageAppTile = styled.div`
 `
 
 export const LandingPageContent = styled.div`
-  padding: 3rem 2rem;
+  padding: 0 2rem;
 
   @media (min-width: ${devices.tablet}) {
-    padding: 1.25rem 3rem;
+    padding: 0 3rem;
   }
 
   h2 {
-    margin: 0 0 1em 0;
+    margin: 1em 0;
     font-size: ${fontSize('large')};
   }
 
@@ -36,6 +37,10 @@ export const LandingPageContent = styled.div`
 
     &:first-of-type {
       margin-top: 3rem;
+    }
+
+    &:last-of-type {
+      margin-bottom: 3rem;
     }
   }
 `
