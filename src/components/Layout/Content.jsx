@@ -9,11 +9,10 @@ export const OneColumn = styled.div`
   }
 `
 
-export const TwoColumns = styled.div`
+export const TwoColumns = styled(OneColumn)`
   display: flex;
   flex-direction: column;
   gap: ${space()};
-  padding: 0 3rem;
 
   @media (min-width: ${devices.tablet}) {
     display: grid;
