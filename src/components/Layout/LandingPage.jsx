@@ -1,23 +1,16 @@
 import styled from 'styled-components'
-import { devices, space, fontSize } from '../theme'
-import { OneColumn } from './Content'
+import { devices, fontSize } from '../theme'
+import { OneColumn, TwoColumns } from './Content'
 
-export const LandingPageWrapper = styled.main`
-  display: flex;
-  flex-direction: column;
-  gap: ${space()};
+export const LandingPageColumns = styled(TwoColumns)`
+  padding: 0;
 
-  @media (min-width: ${devices.tablet}) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-`
+  > *:first-child {
+    height: 250px;
 
-export const LandingPageAppTile = styled.div`
-  height: 250px;
-
-  @media (min-width: ${devices.tablet}) {
-    height: 100%;
+    @media (min-width: ${devices.tablet}) {
+      height: 100%;
+    }
   }
 `
 
