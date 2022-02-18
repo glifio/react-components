@@ -8,6 +8,7 @@ import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import ButtonV2 from '../../Button/V2'
 import { TABLE, TableCaption } from '../table'
 import { useAllMessages } from '../useAllMessages'
+import { Title } from '../generic'
 
 const DEFAULT_LIMIT = 10
 
@@ -29,6 +30,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 
   return (
     <Box>
+      <Title>Transaction History</Title>
       <TABLE className='narrow'>
         <TableCaption
           name='Transaction History'

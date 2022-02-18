@@ -1,11 +1,10 @@
-import styled, { css } from 'styled-components'
 import React, { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import { MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
 import ButtonV2 from '../Button/V2'
-import { Badge } from './generic'
+import { Title, Badge } from './generic'
 import {
   IconSpeedUp,
   IconCancel,
@@ -15,15 +14,6 @@ import {
 } from '../Icons'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
-
-export const Title = styled.h2`
-  margin: 0;
-  font-size: 1.5rem;
-  ${props =>
-    css`
-      color: ${props.theme.colors.core.primary};
-    `}
-`
 
 /**
  * Head

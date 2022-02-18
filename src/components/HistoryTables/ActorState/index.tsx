@@ -5,7 +5,8 @@ import { useAddressQuery } from '../../../generated/graphql'
 import { useStateReadStateQuery, decodeActorCID } from '../../../utils'
 import Box from '../../Box'
 import { HR, P } from '../../Typography'
-import { Title, Line } from '../detail'
+import { Title } from '../generic'
+import { Line } from '../detail'
 
 const ViewState = styled(P).attrs(() => ({
   color: 'core.primary',
