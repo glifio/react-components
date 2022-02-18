@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { devices, space, fontSize } from '../theme'
+import { OneColumn } from './Content'
 
 export const LandingPageWrapper = styled.main`
   display: flex;
@@ -20,13 +21,7 @@ export const LandingPageAppTile = styled.div`
   }
 `
 
-export const LandingPageContent = styled.div`
-  padding: 0 2rem;
-
-  @media (min-width: ${devices.tablet}) {
-    padding: 0 3rem;
-  }
-
+export const LandingPageContent = styled(OneColumn)`
   h2 {
     margin: 1em 0;
     font-size: ${fontSize('large')};
