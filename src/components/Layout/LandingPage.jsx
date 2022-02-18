@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { devices, fontSize } from '../theme'
+import { devices } from '../theme'
 import { OneColumn, TwoColumns } from './Content'
 
 export const LandingPageColumns = styled(TwoColumns)`
@@ -15,11 +15,6 @@ export const LandingPageColumns = styled(TwoColumns)`
 `
 
 export const LandingPageContent = styled(OneColumn)`
-  h2 {
-    margin: 1em 0;
-    font-size: ${fontSize('large')};
-  }
-
   > p {
     font-size: 1.125rem;
 

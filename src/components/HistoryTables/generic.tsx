@@ -1,15 +1,10 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from '../Box'
 
 export const Title = styled.h2`
-  margin: 1em 0;
-  font-size: 1.5rem;
-  ${props =>
-    css`
-      color: ${props.theme.colors.core.primary};
-    `}
+  color: var(--purple-medium);
 `
 
 export const Badge = ({ color, children }: BadgeProps) => (
