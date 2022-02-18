@@ -133,10 +133,10 @@ ProposalHead.defaultProps = {
 }
 
 const CAPTION = styled.div`
-  line-height: 1.5rem;
+  line-height: 1.5em;
   text-align: left;
-  padding: 1rem;
-  margin: 0.5rem 0;
+  padding: 1em;
+  margin: -0.5em 0;
   color: ${props => props.theme.colors.gray.medium};
 
   &.error {
