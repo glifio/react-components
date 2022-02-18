@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
 import ButtonV2 from '../Button/V2'
@@ -129,6 +130,45 @@ ProposalHead.propTypes = {
 
 ProposalHead.defaultProps = {
   actionRequired: false
+}
+
+const CAPTION = styled.div`
+  line-height: 1.5rem;
+  text-align: left;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  color: ${props => props.theme.colors.gray.medium};
+
+  &.error {
+    background: ${props => props.theme.colors.red.light};
+    color: ${props => props.theme.colors.red.dark};
+    border-radius: 4px;
+  }
+`
+
+export const DetailCaption = ({
+  name,
+  loading,
+  error
+}: DetailCaptionProps) => {
+  if (error)
+    return (
+      <CAPTION className='error'>{`${name} failed to load: ${error.message}`}</CAPTION>
+    )
+  if (loading) return <CAPTION>{`${name} is loading...`}</CAPTION>
+  return <></>
+}
+
+type DetailCaptionProps = {
+  name: string
+  loading: boolean
+  error: Error
+}
+
+DetailCaption.propTypes = {
+  name: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.object
 }
 
 /**

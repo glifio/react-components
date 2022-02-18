@@ -70,7 +70,7 @@ export const TD = styled.td`
 
 const CAPTION = styled.caption`
   line-height: 1.5rem;
-  text-align: center;
+  text-align: left;
   caption-side: bottom;
   padding: 1rem;
   margin: 0.5rem 0;
