@@ -1,4 +1,3 @@
-import { ApolloError } from '@apollo/client'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -103,7 +102,7 @@ type TableCaptionProps = {
   name: string
   loading: boolean
   empty: boolean
-  error: ApolloError
+  error: Error
 }
 
 TableCaption.propTypes = {
