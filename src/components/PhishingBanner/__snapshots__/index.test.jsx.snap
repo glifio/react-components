@@ -1,99 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Phishing Banner renders the phishing banner 1`] = `
-.c2 {
-  line-height: 1.3em;
-}
-
-.c2 + p {
-  margin-top: 1em;
-}
-
-.c2 a {
-  color: inherit;
-  font-size: inherit;
-  -webkit-text-decoration: underline;
-  text-decoration: underline;
-}
-
-.c2 a:hover {
-  color: #5E26FF;
-}
-
 .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 1.5em;
+  border-radius: 10px;
+  font-size: var(--type-small);
+  text-align: center;
   background: #ff4242;
   color: white;
-  font-size: var(--type-small);
-  line-height: 50px;
-  border-radius: 10px;
-  overflow: hidden;
-  padding: 0 20px;
-  height: 50px;
 }
 
-.c3 {
-  display: inline-block;
-  margin: 0;
+.c0 p {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
-.c3 > a {
+.c0 a {
+  color: inherit;
   -webkit-text-decoration: underline;
   text-decoration: underline;
-  cursor: pointer;
-  color: inherit;
 }
 
-.c3 > a:hover {
+.c0 a:hover {
   color: inherit;
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-@media (min-width:868px) {
-  .c0 {
-    text-align: center;
-  }
-}
-
-@media (max-width:868px) {
-  .c1 {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-  }
+.c0 button {
+  height: 3em;
+  padding: 0 1.5em;
+  cursor: pointer;
+  border: none;
+  color: inherit;
+  background: none;
 }
 
 <div
   class="c0"
 >
-  <div
-    class="c1"
+  <p>
+    For your protection, please check your browser's URL bar that you're visiting 
+    <a
+      href="https://sender.glif.io"
+      rel="noreferrer noopener"
+      target="_blank"
+    >
+      https://sender.glif.io
+    </a>
+  </p>
+  <button
+    type="button"
   >
-    <p
-      class="c2 c3"
-      style="display: inline-block;"
-    >
-      For your protection, please check your browser's URL bar that you're visiting
-       
-      <a
-        href="https://sender.glif.io"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        https://sender.glif.io
-      </a>
-    </p>
-    <button
-      style="margin-left: 30px; display: inline-block; cursor: pointer; background: none; color: white; height: 50px;"
-      type="button"
-    >
-      close
-    </button>
-  </div>
+    close
+  </button>
 </div>
 `;

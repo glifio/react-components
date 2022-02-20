@@ -3,7 +3,7 @@ import { color, typography, layout, space, border } from 'styled-system'
 import styled from 'styled-components'
 import { node, oneOf, number } from 'prop-types'
 
-import theme, { fontSize } from '../theme'
+import theme from '../theme'
 
 type TypographyProps = {
   children: ReactNode
@@ -125,67 +125,6 @@ export const Highlight = styled.span`
 Highlight.propTypes = {
   fontSize: number.isRequired
 }
-
-const globalHeaderStyles = `
-  font-size: ${fontSize('medium')};
-  font-weight: 600;
-  text-rendering: optimizeLegibility;
-  line-height: inherit;
-`
-
-export const H1 = styled.h1`
-  ${globalHeaderStyles}
-
-  ${color}
-  ${typography}
-  ${layout}
-  ${space}
-`
-
-export const H2 = styled.h2`
-  ${globalHeaderStyles}
-
-  ${color}
-  ${typography}
-  ${layout}
-  ${space}
-`
-
-export const H3 = styled.h3`
-  ${globalHeaderStyles}
-
-  ${color}
-  ${typography}
-  ${layout}
-  ${space}
-`
-
-export const H4 = styled.h4`
-  ${globalHeaderStyles}
-
-  ${color}
-  ${typography}
-  ${layout}
-  ${space}
-`
-
-export const H5 = styled.h5`
-  ${globalHeaderStyles}
-
-  ${color}
-  ${typography}
-  ${layout}
-  ${space}
-`
-
-export const H6 = styled.h6`
-  ${globalHeaderStyles}
-
-  ${color}
-  ${typography}
-  ${layout}
-  ${space}
-`
 
 export const P = styled.p`
   line-height: 1.3em;

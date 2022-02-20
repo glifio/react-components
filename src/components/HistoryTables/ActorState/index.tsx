@@ -4,8 +4,9 @@ import styled from 'styled-components'
 import { useAddressQuery } from '../../../generated/graphql'
 import { useStateReadStateQuery, decodeActorCID } from '../../../utils'
 import Box from '../../Box'
-import { H2, HR, P } from '../../Typography'
-import { Line } from '../detail'
+import { HR, P } from '../../Typography'
+import { Title } from '../generic'
+import { DetailCaption, Line } from '../detail'
 
 const ViewState = styled(P).attrs(() => ({
   color: 'core.primary',
@@ -51,45 +52,41 @@ export function ActorState({ address }: { address: string }) {
     return actorStateError || adddressError
   }, [actorStateError, adddressError])
 
-  if (error) {
-    return <Box>{error.message}</Box>
-  }
-
-  if (loading) {
-    return <Box>Loading...</Box>
-  }
-
   return (
     <Box>
-      <H2 color='core.primary' fontSize='1.5rem' margin='0'>
-        Overview
-      </H2>
+      <Title>Overview</Title>
       <HR />
-      {addressData?.address.robust && (
-        <Line label='Robust address'>{addressData?.address.robust}</Line>
+      <DetailCaption name='Overview' loading={loading} error={error} />
+      {!loading && !error && (
+        <>
+          {addressData?.address.robust && (
+            <Line label='Robust address'>{addressData?.address.robust}</Line>
+          )}
+          {addressData?.address.id && (
+            <Line label='ID'>{addressData?.address.id}</Line>
+          )}
+          <Line label='Actor'>{actorType}</Line>
+          <Line label='Balance'>
+            {new FilecoinNumber(actorStateData?.Balance, 'attofil').toFil()} FIL
+          </Line>
+          <Box
+            display='flex'
+            gridGap='1em'
+            my='1em'
+            lineHeight='2em'
+            alignItems='center'
+          >
+            <Box minWidth='200px' flex='0 1 25%'>
+              State
+            </Box>
+            <ViewState onClick={() => setViewActorState(!viewActorState)}>
+              Click to{' '}
+              {viewActorState ? 'hide actor state ↑' : 'see actor state ↓'}
+            </ViewState>
+          </Box>
+          <Box>{viewActorState && <State state={actorStateData?.State} />}</Box>
+        </>
       )}
-      {addressData?.address.id && (
-        <Line label='ID'>{addressData?.address.id}</Line>
-      )}
-      <Line label='Actor'>{actorType}</Line>
-      <Line label='Balance'>
-        {new FilecoinNumber(actorStateData?.Balance, 'attofil').toFil()} FIL
-      </Line>
-      <Box
-        display='flex'
-        gridGap='1em'
-        my='1em'
-        lineHeight='2em'
-        alignItems='center'
-      >
-        <Box minWidth='200px' flex='0 1 25%'>
-          State
-        </Box>
-        <ViewState onClick={() => setViewActorState(!viewActorState)}>
-          Click to {viewActorState ? 'hide actor state ↑' : 'see actor state ↓'}
-        </ViewState>
-      </Box>
-      <Box>{viewActorState && <State state={actorStateData?.State} />}</Box>
     </Box>
   )
 }

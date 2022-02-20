@@ -13,8 +13,12 @@ const Template = args => <AppHeader {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  homeHref: 'https://glif.io',
-  blogHref: 'https://glif.io/blog',
-  codeHref: 'https://glif.io/code',
-  nodesHref: 'https://glif.io/nodes'
+  homeUrl: 'https://glif.io',
+  blogUrl: 'https://glif.io/blog',
+  codeUrl: 'https://glif.io/code',
+  nodesUrl: 'https://glif.io/nodes',
+  safeUrl: 'https://safe.glif.io',
+  walletUrl: 'https://wallet.glif.io',
+  verifierUrl: 'https://verifier.glif.io',
+  explorerUrl: 'https://explorer.glif.io'
 }

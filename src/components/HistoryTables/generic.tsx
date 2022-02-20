@@ -1,12 +1,16 @@
+import styled from 'styled-components'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Box from '../Box'
 
+export const Title = styled.h2`
+  color: var(--purple-medium);
+`
+
 export const Badge = ({ color, children }: BadgeProps) => (
   <Box
-    display='flex'
+    display='inline-flex'
     alignItems='center'
-    justifyContent='center'
     gridGap='0.75em'
     height='2em'
     lineHeight='2em'

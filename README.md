@@ -37,7 +37,6 @@ WIP.  In the meantime:
 export { default as theme } from './theme'
 export { default as ThemeProvider } from './ThemeProvider'
 
-export { default as Container } from './Container'
 export { default as Card } from './Card'
 export { default as OnboardCard } from './Card/OnboardCard'
 export { default as AccountCard } from './AccountCard'

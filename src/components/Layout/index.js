@@ -1,3 +1,4 @@
-export * from './SidebarLayout'
-export { default as ContentContainer } from './Container'
-export * from './LandingPageWrapper'
+export * from './Content'
+export * from './LandingPage'
+export * from './Page'
+export * from './Sidebar'

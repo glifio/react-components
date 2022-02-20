@@ -8,13 +8,7 @@ import {
   Text as TextComp,
   Label as LabelComp,
   Num as NumComp,
-  Highlight as HighlightComp,
-  H1 as H1Comp,
-  H2 as H2Comp,
-  H3 as H3Comp,
-  H4 as H4Comp,
-  H5 as H5Comp,
-  H6 as H6Comp
+  Highlight as HighlightComp
 } from './index'
 
 export default {
@@ -78,10 +72,3 @@ Highlight.args = {
 }
 Highlight.component = HighlightComp
 Highlight.title = 'Typography/Highlight'
-
-export const H1 = args => <H1Comp {...args}>Test Text</H1Comp>
-export const H2 = args => <H2Comp {...args}>Test Text</H2Comp>
-export const H3 = args => <H3Comp {...args}>Test Text</H3Comp>
-export const H4 = args => <H4Comp {...args}>Test Text</H4Comp>
-export const H5 = args => <H5Comp {...args}>Test Text</H5Comp>
-export const H6 = args => <H6Comp {...args}>Test Text</H6Comp>

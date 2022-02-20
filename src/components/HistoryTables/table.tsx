@@ -1,8 +1,8 @@
-import { ApolloError } from '@apollo/client'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 export const TABLE = styled.table`
+  min-width: 100%;
   border-bottom: 1px solid ${props => props.theme.colors.gray.medium}80;
   border-collapse: collapse;
 `
@@ -69,11 +69,11 @@ export const TD = styled.td`
 `
 
 const CAPTION = styled.caption`
-  line-height: 1.5rem;
-  text-align: center;
+  line-height: 1.5em;
+  text-align: left;
   caption-side: bottom;
-  padding: 1rem;
-  margin: 0.5rem 0;
+  padding: 1em;
+  margin: 0.5em 0;
   color: ${props => props.theme.colors.gray.medium};
 
   &.error {
@@ -102,7 +102,7 @@ type TableCaptionProps = {
   name: string
   loading: boolean
   empty: boolean
-  error: ApolloError
+  error: Error
 }
 
 TableCaption.propTypes = {

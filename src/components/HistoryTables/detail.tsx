@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
-import { H2 } from '../Typography'
+import styled from 'styled-components'
 import { MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
 import ButtonV2 from '../Button/V2'
-import { Badge } from './generic'
+import { Title, Badge } from './generic'
 import {
   IconSpeedUp,
   IconCancel,
@@ -29,9 +29,7 @@ export const Head = ({ title, speedUp, cancel, pending }: HeadProps) => (
     gridGap='1em'
     my='1em'
   >
-    <H2 color='core.primary' fontSize='1.5rem' margin='0'>
-      {title}
-    </H2>
+    <Title>{title}</Title>
     <Box display='flex' gridGap='1rem'>
       {pending && (
         <>
@@ -88,14 +86,8 @@ export const ProposalHead = ({
     gridGap='1em'
     my='1em'
   >
-    <H2 color='core.primary' fontSize='1.5rem' margin='0'>
-      {title}
-    </H2>
-    {actionRequired && (
-      <H2 color='core.primary' fontSize='1.5rem' margin='0'>
-        Action Required
-      </H2>
-    )}
+    <Title>{title}</Title>
+    {actionRequired && <Title>Action Required</Title>}
     <Box display='flex' gridGap='1rem'>
       {actionRequired && (
         <ButtonV2
@@ -138,6 +130,41 @@ ProposalHead.propTypes = {
 
 ProposalHead.defaultProps = {
   actionRequired: false
+}
+
+const CAPTION = styled.div`
+  line-height: 1.5em;
+  text-align: left;
+  padding: 1em;
+  margin: -0.5em 0;
+  color: ${props => props.theme.colors.gray.medium};
+
+  &.error {
+    background: ${props => props.theme.colors.red.light};
+    color: ${props => props.theme.colors.red.dark};
+    border-radius: 4px;
+  }
+`
+
+export const DetailCaption = ({ name, loading, error }: DetailCaptionProps) => {
+  if (error)
+    return (
+      <CAPTION className='error'>{`${name} failed to load: ${error.message}`}</CAPTION>
+    )
+  if (loading) return <CAPTION>{`${name} is loading...`}</CAPTION>
+  return <></>
+}
+
+type DetailCaptionProps = {
+  name: string
+  loading: boolean
+  error: Error
+}
+
+DetailCaption.propTypes = {
+  name: PropTypes.string.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.object
 }
 
 /**

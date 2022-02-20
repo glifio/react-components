@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { AppTileWrapper } from './AppTileWrapper'
-import { space } from '../theme'
+import { space, fontSize } from '../theme'
 
-import { H2, H3, P } from '../Typography'
+import { P } from '../Typography'
 import {
   AppTitleContent,
   AppTitleHeader,
@@ -36,20 +36,20 @@ export function AppTile({
       <AppTitleContent small={small} large={large} soon={soon}>
         <AppTitleHeader soon={soon}>
           <div>
-            <H2
+            <h2
               style={{
-                fontWeight: 'normal',
+                fontSize: fontSize('medium'),
                 margin: 0,
                 opacity: soon ? '0.3' : '1',
                 textDecoration: 'none'
               }}
             >
               {title}
-            </H2>
+            </h2>
             {oldTileName && (
-              <H3
+              <h3
                 style={{
-                  fontWeight: 'normal',
+                  fontSize: fontSize('medium'),
                   opacity: '0.3',
                   textDecoration: 'line-through',
                   lineHeight: 1,
@@ -57,19 +57,19 @@ export function AppTile({
                 }}
               >
                 {oldTileName}
-              </H3>
+              </h3>
             )}
             {beta && (
-              <H3
+              <h3
                 style={{
-                  fontWeight: 'normal',
+                  fontSize: fontSize('medium'),
                   opacity: '0.5',
                   lineHeight: 1,
                   margin: 0
                 }}
               >
                 Beta
-              </H3>
+              </h3>
             )}
           </div>
         </AppTitleHeader>
