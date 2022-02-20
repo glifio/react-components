@@ -407,7 +407,7 @@ export const useMessage = (cid: string) => {
       return pendingMsg
     } else if (
       ready &&
-      (highConfMsgData.message || lowConfMsgData.messageLowConfidence)
+      (highConfMsgData?.message || lowConfMsgData?.messageLowConfidence)
     ) {
       return (highConfMsgData.message ||
         lowConfMsgData.messageLowConfidence) as MessageConfirmed
@@ -420,6 +420,8 @@ export const useMessage = (cid: string) => {
     pendingMsg,
     pendingFoundInLowConfMsgs
   ])
+
+  console.log({ message })
 
   return {
     message,
