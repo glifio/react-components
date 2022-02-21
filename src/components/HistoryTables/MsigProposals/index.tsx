@@ -21,7 +21,7 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
       offset: props.offset,
       limit: Number.MAX_SAFE_INTEGER
     },
-    pollInterval: 0
+    pollInterval: 10000
   })
 
   return (
