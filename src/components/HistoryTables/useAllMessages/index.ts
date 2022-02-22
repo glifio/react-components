@@ -324,7 +324,7 @@ export const useMessage = (cid: string) => {
   } = useMessageLowConfidenceQuery({
     variables: { cid },
     pollInterval: !!pendingMsg ? 30000 : 0,
-    skip: pendingMsgLoading
+    skip: pendingMsgLoading || !!highConfMsgData?.message
   })
 
   const {
