@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { devices, space } from '../theme'
+import { devices, fontSize, space } from '../theme'
 
 export const OneColumn = styled.div`
-  padding: 2rem 1.5rem;
+  padding: 3rem 1.5rem;
 
   @media (min-width: ${devices.tablet}) {
-    padding: 2rem 3rem;
+    padding: 3rem;
   }
 
   > *:first-child {
@@ -25,5 +25,24 @@ export const TwoColumns = styled(OneColumn)`
   @media (min-width: ${devices.tablet}) {
     display: grid;
     grid-template-columns: 1fr 1fr;
+  }
+`
+
+export const OneColumnLargeText = styled(OneColumn)`
+  font-size: ${fontSize('large')};
+
+  p {
+    max-width: 670px;
+    margin: 2em auto;
+  }
+
+  &.primary {
+    color: white;
+    background-color: var(--purple-medium);
+    border-radius: 8px;
+
+    a:hover {
+      color: white;
+    }
   }
 `
