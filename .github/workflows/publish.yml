@@ -1,0 +1,42 @@
+name: npm publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      newversion:
+        description: 'npm publish {major,minor,patch,prerelease}'
+        required: true
+
+env:
+  node_version: 14
+  git_email: jpschwartz2@uwalumni.com
+
+jobs:
+  version_and_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          # fetch full history so things like auto-changelog work properly
+          fetch-depth: 0
+      - name: Use Node.js ${{ env.node_version }}
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: ${{ env.node_version }}
+
+      - run: npm ci
+
+      # Run tests and cleanup
+      - run: npm test # block publishing on
+      - run: git reset --hard && git clean -fd
+
+      # configure git
+      - run: git config --global user.email "${{ env.git_email }}"
+      - run: git config --global user.name "${{ github.actor }}"
+
+      # publish to github and npm
+      - run: npm version ${{ github.event.inputs.newversion }}
+      - run: echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
+      - run: npm publish
+      - run: git push origin primary
