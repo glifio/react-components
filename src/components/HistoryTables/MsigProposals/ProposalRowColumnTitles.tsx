@@ -9,6 +9,7 @@ export function ProposalRowColumnTitles() {
         <TH>Proposer</TH>
         <TH>Value</TH>
         <TH># Approvals</TH>
+        <TH />
       </TR>
     </thead>
   )
