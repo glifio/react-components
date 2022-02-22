@@ -47,6 +47,12 @@ export const OneColumnLargeText = styled(OneColumn)`
   }
 `
 
+export const OneColumnCentered = styled(OneColumn)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 export const Spacer = styled(OneColumn)`
   box-sizing: content-box;
 
