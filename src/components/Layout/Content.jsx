@@ -46,3 +46,11 @@ export const OneColumnLargeText = styled(OneColumn)`
     }
   }
 `
+
+export const Spacer = styled(OneColumn)`
+  box-sizing: content-box;
+
+  @media (min-width: ${devices.tablet}) {
+    height: 2rem;
+  }
+`
