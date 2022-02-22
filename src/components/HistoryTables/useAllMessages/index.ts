@@ -23,7 +23,7 @@ export const usePendingMessages = (
   address: string,
   chainHeadSubscription: SubscriptionResult<ChainHeadSubscription, any>
 ) => {
-  const [pendingMsgList, setPendingMsgList] = useState([])
+  const [pendingMsgList, setPendingMsgList] = useState<MessagePending[]>([])
 
   // only update the pending message list when there is a new message to add... w/out infinite loops
   const safeUpdate = useCallback(
