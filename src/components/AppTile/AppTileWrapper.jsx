@@ -33,7 +33,6 @@ export const AppTileWrapper = styled.a`
       css`
         width: 45vw;
         scroll-snap-align: start;
-        padding-left: ${space('default', 'default')};
         flex-shrink: 0;
       `}
 
@@ -46,7 +45,6 @@ export const AppTileWrapper = styled.a`
       css`
         width: 70vw;
         scroll-snap-align: start;
-        padding-left: ${space('default', 'phone')};
         flex-shrink: 0;
       `}
 
