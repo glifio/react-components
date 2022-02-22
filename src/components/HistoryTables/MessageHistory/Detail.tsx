@@ -186,6 +186,7 @@ export default function MessageDetail(props: MessageDetailProps) {
                 params={{ params: message.params }}
                 actorName={actorName}
                 depth={0}
+                addressHref={props.addressHref}
               />
             </>
           )}

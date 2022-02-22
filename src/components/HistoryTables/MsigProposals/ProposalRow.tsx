@@ -46,6 +46,8 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
               overflow: 'hidden',
               textOverflow: 'ellipsis'
             }}
+            target='_blank'
+            rel='noopener noreferrer'
           >
             {proposal.id}
           </a>

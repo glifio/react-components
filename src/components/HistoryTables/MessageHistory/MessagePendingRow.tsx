@@ -35,6 +35,8 @@ export default function PendingMessageHistoryRow(
               overflow: 'hidden',
               textOverflow: 'ellipsis'
             }}
+            target='_blank'
+            rel='noopener noreferrer'
           >
             {message.cid.slice()}
           </a>
