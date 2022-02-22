@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { devices, fontSize, space } from '../theme'
+import { devices, fontSize } from '../theme'
 
 export const AppTileWrapper = styled.a`
   position: relative;
