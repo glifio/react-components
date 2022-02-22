@@ -20,6 +20,7 @@ import {
 } from '../../../utils'
 import LoadingScreen from '../../LoadingScreen'
 import ErrorView from '../../Error'
+import { CopyText } from '../../Copy'
 
 type ProposalDetailProps = {
   id: number
@@ -169,8 +170,22 @@ export default function ProposalDetail(props: ProposalDetailProps) {
       <HR />
       <Line label='Proposal ID'>{props.id}</Line>
       <Line label='Proposer'>
-        {`${proposal?.approved[0].robust} (${proposal?.approved[0].id})` ||
-          'Loading...'}
+        {(
+          <Box display='flex' flexDirection='row'>
+            {`${proposal?.approved[0].robust}`}
+            <a
+              style={{ marginLeft: '4px' }}
+              href={`${props.addressHref(proposal?.approved[0].robust)}`}
+              target='_blank'
+              rel='noopener noreferrer'
+            >{`(${proposal?.approved[0].id})`}</a>
+            <CopyText
+              color='core.primary'
+              text={proposal?.approved[0].robust}
+              hideCopyText={false}
+            />
+          </Box>
+        ) || 'Loading...'}
       </Line>
       <Line label='Approvals until execution'>
         {approvalsUntilExecution.toString()}
@@ -187,6 +202,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         }}
         actorName='/multisig'
         depth={1}
+        addressHref={props.addressHref}
       />
       <HR />
       <SeeMore onClick={() => setSeeMore(!seeMore)}>
@@ -200,7 +216,19 @@ export default function ProposalDetail(props: ProposalDetailProps) {
             {proposal?.approved.map((approver: Address) => {
               return (
                 <Line key={`${1}-${approver.robust || approver.id}`} depth={1}>
-                  {approver.robust} ({approver.id})
+                  {approver.robust}{' '}
+                  <a
+                    target='_blank'
+                    rel='noreferrer noopener'
+                    href={props.addressHref(approver.robust)}
+                  >
+                    ({approver.id})
+                  </a>
+                  <CopyText
+                    text={approver.robust}
+                    color='core.primary'
+                    hideCopyText={false}
+                  />
                 </Line>
               )
             })}
