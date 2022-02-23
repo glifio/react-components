@@ -36,6 +36,7 @@ export function Page(props: PageProps) {
       <PageInner>
         {phishingUrl && <PhishingBanner href={phishingUrl} />}
         <AppHeader
+          back={props.back}
           homeUrl={props.homeUrl}
           blogUrl={props.blogUrl}
           codeUrl={props.codeUrl}

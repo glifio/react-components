@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
+import { useRouter } from 'next/router'
 import { AppIconHeaderFooter } from '../Icons'
 import { space } from '../theme'
+import ButtonV2 from '../Button/V2'
 
 const Header = styled.header`
   display: flex;
@@ -36,8 +38,14 @@ const Link = styled.a`
     `}
 `
 
+const Back = styled(ButtonV2)`
+  border-radius: 2em;
+`
+
 export default function AppHeader(props: AppHeaderProps) {
+  const router = useRouter()
   const {
+    back,
     homeUrl,
     blogUrl,
     codeUrl,
@@ -57,6 +65,7 @@ export default function AppHeader(props: AppHeaderProps) {
         <AppIconHeaderFooter iconStyle='dark' />
       )}
       <Nav>
+        {back && <Back onClick={back === true ? router.back : back}>Home</Back>}
         {blogUrl && <Link href={blogUrl}>Blog</Link>}
         {codeUrl && <Link href={codeUrl}>Code</Link>}
         {nodesUrl && <Link href={nodesUrl}>Nodes</Link>}
@@ -70,6 +79,7 @@ export default function AppHeader(props: AppHeaderProps) {
 }
 
 export interface AppHeaderProps {
+  back?: boolean | (() => void)
   homeUrl?: string
   blogUrl?: string
   codeUrl?: string
@@ -81,6 +91,10 @@ export interface AppHeaderProps {
 }
 
 AppHeader.propTypes = {
+  back: PropTypes.oneOfType([
+    PropTypes.bool,
+    PropTypes.func
+  ]),
   homeUrl: PropTypes.string,
   blogUrl: PropTypes.string,
   codeUrl: PropTypes.string,
