@@ -49,9 +49,7 @@ const NetworkSwitcherGlyph = ({ onNetworkSwitch, network, ...props }) => {
   return (
     <Box
       display='flex'
-      width='100%'
       justifyContent='flex-start'
-      maxWidth='300px'
       {...props}
     >
       <NetworkSwitcherButton
