@@ -50,6 +50,7 @@ export const OneColumnLargeText = styled(OneColumn)`
 
 export const OneColumnCentered = styled(OneColumn)`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 `
