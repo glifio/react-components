@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { devices, fontSize, space } from '../theme'
 
 export const OneColumn = styled.div`
+  position: relative;
   padding: 3rem 1.5rem;
 
   @media (min-width: ${devices.tablet}) {
