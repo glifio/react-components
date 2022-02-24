@@ -467,11 +467,14 @@ const AppIconHeaderFooterSvg = styled.svg`
   }
 
   @media (max-width: ${devices.tablet}) {
-    margin-bottom: 2em;
+    ${props =>
+      props.footer &&
+      css`
+        margin-bottom: 2em;
+      `}
   }
 
   @media (min-width: ${devices.tablet}) {
-
     width: 40px;
 
     ${props =>
