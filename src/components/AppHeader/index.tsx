@@ -8,7 +8,7 @@ import ButtonV2 from '../Button/V2'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${space('large')};
+  gap: ${space()};
 `
 
 const Header = styled.header`
@@ -30,7 +30,7 @@ const NavLeft = styled.nav`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
-  gap: ${space('default')};
+  gap: ${space()};
 `
 
 const NavRight = styled(NavLeft)`
