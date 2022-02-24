@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { AppIconHeaderFooter } from '../Icons'
 import { space } from '../theme'
 import ButtonV2 from '../Button/V2'
+import { SmartLink } from '../Link/SmartLink'
 import AppIconWrapper from './AppIconWrapper'
 
 const Wrapper = styled.div`
@@ -51,7 +52,7 @@ const NavRight = styled(NavLeft)`
   justify-content: flex-end;
 `
 
-const NavLinkSimple = styled.a`
+const NavLinkSimple = styled(SmartLink)`
   color: black;
   text-decoration: none;
 
