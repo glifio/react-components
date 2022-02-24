@@ -71,6 +71,7 @@ export default function AppHeader(props: AppHeaderProps) {
   const router = useRouter()
   const {
     back,
+    logout,
     appIcon,
     appUrl,
     homeUrl,
@@ -111,6 +112,7 @@ export default function AppHeader(props: AppHeaderProps) {
       </Header>
       <SubHeader>
         <NavLeft>
+          {logout && <NavButton onClick={logout}>Logout</NavButton>}
           {back && <NavButton onClick={back === true ? router.back : back}>Back</NavButton>}
         </NavLeft>
         <NavRight>
@@ -122,6 +124,7 @@ export default function AppHeader(props: AppHeaderProps) {
 
 export interface AppHeaderProps {
   back?: boolean | (() => void)
+  logout?: () => void
   appIcon?: JSX.Element
   appUrl?: string
   homeUrl?: string
@@ -139,6 +142,7 @@ AppHeader.propTypes = {
     PropTypes.bool,
     PropTypes.func
   ]),
+  logout: PropTypes.func,
   appIcon: PropTypes.node,
   appUrl: PropTypes.string,
   homeUrl: PropTypes.string,
