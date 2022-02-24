@@ -9,10 +9,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${space()};
+  svg {
+    display: block;
+  }
 `
 
 const Header = styled.header`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: ${space('large')};
 `
@@ -29,7 +33,7 @@ const SubHeader = styled(Header)`
 const NavLeft = styled.nav`
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: ${space()};
 `
 
