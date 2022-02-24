@@ -111,6 +111,8 @@ exports[`AppHeader renders the box 1`] = `
       <a
         class="c3"
         href="https://glif.io"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         <svg
           class="c4"
@@ -148,42 +150,56 @@ exports[`AppHeader renders the box 1`] = `
       <a
         class="c3 c6"
         href="https://glif.io/blog"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         Blog
       </a>
       <a
         class="c3 c6"
         href="https://glif.io/code"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         Code
       </a>
       <a
         class="c3 c6"
         href="https://glif.io/nodes"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         Nodes
       </a>
       <a
         class="c3 c6"
         href="https://safe.glif.io"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         Safe
       </a>
       <a
         class="c3 c6"
         href="https://wallet.glif.io"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         Wallet
       </a>
       <a
         class="c3 c6"
         href="https://verifier.glif.io"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         Verifier
       </a>
       <a
         class="c3 c6"
         href="https://explorer.glif.io"
+        rel="noreferrer noopener"
+        target="_blank"
       >
         Explorer
       </a>
