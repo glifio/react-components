@@ -11,7 +11,7 @@ const Wrapper = styled.div`
 const Title = styled.h1`
   margin: 0;
   font-size: 1.7rem;
-  line-height: 1;
+  line-height: 0.75;
 
   @media (min-width: ${devices.phone}) {
     font-size: 2.1rem;
