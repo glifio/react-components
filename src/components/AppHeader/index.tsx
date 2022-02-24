@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${space()};
+
   svg {
     display: block;
   }
@@ -53,6 +54,7 @@ const NavRight = styled(NavLeft)`
 const NavLinkSimple = styled.a`
   color: black;
   text-decoration: none;
+
   &:hover {
     color: black;
   }
@@ -62,10 +64,12 @@ const NavLinkRound = styled(NavLinkSimple)`
   padding: 0.5em 0.75em;
   border: 1px solid black;
   border-radius: 2em;
+
   &:hover {
     color: var(--purple-medium);
     border-color: var(--purple-medium);
   }
+
   &:active {
     color: white;
     background: var(--purple-medium);

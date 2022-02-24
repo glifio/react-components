@@ -37,6 +37,11 @@ export function Page(props: PageProps) {
         {phishingUrl && <PhishingBanner href={phishingUrl} />}
         <AppHeader
           back={props.back}
+          logout={props.logout}
+          connection={props.connection}
+          appTitle={props.appTitle}
+          appIcon={props.appIcon}
+          appUrl={props.appUrl}
           homeUrl={props.homeUrl}
           blogUrl={props.blogUrl}
           codeUrl={props.codeUrl}
@@ -45,6 +50,7 @@ export function Page(props: PageProps) {
           walletUrl={props.walletUrl}
           verifierUrl={props.verifierUrl}
           explorerUrl={props.explorerUrl}
+          appHeaderLinks={props.appHeaderLinks}
         />
         {children}
       </PageInner>
