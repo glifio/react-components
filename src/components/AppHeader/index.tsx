@@ -76,7 +76,7 @@ const NavButton = styled(ButtonV2)`
   border-radius: 2em;
 `
 
-export default function AppHeader(props: AppHeaderProps) {
+export function AppHeader(props: AppHeaderProps) {
   const router = useRouter()
   const {
     back,

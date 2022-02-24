@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import PhishingBanner from '../PhishingBanner'
-import AppHeader, { AppHeaderProps } from '../AppHeader'
+import { AppHeader, AppHeaderProps } from '../AppHeader'
 import Footer from '../Footer'
 
 import { space } from '../theme'
