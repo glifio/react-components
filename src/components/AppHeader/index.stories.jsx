@@ -40,7 +40,6 @@ App.args = {
   appTitle: 'Safe',
   appIcon: <SafeIconHeaderFooter />,
   appUrl: 'https://safe.glif.io',
-  homeUrl: 'https://glif.io',
   blogUrl: 'https://glif.io/blog',
   walletUrl: 'https://wallet.glif.io',
   explorerUrl: 'https://explorer.glif.io',

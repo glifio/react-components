@@ -36,7 +36,7 @@ const SubHeader = styled(Header)`
   background-color: var(--white-broken);
 
   > * {
-    align-items: center;
+    align-items: flex-start;
   }
 `
 
@@ -127,20 +127,18 @@ export default function AppHeader(props: AppHeaderProps) {
           {explorerUrl && (
             <NavLinkRound href={explorerUrl}>Explorer</NavLinkRound>
           )}
+          {logout && <NavButton onClick={logout}>Logout</NavButton>}
         </NavRight>
       </Header>
       {addSubHeader && (
         <SubHeader>
-          <NavLeft>
-            {logout && <NavButton onClick={logout}>Logout</NavButton>}
+          <NavLeft>{connection || <></>}</NavLeft>
+          <NavRight>
             {back && (
               <NavButton onClick={back === true ? router.back : back}>
                 Back
               </NavButton>
             )}
-            {connection || <></>}
-          </NavLeft>
-          <NavRight>
             {appHeaderLinks &&
               appHeaderLinks.map((link, index) => (
                 <NavLinkRound key={index} href={link.url}>
