@@ -87,12 +87,10 @@ export default function AppHeader(props: AppHeaderProps) {
     <Wrapper>
       <Header>
         <NavLeft>
-          {homeUrl ? (
+          {homeUrl && (
             <NavLinkSimple href={homeUrl}>
               <AppIconHeaderFooter iconStyle='dark' />
             </NavLinkSimple>
-          ) : (
-            <AppIconHeaderFooter iconStyle='dark' />
           )}
           {appIcon && (appUrl ? (
             <NavLinkSimple href={appUrl}>
