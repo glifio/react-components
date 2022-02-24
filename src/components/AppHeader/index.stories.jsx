@@ -1,13 +1,19 @@
-import theme from '../theme'
+import theme, { space } from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import AppHeader from './index'
+import Box from '../Box'
+import { AppHeader } from './index'
 import { SafeIconHeaderFooter } from '../Icons'
 import { NetworkConnection } from '../NetworkConnection'
 
 export default {
   title: 'AppHeader/AppHeader',
   component: AppHeader,
-  decorators: [Story => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>],
+  decorators: [Story =>
+  <ThemeProvider theme={theme}>
+    <Box display='flex' flexDirection='column' gridGap={space()}>
+      {Story()}
+    </Box>
+  </ThemeProvider>],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 

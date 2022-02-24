@@ -7,16 +7,6 @@ import ButtonV2 from '../Button/V2'
 import { SmartLink } from '../Link/SmartLink'
 import AppIconWrapper from './AppIconWrapper'
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${space()};
-
-  svg {
-    display: block;
-  }
-`
-
 const Header = styled.header`
   display: flex;
   flex-wrap: wrap;
@@ -26,6 +16,10 @@ const Header = styled.header`
   > * {
     align-items: flex-end;
   }
+
+  svg {
+    display: block;
+  }
 `
 
 const SubHeader = styled(Header)`
@@ -33,7 +27,7 @@ const SubHeader = styled(Header)`
   position: sticky;
   top: -1px;
   z-index: 100;
-  padding-top: ${space()};
+  padding: ${space()} 0;
   border-top: 1px solid black;
   background-color: var(--white-broken);
 
@@ -107,7 +101,7 @@ export default function AppHeader(props: AppHeaderProps) {
     !!connection ||
     (!!appHeaderLinks && !!appHeaderLinks.length)
   return (
-    <Wrapper>
+    <>
       <Header>
         <NavLeft>
           {homeUrl && (
@@ -150,7 +144,7 @@ export default function AppHeader(props: AppHeaderProps) {
                 <NavLinkRound
                   key={index}
                   href={link.url}
-                  className={link.url === router.pathname ? 'active' : ''}
+                  className={link.url === router?.pathname ? 'active' : ''}
                 >
                   {link.title}
                 </NavLinkRound>
@@ -158,7 +152,7 @@ export default function AppHeader(props: AppHeaderProps) {
           </NavRight>
         </SubHeader>
       )}
-    </Wrapper>
+    </>
   )
 }
 
