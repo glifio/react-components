@@ -343,11 +343,7 @@ export const useMessage = (cid: string) => {
       _lowConfMsgErr?.message.toLowerCase().includes('failed to fetch')
     ) {
       return
-    } else if (
-      _lowConfMsgErr?.message
-        .toLowerCase()
-        .includes('failed to load: not found')
-    ) {
+    } else if (_lowConfMsgErr?.message.toLowerCase().includes('not found')) {
       return
     } else if (
       _lowConfMsgErr?.message
