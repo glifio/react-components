@@ -77,7 +77,8 @@ exports[`AppHeader renders the box 1`] = `
   border-radius: 2em;
 }
 
-.c6:hover {
+.c6:hover,
+.c6.active {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }

@@ -66,7 +66,8 @@ const NavLinkRound = styled(NavLinkSimple)`
   border: 1px solid black;
   border-radius: 2em;
 
-  &:hover {
+  &:hover,
+  &.active {
     color: var(--purple-medium);
     border-color: var(--purple-medium);
   }
@@ -146,7 +147,11 @@ export default function AppHeader(props: AppHeaderProps) {
             )}
             {appHeaderLinks &&
               appHeaderLinks.map((link, index) => (
-                <NavLinkRound key={index} href={link.url}>
+                <NavLinkRound
+                  key={index}
+                  href={link.url}
+                  className={link.url === router.pathname ? 'active' : ''}
+                >
                   {link.title}
                 </NavLinkRound>
               ))}
