@@ -8,12 +8,15 @@ import { NetworkConnection } from '../NetworkConnection'
 export default {
   title: 'AppHeader/AppHeader',
   component: AppHeader,
-  decorators: [Story =>
-  <ThemeProvider theme={theme}>
-    <Box display='flex' flexDirection='column' gridGap={space()}>
-      {Story()}
-    </Box>
-  </ThemeProvider>],
+  decorators: [
+    Story => (
+      <ThemeProvider theme={theme}>
+        <Box display='flex' flexDirection='column' gridGap={space()}>
+          {Story()}
+        </Box>
+      </ThemeProvider>
+    )
+  ],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
