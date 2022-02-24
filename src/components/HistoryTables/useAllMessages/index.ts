@@ -1,4 +1,4 @@
-import { SubscriptionResult } from '@apollo/client'
+import { SubscriptionResult, useApolloClient } from '@apollo/client'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
@@ -15,6 +15,7 @@ import {
 } from '../../../generated/graphql'
 import { uniqueifyMsgs } from '../../../utils/uniqueifyMsgs'
 import { useSubmittedMessages } from '../PendingMsgContext'
+import { messageConfirmedFragment, messagePendingFragment } from './fragments'
 
 const DEFAULT_LIMIT = 10
 const WAIT_EPOCHS_BEFORE_REFRESH = 3
@@ -286,12 +287,27 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
 }
 
 export const useMessage = (cid: string) => {
+  const client = useApolloClient()
+
+  const cachedConfirmedMessage = client.readFragment({
+    id: `MessageConfirmed:{"cid":"${cid}"}`,
+    fragment: messageConfirmedFragment
+  })
+
+  const cachedPendingMessage = client.readFragment({
+    id: `MessagePending:{"cid":"${cid}"}`,
+    fragment: messagePendingFragment
+  })
+
+  console.log(cachedConfirmedMessage, cachedPendingMessage)
+
   const {
     data: highConfMsgData,
     loading: highConfMsgLoading,
     error: highConfiMsgErr
   } = useMessageQuery({
     variables: { cid },
+    skip: !!cachedConfirmedMessage,
     pollInterval: 0
   })
 
@@ -299,7 +315,12 @@ export const useMessage = (cid: string) => {
     data: pendingMsgData,
     loading: pendingMsgLoading,
     error: _pendingMsgErr
-  } = usePendingMessageQuery({ variables: { cid }, pollInterval: 0 })
+  } = usePendingMessageQuery({
+    variables: { cid },
+    skip: !!cachedPendingMessage,
+    pollInterval: 0
+  })
+
   const pendingMsgErr = useMemo(() => {
     if (
       !_pendingMsgErr ||
@@ -312,10 +333,12 @@ export const useMessage = (cid: string) => {
   }, [_pendingMsgErr])
 
   const pendingMsg = useMemo(() => {
+    if (cachedPendingMessage) return cachedPendingMessage
+
     if (!pendingMsgLoading && !pendingMsgErr) {
       return pendingMsgData?.pendingMessage || null
     }
-  }, [pendingMsgData, pendingMsgLoading, pendingMsgErr])
+  }, [pendingMsgData, pendingMsgLoading, pendingMsgErr, cachedPendingMessage])
 
   const {
     data: lowConfMsgData,
@@ -324,7 +347,10 @@ export const useMessage = (cid: string) => {
   } = useMessageLowConfidenceQuery({
     variables: { cid },
     pollInterval: !!pendingMsg ? 30000 : 0,
-    skip: pendingMsgLoading || !!highConfMsgData?.message
+    skip:
+      pendingMsgLoading ||
+      !!highConfMsgData?.message ||
+      !!cachedConfirmedMessage
   })
 
   const {
@@ -356,9 +382,15 @@ export const useMessage = (cid: string) => {
 
   const pendingFoundInLowConfMsgs = useMemo(() => {
     if (pendingMsg && !lowConfMsgLoading && !lowConfMsgErr) {
-      return !!lowConfMsgData?.messageLowConfidence
+      return !!lowConfMsgData?.messageLowConfidence || !!cachedConfirmedMessage
     }
-  }, [pendingMsg, lowConfMsgData, lowConfMsgLoading, lowConfMsgErr])
+  }, [
+    pendingMsg,
+    lowConfMsgData,
+    lowConfMsgLoading,
+    lowConfMsgErr,
+    cachedConfirmedMessage
+  ])
 
   // this is to make sure if the message confirms in the transaction detail view
   // the cache used in the transaction history list is up to date
@@ -415,6 +447,7 @@ export const useMessage = (cid: string) => {
   )
 
   const message = useMemo<MessageConfirmed | MessagePending | null>(() => {
+    if (cachedConfirmedMessage) return cachedConfirmedMessage
     const ready = !error && !loading
     if (ready && pendingFoundInLowConfMsgs) {
       return lowConfMsgData.messageLowConfidence as MessageConfirmed
@@ -433,7 +466,8 @@ export const useMessage = (cid: string) => {
     loading,
     error,
     pendingMsg,
-    pendingFoundInLowConfMsgs
+    pendingFoundInLowConfMsgs,
+    cachedConfirmedMessage
   ])
 
   return {
