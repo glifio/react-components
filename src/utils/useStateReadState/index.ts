@@ -30,6 +30,12 @@ export type MsigState<T = Address> = {
   UnlockDuration: number
 }
 
+const emptyActorState: LotusRPCActorState<any> = {
+  Balance: '0',
+  Code: { '/': '' },
+  State: null
+}
+
 /////// implemented until https://github.com/glifio/graph/issues/33
 export const useStateReadStateQuery = <T = any>(
   baseOptions: QueryHookOptions<
@@ -78,8 +84,11 @@ export const useStateReadStateQuery = <T = any>(
           setActorState({ ...res })
         }
       } catch (err) {
-        if (err instanceof Error) setError(err)
-        else setError(new Error('Failed to fetch'))
+        if (err instanceof Error) {
+          if (err.message.includes('actor not found')) {
+            setActorState({ ...emptyActorState })
+          } else setError(err)
+        } else setError(new Error('Failed to fetch'))
       } finally {
         setLoading(false)
       }

@@ -346,6 +346,12 @@ export const useMessage = (cid: string) => {
     } else if (
       _lowConfMsgErr?.message
         .toLowerCase()
+        .includes('failed to load: not found')
+    ) {
+      return
+    } else if (
+      _lowConfMsgErr?.message
+        .toLowerCase()
         .includes('failed to load message: blockstore: block not found')
     ) {
       return
