@@ -10,7 +10,7 @@ export * from './useNetworkName'
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.4em
+  gap: 0.4em;
 `
 
 type Status = Partial<{

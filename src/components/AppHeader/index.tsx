@@ -95,7 +95,11 @@ export default function AppHeader(props: AppHeaderProps) {
     explorerUrl,
     appHeaderLinks
   } = props
-  const addSubHeader: boolean = !!logout || !!back || !!connection || (!!appHeaderLinks && !!appHeaderLinks.length);
+  const addSubHeader: boolean =
+    !!logout ||
+    !!back ||
+    !!connection ||
+    (!!appHeaderLinks && !!appHeaderLinks.length)
   return (
     <Wrapper>
       <Header>
@@ -107,9 +111,7 @@ export default function AppHeader(props: AppHeaderProps) {
           )}
           {appTitle && appIcon && appUrl && (
             <NavLinkSimple href={appUrl}>
-              <AppIconWrapper title={appTitle}>
-                {appIcon}
-              </AppIconWrapper>
+              <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
             </NavLinkSimple>
           )}
         </NavLeft>
@@ -119,23 +121,32 @@ export default function AppHeader(props: AppHeaderProps) {
           {nodesUrl && <NavLinkRound href={nodesUrl}>Nodes</NavLinkRound>}
           {safeUrl && <NavLinkRound href={safeUrl}>Safe</NavLinkRound>}
           {walletUrl && <NavLinkRound href={walletUrl}>Wallet</NavLinkRound>}
-          {verifierUrl && <NavLinkRound href={verifierUrl}>Verifier</NavLinkRound>}
-          {explorerUrl && <NavLinkRound href={explorerUrl}>Explorer</NavLinkRound>}
+          {verifierUrl && (
+            <NavLinkRound href={verifierUrl}>Verifier</NavLinkRound>
+          )}
+          {explorerUrl && (
+            <NavLinkRound href={explorerUrl}>Explorer</NavLinkRound>
+          )}
         </NavRight>
       </Header>
       {addSubHeader && (
         <SubHeader>
           <NavLeft>
             {logout && <NavButton onClick={logout}>Logout</NavButton>}
-            {back && <NavButton onClick={back === true ? router.back : back}>Back</NavButton>}
+            {back && (
+              <NavButton onClick={back === true ? router.back : back}>
+                Back
+              </NavButton>
+            )}
             {connection || <></>}
           </NavLeft>
           <NavRight>
-            {appHeaderLinks && appHeaderLinks.map(link => (
-              <NavLinkRound href={link.url}>
-                {link.title}
-              </NavLinkRound>
-            ))}
+            {appHeaderLinks &&
+              appHeaderLinks.map((link, index) => (
+                <NavLinkRound key={index} href={link.url}>
+                  {link.title}
+                </NavLinkRound>
+              ))}
           </NavRight>
         </SubHeader>
       )}
@@ -172,10 +183,7 @@ export const APP_HEADER_LINK = PropTypes.shape({
 })
 
 AppHeader.propTypes = {
-  back: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.func
-  ]),
+  back: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   logout: PropTypes.func,
   connection: PropTypes.node,
   appTitle: PropTypes.string,

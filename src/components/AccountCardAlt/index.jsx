@@ -32,8 +32,7 @@ const AccountCardAlt = ({
   legacy,
   jsonRpcEndpoint,
   path,
-  nDefaultWallets,
-  ...props
+  nDefaultWallets
 }) => {
   const { data, error: balanceFetchingError } = useSWR(
     !balance ? [address] : null,
@@ -55,7 +54,7 @@ const AccountCardAlt = ({
       display='flex'
       flexDirection='column'
       justifyContent='space-between'
-      width="100%"
+      width='100%'
       height={11}
       border={1}
       borderRadius={2}
