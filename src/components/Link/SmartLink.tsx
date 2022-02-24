@@ -11,8 +11,10 @@ export function SmartLink(
 ) {
   if (props?.href.charAt(0) === '/') {
     return (
-      <Link href={props.href} {...props}>
-        {props.children}
+      <Link href={props.href}>
+        <a {...props}>
+          {props.children}
+        </a>
       </Link>
     )
   }
