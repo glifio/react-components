@@ -20,6 +20,10 @@ const Header = styled.header`
   flex-wrap: wrap;
   justify-content: space-between;
   gap: ${space('large')};
+
+  > * {
+    align-items: flex-end;
+  }
 `
 
 const SubHeader = styled(Header)`
@@ -29,12 +33,15 @@ const SubHeader = styled(Header)`
   padding-top: ${space()};
   border-top: 1px solid black;
   background-color: var(--white-broken);
+
+  > * {
+    align-items: flex-start;
+  }
 `
 
 const NavLeft = styled.nav`
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-end;
   gap: ${space()};
 `
 
@@ -73,6 +80,7 @@ export default function AppHeader(props: AppHeaderProps) {
   const {
     back,
     logout,
+    connection,
     appTitle,
     appIcon,
     appUrl,
@@ -116,6 +124,7 @@ export default function AppHeader(props: AppHeaderProps) {
         <NavLeft>
           {logout && <NavButton onClick={logout}>Logout</NavButton>}
           {back && <NavButton onClick={back === true ? router.back : back}>Back</NavButton>}
+          {connection || <></>}
         </NavLeft>
         <NavRight>
         </NavRight>
@@ -127,6 +136,7 @@ export default function AppHeader(props: AppHeaderProps) {
 export interface AppHeaderProps {
   back?: boolean | (() => void)
   logout?: () => void
+  connection?: JSX.Element
   appTitle?: string
   appIcon?: JSX.Element
   appUrl?: string
@@ -146,6 +156,7 @@ AppHeader.propTypes = {
     PropTypes.func
   ]),
   logout: PropTypes.func,
+  connection: PropTypes.node,
   appTitle: PropTypes.string,
   appIcon: PropTypes.node,
   appUrl: PropTypes.string,
