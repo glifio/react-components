@@ -457,21 +457,16 @@ IconEdit.propTypes = {
 
 const AppIconHeaderFooterSvg = styled.svg`
   height: auto;
+  width: 25px;
 
-  @media (max-width: ${devices.phone}) {
-    width: 25px;
-  }
+  ${props =>
+    props.footer &&
+    css`
+      margin-bottom: 2em;
+    `}
 
-  @media (min-width: ${devices.phone}) and (max-width: ${devices.tablet}) {
+  @media (min-width: ${devices.phone}) {
     width: 30px;
-  }
-
-  @media (max-width: ${devices.tablet}) {
-    ${props =>
-      props.footer &&
-      css`
-        margin-bottom: 2em;
-      `}
   }
 
   @media (min-width: ${devices.tablet}) {
