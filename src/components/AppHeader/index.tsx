@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { AppIconHeaderFooter } from '../Icons'
 import { space } from '../theme'
 import ButtonV2 from '../Button/V2'
+import AppIconWrapper from './AppIconWrapper'
 
 const Wrapper = styled.div`
   display: flex;
@@ -72,6 +73,7 @@ export default function AppHeader(props: AppHeaderProps) {
   const {
     back,
     logout,
+    appTitle,
     appIcon,
     appUrl,
     homeUrl,
@@ -92,11 +94,13 @@ export default function AppHeader(props: AppHeaderProps) {
               <AppIconHeaderFooter iconStyle='dark' />
             </NavLinkSimple>
           )}
-          {appIcon && (appUrl ? (
+          {appTitle && appIcon && appUrl && (
             <NavLinkSimple href={appUrl}>
-              {appIcon}
+              <AppIconWrapper title={appTitle}>
+                {appIcon}
+              </AppIconWrapper>
             </NavLinkSimple>
-          ) : appIcon)}
+          )}
         </NavLeft>
         <NavRight>
           {blogUrl && <NavLinkRound href={blogUrl}>Blog</NavLinkRound>}
@@ -123,6 +127,7 @@ export default function AppHeader(props: AppHeaderProps) {
 export interface AppHeaderProps {
   back?: boolean | (() => void)
   logout?: () => void
+  appTitle?: string
   appIcon?: JSX.Element
   appUrl?: string
   homeUrl?: string
@@ -141,6 +146,7 @@ AppHeader.propTypes = {
     PropTypes.func
   ]),
   logout: PropTypes.func,
+  appTitle: PropTypes.string,
   appIcon: PropTypes.node,
   appUrl: PropTypes.string,
   homeUrl: PropTypes.string,
