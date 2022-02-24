@@ -27,6 +27,7 @@ const Header = styled.header`
 `
 
 const SubHeader = styled(Header)`
+  flex-wrap: wrap-reverse;
   position: sticky;
   top: -1px;
   z-index: 100;
@@ -35,7 +36,7 @@ const SubHeader = styled(Header)`
   background-color: var(--white-broken);
 
   > * {
-    align-items: flex-start;
+    align-items: center;
   }
 `
 
@@ -91,8 +92,10 @@ export default function AppHeader(props: AppHeaderProps) {
     safeUrl,
     walletUrl,
     verifierUrl,
-    explorerUrl
+    explorerUrl,
+    appHeaderLinks
   } = props
+  const addSubHeader: boolean = !!logout || !!back || !!connection || (!!appHeaderLinks && !!appHeaderLinks.length);
   return (
     <Wrapper>
       <Header>
@@ -120,17 +123,29 @@ export default function AppHeader(props: AppHeaderProps) {
           {explorerUrl && <NavLinkRound href={explorerUrl}>Explorer</NavLinkRound>}
         </NavRight>
       </Header>
-      <SubHeader>
-        <NavLeft>
-          {logout && <NavButton onClick={logout}>Logout</NavButton>}
-          {back && <NavButton onClick={back === true ? router.back : back}>Back</NavButton>}
-          {connection || <></>}
-        </NavLeft>
-        <NavRight>
-        </NavRight>
-      </SubHeader>
+      {addSubHeader && (
+        <SubHeader>
+          <NavLeft>
+            {logout && <NavButton onClick={logout}>Logout</NavButton>}
+            {back && <NavButton onClick={back === true ? router.back : back}>Back</NavButton>}
+            {connection || <></>}
+          </NavLeft>
+          <NavRight>
+            {appHeaderLinks && appHeaderLinks.map(link => (
+              <NavLinkRound href={link.url}>
+                {link.title}
+              </NavLinkRound>
+            ))}
+          </NavRight>
+        </SubHeader>
+      )}
     </Wrapper>
   )
+}
+
+export interface AppHeaderLink {
+  title: string
+  url: string
 }
 
 export interface AppHeaderProps {
@@ -148,7 +163,13 @@ export interface AppHeaderProps {
   walletUrl?: string
   verifierUrl?: string
   explorerUrl?: string
+  appHeaderLinks?: Array<AppHeaderLink>
 }
+
+export const APP_HEADER_LINK = PropTypes.shape({
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired
+})
 
 AppHeader.propTypes = {
   back: PropTypes.oneOfType([
@@ -167,5 +188,6 @@ AppHeader.propTypes = {
   safeUrl: PropTypes.string,
   walletUrl: PropTypes.string,
   verifierUrl: PropTypes.string,
-  explorerUrl: PropTypes.string
+  explorerUrl: PropTypes.string,
+  appHeaderLinks: PropTypes.arrayOf(APP_HEADER_LINK)
 }
