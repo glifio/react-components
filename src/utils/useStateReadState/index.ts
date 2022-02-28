@@ -50,6 +50,8 @@ export const useStateReadStateQuery = <T = any>(
   )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
+  const [fetchedFor, setFetchedFor] = useState<string>('')
+
   useEffect(() => {
     const fetchState = async () => {
       try {
@@ -94,11 +96,22 @@ export const useStateReadStateQuery = <T = any>(
       }
     }
 
-    if (!actorState && loading && !error) {
+    const firstLoad = !actorState && loading && !error
+    const newLoad = fetchedFor !== baseOptions?.variables?.address && !error
+
+    if (firstLoad || newLoad) {
       setLoading(true)
+      setFetchedFor(baseOptions?.variables?.address)
       fetchState()
     }
-  }, [baseOptions.variables.address, loading, error, actorState])
+  }, [
+    baseOptions?.variables?.address,
+    loading,
+    error,
+    actorState,
+    fetchedFor,
+    setFetchedFor
+  ])
 
   return { data: actorState, error, loading }
 }
