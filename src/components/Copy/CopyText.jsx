@@ -1,16 +1,20 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+import { color, margin, space } from 'styled-system'
 import { bool, string } from 'prop-types'
 import Box from '../Box'
-import BaseButton from '../Button/BaseButton'
 import { IconCopyAccountAddress } from '../Icons'
-import { Label } from '../Typography'
 import copyToClipboard from '../../utils/copyToClipboard'
 
-export const Copy = styled(BaseButton)`
+export const Copy = styled.button`
   /* !important is declared here to override BaseButton's opacity:0.8 on hover. The only instance of us using this declaration. */
   height: auto;
-  opacity: 1 !important;
+  cursor: pointer;
+  opacity: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   border: 0;
   background: transparent;
   padding: 0;
@@ -24,12 +28,16 @@ export const StyledIconCopyAccountAddress = styled(IconCopyAccountAddress)`
   }
 `
 
-export const LabelCopy = styled(Label)`
+export const LabelCopy = styled.span`
   transition: 0.18s ease-in;
   opacity: 0;
   ${Copy}:hover & {
     opacity: 1;
   }
+  text-align: left;
+  ${color}
+  ${margin}
+  ${space}
 `
 
 export const CopyText = ({ text, hideCopyText, ...props }) => {
@@ -49,13 +57,7 @@ export const CopyText = ({ text, hideCopyText, ...props }) => {
       >
         <StyledIconCopyAccountAddress />
         {!hideCopyText && (
-          <LabelCopy
-            mt={0}
-            ml={1}
-            minWidth={7}
-            textAlign='left'
-            color={props.color}
-          >
+          <LabelCopy mt={0} ml={1} minWith={7} color={props.color}>
             {copied ? 'Copied' : 'Copy'}
           </LabelCopy>
         )}
