@@ -299,7 +299,11 @@ export const useMessage = (cid: string) => {
     data: pendingMsgData,
     loading: pendingMsgLoading,
     error: _pendingMsgErr
-  } = usePendingMessageQuery({ variables: { cid }, pollInterval: 0 })
+  } = usePendingMessageQuery({
+    variables: { cid },
+    pollInterval: 0
+  })
+
   const pendingMsgErr = useMemo(() => {
     if (
       !_pendingMsgErr ||
@@ -343,11 +347,7 @@ export const useMessage = (cid: string) => {
       _lowConfMsgErr?.message.toLowerCase().includes('failed to fetch')
     ) {
       return
-    } else if (
-      _lowConfMsgErr?.message
-        .toLowerCase()
-        .includes('failed to load: not found')
-    ) {
+    } else if (_lowConfMsgErr?.message.toLowerCase().includes('not found')) {
       return
     } else if (
       _lowConfMsgErr?.message

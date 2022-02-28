@@ -29,6 +29,22 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
           merge(existing = [], incoming) {
             return [...existing, ...incoming]
           }
+        },
+        messageLowConfidence: {
+          read(_, { args, toReference }) {
+            return toReference({
+              __typename: 'MessageConfirmed',
+              cid: args.cid
+            })
+          }
+        },
+        message: {
+          read(_, { args, toReference }) {
+            return toReference({
+              __typename: 'MessageConfirmed',
+              cid: args.cid
+            })
+          }
         }
       }
     },
@@ -44,14 +60,6 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
       }
     },
     MessageConfirmed: {
-      keyFields: ['cid'],
-      fields: {
-        params: {
-          merge: parseParams
-        }
-      }
-    },
-    StateListMessages: {
       keyFields: ['cid'],
       fields: {
         params: {

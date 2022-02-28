@@ -29,6 +29,8 @@ import {
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
+import { CopyText } from '../../Copy'
+import Card from '../../Card'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -93,7 +95,7 @@ export default function MessageDetail(props: MessageDetailProps) {
       />
       <HR />
       <DetailCaption name='Message Overview' loading={loading} error={error} />
-      {!loading && !error && (
+      {!loading && !error && !!message && (
         <>
           <Line label='CID'>{cid}</Line>
           <Line label='Status and Confirmations'>
@@ -126,12 +128,22 @@ export default function MessageDetail(props: MessageDetailProps) {
             <Link
               href={addressHref(message.from.robust)}
             >{`(${message.from.id})`}</Link>
+            <CopyText
+              text={message.from.robust}
+              hideCopyText={false}
+              color='core.primary'
+            />
           </Line>
           <Line label='To'>
             {message.to.robust}
             <Link
               href={addressHref(message.to.robust)}
-            >{`(${message.to.id})`}</Link>
+            >{`(${message.to.id})`}</Link>{' '}
+            <CopyText
+              text={message.to.robust}
+              hideCopyText={false}
+              color='core.primary'
+            />
           </Line>
           <HR />
           <Line label='Value'>{value}</Line>
@@ -151,12 +163,15 @@ export default function MessageDetail(props: MessageDetailProps) {
               <Line label='Gas Limit & Usage by Txn'>
                 {formatNumber(message.gasLimit)}
                 <span className='gray'>|</span>
-                {pending
-                  ? '?'
-                  : `${formatNumber(
-                      (message as MessageConfirmed).gasUsed
-                    )} attoFil`}
-                <span>({gasPercentage})</span>
+                {pending ? (
+                  '?'
+                ) : (
+                  <>
+                    {`${formatNumber((message as MessageConfirmed).gasUsed)}
+                    attoFil`}
+                    <span>({gasPercentage})</span>
+                  </>
+                )}
               </Line>
               <Line label='Gas Fees'>
                 <span className='gray'>Premium</span>
@@ -191,6 +206,17 @@ export default function MessageDetail(props: MessageDetailProps) {
             </>
           )}
         </>
+      )}
+      {!loading && !error && !message && (
+        <Card width='100%' bg='background.screen' border={0}>
+          <P color='core.darkgray'>
+            Message {cid} not found.
+            <br />
+            <br />
+            Note - it may take 1-2 minutes for a recently confirmed message to
+            show up here.
+          </P>
+        </Card>
       )}
     </Box>
   )
