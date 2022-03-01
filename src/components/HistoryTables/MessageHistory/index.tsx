@@ -78,7 +78,7 @@ type MessageHistoryTableProps = {
   offset: number
   address: string
   addressHref: (address: string) => string
-  cidHref: (cid: string) => string
+  cidHref: (cid: string, height?: string) => string
 }
 
 MessageHistoryTable.propTypes = {

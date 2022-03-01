@@ -30,7 +30,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   return (
     <TR>
       <TD>
-        <Link href={cidHref(message.cid)}>
+        <Link href={cidHref(message.cid, message.height)}>
           <a
             style={{
               display: 'inline-block',
@@ -77,7 +77,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
 
 type MessageHistoryRowProps = {
   message: MessageConfirmedRow
-  cidHref: (cid: string) => string
+  cidHref: (cid: string, height?: string) => string
   addressHref: (address: string) => string
   inspectingAddress: string
   chainHeadSub: SubscriptionResult<ChainHeadSubscription, any>
