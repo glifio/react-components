@@ -43,10 +43,10 @@ const SeeMore = styled(P).attrs(() => ({
 `
 
 export default function MessageDetail(props: MessageDetailProps) {
-  const { cid, speedUp, cancel, addressHref, confirmations } = props
+  const { cid, height, speedUp, cancel, addressHref, confirmations } = props
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
-  const { message, loading, error, pending } = useMessage(cid)
+  const { message, error, loading, pending } = useMessage(cid, height)
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -94,7 +94,12 @@ export default function MessageDetail(props: MessageDetailProps) {
         cancel={cancel}
       />
       <HR />
-      <DetailCaption name='Message Overview' loading={loading} error={error} />
+      <DetailCaption
+        name='Message Overview'
+        captian='Scanning Filecoin for your message... This could take a minute.'
+        loading={loading}
+        error={error}
+      />
       {!loading && !error && !!message && (
         <>
           <Line label='CID'>{cid}</Line>
@@ -224,6 +229,7 @@ export default function MessageDetail(props: MessageDetailProps) {
 
 type MessageDetailProps = {
   cid: string
+  height?: number
   speedUp?: () => void
   cancel?: () => void
   addressHref: (address: string) => string
@@ -232,6 +238,7 @@ type MessageDetailProps = {
 
 MessageDetail.propTypes = {
   cid: PropTypes.string.isRequired,
+  height: PropTypes.number,
   speedUp: PropTypes.func,
   cancel: PropTypes.func,
   addressHref: PropTypes.func.isRequired,

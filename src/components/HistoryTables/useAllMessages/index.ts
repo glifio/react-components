@@ -285,13 +285,13 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   }
 }
 
-export const useMessage = (cid: string) => {
+export const useMessage = (cid: string, height?: number) => {
   const {
     data: highConfMsgData,
     loading: highConfMsgLoading,
     error: highConfiMsgErr
   } = useMessageQuery({
-    variables: { cid },
+    variables: { cid, height },
     pollInterval: 0
   })
 
@@ -404,13 +404,16 @@ export const useMessage = (cid: string) => {
     // if we have the message, use it
     if (!highConfMsgLoading && !!highConfMsgData?.message) return false
     if (!pendingMsgLoading && !!pendingMsgData?.pendingMessage) return false
+    if (!lowConfMsgLoading && !!lowConfMsgData?.messageLowConfidence)
+      return false
     return highConfMsgLoading || lowConfMsgLoading || pendingMsgLoading
   }, [
     highConfMsgLoading,
     lowConfMsgLoading,
     pendingMsgLoading,
     pendingMsgData,
-    highConfMsgData
+    highConfMsgData,
+    lowConfMsgData
   ])
 
   const error = useMemo(

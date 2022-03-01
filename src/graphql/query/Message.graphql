@@ -1,5 +1,5 @@
-query Message($cid: String!) {
-  message(cid: $cid) {
+query Message($cid: String!, $height: Int) {
+  message(cid: $cid, height: $height) {
     cid
     height
     from {
