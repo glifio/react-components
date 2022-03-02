@@ -207,8 +207,10 @@ AppHeader.propTypes = {
   verifierUrl: PropTypes.string,
   explorerUrl: PropTypes.string,
   addresses: PropTypes.arrayOf(PropTypes.shape(AddressV2.propTypes)),
-  appHeaderLinks: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired
-  }))
+  appHeaderLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired
+    })
+  )
 }
