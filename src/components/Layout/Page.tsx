@@ -29,30 +29,12 @@ const PageInner = styled.div`
   }
 `
 
-export function Page(props: PageProps) {
-  const { children, phishingUrl } = props
+export function Page({ children, phishingUrl, ...rest }: PageProps) {
   return (
     <PageOuter>
       <PageInner>
         {phishingUrl && <PhishingBanner href={phishingUrl} />}
-        <AppHeader
-          back={props.back}
-          logout={props.logout}
-          connection={props.connection}
-          appTitle={props.appTitle}
-          appIcon={props.appIcon}
-          appUrl={props.appUrl}
-          homeUrl={props.homeUrl}
-          blogUrl={props.blogUrl}
-          codeUrl={props.codeUrl}
-          nodesUrl={props.nodesUrl}
-          safeUrl={props.safeUrl}
-          walletUrl={props.walletUrl}
-          verifierUrl={props.verifierUrl}
-          explorerUrl={props.explorerUrl}
-          addresses={props.addresses}
-          appHeaderLinks={props.appHeaderLinks}
-        />
+        <AppHeader {...rest} />
         {children}
       </PageInner>
       <Footer />
