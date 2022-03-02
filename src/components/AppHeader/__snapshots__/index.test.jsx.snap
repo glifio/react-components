@@ -158,38 +158,6 @@ exports[`AppHeader renders the box 1`] = `
     >
       Nodes
     </a>
-    <a
-      class="c2 c5"
-      href="https://safe.glif.io"
-      rel="noreferrer noopener"
-      target="_blank"
-    >
-      Safe
-    </a>
-    <a
-      class="c2 c5"
-      href="https://wallet.glif.io"
-      rel="noreferrer noopener"
-      target="_blank"
-    >
-      Wallet
-    </a>
-    <a
-      class="c2 c5"
-      href="https://verifier.glif.io"
-      rel="noreferrer noopener"
-      target="_blank"
-    >
-      Verifier
-    </a>
-    <a
-      class="c2 c5"
-      href="https://explorer.glif.io"
-      rel="noreferrer noopener"
-      target="_blank"
-    >
-      Explorer
-    </a>
   </nav>
 </header>
 `;

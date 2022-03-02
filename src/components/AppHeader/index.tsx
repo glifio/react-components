@@ -136,8 +136,9 @@ export function AppHeader(props: AppHeaderProps) {
       {addSubHeader && (
         <SubHeader>
           <NavLeft>
-            {addresses?.map(address => (
+            {addresses?.map((address, index) => (
               <AddressV2
+                key={index}
                 label={address.label}
                 address={address.address}
                 urlPrefix={address.urlPrefix}
