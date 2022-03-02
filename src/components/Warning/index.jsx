@@ -39,64 +39,55 @@ const WarningCard = ({
     <Box
       display='flex'
       flexDirection='column'
+      justifyContent='center'
+      alignContent='center'
       width='100%'
-      alignItems='center'
-      justifyContent='flex-start'
-      py={4}
     >
-      <Box
+      <OnboardCard
         display='flex'
         flexDirection='column'
-        justifyContent='center'
-        alignContent='center'
-        width='100%'
+        justifyContent='flex-start'
+        minHeight={11}
+        p={0}
       >
-        <OnboardCard
+        <Box
           display='flex'
-          flexDirection='column'
-          justifyContent='flex-start'
-          minHeight={11}
-          p={0}
+          alignItems='center'
+          justifyContent='space-between'
+          bg='status.warning.background'
+          p={3}
         >
-          <Box
-            display='flex'
-            alignItems='center'
-            justifyContent='space-between'
+          <Glyph
+            color='status.warning.foreground'
             bg='status.warning.background'
-            p={3}
-          >
-            <Glyph
-              color='status.warning.foreground'
-              bg='status.warning.background'
-              acronym='Wn'
-            />
-            <Title color='status.warning.foreground'>{title}</Title>
-          </Box>
-          <Box px={3} py={4}>
-            <DescriptionText color='core.nearblack' description={description} />
+            acronym='Wn'
+          />
+          <Title color='status.warning.foreground'>{title}</Title>
+        </Box>
+        <Box px={3} py={4}>
+          <DescriptionText color='core.nearblack' description={description} />
 
-            <StyledATag
-              rel='noopener'
-              target='_blank'
-              href={linkhref}
-              fontSize={3}
-            >
-              {linkDisplay}
-            </StyledATag>
-          </Box>
-        </OnboardCard>
-        {onAccept && onBack && (
-          <Box display='flex' justifyContent='space-between'>
-            <Button mt={5} variant='secondary' title='Back' onClick={onBack} />
-            <Button
-              mt={5}
-              variant='primary'
-              title='I Understand'
-              onClick={onAccept}
-            />
-          </Box>
-        )}
-      </Box>
+          <StyledATag
+            rel='noopener'
+            target='_blank'
+            href={linkhref}
+            fontSize={3}
+          >
+            {linkDisplay}
+          </StyledATag>
+        </Box>
+      </OnboardCard>
+      {onAccept && onBack && (
+        <Box display='flex' justifyContent='space-between'>
+          <Button mt={5} variant='secondary' title='Back' onClick={onBack} />
+          <Button
+            mt={5}
+            variant='primary'
+            title='I Understand'
+            onClick={onAccept}
+          />
+        </Box>
+      )}
     </Box>
   )
 }
