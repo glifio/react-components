@@ -27,16 +27,11 @@ Base.args = {
   homeUrl: 'https://glif.io',
   blogUrl: 'https://glif.io/blog',
   codeUrl: 'https://glif.io/code',
-  nodesUrl: 'https://glif.io/nodes',
-  safeUrl: 'https://safe.glif.io',
-  walletUrl: 'https://wallet.glif.io',
-  verifierUrl: 'https://verifier.glif.io',
-  explorerUrl: 'https://explorer.glif.io'
+  nodesUrl: 'https://glif.io/nodes'
 }
 
 export const App = Template.bind({})
 App.args = {
-  back: () => {},
   logout: () => {},
   connection: (
     <NetworkConnection
