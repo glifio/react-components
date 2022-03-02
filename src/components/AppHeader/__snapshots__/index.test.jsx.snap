@@ -49,6 +49,10 @@ exports[`AppHeader renders the box 1`] = `
   -ms-flex-pack: end;
   justify-content: flex-end;
   gap: 10px;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 
 .c2 {

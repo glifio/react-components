@@ -46,6 +46,7 @@ const NavLeft = styled.nav`
 const NavRight = styled(NavLeft)`
   justify-content: flex-end;
   gap: ${space()};
+  flex-grow: 1;
 `
 
 const NavLinkSimple = styled(SmartLink)`
