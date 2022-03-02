@@ -33,18 +33,19 @@ const SubHeader = styled(Header)`
   background-color: var(--white-broken);
 
   > * {
-    align-items: flex-start;
+    align-items: center;
   }
 `
 
 const NavLeft = styled.nav`
   display: flex;
   flex-wrap: wrap;
-  gap: ${space()};
+  gap: ${space('large')};
 `
 
 const NavRight = styled(NavLeft)`
   justify-content: flex-end;
+  gap: ${space()};
 `
 
 const NavLinkSimple = styled(SmartLink)`
