@@ -50,6 +50,7 @@ export function Page(props: PageProps) {
           walletUrl={props.walletUrl}
           verifierUrl={props.verifierUrl}
           explorerUrl={props.explorerUrl}
+          addresses={props.addresses}
           appHeaderLinks={props.appHeaderLinks}
         />
         {children}
@@ -59,7 +60,7 @@ export function Page(props: PageProps) {
   )
 }
 
-type PageProps = {
+export type PageProps = {
   children: JSX.Element | Array<JSX.Element>
   phishingUrl?: string
 } & AppHeaderProps
