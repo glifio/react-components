@@ -14,52 +14,39 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
     }
   }
   return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      width='100%'
-      height='90vh'
-      alignItems='center'
-      justifyContent='center'
-      p={4}
-    >
-      <Box display='flex' justifyContent='center' width='100%'>
-        <OnboardCard
-          display='flex'
-          flexDirection='column'
-          justifyContent='space-between'
-          borderColor='card.error.background'
-          bg='card.error.background'
-          color='card.error.foreground'
-          ml={2}
-          minHeight={11}
-          style={{ wordBreak: 'break-word' }}
-        >
-          <Box>
-            <Glyph color='status.fail.foreground' acronym='Er' />
-            <Title mt={4} mb={2}>
-              {title}
-            </Title>
-            <Text>{description}</Text>
-          </Box>
-
-          {linkhref && linkDisplay && (
-            <StyledATag
-              rel='noopener'
-              target='_blank'
-              href={linkhref}
-              fontSize={3}
-              color='core.white'
-            >
-              {linkDisplay}
-            </StyledATag>
-          )}
-        </OnboardCard>
+    <div>
+      <OnboardCard
+        display='flex'
+        flexDirection='column'
+        borderColor='card.error.background'
+        bg='card.error.background'
+        color='card.error.foreground'
+        minHeight={11}
+        style={{ wordBreak: 'break-word' }}
+      >
+        <Box>
+          <Glyph color='status.fail.foreground' acronym='Er' />
+          <Title mt={4} mb={2}>
+            {title}
+          </Title>
+          <Text>{description}</Text>
+        </Box>
+        {linkhref && linkDisplay && (
+          <StyledATag
+            rel='noopener'
+            target='_blank'
+            href={linkhref}
+            fontSize={3}
+            color='core.white'
+          >
+            {linkDisplay}
+          </StyledATag>
+        )}
+      </OnboardCard>
+      <Box mt={5} textAlign='center'>
+        <Button variant='secondary' title='Back' onClick={sendHomeCB} />
       </Box>
-      <Box>
-        <Button mt={5} variant='secondary' title='Back' onClick={sendHomeCB} />
-      </Box>
-    </Box>
+    </div>
   )
 }
 
