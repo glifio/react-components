@@ -5,6 +5,7 @@ import { AppIconHeaderFooter } from '../Icons'
 import { space } from '../theme'
 import ButtonV2 from '../Button/V2'
 import { SmartLink } from '../Link/SmartLink'
+import { AddressV2, AddressV2Props } from '../Address/AddressV2'
 import AppIconWrapper from './AppIconWrapper'
 
 const Header = styled.header`
@@ -93,12 +94,14 @@ export function AppHeader(props: AppHeaderProps) {
     walletUrl,
     verifierUrl,
     explorerUrl,
+    addresses,
     appHeaderLinks
   } = props
   const addSubHeader: boolean =
     !!logout ||
     !!back ||
     !!connection ||
+    (!!addresses && !!addresses.length) ||
     (!!appHeaderLinks && !!appHeaderLinks.length)
   return (
     <>
@@ -132,7 +135,16 @@ export function AppHeader(props: AppHeaderProps) {
       </Header>
       {addSubHeader && (
         <SubHeader>
-          <NavLeft>{connection || <></>}</NavLeft>
+          <NavLeft>
+            {addresses?.map(address => (
+              <AddressV2
+                label={address.label}
+                address={address.address}
+                urlPrefix={address.urlPrefix}
+              />
+            ))}
+            {connection}
+          </NavLeft>
           <NavRight>
             {back && (
               <NavButton onClick={back === true ? router.back : back}>
@@ -176,6 +188,7 @@ export interface AppHeaderProps {
   walletUrl?: string
   verifierUrl?: string
   explorerUrl?: string
+  addresses?: Array<AddressV2Props>
   appHeaderLinks?: Array<AppHeaderLink>
 }
 
@@ -199,5 +212,6 @@ AppHeader.propTypes = {
   walletUrl: PropTypes.string,
   verifierUrl: PropTypes.string,
   explorerUrl: PropTypes.string,
+  addresses: PropTypes.arrayOf(PropTypes.shape(AddressV2.propTypes)),
   appHeaderLinks: PropTypes.arrayOf(APP_HEADER_LINK)
 }

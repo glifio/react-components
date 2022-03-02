@@ -13,13 +13,12 @@ const AddressLink = styled(SmartLink)`
   }
 `
 
-export const AddressV2 = ({ address, label }: AddressV2Props) => {
-  const href = `${process.env.NEXT_PUBLIC_EXPLORER_URL}/address/${address}`;
+export const AddressV2 = ({ label, address, urlPrefix }: AddressV2Props) => {
   return (
     <Box color='core.darkgray'>
       <Label fontSize={1}>{label}</Label>
       <Box display='flex' flexDirection='row'>
-        <AddressLink href={href}>
+        <AddressLink href={urlPrefix + address}>
           {truncateAddress(address)}
         </AddressLink>
         <CopyText text={address} hideCopyText />
@@ -28,12 +27,14 @@ export const AddressV2 = ({ address, label }: AddressV2Props) => {
   )
 }
 
-interface AddressV2Props {
-  address: string
+export interface AddressV2Props {
   label: string
+  address: string
+  urlPrefix: string
 }
 
 AddressV2.propTypes = {
+  label: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired
+  urlPrefix: PropTypes.string.isRequired
 }
