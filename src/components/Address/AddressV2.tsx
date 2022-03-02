@@ -19,7 +19,7 @@ export const AddressV2 = ({ label, address, urlPrefix }: AddressV2Props) => {
       <Label fontSize={1}>{label}</Label>
       <Box display='flex' flexDirection='row'>
         <AddressLink href={urlPrefix + address}>
-          {truncateAddress(address)}
+          {address && truncateAddress(address)}
         </AddressLink>
         <CopyText text={address} hideCopyText />
       </Box>
