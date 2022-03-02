@@ -169,11 +169,6 @@ export function AppHeader(props: AppHeaderProps) {
   )
 }
 
-export interface AppHeaderLink {
-  title: string
-  url: string
-}
-
 export interface AppHeaderProps {
   back?: boolean | (() => void)
   logout?: () => void
@@ -190,13 +185,11 @@ export interface AppHeaderProps {
   verifierUrl?: string
   explorerUrl?: string
   addresses?: Array<AddressV2Props>
-  appHeaderLinks?: Array<AppHeaderLink>
+  appHeaderLinks?: Array<{
+    title: string
+    url: string
+  }>
 }
-
-export const APP_HEADER_LINK = PropTypes.shape({
-  title: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired
-})
 
 AppHeader.propTypes = {
   back: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
@@ -214,5 +207,8 @@ AppHeader.propTypes = {
   verifierUrl: PropTypes.string,
   explorerUrl: PropTypes.string,
   addresses: PropTypes.arrayOf(PropTypes.shape(AddressV2.propTypes)),
-  appHeaderLinks: PropTypes.arrayOf(APP_HEADER_LINK)
+  appHeaderLinks: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
+  }))
 }
