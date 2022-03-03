@@ -314,7 +314,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
       class="c9"
       color="core.primary"
       font-size="4"
-      href="https://filfox.info/en/address/t0123456789"
+      href="undefined/actor/?address=t0123456789"
       target="_blank"
     >
       t0123456789
@@ -729,7 +729,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
       class="c10"
       color="core.primary"
       font-size="4"
-      href="https://filfox.info/en/address/t0123456789"
+      href="undefined/actor/?address=t0123456789"
       target="_blank"
     >
       t0123456789
@@ -1104,7 +1104,7 @@ exports[`AccountCardAlt renders the card 1`] = `
       class="c8"
       color="card.account.color"
       font-size="4"
-      href="https://filfox.info/en/address/t0123456789"
+      href="undefined/actor/?address=t0123456789"
       target="_blank"
     >
       t0123456789
@@ -1479,7 +1479,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
       class="c8"
       color="core.primary"
       font-size="4"
-      href="https://filfox.info/en/address/t0123456789"
+      href="undefined/actor/?address=t0123456789"
       target="_blank"
     >
       t0123456789

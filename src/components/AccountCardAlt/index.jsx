@@ -78,7 +78,7 @@ const AccountCardAlt = ({
       <Box display='flex' flexDirection='row' justifyContent='center'>
         <StyledATag
           target='_blank'
-          href={`https://filfox.info/en/address/${address}`}
+          href={`${process.env.NEXT_PUBLIC_EXPLORER_URL}/actor/?address=${address}`}
           fontSize={4}
           color={selected ? 'card.account.color' : 'core.primary'}
         >
