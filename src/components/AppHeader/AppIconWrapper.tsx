@@ -26,21 +26,18 @@ export default function AppIconWrapper(props: AppIconWrapperProps) {
   const { children, title } = props
   return (
     <Wrapper>
-      <div>{children}</div>
-      <Title>{title}</Title>
+      {children}
+      {title && <Title>{title}</Title>}
     </Wrapper>
   )
 }
 
 interface AppIconWrapperProps {
-  children: JSX.Element | Array<JSX.Element>
-  title: string
+  children: JSX.Element
+  title?: string
 }
 
 AppIconWrapper.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-  title: PropTypes.string.isRequired
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string
 }
