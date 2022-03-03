@@ -8,44 +8,27 @@ import { AddressLink, AddressLinkProps } from '../AddressLink'
 import AppIconWrapper from './AppIconWrapper'
 
 const Header = styled.header`
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--white-broken);
+
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: ${space('large')};
-
-  > * {
-    align-items: flex-end;
-  }
-
-  svg {
-    display: block;
-  }
-`
-
-const SubHeader = styled(Header)`
-  flex-wrap: wrap-reverse;
-  position: sticky;
-  top: -1px;
-  z-index: 100;
-  padding: ${space()} 0;
-  border-top: 1px solid black;
-  background-color: var(--white-broken);
-
-  > * {
-    align-items: center;
-  }
+  column-gap: ${space('large')};
+  row-gap: ${space()};
 `
 
 const NavLeft = styled.nav`
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-end;
   gap: ${space('large')};
 `
 
 const NavRight = styled(NavLeft)`
-  justify-content: flex-end;
   gap: ${space()};
-  flex-grow: 1;
 `
 
 const NavLinkSimple = styled(SmartLink)`
@@ -90,12 +73,6 @@ export function AppHeader(props: AppHeaderProps) {
     addressLinks,
     appHeaderLinks
   } = props
-  const addSubHeader: boolean =
-    !!logout ||
-    !!back ||
-    !!connection ||
-    (!!addressLinks && !!addressLinks.length) ||
-    (!!appHeaderLinks && !!appHeaderLinks.length)
   return (
     <>
       <Header>
@@ -108,43 +85,35 @@ export function AppHeader(props: AppHeaderProps) {
             ) : (
               <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
             ))}
+          {addressLinks?.map((address, index) => (
+            <AddressLink
+              key={index}
+              label={address.label}
+              address={address.address}
+              urlPrefix={address.urlPrefix}
+            />
+          ))}
+          {connection}
         </NavLeft>
         <NavRight>
+          {back && (
+            <NavButton onClick={back === true ? router.back : back}>
+              Back
+            </NavButton>
+          )}
+          {appHeaderLinks &&
+            appHeaderLinks.map((link, index) => (
+              <NavLinkRound
+                key={index}
+                href={link.url}
+                className={link.url === router?.pathname ? 'active' : ''}
+              >
+                {link.title}
+              </NavLinkRound>
+            ))}
           {logout && <NavButton onClick={logout}>Logout</NavButton>}
         </NavRight>
       </Header>
-      {addSubHeader && (
-        <SubHeader>
-          <NavLeft>
-            {addressLinks?.map((address, index) => (
-              <AddressLink
-                key={index}
-                label={address.label}
-                address={address.address}
-                urlPrefix={address.urlPrefix}
-              />
-            ))}
-            {connection}
-          </NavLeft>
-          <NavRight>
-            {back && (
-              <NavButton onClick={back === true ? router.back : back}>
-                Back
-              </NavButton>
-            )}
-            {appHeaderLinks &&
-              appHeaderLinks.map((link, index) => (
-                <NavLinkRound
-                  key={index}
-                  href={link.url}
-                  className={link.url === router?.pathname ? 'active' : ''}
-                >
-                  {link.title}
-                </NavLinkRound>
-              ))}
-          </NavRight>
-        </SubHeader>
-      )}
     </>
   )
 }
