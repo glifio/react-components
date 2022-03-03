@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import { AppIconHeaderFooter } from '../Icons'
 import { space } from '../theme'
 import ButtonV2 from '../Button/V2'
 import { SmartLink } from '../Link/SmartLink'
@@ -88,7 +87,6 @@ export function AppHeader(props: AppHeaderProps) {
     appTitle,
     appIcon,
     appUrl,
-    homeUrl,
     blogUrl,
     codeUrl,
     nodesUrl,
@@ -109,15 +107,14 @@ export function AppHeader(props: AppHeaderProps) {
     <>
       <Header>
         <NavLeft>
-          {homeUrl && (
-            <NavLinkSimple href={homeUrl}>
-              <AppIconHeaderFooter iconStyle='dark' />
-            </NavLinkSimple>
-          )}
-          {appTitle && appIcon && appUrl && (
-            <NavLinkSimple href={appUrl}>
+          {appIcon && (
+            appUrl ? (
+              <NavLinkSimple href={appUrl}>
+                <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
+              </NavLinkSimple>
+            ) : (
               <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
-            </NavLinkSimple>
+            )
           )}
         </NavLeft>
         <NavRight>
@@ -178,7 +175,6 @@ export interface AppHeaderProps {
   appTitle?: string
   appIcon?: JSX.Element
   appUrl?: string
-  homeUrl?: string
   blogUrl?: string
   codeUrl?: string
   nodesUrl?: string
@@ -200,7 +196,6 @@ AppHeader.propTypes = {
   appTitle: PropTypes.string,
   appIcon: PropTypes.node,
   appUrl: PropTypes.string,
-  homeUrl: PropTypes.string,
   blogUrl: PropTypes.string,
   codeUrl: PropTypes.string,
   nodesUrl: PropTypes.string,
