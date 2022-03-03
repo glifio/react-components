@@ -6,7 +6,7 @@ import { Label } from '../Typography'
 import { CopyText } from '../Copy'
 import Box from '../Box'
 
-const AddressLink = styled(SmartLink)`
+const Link = styled(SmartLink)`
   color: var(--purple-medium);
   text-decoration: none;
 
@@ -15,27 +15,31 @@ const AddressLink = styled(SmartLink)`
   }
 `
 
-export const Address = ({ label, address, urlPrefix }: AddressProps) => {
+export const AddressLink = ({
+  label,
+  address,
+  urlPrefix
+}: AddressLinkProps) => {
   return (
     <Box color='core.darkgray'>
       <Label fontSize={1}>{label}</Label>
       <Box display='flex' flexDirection='row'>
-        <AddressLink href={urlPrefix + address}>
+        <Link href={urlPrefix + address}>
           {address && truncateAddress(address)}
-        </AddressLink>
+        </Link>
         <CopyText text={address} hideCopyText />
       </Box>
     </Box>
   )
 }
 
-export interface AddressProps {
+export interface AddressLinkProps {
   label: string
   address: string
   urlPrefix: string
 }
 
-Address.propTypes = {
+AddressLink.propTypes = {
   label: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   urlPrefix: PropTypes.string.isRequired
