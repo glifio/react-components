@@ -5,7 +5,7 @@ import { AppIconHeaderFooter } from '../Icons'
 import { space } from '../theme'
 import ButtonV2 from '../Button/V2'
 import { SmartLink } from '../Link/SmartLink'
-import { AddressV2, AddressV2Props } from '../Address/AddressV2'
+import { Address, AddressProps } from '../Address'
 import AppIconWrapper from './AppIconWrapper'
 
 const Header = styled.header`
@@ -139,7 +139,7 @@ export function AppHeader(props: AppHeaderProps) {
         <SubHeader>
           <NavLeft>
             {addresses?.map((address, index) => (
-              <AddressV2
+              <Address
                 key={index}
                 label={address.label}
                 address={address.address}
@@ -186,7 +186,7 @@ export interface AppHeaderProps {
   walletUrl?: string
   verifierUrl?: string
   explorerUrl?: string
-  addresses?: Array<AddressV2Props>
+  addresses?: Array<AddressProps>
   appHeaderLinks?: Array<{
     title: string
     url: string
@@ -208,7 +208,7 @@ AppHeader.propTypes = {
   walletUrl: PropTypes.string,
   verifierUrl: PropTypes.string,
   explorerUrl: PropTypes.string,
-  addresses: PropTypes.arrayOf(PropTypes.shape(AddressV2.propTypes)),
+  addresses: PropTypes.arrayOf(PropTypes.shape(Address.propTypes)),
   appHeaderLinks: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,

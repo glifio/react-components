@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import truncateAddress from '../../utils/truncateAddress'
 import { SmartLink } from '../Link/SmartLink'
-import { Box, Label, CopyText } from '..'
+import { Label } from '../Typography'
+import { CopyText } from '../Copy'
+import Box from '../Box'
 
 const AddressLink = styled(SmartLink)`
   color: var(--purple-medium);
@@ -13,7 +15,7 @@ const AddressLink = styled(SmartLink)`
   }
 `
 
-export const AddressV2 = ({ label, address, urlPrefix }: AddressV2Props) => {
+export const Address = ({ label, address, urlPrefix }: AddressProps) => {
   return (
     <Box color='core.darkgray'>
       <Label fontSize={1}>{label}</Label>
@@ -27,13 +29,13 @@ export const AddressV2 = ({ label, address, urlPrefix }: AddressV2Props) => {
   )
 }
 
-export interface AddressV2Props {
+export interface AddressProps {
   label: string
   address: string
   urlPrefix: string
 }
 
-AddressV2.propTypes = {
+Address.propTypes = {
   label: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
   urlPrefix: PropTypes.string.isRequired
