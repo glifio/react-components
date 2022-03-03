@@ -11,6 +11,7 @@ const Header = styled.header`
   position: sticky;
   top: 0;
   z-index: 100;
+  padding: ${space()};
   background-color: var(--white-broken);
 
   display: flex;
@@ -74,47 +75,45 @@ export function AppHeader(props: AppHeaderProps) {
     appHeaderLinks
   } = props
   return (
-    <>
-      <Header>
-        <NavLeft>
-          {appIcon &&
-            (appUrl ? (
-              <NavLinkSimple href={appUrl}>
-                <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
-              </NavLinkSimple>
-            ) : (
+    <Header>
+      <NavLeft>
+        {appIcon &&
+          (appUrl ? (
+            <NavLinkSimple href={appUrl}>
               <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
-            ))}
-          {addressLinks?.map((address, index) => (
-            <AddressLink
-              key={index}
-              label={address.label}
-              address={address.address}
-              urlPrefix={address.urlPrefix}
-            />
+            </NavLinkSimple>
+          ) : (
+            <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
           ))}
-          {connection}
-        </NavLeft>
-        <NavRight>
-          {back && (
-            <NavButton onClick={back === true ? router.back : back}>
-              Back
-            </NavButton>
-          )}
-          {appHeaderLinks &&
-            appHeaderLinks.map((link, index) => (
-              <NavLinkRound
-                key={index}
-                href={link.url}
-                className={link.url === router?.pathname ? 'active' : ''}
-              >
-                {link.title}
-              </NavLinkRound>
-            ))}
-          {logout && <NavButton onClick={logout}>Logout</NavButton>}
-        </NavRight>
-      </Header>
-    </>
+        {addressLinks?.map((address, index) => (
+          <AddressLink
+            key={index}
+            label={address.label}
+            address={address.address}
+            urlPrefix={address.urlPrefix}
+          />
+        ))}
+        {connection}
+      </NavLeft>
+      <NavRight>
+        {back && (
+          <NavButton onClick={back === true ? router.back : back}>
+            Back
+          </NavButton>
+        )}
+        {appHeaderLinks &&
+          appHeaderLinks.map((link, index) => (
+            <NavLinkRound
+              key={index}
+              href={link.url}
+              className={link.url === router?.pathname ? 'active' : ''}
+            >
+              {link.title}
+            </NavLinkRound>
+          ))}
+        {logout && <NavButton onClick={logout}>Logout</NavButton>}
+      </NavRight>
+    </Header>
   )
 }
 
