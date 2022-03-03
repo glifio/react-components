@@ -47,7 +47,7 @@ App.args = {
   blogUrl: 'https://glif.io/blog',
   walletUrl: 'https://wallet.glif.io',
   explorerUrl: 'https://explorer.glif.io',
-  addresses: [
+  addressLinks: [
     {
       label: 'Safe Address',
       address: 't2i43oi6rnf2s6rp544rcegfbcdp5l62cayz2btmy',

@@ -96,14 +96,14 @@ export function AppHeader(props: AppHeaderProps) {
     walletUrl,
     verifierUrl,
     explorerUrl,
-    addresses,
+    addressLinks,
     appHeaderLinks
   } = props
   const addSubHeader: boolean =
     !!logout ||
     !!back ||
     !!connection ||
-    (!!addresses && !!addresses.length) ||
+    (!!addressLinks && !!addressLinks.length) ||
     (!!appHeaderLinks && !!appHeaderLinks.length)
   return (
     <>
@@ -138,7 +138,7 @@ export function AppHeader(props: AppHeaderProps) {
       {addSubHeader && (
         <SubHeader>
           <NavLeft>
-            {addresses?.map((address, index) => (
+            {addressLinks?.map((address, index) => (
               <AddressLink
                 key={index}
                 label={address.label}
