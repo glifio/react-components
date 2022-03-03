@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { space } from '../theme'
 import ButtonV2 from '../Button/V2'
 import { SmartLink } from '../Link/SmartLink'
+import { AppIconHeaderFooter } from '../Icons'
 import { AddressLink, AddressLinkProps } from '../AddressLink'
 import AppIconWrapper from './AppIconWrapper'
 
@@ -145,4 +146,8 @@ AppHeader.propTypes = {
       url: PropTypes.string.isRequired
     })
   )
+}
+
+AppHeader.defaultProps = {
+  appIcon: <AppIconHeaderFooter iconStyle='dark' />
 }
