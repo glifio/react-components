@@ -2,7 +2,7 @@ import theme, { space } from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import Box from '../Box'
 import { AppHeader } from './index'
-import { SafeIconHeaderFooter } from '../Icons'
+import { AppIconHeaderFooter, SafeIconHeaderFooter } from '../Icons'
 import { NetworkConnection } from '../NetworkConnection'
 
 export default {
@@ -24,7 +24,8 @@ const Template = args => <AppHeader {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  homeUrl: 'https://glif.io',
+  appIcon: <AppIconHeaderFooter iconStyle='dark' />,
+  appUrl: 'https://glif.io',
   blogUrl: 'https://glif.io/blog',
   codeUrl: 'https://glif.io/code',
   nodesUrl: 'https://glif.io/nodes'
@@ -41,7 +42,6 @@ App.args = {
       errorCallback={() => {}}
     />
   ),
-  appTitle: 'Safe',
   appIcon: <SafeIconHeaderFooter />,
   appUrl: 'https://safe.glif.io',
   blogUrl: 'https://glif.io/blog',

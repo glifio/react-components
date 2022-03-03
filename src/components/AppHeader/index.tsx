@@ -107,15 +107,14 @@ export function AppHeader(props: AppHeaderProps) {
     <>
       <Header>
         <NavLeft>
-          {appIcon && (
-            appUrl ? (
+          {appIcon &&
+            (appUrl ? (
               <NavLinkSimple href={appUrl}>
                 <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
               </NavLinkSimple>
             ) : (
               <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
-            )
-          )}
+            ))}
         </NavLeft>
         <NavRight>
           {blogUrl && <NavLinkRound href={blogUrl}>Blog</NavLinkRound>}
