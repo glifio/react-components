@@ -63,7 +63,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
             ))}
         </tbody>
       </TABLE>
-      {!lastPage && !fetchingMore && (
+      {!lastPage && !fetchingMore && !loading && (
         <Box pt='4.5rem' textAlign='center'>
           <ButtonV2 onClick={fetchMore} px='18rem'>
             Load more
@@ -78,7 +78,7 @@ type MessageHistoryTableProps = {
   offset: number
   address: string
   addressHref: (address: string) => string
-  cidHref: (cid: string) => string
+  cidHref: (cid: string, height?: string) => string
 }
 
 MessageHistoryTable.propTypes = {

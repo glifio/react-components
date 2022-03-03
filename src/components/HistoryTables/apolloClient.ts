@@ -3,13 +3,15 @@ import { getMainDefinition } from '@apollo/client/utilities'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { defaultMessageHistoryClientCacheConfig } from './defaultCacheConfig'
 
+const BASE_URL = 'graph-calibration.glif.link/query'
+
 const httpLink = new HttpLink({
-  uri: 'https://graph.glif.host/query'
+  uri: `https://${BASE_URL}`
 })
 
 const wsLink = process.browser
   ? new WebSocketLink({
-      uri: 'wss://graph.glif.host/query',
+      uri: `wss://${BASE_URL}`,
       options: {
         reconnect: true,
         lazy: true

@@ -30,6 +30,12 @@ export type MsigState<T = Address> = {
   UnlockDuration: number
 }
 
+const emptyActorState: LotusRPCActorState<any> = {
+  Balance: '0',
+  Code: { '/': '' },
+  State: null
+}
+
 /////// implemented until https://github.com/glifio/graph/issues/33
 export const useStateReadStateQuery = <T = any>(
   baseOptions: QueryHookOptions<
@@ -44,6 +50,8 @@ export const useStateReadStateQuery = <T = any>(
   )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
+  const [fetchedFor, setFetchedFor] = useState<string>('')
+
   useEffect(() => {
     const fetchState = async () => {
       try {
@@ -78,18 +86,32 @@ export const useStateReadStateQuery = <T = any>(
           setActorState({ ...res })
         }
       } catch (err) {
-        if (err instanceof Error) setError(err)
-        else setError(new Error('Failed to fetch'))
+        if (err instanceof Error) {
+          if (err.message.includes('actor not found')) {
+            setActorState({ ...emptyActorState })
+          } else setError(err)
+        } else setError(new Error('Failed to fetch'))
       } finally {
         setLoading(false)
       }
     }
 
-    if (!actorState && loading && !error) {
+    const firstLoad = !actorState && loading && !error
+    const newLoad = fetchedFor !== baseOptions?.variables?.address && !error
+
+    if (firstLoad || newLoad) {
       setLoading(true)
+      setFetchedFor(baseOptions?.variables?.address)
       fetchState()
     }
-  }, [baseOptions.variables.address, loading, error, actorState])
+  }, [
+    baseOptions?.variables?.address,
+    loading,
+    error,
+    actorState,
+    fetchedFor,
+    setFetchedFor
+  ])
 
   return { data: actorState, error, loading }
 }

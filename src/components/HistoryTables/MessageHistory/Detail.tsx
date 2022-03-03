@@ -29,6 +29,8 @@ import {
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
+import { CopyText } from '../../Copy'
+import Card from '../../Card'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -41,10 +43,10 @@ const SeeMore = styled(P).attrs(() => ({
 `
 
 export default function MessageDetail(props: MessageDetailProps) {
-  const { cid, speedUp, cancel, addressHref, confirmations } = props
+  const { cid, height, speedUp, cancel, addressHref, confirmations } = props
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
-  const { message, loading, error, pending } = useMessage(cid)
+  const { message, error, loading, pending } = useMessage(cid, height)
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -92,8 +94,13 @@ export default function MessageDetail(props: MessageDetailProps) {
         cancel={cancel}
       />
       <HR />
-      <DetailCaption name='Message Overview' loading={loading} error={error} />
-      {!loading && !error && (
+      <DetailCaption
+        name='Message Overview'
+        captian='Scanning Filecoin for your message... This could take a minute.'
+        loading={loading}
+        error={error}
+      />
+      {!loading && !error && !!message && (
         <>
           <Line label='CID'>{cid}</Line>
           <Line label='Status and Confirmations'>
@@ -126,12 +133,22 @@ export default function MessageDetail(props: MessageDetailProps) {
             <Link
               href={addressHref(message.from.robust)}
             >{`(${message.from.id})`}</Link>
+            <CopyText
+              text={message.from.robust}
+              hideCopyText={false}
+              color='core.primary'
+            />
           </Line>
           <Line label='To'>
             {message.to.robust}
             <Link
               href={addressHref(message.to.robust)}
-            >{`(${message.to.id})`}</Link>
+            >{`(${message.to.id})`}</Link>{' '}
+            <CopyText
+              text={message.to.robust}
+              hideCopyText={false}
+              color='core.primary'
+            />
           </Line>
           <HR />
           <Line label='Value'>{value}</Line>
@@ -151,12 +168,15 @@ export default function MessageDetail(props: MessageDetailProps) {
               <Line label='Gas Limit & Usage by Txn'>
                 {formatNumber(message.gasLimit)}
                 <span className='gray'>|</span>
-                {pending
-                  ? '?'
-                  : `${formatNumber(
-                      (message as MessageConfirmed).gasUsed
-                    )} attoFil`}
-                <span>({gasPercentage})</span>
+                {pending ? (
+                  '?'
+                ) : (
+                  <>
+                    {`${formatNumber((message as MessageConfirmed).gasUsed)}
+                    attoFil`}
+                    <span>({gasPercentage})</span>
+                  </>
+                )}
               </Line>
               <Line label='Gas Fees'>
                 <span className='gray'>Premium</span>
@@ -186,10 +206,22 @@ export default function MessageDetail(props: MessageDetailProps) {
                 params={{ params: message.params }}
                 actorName={actorName}
                 depth={0}
+                addressHref={props.addressHref}
               />
             </>
           )}
         </>
+      )}
+      {!loading && !error && !message && (
+        <Card width='100%' bg='background.screen' border={0}>
+          <P color='core.darkgray'>
+            Message {cid} not found.
+            <br />
+            <br />
+            Note - it may take 1-2 minutes for a recently confirmed message to
+            show up here.
+          </P>
+        </Card>
       )}
     </Box>
   )
@@ -197,6 +229,7 @@ export default function MessageDetail(props: MessageDetailProps) {
 
 type MessageDetailProps = {
   cid: string
+  height?: number
   speedUp?: () => void
   cancel?: () => void
   addressHref: (address: string) => string
@@ -205,6 +238,7 @@ type MessageDetailProps = {
 
 MessageDetail.propTypes = {
   cid: PropTypes.string.isRequired,
+  height: PropTypes.number,
   speedUp: PropTypes.func,
   cancel: PropTypes.func,
   addressHref: PropTypes.func.isRequired,

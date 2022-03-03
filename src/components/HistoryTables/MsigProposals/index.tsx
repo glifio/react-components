@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { isAddrEqual } from '../../../utils'
 import Box from '../../Box'
 import ProposalRow from './ProposalRow'
 import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
@@ -9,6 +10,7 @@ import { Title } from '../generic'
 
 type ProposalHistoryTableProps = {
   address: string
+  walletAddr: string
   offset?: number
   // allows custom navigation
   addressHref: (address: string) => string
@@ -22,7 +24,8 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
       offset: props.offset,
       limit: Number.MAX_SAFE_INTEGER
     },
-    pollInterval: 10000
+    pollInterval: 10000,
+    fetchPolicy: 'cache-and-network'
   })
 
   return (
@@ -47,6 +50,11 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
                   idHref={props.idHref}
                   addressHref={props.addressHref}
                   inspectingAddress={props.address}
+                  actionRequired={
+                    !proposal.approved.some(address =>
+                      isAddrEqual(address, props.walletAddr)
+                    )
+                  }
                 />
               ))}
         </tbody>
@@ -59,7 +67,8 @@ ProposalHistoryTable.propTypes = {
   addressHref: PropTypes.func,
   idHref: PropTypes.func,
   offset: PropTypes.number,
-  address: ADDRESS_PROPTYPE
+  address: ADDRESS_PROPTYPE,
+  walletAddr: ADDRESS_PROPTYPE
 }
 
 ProposalHistoryTable.defaultProps = {

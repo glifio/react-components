@@ -23,7 +23,7 @@ export const usePendingMessages = (
   address: string,
   chainHeadSubscription: SubscriptionResult<ChainHeadSubscription, any>
 ) => {
-  const [pendingMsgList, setPendingMsgList] = useState([])
+  const [pendingMsgList, setPendingMsgList] = useState<MessagePending[]>([])
 
   // only update the pending message list when there is a new message to add... w/out infinite loops
   const safeUpdate = useCallback(
@@ -120,7 +120,9 @@ export const usePendingMessages = (
   return {
     pendingMsgList,
     shouldRefresh,
-    setShouldRefresh
+    setShouldRefresh,
+    loading: pendingMsgs?.loading,
+    error: pendingMsgs?.error
   }
 }
 
@@ -131,8 +133,13 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     shouldResubscribe: true
   })
   // these pending messages might have recently confirmed low conf messages... filter them out
-  const { pendingMsgList, shouldRefresh, setShouldRefresh } =
-    usePendingMessages(address, chainHeadSub)
+  const {
+    pendingMsgList,
+    shouldRefresh,
+    setShouldRefresh,
+    loading: pendingMsgsLoading,
+    error: pendingMsgsError
+  } = usePendingMessages(address, chainHeadSub)
 
   const {
     data: lowConfidenceMsgsData,
@@ -155,6 +162,8 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   // pluck confirmed messages from the pending message list
   const pendingMsgs = useMemo(() => {
     if (
+      !pendingMsgsLoading &&
+      !pendingMsgsError &&
       !lowConfidenceMsgsLoading &&
       !lowConfidenceMsgsError &&
       !!lowConfidenceMsgsData?.stateListMessages
@@ -174,7 +183,9 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     pendingMsgList,
     lowConfidenceMsgsError,
     lowConfidenceMsgsLoading,
-    lowConfidenceMsgsData
+    lowConfidenceMsgsData,
+    pendingMsgsLoading,
+    pendingMsgsError
   ]) as MessagePending[]
 
   const [offset, setOffset] = useState(_offset)
@@ -204,12 +215,14 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   }
 
   const loading = useMemo(() => {
-    return confirmedMsgsLoading || lowConfidenceMsgsLoading
-  }, [confirmedMsgsLoading, lowConfidenceMsgsLoading])
+    return (
+      confirmedMsgsLoading || lowConfidenceMsgsLoading || pendingMsgsLoading
+    )
+  }, [confirmedMsgsLoading, lowConfidenceMsgsLoading, pendingMsgsLoading])
 
   const error = useMemo(() => {
-    return confirmedMsgsErr || lowConfidenceMsgsError
-  }, [confirmedMsgsErr, lowConfidenceMsgsError])
+    return confirmedMsgsErr || lowConfidenceMsgsError || pendingMsgsError
+  }, [confirmedMsgsErr, lowConfidenceMsgsError, pendingMsgsError])
 
   const messages = useMemo<MessageConfirmed[]>(() => {
     if (
@@ -272,13 +285,13 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   }
 }
 
-export const useMessage = (cid: string) => {
+export const useMessage = (cid: string, height?: number) => {
   const {
     data: highConfMsgData,
     loading: highConfMsgLoading,
     error: highConfiMsgErr
   } = useMessageQuery({
-    variables: { cid },
+    variables: { cid, height },
     pollInterval: 0
   })
 
@@ -286,7 +299,11 @@ export const useMessage = (cid: string) => {
     data: pendingMsgData,
     loading: pendingMsgLoading,
     error: _pendingMsgErr
-  } = usePendingMessageQuery({ variables: { cid }, pollInterval: 0 })
+  } = usePendingMessageQuery({
+    variables: { cid },
+    pollInterval: 0
+  })
+
   const pendingMsgErr = useMemo(() => {
     if (
       !_pendingMsgErr ||
@@ -311,7 +328,7 @@ export const useMessage = (cid: string) => {
   } = useMessageLowConfidenceQuery({
     variables: { cid },
     pollInterval: !!pendingMsg ? 30000 : 0,
-    skip: pendingMsgLoading
+    skip: pendingMsgLoading || !!highConfMsgData?.message
   })
 
   const {
@@ -329,6 +346,8 @@ export const useMessage = (cid: string) => {
     else if (
       _lowConfMsgErr?.message.toLowerCase().includes('failed to fetch')
     ) {
+      return
+    } else if (_lowConfMsgErr?.message.toLowerCase().includes('not found')) {
       return
     } else if (
       _lowConfMsgErr?.message
@@ -385,13 +404,16 @@ export const useMessage = (cid: string) => {
     // if we have the message, use it
     if (!highConfMsgLoading && !!highConfMsgData?.message) return false
     if (!pendingMsgLoading && !!pendingMsgData?.pendingMessage) return false
+    if (!lowConfMsgLoading && !!lowConfMsgData?.messageLowConfidence)
+      return false
     return highConfMsgLoading || lowConfMsgLoading || pendingMsgLoading
   }, [
     highConfMsgLoading,
     lowConfMsgLoading,
     pendingMsgLoading,
     pendingMsgData,
-    highConfMsgData
+    highConfMsgData,
+    lowConfMsgData
   ])
 
   const error = useMemo(
@@ -420,8 +442,6 @@ export const useMessage = (cid: string) => {
     pendingMsg,
     pendingFoundInLowConfMsgs
   ])
-
-  console.log({ message })
 
   return {
     message,

@@ -35,7 +35,7 @@ export function AddressWOptionalLink({
   addressHref: (address: string) => string
   onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }) {
-  if (address === inspectingAddress) {
+  if (address.slice(1) === inspectingAddress.slice(1)) {
     return <span>{truncateAddress(address)}</span>
   }
 

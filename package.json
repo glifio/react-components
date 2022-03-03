@@ -1,6 +1,6 @@
 {
   "name": "@glif/react-components",
-  "version": "2.0.0-alpha.46",
+  "version": "2.0.0-alpha.50",
   "description": "Shared react components for @glif projects",
   "main": "dist/index.js",
   "repository": {
@@ -36,7 +36,7 @@
     "@babel/core": "^7.12.17",
     "@babel/preset-env": "^7.12.17",
     "@babel/preset-typescript": "^7.16.0",
-    "@graphql-codegen/cli": "2.4.0",
+    "@graphql-codegen/cli": "2.6.2",
     "@graphql-codegen/typescript": "2.4.2",
     "@graphql-codegen/typescript-operations": "^2.2.2",
     "@graphql-codegen/typescript-react-apollo": "^3.2.3",
@@ -75,9 +75,9 @@
   "dependencies": {
     "@apollo/client": "^3.5.6",
     "@glif/base-css": "^0.0.8",
-    "@glif/filecoin-address": "latest",
-    "@glif/filecoin-number": "latest",
-    "@glif/filecoin-rpc-client": "latest",
+    "@glif/filecoin-address": "^2.0.0-beta.0",
+    "@glif/filecoin-number": "^2.0.0-beta.0",
+    "@glif/filecoin-rpc-client": "^2.0.0-beta.0",
     "@glif/logger": "^2.0.0-alpha.16",
     "axios": "^0.25.0",
     "base32-decode": "^1.0.0",

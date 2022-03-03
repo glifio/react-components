@@ -10,12 +10,14 @@ import { AddressWOptionalLink, SmartLink } from '../../Link/SmartLink'
 import { MsigTransaction } from '../../../generated/graphql'
 import { PROPOSAL_ROW_PROP_TYPE } from '../types'
 import { getMethodName } from '../methodName'
+import appTheme from '../../theme'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
 export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
-  const { proposal, idHref, addressHref, inspectingAddress } = props
+  const { proposal, idHref, addressHref, inspectingAddress, actionRequired } =
+    props
 
   const router = useRouter()
 
@@ -44,6 +46,8 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
               overflow: 'hidden',
               textOverflow: 'ellipsis'
             }}
+            target='_blank'
+            rel='noopener noreferrer'
           >
             {proposal.id}
           </a>
@@ -70,6 +74,16 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
       </TD>
       <TD>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</TD>
       <TD>{proposal.approved?.length}</TD>
+      {actionRequired && (
+        <TD
+          css={`
+            color: ${({ theme }: { theme: typeof appTheme }) =>
+              theme.colors.core.primary};
+          `}
+        >
+          Action required
+        </TD>
+      )}
     </TR>
   )
 }
@@ -80,13 +94,15 @@ type ProposalHistoryRowProps = {
   idHref: (id: number) => string
   addressHref: (address: string) => string
   inspectingAddress?: string
+  actionRequired?: boolean
 }
 
 ProposalHistoryRow.propTypes = {
   proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
   idHref: PropTypes.func.isRequired,
   addressHref: PropTypes.func.isRequired,
-  inspectingAddress: PropTypes.string
+  inspectingAddress: PropTypes.string,
+  actionRequired: PropTypes.bool
 }
 
 ProposalHistoryRow.defaultProps = {

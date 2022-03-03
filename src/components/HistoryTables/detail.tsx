@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { MsigTransaction } from '../../generated/graphql'
+import { Address, MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
 import ButtonV2 from '../Button/V2'
 import { Title, Badge } from './generic'
@@ -15,6 +15,7 @@ import {
 } from '../Icons'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
+import { CopyText } from '../Copy'
 
 /**
  * Head
@@ -146,23 +147,30 @@ const CAPTION = styled.div`
   }
 `
 
-export const DetailCaption = ({ name, loading, error }: DetailCaptionProps) => {
+export const DetailCaption = ({
+  name,
+  captian,
+  loading,
+  error
+}: DetailCaptionProps) => {
   if (error)
     return (
       <CAPTION className='error'>{`${name} failed to load: ${error.message}`}</CAPTION>
     )
-  if (loading) return <CAPTION>{`${name} is loading...`}</CAPTION>
+  if (loading) return <CAPTION>{captian}</CAPTION>
   return <></>
 }
 
 type DetailCaptionProps = {
   name: string
+  captian: string
   loading: boolean
   error: Error
 }
 
 DetailCaption.propTypes = {
   name: PropTypes.string.isRequired,
+  captian: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.object
 }
@@ -223,7 +231,12 @@ Line.defaultProps = {
  * Parameters
  * Parameter rows of the detail page
  */
-export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
+export const Parameters = ({
+  params,
+  depth,
+  actorName,
+  addressHref
+}: ParametersProps) => (
   <>
     {Object.entries(params).map(([key, value]) => {
       switch (key.toLowerCase()) {
@@ -236,6 +249,52 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
             </Line>
           )
         }
+        case 'to': {
+          // handles both address types...
+          if (typeof value === 'string') {
+            return (
+              <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                <a
+                  target='_blank'
+                  rel='noreferrer noopener'
+                  href={addressHref(value)}
+                >
+                  {value}
+                </a>
+                <CopyText
+                  text={value}
+                  color='core.primary'
+                  hideCopyText={false}
+                />
+              </Line>
+            )
+          } else if (typeof value === 'object') {
+            const addr = value as Address
+            return (
+              <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                return {addr.robust}{' '}
+                <a
+                  target='_blank'
+                  rel='noreferrer noopener'
+                  href={addressHref(addr.robust)}
+                >
+                  ({addr.id})
+                </a>
+                <CopyText
+                  text={addr.robust}
+                  color='core.primary'
+                  hideCopyText={false}
+                />
+              </Line>
+            )
+          }
+          return (
+            <Line key={`${depth}-${key}`} label={key} depth={depth}>
+              {value ?? '—'}
+            </Line>
+          )
+        }
+
         case 'value':
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
@@ -254,6 +313,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
                   params={value}
                   depth={depth + 1}
                   actorName={actorName}
+                  addressHref={addressHref}
                 />
               </div>
             )
@@ -279,12 +339,14 @@ type ParametersProps = {
   params: object
   depth: number
   actorName: string
+  addressHref: (address: string) => string
 }
 
 Parameters.propTypes = {
   params: PropTypes.object.isRequired,
   depth: PropTypes.number.isRequired,
-  actorName: PropTypes.string.isRequired
+  actorName: PropTypes.string.isRequired,
+  addressHref: PropTypes.func.isRequired
 }
 
 /**

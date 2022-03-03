@@ -56,7 +56,12 @@ export function ActorState({ address }: { address: string }) {
     <Box>
       <Title>Overview</Title>
       <HR />
-      <DetailCaption name='Overview' loading={loading} error={error} />
+      <DetailCaption
+        name='Actor Overview'
+        captian='Locating this actor on the blockchain...'
+        loading={loading}
+        error={error}
+      />
       {!loading && !error && (
         <>
           {addressData?.address.robust && (
