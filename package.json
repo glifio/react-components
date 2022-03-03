@@ -79,7 +79,7 @@
     "@glif/filecoin-number": "^2.0.0-beta.0",
     "@glif/filecoin-rpc-client": "^2.0.0-beta.0",
     "@glif/logger": "^2.0.0-alpha.16",
-    "axios": "^0.25.0",
+    "axios": "^0.26.0",
     "base32-decode": "^1.0.0",
     "bip39": "^3.0.3",
     "dayjs": "^1.9.6",
