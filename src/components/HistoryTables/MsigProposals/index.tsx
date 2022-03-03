@@ -30,10 +30,10 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
 
   return (
     <Box>
-      <Title>MSIG Proposals</Title>
+      <Title>Safe Proposals</Title>
       <TABLE>
         <TableCaption
-          name='MSIG Proposals'
+          name='Safe Proposals'
           loading={loading}
           error={error}
           empty={!data?.msigPending.length}
