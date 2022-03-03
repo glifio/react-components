@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AppTile renders the AppTile 1`] = `
+.c0 {
+  gap: 10px;
+}
+
 .c1 {
   position: relative;
   font-size: 28px;
@@ -65,22 +69,18 @@ exports[`AppTile renders the AppTile 1`] = `
 
 @media (max-width:868px) {
   .c0 {
+    margin-top: calc(20px * 2);
+    margin-bottom: calc(20px * 2);
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
-    white-space: nowrap;
     overflow-x: scroll;
-    -ms-overflow-style: none;
     -webkit-scrollbar-width: none;
     -moz-scrollbar-width: none;
     -ms-scrollbar-width: none;
     scrollbar-width: none;
-    width: calc(100% + 8px);
-    margin-left: calc(8px * -1);
-    margin-top: calc(20px * 2);
-    margin-bottom: calc(20px * 2);
-    padding: 0 8px;
+    -ms-overflow-style: none;
     -ms-scroll-snap-type: x mandatory;
     -webkit-scroll-snap-type: x mandatory;
     -moz-scroll-snap-type: x mandatory;
@@ -96,8 +96,6 @@ exports[`AppTile renders the AppTile 1`] = `
 @media (min-width:868px) {
   .c0 {
     display: grid;
-    grid-gap: 10px;
-    gap: 10px;
     grid-template-columns: repeat(3,1fr);
   }
 }
@@ -117,7 +115,6 @@ exports[`AppTile renders the AppTile 1`] = `
     -moz-scroll-snap-align: start;
     -ms-scroll-snap-align: start;
     scroll-snap-align: start;
-    padding-left: 10px;
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;
@@ -131,7 +128,6 @@ exports[`AppTile renders the AppTile 1`] = `
     -moz-scroll-snap-align: start;
     -ms-scroll-snap-align: start;
     scroll-snap-align: start;
-    padding-left: 8px;
     -webkit-flex-shrink: 0;
     -ms-flex-negative: 0;
     flex-shrink: 0;

@@ -26,11 +26,12 @@ export const Badge = ({ color, children }: BadgeProps) => (
 )
 
 type BadgeProps = {
-  color: 'purple' | 'green' | 'yellow' | 'red'
+  color: 'purple' | 'green' | 'yellow' | 'red' | 'gray'
   children: React.ReactNode
 }
 
 Badge.propTypes = {
-  color: PropTypes.oneOf(['purple', 'green', 'yellow', 'red']).isRequired,
+  color: PropTypes.oneOf(['purple', 'green', 'yellow', 'red', 'gray'])
+    .isRequired,
   children: PropTypes.node.isRequired
 }

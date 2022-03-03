@@ -47,13 +47,7 @@ const NetworkSwitcherButton = styled.button.attrs(() => ({
 
 const NetworkSwitcherGlyph = ({ onNetworkSwitch, network, ...props }) => {
   return (
-    <Box
-      display='flex'
-      width='100%'
-      justifyContent='flex-start'
-      maxWidth='300px'
-      {...props}
-    >
+    <Box display='flex' justifyContent='flex-start' {...props}>
       <NetworkSwitcherButton
         active={network === TESTNET}
         onClick={() => onNetworkSwitch(TESTNET)}

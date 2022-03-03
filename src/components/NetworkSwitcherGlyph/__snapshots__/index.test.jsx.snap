@@ -9,8 +9,6 @@ exports[`NetworkSwitcherGlyph renders NetworkSwitcherGlyph 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  max-width: 300px;
   -webkit-box-pack: start;
   -webkit-justify-content: flex-start;
   -ms-flex-pack: start;
@@ -104,7 +102,6 @@ exports[`NetworkSwitcherGlyph renders NetworkSwitcherGlyph 1`] = `
 <div
   class="c0"
   display="flex"
-  width="100%"
 >
   <button
     class="c1"

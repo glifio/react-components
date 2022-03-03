@@ -1,11 +1,10 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-
-import Address from './index'
+import { AddressLink } from './index'
 
 export default {
-  title: 'Address/Address',
-  component: Address,
+  title: 'AddressLink/AddressLink',
+  component: AddressLink,
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -16,9 +15,11 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <Address {...args} />
+const Template = args => <AddressLink {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy'
+  label: 'Safe Address',
+  address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy',
+  urlPrefix: '/'
 }

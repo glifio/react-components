@@ -74,7 +74,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.6",
-    "@glif/base-css": "^0.0.7",
+    "@glif/base-css": "^0.0.8",
     "@glif/filecoin-address": "^2.0.0-beta.0",
     "@glif/filecoin-number": "^2.0.0-beta.0",
     "@glif/filecoin-rpc-client": "^2.0.0-beta.0",

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import Box from '../../Box'
+import { Badge } from '../generic'
 import { TR, TD } from '../table'
 import { AddressWOptionalLink, SmartLink } from '../../Link/SmartLink'
 import { MsigTransaction } from '../../../generated/graphql'
@@ -54,15 +54,9 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
         </SmartLink>
       </TD>
       <TD>
-        <Box
-          height='2em'
-          lineHeight='2em'
-          borderRadius='1em'
-          px='1.5em'
-          bg='core.secondary'
-        >
+        <Badge color='purple'>
           {getMethodName('/multisig', proposal.method)}
-        </Box>
+        </Badge>
       </TD>
       <TD>
         <AddressWOptionalLink

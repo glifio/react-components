@@ -32,8 +32,7 @@ const AccountCardAlt = ({
   legacy,
   jsonRpcEndpoint,
   path,
-  nDefaultWallets,
-  ...props
+  nDefaultWallets
 }) => {
   const { data, error: balanceFetchingError } = useSWR(
     !balance ? [address] : null,
@@ -51,77 +50,75 @@ const AccountCardAlt = ({
   const balanceForUI = balance || data
 
   return (
-    <Box m={2} display='inline-block' {...props}>
-      <Card
-        display='flex'
-        flexDirection='column'
-        justifyContent='space-between'
-        width={11}
-        height={11}
-        border={1}
-        borderRadius={2}
-        p={3}
-        bg={selected ? 'card.account.background' : 'hsla(0, 0%, 90%, 0)'}
-        color={selected ? 'card.account.color' : 'colors.core.black'}
-      >
-        <Box display='flex' alignItems='center' justifyContent='flex-start'>
-          <Glyph
-            mr={3}
-            color={selected ? 'card.account.color' : 'colors.core.black'}
-            acronym={calcGlyphAcronym(index, nDefaultWallets)}
-          />
-          <AccountTitle
-            index={index}
-            legacy={legacy}
-            path={path}
-            nDefaultWallets={nDefaultWallets}
-          />
-        </Box>
-        <Box display='flex' flexDirection='row' justifyContent='center'>
-          <StyledATag
-            target='_blank'
-            href={`https://filfox.info/en/address/${address}`}
-            fontSize={4}
-            color={selected ? 'card.account.color' : 'core.primary'}
-          >
-            {truncate(address, 5, 6)}
-          </StyledATag>
-          <CopyText
-            text={address}
-            color={selected ? 'card.account.color' : 'core.primary'}
-            hideCopyText
-          />
-        </Box>
-        <Box
-          display='flex'
-          flexDirection='row'
-          justifyContent='space-between'
-          alignItems='flex-end'
+    <Card
+      display='flex'
+      flexDirection='column'
+      justifyContent='space-between'
+      width='100%'
+      height={11}
+      border={1}
+      borderRadius={2}
+      p={3}
+      bg={selected ? 'card.account.background' : 'hsla(0, 0%, 90%, 0)'}
+      color={selected ? 'card.account.color' : 'colors.core.black'}
+    >
+      <Box display='flex' alignItems='center' justifyContent='flex-start'>
+        <Glyph
+          mr={3}
+          color={selected ? 'card.account.color' : 'colors.core.black'}
+          acronym={calcGlyphAcronym(index, nDefaultWallets)}
+        />
+        <AccountTitle
+          index={index}
+          legacy={legacy}
+          path={path}
+          nDefaultWallets={nDefaultWallets}
+        />
+      </Box>
+      <Box display='flex' flexDirection='row' justifyContent='center'>
+        <StyledATag
+          target='_blank'
+          href={`https://filfox.info/en/address/${address}`}
+          fontSize={4}
+          color={selected ? 'card.account.color' : 'core.primary'}
         >
-          <Box display='flex' flexDirection='column'>
-            {balanceFetchingError ? (
-              <Text fontSize={3} my={0}>
-                Error fetching balance
-              </Text>
-            ) : (
-              <>
-                <Text fontSize={3} my={0}>
-                  Balance
-                </Text>
-                <Title fontSize={4} my={0}>
-                  {balanceForUI} FIL
-                </Title>
-              </>
-            )}
-          </Box>
-          {selected ? (
-            <Button variant='tertiary' title='Select' onClick={onClick} />
+          {truncate(address, 5, 6)}
+        </StyledATag>
+        <CopyText
+          text={address}
+          color={selected ? 'card.account.color' : 'core.primary'}
+          hideCopyText
+        />
+      </Box>
+      <Box
+        display='flex'
+        flexDirection='row'
+        justifyContent='space-between'
+        alignItems='flex-end'
+      >
+        <Box display='flex' flexDirection='column'>
+          {balanceFetchingError ? (
+            <Text fontSize={3} my={0}>
+              Error fetching balance
+            </Text>
           ) : (
-            <Button variant='secondary' title='Select' onClick={onClick} />
+            <>
+              <Text fontSize={3} my={0}>
+                Balance
+              </Text>
+              <Title fontSize={4} my={0}>
+                {balanceForUI} FIL
+              </Title>
+            </>
           )}
         </Box>
-      </Card>
-    </Box>
+        {selected ? (
+          <Button variant='tertiary' title='Select' onClick={onClick} />
+        ) : (
+          <Button variant='secondary' title='Select' onClick={onClick} />
+        )}
+      </Box>
+    </Card>
   )
 }
 

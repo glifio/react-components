@@ -6,6 +6,7 @@ import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import { TABLE, TableCaption } from '../table'
 import { useMsigPendingQuery } from '../../../generated/graphql'
+import { Title } from '../generic'
 
 type ProposalHistoryTableProps = {
   address: string
@@ -29,9 +30,10 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
 
   return (
     <Box>
+      <Title>MSIG Proposals</Title>
       <TABLE>
         <TableCaption
-          name='MSIG Proposal List'
+          name='MSIG Proposals'
           loading={loading}
           error={error}
           empty={!data?.msigPending.length}
