@@ -1,21 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Receive it renders correctly 1`] = `
+.c1 {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
 .c0 {
   min-width: 0;
   box-sizing: border-box;
-  border: 1px solid;
-  border-color: #999999;
-  border-radius: 1px;
-  padding-left: 16px;
-  width: 640px;
+  color: #666666;
 }
 
 .c2 {
   min-width: 0;
   box-sizing: border-box;
-  padding-left: 4px;
-  padding-right: 8px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -23,241 +25,150 @@ exports[`Receive it renders correctly 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-}
-
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  height: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-.c3 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
 }
 
 .c4 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-  margin-left: 4px;
-  margin-right: 4px;
-}
-
-.c1 {
+  min-width: 0;
+  box-sizing: border-box;
+  color: #E0D7FE;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 70px;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding-left: 16px;
 }
 
 .c6 {
-  display: inline-block;
-  height: 100%;
-  outline: none;
-  background-color: #d1ddfa;
-  padding: 0;
-  width: 64px;
-  border: 0;
-  border-left: 1px solid;
-  border-color: #999999;
-  border-top-right-radius: 1px;
-  border-bottom-right-radius: 1px;
-}
-
-.c6:hover {
   cursor: pointer;
-}
-
-<div
-  class="c0 c1"
-  width="14"
->
-  <div
-    class="c2"
-    display="flex"
-  >
-    <p
-      class="c3"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      t1
-    </p>
-    <p
-      class="c4"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      ●●●●●●●●●●●●●●●●●●●●●●●●●●●●●●
-    </p>
-    <p
-      class="c3"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      izpy
-    </p>
-  </div>
-  <div
-    class="c5"
-    display="flex"
-    height="100%"
-  >
-    <button
-      class="c6"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-      width="7"
-    >
-      Copy
-    </button>
-    <button
-      class="c6"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-      width="7"
-    >
-      Reveal
-    </button>
-  </div>
-</div>
-`;
-
-exports[`Receive it reveals the address when the user clicks reveal 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-color: #999999;
-  border-radius: 1px;
-  padding-left: 16px;
-  width: 640px;
-}
-
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  height: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-}
-
-.c2 {
+  border: 1px solid #1AD08F;
+  background-color: #1AD08F;
+  border-color: #1AD08F;
+  color: #08442F;
   font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-  padding-left: 4px;
-  padding-right: 8px;
-}
-
-.c1 {
+  -webkit-transition: 0.18s ease-in-out;
+  transition: 0.18s ease-in-out;
+  border-radius: 4px;
+  margin-left: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 70px;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  height: 48px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding-left: 16px;
+  border-width: 1px;
+  border-radius: 4px;
 }
 
-.c4 {
-  display: inline-block;
-  height: 100%;
-  outline: none;
-  background-color: #d1ddfa;
-  padding: 0;
-  width: 64px;
+.c6:hover {
+  opacity: 0.8;
+}
+
+.c8 {
+  width: 24;
+  height: 24;
+}
+
+.c7 {
+  height: auto;
+  opacity: 1 !important;
   border: 0;
-  border-left: 1px solid;
-  border-color: #999999;
-  border-top-right-radius: 1px;
-  border-bottom-right-radius: 1px;
+  background: transparent;
+  padding: 0;
+  outline: none;
 }
 
-.c4:hover {
-  cursor: pointer;
+.c10 {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+}
+
+.c5:hover .c9 {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+}
+
+.c3 {
+  color: var(--purple-medium);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c3:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 <div
-  class="c0 c1"
-  width="14"
+  class="c0"
+  color="core.darkgray"
 >
-  <p
-    class="c2"
+  <h4
+    class="c1"
     font-family="RT-Alias-Grotesk"
-    font-size="2"
+    font-size="1"
     font-weight="400"
   >
-    t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy
-  </p>
+    Safe Address
+  </h4>
   <div
-    class="c3"
+    class="c2"
     display="flex"
-    height="100%"
   >
-    <button
-      class="c4"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-      width="7"
+    <a
+      class="c3"
+      href="/t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy"
     >
-      Copy
-    </button>
-    <button
+      t137sj ... 2vizpy
+    </a>
+    <div
       class="c4"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-      width="7"
+      color="core.secondary"
+      display="flex"
     >
-      Hide
-    </button>
+      <button
+        class="c5 c6 c7"
+        display="flex"
+        font-size="3"
+        height="6"
+        role="button"
+        type="button"
+      >
+        <svg
+          class="c8 c9 c10"
+          fill="none"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            fill="#1A0066"
+            height="12"
+            width="12"
+            x="8"
+            y="4"
+          />
+          <rect
+            fill="#E0D7FE"
+            height="12"
+            width="12"
+            x="4"
+            y="8"
+          />
+        </svg>
+      </button>
+    </div>
   </div>
 </div>
 `;

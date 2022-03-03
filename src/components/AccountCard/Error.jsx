@@ -3,9 +3,6 @@ import Box from '../Box'
 import Glyph from '../Glyph'
 import Button from '../Button'
 import { Text } from '../Typography'
-import { AddressV2 } from '../Address'
-
-console.log(AddressV2)
 
 const AccountError = ({ errorMsg, onTryAgain, ...props }) => (
   <Box
