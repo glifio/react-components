@@ -29,12 +29,17 @@ const PageInner = styled.div`
   }
 `
 
-export function Page({ children, phishingUrl, ...rest }: PageProps) {
+export function Page({
+  children,
+  phishingUrl,
+  hideAppHeader,
+  ...appHeaderProps
+}: PageProps) {
   return (
     <PageOuter>
       <PageInner>
         {phishingUrl && <PhishingBanner href={phishingUrl} />}
-        <AppHeader {...rest} />
+        {!hideAppHeader && <AppHeader {...appHeaderProps} />}
         {children}
       </PageInner>
       <Footer />
@@ -45,6 +50,7 @@ export function Page({ children, phishingUrl, ...rest }: PageProps) {
 export type PageProps = {
   children: JSX.Element | Array<JSX.Element>
   phishingUrl?: string
+  hideAppHeader?: boolean
 } & AppHeaderProps
 
 Page.propTypes = {
@@ -53,6 +59,7 @@ Page.propTypes = {
     PropTypes.node
   ]),
   phishingUrl: PropTypes.string,
+  hideAppHeader: PropTypes.bool,
   ...AppHeader.propTypes
 }
 
