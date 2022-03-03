@@ -23,7 +23,7 @@ exports[`AppHeader renders the box 1`] = `
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 10px;
+  padding: 10px 0;
   background-color: var(--white-broken);
   display: -webkit-box;
   display: -webkit-flex;

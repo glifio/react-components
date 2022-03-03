@@ -11,7 +11,7 @@ const Header = styled.header`
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: ${space()};
+  padding: ${space()} 0;
   background-color: var(--white-broken);
 
   display: flex;
