@@ -26,9 +26,20 @@ export const Base = Template.bind({})
 Base.args = {
   appIcon: <AppIconHeaderFooter iconStyle='dark' />,
   appUrl: 'https://glif.io',
-  blogUrl: 'https://glif.io/blog',
-  codeUrl: 'https://glif.io/code',
-  nodesUrl: 'https://glif.io/nodes'
+  appHeaderLinks: [
+    {
+      title: 'Blog',
+      url: 'https://glif.io/blog'
+    },
+    {
+      title: 'Code',
+      url: 'https://github.com/glifio'
+    },
+    {
+      title: 'Nodes',
+      url: 'https://lotus.filecoin.io/docs/developers/hosted-lotus'
+    }
+  ]
 }
 
 export const App = Template.bind({})
@@ -44,9 +55,6 @@ App.args = {
   ),
   appIcon: <SafeIconHeaderFooter />,
   appUrl: 'https://safe.glif.io',
-  blogUrl: 'https://glif.io/blog',
-  walletUrl: 'https://wallet.glif.io',
-  explorerUrl: 'https://explorer.glif.io',
   addressLinks: [
     {
       label: 'Safe Address',

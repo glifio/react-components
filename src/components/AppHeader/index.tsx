@@ -87,13 +87,6 @@ export function AppHeader(props: AppHeaderProps) {
     appTitle,
     appIcon,
     appUrl,
-    blogUrl,
-    codeUrl,
-    nodesUrl,
-    safeUrl,
-    walletUrl,
-    verifierUrl,
-    explorerUrl,
     addressLinks,
     appHeaderLinks
   } = props
@@ -117,17 +110,6 @@ export function AppHeader(props: AppHeaderProps) {
             ))}
         </NavLeft>
         <NavRight>
-          {blogUrl && <NavLinkRound href={blogUrl}>Blog</NavLinkRound>}
-          {codeUrl && <NavLinkRound href={codeUrl}>Code</NavLinkRound>}
-          {nodesUrl && <NavLinkRound href={nodesUrl}>Nodes</NavLinkRound>}
-          {safeUrl && <NavLinkRound href={safeUrl}>Safe</NavLinkRound>}
-          {walletUrl && <NavLinkRound href={walletUrl}>Wallet</NavLinkRound>}
-          {verifierUrl && (
-            <NavLinkRound href={verifierUrl}>Verifier</NavLinkRound>
-          )}
-          {explorerUrl && (
-            <NavLinkRound href={explorerUrl}>Explorer</NavLinkRound>
-          )}
           {logout && <NavButton onClick={logout}>Logout</NavButton>}
         </NavRight>
       </Header>
@@ -174,13 +156,6 @@ export interface AppHeaderProps {
   appTitle?: string
   appIcon?: JSX.Element
   appUrl?: string
-  blogUrl?: string
-  codeUrl?: string
-  nodesUrl?: string
-  safeUrl?: string
-  walletUrl?: string
-  verifierUrl?: string
-  explorerUrl?: string
   addressLinks?: Array<AddressLinkProps>
   appHeaderLinks?: Array<{
     title: string
@@ -195,13 +170,6 @@ AppHeader.propTypes = {
   appTitle: PropTypes.string,
   appIcon: PropTypes.node,
   appUrl: PropTypes.string,
-  blogUrl: PropTypes.string,
-  codeUrl: PropTypes.string,
-  nodesUrl: PropTypes.string,
-  safeUrl: PropTypes.string,
-  walletUrl: PropTypes.string,
-  verifierUrl: PropTypes.string,
-  explorerUrl: PropTypes.string,
   addressLinks: PropTypes.arrayOf(PropTypes.shape(AddressLink.propTypes)),
   appHeaderLinks: PropTypes.arrayOf(
     PropTypes.shape({
