@@ -9,10 +9,6 @@ export const OneColumn = styled.div`
     padding: 3rem;
   }
 
-  &:not(:last-child) {
-    padding-bottom: 0;
-  }
-
   > *:first-child {
     margin-top: 0;
   }
@@ -63,6 +59,6 @@ export const Spacer = styled(OneColumn)`
   box-sizing: content-box;
 
   @media (min-width: ${devices.tablet}) {
-    height: 5rem;
+    height: 2rem;
   }
 `
