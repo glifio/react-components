@@ -99,6 +99,9 @@ exports[`AccountCard renders the card 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .c3 {
@@ -117,6 +120,7 @@ exports[`AccountCard renders the card 1`] = `
   -webkit-transition: 0.18s ease-in-out;
   transition: 0.18s ease-in-out;
   border-radius: 4px;
+  margin-bottom: 8px;
   padding: 8px;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -125,6 +129,10 @@ exports[`AccountCard renders the card 1`] = `
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
   border-width: 1px;
   border-radius: 4px;
 }
@@ -143,7 +151,6 @@ exports[`AccountCard renders the card 1`] = `
   -webkit-transition: 0.18s ease-in-out;
   transition: 0.18s ease-in-out;
   border-radius: 4px;
-  margin-left: 8px;
   padding: 8px;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -152,6 +159,10 @@ exports[`AccountCard renders the card 1`] = `
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
   border-width: 1px;
   border-radius: 4px;
 }
@@ -354,7 +365,7 @@ exports[`AccountCard renders the card 1`] = `
       height="max-content"
       type="button"
     >
-      Switch
+      Show on Device
     </button>
     <button
       class="c18"
@@ -362,7 +373,7 @@ exports[`AccountCard renders the card 1`] = `
       height="max-content"
       type="button"
     >
-      Show on Device
+      Switch
     </button>
   </div>
 </div>
@@ -467,6 +478,9 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .c3 {
@@ -493,6 +507,10 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
   border-width: 1px;
   border-radius: 4px;
 }
@@ -800,6 +818,9 @@ exports[`AccountCard renders the story 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .c3 {
@@ -818,6 +839,7 @@ exports[`AccountCard renders the story 1`] = `
   -webkit-transition: 0.18s ease-in-out;
   transition: 0.18s ease-in-out;
   border-radius: 4px;
+  margin-bottom: 8px;
   padding: 8px;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -826,6 +848,10 @@ exports[`AccountCard renders the story 1`] = `
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
   border-width: 1px;
   border-radius: 4px;
 }
@@ -844,7 +870,6 @@ exports[`AccountCard renders the story 1`] = `
   -webkit-transition: 0.18s ease-in-out;
   transition: 0.18s ease-in-out;
   border-radius: 4px;
-  margin-left: 8px;
   padding: 8px;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -853,6 +878,10 @@ exports[`AccountCard renders the story 1`] = `
   height: -webkit-max-content;
   height: -moz-max-content;
   height: max-content;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
   border-width: 1px;
   border-radius: 4px;
 }
@@ -1055,7 +1084,7 @@ exports[`AccountCard renders the story 1`] = `
       height="max-content"
       type="button"
     >
-      Switch
+      Show on Device
     </button>
     <button
       class="c18"
@@ -1063,7 +1092,7 @@ exports[`AccountCard renders the story 1`] = `
       height="max-content"
       type="button"
     >
-      Show on Device
+      Switch
     </button>
   </div>
 </div>

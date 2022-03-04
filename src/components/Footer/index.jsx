@@ -78,6 +78,13 @@ export default function Footer() {
           <Ul>
             <Li>
               <A
+                href='https://discord.gg/8Hqm3qvK'
+                target='_blank'
+                rel='noopenner noreferrer'
+              >
+                Discord
+              </A>
+              <A
                 href='https://blog.glif.io'
                 target='_blank'
                 rel='noopenner noreferrer'
@@ -110,16 +117,16 @@ export default function Footer() {
 
           <Ul>
             <Li>
-              <A href='#'>Wallet</A>
+              <A href={`${process.env.NEXT_PUBLIC_WALLET_URL}`}>Wallet</A>
             </Li>
             <Li>
-              <A href='#'>Safe</A>
+              <A href={`${process.env.NEXT_PUBLIC_SAFE_URL}`}>Safe</A>
             </Li>
             <Li>
-              <A href='#'>Explorer</A>
+              <A href={`${process.env.NEXT_PUBLIC_EXPLORER_URL}`}>Explorer</A>
             </Li>
             <Li>
-              <A href='#'>Verifier</A>
+              <A href={`${process.env.NEXT_PUBLIC_VERIFIER_URL}`}>Verifier</A>
             </Li>
           </Ul>
 
