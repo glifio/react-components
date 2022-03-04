@@ -3,14 +3,14 @@ import { devices, fontSize, space } from '../theme'
 
 export const OneColumn = styled.div`
   position: relative;
-  margin: 3rem 1.5rem;
+  padding: 3rem 1.5rem;
 
   @media (min-width: ${devices.tablet}) {
-    margin: 3rem;
+    padding: 3rem;
   }
 
   &:not(:last-child) {
-    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   > *:first-child {
@@ -63,6 +63,6 @@ export const Spacer = styled(OneColumn)`
   box-sizing: content-box;
 
   @media (min-width: ${devices.tablet}) {
-    height: 2rem;
+    height: 5rem;
   }
 `
