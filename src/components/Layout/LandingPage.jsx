@@ -3,8 +3,6 @@ import { devices } from '../theme'
 import { OneColumn, TwoColumns } from './Content'
 
 export const LandingPageColumns = styled(TwoColumns)`
-  padding: 0;
-
   > *:first-child {
     height: 250px;
 

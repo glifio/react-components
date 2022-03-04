@@ -24,6 +24,7 @@ exports[`AppHeader renders the box 1`] = `
   top: 0;
   z-index: 100;
   padding: 10px 0;
+  margin: -10px 0;
   background-color: var(--white-broken);
   display: -webkit-box;
   display: -webkit-flex;

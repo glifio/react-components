@@ -13,6 +13,7 @@ const Header = styled.header`
   top: 0;
   z-index: 100;
   padding: ${space()} 0;
+  margin: -${space()} 0;
   background-color: var(--white-broken);
 
   display: flex;
@@ -149,5 +150,6 @@ AppHeader.propTypes = {
 }
 
 AppHeader.defaultProps = {
-  appIcon: <AppIconHeaderFooter iconStyle='dark' />
+  appIcon: <AppIconHeaderFooter iconStyle='dark' />,
+  appUrl: '/'
 }
