@@ -47,7 +47,6 @@ exports[`Phishing Banner renders the phishing banner 1`] = `
 
 <div
   class="c0"
-  style="margin-top: 0px; margin-bottom: 0px;"
 >
   <p>
     For your protection, please check your browser's URL bar that you're visiting 
