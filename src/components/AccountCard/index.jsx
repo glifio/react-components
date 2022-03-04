@@ -47,27 +47,29 @@ const AccountCard = ({
         <Text m={0}>Your Address</Text>
         <CopyAddress address={address} />
       </Box>
-      <Box display='flex'>
-        {walletType !== IMPORT_SINGLE_KEY && (
-          <Button
-            variant='tertiary'
-            title='Switch'
-            onClick={onAccountSwitch}
-            height='max-content'
-            p={2}
-            py={2}
-          />
-        )}
+      <Box display='flex' flexDirection='column'>
         {walletType === LEDGER && (
           <Button
             variant='tertiary'
             title={ledgerBusy ? 'Check Device' : 'Show on Device'}
             onClick={onShowOnLedger}
             height='max-content'
-            ml={2}
+            flexGrow='1'
+            mb={2}
             p={2}
             py={2}
             disabled={ledgerBusy}
+          />
+        )}
+        {walletType !== IMPORT_SINGLE_KEY && (
+          <Button
+            variant='tertiary'
+            title='Switch'
+            onClick={onAccountSwitch}
+            height='max-content'
+            flexGrow='1'
+            p={2}
+            py={2}
           />
         )}
       </Box>
