@@ -149,5 +149,6 @@ AppHeader.propTypes = {
 }
 
 AppHeader.defaultProps = {
-  appIcon: <AppIconHeaderFooter iconStyle='dark' />
+  appIcon: <AppIconHeaderFooter iconStyle='dark' />,
+  appUrl: '/'
 }
