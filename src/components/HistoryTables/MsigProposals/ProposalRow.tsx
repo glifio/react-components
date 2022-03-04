@@ -37,21 +37,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
       }}
     >
       <TD>
-        <SmartLink href={idHref(proposal.id)}>
-          <a
-            onClick={e => e.stopPropagation()}
-            style={{
-              display: 'inline-block',
-              maxWidth: '10rem',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis'
-            }}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            {proposal.id}
-          </a>
-        </SmartLink>
+        <SmartLink href={idHref(proposal.id)}>{proposal.id}</SmartLink>
       </TD>
       <TD>
         <Badge color='purple'>
