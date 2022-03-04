@@ -13,22 +13,19 @@ const PageOuter = styled.div`
   max-width: 1920px;
   margin: 0 auto;
   padding: ${space()};
-  padding-top: 0;
   gap: ${space()};
 `
 
 const PageInner = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - ${space()});
+  min-height: calc(100vh - 2 * ${space()});
+  gap: ${space()};
   > * {
     flex: 0 0 auto;
   }
   > *:last-child {
     flex: 1 0 auto;
-  }
-  &.appHeaderHidden {
-    padding-top: ${space()};
   }
 `
 
@@ -40,14 +37,8 @@ export function Page({
 }: PageProps) {
   return (
     <PageOuter>
-      <PageInner className={hideAppHeader ? 'appHeaderHidden' : ''}>
-        {phishingUrl && (
-          <PhishingBanner
-            href={phishingUrl}
-            mt={hideAppHeader ? 0 : space()}
-            mb={hideAppHeader ? space() : 0}
-          />
-        )}
+      <PageInner>
+        {phishingUrl && <PhishingBanner href={phishingUrl} />}
         {!hideAppHeader && <AppHeader {...appHeaderProps} />}
         {children}
       </PageInner>

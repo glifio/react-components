@@ -39,7 +39,7 @@ const PhishingBannerContainer = styled.div`
   }
 `
 
-export default function PhishingBanner({ href, mt, mb }) {
+export default function PhishingBanner({ href }) {
   const [closed, setClosed] = useState(false)
   useEffect(() => {
     if (!href.includes('glif.io')) {
@@ -49,7 +49,7 @@ export default function PhishingBanner({ href, mt, mb }) {
   return (
     <>
       {!closed && (
-        <PhishingBannerContainer style={{ marginTop: mt, marginBottom: mb }}>
+        <PhishingBannerContainer>
           {href.includes('glif.io') && (
             <p>
               For your protection, please check your browser&apos;s URL bar that
@@ -67,12 +67,5 @@ export default function PhishingBanner({ href, mt, mb }) {
 }
 
 PhishingBanner.propTypes = {
-  href: PropTypes.string.isRequired,
-  mt: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
-  mb: PropTypes.oneOf([PropTypes.string, PropTypes.number])
-}
-
-PhishingBanner.defaultProps = {
-  mt: 0,
-  mb: 0
+  href: PropTypes.string.isRequired
 }
