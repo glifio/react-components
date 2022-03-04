@@ -3,10 +3,14 @@ import { devices, fontSize, space } from '../theme'
 
 export const OneColumn = styled.div`
   position: relative;
-  padding: 3rem 1.5rem;
+  margin: 3rem 1.5rem;
 
   @media (min-width: ${devices.tablet}) {
-    padding: 3rem;
+    margin: 3rem;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 0;
   }
 
   > *:first-child {
@@ -18,13 +22,13 @@ export const OneColumn = styled.div`
   }
 `
 
-export const TwoColumns = styled(OneColumn)`
+export const TwoColumns = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${space()};
 
   @media (min-width: ${devices.tablet}) {
     display: grid;
+    gap: ${space()};
     grid-template-columns: 1fr 1fr;
   }
 `
