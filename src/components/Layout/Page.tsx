@@ -31,6 +31,7 @@ const PageInner = styled.div`
 
 export function Page({
   children,
+  preFooter,
   phishingUrl,
   hideAppHeader,
   ...appHeaderProps
@@ -42,6 +43,7 @@ export function Page({
         {!hideAppHeader && <AppHeader {...appHeaderProps} />}
         {children}
       </PageInner>
+      {preFooter}
       <Footer />
     </PageOuter>
   )
@@ -49,12 +51,17 @@ export function Page({
 
 export type PageProps = {
   children: JSX.Element | Array<JSX.Element>
+  preFooter?: JSX.Element | Array<JSX.Element>
   phishingUrl?: string
   hideAppHeader?: boolean
 } & AppHeaderProps
 
 Page.propTypes = {
   children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
+  preFooter: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
