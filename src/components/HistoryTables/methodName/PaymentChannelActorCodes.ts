@@ -1,5 +1,5 @@
 export const paymentChannelActorCodes = [
-  'withdraw',
+  'transfer',
   'constructor',
   'add balance',
   'withdraw balance',

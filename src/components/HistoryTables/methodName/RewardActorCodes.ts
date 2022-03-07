@@ -1,5 +1,5 @@
 export const rewardActorCodes = [
-  'withdraw',
+  'transfer',
   'constructor',
   'award block reward',
   'this epoch reward',

@@ -1,5 +1,5 @@
 export const powerActorCodes = [
-  'withdraw',
+  'transfer',
   'constructor',
   'create miner',
   'update claimed power',
