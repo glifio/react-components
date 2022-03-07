@@ -1,91 +1,64 @@
 import styled from 'styled-components'
-import { color as styledColor, border } from 'styled-system'
-import { string } from 'prop-types'
-import { Text } from '../Typography'
-import Box from '../Box'
+import PropTypes from 'prop-types'
 
-const TooltipContent = styled(Box)`
-  position: absolute;
+const Icon = styled.button`
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  line-height: 2em;
+  border-radius: 1em;
+  border: 1px solid var(--black);
+  color: var(--black);
+  background: transparent;
+  text-align: center;
+  cursor: pointer;
+`
+
+const Content = styled.div`
   display: none;
-  height: fit-content;
-  width: max-content;
-  max-width: 200px;
+  position: absolute;
+  top: calc(100% + 0.5em);
   left: 50%;
+  width: max-content;
+  max-width: 20em;
   transform: translateX(-50%);
-  bottom: -48px;
-  padding: ${props => props.theme.sizes[2]}px;
-  color: ${props => props.theme.colors.core.nearblack};
-  background-color: ${props => props.theme.colors.core.white};
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  background-color: var(--white);
   border-radius: ${props => props.theme.radii[2]};
   box-shadow: ${props => props.theme.shadows[2]};
   z-index: ${props => props.theme.zIndices[1]};
-  transition: 0.24s ease-in-out;
-  ${styledColor}
 `
 
-const TooltipContainer = styled.a`
+const Wrapper = styled.div`
   position: relative;
-  display: flex;
-  background-color: transparent;
-  border-radius: ${props => props.theme.radii[6]};
-  border: 1px solid;
-  width: 24px;
-  height: 24px;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.24s ease-in-out;
-  ${styledColor}
-  ${border}
 
- &:hover ~ ${TooltipContent} {
-    display: block;
-  }
-
-  /* Paired with the ontouchstart declaration inside the TooltipContent markup, this is intended to enable touch devices to trigger the tooltip, too. While we don't support touch devices at launch, we may do so in the future. Ref: https://stackoverflow.com/a/37150472/2839730 */
-
-  /* &:active {
-    ${TooltipContent} {
-      opacity: 1;
+  &:hover {
+    ${Icon} {
+      color: var(--purple-medium);
+      border-color: var(--purple-medium);
+    }
+    ${Content} {
+      display: block;
     }
   }
-
-  &:focus {
-    ${TooltipContent} {
-      opacity: 1;
-    }
-  } */
 `
 
-const Tooltip = ({
-  content,
-  color,
-  ...props
-}: Partial<{ content: string; color: string; [x: string]: any }>) => {
+const Tooltip = ({ content }: TooltipProps) => {
   return (
-    <Box position='relative' mx={2}>
-      <TooltipContainer color={color} aria-label='Tooltip' {...props}>
-        <Text m={0} color={color}>
-          ?
-        </Text>
-      </TooltipContainer>
-
-      <TooltipContent ontouchstart p={2} borderRadius={4}>
-        <Text textAlign='left' display='block' m={0}>
-          {content}
-        </Text>
-      </TooltipContent>
-    </Box>
+    <Wrapper>
+      <Icon>?</Icon>
+      <Content>{content}</Content>
+    </Wrapper>
   )
 }
 
-Tooltip.propTypes = {
-  content: string.isRequired,
-  color: string
+interface TooltipProps {
+  content: string
 }
 
-Tooltip.defaultProps = {
-  color: 'core.black'
+Tooltip.propTypes = {
+  content: PropTypes.string.isRequired
 }
 
 export default Tooltip
