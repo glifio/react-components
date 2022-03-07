@@ -84,6 +84,8 @@ export default function Footer() {
               >
                 Discord
               </A>
+            </Li>
+            <Li>
               <A
                 href='https://blog.glif.io'
                 target='_blank'
