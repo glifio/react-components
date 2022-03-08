@@ -2,123 +2,63 @@
 
 exports[`StyledATag storybook example renders 1`] = `
 .c2 {
-  color: #000;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c6 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-  text-align: left;
-  display: block;
-  margin: 0;
-}
-
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  position: relative;
-  margin-left: 8px;
-  margin-right: 8px;
+  width: 2em;
+  height: 2em;
+  padding: 0;
+  line-height: 2em;
+  border-radius: 1em;
+  border: 1px solid var(--black);
+  color: var(--black);
+  background: transparent;
+  text-align: center;
+  cursor: pointer;
 }
 
 .c4 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-radius: 16px;
-  padding: 8px;
-}
-
-.c5 {
-  position: absolute;
   display: none;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  position: absolute;
+  top: calc(100% + 0.5em);
+  left: 50%;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
-  max-width: 200px;
-  left: 50%;
+  max-width: 20em;
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
-  bottom: -48px;
-  padding: 8px;
-  color: #262626;
-  background-color: #ffffff;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  background-color: var(--white);
   border-radius: 4px;
   box-shadow: rgba(0,0,0,0.10) 0px 0.7px 2.2px -8px,rgba(0,0,0,0.04) 0px 1.7px 2.4px,rgba(0,0,0,0.106) 0px 3.1px 8.1px,rgba(0,0,0,0.04) 0px 5.6px 12.1px,rgba(0,0,0,0.045) 0px 4.4px 4.8px,rgba(0,0,0,0.05) 0px 15px 41px;
   z-index: 9;
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
 }
 
-.c1 {
+.c0 {
   position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  background-color: transparent;
-  border-radius: 100px;
-  border: 1px solid;
-  width: 24px;
-  height: 24px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  cursor: pointer;
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
-  color: #000;
 }
 
-.c1:hover ~ .c3 {
+.c0:hover .c1 {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c0:hover .c3 {
   display: block;
 }
 
 <div
   class="c0"
 >
-  <a
-    aria-label="Tooltip"
-    class="c1"
-    color="core.black"
+  <button
+    class="c1 c2"
   >
-    <p
-      class="c2"
-      color="core.black"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      ?
-    </p>
-  </a>
+    ?
+  </button>
   <div
-    class="c3 c4 c5"
+    class="c3 c4"
   >
-    <p
-      class="c6"
-      display="block"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      tooltip content
-    </p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec est ultrices, posuere lorem a, convallis quam. Etiam venenatis velit.
   </div>
 </div>
 `;
