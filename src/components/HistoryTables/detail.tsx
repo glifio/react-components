@@ -88,7 +88,6 @@ export const ProposalHead = ({
     my='1em'
   >
     <Title>{title}</Title>
-    {actionRequired && <Title>Action Required</Title>}
     <Box display='flex' gridGap='1rem'>
       {actionRequired && (
         <ButtonV2
