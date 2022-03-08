@@ -289,11 +289,19 @@ export const useMessage = (cid: string, height?: number) => {
   const {
     data: highConfMsgData,
     loading: highConfMsgLoading,
-    error: highConfiMsgErr
+    error: _highConfiMsgErr
   } = useMessageQuery({
     variables: { cid, height },
     pollInterval: 0
   })
+
+  const highConfiMsgErr = useMemo(() => {
+    if (_highConfiMsgErr?.message.toLowerCase().includes('failed to fetch')) {
+      return
+    }
+
+    return _highConfiMsgErr
+  }, [_highConfiMsgErr])
 
   const {
     data: pendingMsgData,
