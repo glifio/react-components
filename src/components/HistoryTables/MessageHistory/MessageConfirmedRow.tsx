@@ -6,7 +6,7 @@ import { TR, TD } from '../table'
 import { Badge } from '../generic'
 import { AddressWOptionalLink } from '../../Link/SmartLink'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
-import { attoFilToFil, getTotalCostShort } from '../utils'
+import { attoFilToFil } from '../utils'
 import { ChainHeadSubscription } from '../../../generated/graphql'
 import { useAge } from './useAge'
 import { useMethodName } from './useMethodName'
@@ -16,7 +16,6 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const time = useMemo(() => Date.now(), [])
 
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
-  const totalCost = useMemo(() => getTotalCostShort(message), [message])
   const incoming = useMemo(
     () =>
       message.to.robust === inspectingAddress ||
@@ -70,7 +69,6 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         />
       </TD>
       <TD>{value}</TD>
-      <TD>{totalCost}</TD>
     </TR>
   )
 }

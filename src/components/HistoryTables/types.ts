@@ -8,16 +8,7 @@ import {
 
 export type MessageConfirmedRow = Pick<
   MessageConfirmed,
-  | 'cid'
-  | 'method'
-  | 'actorName'
-  | 'height'
-  | 'from'
-  | 'to'
-  | 'value'
-  | 'baseFeeBurn'
-  | 'overEstimationBurn'
-  | 'minerTip'
+  'cid' | 'method' | 'actorName' | 'height' | 'from' | 'to' | 'value'
 > & {
   block: Pick<Block, 'Cid' | 'Timestamp'>
 }

@@ -1,0 +1,23 @@
+query Messages($address: String!, $limit: Int!, $offset: Int!) {
+  messages(address: $address, limit: $limit, offset: $offset) {
+    cid
+    height
+    from {
+      id
+      robust
+    }
+    to {
+      id
+      robust
+    }
+    value
+    method
+    exitCode
+    params
+    actorName
+    block {
+      Cid
+      Timestamp
+    }
+  }
+}

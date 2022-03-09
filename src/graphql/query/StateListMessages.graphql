@@ -1,5 +1,5 @@
-query StateListMessages($address: String!) {
-  stateListMessages(address: $address) {
+query StateListMessages($address: String!, $lookback: Int) {
+  stateListMessages(address: $address, lookback: $lookback) {
     cid
     height
     from {

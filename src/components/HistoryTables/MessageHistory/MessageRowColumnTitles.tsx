@@ -17,7 +17,6 @@ export function MessageRowColumnTitles({
         {displayIncoming && <TH></TH>}
         <TH>To</TH>
         <TH>Value</TH>
-        <TH>Txn Fee</TH>
       </TR>
     </thead>
   )
