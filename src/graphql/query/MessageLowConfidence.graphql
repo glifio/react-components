@@ -27,9 +27,5 @@ query MessageLowConfidence($cid: String!) {
     gasBurned
     params
     actorName
-    block {
-      Cid
-      Timestamp
-    }
   }
 }
