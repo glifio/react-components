@@ -17,6 +17,19 @@ const parseParams = (_: any, incoming: any) => {
   }
 }
 
+const removeDups = (dupsArr: any[]) => {
+  const found = new Set([])
+
+  return [...dupsArr].filter(ele => {
+    if (!found.has(ele.__ref)) {
+      found.add(ele.__ref)
+      return true
+    }
+
+    return false
+  })
+}
+
 export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
   typePolicies: {
     Query: {
@@ -27,7 +40,7 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
           // Concatenate the incoming list items with
           // the existing list items.
           merge(existing = [], incoming) {
-            return [...existing, ...incoming]
+            return removeDups([...existing, ...incoming])
           }
         },
         messages: {
@@ -35,8 +48,8 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
           keyArgs: ['address'],
           // Concatenate the incoming list items with
           // the existing list items.
-          merge(existing = [], incoming) {
-            return [...existing, ...incoming]
+          merge(existing = [], incoming = []) {
+            return removeDups([...existing, ...incoming])
           }
         },
         messageLowConfidence: {
