@@ -36,10 +36,10 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
           keyArgs: ['address'],
           // Concatenate the incoming list items with
           // the existing list items.
-          merge(existing = [], incoming = [], args) {
+          merge(existing = [], incoming = [], { args }) {
             return removeMessageDups(
-              [...existing],
-              [...incoming],
+              existing ? [...existing] : [],
+              incoming ? [...incoming] : [],
               args as unknown as { limit: number; offset: number }
             )
           }
