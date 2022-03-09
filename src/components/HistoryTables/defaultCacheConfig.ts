@@ -1,5 +1,6 @@
 import { InMemoryCacheConfig } from '@apollo/client'
 import Logger from '../../utils/logger'
+import { removeMessageDups } from './utils'
 
 // The params field is expected to be a JSON string
 // or null. Both are safe to pass to JSON parse. The
@@ -17,19 +18,6 @@ const parseParams = (_: any, incoming: any) => {
   }
 }
 
-const removeDups = (dupsArr: any[]) => {
-  const found = new Set([])
-
-  return [...dupsArr].filter(ele => {
-    if (!found.has(ele.__ref)) {
-      found.add(ele.__ref)
-      return true
-    }
-
-    return false
-  })
-}
-
 export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
   typePolicies: {
     Query: {
@@ -40,7 +28,7 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
           // Concatenate the incoming list items with
           // the existing list items.
           merge(existing = [], incoming) {
-            return removeDups([...existing, ...incoming])
+            return [...existing, ...incoming]
           }
         },
         messages: {
@@ -48,8 +36,12 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
           keyArgs: ['address'],
           // Concatenate the incoming list items with
           // the existing list items.
-          merge(existing = [], incoming = []) {
-            return removeDups([...existing, ...incoming])
+          merge(existing = [], incoming = [], args) {
+            return removeMessageDups(
+              [...existing],
+              [...incoming],
+              args as unknown as { limit: number; offset: number }
+            )
           }
         },
         messageLowConfidence: {

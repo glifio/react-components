@@ -160,7 +160,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
       setShouldRefresh(false)
       allMessagesRefetch()
     }
-  }, [shouldRefresh, setShouldRefresh, allMessagesRefetch])
+  }, [shouldRefresh, setShouldRefresh, allMessagesRefetch, address])
 
   // pluck confirmed messages from the pending message list
   const pendingMsgs = useMemo(() => {
