@@ -67,7 +67,6 @@ export default function PendingMessageHistoryRow(
         />
       </TD>
       <TD>{new FilecoinNumber(message.value, 'attofil').toFil()} FIL</TD>
-      <TD>(Pending)</TD>
     </TR>
   )
 }

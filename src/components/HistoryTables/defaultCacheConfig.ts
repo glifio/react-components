@@ -30,6 +30,15 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
             return [...existing, ...incoming]
           }
         },
+        messages: {
+          // Cache separate results based on address passed as arg
+          keyArgs: ['address'],
+          // Concatenate the incoming list items with
+          // the existing list items.
+          merge(existing = [], incoming) {
+            return [...existing, ...incoming]
+          }
+        },
         messageLowConfidence: {
           read(_, { args, toReference }) {
             return toReference({
