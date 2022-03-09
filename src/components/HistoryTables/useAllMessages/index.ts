@@ -439,8 +439,8 @@ export const useMessage = (cid: string, height?: number) => {
       ready &&
       (highConfMsgData?.message || lowConfMsgData?.messageLowConfidence)
     ) {
-      return (highConfMsgData.message ||
-        lowConfMsgData.messageLowConfidence) as MessageConfirmed
+      return (highConfMsgData?.message ||
+        lowConfMsgData?.messageLowConfidence) as MessageConfirmed
     } else return null
   }, [
     highConfMsgData,
