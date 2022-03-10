@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Address, MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
 import ButtonV2 from '../Button/V2'
+import { AddressLink } from '../AddressLink'
 import { Title, Badge } from './generic'
 import {
   IconSpeedUp,
@@ -253,16 +254,9 @@ export const Parameters = ({
           if (typeof value === 'string') {
             return (
               <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                <a
-                  target='_blank'
-                  rel='noreferrer noopener'
-                  href={addressHref(value)}
-                >
-                  {value}
-                </a>
-                <CopyText
-                  text={value}
-                  color='core.primary'
+                <AddressLink
+                  address={value}
+                  url={addressHref(value)}
                   hideCopyText={false}
                 />
               </Line>
@@ -271,17 +265,10 @@ export const Parameters = ({
             const addr = value as Address
             return (
               <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                return {addr.robust}{' '}
-                <a
-                  target='_blank'
-                  rel='noreferrer noopener'
-                  href={addressHref(addr.robust)}
-                >
-                  ({addr.id})
-                </a>
-                <CopyText
-                  text={addr.robust}
-                  color='core.primary'
+                <AddressLink
+                  address={addr.robust}
+                  id={addr.id}
+                  url={addressHref(addr.robust)}
                   hideCopyText={false}
                 />
               </Line>
