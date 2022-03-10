@@ -45,7 +45,7 @@ export const AddressLink = ({
         ) : (
           <Link href={href}>{truncated}</Link>
         )}
-        <CopyText text={address} hideCopyText={hideCopyText} color='core.primary' />
+        <CopyText text={address} hideCopyText={hideCopyText} color='inherit' />
       </Box>
     </Box>
   )
