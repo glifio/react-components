@@ -17,21 +17,22 @@ const Link = styled(SmartLink)`
 `
 
 export const AddressLink = ({
+  id,
   address,
   label,
-  id,
-  url,
-  urlPrefix,
+  disableLink,
+  stopPropagation,
   hideCopy,
-  hideCopyText,
-  onClick
+  hideCopyText
 }: AddressLinkProps) => {
   const truncated = useMemo(
     () => (address ? truncateAddress(address) : ''),
     [address]
   )
-  const linkText = id ? `(${id})` : truncated
-  const linkHref = url || (urlPrefix ? urlPrefix + address : '')
+  const linkText = truncated && id ? `(${id})` : (id || truncated)
+  const linkHref = `${process.env.NEXT_PUBLIC_EXPLORER_URL}/actor/?address=${id || address}`
+  const onClick = (e: MouseEvent) => stopPropagation && e.stopPropagation()
+
   return (
     <Box>
       {label && (
@@ -40,13 +41,13 @@ export const AddressLink = ({
         </Label>
       )}
       <Box display='flex' flexDirection='row' gridGap='0.25em'>
-        {id && <span>{truncated}</span>}
-        {linkHref ? (
+        {truncated && id && <span>{truncated}</span>}
+        {disableLink ? (
+          <span>{linkText}</span>
+        ) : (
           <Link href={linkHref} onClick={onClick}>
             {linkText}
           </Link>
-        ) : (
-          <span>{linkText}</span>
         )}
         {!hideCopy && (
           <CopyText
@@ -61,28 +62,28 @@ export const AddressLink = ({
 }
 
 export interface AddressLinkProps {
-  address: string
-  label?: string
   id?: string
-  url?: string
-  urlPrefix?: string
+  address?: string
+  label?: string
+  disableLink?: boolean
+  stopPropagation?: boolean
   hideCopy?: boolean
   hideCopyText?: boolean
-  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
 AddressLink.propTypes = {
-  address: PropTypes.string.isRequired,
-  label: PropTypes.string,
   id: PropTypes.string,
-  url: PropTypes.string,
-  urlPrefix: PropTypes.string,
+  address: PropTypes.string,
+  label: PropTypes.string,
+  disableLink: PropTypes.bool,
+  stopPropagation: PropTypes.bool,
   hideCopy: PropTypes.bool,
-  hideCopyText: PropTypes.bool,
-  onClick: PropTypes.func
+  hideCopyText: PropTypes.bool
 }
 
 AddressLink.defaultProps = {
+  disableLink: false,
+  stopPropagation: true,
   hideCopy: false,
   hideCopyText: true
 }
