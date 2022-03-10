@@ -206,9 +206,9 @@ export default function ProposalDetail(props: ProposalDetailProps) {
               proposal?.approved ? ` (${proposal?.approved.length})` : ''
             }`}
           >
-            {proposal?.approved.map((approver: Address, index: number) => (
+            {proposal?.approved.map((approver: Address) => (
               <AddressLink
-                key={index}
+                key={approver.robust || approver.id}
                 id={approver.id}
                 address={approver.robust}
               />
