@@ -13,6 +13,7 @@ import {
   usePendingMessageQuery,
   useMessagesQuery
 } from '../../../generated/graphql'
+import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import { uniqueifyMsgs } from '../../../utils/uniqueifyMsgs'
 import { useSubmittedMessages } from '../PendingMsgContext'
 
@@ -49,7 +50,11 @@ export const usePendingMessages = (
 
   // from our static query
   const pendingMsgs = usePendingMessagesQuery({
-    variables: { address, offset: 0, limit: Number.MAX_SAFE_INTEGER },
+    variables: {
+      address: convertAddrToPrefix(address),
+      offset: 0,
+      limit: Number.MAX_SAFE_INTEGER
+    },
     // dont poll here because we rely on the subscription and StateListMessage query for updates
     pollInterval: 0
   })
@@ -59,7 +64,9 @@ export const usePendingMessages = (
 
   // from our subscription
   const pendingMsgSub = useMpoolUpdateSubscription({
-    variables: { address },
+    variables: {
+      address: convertAddrToPrefix(address)
+    },
     shouldResubscribe: true
   })
   if (!pendingMsgSub?.loading && !pendingMsgSub.error) {
@@ -150,7 +157,11 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     refetch: allMessagesRefetch,
     fetchMore: fetchMoreMessages
   } = useMessagesQuery({
-    variables: { address, limit: DEFAULT_LIMIT, offset },
+    variables: {
+      address: convertAddrToPrefix(address),
+      limit: DEFAULT_LIMIT,
+      offset
+    },
     fetchPolicy: 'cache-and-network',
     pollInterval: 60000
   })
@@ -321,8 +332,12 @@ export const useMessage = (cid: string, height?: number) => {
   useEffect(() => {
     const revalidateMsgCache = async (addrTo: string, addrFrom: string) => {
       await Promise.all([
-        refetch({ address: addrTo }),
-        refetch({ address: addrFrom })
+        refetch({
+          address: convertAddrToPrefix(addrTo)
+        }),
+        refetch({
+          address: convertAddrToPrefix(addrFrom)
+        })
       ])
     }
     if (pendingFoundInLowConfMsgs && submittedMessages.length > 0) {
