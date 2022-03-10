@@ -3,6 +3,7 @@ import { useActorQuery } from '../../../generated/graphql'
 import { getMethodName } from '../methodName'
 import { decodeActorCID } from '../../../utils'
 import { MessageConfirmedRow, MessagePendingRow } from '../types'
+import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 type MessageForMethodNameType =
   | Pick<MessageConfirmedRow, 'actorName' | 'to' | 'cid' | 'method'>
@@ -12,7 +13,9 @@ export const useMethodName = (
   message: MessageForMethodNameType
 ): { methodName: string; actorName: string } => {
   const actor = useActorQuery({
-    variables: { address: message?.to.robust || message?.to.id },
+    variables: {
+      address: convertAddrToPrefix(message?.to.robust || message?.to.id)
+    },
     // this means the message came from low confidence query
     // so we have to look up the actor ourselves
     skip: !message?.cid || !!(message?.cid && message?.actorName)
