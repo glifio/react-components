@@ -24,7 +24,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
     () =>
       proposal.approved[0].robust === inspectingAddress ||
       proposal.approved[0].id === inspectingAddress,
-    [proposal.approved[0], inspectingAddress]
+    [proposal.approved, inspectingAddress]
   )
 
   return (
