@@ -29,7 +29,9 @@ export const AddressLink = ({
     () => (address ? truncateAddress(address) : ''),
     [address]
   )
-  const explorerUrl = process.env.NEXT_PUBLIC_EXPLORER_URL
+  const explorerUrl =
+    process.env.NEXT_PUBLIC_EXPLORER_URL ||
+    'https://explorer-calibration.glif.link'
   const linkText = truncated && id ? `(${id})` : id || truncated
   const linkHref = `${explorerUrl}/actor/?address=${id || address}`
   const onClick = (e: MouseEvent) => stopPropagation && e.stopPropagation()
