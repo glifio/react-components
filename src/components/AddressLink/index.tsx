@@ -22,6 +22,7 @@ export const AddressLink = ({
   id,
   url,
   urlPrefix,
+  hideCopy,
   hideCopyText
 }: AddressLinkProps) => {
   const href = url || urlPrefix + address
@@ -45,7 +46,13 @@ export const AddressLink = ({
         ) : (
           <Link href={href}>{truncated}</Link>
         )}
-        <CopyText text={address} hideCopyText={hideCopyText} color='inherit' />
+        {!hideCopy && (
+          <CopyText
+            text={address}
+            hideCopyText={hideCopyText}
+            color='inherit'
+          />
+        )}
       </Box>
     </Box>
   )
@@ -57,6 +64,7 @@ export interface AddressLinkProps {
   id?: string
   url?: string
   urlPrefix?: string
+  hideCopy?: boolean
   hideCopyText?: boolean
 }
 
@@ -66,10 +74,12 @@ AddressLink.propTypes = {
   id: PropTypes.string,
   url: PropTypes.string,
   urlPrefix: PropTypes.string,
+  hideCopy: PropTypes.bool,
   hideCopyText: PropTypes.bool
 }
 
 AddressLink.defaultProps = {
   urlPrefix: '/',
+  hideCopy: false,
   hideCopyText: true
 }
