@@ -21,7 +21,6 @@ import {
 } from '../../../utils'
 import LoadingScreen from '../../LoadingScreen'
 import ErrorView from '../../Error'
-import { CopyText } from '../../Copy'
 
 type ProposalDetailProps = {
   id: number
@@ -204,7 +203,11 @@ export default function ProposalDetail(props: ProposalDetailProps) {
       {seeMore && (
         <>
           <Line label='Next Transaction ID'>{stateData?.State.NextTxnID}</Line>
-          <Line label={`Approvers${proposal?.approved ? ` (${proposal?.approved.length})` : ''}`}>
+          <Line
+            label={`Approvers${
+              proposal?.approved ? ` (${proposal?.approved.length})` : ''
+            }`}
+          >
             {proposal?.approved.map((approver: Address, index: number) => (
               <AddressLink
                 key={index}

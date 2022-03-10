@@ -71,5 +71,5 @@ AddressLink.propTypes = {
 
 AddressLink.defaultProps = {
   urlPrefix: '/',
-  hideCopyText: true,
+  hideCopyText: true
 }

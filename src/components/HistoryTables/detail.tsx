@@ -16,7 +16,6 @@ import {
 } from '../Icons'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
-import { CopyText } from '../Copy'
 
 /**
  * Head
