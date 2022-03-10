@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useMemo } from 'react'
+import { useMemo, useCallback } from 'react'
 import truncateAddress from '../../utils/truncateAddress'
 import { SmartLink } from '../Link/SmartLink'
 import { Label } from '../Typography'
@@ -34,7 +34,10 @@ export const AddressLink = ({
     'https://explorer-calibration.glif.link'
   const linkText = truncated && id ? `(${id})` : id || truncated
   const linkHref = `${explorerUrl}/actor/?address=${id || address}`
-  const onClick = (e: MouseEvent) => stopPropagation && e.stopPropagation()
+  const onClick = useCallback(
+    (e: MouseEvent) => stopPropagation && e.stopPropagation(),
+    [stopPropagation]
+  )
   return (
     <Box>
       {label && (
