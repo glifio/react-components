@@ -1,4 +1,3 @@
-import React from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
@@ -6,7 +5,8 @@ import { useRouter } from 'next/router'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { Badge } from '../generic'
 import { TR, TD } from '../table'
-import { AddressWOptionalLink, SmartLink } from '../../Link/SmartLink'
+import { AddressLink } from '../../AddressLink'
+import { SmartLink } from '../../Link/SmartLink'
 import { MsigTransaction } from '../../../generated/graphql'
 import { PROPOSAL_ROW_PROP_TYPE } from '../types'
 import { getMethodName } from '../methodName'
@@ -20,6 +20,9 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
     props
 
   const router = useRouter()
+  const proposer = proposal.approved[0]
+  const proposerUrl =
+    inspectingAddress !== proposer.robust ? addressHref(proposer.robust) : ''
 
   return (
     <TR
@@ -45,11 +48,11 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
         </Badge>
       </TD>
       <TD>
-        <AddressWOptionalLink
+        <AddressLink
+          address={proposer.robust}
           onClick={e => e.stopPropagation()}
-          address={proposal.approved[0].robust || proposal.approved[0].id}
-          addressHref={addressHref}
-          inspectingAddress={inspectingAddress}
+          hideCopy={true}
+          url={proposerUrl}
         />
       </TD>
       <TD>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</TD>

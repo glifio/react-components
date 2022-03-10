@@ -6,7 +6,7 @@ import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { Badge } from '../generic'
 import { TR, TD } from '../table'
-import { AddressWOptionalLink } from '../../Link/SmartLink'
+import { AddressLink } from '../../AddressLink'
 import { MessagePendingRow, MESSAGE_PENDING_ROW_PROP_TYPE } from '../types'
 import { useMethodName } from './useMethodName'
 
@@ -48,10 +48,11 @@ export default function PendingMessageHistoryRow(
       <TD>(Pending)</TD>
       <TD>(Pending)</TD>
       <TD>
-        <AddressWOptionalLink
+        <AddressLink
           address={message.from.robust}
-          addressHref={addressHref}
-          inspectingAddress={inspectingAddress}
+          onClick={e => e.stopPropagation()}
+          url={incoming ? addressHref(message.from.robust) : ''}
+          hideCopy={true}
         />
       </TD>
       <TD>
@@ -60,10 +61,11 @@ export default function PendingMessageHistoryRow(
         </Badge>
       </TD>
       <TD>
-        <AddressWOptionalLink
+        <AddressLink
           address={message.to.robust}
-          addressHref={addressHref}
-          inspectingAddress={inspectingAddress}
+          onClick={e => e.stopPropagation()}
+          url={!incoming ? addressHref(message.to.robust) : ''}
+          hideCopy={true}
         />
       </TD>
       <TD>{new FilecoinNumber(message.value, 'attofil').toFil()} FIL</TD>

@@ -4,7 +4,7 @@ import { SubscriptionResult } from '@apollo/client'
 import PropTypes from 'prop-types'
 import { TR, TD } from '../table'
 import { Badge } from '../generic'
-import { AddressWOptionalLink } from '../../Link/SmartLink'
+import { AddressLink } from '../../AddressLink'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
 import { attoFilToFil } from '../utils'
 import { ChainHeadSubscription } from '../../../generated/graphql'
@@ -48,10 +48,11 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
       <TD>{message.height}</TD>
       <TD>{age}</TD>
       <TD>
-        <AddressWOptionalLink
-          address={message.from?.robust || message.from.id}
-          addressHref={addressHref}
-          inspectingAddress={inspectingAddress}
+        <AddressLink
+          address={message.from.robust}
+          onClick={e => e.stopPropagation()}
+          url={incoming ? addressHref(message.from.robust) : ''}
+          hideCopy={true}
         />
       </TD>
       {props.inspectingAddress && (
@@ -62,10 +63,11 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         </TD>
       )}
       <TD>
-        <AddressWOptionalLink
-          address={message.to?.robust || message.to.id}
-          addressHref={addressHref}
-          inspectingAddress={inspectingAddress}
+        <AddressLink
+          address={message.to.robust}
+          onClick={e => e.stopPropagation()}
+          url={!incoming ? addressHref(message.to.robust) : ''}
+          hideCopy={true}
         />
       </TD>
       <TD>{value}</TD>
