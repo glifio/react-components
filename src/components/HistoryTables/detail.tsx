@@ -243,31 +243,28 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
             </Line>
           )
         }
+
         case 'to': {
-          // handles both address types...
-          if (typeof value === 'string') {
-            return (
-              <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                <AddressLink address={value} hideCopyText={false} />
-              </Line>
-            )
-          } else if (typeof value === 'object') {
-            const addr = value as Address
-            return (
-              <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                <AddressLink
-                  id={addr.id}
-                  address={addr.robust}
-                  hideCopyText={false}
-                />
-              </Line>
-            )
+          switch (typeof value) {
+            case 'string':
+              return (
+                <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                  <AddressLink address={value} hideCopyText={false} />
+                </Line>
+              )
+
+            case 'object':
+              const address = value as Address
+              return (
+                <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                  <AddressLink
+                    id={address.id}
+                    address={address.robust}
+                    hideCopyText={false}
+                  />
+                </Line>
+              )
           }
-          return (
-            <Line key={`${depth}-${key}`} label={key} depth={depth}>
-              {value ?? '—'}
-            </Line>
-          )
         }
 
         case 'value':
@@ -276,27 +273,31 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
               {new FilecoinNumber(value, 'attofil').toFil()} FIL
             </Line>
           )
+
         default: {
-          if (value && typeof value === 'object')
-            return (
-              <div key={`${depth}-${key}`}>
-                <Line
-                  label={key === 'params' ? 'Parameters' : key}
-                  depth={depth}
-                ></Line>
-                <Parameters
-                  params={value}
-                  depth={depth + 1}
-                  actorName={actorName}
-                />
-              </div>
-            )
-          else if (typeof value === 'boolean')
-            return (
-              <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                {value ? 'true' : 'false'}
-              </Line>
-            )
+          switch (typeof value) {
+            case 'object':
+              return (
+                <div key={`${depth}-${key}`}>
+                  <Line
+                    label={key === 'params' ? 'Parameters' : key}
+                    depth={depth}
+                  ></Line>
+                  <Parameters
+                    params={value}
+                    depth={depth + 1}
+                    actorName={actorName}
+                  />
+                </div>
+              )
+
+            case 'boolean':
+              return (
+                <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                  {value ? 'true' : 'false'}
+                </Line>
+              )
+          }
 
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
