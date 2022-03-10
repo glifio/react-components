@@ -201,7 +201,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
           }
         }}
         actorName='/multisig'
-        depth={1}
+        depth={0}
         addressHref={props.addressHref}
       />
       <HR />
