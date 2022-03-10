@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { useMemo } from 'react'
 import truncateAddress from '../../utils/truncateAddress'
 import { SmartLink } from '../Link/SmartLink'
 import { Label } from '../Typography'
@@ -22,14 +23,27 @@ export const AddressLink = ({
   url,
   urlPrefix
 }: AddressLinkProps) => {
+  const href = url || urlPrefix + address
+  const truncated = useMemo(
+    () => (address ? truncateAddress(address) : ''),
+    [address]
+  )
   return (
     <Box>
-      {label && <Label color='core.darkgray' fontSize={1}>{label}</Label>}
+      {label && (
+        <Label color='core.darkgray' fontSize={1}>
+          {label}
+        </Label>
+      )}
       <Box display='flex' flexDirection='row' gridGap='0.25em'>
-        <Link href={url || urlPrefix + address}>
-          {address && truncateAddress(address)}
-        </Link>
-        {id && <span>({id})</span>}
+        {id ? (
+          <>
+            <span>{truncated}</span>
+            <Link href={href}>({id})</Link>
+          </>
+        ) : (
+          <Link href={href}>{truncated}</Link>
+        )}
         <CopyText text={address} hideCopyText />
       </Box>
     </Box>
