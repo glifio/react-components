@@ -26,11 +26,12 @@ export const AddressLink = ({
   hideCopyText,
   onClick
 }: AddressLinkProps) => {
-  const href = url || urlPrefix + address
   const truncated = useMemo(
     () => (address ? truncateAddress(address) : ''),
     [address]
   )
+  const linkText = id ? `(${id})` : truncated
+  const linkHref = url || (urlPrefix ? urlPrefix + address : '')
   return (
     <Box>
       {label && (
@@ -39,13 +40,13 @@ export const AddressLink = ({
         </Label>
       )}
       <Box display='flex' flexDirection='row' gridGap='0.25em'>
-        {id ? (
-          <>
-            <span>{truncated}</span>
-            <Link href={href} onClick={onClick}>({id})</Link>
-          </>
+        {id && <span>{truncated}</span>}
+        {linkHref ? (
+          <Link href={linkHref} onClick={onClick}>
+            {linkText}
+          </Link>
         ) : (
-          <Link href={href} onClick={onClick}>{truncated}</Link>
+          <span>{linkText}</span>
         )}
         {!hideCopy && (
           <CopyText
@@ -82,7 +83,6 @@ AddressLink.propTypes = {
 }
 
 AddressLink.defaultProps = {
-  urlPrefix: '/',
   hideCopy: false,
   hideCopyText: true
 }
