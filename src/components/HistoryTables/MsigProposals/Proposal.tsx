@@ -171,22 +171,13 @@ export default function ProposalDetail(props: ProposalDetailProps) {
       <HR />
       <Line label='Proposal ID'>{props.id}</Line>
       <Line label='Proposer'>
-        {
-          <Box display='flex' flexDirection='row'>
-            {`${proposal?.approved[0].robust}`}
-            <a
-              style={{ marginLeft: '4px' }}
-              href={`${props.addressHref(proposal?.approved[0].robust)}`}
-              target='_blank'
-              rel='noopener noreferrer'
-            >{`(${proposal?.approved[0].id})`}</a>
-            <CopyText
-              color='core.primary'
-              text={proposal?.approved[0].robust}
-              hideCopyText={false}
-            />
-          </Box>
-        }
+        {proposal?.approved[0] && (
+          <AddressLink
+            address={proposal.approved[0].robust}
+            url={props.addressHref(proposal.approved[0].robust)}
+            id={proposal.approved[0].id}
+          />
+        )}
       </Line>
       <Line label='Approvals until execution'>
         {approvalsUntilExecution.toString()}
