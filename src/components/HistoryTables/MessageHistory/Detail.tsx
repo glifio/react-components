@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import Link from 'next/link'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import {
@@ -10,6 +9,7 @@ import {
 } from '../../../generated/graphql'
 import Box from '../../Box'
 import { IconClock } from '../../Icons'
+import { AddressLink } from '../../AddressLink'
 import { P, HR } from '../../Typography'
 import { Badge } from '../generic'
 import {
@@ -29,7 +29,6 @@ import {
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
-import { CopyText } from '../../Copy'
 import Card from '../../Card'
 
 // add RelativeTime plugin to Day.js
@@ -129,25 +128,19 @@ export default function MessageDetail(props: MessageDetailProps) {
           </Line>
           <HR />
           <Line label='From'>
-            {message.from.robust}
-            <Link
-              href={addressHref(message.from.robust)}
-            >{`(${message.from.id})`}</Link>
-            <CopyText
-              text={message.from.robust}
+            <AddressLink
+              address={message.from.robust}
+              id={message.from.id}
+              url={addressHref(message.from.robust)}
               hideCopyText={false}
-              color='core.primary'
             />
           </Line>
           <Line label='To'>
-            {message.to.robust}
-            <Link
-              href={addressHref(message.to.robust)}
-            >{`(${message.to.id})`}</Link>{' '}
-            <CopyText
-              text={message.to.robust}
+            <AddressLink
+              address={message.to.robust}
+              id={message.to.id}
+              url={addressHref(message.to.robust)}
               hideCopyText={false}
-              color='core.primary'
             />
           </Line>
           <HR />
