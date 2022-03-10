@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 import Box from '../../Box'
 import { P, HR } from '../../Typography'
+import { AddressLink } from '../../AddressLink'
 import { ProposalHead, Line, Parameters } from '../detail'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import {
@@ -170,7 +171,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
       <HR />
       <Line label='Proposal ID'>{props.id}</Line>
       <Line label='Proposer'>
-        {(
+        {
           <Box display='flex' flexDirection='row'>
             {`${proposal?.approved[0].robust}`}
             <a
@@ -185,7 +186,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
               hideCopyText={false}
             />
           </Box>
-        ) || 'Loading...'}
+        }
       </Line>
       <Line label='Approvals until execution'>
         {approvalsUntilExecution.toString()}
@@ -212,26 +213,15 @@ export default function ProposalDetail(props: ProposalDetailProps) {
       {seeMore && (
         <>
           <Line label='Next Transaction ID'>{stateData?.State.NextTxnID}</Line>
-          <Line label='Approvers'>
-            {proposal?.approved.map((approver: Address) => {
-              return (
-                <Line key={`${1}-${approver.robust || approver.id}`} depth={1}>
-                  {approver.robust}{' '}
-                  <a
-                    target='_blank'
-                    rel='noreferrer noopener'
-                    href={props.addressHref(approver.robust)}
-                  >
-                    ({approver.id})
-                  </a>
-                  <CopyText
-                    text={approver.robust}
-                    color='core.primary'
-                    hideCopyText={false}
-                  />
-                </Line>
-              )
-            })}
+          <Line label={`Approvers${proposal?.approved ? ` (${proposal?.approved.length})` : ''}`}>
+            {proposal?.approved.map((approver: Address, index: number) => (
+              <AddressLink
+                key={index}
+                address={approver.robust}
+                url={props.addressHref(approver.robust)}
+                id={approver.id}
+              />
+            ))}
           </Line>
         </>
       )}
