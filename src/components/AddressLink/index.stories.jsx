@@ -30,11 +30,11 @@ AddressOnly.args = {
 
 export const IDOnly = Template.bind({})
 IDOnly.args = {
-  id: 't032430'
+  id: 't07633'
 }
 
 export const AddressAndID = Template.bind({})
 AddressAndID.args = {
-  id: 't032430',
-  address: 't1dywbadna5yyf546mloeoc7gxrzj7n5uog6llv5y'
+  id: 't07633',
+  address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy'
 }
