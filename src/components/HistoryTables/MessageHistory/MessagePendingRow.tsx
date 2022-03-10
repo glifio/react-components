@@ -17,7 +17,13 @@ export default function PendingMessageHistoryRow(
   props: PendingMessageHistoryRowProps
 ) {
   const { message, cidHref, inspectingAddress } = props
-  const incoming = useMemo(
+  const fromAddressIsInspecting = useMemo(
+    () =>
+      message.from.robust === inspectingAddress ||
+      message.from.id === inspectingAddress,
+    [message.from, inspectingAddress]
+  )
+  const toAddressIsInspecting = useMemo(
     () =>
       message.to.robust === inspectingAddress ||
       message.to.id === inspectingAddress,
@@ -51,20 +57,20 @@ export default function PendingMessageHistoryRow(
         <AddressLink
           id={message.from.robust ? '' : message.from.id}
           address={message.from.robust}
-          disableLink={!incoming}
+          disableLink={!fromAddressIsInspecting}
           hideCopy
         />
       </TD>
       <TD>
-        <Badge color={incoming ? 'green' : 'yellow'}>
-          {incoming ? 'IN' : 'OUT'}
+        <Badge color={toAddressIsInspecting ? 'green' : 'yellow'}>
+          {toAddressIsInspecting ? 'IN' : 'OUT'}
         </Badge>
       </TD>
       <TD>
         <AddressLink
           id={message.to.robust ? '' : message.to.id}
           address={message.to.robust}
-          disableLink={incoming}
+          disableLink={toAddressIsInspecting}
           hideCopy
         />
       </TD>

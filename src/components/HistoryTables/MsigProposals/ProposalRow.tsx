@@ -1,6 +1,7 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
+import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { Badge } from '../generic'
@@ -19,6 +20,12 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
   const { proposal, idHref, inspectingAddress, actionRequired } = props
 
   const router = useRouter()
+  const proposerIsInspecting = useMemo(
+    () =>
+      proposal.approved[0].robust === inspectingAddress ||
+      proposal.approved[0].id === inspectingAddress,
+    [proposal.approved[0], inspectingAddress]
+  )
 
   return (
     <TR
@@ -47,7 +54,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
         <AddressLink
           id={proposal.approved[0].robust ? '' : proposal.approved[0].id}
           address={proposal.approved[0].robust}
-          disableLink={inspectingAddress === proposal.approved[0].robust}
+          disableLink={proposerIsInspecting}
           hideCopy
         />
       </TD>

@@ -16,13 +16,18 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const time = useMemo(() => Date.now(), [])
 
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
-  const incoming = useMemo(
+  const fromAddressIsInspecting = useMemo(
+    () =>
+      message.from.robust === inspectingAddress ||
+      message.from.id === inspectingAddress,
+    [message.from, inspectingAddress]
+  )
+  const toAddressIsInspecting = useMemo(
     () =>
       message.to.robust === inspectingAddress ||
       message.to.id === inspectingAddress,
     [message.to, inspectingAddress]
   )
-
   const { methodName } = useMethodName(message)
   const age = useAge(message, time)
 
@@ -51,14 +56,14 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         <AddressLink
           id={message.from.robust ? '' : message.from.id}
           address={message.from.robust}
-          disableLink={!incoming}
+          disableLink={fromAddressIsInspecting}
           hideCopy
         />
       </TD>
       {props.inspectingAddress && (
         <TD>
-          <Badge color={incoming ? 'green' : 'yellow'}>
-            {incoming ? 'IN' : 'OUT'}
+          <Badge color={toAddressIsInspecting ? 'green' : 'yellow'}>
+            {toAddressIsInspecting ? 'IN' : 'OUT'}
           </Badge>
         </TD>
       )}
@@ -66,7 +71,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         <AddressLink
           id={message.to.robust ? '' : message.to.id}
           address={message.to.robust}
-          disableLink={incoming}
+          disableLink={toAddressIsInspecting}
           hideCopy
         />
       </TD>
