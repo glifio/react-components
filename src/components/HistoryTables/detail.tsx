@@ -254,16 +254,18 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
               )
 
             case 'object':
-              const address = value as Address
-              return (
-                <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                  <AddressLink
-                    id={address.id}
-                    address={address.robust}
-                    hideCopyText={false}
-                  />
-                </Line>
-              )
+              if (value) {
+                const address = value as Address
+                return (
+                  <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                    <AddressLink
+                      id={address.id}
+                      address={address.robust}
+                      hideCopyText={false}
+                    />
+                  </Line>
+                )
+              }
           }
         }
 
@@ -277,19 +279,20 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
         default: {
           switch (typeof value) {
             case 'object':
-              return (
-                <div key={`${depth}-${key}`}>
-                  <Line
-                    label={key === 'params' ? 'Parameters' : key}
-                    depth={depth}
-                  ></Line>
-                  <Parameters
-                    params={value}
-                    depth={depth + 1}
-                    actorName={actorName}
-                  />
-                </div>
-              )
+              if (value)
+                return (
+                  <div key={`${depth}-${key}`}>
+                    <Line
+                      label={key === 'params' ? 'Parameters' : key}
+                      depth={depth}
+                    ></Line>
+                    <Parameters
+                      params={value}
+                      depth={depth + 1}
+                      actorName={actorName}
+                    />
+                  </div>
+                )
 
             case 'boolean':
               return (
