@@ -16,17 +16,20 @@ const Link = styled(SmartLink)`
 `
 
 export const AddressLink = ({
-  label,
   address,
+  label,
+  id,
+  url,
   urlPrefix
 }: AddressLinkProps) => {
   return (
-    <Box color='core.darkgray'>
-      <Label fontSize={1}>{label}</Label>
-      <Box display='flex' flexDirection='row'>
-        <Link href={urlPrefix + address}>
+    <Box>
+      {label && <Label color='core.darkgray' fontSize={1}>{label}</Label>}
+      <Box display='flex' flexDirection='row' gridGap='0.25em'>
+        <Link href={url || urlPrefix + address}>
           {address && truncateAddress(address)}
         </Link>
+        {id && <span>({id})</span>}
         <CopyText text={address} hideCopyText />
       </Box>
     </Box>
@@ -34,13 +37,17 @@ export const AddressLink = ({
 }
 
 export interface AddressLinkProps {
-  label: string
   address: string
-  urlPrefix: string
+  label?: string
+  id?: string
+  url?: string
+  urlPrefix?: string
 }
 
 AddressLink.propTypes = {
-  label: PropTypes.string.isRequired,
   address: PropTypes.string.isRequired,
-  urlPrefix: PropTypes.string.isRequired
+  label: PropTypes.string,
+  id: PropTypes.string,
+  url: PropTypes.string,
+  urlPrefix: PropTypes.string
 }
