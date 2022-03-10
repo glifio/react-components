@@ -23,7 +23,8 @@ export const AddressLink = ({
   url,
   urlPrefix,
   hideCopy,
-  hideCopyText
+  hideCopyText,
+  onClick
 }: AddressLinkProps) => {
   const href = url || urlPrefix + address
   const truncated = useMemo(
@@ -41,10 +42,10 @@ export const AddressLink = ({
         {id ? (
           <>
             <span>{truncated}</span>
-            <Link href={href}>({id})</Link>
+            <Link href={href} onClick={onClick}>({id})</Link>
           </>
         ) : (
-          <Link href={href}>{truncated}</Link>
+          <Link href={href} onClick={onClick}>{truncated}</Link>
         )}
         {!hideCopy && (
           <CopyText
@@ -66,6 +67,7 @@ export interface AddressLinkProps {
   urlPrefix?: string
   hideCopy?: boolean
   hideCopyText?: boolean
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>
 }
 
 AddressLink.propTypes = {
@@ -75,7 +77,8 @@ AddressLink.propTypes = {
   url: PropTypes.string,
   urlPrefix: PropTypes.string,
   hideCopy: PropTypes.bool,
-  hideCopyText: PropTypes.bool
+  hideCopyText: PropTypes.bool,
+  onClick: PropTypes.func
 }
 
 AddressLink.defaultProps = {
