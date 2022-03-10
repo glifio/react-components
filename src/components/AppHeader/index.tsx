@@ -87,11 +87,10 @@ export function AppHeader(props: AppHeaderProps) {
           ) : (
             <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
           ))}
-        {addressLinks?.map((address, index) => (
+        {addressLinks?.map((addressLink, index) => (
           <AddressLink
             key={index}
-            label={address.label}
-            address={address.address}
+            {...addressLink}
           />
         ))}
         {connection}
