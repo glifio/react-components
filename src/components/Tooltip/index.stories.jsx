@@ -20,6 +20,7 @@ const Template = args => <Tooltip {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  content: 'tooltip content',
+  content:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec est ultrices, posuere lorem a, convallis quam. Etiam venenatis velit.',
   color: 'core.black'
 }

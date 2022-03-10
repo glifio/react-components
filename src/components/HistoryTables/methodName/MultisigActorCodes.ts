@@ -1,12 +1,12 @@
 export const msigActorCodes = [
-  'Withdraw',
-  'Constructor',
-  'Propose',
-  'Approve',
-  'Cancel',
-  'Add Signer',
-  'Remove Signer',
-  'Swap Signer',
-  'Change # Approvals',
-  'Lock Balance'
+  'transfer',
+  'constructor',
+  'propose',
+  'approve',
+  'cancel',
+  'add signer',
+  'remove signer',
+  'swap signer',
+  'change # approvals',
+  'lock balance'
 ]

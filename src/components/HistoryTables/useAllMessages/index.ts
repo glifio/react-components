@@ -6,12 +6,12 @@ import {
   useMpoolUpdateSubscription,
   usePendingMessagesQuery,
   useStateListMessagesQuery,
-  useMessagesConfirmedQuery,
   ChainHeadSubscription,
   useChainHeadSubscription,
   useMessageQuery,
   useMessageLowConfidenceQuery,
-  usePendingMessageQuery
+  usePendingMessageQuery,
+  useMessagesQuery
 } from '../../../generated/graphql'
 import { uniqueifyMsgs } from '../../../utils/uniqueifyMsgs'
 import { useSubmittedMessages } from '../PendingMsgContext'
@@ -128,6 +128,8 @@ export const usePendingMessages = (
 
 // note this does not filter out errors for loading pending messages...
 export const useAllMessages = (address: string, _offset: number = 0) => {
+  const [offset, setOffset] = useState(_offset)
+
   const chainHeadSub = useChainHeadSubscription({
     variables: {},
     shouldResubscribe: true
@@ -142,12 +144,13 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   } = usePendingMessages(address, chainHeadSub)
 
   const {
-    data: lowConfidenceMsgsData,
-    loading: lowConfidenceMsgsLoading,
-    error: lowConfidenceMsgsError,
-    refetch: lowConfidenceMsgsRefetch
-  } = useStateListMessagesQuery({
-    variables: { address },
+    data: allMessages,
+    loading: allMessagesLoading,
+    error: allMessagesError,
+    refetch: allMessagesRefetch,
+    fetchMore: fetchMoreMessages
+  } = useMessagesQuery({
+    variables: { address, limit: DEFAULT_LIMIT, offset },
     fetchPolicy: 'cache-and-network',
     pollInterval: 60000
   })
@@ -155,22 +158,20 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   useEffect(() => {
     if (shouldRefresh) {
       setShouldRefresh(false)
-      lowConfidenceMsgsRefetch()
+      allMessagesRefetch()
     }
-  }, [shouldRefresh, setShouldRefresh, lowConfidenceMsgsRefetch])
+  }, [shouldRefresh, setShouldRefresh, allMessagesRefetch, address])
 
   // pluck confirmed messages from the pending message list
   const pendingMsgs = useMemo(() => {
     if (
       !pendingMsgsLoading &&
       !pendingMsgsError &&
-      !lowConfidenceMsgsLoading &&
-      !lowConfidenceMsgsError &&
-      !!lowConfidenceMsgsData?.stateListMessages
+      !allMessagesLoading &&
+      !allMessagesError &&
+      !!allMessages?.messages
     ) {
-      const confirmedCids = new Set(
-        lowConfidenceMsgsData?.stateListMessages.map(msg => msg.cid)
-      )
+      const confirmedCids = new Set(allMessages?.messages.map(msg => msg.cid))
       return pendingMsgList
         .filter(msg => !confirmedCids.has(msg.cid))
         .sort((a, b) => Number(b.nonce) - Number(a.nonce))
@@ -181,30 +182,18 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     }
   }, [
     pendingMsgList,
-    lowConfidenceMsgsError,
-    lowConfidenceMsgsLoading,
-    lowConfidenceMsgsData,
+    allMessages,
+    allMessagesLoading,
+    allMessagesError,
     pendingMsgsLoading,
     pendingMsgsError
   ]) as MessagePending[]
-
-  const [offset, setOffset] = useState(_offset)
-
-  const {
-    data,
-    loading: confirmedMsgsLoading,
-    error: confirmedMsgsErr,
-    fetchMore
-  } = useMessagesConfirmedQuery({
-    variables: { address, limit: DEFAULT_LIMIT, offset },
-    pollInterval: 0
-  })
 
   const [fetchingMore, setFetchingMore] = useState(false)
 
   async function onClickLoadMore() {
     setFetchingMore(true)
-    await fetchMore({
+    await fetchMoreMessages({
       variables: {
         offset: offset + DEFAULT_LIMIT,
         limit: DEFAULT_LIMIT
@@ -215,68 +204,16 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   }
 
   const loading = useMemo(() => {
-    return (
-      confirmedMsgsLoading || lowConfidenceMsgsLoading || pendingMsgsLoading
-    )
-  }, [confirmedMsgsLoading, lowConfidenceMsgsLoading, pendingMsgsLoading])
+    return allMessagesLoading || pendingMsgsLoading
+  }, [allMessagesLoading, pendingMsgsLoading])
 
   const error = useMemo(() => {
-    return confirmedMsgsErr || lowConfidenceMsgsError || pendingMsgsError
-  }, [confirmedMsgsErr, lowConfidenceMsgsError, pendingMsgsError])
-
-  const messages = useMemo<MessageConfirmed[]>(() => {
-    if (
-      !confirmedMsgsLoading &&
-      !confirmedMsgsErr &&
-      !lowConfidenceMsgsLoading &&
-      !lowConfidenceMsgsError
-    ) {
-      const clonedHighConfiMsgs = [...data?.messagesConfirmed]
-
-      // mark the CIDs we have from high confidence
-      const highConfidenceCIDs = new Set(
-        clonedHighConfiMsgs.map(msg => msg.cid)
-      )
-
-      // dont include any from low confidence when we have high confidence
-      const filteredLowConfidenceMsgs = lowConfidenceMsgsData?.stateListMessages
-        ? lowConfidenceMsgsData?.stateListMessages.filter(
-            msg => !highConfidenceCIDs.has(msg.cid)
-          )
-        : []
-
-      // dont include duplicates if the high confidence message db updated and the offset is off by n
-      const filteredHighConfidenceMsgs = clonedHighConfiMsgs.reduce(
-        (accum, ele) => {
-          if (highConfidenceCIDs.has(ele.cid)) {
-            highConfidenceCIDs.delete(ele.cid)
-            accum.push(ele)
-            return accum
-          }
-        },
-        []
-      )
-
-      // merge the two results
-      return [
-        // TODO remove the sort once we have that done
-        ...filteredLowConfidenceMsgs.sort((a, b) => b.height - a.height),
-        ...filteredHighConfidenceMsgs
-      ] as MessageConfirmed[]
-    }
-    return []
-  }, [
-    lowConfidenceMsgsData,
-    confirmedMsgsLoading,
-    confirmedMsgsErr,
-    data,
-    lowConfidenceMsgsLoading,
-    lowConfidenceMsgsError
-  ])
+    return allMessagesError || pendingMsgsError
+  }, [allMessagesError, pendingMsgsError])
 
   return {
     chainHeadSub,
-    messages,
+    messages: allMessages?.messages,
     pendingMsgs,
     fetchMore: onClickLoadMore,
     fetchingMore,
@@ -289,11 +226,19 @@ export const useMessage = (cid: string, height?: number) => {
   const {
     data: highConfMsgData,
     loading: highConfMsgLoading,
-    error: highConfiMsgErr
+    error: _highConfiMsgErr
   } = useMessageQuery({
     variables: { cid, height },
     pollInterval: 0
   })
+
+  const highConfiMsgErr = useMemo(() => {
+    if (_highConfiMsgErr?.message.toLowerCase().includes('failed to fetch')) {
+      return
+    }
+
+    return _highConfiMsgErr
+  }, [_highConfiMsgErr])
 
   const {
     data: pendingMsgData,
@@ -431,8 +376,8 @@ export const useMessage = (cid: string, height?: number) => {
       ready &&
       (highConfMsgData?.message || lowConfMsgData?.messageLowConfidence)
     ) {
-      return (highConfMsgData.message ||
-        lowConfMsgData.messageLowConfidence) as MessageConfirmed
+      return (highConfMsgData?.message ||
+        lowConfMsgData?.messageLowConfidence) as MessageConfirmed
     } else return null
   }, [
     highConfMsgData,
