@@ -29,10 +29,10 @@ export const AddressLink = ({
     () => (address ? truncateAddress(address) : ''),
     [address]
   )
-  const linkText = truncated && id ? `(${id})` : (id || truncated)
-  const linkHref = `${process.env.NEXT_PUBLIC_EXPLORER_URL}/actor/?address=${id || address}`
+  const explorerUrl = process.env.NEXT_PUBLIC_EXPLORER_URL
+  const linkText = truncated && id ? `(${id})` : id || truncated
+  const linkHref = `${explorerUrl}/actor/?address=${id || address}`
   const onClick = (e: MouseEvent) => stopPropagation && e.stopPropagation()
-
   return (
     <Box>
       {label && (
