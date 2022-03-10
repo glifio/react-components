@@ -51,7 +51,7 @@ export const AddressLink = ({
             {linkText}
           </Link>
         )}
-        {!hideCopy && (
+        {!hideCopy && address && (
           <CopyText
             text={address}
             hideCopyText={hideCopyText}
