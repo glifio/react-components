@@ -65,3 +65,7 @@ AddressLink.propTypes = {
   url: PropTypes.string,
   urlPrefix: PropTypes.string
 }
+
+AddressLink.defaultProps = {
+  urlPrefix: '/'
+}
