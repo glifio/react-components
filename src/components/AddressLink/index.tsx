@@ -21,7 +21,8 @@ export const AddressLink = ({
   label,
   id,
   url,
-  urlPrefix
+  urlPrefix,
+  hideCopyText
 }: AddressLinkProps) => {
   const href = url || urlPrefix + address
   const truncated = useMemo(
@@ -44,7 +45,7 @@ export const AddressLink = ({
         ) : (
           <Link href={href}>{truncated}</Link>
         )}
-        <CopyText text={address} hideCopyText />
+        <CopyText text={address} hideCopyText={hideCopyText} color='inherit' />
       </Box>
     </Box>
   )
@@ -56,6 +57,7 @@ export interface AddressLinkProps {
   id?: string
   url?: string
   urlPrefix?: string
+  hideCopyText?: boolean
 }
 
 AddressLink.propTypes = {
@@ -63,9 +65,11 @@ AddressLink.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string,
   url: PropTypes.string,
-  urlPrefix: PropTypes.string
+  urlPrefix: PropTypes.string,
+  hideCopyText: PropTypes.bool
 }
 
 AddressLink.defaultProps = {
-  urlPrefix: '/'
+  urlPrefix: '/',
+  hideCopyText: true,
 }
