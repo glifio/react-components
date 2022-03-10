@@ -112,7 +112,9 @@ exports[`Receive it renders correctly 1`] = `
   >
     <a
       class="c3"
-      href="/t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy"
+      href="undefined/actor/?address=t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy"
+      rel="noreferrer noopener"
+      target="_blank"
     >
       t137sj ... 2vizpy
     </a>
