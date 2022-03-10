@@ -65,10 +65,10 @@ export interface AddressLinkProps {
   id?: string
   address?: string
   label?: string
-  disableLink?: boolean
-  stopPropagation?: boolean
-  hideCopy?: boolean
-  hideCopyText?: boolean
+  disableLink: boolean
+  stopPropagation: boolean
+  hideCopy: boolean
+  hideCopyText: boolean
 }
 
 AddressLink.propTypes = {
