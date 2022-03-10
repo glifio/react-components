@@ -20,7 +20,6 @@ export default {
 
 const Template = args => (
   <MessageHistory
-    addressHref={address => `/#/history/${address}`}
     cidHref={cid => `/#/detail/${cid}`}
     {...args}
   />

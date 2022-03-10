@@ -16,13 +16,9 @@ import appTheme from '../../theme'
 dayjs.extend(relativeTime.default)
 
 export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
-  const { proposal, idHref, addressHref, inspectingAddress, actionRequired } =
-    props
+  const { proposal, idHref, inspectingAddress, actionRequired } = props
 
   const router = useRouter()
-  const proposer = proposal.approved[0]
-  const proposerUrl =
-    inspectingAddress !== proposer.robust ? addressHref(proposer.robust) : ''
 
   return (
     <TR
@@ -49,10 +45,9 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
       </TD>
       <TD>
         <AddressLink
-          address={proposer.robust}
-          onClick={e => e.stopPropagation()}
+          address={proposal.approved[0].robust}
           hideCopy={true}
-          url={proposerUrl}
+          disableLink={inspectingAddress !== proposal.approved[0].robust}
         />
       </TD>
       <TD>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</TD>
@@ -75,7 +70,6 @@ type ProposalHistoryRowProps = {
   key: any
   proposal: MsigTransaction
   idHref: (id: number) => string
-  addressHref: (address: string) => string
   inspectingAddress?: string
   actionRequired?: boolean
 }
@@ -83,7 +77,6 @@ type ProposalHistoryRowProps = {
 ProposalHistoryRow.propTypes = {
   proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
   idHref: PropTypes.func.isRequired,
-  addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string,
   actionRequired: PropTypes.bool
 }

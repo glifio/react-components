@@ -29,7 +29,6 @@ type ProposalDetailProps = {
 
   accept: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
   cancel: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
-  addressHref: (address: string) => string
 }
 
 const SeeMore = styled(P).attrs(() => ({
@@ -173,7 +172,6 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         {proposal?.approved[0] && (
           <AddressLink
             address={proposal.approved[0].robust}
-            url={props.addressHref(proposal.approved[0].robust)}
             id={proposal.approved[0].id}
           />
         )}
@@ -193,7 +191,6 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         }}
         actorName='/multisig'
         depth={0}
-        addressHref={props.addressHref}
       />
       <HR />
       <SeeMore onClick={() => setSeeMore(!seeMore)}>
@@ -212,7 +209,6 @@ export default function ProposalDetail(props: ProposalDetailProps) {
               <AddressLink
                 key={index}
                 address={approver.robust}
-                url={props.addressHref(approver.robust)}
                 id={approver.id}
               />
             ))}
@@ -228,7 +224,6 @@ ProposalDetail.propTypes = {
   walletAddress: ADDRESS_PROPTYPE,
   cid: PropTypes.string,
   address: ADDRESS_PROPTYPE,
-  addressHref: PropTypes.func.isRequired,
   accept: PropTypes.func,
   reject: PropTypes.func
 }

@@ -12,7 +12,7 @@ import { useAge } from './useAge'
 import { useMethodName } from './useMethodName'
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
-  const { message, cidHref, addressHref, inspectingAddress } = props
+  const { message, cidHref, inspectingAddress } = props
   const time = useMemo(() => Date.now(), [])
 
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
@@ -50,8 +50,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
       <TD>
         <AddressLink
           address={message.from.robust}
-          onClick={e => e.stopPropagation()}
-          url={incoming ? addressHref(message.from.robust) : ''}
+          disableLink={!incoming}
           hideCopy={true}
         />
       </TD>
@@ -65,8 +64,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
       <TD>
         <AddressLink
           address={message.to.robust}
-          onClick={e => e.stopPropagation()}
-          url={!incoming ? addressHref(message.to.robust) : ''}
+          disableLink={incoming}
           hideCopy={true}
         />
       </TD>
@@ -78,7 +76,6 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
 type MessageHistoryRowProps = {
   message: MessageConfirmedRow
   cidHref: (cid: string, height?: string) => string
-  addressHref: (address: string) => string
   inspectingAddress: string
   chainHeadSub: SubscriptionResult<ChainHeadSubscription, any>
 }
@@ -86,7 +83,6 @@ type MessageHistoryRowProps = {
 MessageHistoryRow.propTypes = {
   message: MESSAGE_CONFIRMED_ROW_PROP_TYPE,
   cidHref: PropTypes.func.isRequired,
-  addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string
 }
 

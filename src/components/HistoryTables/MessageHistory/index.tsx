@@ -46,7 +46,6 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
                 key={message.cid}
                 message={message}
                 cidHref={props.cidHref}
-                addressHref={props.addressHref}
                 inspectingAddress={props.address}
               />
             ))}
@@ -56,7 +55,6 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
                 key={message.cid}
                 message={message}
                 cidHref={props.cidHref}
-                addressHref={props.addressHref}
                 inspectingAddress={props.address}
                 chainHeadSub={chainHeadSub}
               />
@@ -77,20 +75,17 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 type MessageHistoryTableProps = {
   offset: number
   address: string
-  addressHref: (address: string) => string
   cidHref: (cid: string, height?: string) => string
 }
 
 MessageHistoryTable.propTypes = {
   offset: PropTypes.number,
   address: ADDRESS_PROPTYPE,
-  addressHref: PropTypes.func,
   cidHref: PropTypes.func
 }
 
 MessageHistoryTable.defaultProps = {
   offset: 0,
   // TODO
-  addressHref: (address: string) => `/#/history/${address}`,
   cidHref: (cid: string) => `/#/detail/${cid}`
 }

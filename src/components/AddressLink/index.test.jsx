@@ -12,7 +12,6 @@ describe('Receive', () => {
         <AddressLink
           label='Safe Address'
           address='t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy'
-          urlPrefix='/'
         />
       </ThemeProvider>
     )

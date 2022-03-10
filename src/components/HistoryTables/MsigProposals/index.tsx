@@ -13,7 +13,6 @@ type ProposalHistoryTableProps = {
   walletAddr: string
   offset?: number
   // allows custom navigation
-  addressHref: (address: string) => string
   idHref: (id: number) => string
 }
 
@@ -48,7 +47,6 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
                   key={proposal.id}
                   proposal={proposal}
                   idHref={props.idHref}
-                  addressHref={props.addressHref}
                   inspectingAddress={props.address}
                   actionRequired={
                     !proposal.approved.some(address =>
@@ -64,7 +62,6 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
 }
 
 ProposalHistoryTable.propTypes = {
-  addressHref: PropTypes.func,
   idHref: PropTypes.func,
   offset: PropTypes.number,
   address: ADDRESS_PROPTYPE,
@@ -74,6 +71,5 @@ ProposalHistoryTable.propTypes = {
 ProposalHistoryTable.defaultProps = {
   offset: 0,
   // TODO
-  addressHref: (address: string) => `/#/history/${address}`,
   idHref: (id: number) => `/#/detail/${id}`
 }

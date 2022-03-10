@@ -16,7 +16,7 @@ dayjs.extend(relativeTime.default)
 export default function PendingMessageHistoryRow(
   props: PendingMessageHistoryRowProps
 ) {
-  const { message, cidHref, addressHref, inspectingAddress } = props
+  const { message, cidHref, inspectingAddress } = props
   const incoming = useMemo(
     () =>
       message.to.robust === inspectingAddress ||
@@ -50,8 +50,7 @@ export default function PendingMessageHistoryRow(
       <TD>
         <AddressLink
           address={message.from.robust}
-          onClick={e => e.stopPropagation()}
-          url={incoming ? addressHref(message.from.robust) : ''}
+          disableLink={!incoming}
           hideCopy={true}
         />
       </TD>
@@ -63,8 +62,7 @@ export default function PendingMessageHistoryRow(
       <TD>
         <AddressLink
           address={message.to.robust}
-          onClick={e => e.stopPropagation()}
-          url={!incoming ? addressHref(message.to.robust) : ''}
+          disableLink={incoming}
           hideCopy={true}
         />
       </TD>
@@ -76,14 +74,12 @@ export default function PendingMessageHistoryRow(
 type PendingMessageHistoryRowProps = {
   message: MessagePendingRow
   cidHref: (cid: string, height?: string) => string
-  addressHref: (address: string) => string
   inspectingAddress: string
 }
 
 PendingMessageHistoryRow.propTypes = {
   message: MESSAGE_PENDING_ROW_PROP_TYPE.isRequired,
   cidHref: PropTypes.func.isRequired,
-  addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string
 }
 

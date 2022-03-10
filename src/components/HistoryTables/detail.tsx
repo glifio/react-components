@@ -230,12 +230,7 @@ Line.defaultProps = {
  * Parameters
  * Parameter rows of the detail page
  */
-export const Parameters = ({
-  params,
-  depth,
-  actorName,
-  addressHref
-}: ParametersProps) => (
+export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
   <>
     {Object.entries(params).map(([key, value]) => {
       switch (key.toLowerCase()) {
@@ -253,11 +248,7 @@ export const Parameters = ({
           if (typeof value === 'string') {
             return (
               <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                <AddressLink
-                  address={value}
-                  url={addressHref(value)}
-                  hideCopyText={false}
-                />
+                <AddressLink address={value} hideCopyText={false} />
               </Line>
             )
           } else if (typeof value === 'object') {
@@ -265,9 +256,8 @@ export const Parameters = ({
             return (
               <Line key={`${depth}-${key}`} label={key} depth={depth}>
                 <AddressLink
-                  address={addr.robust}
                   id={addr.id}
-                  url={addressHref(addr.robust)}
+                  address={addr.robust}
                   hideCopyText={false}
                 />
               </Line>
@@ -298,7 +288,6 @@ export const Parameters = ({
                   params={value}
                   depth={depth + 1}
                   actorName={actorName}
-                  addressHref={addressHref}
                 />
               </div>
             )
@@ -324,14 +313,12 @@ type ParametersProps = {
   params: object
   depth: number
   actorName: string
-  addressHref: (address: string) => string
 }
 
 Parameters.propTypes = {
   params: PropTypes.object.isRequired,
   depth: PropTypes.number.isRequired,
-  actorName: PropTypes.string.isRequired,
-  addressHref: PropTypes.func.isRequired
+  actorName: PropTypes.string.isRequired
 }
 
 /**

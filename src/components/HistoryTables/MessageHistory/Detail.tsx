@@ -42,7 +42,7 @@ const SeeMore = styled(P).attrs(() => ({
 `
 
 export default function MessageDetail(props: MessageDetailProps) {
-  const { cid, height, speedUp, cancel, addressHref, confirmations } = props
+  const { cid, height, speedUp, cancel, confirmations } = props
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(cid, height)
@@ -129,17 +129,15 @@ export default function MessageDetail(props: MessageDetailProps) {
           <HR />
           <Line label='From'>
             <AddressLink
-              address={message.from.robust}
               id={message.from.id}
-              url={addressHref(message.from.robust)}
+              address={message.from.robust}
               hideCopyText={false}
             />
           </Line>
           <Line label='To'>
             <AddressLink
-              address={message.to.robust}
               id={message.to.id}
-              url={addressHref(message.to.robust)}
+              address={message.to.robust}
               hideCopyText={false}
             />
           </Line>
@@ -199,7 +197,6 @@ export default function MessageDetail(props: MessageDetailProps) {
                 params={{ params: message.params }}
                 actorName={actorName}
                 depth={0}
-                addressHref={props.addressHref}
               />
             </>
           )}
@@ -225,7 +222,6 @@ type MessageDetailProps = {
   height?: number
   speedUp?: () => void
   cancel?: () => void
-  addressHref: (address: string) => string
   confirmations: number
 }
 
@@ -234,7 +230,6 @@ MessageDetail.propTypes = {
   height: PropTypes.number,
   speedUp: PropTypes.func,
   cancel: PropTypes.func,
-  addressHref: PropTypes.func.isRequired,
   confirmations: PropTypes.number
 }
 

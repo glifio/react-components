@@ -92,7 +92,6 @@ export function AppHeader(props: AppHeaderProps) {
             key={index}
             label={address.label}
             address={address.address}
-            urlPrefix={address.urlPrefix}
           />
         ))}
         {connection}

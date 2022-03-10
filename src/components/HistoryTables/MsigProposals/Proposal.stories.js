@@ -31,5 +31,4 @@ Detail.args = {
   accept: console.log,
   reject: console.log,
   cidHref: () => '',
-  addressHref: () => ''
 }
