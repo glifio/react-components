@@ -171,8 +171,9 @@ export default function ProposalDetail(props: ProposalDetailProps) {
       <Line label='Proposer'>
         {proposal?.approved[0] && (
           <AddressLink
-            address={proposal.approved[0].robust}
             id={proposal.approved[0].id}
+            address={proposal.approved[0].robust}
+            hideCopyText={false}
           />
         )}
       </Line>
@@ -208,8 +209,8 @@ export default function ProposalDetail(props: ProposalDetailProps) {
             {proposal?.approved.map((approver: Address, index: number) => (
               <AddressLink
                 key={index}
-                address={approver.robust}
                 id={approver.id}
+                address={approver.robust}
               />
             ))}
           </Line>
