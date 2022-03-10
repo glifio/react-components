@@ -52,7 +52,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           id={message.from.robust ? '' : message.from.id}
           address={message.from.robust}
           disableLink={!incoming}
-          hideCopy={true}
+          hideCopy
         />
       </TD>
       {props.inspectingAddress && (
@@ -67,7 +67,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           id={message.to.robust ? '' : message.to.id}
           address={message.to.robust}
           disableLink={incoming}
-          hideCopy={true}
+          hideCopy
         />
       </TD>
       <TD>{value}</TD>

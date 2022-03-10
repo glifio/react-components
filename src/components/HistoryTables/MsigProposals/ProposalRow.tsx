@@ -47,8 +47,8 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
         <AddressLink
           id={proposal.approved[0].robust ? '' : proposal.approved[0].id}
           address={proposal.approved[0].robust}
-          hideCopy={true}
           disableLink={inspectingAddress === proposal.approved[0].robust}
+          hideCopy
         />
       </TD>
       <TD>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</TD>

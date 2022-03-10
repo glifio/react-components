@@ -52,7 +52,7 @@ export default function PendingMessageHistoryRow(
           id={message.from.robust ? '' : message.from.id}
           address={message.from.robust}
           disableLink={!incoming}
-          hideCopy={true}
+          hideCopy
         />
       </TD>
       <TD>
@@ -65,7 +65,7 @@ export default function PendingMessageHistoryRow(
           id={message.to.robust ? '' : message.to.id}
           address={message.to.robust}
           disableLink={incoming}
-          hideCopy={true}
+          hideCopy
         />
       </TD>
       <TD>{new FilecoinNumber(message.value, 'attofil').toFil()} FIL</TD>
