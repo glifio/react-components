@@ -28,43 +28,46 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     [messages?.length]
   )
 
+  const isEmpty = useMemo(
+    () => !pendingMsgs?.length && !messages?.length,
+    [pendingMsgs, messages]
+  )
+
   return (
     <Box>
       <Title>Transaction History</Title>
       <TABLE className='narrow'>
         <TableCaption
           name='Transaction History'
-          loading={loading}
+          loading={isEmpty && loading}
           error={error}
-          empty={!pendingMsgs?.length && !messages?.length}
+          empty={isEmpty}
         />
         <MessageRowColumnTitles />
         <tbody>
-          {!loading &&
-            pendingMsgs?.map(message => (
-              <MessagePendingRow
-                key={message.cid}
-                message={message}
-                cidHref={props.cidHref}
-                inspectingAddress={props.address}
-              />
-            ))}
-          {!loading &&
-            messages?.map(message => (
-              <MessageConfirmedRow
-                key={message.cid}
-                message={message}
-                cidHref={props.cidHref}
-                inspectingAddress={props.address}
-                chainHeadSub={chainHeadSub}
-              />
-            ))}
+          {pendingMsgs?.map(message => (
+            <MessagePendingRow
+              key={message.cid}
+              message={message}
+              cidHref={props.cidHref}
+              inspectingAddress={props.address}
+            />
+          ))}
+          {messages?.map(message => (
+            <MessageConfirmedRow
+              key={message.cid}
+              message={message}
+              cidHref={props.cidHref}
+              inspectingAddress={props.address}
+              chainHeadSub={chainHeadSub}
+            />
+          ))}
         </tbody>
       </TABLE>
-      {!lastPage && !fetchingMore && !loading && (
+      {!isEmpty && !lastPage && (
         <Box pt='4.5rem' textAlign='center'>
-          <ButtonV2 onClick={fetchMore} px='18rem'>
-            Load more
+          <ButtonV2 onClick={fetchMore} px='18rem' disabled={loading || fetchingMore}>
+            {loading || fetchingMore ? 'Loading...' : 'Load more'}
           </ButtonV2>
         </Box>
       )}
