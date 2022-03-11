@@ -2,6 +2,7 @@
 
 exports[`Receive it renders correctly 1`] = `
 .c1 {
+  color: #666666;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1;
@@ -12,7 +13,6 @@ exports[`Receive it renders correctly 1`] = `
 .c0 {
   min-width: 0;
   box-sizing: border-box;
-  color: #666666;
 }
 
 .c2 {
@@ -25,12 +25,13 @@ exports[`Receive it renders correctly 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  grid-gap: 0.25em;
 }
 
 .c4 {
   min-width: 0;
   box-sizing: border-box;
-  color: #E0D7FE;
+  color: inherit;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -95,10 +96,10 @@ exports[`Receive it renders correctly 1`] = `
 
 <div
   class="c0"
-  color="core.darkgray"
 >
   <h4
     class="c1"
+    color="core.darkgray"
     font-family="RT-Alias-Grotesk"
     font-size="1"
     font-weight="400"
@@ -111,13 +112,15 @@ exports[`Receive it renders correctly 1`] = `
   >
     <a
       class="c3"
-      href="/t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy"
+      href="https://explorer-calibration.glif.link/actor/?address=t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy"
+      rel="noreferrer noopener"
+      target="_blank"
     >
       t137sj ... 2vizpy
     </a>
     <div
       class="c4"
-      color="core.secondary"
+      color="inherit"
       display="flex"
     >
       <button

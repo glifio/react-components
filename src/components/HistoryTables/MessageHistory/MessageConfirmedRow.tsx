@@ -4,7 +4,7 @@ import { SubscriptionResult } from '@apollo/client'
 import PropTypes from 'prop-types'
 import { TR, TD } from '../table'
 import { Badge } from '../generic'
-import { AddressWOptionalLink } from '../../Link/SmartLink'
+import { AddressLink } from '../../AddressLink'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
 import { attoFilToFil } from '../utils'
 import { ChainHeadSubscription } from '../../../generated/graphql'
@@ -13,11 +13,17 @@ import { useMethodName } from './useMethodName'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
-  const { message, cidHref, addressHref, inspectingAddress } = props
+  const { message, cidHref, inspectingAddress } = props
   const time = useMemo(() => Date.now(), [])
 
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
-  const incoming = useMemo(
+  const fromAddressIsInspecting = useMemo(
+    () =>
+      message.from.robust === inspectingAddress ||
+      message.from.id === inspectingAddress,
+    [message.from, inspectingAddress]
+  )
+  const toAddressIsInspecting = useMemo(
     () =>
       convertAddrToPrefix(message.to.robust) ===
         convertAddrToPrefix(inspectingAddress) ||
@@ -25,7 +31,6 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         convertAddrToPrefix(inspectingAddress),
     [message.to, inspectingAddress]
   )
-
   const { methodName } = useMethodName(message)
   const age = useAge(message, time)
 
@@ -51,24 +56,26 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
       <TD>{message.height}</TD>
       <TD>{age}</TD>
       <TD>
-        <AddressWOptionalLink
-          address={message.from?.robust || message.from.id}
-          addressHref={addressHref}
-          inspectingAddress={inspectingAddress}
+        <AddressLink
+          id={message.from.robust ? '' : message.from.id}
+          address={message.from.robust}
+          disableLink={fromAddressIsInspecting}
+          hideCopy
         />
       </TD>
       {props.inspectingAddress && (
         <TD>
-          <Badge color={incoming ? 'green' : 'yellow'}>
-            {incoming ? 'IN' : 'OUT'}
+          <Badge color={toAddressIsInspecting ? 'green' : 'yellow'}>
+            {toAddressIsInspecting ? 'IN' : 'OUT'}
           </Badge>
         </TD>
       )}
       <TD>
-        <AddressWOptionalLink
-          address={message.to?.robust || message.to.id}
-          addressHref={addressHref}
-          inspectingAddress={inspectingAddress}
+        <AddressLink
+          id={message.to.robust ? '' : message.to.id}
+          address={message.to.robust}
+          disableLink={toAddressIsInspecting}
+          hideCopy
         />
       </TD>
       <TD>{value}</TD>
@@ -79,7 +86,6 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
 type MessageHistoryRowProps = {
   message: MessageConfirmedRow
   cidHref: (cid: string, height?: string) => string
-  addressHref: (address: string) => string
   inspectingAddress: string
   chainHeadSub: SubscriptionResult<ChainHeadSubscription, any>
 }
@@ -87,7 +93,6 @@ type MessageHistoryRowProps = {
 MessageHistoryRow.propTypes = {
   message: MESSAGE_CONFIRMED_ROW_PROP_TYPE,
   cidHref: PropTypes.func.isRequired,
-  addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string
 }
 

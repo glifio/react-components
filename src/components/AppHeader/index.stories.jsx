@@ -58,13 +58,11 @@ App.args = {
   addressLinks: [
     {
       label: 'Safe Address',
-      address: 't2i43oi6rnf2s6rp544rcegfbcdp5l62cayz2btmy',
-      urlPrefix: '/'
+      address: 't2i43oi6rnf2s6rp544rcegfbcdp5l62cayz2btmy'
     },
     {
       label: 'Wallet Address',
-      address: 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza',
-      urlPrefix: '/'
+      address: 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza'
     }
   ],
   appHeaderLinks: [
