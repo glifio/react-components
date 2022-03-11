@@ -21,6 +21,7 @@ import {
 } from '../../../utils'
 import LoadingScreen from '../../LoadingScreen'
 import ErrorView from '../../Error'
+import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 type ProposalDetailProps = {
   id: number
@@ -46,7 +47,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     error: _msigTxsError
   } = useMsigPendingQuery({
     variables: {
-      address: props.address,
+      address: convertAddrToPrefix(props.address),
       offset: 0,
       limit: Number.MAX_SAFE_INTEGER
     },
@@ -66,14 +67,16 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     data: actorData,
     loading: actorLoading,
     error: actorError
-  } = useActorQuery({ variables: { address: props.address } })
+  } = useActorQuery({
+    variables: { address: convertAddrToPrefix(props.address) }
+  })
 
   const {
     data: stateData,
     loading: stateLoading,
     error: stateError
   } = useStateReadStateQuery<MsigState>({
-    variables: { address: props.address },
+    variables: { address: convertAddrToPrefix(props.address) },
     skip:
       !!actorError ||
       (!actorLoading &&

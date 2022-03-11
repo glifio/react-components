@@ -7,6 +7,7 @@ import Box from '../../Box'
 import { HR, P } from '../../Typography'
 import { Title } from '../generic'
 import { DetailCaption, Line } from '../detail'
+import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 const ViewState = styled(P).attrs(() => ({
   color: 'core.primary',
@@ -29,14 +30,16 @@ export function ActorState({ address }: { address: string }) {
     error: actorStateError,
     loading: actorStateLoading
   } = useStateReadStateQuery<unknown>({
-    variables: { address }
+    variables: {
+      address: convertAddrToPrefix(address)
+    }
   })
 
   const {
     data: addressData,
     error: adddressError,
     loading: addressLoading
-  } = useAddressQuery({ variables: { address } })
+  } = useAddressQuery({ variables: { address: convertAddrToPrefix(address) } })
 
   const [viewActorState, setViewActorState] = useState(false)
 

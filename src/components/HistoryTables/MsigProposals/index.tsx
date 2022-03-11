@@ -7,6 +7,7 @@ import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import { TABLE, TableCaption } from '../table'
 import { useMsigPendingQuery } from '../../../generated/graphql'
 import { Title } from '../generic'
+import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 type ProposalHistoryTableProps = {
   address: string
@@ -19,7 +20,7 @@ type ProposalHistoryTableProps = {
 export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
   const { data, loading, error } = useMsigPendingQuery({
     variables: {
-      address: props.address,
+      address: convertAddrToPrefix(props.address),
       offset: props.offset,
       limit: Number.MAX_SAFE_INTEGER
     },

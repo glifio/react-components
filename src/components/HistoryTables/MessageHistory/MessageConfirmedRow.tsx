@@ -10,6 +10,7 @@ import { attoFilToFil } from '../utils'
 import { ChainHeadSubscription } from '../../../generated/graphql'
 import { useAge } from './useAge'
 import { useMethodName } from './useMethodName'
+import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const { message, cidHref, inspectingAddress } = props
@@ -24,8 +25,10 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   )
   const toAddressIsInspecting = useMemo(
     () =>
-      message.to.robust === inspectingAddress ||
-      message.to.id === inspectingAddress,
+      convertAddrToPrefix(message.to.robust) ===
+        convertAddrToPrefix(inspectingAddress) ||
+      convertAddrToPrefix(message.to.id) ===
+        convertAddrToPrefix(inspectingAddress),
     [message.to, inspectingAddress]
   )
   const { methodName } = useMethodName(message)

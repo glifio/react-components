@@ -9,6 +9,7 @@ import { TR, TD } from '../table'
 import { AddressLink } from '../../AddressLink'
 import { MessagePendingRow, MESSAGE_PENDING_ROW_PROP_TYPE } from '../types'
 import { useMethodName } from './useMethodName'
+import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -25,8 +26,10 @@ export default function PendingMessageHistoryRow(
   )
   const toAddressIsInspecting = useMemo(
     () =>
-      message.to.robust === inspectingAddress ||
-      message.to.id === inspectingAddress,
+      convertAddrToPrefix(message.to.robust) ===
+        convertAddrToPrefix(inspectingAddress) ||
+      convertAddrToPrefix(message.to.id) ===
+        convertAddrToPrefix(inspectingAddress),
     [message.to, inspectingAddress]
   )
   const { methodName } = useMethodName({ ...message, actorName: '' })
