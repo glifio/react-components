@@ -66,7 +66,11 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
       </TABLE>
       {!isEmpty && !lastPage && (
         <Box pt='4.5rem' textAlign='center'>
-          <ButtonV2 onClick={fetchMore} px='18rem' disabled={loading || fetchingMore}>
+          <ButtonV2
+            onClick={fetchMore}
+            px='18rem'
+            disabled={loading || fetchingMore}
+          >
             {loading || fetchingMore ? 'Loading...' : 'Load more'}
           </ButtonV2>
         </Box>
