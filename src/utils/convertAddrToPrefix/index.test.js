@@ -15,4 +15,8 @@ describe('convertAddrToF', () => {
     process.env.NEXT_PUBLIC_COIN_TYPE = 't'
     expect(convertAddress('f033525', CoinType.TEST)).toBe('t033525')
   })
+
+  test('it returns an empty string when no address is passed', () => {
+    expect(convertAddress()).toBe('')
+  })
 })
