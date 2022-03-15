@@ -78,7 +78,7 @@ export default function Footer() {
           <Ul>
             <Li>
               <A
-                href='https://discord.gg/8Hqm3qvK'
+                href='https://discord.gg/B9ju5Eu4Rq'
                 target='_blank'
                 rel='noopenner noreferrer'
               >
