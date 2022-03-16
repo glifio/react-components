@@ -10,7 +10,7 @@ import { attoFilToFil } from '../utils'
 import { ChainHeadSubscription } from '../../../generated/graphql'
 import { useAge } from './useAge'
 import { useMethodName } from './useMethodName'
-import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
+import { isAddrEqual } from '../../../utils/isAddrEqual'
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const { message, cidHref, inspectingAddress } = props
@@ -18,17 +18,11 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
 
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
   const fromAddressIsInspecting = useMemo(
-    () =>
-      message.from.robust === inspectingAddress ||
-      message.from.id === inspectingAddress,
+    () => isAddrEqual(message.from, inspectingAddress),
     [message.from, inspectingAddress]
   )
   const toAddressIsInspecting = useMemo(
-    () =>
-      convertAddrToPrefix(message.to.robust) ===
-        convertAddrToPrefix(inspectingAddress) ||
-      convertAddrToPrefix(message.to.id) ===
-        convertAddrToPrefix(inspectingAddress),
+    () => isAddrEqual(message.to, inspectingAddress),
     [message.to, inspectingAddress]
   )
   const { methodName } = useMethodName(message)
