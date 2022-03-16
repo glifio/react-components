@@ -23,9 +23,7 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
       >
         <Glyph color='status.fail.foreground' acronym='Er' />
         <h2>{title}</h2>
-        <p style={{ fontSize: '1.125rem' }}>
-          {description}
-        </p>
+        <p style={{ fontSize: '1.125rem' }}>{description}</p>
         {linkhref && linkDisplay && (
           <p style={{ fontSize: '1.125rem' }}>
             <SmartLink href={linkhref}>{linkDisplay}</SmartLink>
