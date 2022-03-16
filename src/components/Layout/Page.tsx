@@ -29,6 +29,10 @@ const PageInner = styled.div`
   }
 `
 
+const PageContent = styled(PageInner)`
+  min-height: 0;
+`
+
 export function Page({
   children,
   preFooter,
@@ -41,7 +45,9 @@ export function Page({
       <PageInner>
         {phishingUrl && <PhishingBanner href={phishingUrl} />}
         {!hideAppHeader && <AppHeader {...appHeaderProps} />}
-        {children}
+        <PageContent>
+          {children}
+        </PageContent>
       </PageInner>
       {preFooter}
       <Footer />
