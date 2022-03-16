@@ -51,7 +51,7 @@ export default function PendingMessageHistoryRow(
       </TD>
       {props.inspectingAddress && (
         <TD>
-          <Badge color='purple'>{methodName.toUpperCase()}</Badge>
+          <Badge color='purple' text={methodName} />
         </TD>
       )}
       <TD>(Pending)</TD>
@@ -65,9 +65,10 @@ export default function PendingMessageHistoryRow(
         />
       </TD>
       <TD>
-        <Badge color={toAddressIsInspecting ? 'green' : 'yellow'}>
-          {toAddressIsInspecting ? 'IN' : 'OUT'}
-        </Badge>
+        <Badge
+          color={toAddressIsInspecting ? 'green' : 'yellow'}
+          text={toAddressIsInspecting ? 'IN' : 'OUT'}
+        />
       </TD>
       <TD>
         <AddressLink

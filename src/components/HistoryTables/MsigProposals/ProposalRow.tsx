@@ -46,9 +46,10 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
         <SmartLink href={idHref(proposal.id)}>{proposal.id}</SmartLink>
       </TD>
       <TD>
-        <Badge color='purple'>
-          {getMethodName('/multisig', proposal.method).toUpperCase()}
-        </Badge>
+        <Badge
+          color='purple'
+          text={getMethodName('/multisig', proposal.method)}
+        />
       </TD>
       <TD>
         <AddressLink

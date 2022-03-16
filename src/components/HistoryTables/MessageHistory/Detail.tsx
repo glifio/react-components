@@ -146,7 +146,7 @@ export default function MessageDetail(props: MessageDetailProps) {
           <Line label='Transaction Fee'>{pending ? 'Pending' : totalCost}</Line>
           {!loading && methodName && (
             <Line label='Method'>
-              <Badge color='purple'>{methodName.toUpperCase()}</Badge>
+              <Badge color='purple' text={methodName} />
             </Line>
           )}
           <HR />

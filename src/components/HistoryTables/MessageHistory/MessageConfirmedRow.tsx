@@ -51,7 +51,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         </Link>
       </TD>
       <TD>
-        <Badge color='purple'>{methodName.toUpperCase()}</Badge>
+        <Badge color='purple' text={methodName} />
       </TD>
       <TD>{message.height}</TD>
       <TD>{age}</TD>
@@ -65,9 +65,10 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
       </TD>
       {props.inspectingAddress && (
         <TD>
-          <Badge color={toAddressIsInspecting ? 'green' : 'yellow'}>
-            {toAddressIsInspecting ? 'IN' : 'OUT'}
-          </Badge>
+          <Badge
+            color={toAddressIsInspecting ? 'green' : 'yellow'}
+            text={toAddressIsInspecting ? 'IN' : 'OUT'}
+          />
         </TD>
       )}
       <TD>

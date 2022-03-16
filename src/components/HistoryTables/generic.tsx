@@ -7,7 +7,7 @@ export const Title = styled.h2`
   color: var(--purple-medium);
 `
 
-export const Badge = ({ color, children }: BadgeProps) => (
+export const Badge = ({ color, text, uppercase, icon }: BadgeProps) => (
   <Box
     display='inline-flex'
     alignItems='center'
@@ -21,17 +21,26 @@ export const Badge = ({ color, children }: BadgeProps) => (
     style={{ whiteSpace: 'nowrap' }}
     textAlign='center'
   >
-    {children}
+    {icon}
+    <span>{uppercase ? text.toUpperCase() : text}</span>
   </Box>
 )
 
 type BadgeProps = {
   color: 'purple' | 'green' | 'yellow' | 'red' | 'gray'
-  children: React.ReactNode
+  text: string
+  uppercase: boolean
+  icon?: JSX.Element
 }
 
 Badge.propTypes = {
-  color: PropTypes.oneOf(['purple', 'green', 'yellow', 'red', 'gray'])
-    .isRequired,
-  children: PropTypes.node.isRequired
+  color: PropTypes.oneOf(['purple', 'green', 'yellow', 'red', 'gray']),
+  text: PropTypes.string.isRequired,
+  uppercase: PropTypes.bool,
+  icon: PropTypes.node
+}
+
+Badge.defaultProps = {
+  color: 'gray',
+  uppercase: true
 }
