@@ -24,6 +24,7 @@ export const TwoColumns = styled.div`
 
   @media (min-width: ${devices.tablet}) {
     display: grid;
+    align-items: start;
     gap: ${space()};
     grid-template-columns: 1fr 1fr;
   }

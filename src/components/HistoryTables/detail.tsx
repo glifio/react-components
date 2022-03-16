@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Address, MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
 import ButtonV2 from '../Button/V2'
+import { AddressLink } from '../AddressLink'
 import { Title, Badge } from './generic'
 import {
   IconSpeedUp,
@@ -15,7 +16,6 @@ import {
 } from '../Icons'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
-import { CopyText } from '../Copy'
 
 /**
  * Head
@@ -230,12 +230,7 @@ Line.defaultProps = {
  * Parameters
  * Parameter rows of the detail page
  */
-export const Parameters = ({
-  params,
-  depth,
-  actorName,
-  addressHref
-}: ParametersProps) => (
+export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
   <>
     {Object.entries(params).map(([key, value]) => {
       switch (key.toLowerCase()) {
@@ -248,50 +243,30 @@ export const Parameters = ({
             </Line>
           )
         }
+
         case 'to': {
-          // handles both address types...
-          if (typeof value === 'string') {
-            return (
-              <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                <a
-                  target='_blank'
-                  rel='noreferrer noopener'
-                  href={addressHref(value)}
-                >
-                  {value}
-                </a>
-                <CopyText
-                  text={value}
-                  color='core.primary'
-                  hideCopyText={false}
-                />
-              </Line>
-            )
-          } else if (typeof value === 'object') {
-            const addr = value as Address
-            return (
-              <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                return {addr.robust}{' '}
-                <a
-                  target='_blank'
-                  rel='noreferrer noopener'
-                  href={addressHref(addr.robust)}
-                >
-                  ({addr.id})
-                </a>
-                <CopyText
-                  text={addr.robust}
-                  color='core.primary'
-                  hideCopyText={false}
-                />
-              </Line>
-            )
+          switch (typeof value) {
+            case 'string':
+              return (
+                <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                  <AddressLink address={value} hideCopyText={false} />
+                </Line>
+              )
+
+            case 'object':
+              if (value) {
+                const address = value as Address
+                return (
+                  <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                    <AddressLink
+                      id={address.id}
+                      address={address.robust}
+                      hideCopyText={false}
+                    />
+                  </Line>
+                )
+              }
           }
-          return (
-            <Line key={`${depth}-${key}`} label={key} depth={depth}>
-              {value ?? '—'}
-            </Line>
-          )
         }
 
         case 'value':
@@ -300,28 +275,32 @@ export const Parameters = ({
               {new FilecoinNumber(value, 'attofil').toFil()} FIL
             </Line>
           )
+
         default: {
-          if (value && typeof value === 'object')
-            return (
-              <div key={`${depth}-${key}`}>
-                <Line
-                  label={key === 'params' ? 'Parameters' : key}
-                  depth={depth}
-                ></Line>
-                <Parameters
-                  params={value}
-                  depth={depth + 1}
-                  actorName={actorName}
-                  addressHref={addressHref}
-                />
-              </div>
-            )
-          else if (typeof value === 'boolean')
-            return (
-              <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                {value ? 'true' : 'false'}
-              </Line>
-            )
+          switch (typeof value) {
+            case 'object':
+              if (value)
+                return (
+                  <div key={`${depth}-${key}`}>
+                    <Line
+                      label={key === 'params' ? 'Parameters' : key}
+                      depth={depth}
+                    ></Line>
+                    <Parameters
+                      params={value}
+                      depth={depth + 1}
+                      actorName={actorName}
+                    />
+                  </div>
+                )
+
+            case 'boolean':
+              return (
+                <Line key={`${depth}-${key}`} label={key} depth={depth}>
+                  {value ? 'true' : 'false'}
+                </Line>
+              )
+          }
 
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
@@ -338,14 +317,12 @@ type ParametersProps = {
   params: object
   depth: number
   actorName: string
-  addressHref: (address: string) => string
 }
 
 Parameters.propTypes = {
   params: PropTypes.object.isRequired,
   depth: PropTypes.number.isRequired,
-  actorName: PropTypes.string.isRequired,
-  addressHref: PropTypes.func.isRequired
+  actorName: PropTypes.string.isRequired
 }
 
 /**

@@ -19,11 +19,7 @@ export default {
 }
 
 const Template = args => (
-  <MessageHistory
-    addressHref={address => `/#/history/${address}`}
-    cidHref={cid => `/#/detail/${cid}`}
-    {...args}
-  />
+  <MessageHistory cidHref={cid => `/#/detail/${cid}`} {...args} />
 )
 
 export const Base = Template.bind({})

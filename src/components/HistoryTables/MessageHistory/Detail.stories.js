@@ -22,7 +22,6 @@ const Template = args => (
   <MessageDetail
     speedUp={() => {}}
     cancel={() => {}}
-    addressHref={address => `/#/history/${address}`}
     confirmations={50}
     {...args}
   />

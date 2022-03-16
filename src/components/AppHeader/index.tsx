@@ -87,13 +87,8 @@ export function AppHeader(props: AppHeaderProps) {
           ) : (
             <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
           ))}
-        {addressLinks?.map((address, index) => (
-          <AddressLink
-            key={index}
-            label={address.label}
-            address={address.address}
-            urlPrefix={address.urlPrefix}
-          />
+        {addressLinks?.map((addressLink, index) => (
+          <AddressLink key={index} {...addressLink} />
         ))}
         {connection}
       </NavLeft>

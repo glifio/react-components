@@ -6,7 +6,7 @@ import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { Badge } from '../generic'
 import { TR, TD } from '../table'
-import { AddressWOptionalLink } from '../../Link/SmartLink'
+import { AddressLink } from '../../AddressLink'
 import { MessagePendingRow, MESSAGE_PENDING_ROW_PROP_TYPE } from '../types'
 import { useMethodName } from './useMethodName'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
@@ -17,8 +17,14 @@ dayjs.extend(relativeTime.default)
 export default function PendingMessageHistoryRow(
   props: PendingMessageHistoryRowProps
 ) {
-  const { message, cidHref, addressHref, inspectingAddress } = props
-  const incoming = useMemo(
+  const { message, cidHref, inspectingAddress } = props
+  const fromAddressIsInspecting = useMemo(
+    () =>
+      message.from.robust === inspectingAddress ||
+      message.from.id === inspectingAddress,
+    [message.from, inspectingAddress]
+  )
+  const toAddressIsInspecting = useMemo(
     () =>
       convertAddrToPrefix(message.to.robust) ===
         convertAddrToPrefix(inspectingAddress) ||
@@ -51,22 +57,24 @@ export default function PendingMessageHistoryRow(
       <TD>(Pending)</TD>
       <TD>(Pending)</TD>
       <TD>
-        <AddressWOptionalLink
+        <AddressLink
+          id={message.from.robust ? '' : message.from.id}
           address={message.from.robust}
-          addressHref={addressHref}
-          inspectingAddress={inspectingAddress}
+          disableLink={!fromAddressIsInspecting}
+          hideCopy
         />
       </TD>
       <TD>
-        <Badge color={incoming ? 'green' : 'yellow'}>
-          {incoming ? 'IN' : 'OUT'}
+        <Badge color={toAddressIsInspecting ? 'green' : 'yellow'}>
+          {toAddressIsInspecting ? 'IN' : 'OUT'}
         </Badge>
       </TD>
       <TD>
-        <AddressWOptionalLink
+        <AddressLink
+          id={message.to.robust ? '' : message.to.id}
           address={message.to.robust}
-          addressHref={addressHref}
-          inspectingAddress={inspectingAddress}
+          disableLink={toAddressIsInspecting}
+          hideCopy
         />
       </TD>
       <TD>{new FilecoinNumber(message.value, 'attofil').toFil()} FIL</TD>
@@ -77,14 +85,12 @@ export default function PendingMessageHistoryRow(
 type PendingMessageHistoryRowProps = {
   message: MessagePendingRow
   cidHref: (cid: string, height?: string) => string
-  addressHref: (address: string) => string
   inspectingAddress: string
 }
 
 PendingMessageHistoryRow.propTypes = {
   message: MESSAGE_PENDING_ROW_PROP_TYPE.isRequired,
   cidHref: PropTypes.func.isRequired,
-  addressHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string
 }
 

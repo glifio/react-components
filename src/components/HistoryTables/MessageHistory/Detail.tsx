@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import Link from 'next/link'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import {
@@ -10,6 +9,7 @@ import {
 } from '../../../generated/graphql'
 import Box from '../../Box'
 import { IconClock } from '../../Icons'
+import { AddressLink } from '../../AddressLink'
 import { P } from '../../Typography'
 import { Badge } from '../generic'
 import {
@@ -29,7 +29,6 @@ import {
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
-import { CopyText } from '../../Copy'
 import Card from '../../Card'
 
 // add RelativeTime plugin to Day.js
@@ -43,7 +42,7 @@ const SeeMore = styled(P).attrs(() => ({
 `
 
 export default function MessageDetail(props: MessageDetailProps) {
-  const { cid, height, speedUp, cancel, addressHref, confirmations } = props
+  const { cid, height, speedUp, cancel, confirmations } = props
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(cid, height)
@@ -129,25 +128,17 @@ export default function MessageDetail(props: MessageDetailProps) {
           </Line>
           <hr />
           <Line label='From'>
-            {message.from.robust}
-            <Link
-              href={addressHref(message.from.robust)}
-            >{`(${message.from.id})`}</Link>
-            <CopyText
-              text={message.from.robust}
+            <AddressLink
+              id={message.from.id}
+              address={message.from.robust}
               hideCopyText={false}
-              color='core.primary'
             />
           </Line>
           <Line label='To'>
-            {message.to.robust}
-            <Link
-              href={addressHref(message.to.robust)}
-            >{`(${message.to.id})`}</Link>{' '}
-            <CopyText
-              text={message.to.robust}
+            <AddressLink
+              id={message.to.id}
+              address={message.to.robust}
               hideCopyText={false}
-              color='core.primary'
             />
           </Line>
           <hr />
@@ -206,7 +197,6 @@ export default function MessageDetail(props: MessageDetailProps) {
                 params={{ params: message.params }}
                 actorName={actorName}
                 depth={0}
-                addressHref={props.addressHref}
               />
             </>
           )}
@@ -232,7 +222,6 @@ type MessageDetailProps = {
   height?: number
   speedUp?: () => void
   cancel?: () => void
-  addressHref: (address: string) => string
   confirmations: number
 }
 
@@ -241,7 +230,6 @@ MessageDetail.propTypes = {
   height: PropTypes.number,
   speedUp: PropTypes.func,
   cancel: PropTypes.func,
-  addressHref: PropTypes.func.isRequired,
   confirmations: PropTypes.number
 }
 
