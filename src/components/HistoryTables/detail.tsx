@@ -238,7 +238,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
               <Badge color='purple'>
-                {getMethodName(actorName, value as number)}
+                {getMethodName(actorName, value as number).toUpperCase()}
               </Badge>
             </Line>
           )

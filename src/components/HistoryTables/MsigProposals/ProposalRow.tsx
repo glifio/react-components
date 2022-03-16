@@ -47,7 +47,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
       </TD>
       <TD>
         <Badge color='purple'>
-          {getMethodName('/multisig', proposal.method)}
+          {getMethodName('/multisig', proposal.method).toUpperCase()}
         </Badge>
       </TD>
       <TD>
