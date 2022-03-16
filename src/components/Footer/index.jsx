@@ -1,7 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
+import { SmartLink } from '../Link/SmartLink'
 import { devices, space } from '../theme'
 import { AppIconHeaderFooter } from '../Icons'
+import {
+  GLIF_EMAIL,
+  GLIF_CODE,
+  GLIF_NODES,
+  GLIF_DISCORD
+} from '../../constants'
 
 const Ul = styled.ul`
   list-style-type: none;
@@ -13,11 +20,6 @@ const Li = styled.li`
   list-style-type: none;
   margin: 0;
   padding-left: 0;
-`
-
-const A = styled.a`
-  text-decoration: underline;
-  color: inherit;
 `
 
 const FooterWrapper = styled.footer`
@@ -77,58 +79,44 @@ export default function Footer() {
         <FooterContent>
           <Ul>
             <Li>
-              <A
-                href='https://discord.gg/B9ju5Eu4Rq'
-                target='_blank'
-                rel='noopenner noreferrer'
-              >
-                Discord
-              </A>
+              <SmartLink href={GLIF_DISCORD}>Discord</SmartLink>
             </Li>
             <Li>
-              <A
-                href='https://blog.glif.io'
-                target='_blank'
-                rel='noopenner noreferrer'
-              >
+              <SmartLink href={`${process.env.NEXT_PUBLIC_BLOG_URL}`}>
                 Blog
-              </A>
+              </SmartLink>
             </Li>
             <Li>
-              <A
-                href='https://github.com/glifio'
-                target='_blank'
-                rel='noopenner noreferrer'
-              >
-                Code
-              </A>
+              <SmartLink href={GLIF_CODE}>Code</SmartLink>
             </Li>
             <Li>
-              <A
-                href='https://lotus.filecoin.io/docs/developers/hosted-lotus/'
-                target='_blank'
-                rel='noopenner noreferrer'
-              >
-                Nodes
-              </A>
+              <SmartLink href={GLIF_NODES}>Nodes</SmartLink>
             </Li>
             <Li>
-              <A href='mailto:squad@glif.io'>Contact</A>
+              <SmartLink href={`mailto:${GLIF_EMAIL}`}>Contact</SmartLink>
             </Li>
           </Ul>
 
           <Ul>
             <Li>
-              <A href={`${process.env.NEXT_PUBLIC_WALLET_URL}`}>Wallet</A>
+              <SmartLink href={`${process.env.NEXT_PUBLIC_WALLET_URL}`}>
+                Wallet
+              </SmartLink>
             </Li>
             <Li>
-              <A href={`${process.env.NEXT_PUBLIC_SAFE_URL}`}>Safe</A>
+              <SmartLink href={`${process.env.NEXT_PUBLIC_SAFE_URL}`}>
+                Safe
+              </SmartLink>
             </Li>
             <Li>
-              <A href={`${process.env.NEXT_PUBLIC_EXPLORER_URL}`}>Explorer</A>
+              <SmartLink href={`${process.env.NEXT_PUBLIC_EXPLORER_URL}`}>
+                Explorer
+              </SmartLink>
             </Li>
             <Li>
-              <A href={`${process.env.NEXT_PUBLIC_VERIFIER_URL}`}>Verifier</A>
+              <SmartLink href={`${process.env.NEXT_PUBLIC_VERIFIER_URL}`}>
+                Verifier
+              </SmartLink>
             </Li>
           </Ul>
 
