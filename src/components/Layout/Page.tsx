@@ -45,9 +45,7 @@ export function Page({
       <PageInner>
         {phishingUrl && <PhishingBanner href={phishingUrl} />}
         {!hideAppHeader && <AppHeader {...appHeaderProps} />}
-        <PageContent>
-          {children}
-        </PageContent>
+        <PageContent>{children}</PageContent>
       </PageInner>
       {preFooter}
       <Footer />
