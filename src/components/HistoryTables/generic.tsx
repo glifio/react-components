@@ -29,14 +29,14 @@ export const Badge = ({ color, text, uppercase, icon }: BadgeProps) => (
 type BadgeProps = {
   color: 'purple' | 'green' | 'yellow' | 'red' | 'gray'
   text: string
-  uppercase: boolean
+  uppercase?: boolean
   icon?: JSX.Element
 }
 
 Badge.propTypes = {
   color: PropTypes.oneOf(['purple', 'green', 'yellow', 'red', 'gray']),
   text: PropTypes.string.isRequired,
-  uppercase?: PropTypes.bool,
+  uppercase: PropTypes.bool,
   icon: PropTypes.node
 }
 
