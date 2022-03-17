@@ -9,7 +9,7 @@ import { TR, TD } from '../table'
 import { AddressLink } from '../../AddressLink'
 import { MessagePendingRow, MESSAGE_PENDING_ROW_PROP_TYPE } from '../types'
 import { useMethodName } from './useMethodName'
-import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
+import { isAddrEqual } from '../../../utils/isAddrEqual'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -19,17 +19,11 @@ export default function PendingMessageHistoryRow(
 ) {
   const { message, cidHref, inspectingAddress } = props
   const fromAddressIsInspecting = useMemo(
-    () =>
-      message.from.robust === inspectingAddress ||
-      message.from.id === inspectingAddress,
+    () => isAddrEqual(message.from, inspectingAddress),
     [message.from, inspectingAddress]
   )
   const toAddressIsInspecting = useMemo(
-    () =>
-      convertAddrToPrefix(message.to.robust) ===
-        convertAddrToPrefix(inspectingAddress) ||
-      convertAddrToPrefix(message.to.id) ===
-        convertAddrToPrefix(inspectingAddress),
+    () => isAddrEqual(message.to, inspectingAddress),
     [message.to, inspectingAddress]
   )
   const { methodName } = useMethodName({ ...message, actorName: '' })
@@ -60,7 +54,7 @@ export default function PendingMessageHistoryRow(
         <AddressLink
           id={message.from.robust ? '' : message.from.id}
           address={message.from.robust}
-          disableLink={!fromAddressIsInspecting}
+          disableLink={fromAddressIsInspecting}
           hideCopy
         />
       </TD>

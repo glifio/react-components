@@ -9,6 +9,7 @@ import { TR, TD } from '../table'
 import { AddressLink } from '../../AddressLink'
 import { SmartLink } from '../../Link/SmartLink'
 import { MsigTransaction } from '../../../generated/graphql'
+import { isAddrEqual } from '../../../utils/isAddrEqual'
 import { PROPOSAL_ROW_PROP_TYPE } from '../types'
 import { getMethodName } from '../methodName'
 import appTheme from '../../theme'
@@ -21,9 +22,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
 
   const router = useRouter()
   const proposerIsInspecting = useMemo(
-    () =>
-      proposal.approved[0].robust === inspectingAddress ||
-      proposal.approved[0].id === inspectingAddress,
+    () => isAddrEqual(proposal.approved[0], inspectingAddress),
     [proposal.approved, inspectingAddress]
   )
 
