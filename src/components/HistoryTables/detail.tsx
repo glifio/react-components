@@ -237,9 +237,10 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
         case 'method': {
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
-              <Badge color='purple'>
-                {getMethodName(actorName, value as number)}
-              </Badge>
+              <Badge
+                color='purple'
+                text={getMethodName(actorName, value as number)}
+              />
             </Line>
           )
         }
@@ -337,18 +338,19 @@ export const Status = ({ exitCode, pending }: StatusProps) => {
     return 'red'
   }, [success, pending])
 
-  const statusText = useMemo(() => {
+  const text = useMemo(() => {
     if (pending) return 'PENDING'
     if (success) return 'SUCCESS'
     return 'ERROR'
   }, [success, pending])
-  return (
-    <Badge color={color}>
-      {success && <IconCheck width='1.1875rem' />}
-      {pending && <IconPending />}
-      {statusText}
-    </Badge>
-  )
+
+  const icon = useMemo(() => {
+    if (pending) return <IconPending />
+    if (success) return <IconCheck width='1.1875rem' />
+    return null
+  }, [success, pending])
+
+  return <Badge color={color} text={text} icon={icon} />
 }
 
 type StatusProps = {
@@ -367,10 +369,12 @@ Status.propTypes = {
 export const Confirmations = ({ count, total }: ConfirmationsProps) => {
   const confirmed = useMemo(() => count >= total, [count, total])
   return (
-    <Badge color={confirmed ? 'green' : 'yellow'}>
-      {confirmed && <IconCheck width='1.1875rem' />}
-      {Math.min(count, total)} / {total} Confirmations
-    </Badge>
+    <Badge
+      color={confirmed ? 'green' : 'yellow'}
+      text={`${Math.min(count, total)} / ${total} Confirmations`}
+      icon={confirmed ? <IconCheck width='1.1875rem' /> : null}
+      uppercase={false}
+    />
   )
 }
 
