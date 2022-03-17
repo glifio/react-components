@@ -11,25 +11,14 @@ exports[`Error renders the error 1`] = `
   padding: 16px;
   background-color: #FC6D6F;
   color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: inline-block;
   width: 100%;
   max-width: 560px;
-  min-height: 300px;
+  min-height: 240px;
   overflow: hidden;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
 .c1 {
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-.c2 {
   min-width: 0;
   box-sizing: border-box;
   border-width: 0.1875rem;
@@ -52,14 +41,23 @@ exports[`Error renders the error 1`] = `
   justify-content: center;
 }
 
-.c7 {
+.c3 {
+  min-width: 0;
+  box-sizing: border-box;
+  border-top: 1px solid;
+  border-color: #660000;
+  margin-top: 1.5em;
+  padding-top: 1em;
+}
+
+.c4 {
   min-width: 0;
   box-sizing: border-box;
   margin-top: 32px;
   text-align: center;
 }
 
-.c8 {
+.c5 {
   cursor: pointer;
   border: 1px solid #262626;
   background-color: transparent;
@@ -78,104 +76,82 @@ exports[`Error renders the error 1`] = `
   border-radius: 4px;
 }
 
-.c8:hover {
+.c5:hover {
   opacity: 0.8;
 }
 
-.c3 {
+.c2 {
   font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
   font-weight: 700;
   font-size: 1.5rem;
-}
-
-.c6 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-bottom: 2px solid #5E26FF00;
-  color: #ffffff;
-  font-size: 1.25rem;
-}
-
-.c6:hover {
-  border-bottom: 2px solid #5E26FF;
-}
-
-.c4 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-  margin-top: 24px;
-  margin-bottom: 8px;
-}
-
-.c5 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
 }
 
 <div>
   <div
     class="c0"
     color="card.error.foreground"
-    display="flex"
+    display="inline-block"
     overflow="hidden"
     style="word-break: break-word;"
     width="100%"
   >
     <div
       class="c1"
+      color="status.fail.foreground"
+      display="flex"
+      size="6"
     >
-      <div
+      <h3
         class="c2"
-        color="status.fail.foreground"
-        display="flex"
-        size="6"
       >
-        <h3
-          class="c3"
-        >
-          Er
-        </h3>
-      </div>
-      <h2
-        class="c4"
-        font-family="RT-Alias-Grotesk"
-        font-size="4"
-        font-weight="400"
-      >
-        Ledger only supports Chrome
-      </h2>
-      <p
-        class="c5"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option
-      </p>
+        Er
+      </h3>
     </div>
-    <a
-      class="c6"
-      color="core.white"
-      font-size="3"
-      href="https://www.google.com/chrome"
-      rel="noopener"
-      target="_blank"
+    <h2>
+      Ledger only supports Chrome
+    </h2>
+    <p
+      style="font-size: 1.125rem;"
     >
-      Install Google Chrome.
-    </a>
+      Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option
+    </p>
+    <p
+      style="font-size: 1.125rem;"
+    >
+      <a
+        href="https://www.google.com/chrome"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Install Google Chrome.
+      </a>
+    </p>
+    <div
+      class="c3"
+    >
+      Get help in 
+      <a
+        href="https://discord.gg/B9ju5Eu4Rq"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Discord
+      </a>
+       or hit us up on 
+      <a
+        href="https://twitter.com/glifio"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Twitter
+      </a>
+    </div>
   </div>
   <div
-    class="c7"
+    class="c4"
   >
     <button
-      class="c8"
+      class="c5"
       font-size="3"
       height="6"
       type="button"
@@ -197,25 +173,14 @@ exports[`Error renders the story 1`] = `
   padding: 16px;
   background-color: #FC6D6F;
   color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: inline-block;
   width: 100%;
   max-width: 560px;
-  min-height: 300px;
+  min-height: 240px;
   overflow: hidden;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
 .c1 {
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-.c2 {
   min-width: 0;
   box-sizing: border-box;
   border-width: 0.1875rem;
@@ -238,14 +203,23 @@ exports[`Error renders the story 1`] = `
   justify-content: center;
 }
 
-.c7 {
+.c3 {
+  min-width: 0;
+  box-sizing: border-box;
+  border-top: 1px solid;
+  border-color: #660000;
+  margin-top: 1.5em;
+  padding-top: 1em;
+}
+
+.c4 {
   min-width: 0;
   box-sizing: border-box;
   margin-top: 32px;
   text-align: center;
 }
 
-.c8 {
+.c5 {
   cursor: pointer;
   border: 1px solid #262626;
   background-color: transparent;
@@ -264,104 +238,82 @@ exports[`Error renders the story 1`] = `
   border-radius: 4px;
 }
 
-.c8:hover {
+.c5:hover {
   opacity: 0.8;
 }
 
-.c3 {
+.c2 {
   font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
   font-weight: 700;
   font-size: 1.5rem;
-}
-
-.c6 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-bottom: 2px solid #5E26FF00;
-  color: #ffffff;
-  font-size: 1.25rem;
-}
-
-.c6:hover {
-  border-bottom: 2px solid #5E26FF;
-}
-
-.c4 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-  margin-top: 24px;
-  margin-bottom: 8px;
-}
-
-.c5 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
 }
 
 <div>
   <div
     class="c0"
     color="card.error.foreground"
-    display="flex"
+    display="inline-block"
     overflow="hidden"
     style="word-break: break-word;"
     width="100%"
   >
     <div
       class="c1"
+      color="status.fail.foreground"
+      display="flex"
+      size="6"
     >
-      <div
+      <h3
         class="c2"
-        color="status.fail.foreground"
-        display="flex"
-        size="6"
       >
-        <h3
-          class="c3"
-        >
-          Er
-        </h3>
-      </div>
-      <h2
-        class="c4"
-        font-family="RT-Alias-Grotesk"
-        font-size="4"
-        font-weight="400"
-      >
-        Ledger only supports Chrome
-      </h2>
-      <p
-        class="c5"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option
-      </p>
+        Er
+      </h3>
     </div>
-    <a
-      class="c6"
-      color="core.white"
-      font-size="3"
-      href="https://www.google.com/chrome"
-      rel="noopener"
-      target="_blank"
+    <h2>
+      Ledger only supports Chrome
+    </h2>
+    <p
+      style="font-size: 1.125rem;"
     >
-      Install Google Chrome.
-    </a>
+      Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option
+    </p>
+    <p
+      style="font-size: 1.125rem;"
+    >
+      <a
+        href="https://www.google.com/chrome"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Install Google Chrome.
+      </a>
+    </p>
+    <div
+      class="c3"
+    >
+      Get help in 
+      <a
+        href="https://discord.gg/B9ju5Eu4Rq"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Discord
+      </a>
+       or hit us up on 
+      <a
+        href="https://twitter.com/glifio"
+        rel="noreferrer noopener"
+        target="_blank"
+      >
+        Twitter
+      </a>
+    </div>
   </div>
   <div
-    class="c7"
+    class="c4"
   >
     <button
-      class="c8"
+      class="c5"
       font-size="3"
       height="6"
       type="button"

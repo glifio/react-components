@@ -3,8 +3,8 @@ import Box from '../Box'
 import Button from '../Button'
 import Glyph from '../Glyph'
 import OnboardCard from '../Card/OnboardCard'
-import { StyledATag } from '../Link'
-import { Text, Title } from '../Typography'
+import { SmartLink } from '../Link/SmartLink'
+import { GLIF_DISCORD, GLIF_TWITTER } from '../../constants'
 
 const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
   let sendHomeCB = sendHome
@@ -16,32 +16,28 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
   return (
     <div>
       <OnboardCard
-        display='flex'
-        flexDirection='column'
-        borderColor='card.error.background'
         bg='card.error.background'
         color='card.error.foreground'
-        minHeight={11}
+        borderColor='card.error.background'
         style={{ wordBreak: 'break-word' }}
       >
-        <Box>
-          <Glyph color='status.fail.foreground' acronym='Er' />
-          <Title mt={4} mb={2}>
-            {title}
-          </Title>
-          <Text>{description}</Text>
-        </Box>
+        <Glyph color='status.fail.foreground' acronym='Er' />
+        <h2>{title}</h2>
+        <p style={{ fontSize: '1.125rem' }}>{description}</p>
         {linkhref && linkDisplay && (
-          <StyledATag
-            rel='noopener'
-            target='_blank'
-            href={linkhref}
-            fontSize={3}
-            color='core.white'
-          >
-            {linkDisplay}
-          </StyledATag>
+          <p style={{ fontSize: '1.125rem' }}>
+            <SmartLink href={linkhref}>{linkDisplay}</SmartLink>
+          </p>
         )}
+        <Box
+          mt='1.5em'
+          pt='1em'
+          borderTop='1px solid'
+          borderColor='card.error.foreground'
+        >
+          Get help in <SmartLink href={GLIF_DISCORD}>Discord</SmartLink> or hit
+          us up on <SmartLink href={GLIF_TWITTER}>Twitter</SmartLink>
+        </Box>
       </OnboardCard>
       <Box mt={5} textAlign='center'>
         <Button variant='secondary' title='Back' onClick={sendHomeCB} />
