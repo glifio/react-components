@@ -48,7 +48,6 @@ exports[`Error renders the error 1`] = `
   border-color: #660000;
   margin-top: 1.5em;
   padding-top: 1em;
-  line-height: 1.7;
 }
 
 .c4 {
@@ -130,20 +129,21 @@ exports[`Error renders the error 1`] = `
     <div
       class="c3"
     >
+      Get help in 
       <a
         href="https://discord.gg/B9ju5Eu4Rq"
         rel="noreferrer noopener"
         target="_blank"
       >
-        Hop in our Discord for any help!
+        Discord
       </a>
-      <br />
+       or hit us up on 
       <a
         href="https://twitter.com/glifio"
         rel="noreferrer noopener"
         target="_blank"
       >
-        Follow us on Twitter for updates
+        Twitter
       </a>
     </div>
   </div>
@@ -210,7 +210,6 @@ exports[`Error renders the story 1`] = `
   border-color: #660000;
   margin-top: 1.5em;
   padding-top: 1em;
-  line-height: 1.7;
 }
 
 .c4 {
@@ -292,20 +291,21 @@ exports[`Error renders the story 1`] = `
     <div
       class="c3"
     >
+      Get help in 
       <a
         href="https://discord.gg/B9ju5Eu4Rq"
         rel="noreferrer noopener"
         target="_blank"
       >
-        Hop in our Discord for any help!
+        Discord
       </a>
-      <br />
+       or hit us up on 
       <a
         href="https://twitter.com/glifio"
         rel="noreferrer noopener"
         target="_blank"
       >
-        Follow us on Twitter for updates
+        Twitter
       </a>
     </div>
   </div>

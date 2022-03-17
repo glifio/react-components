@@ -32,17 +32,11 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
         <Box
           mt='1.5em'
           pt='1em'
-          lineHeight='1.7'
           borderTop='1px solid'
           borderColor='card.error.foreground'
         >
-          <SmartLink href={GLIF_DISCORD}>
-            Hop in our Discord for any help!
-          </SmartLink>
-          <br />
-          <SmartLink href={GLIF_TWITTER}>
-            Follow us on Twitter for updates
-          </SmartLink>
+          Get help in <SmartLink href={GLIF_DISCORD}>Discord</SmartLink> or hit
+          us up on <SmartLink href={GLIF_TWITTER}>Twitter</SmartLink>
         </Box>
       </OnboardCard>
       <Box mt={5} textAlign='center'>
