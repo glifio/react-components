@@ -7,7 +7,8 @@ import {
   GLIF_EMAIL,
   GLIF_CODE,
   GLIF_NODES,
-  GLIF_DISCORD
+  GLIF_DISCORD,
+  GLIF_BLOG
 } from '../../constants'
 
 const Ul = styled.ul`
@@ -82,9 +83,7 @@ export default function Footer() {
               <SmartLink href={GLIF_DISCORD}>Discord</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={`${process.env.NEXT_PUBLIC_BLOG_URL}`}>
-                Blog
-              </SmartLink>
+              <SmartLink href={GLIF_BLOG}>Blog</SmartLink>
             </Li>
             <Li>
               <SmartLink href={GLIF_CODE}>Code</SmartLink>
