@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { useAddressQuery } from '../../../generated/graphql'
 import { useStateReadStateQuery, decodeActorCID } from '../../../utils'
 import Box from '../../Box'
-import { HR, P } from '../../Typography'
+import { P } from '../../Typography'
 import { Title } from '../generic'
 import { DetailCaption, Line } from '../detail'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
@@ -58,7 +58,7 @@ export function ActorState({ address }: { address: string }) {
   return (
     <Box>
       <Title>Overview</Title>
-      <HR />
+      <hr />
       <DetailCaption
         name='Actor Overview'
         captian='Locating this actor on the blockchain...'

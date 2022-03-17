@@ -10,7 +10,7 @@ import {
 import Box from '../../Box'
 import { IconClock } from '../../Icons'
 import { AddressLink } from '../../AddressLink'
-import { P, HR } from '../../Typography'
+import { P } from '../../Typography'
 import { Badge } from '../generic'
 import {
   Head,
@@ -92,7 +92,7 @@ export default function MessageDetail(props: MessageDetailProps) {
         speedUp={speedUp}
         cancel={cancel}
       />
-      <HR />
+      <hr />
       <DetailCaption
         name='Message Overview'
         captian='Scanning Filecoin for your message... This could take a minute.'
@@ -126,7 +126,7 @@ export default function MessageDetail(props: MessageDetailProps) {
               </>
             )}
           </Line>
-          <HR />
+          <hr />
           <Line label='From'>
             <AddressLink
               id={message.from.id}
@@ -141,7 +141,7 @@ export default function MessageDetail(props: MessageDetailProps) {
               hideCopyText={false}
             />
           </Line>
-          <HR />
+          <hr />
           <Line label='Value'>{value}</Line>
           <Line label='Transaction Fee'>{pending ? 'Pending' : totalCost}</Line>
           {!loading && methodName && (
@@ -149,11 +149,11 @@ export default function MessageDetail(props: MessageDetailProps) {
               <Badge color='purple'>{methodName.toUpperCase()}</Badge>
             </Line>
           )}
-          <HR />
+          <hr />
           <SeeMore onClick={() => setSeeMore(!seeMore)}>
             Click to see {seeMore ? 'less ↑' : 'more ↓'}
           </SeeMore>
-          <HR />
+          <hr />
           {seeMore && (
             <>
               <Line label='Gas Limit & Usage by Txn'>
@@ -192,7 +192,7 @@ export default function MessageDetail(props: MessageDetailProps) {
                   </Line>
                 </>
               )}
-              <HR />
+              <hr />
               <Parameters
                 params={{ params: message.params }}
                 actorName={actorName}

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 import Box from '../../Box'
-import { P, HR } from '../../Typography'
+import { P } from '../../Typography'
 import { AddressLink } from '../../AddressLink'
 import { ProposalHead, Line, Parameters } from '../detail'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
@@ -169,7 +169,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         approvalsUntilExecution={approvalsUntilExecution}
         isProposer={isProposer}
       />
-      <HR />
+      <hr />
       <Line label='Proposal ID'>{props.id}</Line>
       <Line label='Proposer'>
         {proposal?.approved[0] && (
@@ -183,7 +183,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
       <Line label='Approvals until execution'>
         {approvalsUntilExecution.toString()}
       </Line>
-      <HR />
+      <hr />
       <Parameters
         params={{
           params: {
@@ -196,11 +196,11 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         actorName='/multisig'
         depth={0}
       />
-      <HR />
+      <hr />
       <SeeMore onClick={() => setSeeMore(!seeMore)}>
         Click to see {seeMore ? 'less ↑' : 'more ↓'}
       </SeeMore>
-      <HR />
+      <hr />
       {seeMore && (
         <>
           <Line label='Next Transaction ID'>{stateData?.State.NextTxnID}</Line>
