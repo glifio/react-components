@@ -36,7 +36,7 @@ type BadgeProps = {
 Badge.propTypes = {
   color: PropTypes.oneOf(['purple', 'green', 'yellow', 'red', 'gray']),
   text: PropTypes.string.isRequired,
-  uppercase: PropTypes.bool,
+  uppercase?: PropTypes.bool,
   icon: PropTypes.node
 }
 
