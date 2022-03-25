@@ -1,15 +1,14 @@
 import { SubscriptionResult } from '@apollo/client'
+import { isCompositeType } from 'graphql'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
   MessageConfirmed,
   useMpoolUpdateSubscription,
   usePendingMessagesQuery,
-  useStateListMessagesQuery,
   ChainHeadSubscription,
   useChainHeadSubscription,
   useMessageQuery,
-  useMessageLowConfidenceQuery,
   usePendingMessageQuery,
   useMessagesQuery
 } from '../../../generated/graphql'
@@ -235,21 +234,13 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
 
 export const useMessage = (cid: string, height?: number) => {
   const {
-    data: highConfMsgData,
-    loading: highConfMsgLoading,
-    error: _highConfiMsgErr
+    data: msgData,
+    loading: msgLoading,
+    error: _msgErr
   } = useMessageQuery({
     variables: { cid, height },
-    pollInterval: 0
+    pollInterval: 30000
   })
-
-  const highConfiMsgErr = useMemo(() => {
-    if (_highConfiMsgErr?.message.toLowerCase().includes('failed to fetch')) {
-      return
-    }
-
-    return _highConfiMsgErr
-  }, [_highConfiMsgErr])
 
   const {
     data: pendingMsgData,
@@ -277,15 +268,23 @@ export const useMessage = (cid: string, height?: number) => {
     }
   }, [pendingMsgData, pendingMsgLoading, pendingMsgErr])
 
-  const {
-    data: lowConfMsgData,
-    loading: lowConfMsgLoading,
-    error: _lowConfMsgErr
-  } = useMessageLowConfidenceQuery({
-    variables: { cid },
-    pollInterval: !!pendingMsg ? 30000 : 0,
-    skip: pendingMsgLoading || !!highConfMsgData?.message
-  })
+  const msgErr = useMemo(() => {
+    if (_msgErr?.message.toLowerCase().includes('failed to fetch')) {
+      return
+    } else if (!!pendingMsg && _msgErr?.message.includes("didn't find msg")) {
+      return
+    } else if (_msgErr?.message.toLowerCase().includes('not found')) {
+      return
+    } else if (
+      _msgErr?.message
+        .toLowerCase()
+        .includes('failed to load message: blockstore: block not found')
+    ) {
+      return
+    }
+
+    return _msgErr
+  }, [_msgErr, pendingMsg])
 
   const {
     pushPendingMessage,
@@ -293,38 +292,17 @@ export const useMessage = (cid: string, height?: number) => {
     clearPendingMessage
   } = useSubmittedMessages()
 
-  const lowConfMsgErr = useMemo(() => {
-    // this error infers we are looking for the pending message but havent found it yet...
-    if (!!pendingMsg && _lowConfMsgErr?.message.includes("didn't find msg")) {
-      return
+  const pendingFound = useMemo(() => {
+    if (pendingMsg && !msgLoading && !msgErr) {
+      return !!msgData?.message
     }
-    // can be removed once https://github.com/glifio/react-components/issues/150 is closed
-    else if (
-      _lowConfMsgErr?.message.toLowerCase().includes('failed to fetch')
-    ) {
-      return
-    } else if (_lowConfMsgErr?.message.toLowerCase().includes('not found')) {
-      return
-    } else if (
-      _lowConfMsgErr?.message
-        .toLowerCase()
-        .includes('failed to load message: blockstore: block not found')
-    ) {
-      return
-    } else return _lowConfMsgErr
-  }, [_lowConfMsgErr, pendingMsg])
-
-  const pendingFoundInLowConfMsgs = useMemo(() => {
-    if (pendingMsg && !lowConfMsgLoading && !lowConfMsgErr) {
-      return !!lowConfMsgData?.messageLowConfidence
-    }
-  }, [pendingMsg, lowConfMsgData, lowConfMsgLoading, lowConfMsgErr])
+  }, [pendingMsg, msgData, msgLoading, msgErr])
 
   // this is to make sure if the message confirms in the transaction detail view
   // the cache used in the transaction history list is up to date
   // this is a non blocking operation, since we use refetch to get fresh data from the server
-  const { refetch } = useStateListMessagesQuery({
-    variables: { address: '' },
+  const { refetch } = useMessagesQuery({
+    variables: { address: '', limit: DEFAULT_LIMIT, offset: 0 },
     skip: true,
     pollInterval: 0
   })
@@ -340,7 +318,7 @@ export const useMessage = (cid: string, height?: number) => {
         })
       ])
     }
-    if (pendingFoundInLowConfMsgs && submittedMessages.length > 0) {
+    if (pendingFound && submittedMessages.length > 0) {
       const message = submittedMessages.find(m => m.cid === cid)
       if (message) {
         clearPendingMessage(cid)
@@ -351,7 +329,7 @@ export const useMessage = (cid: string, height?: number) => {
       }
     }
   }, [
-    pendingFoundInLowConfMsgs,
+    pendingFound,
     clearPendingMessage,
     submittedMessages,
     pushPendingMessage,
@@ -362,51 +340,28 @@ export const useMessage = (cid: string, height?: number) => {
   const loading = useMemo(() => {
     // low confidence messages can take a long time to load
     // if we have the message, use it
-    if (!highConfMsgLoading && !!highConfMsgData?.message) return false
+    if (!msgLoading && !!msgData?.message) return false
     if (!pendingMsgLoading && !!pendingMsgData?.pendingMessage) return false
-    if (!lowConfMsgLoading && !!lowConfMsgData?.messageLowConfidence)
-      return false
-    return highConfMsgLoading || lowConfMsgLoading || pendingMsgLoading
-  }, [
-    highConfMsgLoading,
-    lowConfMsgLoading,
-    pendingMsgLoading,
-    pendingMsgData,
-    highConfMsgData,
-    lowConfMsgData
-  ])
+    return msgLoading || pendingMsgLoading
+  }, [msgLoading, msgData, pendingMsgLoading, pendingMsgData])
 
-  const error = useMemo(
-    () => highConfiMsgErr || lowConfMsgErr || pendingMsgErr,
-    [highConfiMsgErr, lowConfMsgErr, pendingMsgErr]
-  )
+  const error = useMemo(() => msgErr || pendingMsgErr, [msgErr, pendingMsgErr])
 
   const message = useMemo<MessageConfirmed | MessagePending | null>(() => {
     const ready = !error && !loading
-    if (ready && pendingFoundInLowConfMsgs) {
-      return lowConfMsgData.messageLowConfidence as MessageConfirmed
+    if (ready && pendingFound) {
+      return msgData?.message as MessageConfirmed
     } else if (ready && pendingMsg) {
       return pendingMsg
-    } else if (
-      ready &&
-      (highConfMsgData?.message || lowConfMsgData?.messageLowConfidence)
-    ) {
-      return (highConfMsgData?.message ||
-        lowConfMsgData?.messageLowConfidence) as MessageConfirmed
+    } else if (ready && msgData?.message) {
+      return msgData.message as MessageConfirmed
     } else return null
-  }, [
-    highConfMsgData,
-    lowConfMsgData,
-    loading,
-    error,
-    pendingMsg,
-    pendingFoundInLowConfMsgs
-  ])
+  }, [msgData, loading, error, pendingMsg, pendingFound])
 
   return {
     message,
     loading,
     error,
-    pending: !pendingFoundInLowConfMsgs && !!pendingMsg
+    pending: !pendingFound && !!pendingMsg
   }
 }
