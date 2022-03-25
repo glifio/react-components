@@ -1,5 +1,4 @@
 import { SubscriptionResult } from '@apollo/client'
-import { isCompositeType } from 'graphql'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
