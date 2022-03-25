@@ -44,14 +44,6 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
             )
           }
         },
-        messageLowConfidence: {
-          read(_, { args, toReference }) {
-            return toReference({
-              __typename: 'MessageConfirmed',
-              cid: args.cid
-            })
-          }
-        },
         message: {
           read(_, { args, toReference }) {
             return toReference({
