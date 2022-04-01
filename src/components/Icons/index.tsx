@@ -1121,3 +1121,21 @@ export const IconSearch = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
     />
   </IconBase>
 ))
+
+export const IconWarn = () => (
+  <svg
+    width='22px'
+    height='20px'
+    viewBox='0 0 22 20'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <path
+      d='M11 7.74982V9.99986M11 14.4999H11.0112M3.24282 19H18.7572C20.4815 19 21.5586 17.1246 20.6965 15.6249L12.9393 2.12474C12.0771 0.625088 9.92286 0.625088 9.0607 2.12474L1.30352 15.6249C0.441363 17.1246 1.5185 19 3.24282 19Z'
+      stroke='var(--yellow-dark)'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+)

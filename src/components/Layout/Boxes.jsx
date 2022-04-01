@@ -1,11 +1,17 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
+import { IconWarn } from '../Icons'
 
 export const GenericBox = styled.div`
   padding: 1.5em;
   border-radius: 8px;
   text-align: center;
   word-break: break-word;
+
+  > svg:first-child {
+    display: block;
+    margin: 0 auto 1em;
+  }
 
   ${props =>
     props.large &&
@@ -27,10 +33,17 @@ export const InfoBox = styled(GenericBox)`
   color: var(--green-dark);
 `
 
-export const WarningBox = styled(GenericBox)`
+const WarningBoxEl = styled(GenericBox)`
   background-color: var(--yellow-light);
   color: var(--yellow-dark);
 `
+
+export const WarningBox = ({ children }) => (
+  <WarningBoxEl>
+    <IconWarn />
+    {children}
+  </WarningBoxEl>
+)
 
 export const ErrorBox = styled(GenericBox)`
   background-color: var(--red-light);
