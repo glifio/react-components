@@ -10,8 +10,6 @@ import { TABLE, TableCaption } from '../table'
 import { useAllMessages } from '../useAllMessages'
 import { Title } from '../generic'
 
-const DEFAULT_LIMIT = 10
-
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   const {
     messages,
@@ -20,13 +18,9 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     error,
     chainHeadSub,
     fetchMore,
-    fetchingMore
+    fetchingMore,
+    lastPage
   } = useAllMessages(props.address, props.offset)
-
-  const lastPage = useMemo(
-    () => messages?.length < DEFAULT_LIMIT,
-    [messages?.length]
-  )
 
   const isEmpty = useMemo(
     () => !pendingMsgs?.length && !messages?.length,

@@ -199,16 +199,23 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   ]) as MessagePending[]
 
   const [fetchingMore, setFetchingMore] = useState(false)
+  const [lastPage, setLastPage] = useState(false)
 
   async function onClickLoadMore() {
     setFetchingMore(true)
-    await fetchMoreMessages({
+    const messages = await fetchMoreMessages({
       variables: {
         offset: offset + DEFAULT_LIMIT,
         limit: DEFAULT_LIMIT
       }
     })
-    setOffset(offset + DEFAULT_LIMIT)
+    if (messages?.data?.messages.length < DEFAULT_LIMIT) {
+      setLastPage(true)
+    } else if (!messages?.data?.messages) {
+      setLastPage(true)
+    } else {
+      setOffset(offset + DEFAULT_LIMIT)
+    }
     setFetchingMore(false)
   }
 
@@ -227,6 +234,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     fetchMore: onClickLoadMore,
     fetchingMore,
     loading,
+    lastPage: lastPage || allMessages?.messages.length < offset,
     error
   }
 }
