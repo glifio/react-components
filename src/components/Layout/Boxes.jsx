@@ -2,9 +2,10 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 export const GenericBox = styled.div`
-  padding: 1em;
+  padding: 1.5em;
   border-radius: 8px;
   text-align: center;
+  word-break: break-word;
 
   ${props =>
     props.large &&
