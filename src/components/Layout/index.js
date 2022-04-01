@@ -1,3 +1,4 @@
+export * from './Boxes'
 export * from './Buttons'
 export * from './Columns'
 export * from './LandingPage'
