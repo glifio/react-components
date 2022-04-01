@@ -5,7 +5,7 @@ import PhishingBanner from '../PhishingBanner'
 import { AppHeader, AppHeaderProps } from '../AppHeader'
 import Footer from '../Footer'
 
-import { space } from '../theme'
+import { devices, space } from '../theme'
 
 const PageOuter = styled.div`
   display: flex;
@@ -19,8 +19,12 @@ const PageOuter = styled.div`
 const PageInner = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 2 * ${space()});
   gap: ${space()};
+
+  @media (min-width: ${devices.tablet}) {
+    min-height: calc(100vh - 2 * ${space()});
+  }
+
   > * {
     flex: 0 0 auto;
   }

@@ -21,11 +21,11 @@ export const OneColumn = styled.div`
 export const TwoColumns = styled.div`
   display: flex;
   flex-direction: column;
+  gap: ${space()};
 
   @media (min-width: ${devices.tablet}) {
     display: grid;
     align-items: start;
-    gap: ${space()};
     grid-template-columns: 1fr 1fr;
   }
 `

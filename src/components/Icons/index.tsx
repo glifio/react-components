@@ -3,7 +3,7 @@ import PropTypes, { oneOf, string } from 'prop-types'
 import styled, { keyframes, css } from 'styled-components'
 import { space, color, layout, flexbox, border, position } from 'styled-system'
 
-import theme, { devices, baseColors } from '../theme'
+import theme, { devices } from '../theme'
 
 const IconBase = styled.svg`
   ${position}
@@ -628,36 +628,22 @@ export const WalletIconHeaderFooter = () => (
   </AppIconHeaderFooterSvg>
 )
 
-export const IconCaution = forwardRef<
-  HTMLOrSVGElement,
-  { stroke: string } & any
->((props, ref) => (
-  <IconBase
-    width='20'
-    height='20'
-    viewBox='0 0 20 20'
+export const NodeIconHeaderFooter = () => (
+  <AppIconHeaderFooterSvg
+    width='680'
+    height='960'
+    viewBox='0 0 680 960'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
-    ref={ref}
-    {...props}
   >
     <path
-      d='M9.93109 7.56671V9.75571M9.93109 14.1337H9.94109M3.00308 18.5117H16.8591C18.3991 18.5117 19.3611 16.6872 18.5911 15.2282L11.6631 2.09422C10.8931 0.635259 8.96909 0.635259 8.19909 2.09422L1.27108 15.2282C0.501076 16.6872 1.46308 18.5117 3.00308 18.5117Z'
-      stroke='#F7C103'
-      strokeWidth='2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
+      fillRule='evenodd'
+      clipRule='evenodd'
+      d='M0 10L5.55509e-06 390C5.6473e-06 395.523 4.47716 400 10 400H70C75.5229 400 80 395.523 80 390L80 105C80 91.1929 91.1929 80 105 80H575C588.807 80 600 91.1929 600 105V670C600 675.523 604.477 680 610 680H670C675.523 680 680 675.523 680 670V70V10C680 4.4772 675.523 4.61581e-05 670 4.61581e-05H70.0307L70 0L10 8.01111e-06C4.47715 8.01111e-06 0 4.47715 0 10ZM470 140L210 140H150C144.477 140 140 144.477 140 150V210V330V350V390C140 395.523 144.477 400 150 400H530C535.523 400 540 395.523 540 390V350V330V210V150C540 144.477 535.523 140 530 140L470 140ZM460 245C460 231.193 448.807 220 435 220H245C231.193 220 220 231.193 220 245V295C220 308.807 231.193 320 245 320H435C448.807 320 460 308.807 460 295V245ZM470 460L10 460C4.47716 460 5.72205e-06 464.477 5.72205e-06 470V530C5.72205e-06 535.523 4.47715 540 10 540H430C446.569 540 460 553.431 460 570C460 586.569 446.569 600 430 600H210.035L210 600H150L149.965 600H10C4.47716 600 5.72205e-06 604.477 5.72205e-06 610V670C5.72205e-06 675.523 4.47715 680 10 680H110C126.569 680 140 693.432 140 710C140 726.569 126.569 740 110 740H10C4.47716 740 5.72205e-06 744.477 5.72205e-06 750V810C5.72205e-06 815.523 4.47717 820 10 820H110C126.569 820 140 833.432 140 850C140 866.569 126.569 880 110 880H10C4.47717 880 5.72205e-06 884.477 5.72205e-06 890V950C5.72205e-06 955.523 4.47716 960 10 960H150H210H670C675.523 960 680 955.523 680 950V890C680 884.477 675.523 880 670 880H250C233.431 880 220 866.569 220 850C220 833.432 233.431 820 250 820H670C675.523 820 680 815.523 680 810V750C680 744.477 675.523 740 670 740H250C233.431 740 220 726.569 220 710C220 693.432 233.431 680 250 680H470H530C535.523 680 540 675.523 540 670V610V530V470C540 464.477 535.523 460 530 460L470 460Z'
+      fill='black'
     />
-  </IconBase>
-))
-
-IconCaution.propTypes = {
-  stroke: string
-}
-
-IconCaution.defaultProps = {
-  stroke: baseColors.yellow.mid
-}
+  </AppIconHeaderFooterSvg>
+)
 
 export const IconMetaMaskFlask = (props: { width: string; height: string }) => (
   <svg
@@ -1104,3 +1090,21 @@ export const IconSearch = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
     />
   </IconBase>
 ))
+
+export const IconWarn = () => (
+  <svg
+    width='22px'
+    height='20px'
+    viewBox='0 0 22 20'
+    fill='none'
+    xmlns='http://www.w3.org/2000/svg'
+  >
+    <path
+      d='M11 7.74982V9.99986M11 14.4999H11.0112M3.24282 19H18.7572C20.4815 19 21.5586 17.1246 20.6965 15.6249L12.9393 2.12474C12.0771 0.625088 9.92286 0.625088 9.0607 2.12474L1.30352 15.6249C0.441363 17.1246 1.5185 19 3.24282 19Z'
+      stroke='var(--yellow-dark)'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+)
