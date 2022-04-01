@@ -645,37 +645,6 @@ export const NodeIconHeaderFooter = () => (
   </AppIconHeaderFooterSvg>
 )
 
-export const IconCaution = forwardRef<
-  HTMLOrSVGElement,
-  { stroke: string } & any
->((props, ref) => (
-  <IconBase
-    width='20'
-    height='20'
-    viewBox='0 0 20 20'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'
-    ref={ref}
-    {...props}
-  >
-    <path
-      d='M9.93109 7.56671V9.75571M9.93109 14.1337H9.94109M3.00308 18.5117H16.8591C18.3991 18.5117 19.3611 16.6872 18.5911 15.2282L11.6631 2.09422C10.8931 0.635259 8.96909 0.635259 8.19909 2.09422L1.27108 15.2282C0.501076 16.6872 1.46308 18.5117 3.00308 18.5117Z'
-      stroke='#F7C103'
-      strokeWidth='2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    />
-  </IconBase>
-))
-
-IconCaution.propTypes = {
-  stroke: string
-}
-
-IconCaution.defaultProps = {
-  stroke: baseColors.yellow.mid
-}
-
 export const IconMetaMaskFlask = (props: { width: string; height: string }) => (
   <svg
     width={props.width}
