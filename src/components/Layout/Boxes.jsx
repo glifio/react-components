@@ -14,11 +14,11 @@ export const GenericBox = styled.div`
 `
 
 GenericBox.propTypes = {
-  large: PropTypes.bool,
+  large: PropTypes.bool
 }
 
 GenericBox.defaultProps = {
-  large: false,
+  large: false
 }
 
 export const InfoBox = styled(GenericBox)`
