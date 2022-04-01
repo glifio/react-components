@@ -3,7 +3,7 @@ import PropTypes, { oneOf, string } from 'prop-types'
 import styled, { keyframes, css } from 'styled-components'
 import { space, color, layout, flexbox, border, position } from 'styled-system'
 
-import theme, { devices, baseColors } from '../theme'
+import theme, { devices } from '../theme'
 
 const IconBase = styled.svg`
   ${position}
