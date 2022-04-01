@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { devices } from '../theme'
-import { OneColumn, TwoColumns } from './Content'
+import { OneColumn, TwoColumns } from './Columns'
 
 export const LandingPageColumns = styled(TwoColumns)`
   > *:first-child {
