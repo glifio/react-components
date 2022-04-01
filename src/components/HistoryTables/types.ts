@@ -34,10 +34,7 @@ export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
   block: BLOCK_PROP_TYPE,
   from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
-  value: PropTypes.string.isRequired,
-  baseFeeBurn: PropTypes.string.isRequired,
-  overEstimationBurn: PropTypes.string.isRequired,
-  minerTip: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired
 })
 
 export const MESSAGE_PENDING_ROW_PROP_TYPE = PropTypes.shape({
