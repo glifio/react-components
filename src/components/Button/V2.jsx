@@ -57,6 +57,16 @@ const ButtonV2 = styled.button`
     `}
 
   ${props =>
+    props.gray &&
+    css`
+      color: ${props.theme.colors.core.darkgray};
+      border-color: ${props.theme.colors.core.darkgray};
+      svg path {
+        stroke: ${props.theme.colors.core.darkgray};
+      }
+    `}
+
+  ${props =>
     props.green &&
     css`
       color: ${props.theme.colors.white};
@@ -135,6 +145,7 @@ ButtonV2.propTypes = {
   white: PropTypes.bool,
   green: PropTypes.bool,
   red: PropTypes.bool,
+  gray: PropTypes.bool,
   disabled: PropTypes.bool
 }
 
@@ -143,6 +154,7 @@ ButtonV2.defaultProps = {
   white: false,
   green: false,
   red: false,
+  gray: false,
   disabled: false
 }
 
