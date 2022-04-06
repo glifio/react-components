@@ -21,6 +21,8 @@ const buttonStyle = css`
       color: ${props.theme.colors.black};
       border-color: ${props.theme.colors.black};
       background: transparent;
+      text-align: center;
+
       svg path {
         stroke: ${props.theme.colors.black};
       }
