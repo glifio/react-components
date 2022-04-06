@@ -38,102 +38,96 @@ const ButtonV2 = styled.button`
           stroke: ${props.theme.colors.white};
         }
       }
-    `}
 
-  ${props =>
-    props.large &&
-    css`
-      font-size: 1.25em;
-    `}
+      ${props.large &&
+      css`
+        font-size: 1.25em;
+      `}
 
-  ${props =>
-    props.white &&
-    css`
-      color: ${props.theme.colors.white};
-      border-color: ${props.theme.colors.white};
-      svg path {
-        stroke: ${props.theme.colors.white};
-      }
-    `}
-
-  ${props =>
-    props.gray &&
-    css`
-      color: ${props.theme.colors.core.darkgray};
-      border-color: ${props.theme.colors.core.darkgray};
-      svg path {
-        stroke: ${props.theme.colors.core.darkgray};
-      }
-    `}
-
-  ${props =>
-    props.green &&
-    css`
-      color: ${props.theme.colors.white};
-      border-color: ${props.theme.colors.green.primary};
-      background: ${props.theme.colors.green.primary};
-      svg path {
-        stroke: ${props.theme.colors.white};
-      }
-
-      &:hover {
+      ${props.white &&
+      css`
         color: ${props.theme.colors.white};
-        border-color: ${props.theme.colors.green.muted};
-        background: ${props.theme.colors.green.muted};
+        border-color: ${props.theme.colors.white};
         svg path {
           stroke: ${props.theme.colors.white};
         }
-      }
+      `}
 
-      &:active {
-        color: ${props.theme.colors.green.primary};
+      ${props.gray &&
+      css`
+        color: ${props.theme.colors.core.darkgray};
+        border-color: ${props.theme.colors.core.darkgray};
+        svg path {
+          stroke: ${props.theme.colors.core.darkgray};
+        }
+      `}
+
+      ${props.green &&
+      css`
+        color: ${props.theme.colors.white};
         border-color: ${props.theme.colors.green.primary};
-        background: ${props.theme.colors.white};
-        svg path {
-          stroke: ${props.theme.colors.green.primary};
-        }
-      }
-    `}
-
-  ${props =>
-    props.red &&
-    css`
-      color: ${props.theme.colors.white};
-      border-color: ${props.theme.colors.red.base};
-      background: ${props.theme.colors.red.base};
-      svg path {
-        stroke: ${props.theme.colors.white};
-      }
-
-      &:hover {
-        color: ${props.theme.colors.white};
-        border-color: ${props.theme.colors.red.light};
-        background: ${props.theme.colors.red.light};
+        background: ${props.theme.colors.green.primary};
         svg path {
           stroke: ${props.theme.colors.white};
         }
-      }
 
-      &:active {
-        color: ${props.theme.colors.red.base};
-        border-color: ${props.theme.colors.red.base};
-        background: ${props.theme.colors.white};
-        svg path {
-          stroke: ${props.theme.colors.red.base};
+        &:hover {
+          color: ${props.theme.colors.white};
+          border-color: ${props.theme.colors.green.muted};
+          background: ${props.theme.colors.green.muted};
+          svg path {
+            stroke: ${props.theme.colors.white};
+          }
         }
-      }
-    `}
 
-  ${props =>
-    props.disabled &&
-    css`
-      cursor: default;
-      color: ${props.theme.colors.gray.medium};
-      border-color: ${props.theme.colors.gray.medium};
-      pointer-events: none;
-      svg path {
-        stroke: ${props.theme.colors.gray.medium};
-      }
+        &:active {
+          color: ${props.theme.colors.green.primary};
+          border-color: ${props.theme.colors.green.primary};
+          background: ${props.theme.colors.white};
+          svg path {
+            stroke: ${props.theme.colors.green.primary};
+          }
+        }
+      `}
+
+      ${props.red &&
+      css`
+        color: ${props.theme.colors.white};
+        border-color: ${props.theme.colors.red.base};
+        background: ${props.theme.colors.red.base};
+        svg path {
+          stroke: ${props.theme.colors.white};
+        }
+
+        &:hover {
+          color: ${props.theme.colors.white};
+          border-color: ${props.theme.colors.red.light};
+          background: ${props.theme.colors.red.light};
+          svg path {
+            stroke: ${props.theme.colors.white};
+          }
+        }
+
+        &:active {
+          color: ${props.theme.colors.red.base};
+          border-color: ${props.theme.colors.red.base};
+          background: ${props.theme.colors.white};
+          svg path {
+            stroke: ${props.theme.colors.red.base};
+          }
+        }
+      `}
+
+      ${props.disabled &&
+      css`
+        cursor: default;
+        color: ${props.theme.colors.gray.medium};
+        border-color: ${props.theme.colors.gray.medium};
+        pointer-events: none;
+        svg path {
+          stroke: ${props.theme.colors.gray.medium};
+        }
+      `}
     `}
 
   ${layout}
