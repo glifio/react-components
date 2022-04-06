@@ -37,6 +37,11 @@ White.args = {
   white: true
 }
 
+export const Gray = Template.bind({})
+Gray.args = {
+  gray: true
+}
+
 export const Green = Template.bind({})
 Green.args = {
   green: true
