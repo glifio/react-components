@@ -23,11 +23,7 @@ const TemplateIcon = args => (
     Click me
   </ButtonV2>
 )
-const TemplateLink = args => (
-  <ButtonV2Link {...args}>
-    Click me
-  </ButtonV2Link>
-)
+const TemplateLink = args => <ButtonV2Link {...args}>Click me</ButtonV2Link>
 
 export const Base = Template.bind({})
 Base.args = {}
