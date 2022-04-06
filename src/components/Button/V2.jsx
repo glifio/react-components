@@ -167,6 +167,7 @@ ButtonV2.defaultProps = buttonDefaultProps
  * ButtonV2Link
  */
 export const ButtonV2Link = styled(SmartLink)`
+  text-decoration: none;
   ${buttonStyle}
 `
 ButtonV2Link.propTypes = {
