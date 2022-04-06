@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { LotusMessage } from '@glif/filecoin-message'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
+import { validateCID } from '../validateCID'
 import { logger } from '../../logger'
 
 const lotusRPC = new LotusRPCEngine({
@@ -25,18 +26,24 @@ export const useGetMessage = (cid: string): UseGetMessageResult => {
     setMessage(null)
     setLoading(true)
     setError(null)
-    lotusRPC
-      .request('ChainGetMessage', { '/': cid })
-      .then((m: LotusMessage) => {
-        setLoading(false)
-        setMessage(m)
-        logger.info(m)
-      })
-      .catch((e: Error) => {
-        setLoading(false)
-        setError(e)
-        logger.error(e)
-      })
+    if (validateCID(cid)) {
+      lotusRPC
+        .request('ChainGetMessage', { '/': cid })
+        .then((m: LotusMessage) => {
+          setLoading(false)
+          setMessage(m)
+          logger.info(m)
+        })
+        .catch((e: Error) => {
+          logger.error(e)
+          setLoading(false)
+          setError(e)
+        })
+    } else {
+      const e = new Error('Invalid CID')
+      logger.error(e)
+      setError(e)
+    }
   }, [cid])
 
   return { message, loading, error }
