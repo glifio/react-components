@@ -3,7 +3,6 @@ import { LotusMessage } from '@glif/filecoin-message'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
 import { validateCID } from '../validateCID'
-import { logger } from '../../logger'
 
 const lotusRPC = new LotusRPCEngine({
   apiAddress:
@@ -24,25 +23,16 @@ export const useGetMessage = (cid: string): UseGetMessageResult => {
 
   useEffect(() => {
     setMessage(null)
-    setLoading(true)
     setError(null)
     if (validateCID(cid)) {
+      setLoading(true)
       lotusRPC
         .request('ChainGetMessage', { '/': cid })
-        .then((m: LotusMessage) => {
-          setLoading(false)
-          setMessage(m)
-          logger.info(m)
-        })
-        .catch((e: Error) => {
-          logger.error(e)
-          setLoading(false)
-          setError(e)
-        })
+        .then((m: LotusMessage) => setMessage(m))
+        .catch((e: Error) => setError(e))
+        .finally(() => setLoading(false))
     } else {
-      const e = new Error('Invalid CID')
-      logger.error(e)
-      setError(e)
+      setError(new Error('Invalid CID'))
     }
   }, [cid])
 
