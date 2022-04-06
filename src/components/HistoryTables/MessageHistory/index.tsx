@@ -82,11 +82,9 @@ type MessageHistoryTableProps = {
 MessageHistoryTable.propTypes = {
   offset: PropTypes.number,
   address: ADDRESS_PROPTYPE,
-  cidHref: PropTypes.func
+  cidHref: PropTypes.func.isRequired
 }
 
 MessageHistoryTable.defaultProps = {
-  offset: 0,
-  // TODO
-  cidHref: (cid: string) => `/#/detail/${cid}`
+  offset: 0
 }
