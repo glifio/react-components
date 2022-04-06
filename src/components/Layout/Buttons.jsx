@@ -7,7 +7,7 @@ export const FullWidthButtons = styled.div`
   gap: ${space()};
   margin: 3em 0;
 
-  button {
+  a, button {
     white-space: normal;
     word-break: break-word;
   }
