@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 
@@ -17,7 +18,7 @@ export function SmartLink({ href, children, ...restProps }: SmartLinkProps) {
 
 interface SmartLinkProps {
   href: string
-  children: JSX.Element | Array<JSX.Element>
+  children: ReactNode
 }
 
 SmartLink.propTypes = {
