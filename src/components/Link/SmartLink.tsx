@@ -3,13 +3,13 @@ import Link from 'next/link'
 
 // uses next/link for internal page routing
 // uses <a> tag for external page routing
-export const SmartLink = ({ href, children }: SmartLinkProps) => {
+export function SmartLink({ href, children, ...restProps }: SmartLinkProps) {
   return href.charAt(0) === '/' ? (
     <Link href={href}>
-      <a>{children}</a>
+      <a {...restProps}>{children}</a>
     </Link>
   ) : (
-    <a href={href} target='_blank' rel='noreferrer noopener'>
+    <a href={href} target='_blank' rel='noreferrer noopener' {...restProps}>
       {children}
     </a>
   )
