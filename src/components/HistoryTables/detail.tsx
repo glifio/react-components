@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Address, MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
-import ButtonV2 from '../Button/V2'
+import { ButtonV2 } from '../Button/V2'
 import { AddressLink } from '../AddressLink'
 import { Title, Badge } from './generic'
 import {

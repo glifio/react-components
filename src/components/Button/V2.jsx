@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { layout, space } from 'styled-system'
 import PropTypes from 'prop-types'
 
-const ButtonV2 = styled.button`
+const buttonStyle = css`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -134,7 +134,7 @@ const ButtonV2 = styled.button`
   ${space}
 `
 
-ButtonV2.propTypes = {
+const buttonPropTypes = {
   large: PropTypes.bool,
   white: PropTypes.bool,
   green: PropTypes.bool,
@@ -143,7 +143,7 @@ ButtonV2.propTypes = {
   disabled: PropTypes.bool
 }
 
-ButtonV2.defaultProps = {
+const buttonDefaultProps = {
   large: false,
   white: false,
   green: false,
@@ -152,4 +152,6 @@ ButtonV2.defaultProps = {
   disabled: false
 }
 
-export default ButtonV2
+export const ButtonV2 = styled.button`${buttonStyle}`
+ButtonV2.propTypes = buttonPropTypes
+ButtonV2.defaultProps = buttonDefaultProps

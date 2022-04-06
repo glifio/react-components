@@ -1,4 +1,4 @@
-import ButtonV2 from './V2'
+import { ButtonV2 } from './V2'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { IconSpeedUp } from '../Icons'
