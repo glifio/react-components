@@ -152,6 +152,8 @@ const buttonDefaultProps = {
   disabled: false
 }
 
-export const ButtonV2 = styled.button`${buttonStyle}`
+export const ButtonV2 = styled.button`
+  ${buttonStyle}
+`
 ButtonV2.propTypes = buttonPropTypes
 ButtonV2.defaultProps = buttonDefaultProps
