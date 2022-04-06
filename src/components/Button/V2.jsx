@@ -154,7 +154,6 @@ const buttonDefaultProps = {
   disabled: false
 }
 
-
 /*
  * ButtonV2
  */
@@ -163,7 +162,6 @@ export const ButtonV2 = styled.button`
 `
 ButtonV2.propTypes = buttonPropTypes
 ButtonV2.defaultProps = buttonDefaultProps
-
 
 /*
  * ButtonV2Link
