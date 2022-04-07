@@ -19,7 +19,7 @@ export const useGetReplaceMessageGasParams = (
   message?: LotusMessage
 ): UseGetReplaceMessageGasParamsResult => {
   const [gasParams, setGasParams] = useState<GasParams | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
