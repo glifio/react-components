@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { IconWarn } from '../Icons'
 
 /**
- * Generic box styling
+ * Box base styling
  */
-export const GenericBox = styled.div`
+const BoxBase = styled.div`
   padding: 1.5em;
   border-radius: 8px;
   text-align: center;
@@ -23,18 +23,18 @@ export const GenericBox = styled.div`
     `}
 `
 
-GenericBox.propTypes = {
+BoxBase.propTypes = {
   large: PropTypes.bool
 }
 
-GenericBox.defaultProps = {
+BoxBase.defaultProps = {
   large: false
 }
 
 /**
  * Info box
  */
-export const InfoBox = styled(GenericBox)`
+export const InfoBox = styled(BoxBase)`
   background-color: var(--green-light);
   color: var(--green-dark);
 `
@@ -42,7 +42,7 @@ export const InfoBox = styled(GenericBox)`
 /**
  * Warning box
  */
-const WarningBoxEl = styled(GenericBox)`
+const WarningBoxEl = styled(BoxBase)`
   background-color: var(--yellow-light);
   color: var(--yellow-dark);
 `
@@ -57,7 +57,7 @@ export const WarningBox = ({ children }) => (
 /**
  * Error box
  */
-export const ErrorBox = styled(GenericBox)`
+export const ErrorBox = styled(BoxBase)`
   background-color: var(--red-light);
   color: var(--red-dark);
 `
