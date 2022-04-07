@@ -7,10 +7,11 @@ import Link from 'next/link'
 export function SmartLink({
   href,
   children,
+  download,
   className,
   onClick
 }: SmartLinkProps) {
-  return href.charAt(0) === '/' ? (
+  return href?.charAt(0) === '/' ? (
     <Link href={href}>
       <a className={className} onClick={onClick}>
         {children}
@@ -21,6 +22,7 @@ export function SmartLink({
       href={href}
       target='_blank'
       rel='noreferrer noopener'
+      download={download}
       className={className}
       onClick={onClick}
     >
@@ -32,6 +34,7 @@ export function SmartLink({
 interface SmartLinkProps {
   href: string
   children: ReactNode
+  download?: string
   className?: string
   onClick?: (...args: any[]) => void
 }
@@ -42,6 +45,7 @@ SmartLink.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
+  download: PropTypes.string,
   className: PropTypes.string,
   onClick: PropTypes.func
 }
