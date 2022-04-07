@@ -1,4 +1,5 @@
 import { SubscriptionResult } from '@apollo/client'
+import { BigNumber } from '@glif/filecoin-number'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
@@ -365,10 +366,27 @@ export const useMessage = (cid: string, height?: number) => {
     } else return null
   }, [msgData, loading, error, pendingMsg, pendingFound])
 
+  const pending = useMemo(
+    () => !pendingFound && !!pendingMsg,
+    [pendingFound, pendingMsg]
+  )
+  // if true, the message will not have its gas execution information attached to it
+  const messageConfirmedInChainHead = useMemo(() => {
+    if (pending) return false
+    const msg = message as MessageConfirmed
+    const bnBaseFeeBurn = new BigNumber(msg?.baseFeeBurn)
+    const bnGasBurned = new BigNumber(msg?.gasBurned)
+
+    return (
+      !!msg && !bnBaseFeeBurn.isGreaterThan(0) && !bnGasBurned.isGreaterThan(0)
+    )
+  }, [message, pending])
+
   return {
     message,
     loading,
     error,
-    pending: !pendingFound && !!pendingMsg
+    pending,
+    messageConfirmedInChainHead
   }
 }
