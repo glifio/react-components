@@ -11,6 +11,14 @@ const BoxBase = styled.div`
   text-align: center;
   word-break: break-word;
 
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
   > svg:first-child {
     display: block;
     margin: 0 auto 1em;
