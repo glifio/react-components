@@ -34,7 +34,7 @@ BoxBase.defaultProps = {
 /**
  * Standard Box
  */
- export const StandardBox = styled(BoxBase)`
+export const StandardBox = styled(BoxBase)`
   background-color: var(--blue-gray);
 `
 
