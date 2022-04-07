@@ -47,6 +47,13 @@ export const StandardBox = styled(BoxBase)`
 `
 
 /**
+ * Shadow Box
+ */
+export const ShadowBox = styled(BoxBase)`
+  box-shadow: 0 0 0.5em var(--gray-light);
+`
+
+/**
  * Info box
  */
 export const InfoBox = styled(BoxBase)`
