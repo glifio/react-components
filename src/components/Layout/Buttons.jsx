@@ -17,7 +17,7 @@ export const FullWidthButtons = styled.div`
 export const ButtonRow = styled.div`
   display: flex;
   gap: ${space()};
-  margin: 3em 0;
+  margin: 1.5em 0;
 `
 
 export const ButtonRowRight = styled(ButtonRow)`
