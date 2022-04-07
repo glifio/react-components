@@ -24,6 +24,10 @@ const BoxBase = styled.div`
     margin: 0 auto 1em;
   }
 
+  > header:first-child {
+    margin: -1.5em -1.5em 1.5em -1.5em;
+  }
+
   ${props =>
     props.large &&
     css`
