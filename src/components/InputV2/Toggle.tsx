@@ -29,8 +29,8 @@ const ToggleLabel = styled(Label)`
     ${props =>
       props.disabled &&
       css`
-        border-color: var(--gray-light);
-        background-color: var(--gray-light);
+        border-color: var(--gray-light) !important;
+        background-color: var(--gray-light) !important;
       `}
 
     &::after {
@@ -60,6 +60,7 @@ const ToggleLabel = styled(Label)`
 export const Toggle = ({
   label,
   disabled,
+  controlled,
   checked,
   setChecked
 }: ToggleProps) => (
@@ -68,7 +69,8 @@ export const Toggle = ({
     <span className='wrapper'>
       <input
         type='checkbox'
-        defaultChecked={checked}
+        checked={controlled ? checked : undefined}
+        defaultChecked={controlled ? undefined : checked}
         onChange={e => setChecked(e.target.checked)}
       />
       <span className='toggle'></span>
@@ -79,6 +81,7 @@ export const Toggle = ({
 interface ToggleProps {
   label: string
   disabled: boolean
+  controlled: boolean
   checked: boolean
   setChecked: (checked: boolean) => void
 }
@@ -86,11 +89,15 @@ interface ToggleProps {
 Toggle.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
-  checked: PropTypes.bool.isRequired,
-  setChecked: PropTypes.func.isRequired
+  controlled: PropTypes.bool,
+  checked: PropTypes.bool,
+  setChecked: PropTypes.func
 }
 
 Toggle.defaultProps = {
   label: '',
-  disabled: false
+  disabled: false,
+  controlled: true,
+  checked: false,
+  setChecked: () => {}
 }
