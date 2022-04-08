@@ -5,6 +5,7 @@ export const Text = ({ label, disabled, controlled, type, text, setText }: TextP
   <Label disabled={disabled}>
     {label && <span>{label}</span>}
     <input
+      disabled={disabled}
       type={type}
       value={controlled ? text : undefined}
       defaultValue={controlled ? undefined : text}
