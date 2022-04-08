@@ -1,7 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { QueryHookOptions } from '@apollo/client'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
-import { useEffect } from 'react'
 import { Address } from '../../generated/graphql'
 import { decodeActorCID } from '..'
 
@@ -23,6 +22,7 @@ export type LotusRPCActorState<T> = {
 
 export type MsigState<T = Address> = {
   InitialBalance: string
+  AvailableBalance: string
   NextTxnID: number
   NumApprovalsThreshold: number
   Signers: T[]
@@ -62,24 +62,30 @@ export const useStateReadStateQuery = <T = any>(
         )
 
         if (res && decodeActorCID(res.Code['/']).includes('multisig')) {
+          res.State = res.State as MsigState<string>
           const signers = await Promise.all(
-            (res.State as MsigState<string>).Signers.map(
-              async (signer: string) => {
-                const robust = await lCli.request<string>(
-                  'StateAccountKey',
-                  signer,
-                  null
-                )
-                return { id: signer, robust } as Address
-              }
-            )
+            res.State.Signers.map(async (signer: string) => {
+              const robust = await lCli.request<string>(
+                'StateAccountKey',
+                signer,
+                null
+              )
+              return { id: signer, robust } as Address
+            })
+          )
+
+          const availableBalance = await lCli.request<string>(
+            'MsigGetAvailableBalance',
+            baseOptions.variables.address,
+            null
           )
 
           setActorState({
             ...res,
             State: {
               ...res.State,
-              Signers: signers
+              Signers: signers,
+              AvailableBalance: availableBalance
             }
           })
         } else if (res) {
