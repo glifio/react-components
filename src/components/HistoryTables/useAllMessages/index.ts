@@ -1,7 +1,6 @@
 import { SubscriptionResult } from '@apollo/client'
 import { BigNumber } from '@glif/filecoin-number'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { isAddrEqual } from '../../../utils/isAddrEqual'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
   MessageConfirmed,
@@ -24,48 +23,7 @@ export const usePendingMessages = (
   address: string,
   chainHeadSubscription: SubscriptionResult<ChainHeadSubscription, any>
 ) => {
-  const [pendingMsgList, setPendingMsgList] = useState<
-    Record<string, MessagePending[]>
-  >({})
-
-  // only update the pending message list when there is a new message to add... w/out infinite loops
-  // this function protects against apollo returning stale data... which i can't figure out why its doing here...
-  const safeUpdate = useCallback(
-    (newMessages: MessagePending[]) => {
-      const pendingCIDs = new Set(
-        (pendingMsgList[address] || []).map(({ cid }) => cid)
-      )
-      const msgsMissing =
-        newMessages.some(({ cid }) => !pendingCIDs.has(cid)) ||
-        !pendingMsgList[address]
-
-      const msgsFromCorrectAddr = newMessages.every(msg => {
-        const toAddrMatch = isAddrEqual(msg.to, address)
-        const fromAddrMatch = isAddrEqual(msg.from, address)
-
-        return toAddrMatch || fromAddrMatch
-      })
-      const shouldUpdate = msgsMissing && msgsFromCorrectAddr
-
-      if (shouldUpdate) {
-        setPendingMsgList(oldState => {
-          return {
-            ...oldState,
-            [address]: uniqueifyMsgs(
-              [...newMessages],
-              [...(pendingMsgList[address] || [])]
-            ) as MessagePending[]
-          }
-        })
-      }
-    },
-    [address, pendingMsgList, setPendingMsgList]
-  )
-  /**
-   * ADD PENDING MESSAGES TO THE LIST
-   */
-
-  // from our static query
+  // pending messages from our static query
   const pendingMsgs = usePendingMessagesQuery({
     variables: {
       address: convertAddrToPrefix(address),
@@ -76,33 +34,30 @@ export const usePendingMessages = (
     pollInterval: 0,
     fetchPolicy: 'network-only'
   })
-  if (!pendingMsgs?.loading && pendingMsgs.data) {
-    console.log('here74', pendingMsgs.data)
-    safeUpdate((pendingMsgs?.data?.pendingMessages as MessagePending[]) || [])
-  }
 
-  // from our subscription
+  // pending messages from our subscription
   const pendingMsgSub = useMpoolUpdateSubscription({
     variables: {
       address: convertAddrToPrefix(address)
     },
     shouldResubscribe: true
   })
-  if (!pendingMsgSub?.loading && !pendingMsgSub.error) {
-    if (pendingMsgSub.data.mpoolUpdate.type === 0) {
-      console.log('here86')
-      safeUpdate([pendingMsgSub.data.mpoolUpdate.message as MessagePending])
-    }
-  }
 
-  // from submitted messages from wallet or safe
+  // pending messages submitted messages from wallet or safe
   const { messages: submittedMessages } = useSubmittedMessages()
-  useEffect(() => {
-    if (submittedMessages.length) {
-      console.log('here95')
-      // safeUpdate([...submittedMessages])
+
+  const pendingMsgList = useMemo<MessagePending[]>(() => {
+    const msgs = [
+      ...submittedMessages,
+      ...(pendingMsgs?.data?.pendingMessages || [])
+    ]
+
+    if (pendingMsgSub?.data?.mpoolUpdate?.type === 0) {
+      msgs.push(pendingMsgSub?.data?.mpoolUpdate?.message)
     }
-  }, [safeUpdate, submittedMessages])
+
+    return uniqueifyMsgs(msgs as MessagePending[])
+  }, [pendingMsgs?.data, submittedMessages, pendingMsgSub?.data?.mpoolUpdate])
 
   // should refresh returns true after a few epochs have past since a message left the mpool
   const [shouldRefresh, setShouldRefresh] = useState(false)
@@ -146,7 +101,7 @@ export const usePendingMessages = (
     }
   }, [chainHeadSubscription, setShouldRefresh, shouldRefresh])
   return {
-    pendingMsgList: pendingMsgList[address] || [],
+    pendingMsgList,
     shouldRefresh,
     setShouldRefresh,
     loading: pendingMsgs?.loading,
