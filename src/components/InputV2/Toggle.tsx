@@ -6,19 +6,20 @@ const ToggleLabel = styled(Label)`
   .wrapper {
     display: inline-block;
     position: relative;
+    padding: 0.5em 0;
   }
 
   input {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     width: 0;
     height: 0;
     opacity: 0;
   }
 
   .toggle {
-    display: block;
+    display: inline-block;
     position: relative;
     width: 2.25em;
     height: 1.5em;
