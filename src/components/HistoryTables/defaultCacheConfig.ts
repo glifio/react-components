@@ -8,7 +8,11 @@ import { removeMessageDups } from './utils'
 const parseParams = (_: any, incoming: any) => {
   try {
     if (incoming) {
-      return JSON.parse(incoming)
+      let params = JSON.parse(incoming)
+      if (typeof params.Value === 'object' && !!params.Value.Int) {
+        params.Value = params.Value.Int
+      }
+      return params
     }
     return null
   } catch (e) {
@@ -22,15 +26,6 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
   typePolicies: {
     Query: {
       fields: {
-        messagesConfirmed: {
-          // Cache separate results based on address passed as arg
-          keyArgs: ['address'],
-          // Concatenate the incoming list items with
-          // the existing list items.
-          merge(existing = [], incoming) {
-            return [...existing, ...incoming]
-          }
-        },
         messages: {
           // Cache separate results based on address passed as arg
           keyArgs: ['address'],

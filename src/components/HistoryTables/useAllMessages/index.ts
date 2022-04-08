@@ -1,6 +1,7 @@
 import { SubscriptionResult } from '@apollo/client'
 import { BigNumber } from '@glif/filecoin-number'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { isAddrEqual } from '../../../utils/isAddrEqual'
 import {
   MessagePending,
   MessageConfirmed,
@@ -23,25 +24,42 @@ export const usePendingMessages = (
   address: string,
   chainHeadSubscription: SubscriptionResult<ChainHeadSubscription, any>
 ) => {
-  const [pendingMsgList, setPendingMsgList] = useState<MessagePending[]>([])
+  const [pendingMsgList, setPendingMsgList] = useState<
+    Record<string, MessagePending[]>
+  >({})
 
   // only update the pending message list when there is a new message to add... w/out infinite loops
+  // this function protects against apollo returning stale data... which i can't figure out why its doing here...
   const safeUpdate = useCallback(
     (newMessages: MessagePending[]) => {
-      const pendingCIDs = new Set(pendingMsgList.map(({ cid }) => cid))
+      const pendingCIDs = new Set(
+        (pendingMsgList[address] || []).map(({ cid }) => cid)
+      )
+      const msgsMissing =
+        newMessages.some(({ cid }) => !pendingCIDs.has(cid)) ||
+        !pendingMsgList[address]
 
-      const shouldUpdate = newMessages.some(({ cid }) => !pendingCIDs.has(cid))
+      const msgsFromCorrectAddr = newMessages.every(msg => {
+        const toAddrMatch = isAddrEqual(msg.to, address)
+        const fromAddrMatch = isAddrEqual(msg.from, address)
+
+        return toAddrMatch || fromAddrMatch
+      })
+      const shouldUpdate = msgsMissing && msgsFromCorrectAddr
 
       if (shouldUpdate) {
-        setPendingMsgList(
-          uniqueifyMsgs(
-            [...newMessages],
-            [...pendingMsgList]
-          ) as MessagePending[]
-        )
+        setPendingMsgList(oldState => {
+          return {
+            ...oldState,
+            [address]: uniqueifyMsgs(
+              [...newMessages],
+              [...(pendingMsgList[address] || [])]
+            ) as MessagePending[]
+          }
+        })
       }
     },
-    [pendingMsgList, setPendingMsgList]
+    [address, pendingMsgList, setPendingMsgList]
   )
   /**
    * ADD PENDING MESSAGES TO THE LIST
@@ -55,9 +73,11 @@ export const usePendingMessages = (
       limit: Number.MAX_SAFE_INTEGER
     },
     // dont poll here because we rely on the subscription and StateListMessage query for updates
-    pollInterval: 0
+    pollInterval: 0,
+    fetchPolicy: 'network-only'
   })
   if (!pendingMsgs?.loading && pendingMsgs.data) {
+    console.log('here74', pendingMsgs.data)
     safeUpdate((pendingMsgs?.data?.pendingMessages as MessagePending[]) || [])
   }
 
@@ -70,6 +90,7 @@ export const usePendingMessages = (
   })
   if (!pendingMsgSub?.loading && !pendingMsgSub.error) {
     if (pendingMsgSub.data.mpoolUpdate.type === 0) {
+      console.log('here86')
       safeUpdate([pendingMsgSub.data.mpoolUpdate.message as MessagePending])
     }
   }
@@ -78,7 +99,8 @@ export const usePendingMessages = (
   const { messages: submittedMessages } = useSubmittedMessages()
   useEffect(() => {
     if (submittedMessages.length) {
-      safeUpdate([...submittedMessages])
+      console.log('here95')
+      // safeUpdate([...submittedMessages])
     }
   }, [safeUpdate, submittedMessages])
 
@@ -124,7 +146,7 @@ export const usePendingMessages = (
     }
   }, [chainHeadSubscription, setShouldRefresh, shouldRefresh])
   return {
-    pendingMsgList,
+    pendingMsgList: pendingMsgList[address] || [],
     shouldRefresh,
     setShouldRefresh,
     loading: pendingMsgs?.loading,
