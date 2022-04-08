@@ -6,7 +6,7 @@ export const Label = styled.label`
   align-items: center;
   justify-content: space-between;
   gap: ${space()};
-  
+
   > *:last-child {
     flex: 0 0 50%;
     text-align: right;
