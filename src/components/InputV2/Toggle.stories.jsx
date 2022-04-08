@@ -15,7 +15,7 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <Toggle {...args}>Click me</Toggle>
+const Template = args => <Toggle {...args} />
 
 export const Base = Template.bind({})
 let baseChecked = false
