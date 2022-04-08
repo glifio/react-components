@@ -8,18 +8,17 @@ const buttonStyle = css`
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   white-space: nowrap;
   cursor: pointer;
   gap: 0.75rem;
   padding: 0.5em 0.75em;
+  color: var(--black);
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
-  
-  color: var(--black);
   border-color: var(--black);
   background: transparent;
-  text-align: center;
 
   svg path {
     stroke: var(--black);
@@ -34,10 +33,11 @@ const buttonStyle = css`
   }
 
   &:active {
-    color: var(--white);
-    background: var(--purple-medium);
+    color: var(--white) !important;
+    border-color: var(--purple-medium) !important;
+    background: var(--purple-medium) !important;
     svg path {
-      stroke: var(--white);
+      stroke: var(--white) !important;
     }
   }
 
@@ -69,27 +69,18 @@ const buttonStyle = css`
       ${props.green &&
       css`
         color: var(--white);
-        border-color: ${props.theme.colors.green.primary};
-        background: ${props.theme.colors.green.primary};
+        border-color: var(--green-medium);
+        background: var(--green-medium);
         svg path {
           stroke: var(--white);
         }
 
         &:hover {
-          color: var(--white);
-          border-color: ${props.theme.colors.green.muted};
-          background: ${props.theme.colors.green.muted};
-          svg path {
-            stroke: var(--white);
-          }
-        }
-
-        &:active {
-          color: ${props.theme.colors.green.primary};
-          border-color: ${props.theme.colors.green.primary};
+          color: var(--green-medium);
+          border-color: var(--green-medium);
           background: var(--white);
           svg path {
-            stroke: ${props.theme.colors.green.primary};
+            stroke: var(--green-medium);
           }
         }
       `}
@@ -97,40 +88,30 @@ const buttonStyle = css`
       ${props.red &&
       css`
         color: var(--white);
-        border-color: ${props.theme.colors.red.base};
-        background: ${props.theme.colors.red.base};
+        border-color: var(--red-medium);
+        background: var(--red-medium);
         svg path {
           stroke: var(--white);
         }
 
         &:hover {
-          color: var(--white);
-          border-color: ${props.theme.colors.red.light};
-          background: ${props.theme.colors.red.light};
-          svg path {
-            stroke: var(--white);
-          }
-        }
-
-        &:active {
-          color: ${props.theme.colors.red.base};
-          border-color: ${props.theme.colors.red.base};
+          color: var(--red-medium);
+          border-color: var(--red-medium);
           background: var(--white);
           svg path {
-            stroke: ${props.theme.colors.red.base};
+            stroke: var(--red-medium);
           }
         }
       `}
 
       ${props.disabled &&
       css`
-        cursor: default;
-        color: ${props.theme.colors.gray.medium};
-        border-color: ${props.theme.colors.gray.medium};
-        background: transparent;
         pointer-events: none;
+        color: var(--gray-medium);
+        border-color: var(--gray-medium);
+        background: transparent;
         svg path {
-          stroke: ${props.theme.colors.gray.medium};
+          stroke: var(--gray-medium);
         }
       `}
     `}
