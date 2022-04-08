@@ -18,9 +18,31 @@ export default {
 const Template = args => <Text {...args} />
 
 export const Base = Template.bind({})
-let baseText = ''
 Base.args = {
   label: 'Enter your name',
-  text: baseText,
-  setText: text => (baseText = text)
+  controlled: false
+}
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+  label: 'You cannot enter here',
+  controlled: false,
+  disabled: true,
+  text: 'Too bad'
+}
+
+export const Password = Template.bind({})
+Password.args = {
+  label: 'Enter your password',
+  controlled: false,
+  type: 'password'
+}
+
+export const PasswordDisabled = Template.bind({})
+PasswordDisabled.args = {
+  label: 'You cannot enter your password',
+  controlled: false,
+  disabled: true,
+  type: 'password',
+  text: 'Too bad'
 }
