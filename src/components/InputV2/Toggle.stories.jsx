@@ -38,5 +38,5 @@ Disabled.args = {
   label: 'Toggle me',
   disabled: true,
   checked: false,
-  setChecked: checked => {}
+  setChecked: () => {}
 }

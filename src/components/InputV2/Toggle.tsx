@@ -31,7 +31,7 @@ const Label = styled.label`
     height: 0;
     opacity: 0;
   }
-  
+
   .toggle {
     display: block;
     position: relative;
@@ -65,12 +65,21 @@ const Label = styled.label`
   }
 `
 
-export const Toggle = ({ label, disabled, checked, setChecked }: ToggleProps) => (
+export const Toggle = ({
+  label,
+  disabled,
+  checked,
+  setChecked
+}: ToggleProps) => (
   <Label className={disabled ? 'disabled' : ''}>
     {label && <span>{label}</span>}
-    <span className="wrapper">
-      <input type="checkbox" defaultChecked={checked} onChange={setChecked(!checked)} />
-      <span className="toggle"></span>
+    <span className='wrapper'>
+      <input
+        type='checkbox'
+        defaultChecked={checked}
+        onChange={setChecked(!checked)}
+      />
+      <span className='toggle'></span>
     </span>
   </Label>
 )
