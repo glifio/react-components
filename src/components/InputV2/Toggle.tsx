@@ -69,7 +69,7 @@ export const Toggle = ({
       <input
         type='checkbox'
         defaultChecked={checked}
-        onChange={setChecked(!checked)}
+        onChange={e => setChecked(e.target.checked)}
       />
       <span className='toggle'></span>
     </span>
