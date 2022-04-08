@@ -65,24 +65,28 @@ const Label = styled.label`
   }
 `
 
-export const Toggle = ({ label, disabled }: ToggleProps) => (
+export const Toggle = ({ label, disabled, checked, setChecked }: ToggleProps) => (
   <Label className={disabled ? 'disabled' : ''}>
     {label && <span>{label}</span>}
     <span className="wrapper">
-      <input type="checkbox" />
+      <input type="checkbox" defaultChecked={checked} onChange={setChecked(!checked)} />
       <span className="toggle"></span>
     </span>
   </Label>
 )
 
 interface ToggleProps {
-  label: string,
+  label: string
   disabled: boolean
+  checked: boolean
+  setChecked: (checked: boolean) => void
 }
 
 Toggle.propTypes = {
   label: PropTypes.string,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  checked: PropTypes.bool.isRequired,
+  setChecked: PropTypes.func.isRequired
 }
 
 Toggle.defaultProps = {
