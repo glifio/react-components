@@ -32,7 +32,7 @@ export const useUnformattedDateTime = (
         // but in case the chainhead sub lags behind a couple epochs
         // this ensure we dont show any "in the future" transactions
         if (epochsPast <= 0) {
-          epochsPast = 2
+          epochsPast = 0
         }
 
         const clockSecondsPast = epochsPast * EPOCH_TO_CLOCK_TIME
