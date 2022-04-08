@@ -18,25 +18,29 @@ export default {
 const Template = args => <Toggle {...args} />
 
 export const Base = Template.bind({})
-let baseChecked = false
 Base.args = {
   label: 'Toggle me',
-  checked: baseChecked,
-  setChecked: checked => (baseChecked = checked)
+  controlled: false
 }
 
 export const Checked = Template.bind({})
-let checkedChecked = true
 Checked.args = {
   label: 'Toggle me',
-  checked: checkedChecked,
-  setChecked: checked => (checkedChecked = checked)
+  controlled: false,
+  checked: true
 }
 
 export const Disabled = Template.bind({})
 Disabled.args = {
-  label: 'Toggle me',
+  label: 'You cannot toggle me',
+  controlled: false,
+  disabled: true
+}
+
+export const DisabledChecked = Template.bind({})
+DisabledChecked.args = {
+  label: 'You cannot toggle me',
+  controlled: false,
   disabled: true,
-  checked: false,
-  setChecked: () => {}
+  checked: true
 }
