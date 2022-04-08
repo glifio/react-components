@@ -1,23 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
-import { space } from '../theme'
+import { Label } from './Label'
 
-const Label = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: ${space()};
-  cursor: pointer;
-
-  &.disabled {
-    pointer-events: none;
-
-    .toggle {
-      border-color: var(--gray-light);
-      background-color: var(--gray-light);
-    }
-  }
-
+const ToggleLabel = styled(Label)`
   .wrapper {
     display: inline-block;
     position: relative;
@@ -40,6 +25,13 @@ const Label = styled.label`
     border-radius: 0.75em;
     border: 2px solid var(--blue-light);
     background-color: var(--blue-light);
+
+    ${props =>
+      props.disabled &&
+      css`
+        border-color: var(--gray-light);
+        background-color: var(--gray-light);
+      `}
 
     &::after {
       content: '';
@@ -71,7 +63,7 @@ export const Toggle = ({
   checked,
   setChecked
 }: ToggleProps) => (
-  <Label className={disabled ? 'disabled' : ''}>
+  <ToggleLabel disabled={disabled}>
     {label && <span>{label}</span>}
     <span className='wrapper'>
       <input
@@ -81,7 +73,7 @@ export const Toggle = ({
       />
       <span className='toggle'></span>
     </span>
-  </Label>
+  </ToggleLabel>
 )
 
 interface ToggleProps {
