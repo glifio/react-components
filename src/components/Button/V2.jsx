@@ -15,34 +15,34 @@ const buttonStyle = css`
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
+  
+  color: var(--black);
+  border-color: var(--black);
+  background: transparent;
+  text-align: center;
+
+  svg path {
+    stroke: var(--black);
+  }
+
+  &:hover {
+    color: var(--purple-medium);
+    border-color: var(--purple-medium);
+    svg path {
+      stroke: var(--purple-medium);
+    }
+  }
+
+  &:active {
+    color: var(--white);
+    background: var(--purple-medium);
+    svg path {
+      stroke: var(--white);
+    }
+  }
 
   ${props =>
     css`
-      color: ${props.theme.colors.black};
-      border-color: ${props.theme.colors.black};
-      background: transparent;
-      text-align: center;
-
-      svg path {
-        stroke: ${props.theme.colors.black};
-      }
-
-      &:hover {
-        color: ${props.theme.colors.core.primary};
-        border-color: ${props.theme.colors.core.primary};
-        svg path {
-          stroke: ${props.theme.colors.core.primary};
-        }
-      }
-
-      &:active {
-        color: ${props.theme.colors.white};
-        background: ${props.theme.colors.core.primary};
-        svg path {
-          stroke: ${props.theme.colors.white};
-        }
-      }
-
       ${props.large &&
       css`
         font-size: 1.25em;
@@ -50,44 +50,44 @@ const buttonStyle = css`
 
       ${props.white &&
       css`
-        color: ${props.theme.colors.white};
-        border-color: ${props.theme.colors.white};
+        color: var(--white);
+        border-color: var(--white);
         svg path {
-          stroke: ${props.theme.colors.white};
+          stroke: var(--white);
         }
       `}
 
       ${props.gray &&
       css`
-        color: ${props.theme.colors.core.darkgray};
-        border-color: ${props.theme.colors.core.darkgray};
+        color: var(--gray-dark);
+        border-color: var(--gray-dark);
         svg path {
-          stroke: ${props.theme.colors.core.darkgray};
+          stroke: var(--gray-dark);
         }
       `}
 
       ${props.green &&
       css`
-        color: ${props.theme.colors.white};
+        color: var(--white);
         border-color: ${props.theme.colors.green.primary};
         background: ${props.theme.colors.green.primary};
         svg path {
-          stroke: ${props.theme.colors.white};
+          stroke: var(--white);
         }
 
         &:hover {
-          color: ${props.theme.colors.white};
+          color: var(--white);
           border-color: ${props.theme.colors.green.muted};
           background: ${props.theme.colors.green.muted};
           svg path {
-            stroke: ${props.theme.colors.white};
+            stroke: var(--white);
           }
         }
 
         &:active {
           color: ${props.theme.colors.green.primary};
           border-color: ${props.theme.colors.green.primary};
-          background: ${props.theme.colors.white};
+          background: var(--white);
           svg path {
             stroke: ${props.theme.colors.green.primary};
           }
@@ -96,26 +96,26 @@ const buttonStyle = css`
 
       ${props.red &&
       css`
-        color: ${props.theme.colors.white};
+        color: var(--white);
         border-color: ${props.theme.colors.red.base};
         background: ${props.theme.colors.red.base};
         svg path {
-          stroke: ${props.theme.colors.white};
+          stroke: var(--white);
         }
 
         &:hover {
-          color: ${props.theme.colors.white};
+          color: var(--white);
           border-color: ${props.theme.colors.red.light};
           background: ${props.theme.colors.red.light};
           svg path {
-            stroke: ${props.theme.colors.white};
+            stroke: var(--white);
           }
         }
 
         &:active {
           color: ${props.theme.colors.red.base};
           border-color: ${props.theme.colors.red.base};
-          background: ${props.theme.colors.white};
+          background: var(--white);
           svg path {
             stroke: ${props.theme.colors.red.base};
           }
@@ -127,6 +127,7 @@ const buttonStyle = css`
         cursor: default;
         color: ${props.theme.colors.gray.medium};
         border-color: ${props.theme.colors.gray.medium};
+        background: transparent;
         pointer-events: none;
         svg path {
           stroke: ${props.theme.colors.gray.medium};
