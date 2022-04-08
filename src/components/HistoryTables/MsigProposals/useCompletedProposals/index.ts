@@ -4,7 +4,7 @@ import {
   MessageConfirmed,
   MsigTransaction,
   useMessageQuery,
-  useMessagesConfirmedQuery,
+  useMessagesQuery,
   useMsigPendingQuery
 } from '../../../../generated/graphql'
 
@@ -38,7 +38,7 @@ export const useCompletedProposals = (address: string) => {
     loading: messageConfirmedLoading,
     error: messageConfirmedError,
     fetchMore: fetchMoreMessagesConfirmed
-  } = useMessagesConfirmedQuery({
+  } = useMessagesQuery({
     variables: {
       address: address,
       limit: DEFAULT_LIMIT,
@@ -69,7 +69,7 @@ export const useCompletedProposals = (address: string) => {
       let messageConfirmedOffset = 0
 
       let messagesConfirmed = cloneDeep<MessageConfirmed[]>(
-        messageConfirmedData.messagesConfirmed as MessageConfirmed[]
+        messageConfirmedData.messages as MessageConfirmed[]
       )
 
       while (proposalIDsWIdxs.length > 0) {
@@ -111,7 +111,7 @@ export const useCompletedProposals = (address: string) => {
               offset: messageConfirmedOffset + DEFAULT_LIMIT
             }
           })
-          messagesConfirmed = data.messagesConfirmed as MessageConfirmed[]
+          messagesConfirmed = data.messages as MessageConfirmed[]
           // mark the paginator
           messageConfirmedOffset += 1
         }
@@ -185,7 +185,7 @@ export const useCompletedProposal = (
     loading: messageConfirmedLoading,
     error: messageConfirmedError,
     fetchMore: fetchMoreMessagesConfirmed
-  } = useMessagesConfirmedQuery({
+  } = useMessagesQuery({
     variables: {
       address,
       limit: DEFAULT_LIMIT,
@@ -215,7 +215,7 @@ export const useCompletedProposal = (
       let messageConfirmedOffset = 0
 
       let messagesConfirmed = cloneDeep<MessageConfirmed[]>(
-        messageConfirmedData.messagesConfirmed as MessageConfirmed[]
+        messageConfirmedData.messages as MessageConfirmed[]
       )
 
       while (!proposalFound) {
@@ -244,7 +244,7 @@ export const useCompletedProposal = (
               offset: messageConfirmedOffset + DEFAULT_LIMIT
             }
           })
-          messagesConfirmed = data.messagesConfirmed as MessageConfirmed[]
+          messagesConfirmed = data.messages as MessageConfirmed[]
           // mark the paginator
           messageConfirmedOffset += 1
         }
