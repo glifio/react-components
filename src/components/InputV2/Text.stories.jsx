@@ -25,10 +25,25 @@ Base.args = {
 
 export const Disabled = Template.bind({})
 Disabled.args = {
-  label: 'You cannot enter here',
+  label: 'You cannot enter anything',
   controlled: false,
   disabled: true,
   text: 'Too bad'
+}
+
+export const Placeholder = Template.bind({})
+Placeholder.args = {
+  label: 'Enter your name',
+  controlled: false,
+  placeholder: 'here please'
+}
+
+export const PlaceholderDisabled = Template.bind({})
+PlaceholderDisabled.args = {
+  label: 'You cannot enter anything',
+  controlled: false,
+  disabled: true,
+  placeholder: 'over here'
 }
 
 export const Password = Template.bind({})
