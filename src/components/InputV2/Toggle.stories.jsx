@@ -36,5 +36,7 @@ Checked.args = {
 export const Disabled = Template.bind({})
 Disabled.args = {
   label: 'Toggle me',
-  disabled: true
+  disabled: true,
+  checked: false,
+  setChecked: checked => {}
 }
