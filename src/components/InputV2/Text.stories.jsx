@@ -1,10 +1,10 @@
-import { Text } from './Text'
+import { TextInput } from './Text'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
 export default {
   title: 'InputV2/Text',
-  component: Text,
+  component: TextInput,
   decorators: [
     Story => (
       <div style={{ maxWidth: '35em', margin: '0 auto' }}>
@@ -15,7 +15,7 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <Text {...args} />
+const Template = args => <TextInput {...args} />
 
 const sharedArgs = {
   autofocus: true,
