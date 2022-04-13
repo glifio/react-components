@@ -8,15 +8,25 @@ export const NumberInput = ({
   value,
   onChange,
   onBlur,
+  setHasError,
   ...textProps
 }: NumberProps) => {
   const [error, setError] = useState<string>('')
   const onChangeText = (newTextValue: string) => {
     setError('')
+    setHasError(false)
     onChange(Number(newTextValue))
   }
   const onBlurText = (newTextValue: string) => {
     const number = Number(newTextValue)
+    if (number < min) {
+      setError(`Has to be at least ${min}`)
+      setHasError(true)
+    }
+    if (number > max) {
+      setError(`Cannot be more than ${max}`)
+      setHasError(true)
+    }
     onBlur(number)
   }
 
@@ -49,6 +59,7 @@ type NumberProps = {
   value: number
   onChange: (value: number) => void
   onBlur: (value: number) => void
+  setHasError: (hasError: boolean) => void
 } & Omit<
   TextInputProps,
   'error' | 'type' | 'value' | 'onChange' | 'onBlur'
@@ -61,6 +72,7 @@ NumberInput.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   value: PropTypes.number,
+  setHasError: PropTypes.func,
   ...numberProps
 }
 
@@ -69,5 +81,6 @@ NumberInput.defaultProps = {
   max: Infinity,
   value: NaN,
   onChange: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
+  setHasError: () => {}
 }
