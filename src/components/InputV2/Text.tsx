@@ -12,7 +12,8 @@ export const Text = ({
   placeholder,
   controlled,
   value,
-  onChange
+  onChange,
+  onBlur
 }: TextProps) => (
   <Label disabled={disabled} vertical={vertical} centered={centered}>
     {vertical ? (
@@ -32,6 +33,7 @@ export const Text = ({
       value={controlled ? value : undefined}
       defaultValue={controlled ? undefined : value}
       onChange={e => onChange(e.target.value)}
+      onBlur={e => onBlur(e.target.value)}
     />
     {vertical && error && <span className='error'>{error}</span>}
   </Label>
@@ -49,6 +51,7 @@ export interface TextProps {
   controlled: boolean
   value: string
   onChange: (value: string) => void
+  onBlur: (value: string) => void
 }
 
 Text.propTypes = {
@@ -62,7 +65,8 @@ Text.propTypes = {
   placeholder: PropTypes.string,
   controlled: PropTypes.bool,
   value: PropTypes.string,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  onBlur: PropTypes.func
 }
 
 Text.defaultProps = {
@@ -76,5 +80,6 @@ Text.defaultProps = {
   placeholder: '',
   controlled: true,
   value: '',
-  onChange: () => {}
+  onChange: () => {},
+  onBlur: () => {}
 }
