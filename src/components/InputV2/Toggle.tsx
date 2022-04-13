@@ -63,7 +63,7 @@ export const Toggle = ({
   disabled,
   controlled,
   checked,
-  setChecked
+  onChange
 }: ToggleProps) => (
   <ToggleLabel disabled={disabled}>
     {label && <span>{label}</span>}
@@ -72,7 +72,7 @@ export const Toggle = ({
         type='checkbox'
         checked={controlled ? checked : undefined}
         defaultChecked={controlled ? undefined : checked}
-        onChange={e => setChecked(e.target.checked)}
+        onChange={e => onChange(e.target.checked)}
       />
       <span className='toggle'></span>
     </span>
@@ -84,7 +84,7 @@ interface ToggleProps {
   disabled: boolean
   controlled: boolean
   checked: boolean
-  setChecked: (checked: boolean) => void
+  onChange: (checked: boolean) => void
 }
 
 Toggle.propTypes = {
@@ -92,7 +92,7 @@ Toggle.propTypes = {
   disabled: PropTypes.bool,
   controlled: PropTypes.bool,
   checked: PropTypes.bool,
-  setChecked: PropTypes.func
+  onChange: PropTypes.func
 }
 
 Toggle.defaultProps = {
@@ -100,5 +100,5 @@ Toggle.defaultProps = {
   disabled: false,
   controlled: true,
   checked: false,
-  setChecked: () => {}
+  onChange: () => {}
 }
