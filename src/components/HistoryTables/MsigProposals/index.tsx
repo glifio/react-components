@@ -20,9 +20,7 @@ type ProposalHistoryTableProps = {
 export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
   const { data, loading, error } = useMsigPendingQuery({
     variables: {
-      address: convertAddrToPrefix(props.address),
-      offset: props.offset,
-      limit: Number.MAX_SAFE_INTEGER
+      address: convertAddrToPrefix(props.address)
     },
     pollInterval: 10000,
     fetchPolicy: 'cache-and-network'
@@ -64,13 +62,11 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
 
 ProposalHistoryTable.propTypes = {
   idHref: PropTypes.func,
-  offset: PropTypes.number,
   address: ADDRESS_PROPTYPE,
   walletAddr: ADDRESS_PROPTYPE
 }
 
 ProposalHistoryTable.defaultProps = {
-  offset: 0,
   // TODO
   idHref: (id: number) => `/#/detail/${id}`
 }

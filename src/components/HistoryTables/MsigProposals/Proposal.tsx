@@ -47,9 +47,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     error: _msigTxsError
   } = useMsigPendingQuery({
     variables: {
-      address: convertAddrToPrefix(props.address),
-      offset: 0,
-      limit: Number.MAX_SAFE_INTEGER
+      address: convertAddrToPrefix(props.address)
     },
     pollInterval: 0
   })
