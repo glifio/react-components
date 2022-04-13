@@ -9,20 +9,10 @@ import { useMsigPendingQuery } from '../../../generated/graphql'
 import { Title } from '../generic'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
-type ProposalHistoryTableProps = {
-  address: string
-  walletAddr: string
-  offset?: number
-  // allows custom navigation
-  idHref: (id: number) => string
-}
-
 export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
   const { data, loading, error } = useMsigPendingQuery({
     variables: {
-      address: convertAddrToPrefix(props.address),
-      offset: props.offset,
-      limit: Number.MAX_SAFE_INTEGER
+      address: convertAddrToPrefix(props.address)
     },
     pollInterval: 10000,
     fetchPolicy: 'cache-and-network'
@@ -62,15 +52,19 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
   )
 }
 
+type ProposalHistoryTableProps = {
+  idHref: (id: number) => string
+  address: string
+  walletAddr: string
+}
+
 ProposalHistoryTable.propTypes = {
   idHref: PropTypes.func,
-  offset: PropTypes.number,
   address: ADDRESS_PROPTYPE,
   walletAddr: ADDRESS_PROPTYPE
 }
 
 ProposalHistoryTable.defaultProps = {
-  offset: 0,
   // TODO
   idHref: (id: number) => `/#/detail/${id}`
 }
