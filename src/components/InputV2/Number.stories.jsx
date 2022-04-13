@@ -51,3 +51,19 @@ MinMaxValue.args = {
   min: 25,
   max: 35
 }
+
+export const Vertical = Template.bind({})
+Vertical.args = {
+  ...sharedArgs,
+  vertical: true,
+  label: 'Enter your age'
+}
+
+export const VerticalMinValue = Template.bind({})
+VerticalMinValue.args = {
+  ...sharedArgs,
+  vertical: true,
+  label: 'Enter your age',
+  info: 'You must be 21 or older',
+  min: 21
+}
