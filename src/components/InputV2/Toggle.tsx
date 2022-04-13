@@ -46,7 +46,7 @@ const ToggleLabel = styled(Label)`
     }
   }
 
-  &:hover .toggle,
+  input:hover ~ .toggle,
   input:checked ~ .toggle,
   input:focus ~ .toggle {
     border-color: var(--blue-medium);
