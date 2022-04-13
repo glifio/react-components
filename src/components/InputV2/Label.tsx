@@ -10,11 +10,11 @@ export const Label = styled.label`
       ? css`
           flex-direction: column;
           ${props.centered &&
-            css`
-              * {
-                text-align: center;
-              }
-            `}
+          css`
+            * {
+              text-align: center;
+            }
+          `}
         `
       : css`
           align-items: center;
