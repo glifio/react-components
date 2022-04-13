@@ -9,6 +9,12 @@ export const Label = styled.label`
     props.vertical
       ? css`
           flex-direction: column;
+          ${props.centered &&
+            css`
+              * {
+                text-align: center;
+              }
+            `}
         `
       : css`
           align-items: center;

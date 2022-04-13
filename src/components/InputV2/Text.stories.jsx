@@ -87,6 +87,14 @@ Vertical.args = {
   label: 'Enter your name'
 }
 
+export const VerticalCentered = Template.bind({})
+VerticalCentered.args = {
+  ...sharedArgs,
+  vertical: true,
+  centered: true,
+  label: 'Enter your name'
+}
+
 export const VerticalError = Template.bind({})
 VerticalError.args = {
   ...sharedArgs,

@@ -3,6 +3,7 @@ import { Label } from './Label'
 
 export const Text = ({
   vertical,
+  centered,
   label,
   error,
   type,
@@ -13,7 +14,7 @@ export const Text = ({
   value,
   onChange
 }: TextProps) => (
-  <Label disabled={disabled} vertical={vertical}>
+  <Label disabled={disabled} vertical={vertical} centered={centered}>
     {vertical ? (
       label && <span>{label}</span>
     ) : (
@@ -38,6 +39,7 @@ export const Text = ({
 
 interface TextProps {
   vertical: boolean
+  centered: boolean
   label: string
   error: string
   type: string
@@ -51,6 +53,7 @@ interface TextProps {
 
 Text.propTypes = {
   vertical: PropTypes.bool,
+  centered: PropTypes.bool,
   label: PropTypes.string,
   error: PropTypes.string,
   type: PropTypes.string,
@@ -64,6 +67,7 @@ Text.propTypes = {
 
 Text.defaultProps = {
   vertical: false,
+  centered: false,
   label: '',
   error: '',
   type: 'text',
