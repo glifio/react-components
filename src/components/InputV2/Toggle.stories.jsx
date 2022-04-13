@@ -17,30 +17,35 @@ export default {
 
 const Template = args => <Toggle {...args} />
 
+const sharedArgs = {
+  autofocus: true,
+  controlled: false
+}
+
 export const Base = Template.bind({})
 Base.args = {
-  label: 'Toggle me',
-  controlled: false
+  ...sharedArgs,
+  label: 'Toggle me'
 }
 
 export const Checked = Template.bind({})
 Checked.args = {
+  ...sharedArgs,
   label: 'Toggle me',
-  controlled: false,
   checked: true
 }
 
 export const Disabled = Template.bind({})
 Disabled.args = {
+  ...sharedArgs,
   label: 'You cannot toggle me',
-  controlled: false,
   disabled: true
 }
 
 export const DisabledChecked = Template.bind({})
 DisabledChecked.args = {
+  ...sharedArgs,
   label: 'You cannot toggle me',
-  controlled: false,
   disabled: true,
   checked: true
 }
