@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { TextInput, TextInputProps } from './Text'
 
+const isBigInt = value => typeof value === 'bigint'
+
 export const BigIntInput = ({
   min,
   max,
@@ -19,12 +21,12 @@ export const BigIntInput = ({
   }
   const onBlurText = (newTextValue: string) => {
     const bigint = BigInt(newTextValue)
-    if (bigint < min) {
-      setError(`Has to be at least ${min}`)
+    if (isBigInt(min) && bigint < min) {
+      setError(`Has to be at least ${min.toString()}`)
       setHasError(true)
     }
-    if (bigint > max) {
-      setError(`Cannot be more than ${max}`)
+    if (isBigInt(max) && bigint > max) {
+      setError(`Cannot be more than ${max.toString()}`)
       setHasError(true)
     }
     onBlur(bigint)
@@ -34,7 +36,7 @@ export const BigIntInput = ({
     <TextInput
       error={error}
       type='number'
-      value={typeof value === 'bigint' ? value.toString() : ''}
+      value={isBigInt(value) ? value.toString() : ''}
       onChange={onChangeText}
       onBlur={onBlurText}
       {...textProps}
