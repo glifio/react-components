@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { Label } from './Label'
 
 export const Text = ({
+  vertical,
   label,
   error,
   type,
@@ -12,11 +13,15 @@ export const Text = ({
   value,
   onChange
 }: TextProps) => (
-  <Label disabled={disabled}>
-    <div>
-      {label && <span>{label}</span>}
-      {error && <span className='error'>{error}</span>}
-    </div>
+  <Label disabled={disabled} vertical={vertical}>
+    {vertical ? (
+      label && <span>{label}</span>
+    ) : (
+      <div>
+        {label && <span>{label}</span>}
+        {error && <span className='error'>{error}</span>}
+      </div>
+    )}
     <input
       className={error ? 'error' : ''}
       type={type}
@@ -27,10 +32,12 @@ export const Text = ({
       defaultValue={controlled ? undefined : value}
       onChange={e => onChange(e.target.value)}
     />
+    {vertical && error && <span className='error'>{error}</span>}
   </Label>
 )
 
 interface TextProps {
+  vertical: boolean
   label: string
   error: string
   type: string
@@ -43,6 +50,7 @@ interface TextProps {
 }
 
 Text.propTypes = {
+  vertical: PropTypes.bool,
   label: PropTypes.string,
   error: PropTypes.string,
   type: PropTypes.string,
@@ -55,6 +63,7 @@ Text.propTypes = {
 }
 
 Text.defaultProps = {
+  vertical: false,
   label: '',
   error: '',
   type: 'text',

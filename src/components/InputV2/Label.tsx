@@ -3,19 +3,26 @@ import { space } from '../theme'
 
 export const Label = styled.label`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: ${space()};
 
-  > *:first-child {
-    display: flex;
-    flex-direction: column;
-  }
+  ${props =>
+    props.vertical
+      ? css`
+          flex-direction: column;
+        `
+      : css`
+          align-items: center;
+          justify-content: space-between;
 
-  > *:last-child {
-    flex: 0 0 50%;
-    text-align: right;
-  }
+          > *:first-child {
+            display: flex;
+            flex-direction: column;
+          }
+
+          > *:last-child {
+            flex: 0 0 50%;
+          }
+        `}
 
   span.error {
     color: var(--red-medium);

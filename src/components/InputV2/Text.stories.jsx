@@ -79,3 +79,25 @@ PasswordDisabled.args = {
   disabled: true,
   value: 'Too bad'
 }
+
+export const Vertical = Template.bind({})
+Vertical.args = {
+  ...sharedArgs,
+  vertical: true,
+  label: 'Enter your name'
+}
+
+export const VerticalError = Template.bind({})
+VerticalError.args = {
+  ...sharedArgs,
+  vertical: true,
+  label: 'Enter something else',
+  error: 'Oh no! Something went wrong :(',
+  value: 'This is wrong'
+}
+
+export const VerticalNoLabel = Template.bind({})
+VerticalNoLabel.args = {
+  ...sharedArgs,
+  vertical: true
+}
