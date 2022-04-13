@@ -1,7 +1,7 @@
-import { Text } from './Text'
+import { TextInput } from './Text'
 import { Toggle } from './Toggle'
 
 export default {
-  Text,
+  Text: TextInput,
   Toggle
 }

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { Label } from './Label'
 
-export const Text = ({
+export const TextInput = ({
   vertical,
   centered,
   label,
@@ -14,7 +14,7 @@ export const Text = ({
   value,
   onChange,
   onBlur
-}: TextProps) => (
+}: TextInputProps) => (
   <Label disabled={disabled} vertical={vertical} centered={centered}>
     {vertical ? (
       label && <span>{label}</span>
@@ -39,7 +39,7 @@ export const Text = ({
   </Label>
 )
 
-export interface TextProps {
+export interface TextInputProps {
   vertical: boolean
   centered: boolean
   label: string
@@ -54,7 +54,7 @@ export interface TextProps {
   onBlur: (value: string) => void
 }
 
-Text.propTypes = {
+TextInput.propTypes = {
   vertical: PropTypes.bool,
   centered: PropTypes.bool,
   label: PropTypes.string,
@@ -69,7 +69,7 @@ Text.propTypes = {
   onBlur: PropTypes.func
 }
 
-Text.defaultProps = {
+TextInput.defaultProps = {
   vertical: false,
   centered: false,
   label: '',
