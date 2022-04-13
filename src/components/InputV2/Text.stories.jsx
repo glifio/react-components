@@ -17,46 +17,51 @@ export default {
 
 const Template = args => <Text {...args} />
 
+const sharedArgs = {
+  autofocus: true,
+  controlled: false
+}
+
 export const Base = Template.bind({})
 Base.args = {
-  label: 'Enter your name',
-  controlled: false
+  ...sharedArgs,
+  label: 'Enter your name'
 }
 
 export const Disabled = Template.bind({})
 Disabled.args = {
+  ...sharedArgs,
   label: 'You cannot enter anything',
-  controlled: false,
   disabled: true,
   value: 'Too bad'
 }
 
 export const Placeholder = Template.bind({})
 Placeholder.args = {
+  ...sharedArgs,
   label: 'Enter your name',
-  controlled: false,
   placeholder: 'here please'
 }
 
 export const PlaceholderDisabled = Template.bind({})
 PlaceholderDisabled.args = {
+  ...sharedArgs,
   label: 'You cannot enter anything',
-  controlled: false,
   disabled: true,
   placeholder: 'over here'
 }
 
 export const Password = Template.bind({})
 Password.args = {
+  ...sharedArgs,
   label: 'Enter your password',
-  controlled: false,
   type: 'password'
 }
 
 export const PasswordDisabled = Template.bind({})
 PasswordDisabled.args = {
+  ...sharedArgs,
   label: 'You cannot enter your password',
-  controlled: false,
   disabled: true,
   type: 'password',
   value: 'Too bad'
