@@ -7,7 +7,7 @@ export default {
   component: Text,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ maxWidth: '35em', margin: '0 auto' }}>
         <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
       </div>
     )
