@@ -53,7 +53,7 @@ export const NumberInput = ({
  * onBlur: needs to take "number" type argument
  */
 
-type NumberInputProps = {
+export type NumberInputProps = {
   min: number
   max: number
   value: number

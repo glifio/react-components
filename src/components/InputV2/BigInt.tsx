@@ -55,7 +55,7 @@ export const BigIntInput = ({
  * onBlur: needs to take "BigInt" type argument
  */
 
-type BigIntInputProps = {
+export type BigIntInputProps = {
   min?: BigInt
   max?: BigInt
   value?: BigInt
