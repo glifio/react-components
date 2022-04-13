@@ -26,9 +26,7 @@ export const useCompletedProposals = (address: string) => {
     error: msigDataError
   } = useMsigPendingQuery({
     variables: {
-      address: address,
-      limit: Number.MAX_SAFE_INTEGER,
-      offset: 0
+      address
     },
     pollInterval: 0
   })
@@ -40,7 +38,7 @@ export const useCompletedProposals = (address: string) => {
     fetchMore: fetchMoreMessagesConfirmed
   } = useMessagesQuery({
     variables: {
-      address: address,
+      address,
       limit: DEFAULT_LIMIT,
       offset: DEFAULT_OFFSET
     },
@@ -169,9 +167,7 @@ export const useCompletedProposal = (
     error: msigDataError
   } = useMsigPendingQuery({
     variables: {
-      address,
-      limit: Number.MAX_SAFE_INTEGER,
-      offset: 0
+      address
     },
     pollInterval: 0
   })

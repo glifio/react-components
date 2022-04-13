@@ -26,9 +26,7 @@ export const usePendingMessages = (
   // pending messages from our static query
   const pendingMsgs = usePendingMessagesQuery({
     variables: {
-      address: convertAddrToPrefix(address),
-      offset: 0,
-      limit: Number.MAX_SAFE_INTEGER
+      address: convertAddrToPrefix(address)
     },
     // dont poll here because we rely on the subscription and StateListMessage query for updates
     pollInterval: 0,
