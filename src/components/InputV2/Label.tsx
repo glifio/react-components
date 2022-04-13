@@ -39,6 +39,22 @@ export const Label = styled.label`
     color: var(--red-medium);
   }
 
+  .text-input-wrapper {
+    position: relative;
+
+    input {
+      width: 100%;
+    }
+
+    .unit {
+      position: absolute;
+      top: 50%;
+      right: 1em;
+      transform: translateY(-50%);
+      color: var(--purple-medium);
+    }
+  }
+
   ${props =>
     props.disabled &&
     css`

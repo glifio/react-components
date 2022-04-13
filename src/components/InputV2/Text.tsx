@@ -13,6 +13,7 @@ export const TextInput = ({
   placeholder,
   controlled,
   value,
+  unit,
   onChange,
   onBlur
 }: TextInputProps) => (
@@ -29,17 +30,21 @@ export const TextInput = ({
         {error && <span className='error'>{error}</span>}
       </div>
     )}
-    <input
-      className={error ? 'error' : ''}
-      type={type}
-      autoFocus={autofocus}
-      disabled={disabled}
-      placeholder={placeholder}
-      value={controlled ? value : undefined}
-      defaultValue={controlled ? undefined : value}
-      onChange={e => onChange(e.target.value)}
-      onBlur={e => onBlur(e.target.value)}
-    />
+    <div className='text-input-wrapper'>
+      <input
+        className={error ? 'error' : ''}
+        type={type}
+        autoFocus={autofocus}
+        disabled={disabled}
+        placeholder={placeholder}
+        value={controlled ? value : undefined}
+        defaultValue={controlled ? undefined : value}
+        onChange={e => onChange(e.target.value)}
+        onBlur={e => onBlur(e.target.value)}
+        style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
+      />
+      {unit && <span className='unit'>{unit}</span>}
+    </div>
     {vertical && error && <span className='error'>{error}</span>}
   </Label>
 )
@@ -56,6 +61,7 @@ export interface TextInputProps {
   placeholder: string
   controlled: boolean
   value: string
+  unit: string
   onChange: (value: string) => void
   onBlur: (value: string) => void
 }
@@ -72,6 +78,7 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   controlled: PropTypes.bool,
   value: PropTypes.string,
+  unit: PropTypes.string,
   onChange: PropTypes.func,
   onBlur: PropTypes.func
 }
@@ -88,6 +95,7 @@ TextInput.defaultProps = {
   placeholder: '',
   controlled: true,
   value: '',
+  unit: '',
   onChange: () => {},
   onBlur: () => {}
 }
