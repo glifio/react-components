@@ -26,3 +26,10 @@ Base.args = {
   ...sharedArgs,
   label: 'Enter your age'
 }
+
+export const PreFilled = Template.bind({})
+PreFilled.args = {
+  ...sharedArgs,
+  label: 'Enter your age',
+  value: 35
+}
