@@ -37,7 +37,7 @@ export const Text = ({
   </Label>
 )
 
-interface TextProps {
+export interface TextProps {
   vertical: boolean
   centered: boolean
   label: string
