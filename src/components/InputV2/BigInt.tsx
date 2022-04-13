@@ -62,12 +62,10 @@ type BigIntInputProps = {
   onChange: (value: BigInt) => void
   onBlur: (value: BigInt) => void
   setHasError: (hasError: boolean) => void
-} & Omit<
-  TextInputProps,
-  'error' | 'type' | 'value' | 'onChange' | 'onBlur'
->
+} & Omit<TextInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"
+// eslint-disable-next-line
 const { error, type, value, ...bigIntProps } = TextInput.propTypes
 
 // @types/prop-types is outdated

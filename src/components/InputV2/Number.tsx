@@ -60,12 +60,10 @@ type NumberInputProps = {
   onChange: (value: number) => void
   onBlur: (value: number) => void
   setHasError: (hasError: boolean) => void
-} & Omit<
-  TextInputProps,
-  'error' | 'type' | 'value' | 'onChange' | 'onBlur'
->
+} & Omit<TextInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"
+// eslint-disable-next-line
 const { error, type, value, ...numberProps } = TextInput.propTypes
 
 NumberInput.propTypes = {
