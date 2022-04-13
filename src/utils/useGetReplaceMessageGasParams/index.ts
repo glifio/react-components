@@ -22,11 +22,11 @@ export const useGetReplaceMessageGasParams = (
   const [gasParams, setGasParams] = useState<GasParams | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
-  const getGasParams = minimum
-    ? provider.getReplaceMessageMinGasParams
-    : provider.getReplaceMessageGasParams
 
   useEffect(() => {
+    const getGasParams = minimum
+      ? provider.getReplaceMessageMinGasParams
+      : provider.getReplaceMessageGasParams
     setGasParams(null)
     setError(null)
     if (message) {
@@ -36,7 +36,7 @@ export const useGetReplaceMessageGasParams = (
         .catch((e: Error) => setError(e))
         .finally(() => setLoading(false))
     }
-  }, [provider, message])
+  }, [provider, message, minimum])
 
   return { gasParams, loading, error }
 }
