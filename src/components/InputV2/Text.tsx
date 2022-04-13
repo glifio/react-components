@@ -3,19 +3,19 @@ import { Label } from './Label'
 
 export const Text = ({
   label,
-  disabled,
-  controlled,
-  placeholder,
   type,
+  disabled,
+  placeholder,
+  controlled,
   value,
   onChange
 }: TextProps) => (
   <Label disabled={disabled}>
     {label && <span>{label}</span>}
     <input
-      placeholder={placeholder}
-      disabled={disabled}
       type={type}
+      disabled={disabled}
+      placeholder={placeholder}
       value={controlled ? value : undefined}
       defaultValue={controlled ? undefined : value}
       onChange={e => onChange(e.target.value)}
@@ -25,30 +25,30 @@ export const Text = ({
 
 interface TextProps {
   label: string
-  disabled: boolean
-  controlled: boolean
-  placeholder: string
   type: string
+  disabled: boolean
+  placeholder: string
+  controlled: boolean
   value: string
   onChange: (value: string) => void
 }
 
 Text.propTypes = {
   label: PropTypes.string,
-  disabled: PropTypes.bool,
-  controlled: PropTypes.bool,
-  placeholder: PropTypes.string,
   type: PropTypes.string,
+  disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
+  controlled: PropTypes.bool,
   value: PropTypes.string,
   onChange: PropTypes.func
 }
 
 Text.defaultProps = {
   label: '',
-  disabled: false,
-  controlled: true,
-  placeholder: '',
   type: 'text',
+  disabled: false,
+  placeholder: '',
+  controlled: true,
   value: '',
   onChange: () => {}
 }
