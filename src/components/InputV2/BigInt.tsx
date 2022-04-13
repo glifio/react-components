@@ -17,19 +17,28 @@ export const BigIntInput = ({
   const onChangeText = (newTextValue: string) => {
     setError('')
     setHasError(false)
-    onChange(BigInt(newTextValue))
+    try {
+      onChange(BigInt(newTextValue))
+    } catch (e) {
+      // Ignore faulty BigInts, input won't update when controlled is "true"
+    }
   }
   const onBlurText = (newTextValue: string) => {
-    const bigint = BigInt(newTextValue)
-    if (isBigInt(min) && bigint < min) {
-      setError(`Has to be at least ${min.toString()}`)
+    try {
+      const bigint = BigInt(newTextValue)
+      if (isBigInt(min) && bigint < min) {
+        setError(`Has to be at least ${min.toString()}`)
+        setHasError(true)
+      }
+      if (isBigInt(max) && bigint > max) {
+        setError(`Cannot be more than ${max.toString()}`)
+        setHasError(true)
+      }
+      onBlur(bigint)
+    } catch (e) {
+      setError(`Must be a whole number`)
       setHasError(true)
     }
-    if (isBigInt(max) && bigint > max) {
-      setError(`Cannot be more than ${max.toString()}`)
-      setHasError(true)
-    }
-    onBlur(bigint)
   }
 
   return (
