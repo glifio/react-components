@@ -10,8 +10,8 @@ const ToggleLabel = styled(Label)`
 
   input {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 50%;
+    left: 50%;
     width: 0;
     height: 0;
     opacity: 0;
