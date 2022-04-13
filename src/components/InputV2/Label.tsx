@@ -30,9 +30,13 @@ export const Label = styled.label`
           }
         `}
 
+  span.info,
+  span.error {
+    font-size: 0.875rem;
+  }
+
   span.error {
     color: var(--red-medium);
-    font-size: 0.875rem;
   }
 
   ${props =>
