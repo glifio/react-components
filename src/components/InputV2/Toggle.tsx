@@ -60,6 +60,7 @@ const ToggleLabel = styled(Label)`
 
 export const Toggle = ({
   label,
+  info,
   autofocus,
   disabled,
   controlled,
@@ -67,7 +68,10 @@ export const Toggle = ({
   onChange
 }: ToggleProps) => (
   <ToggleLabel disabled={disabled}>
-    <span>{label}</span>
+    <div>
+      {label && <span>{label}</span>}
+      {info && <span className='info'>{info}</span>}
+    </div>
     <span className='toggle-wrapper'>
       <input
         type='checkbox'
@@ -84,6 +88,7 @@ export const Toggle = ({
 
 interface ToggleProps {
   label: string
+  info: string
   autofocus: boolean
   disabled: boolean
   controlled: boolean
@@ -92,7 +97,8 @@ interface ToggleProps {
 }
 
 Toggle.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  info: PropTypes.string,
   autofocus: PropTypes.bool,
   disabled: PropTypes.bool,
   controlled: PropTypes.bool,
@@ -101,6 +107,8 @@ Toggle.propTypes = {
 }
 
 Toggle.defaultProps = {
+  label: '',
+  info: '',
   autofocus: false,
   disabled: false,
   controlled: true,

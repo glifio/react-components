@@ -35,6 +35,13 @@ Checked.args = {
   checked: true
 }
 
+export const WithInfo = Template.bind({})
+WithInfo.args = {
+  ...sharedArgs,
+  label: 'Toggle me',
+  info: 'You won\'t be disappointed'
+}
+
 export const Disabled = Template.bind({})
 Disabled.args = {
   ...sharedArgs,
