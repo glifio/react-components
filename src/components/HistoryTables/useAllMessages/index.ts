@@ -1,5 +1,6 @@
 import { SubscriptionResult } from '@apollo/client'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { BigNumber } from '@glif/filecoin-number'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
   MessageConfirmed,
@@ -22,31 +23,7 @@ export const usePendingMessages = (
   address: string,
   chainHeadSubscription: SubscriptionResult<ChainHeadSubscription, any>
 ) => {
-  const [pendingMsgList, setPendingMsgList] = useState<MessagePending[]>([])
-
-  // only update the pending message list when there is a new message to add... w/out infinite loops
-  const safeUpdate = useCallback(
-    (newMessages: MessagePending[]) => {
-      const pendingCIDs = new Set(pendingMsgList.map(({ cid }) => cid))
-
-      const shouldUpdate = newMessages.some(({ cid }) => !pendingCIDs.has(cid))
-
-      if (shouldUpdate) {
-        setPendingMsgList(
-          uniqueifyMsgs(
-            [...newMessages],
-            [...pendingMsgList]
-          ) as MessagePending[]
-        )
-      }
-    },
-    [pendingMsgList, setPendingMsgList]
-  )
-  /**
-   * ADD PENDING MESSAGES TO THE LIST
-   */
-
-  // from our static query
+  // pending messages from our static query
   const pendingMsgs = usePendingMessagesQuery({
     variables: {
       address: convertAddrToPrefix(address),
@@ -54,32 +31,33 @@ export const usePendingMessages = (
       limit: Number.MAX_SAFE_INTEGER
     },
     // dont poll here because we rely on the subscription and StateListMessage query for updates
-    pollInterval: 0
+    pollInterval: 0,
+    fetchPolicy: 'network-only'
   })
-  if (!pendingMsgs?.loading && pendingMsgs.data) {
-    safeUpdate((pendingMsgs?.data?.pendingMessages as MessagePending[]) || [])
-  }
 
-  // from our subscription
+  // pending messages from our subscription
   const pendingMsgSub = useMpoolUpdateSubscription({
     variables: {
       address: convertAddrToPrefix(address)
     },
     shouldResubscribe: true
   })
-  if (!pendingMsgSub?.loading && !pendingMsgSub.error) {
-    if (pendingMsgSub.data.mpoolUpdate.type === 0) {
-      safeUpdate([pendingMsgSub.data.mpoolUpdate.message as MessagePending])
-    }
-  }
 
-  // from submitted messages from wallet or safe
+  // pending messages submitted messages from wallet or safe
   const { messages: submittedMessages } = useSubmittedMessages()
-  useEffect(() => {
-    if (submittedMessages.length) {
-      safeUpdate([...submittedMessages])
+
+  const pendingMsgList = useMemo<MessagePending[]>(() => {
+    const msgs = [
+      ...submittedMessages,
+      ...(pendingMsgs?.data?.pendingMessages || [])
+    ]
+
+    if (pendingMsgSub?.data?.mpoolUpdate?.type === 0) {
+      msgs.push(pendingMsgSub?.data?.mpoolUpdate?.message)
     }
-  }, [safeUpdate, submittedMessages])
+
+    return uniqueifyMsgs(msgs as MessagePending[])
+  }, [pendingMsgs?.data, submittedMessages, pendingMsgSub?.data?.mpoolUpdate])
 
   // should refresh returns true after a few epochs have past since a message left the mpool
   const [shouldRefresh, setShouldRefresh] = useState(false)
@@ -365,10 +343,27 @@ export const useMessage = (cid: string, height?: number) => {
     } else return null
   }, [msgData, loading, error, pendingMsg, pendingFound])
 
+  const pending = useMemo(
+    () => !pendingFound && !!pendingMsg,
+    [pendingFound, pendingMsg]
+  )
+  // if true, the message will not have its gas execution information attached to it
+  const messageConfirmedInChainHead = useMemo(() => {
+    if (pending) return false
+    const msg = message as MessageConfirmed
+    const bnBaseFeeBurn = new BigNumber(msg?.baseFeeBurn)
+    const bnGasBurned = new BigNumber(msg?.gasBurned)
+
+    return (
+      !!msg && !bnBaseFeeBurn.isGreaterThan(0) && !bnGasBurned.isGreaterThan(0)
+    )
+  }, [message, pending])
+
   return {
     message,
     loading,
     error,
-    pending: !pendingFound && !!pendingMsg
+    pending,
+    messageConfirmedInChainHead
   }
 }

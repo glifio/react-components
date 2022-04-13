@@ -2,7 +2,11 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { useAddressQuery } from '../../../generated/graphql'
-import { useStateReadStateQuery, decodeActorCID } from '../../../utils'
+import {
+  useStateReadStateQuery,
+  decodeActorCID,
+  MsigState
+} from '../../../utils'
 import Box from '../../Box'
 import { P } from '../../Typography'
 import { Title } from '../generic'
@@ -77,6 +81,15 @@ export function ActorState({ address }: { address: string }) {
           <Line label='Balance'>
             {new FilecoinNumber(actorStateData?.Balance, 'attofil').toFil()} FIL
           </Line>
+          {actorType.includes('/multisig') && (
+            <Line label='Available Balance'>
+              {new FilecoinNumber(
+                (actorStateData?.State as MsigState).AvailableBalance,
+                'attofil'
+              ).toFil()}{' '}
+              FIL
+            </Line>
+          )}
           <Box
             display='flex'
             gridGap='1em'
