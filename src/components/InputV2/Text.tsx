@@ -4,6 +4,7 @@ import { Label } from './Label'
 export const Text = ({
   label,
   type,
+  autofocus,
   disabled,
   placeholder,
   controlled,
@@ -14,6 +15,7 @@ export const Text = ({
     {label && <span>{label}</span>}
     <input
       type={type}
+      autoFocus={autofocus}
       disabled={disabled}
       placeholder={placeholder}
       value={controlled ? value : undefined}
@@ -26,6 +28,7 @@ export const Text = ({
 interface TextProps {
   label: string
   type: string
+  autofocus: boolean
   disabled: boolean
   placeholder: string
   controlled: boolean
@@ -36,6 +39,7 @@ interface TextProps {
 Text.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string,
+  autofocus: PropTypes.bool,
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   controlled: PropTypes.bool,
@@ -46,6 +50,7 @@ Text.propTypes = {
 Text.defaultProps = {
   label: '',
   type: 'text',
+  autofocus: false,
   disabled: false,
   placeholder: '',
   controlled: true,
