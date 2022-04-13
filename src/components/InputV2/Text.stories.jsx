@@ -28,6 +28,19 @@ Base.args = {
   label: 'Enter your name'
 }
 
+export const NoLabel = Template.bind({})
+NoLabel.args = {
+  ...sharedArgs
+}
+
+export const Error = Template.bind({})
+Error.args = {
+  ...sharedArgs,
+  label: 'Enter something else',
+  error: 'Oh no! Something went wrong :(',
+  value: 'This is wrong'
+}
+
 export const Disabled = Template.bind({})
 Disabled.args = {
   ...sharedArgs,

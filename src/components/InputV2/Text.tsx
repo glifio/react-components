@@ -3,6 +3,7 @@ import { Label } from './Label'
 
 export const Text = ({
   label,
+  error,
   type,
   autofocus,
   disabled,
@@ -12,8 +13,12 @@ export const Text = ({
   onChange
 }: TextProps) => (
   <Label disabled={disabled}>
-    {label && <span>{label}</span>}
+    <div>
+      {label && <span>{label}</span>}
+      {error && <span className='error'>{error}</span>}
+    </div>
     <input
+      className={error ? 'error' : ''}
       type={type}
       autoFocus={autofocus}
       disabled={disabled}
@@ -27,6 +32,7 @@ export const Text = ({
 
 interface TextProps {
   label: string
+  error: string
   type: string
   autofocus: boolean
   disabled: boolean
@@ -38,6 +44,7 @@ interface TextProps {
 
 Text.propTypes = {
   label: PropTypes.string,
+  error: PropTypes.string,
   type: PropTypes.string,
   autofocus: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -49,6 +56,7 @@ Text.propTypes = {
 
 Text.defaultProps = {
   label: '',
+  error: '',
   type: 'text',
   autofocus: false,
   disabled: false,
