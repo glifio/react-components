@@ -22,16 +22,16 @@ export const useGetReplaceMessageGasParams = (
   const [gasParams, setGasParams] = useState<GasParams | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
-  const resolver = minimum
+  const getGasParams = minimum
     ? provider.getReplaceMessageMinGasParams
-    : provider.getReplaceMessageGasParams;
+    : provider.getReplaceMessageGasParams
 
   useEffect(() => {
     setGasParams(null)
     setError(null)
     if (message) {
       setLoading(true)
-      resolver(message)
+      getGasParams(message)
         .then((g: GasParams) => setGasParams(g))
         .catch((e: Error) => setError(e))
         .finally(() => setLoading(false))
