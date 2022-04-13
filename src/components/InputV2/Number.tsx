@@ -11,11 +11,9 @@ export const NumberInput = ({
   ...textProps
 }: NumberProps) => {
   const [error, setError] = useState<string>('')
-  const [textValue, setTextValue] = useState<string>(isNaN(value) ? '' : value.toString())
   const onChangeText = (newTextValue: string) => {
-    const number = Number(newTextValue)
-    setTextValue(newTextValue)
-    onChange(number)
+    setError('')
+    onChange(Number(newTextValue))
   }
   const onBlurText = (newTextValue: string) => {
     const number = Number(newTextValue)
@@ -24,9 +22,11 @@ export const NumberInput = ({
 
   return (
     <TextInput
+      error={error}
       type='number'
-      value={textValue}
+      value={isNaN(value) ? '' : value.toString()}
       onChange={onChangeText}
+      onBlur={onBlurText}
       {...textProps}
     />
   )
