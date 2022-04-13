@@ -47,7 +47,8 @@ const ToggleLabel = styled(Label)`
   }
 
   &:hover .toggle,
-  input:checked ~ .toggle {
+  input:checked ~ .toggle,
+  input:focus ~ .toggle {
     border-color: var(--blue-medium);
     background-color: var(--blue-medium);
   }
@@ -60,6 +61,7 @@ const ToggleLabel = styled(Label)`
 
 export const Toggle = ({
   label,
+  autofocus,
   disabled,
   controlled,
   checked,
@@ -70,6 +72,8 @@ export const Toggle = ({
     <span className='wrapper'>
       <input
         type='checkbox'
+        autoFocus={autofocus}
+        disabled={disabled}
         checked={controlled ? checked : undefined}
         defaultChecked={controlled ? undefined : checked}
         onChange={e => onChange(e.target.checked)}
@@ -81,6 +85,7 @@ export const Toggle = ({
 
 interface ToggleProps {
   label: string
+  autofocus: boolean
   disabled: boolean
   controlled: boolean
   checked: boolean
@@ -89,6 +94,7 @@ interface ToggleProps {
 
 Toggle.propTypes = {
   label: PropTypes.string,
+  autofocus: PropTypes.bool,
   disabled: PropTypes.bool,
   controlled: PropTypes.bool,
   checked: PropTypes.bool,
@@ -97,6 +103,7 @@ Toggle.propTypes = {
 
 Toggle.defaultProps = {
   label: '',
+  autofocus: false,
   disabled: false,
   controlled: true,
   checked: false,
