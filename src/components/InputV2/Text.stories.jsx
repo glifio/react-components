@@ -33,6 +33,13 @@ NoLabel.args = {
   ...sharedArgs
 }
 
+export const WithInfo = Template.bind({})
+WithInfo.args = {
+  ...sharedArgs,
+  label: 'Enter your name',
+  info: 'Or your nickname'
+}
+
 export const Error = Template.bind({})
 Error.args = {
   ...sharedArgs,
@@ -93,6 +100,14 @@ VerticalCentered.args = {
   vertical: true,
   centered: true,
   label: 'Enter your name'
+}
+
+export const VerticalWithInfo = Template.bind({})
+VerticalWithInfo.args = {
+  ...sharedArgs,
+  vertical: true,
+  label: 'Enter your name',
+  info: 'Or your nickname'
 }
 
 export const VerticalError = Template.bind({})
