@@ -34,3 +34,20 @@ PreFilled.args = {
   label: 'Enter your age',
   value: 35
 }
+
+export const MinValue = Template.bind({})
+MinValue.args = {
+  ...sharedArgs,
+  label: 'Enter your age',
+  info: 'You must be 21 or older',
+  min: 21
+}
+
+export const MinMaxValue = Template.bind({})
+MinMaxValue.args = {
+  ...sharedArgs,
+  label: 'Enter your age',
+  info: 'You must be between 25 and 35 years old',
+  min: 25,
+  max: 35
+}
