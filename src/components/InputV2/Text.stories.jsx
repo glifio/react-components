@@ -28,7 +28,7 @@ Disabled.args = {
   label: 'You cannot enter anything',
   controlled: false,
   disabled: true,
-  text: 'Too bad'
+  value: 'Too bad'
 }
 
 export const Placeholder = Template.bind({})
@@ -59,5 +59,5 @@ PasswordDisabled.args = {
   controlled: false,
   disabled: true,
   type: 'password',
-  text: 'Too bad'
+  value: 'Too bad'
 }

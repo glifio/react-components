@@ -7,8 +7,8 @@ export const Text = ({
   controlled,
   placeholder,
   type,
-  text,
-  setText
+  value,
+  onChange
 }: TextProps) => (
   <Label disabled={disabled}>
     {label && <span>{label}</span>}
@@ -16,9 +16,9 @@ export const Text = ({
       placeholder={placeholder}
       disabled={disabled}
       type={type}
-      value={controlled ? text : undefined}
-      defaultValue={controlled ? undefined : text}
-      onChange={e => setText(e.target.value)}
+      value={controlled ? value : undefined}
+      defaultValue={controlled ? undefined : value}
+      onChange={e => onChange(e.target.value)}
     />
   </Label>
 )
@@ -29,8 +29,8 @@ interface TextProps {
   controlled: boolean
   placeholder: string
   type: string
-  text: string
-  setText: (text: string) => void
+  value: string
+  onChange: (value: string) => void
 }
 
 Text.propTypes = {
@@ -39,8 +39,8 @@ Text.propTypes = {
   controlled: PropTypes.bool,
   placeholder: PropTypes.string,
   type: PropTypes.string,
-  text: PropTypes.string,
-  setText: PropTypes.func
+  value: PropTypes.string,
+  onChange: PropTypes.func
 }
 
 Text.defaultProps = {
@@ -49,6 +49,6 @@ Text.defaultProps = {
   controlled: true,
   placeholder: '',
   type: 'text',
-  text: '',
-  setText: () => {}
+  value: '',
+  onChange: () => {}
 }
