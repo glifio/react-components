@@ -25,7 +25,7 @@ export const Label = styled.label`
             flex-direction: column;
           }
 
-          > *:last-child {
+          > *:last-child:not(.toggle-wrapper) {
             flex: 0 0 50%;
           }
         `}
