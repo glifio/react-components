@@ -38,7 +38,6 @@ export const NumberInput = ({
  *
  * error: set by number input validation
  * type: always "number" for number input
- * controlled: always "true" for number input
  * value: needs to be of type "number" / "PropTypes.number"
  * onChange: needs to take "number" type argument
  * onBlur: needs to take "number" type argument
@@ -52,11 +51,11 @@ type NumberProps = {
   onBlur: (value: number) => void
 } & Omit<
   TextInputProps,
-  'error' | 'type' | 'controlled' | 'value' | 'onChange' | 'onBlur'
+  'error' | 'type' | 'value' | 'onChange' | 'onBlur'
 >
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"
-const { error, type, controlled, value, ...numberProps } = TextInput.propTypes
+const { error, type, value, ...numberProps } = TextInput.propTypes
 
 NumberInput.propTypes = {
   min: PropTypes.number,

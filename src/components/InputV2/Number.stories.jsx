@@ -18,7 +18,8 @@ export default {
 const Template = args => <NumberInput {...args} />
 
 const sharedArgs = {
-  autofocus: true
+  autofocus: true,
+  controlled: false
 }
 
 export const Base = Template.bind({})
