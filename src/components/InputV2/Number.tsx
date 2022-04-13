@@ -10,7 +10,7 @@ export const NumberInput = ({
   onBlur,
   setHasError,
   ...textProps
-}: NumberProps) => {
+}: NumberInputProps) => {
   const [error, setError] = useState<string>('')
   const onChangeText = (newTextValue: string) => {
     setError('')
@@ -53,7 +53,7 @@ export const NumberInput = ({
  * onBlur: needs to take "number" type argument
  */
 
-type NumberProps = {
+type NumberInputProps = {
   min: number
   max: number
   value: number
