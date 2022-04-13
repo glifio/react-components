@@ -62,7 +62,7 @@ export const PasswordDisabled = Template.bind({})
 PasswordDisabled.args = {
   ...sharedArgs,
   label: 'You cannot enter your password',
-  disabled: true,
   type: 'password',
+  disabled: true,
   value: 'Too bad'
 }
