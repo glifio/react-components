@@ -5,6 +5,7 @@ export const TextInput = ({
   vertical,
   centered,
   label,
+  info,
   error,
   type,
   autofocus,
@@ -17,10 +18,14 @@ export const TextInput = ({
 }: TextInputProps) => (
   <Label disabled={disabled} vertical={vertical} centered={centered}>
     {vertical ? (
-      label && <span>{label}</span>
+      <>
+        {label && <span>{label}</span>}
+        {info && <span className='info'>{info}</span>}
+      </>
     ) : (
       <div>
         {label && <span>{label}</span>}
+        {info && <span className='info'>{info}</span>}
         {error && <span className='error'>{error}</span>}
       </div>
     )}
@@ -43,6 +48,7 @@ export interface TextInputProps {
   vertical: boolean
   centered: boolean
   label: string
+  info: string
   error: string
   type: string
   autofocus: boolean
@@ -58,6 +64,7 @@ TextInput.propTypes = {
   vertical: PropTypes.bool,
   centered: PropTypes.bool,
   label: PropTypes.string,
+  info: PropTypes.string,
   error: PropTypes.string,
   type: PropTypes.string,
   autofocus: PropTypes.bool,
@@ -73,6 +80,7 @@ TextInput.defaultProps = {
   vertical: false,
   centered: false,
   label: '',
+  info: '',
   error: '',
   type: 'text',
   autofocus: false,
