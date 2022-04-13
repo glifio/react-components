@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { Label } from './Label'
 
 const ToggleLabel = styled(Label)`
-  .wrapper {
-    display: inline-block;
+  .toggle-wrapper {
     position: relative;
     padding: 0.5em 0;
   }
@@ -68,8 +67,8 @@ export const Toggle = ({
   onChange
 }: ToggleProps) => (
   <ToggleLabel disabled={disabled}>
-    {label && <span>{label}</span>}
-    <span className='wrapper'>
+    <span>{label}</span>
+    <span className='toggle-wrapper'>
       <input
         type='checkbox'
         autoFocus={autofocus}
@@ -93,7 +92,7 @@ interface ToggleProps {
 }
 
 Toggle.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   autofocus: PropTypes.bool,
   disabled: PropTypes.bool,
   controlled: PropTypes.bool,
@@ -102,7 +101,6 @@ Toggle.propTypes = {
 }
 
 Toggle.defaultProps = {
-  label: '',
   autofocus: false,
   disabled: false,
   controlled: true,
