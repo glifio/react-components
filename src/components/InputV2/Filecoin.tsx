@@ -10,138 +10,150 @@ type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
  * Since Infinity and NaN don't exist as useful defaults,
  * we use this method to check if the prop has been passed
  **/
- const isFilecoinNumber = value => value instanceof FilecoinNumber
+const isFilecoinNumber = value => value instanceof FilecoinNumber
 
- /**
+/**
  * Get the string representation of the Filecoin number for the required denomination
  **/
- const getTextValue = (value: FilecoinNumber, denom: FilecoinDenomination) => {
-   switch (denom)
-   {
-     case 'fil': return value.toFil()
-     case 'picofil': return value.toPicoFil()
-     case 'attofil': return value.toAttoFil()
-     default: return ''
-   }
- }
+const getTextValue = (value: FilecoinNumber, denom: FilecoinDenomination) => {
+  switch (denom) {
+    case 'fil':
+      return value.toFil()
+    case 'picofil':
+      return value.toPicoFil()
+    case 'attofil':
+      return value.toAttoFil()
+    default:
+      return ''
+  }
+}
 
- /**
+/**
  * Get the unit representation for the required denomination
  **/
- const getUnit = (denom: FilecoinDenomination) => {
-   switch (denom)
-   {
-     case 'fil': return 'FIL'
-     case 'picofil': return 'pFIL'
-     case 'attofil': return 'aFIL'
-     default: return ''
-   }
- }
+const getUnit = (denom: FilecoinDenomination) => {
+  switch (denom) {
+    case 'fil':
+      return 'FIL'
+    case 'picofil':
+      return 'pFIL'
+    case 'attofil':
+      return 'aFIL'
+    default:
+      return ''
+  }
+}
 
- /**
-  * FilecoinInput
-  *
-  * This input is based on the NumberInput, with the difference that
-  * min, max and value are of type "FilecoinNumber" and not "number".
-  *
-  * Instead of triggering "onChange" and "onBlur" with NaN, these
-  * methods will not be called when the input is empty or invalid.
-  */
- export const FilecoinInput = ({
-   min,
-   max,
-   value,
-   denom,
-   onChange,
-   onBlur,
-   setHasError,
-   ...baseProps
- }: FilecoinInputProps) => {
-   const [error, setError] = useState<string>('')
-   const onChangeText = (newTextValue: string) => {
-     setError('')
-     setHasError(false)
-     try {
-       onChange(new FilecoinNumber(newTextValue, denom))
-     } catch (e) {
-       // Ignore faulty input while the element has focus
-     }
-   }
-   const onBlurText = (newTextValue: string) => {
-     if (!newTextValue) {
-       setError(`Cannot be empty`)
-       setHasError(true)
-       return
-     }
-     try {
-       const filecoin = new FilecoinNumber(newTextValue, denom)
-       if (isFilecoinNumber(min) && filecoin.isLessThan(min)) {
-         setError(`Cannot be less than ${getTextValue(min, denom)} ${getUnit(denom)}`)
-         setHasError(true)
-       }
-       if (isFilecoinNumber(max) && filecoin.isGreaterThan(max)) {
-         setError(`Cannot be more than ${getTextValue(max, denom)} ${getUnit(denom)}`)
-         setHasError(true)
-       }
-       onBlur(filecoin)
-     } catch (e) {
-       setError(`Must be a valid Filecoin number`)
-       setHasError(true)
-     }
-   }
+/**
+ * FilecoinInput
+ *
+ * This input is based on the NumberInput, with the difference that
+ * min, max and value are of type "FilecoinNumber" and not "number".
+ *
+ * Instead of triggering "onChange" and "onBlur" with NaN, these
+ * methods will not be called when the input is empty or invalid.
+ */
+export const FilecoinInput = ({
+  min,
+  max,
+  value,
+  denom,
+  onChange,
+  onBlur,
+  setHasError,
+  ...baseProps
+}: FilecoinInputProps) => {
+  const [error, setError] = useState<string>('')
+  const onChangeText = (newTextValue: string) => {
+    setError('')
+    setHasError(false)
+    try {
+      onChange(new FilecoinNumber(newTextValue, denom))
+    } catch (e) {
+      // Ignore faulty input while the element has focus
+    }
+  }
+  const onBlurText = (newTextValue: string) => {
+    if (!newTextValue) {
+      setError(`Cannot be empty`)
+      setHasError(true)
+      return
+    }
+    try {
+      const filecoin = new FilecoinNumber(newTextValue, denom)
+      if (isFilecoinNumber(min) && filecoin.isLessThan(min)) {
+        setError(
+          `Cannot be less than ${getTextValue(min, denom)} ${getUnit(denom)}`
+        )
+        setHasError(true)
+      }
+      if (isFilecoinNumber(max) && filecoin.isGreaterThan(max)) {
+        setError(
+          `Cannot be more than ${getTextValue(max, denom)} ${getUnit(denom)}`
+        )
+        setHasError(true)
+      }
+      onBlur(filecoin)
+    } catch (e) {
+      setError(`Must be a valid Filecoin number`)
+      setHasError(true)
+    }
+  }
 
-   return (
-     <BaseInput
-       error={error}
-       type='number'
-       unit={getUnit(denom)}
-       value={isFilecoinNumber(value) ? getTextValue(value, denom) : ''}
-       onChange={onChangeText}
-       onBlur={onBlurText}
-       {...baseProps}
-     />
-   )
- }
- 
- /**
-  * We strip certain properties from the standard
-  * base input props because we want to override them:
-  *
-  * error: set by filecoin input validation
-  * type: always "number" for filecoin input
-  * unit: will be based on the FilecoinDenomination
-  * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROP"
-  * onChange: needs to take "FilecoinNumber" type argument
-  * onBlur: needs to take "FilecoinNumber" type argument
-  */
- 
- export type FilecoinInputProps = {
-   min?: FilecoinNumber
-   max?: FilecoinNumber
-   value?: FilecoinNumber
-   denom: FilecoinDenomination
-   onChange: (value: FilecoinNumber) => void
-   onBlur: (value: FilecoinNumber) => void
-   setHasError: (hasError: boolean) => void
- } & Omit<BaseInputProps, 'error' | 'type' | 'unit' | 'value' | 'onChange' | 'onBlur'>
- 
- // "onChange" and "onBlur" remain of type "PropTypes.func"
- const { error, type, unit, value, ...filecoinProps } = BaseInput.propTypes
- 
- FilecoinInput.propTypes = {
-   min: FILECOIN_NUMBER_PROP,
-   max: FILECOIN_NUMBER_PROP,
-   value: FILECOIN_NUMBER_PROP,
-   denom: PropTypes.oneOf(['fil', 'picofil', 'attofil']),
-   setHasError: PropTypes.func,
-   ...filecoinProps
- }
- 
- // "min", "max" and "value" have no useful defaults for FilecoinNumber
- FilecoinInput.defaultProps = {
-   denom: 'fil',
-   onChange: () => {},
-   onBlur: () => {},
-   setHasError: () => {}
- }
- 
+  return (
+    <BaseInput
+      error={error}
+      type='number'
+      unit={getUnit(denom)}
+      value={isFilecoinNumber(value) ? getTextValue(value, denom) : ''}
+      onChange={onChangeText}
+      onBlur={onBlurText}
+      {...baseProps}
+    />
+  )
+}
+
+/**
+ * We strip certain properties from the standard
+ * base input props because we want to override them:
+ *
+ * error: set by filecoin input validation
+ * type: always "number" for filecoin input
+ * unit: will be based on the FilecoinDenomination
+ * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROP"
+ * onChange: needs to take "FilecoinNumber" type argument
+ * onBlur: needs to take "FilecoinNumber" type argument
+ */
+
+export type FilecoinInputProps = {
+  min?: FilecoinNumber
+  max?: FilecoinNumber
+  value?: FilecoinNumber
+  denom: FilecoinDenomination
+  onChange: (value: FilecoinNumber) => void
+  onBlur: (value: FilecoinNumber) => void
+  setHasError: (hasError: boolean) => void
+} & Omit<
+  BaseInputProps,
+  'error' | 'type' | 'unit' | 'value' | 'onChange' | 'onBlur'
+>
+
+// "onChange" and "onBlur" remain of type "PropTypes.func"
+const { error, type, unit, value, ...filecoinProps } = BaseInput.propTypes
+
+FilecoinInput.propTypes = {
+  min: FILECOIN_NUMBER_PROP,
+  max: FILECOIN_NUMBER_PROP,
+  value: FILECOIN_NUMBER_PROP,
+  denom: PropTypes.oneOf(['fil', 'picofil', 'attofil']),
+  setHasError: PropTypes.func,
+  ...filecoinProps
+}
+
+// "min", "max" and "value" have no useful defaults for FilecoinNumber
+FilecoinInput.defaultProps = {
+  denom: 'fil',
+  onChange: () => {},
+  onBlur: () => {},
+  setHasError: () => {}
+}
