@@ -1,10 +1,13 @@
-import { shape, string, oneOfType, number, oneOf, object, Requireable } from 'prop-types'
+import {
+  shape,
+  string,
+  oneOfType,
+  number,
+  oneOf,
+  object,
+  Requireable
+} from 'prop-types'
 import { validateAddressString } from '@glif/filecoin-address'
-
-interface CustomPropType {
-  (a: number, b: string): string[];
-  foo: string;
-}
 
 const createAddressPropType =
   isRequired => (props, propName, componentName) => {
