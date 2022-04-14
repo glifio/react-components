@@ -18,12 +18,12 @@ export const NumberInput = ({
   ...baseProps
 }: NumberInputProps) => {
   const [error, setError] = useState<string>('')
-  const onChangeText = (newValue: string) => {
+  const onChangeBase = (newValue: string) => {
     setError('')
     setHasError(false)
     onChange(newValue ? Number(newValue) : NaN)
   }
-  const onBlurText = (newValue: string) => {
+  const onBlurBase = (newValue: string) => {
     const number = newValue ? Number(newValue) : NaN
     if (number < min) {
       setError(`Cannot be less than ${min}`)
@@ -45,8 +45,8 @@ export const NumberInput = ({
       error={error}
       type='number'
       value={isNaN(value) ? '' : value.toString()}
-      onChange={onChangeText}
-      onBlur={onBlurText}
+      onChange={onChangeBase}
+      onBlur={onBlurBase}
       {...baseProps}
     />
   )

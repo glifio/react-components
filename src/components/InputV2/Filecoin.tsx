@@ -15,7 +15,7 @@ const isFilecoinNumber = value => value instanceof FilecoinNumber
 /**
  * Get the string representation of the Filecoin number for the required denomination
  **/
-const getTextValue = (value: FilecoinNumber, denom: FilecoinDenomination) => {
+const getValue = (value: FilecoinNumber, denom: FilecoinDenomination) => {
   switch (denom) {
     case 'fil':
       return value.toFil()
@@ -64,7 +64,7 @@ export const FilecoinInput = ({
   ...baseProps
 }: FilecoinInputProps) => {
   const [error, setError] = useState<string>('')
-  const onChangeText = (newValue: string) => {
+  const onChangeBase = (newValue: string) => {
     setError('')
     setHasError(false)
     try {
@@ -73,7 +73,7 @@ export const FilecoinInput = ({
       // Ignore faulty input while the element has focus
     }
   }
-  const onBlurText = (newValue: string) => {
+  const onBlurBase = (newValue: string) => {
     if (!newValue) {
       setError(`Cannot be empty`)
       setHasError(true)
@@ -83,13 +83,13 @@ export const FilecoinInput = ({
       const filecoin = new FilecoinNumber(newValue, denom)
       if (isFilecoinNumber(min) && filecoin.isLessThan(min)) {
         setError(
-          `Cannot be less than ${getTextValue(min, denom)} ${getUnit(denom)}`
+          `Cannot be less than ${getValue(min, denom)} ${getUnit(denom)}`
         )
         setHasError(true)
       }
       if (isFilecoinNumber(max) && filecoin.isGreaterThan(max)) {
         setError(
-          `Cannot be more than ${getTextValue(max, denom)} ${getUnit(denom)}`
+          `Cannot be more than ${getValue(max, denom)} ${getUnit(denom)}`
         )
         setHasError(true)
       }
@@ -105,9 +105,9 @@ export const FilecoinInput = ({
       error={error}
       type='number'
       unit={getUnit(denom)}
-      value={isFilecoinNumber(value) ? getTextValue(value, denom) : ''}
-      onChange={onChangeText}
-      onBlur={onBlurText}
+      value={isFilecoinNumber(value) ? getValue(value, denom) : ''}
+      onChange={onChangeBase}
+      onBlur={onBlurBase}
       {...baseProps}
     />
   )
