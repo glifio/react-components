@@ -2,8 +2,21 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { BaseInput, BaseInputProps } from './Base'
 
+/**
+ * Since Infinity and NaN don't exist as useful defaults,
+ * we use this method to check if the prop has been passed
+ **/
 const isBigInt = value => typeof value === 'bigint'
 
+/**
+ * BigIntInput
+ *
+ * This input is based on the NumberInput, with the difference
+ * that min, max and value are of type "bigint" and not "number".
+ * 
+ * Instead of triggering "onChange" and "onBlur" with NaN, these
+ * methods will not be called when the input is empty or invalid.
+ */
 export const BigIntInput = ({
   min,
   max,
@@ -88,6 +101,7 @@ BigIntInput.propTypes = {
   ...bigIntProps
 }
 
+// "min", "max" and "value" have no useful defaults for BigInt
 BigIntInput.defaultProps = {
   onChange: () => {},
   onBlur: () => {},
