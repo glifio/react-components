@@ -62,7 +62,7 @@ type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
      setError('')
      setHasError(false)
      try {
-       onChange(BigInt(newTextValue))
+       onChange(new FilecoinNumber(newTextValue, denom))
      } catch (e) {
        // Ignore faulty input while the element has focus
      }
@@ -74,18 +74,18 @@ type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
        return
      }
      try {
-       const bigint = BigInt(newTextValue)
-       if (isBigInt(min) && bigint < min) {
-         setError(`Cannot be less than ${min.toString()}`)
+       const filecoin = new FilecoinNumber(newTextValue, denom)
+       if (isFilecoinNumber(min) && filecoin.isLessThan(min)) {
+         setError(`Cannot be less than ${getTextValue(min, denom)} ${getUnit(denom)}`)
          setHasError(true)
        }
-       if (isBigInt(max) && bigint > max) {
-         setError(`Cannot be more than ${max.toString()}`)
+       if (isFilecoinNumber(max) && filecoin.isGreaterThan(max)) {
+         setError(`Cannot be more than ${getTextValue(max, denom)} ${getUnit(denom)}`)
          setHasError(true)
        }
-       onBlur(bigint)
+       onBlur(filecoin)
      } catch (e) {
-       setError(`Must be a whole number`)
+       setError(`Must be a valid Filecoin number`)
        setHasError(true)
      }
    }
