@@ -71,22 +71,6 @@ PlaceholderDisabled.args = {
   placeholder: 'over here'
 }
 
-export const Password = Template.bind({})
-Password.args = {
-  ...sharedArgs,
-  label: 'Enter your password',
-  type: 'password'
-}
-
-export const PasswordDisabled = Template.bind({})
-PasswordDisabled.args = {
-  ...sharedArgs,
-  label: 'You cannot enter your password',
-  type: 'password',
-  disabled: true,
-  value: 'Too bad'
-}
-
 export const Vertical = Template.bind({})
 Vertical.args = {
   ...sharedArgs,
