@@ -15,7 +15,13 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <BigIntInput {...args} />
+const Template = args => (
+  <BigIntInput
+    min={BigInt('9007199254740991')}
+    max={BigInt('10007199254740991')}
+    {...args}
+  />
+)
 
 const sharedArgs = {
   autofocus: true,
@@ -25,5 +31,6 @@ const sharedArgs = {
 export const Base = Template.bind({})
 Base.args = {
   ...sharedArgs,
-  label: 'Enter your age'
+  label: 'Enter your age',
+  info: 'You must be between 9007199254740991 and 10007199254740991 years old'
 }
