@@ -81,7 +81,7 @@ type MessageHistoryTableProps = {
 
 MessageHistoryTable.propTypes = {
   offset: PropTypes.number,
-  address: ADDRESS_PROPTYPE,
+  address: ADDRESS_PROPTYPE.isRequired,
   cidHref: PropTypes.func.isRequired
 }
 
