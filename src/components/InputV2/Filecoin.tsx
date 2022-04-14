@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
-import { FILECOIN_NUMBER_PROP } from '../../customPropTypes'
+import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 
 type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
 
@@ -120,7 +120,7 @@ export const FilecoinInput = ({
  * error: set by filecoin input validation
  * type: always "number" for filecoin input
  * unit: will be based on the FilecoinDenomination
- * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROP"
+ * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
  * onChange: needs to take "FilecoinNumber" type argument
  * onBlur: needs to take "FilecoinNumber" type argument
  */
@@ -142,9 +142,9 @@ export type FilecoinInputProps = {
 const { error, type, unit, value, ...filecoinProps } = BaseInputPropTypes
 
 FilecoinInput.propTypes = {
-  min: FILECOIN_NUMBER_PROP,
-  max: FILECOIN_NUMBER_PROP,
-  value: FILECOIN_NUMBER_PROP,
+  min: FILECOIN_NUMBER_PROPTYPE,
+  max: FILECOIN_NUMBER_PROPTYPE,
+  value: FILECOIN_NUMBER_PROPTYPE,
   denom: PropTypes.oneOf(['fil', 'picofil', 'attofil']),
   setHasError: PropTypes.func,
   ...filecoinProps

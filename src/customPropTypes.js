@@ -23,21 +23,30 @@ export const GRAPHQL_ADDRESS_PROP_TYPE = shape({
   robust: string
 })
 
-export const FILECOIN_NUMBER_PROP = (props, propName, componentName) => {
-  // instanceof prop checking is broken in nextjs on server side render cycles
-  const representsANum = Number.isNaN(Number(props[propName].toString()))
-  const hasFilecoinNumMethods = !!(
-    props[propName].toFil &&
-    props[propName].toAttoFil &&
-    props[propName].toPicoFil
-  )
-  if (!(representsANum || hasFilecoinNumMethods))
-    return new Error(
-      `Invalid prop: ${propName} supplied to ${componentName}. Validation failed.`
-    )
+const createFilecoinNumberPropType =
+  isRequired => (props, propName, componentName) => {
+    const prop = props[propName]
+    if (prop == null) {
+      if (isRequired) {
+        return new Error(`Missing prop "${propName}" in "${componentName}"`)
+      }
+    } else {
+      // instanceof prop checking is broken in nextjs on server side render cycles
+      const isFilecoinNumber =
+        typeof prop === 'object' &&
+        'toFil' in prop &&
+        'toAttoFil' in prop &&
+        'toPicoFil' in prop
+      if (!isFilecoinNumber)
+        return new Error(
+          `Invalid prop "${propName}" supplied to "${componentName}"`
+        )
+    }
+  }
 
-  return null
-}
+export const FILECOIN_NUMBER_PROPTYPE = createFilecoinNumberPropType(false)
+export const FILECOIN_NUMBER_PROPTYPE_REQUIRED =
+  createFilecoinNumberPropType(true)
 
 export const MESSAGE_PROPS = shape({
   /**
