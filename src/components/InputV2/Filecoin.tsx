@@ -1,11 +1,133 @@
-import { BigIntInput, BigIntInputProps } from './BigInt'
+import PropTypes from 'prop-types'
+import { useState } from 'react'
+import { FilecoinNumber } from '@glif/filecoin-number'
+import { BaseInput, BaseInputProps } from './Base'
+import { FILECOIN_NUMBER_PROP } from '../../customPropTypes'
 
-export const FilecoinInput = (props: BigIntInputProps) => (
-  <BigIntInput {...props} />
-)
+type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
 
-FilecoinInput.propTypes = BigIntInput.propTypes
-FilecoinInput.defaultProps = {
-  min: BigInt(0),
-  unit: 'FIL'
-}
+/**
+ * Since Infinity and NaN don't exist as useful defaults,
+ * we use this method to check if the prop has been passed
+ **/
+ const isFilecoinNumber = value => value instanceof FilecoinNumber
+
+ /**
+ * Get the string representation of the Filecoin number for the required denomination
+ **/
+ const getTextValue = (value: FilecoinNumber, denom: FilecoinDenomination) => {
+   switch (denom)
+   {
+     case 'fil': return value.toFil()
+     case 'picofil': return value.toPicoFil()
+     case 'attofil': return value.toAttoFil()
+     default: return ''
+   }
+ }
+
+ /**
+  * FilecoinInput
+  *
+  * This input is based on the NumberInput, with the difference that
+  * min, max and value are of type "FilecoinNumber" and not "number".
+  *
+  * Instead of triggering "onChange" and "onBlur" with NaN, these
+  * methods will not be called when the input is empty or invalid.
+  */
+ export const FilecoinInput = ({
+   min,
+   max,
+   value,
+   onChange,
+   onBlur,
+   setHasError,
+   ...baseProps
+ }: FilecoinInputProps) => {
+   const [error, setError] = useState<string>('')
+   const onChangeText = (newTextValue: string) => {
+     setError('')
+     setHasError(false)
+     try {
+       onChange(BigInt(newTextValue))
+     } catch (e) {
+       // Ignore faulty input while the element has focus
+     }
+   }
+   const onBlurText = (newTextValue: string) => {
+     if (!newTextValue) {
+       setError(`Cannot be empty`)
+       setHasError(true)
+       return
+     }
+     try {
+       const bigint = BigInt(newTextValue)
+       if (isBigInt(min) && bigint < min) {
+         setError(`Cannot be less than ${min.toString()}`)
+         setHasError(true)
+       }
+       if (isBigInt(max) && bigint > max) {
+         setError(`Cannot be more than ${max.toString()}`)
+         setHasError(true)
+       }
+       onBlur(bigint)
+     } catch (e) {
+       setError(`Must be a whole number`)
+       setHasError(true)
+     }
+   }
+
+   const textValue = 
+ 
+   return (
+     <BaseInput
+       error={error}
+       type='number'
+       value={isFilecoinNumber(value) ? value.toString() : ''}
+       onChange={onChangeText}
+       onBlur={onBlurText}
+       {...baseProps}
+     />
+   )
+ }
+ 
+ /**
+  * We strip certain properties from the standard
+  * base input props because we want to override them:
+  *
+  * error: set by filecoin input validation
+  * type: always "number" for filecoin input
+  * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROP"
+  * onChange: needs to take "FilecoinNumber" type argument
+  * onBlur: needs to take "FilecoinNumber" type argument
+  */
+ 
+ export type FilecoinInputProps = {
+   min?: FilecoinNumber
+   max?: FilecoinNumber
+   value?: FilecoinNumber
+   denom: FilecoinDenomination
+   onChange: (value: FilecoinNumber) => void
+   onBlur: (value: FilecoinNumber) => void
+   setHasError: (hasError: boolean) => void
+ } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
+ 
+ // "onChange" and "onBlur" remain of type "PropTypes.func"
+ const { error, type, value, ...filecoinProps } = BaseInput.propTypes
+ 
+ FilecoinInput.propTypes = {
+   min: FILECOIN_NUMBER_PROP,
+   max: FILECOIN_NUMBER_PROP,
+   value: FILECOIN_NUMBER_PROP,
+   denom: PropTypes.oneOf(['fil', 'picofil', 'attofil']),
+   setHasError: PropTypes.func,
+   ...filecoinProps
+ }
+ 
+ // "min", "max" and "value" have no useful defaults for BigInt
+ FilecoinInput.defaultProps = {
+   denom: 'fil',
+   onChange: () => {},
+   onBlur: () => {},
+   setHasError: () => {}
+ }
+ 
