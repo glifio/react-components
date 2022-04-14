@@ -2,6 +2,12 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { BaseInput, BaseInputProps } from './Base'
 
+/**
+ * NumberInput
+ *
+ * When the text input field is empty, value will be NaN. This is so we can
+ * differentiate between 0 and empty input while value remains of type "number".
+ */
 export const NumberInput = ({
   min,
   max,
@@ -15,16 +21,20 @@ export const NumberInput = ({
   const onChangeText = (newTextValue: string) => {
     setError('')
     setHasError(false)
-    onChange(Number(newTextValue))
+    onChange(newTextValue ? Number(newTextValue) : NaN)
   }
   const onBlurText = (newTextValue: string) => {
-    const number = Number(newTextValue)
+    const number = newTextValue ? Number(newTextValue) : NaN
     if (number < min) {
-      setError(`Has to be at least ${min}`)
+      setError(`Cannot be less than ${min}`)
       setHasError(true)
     }
     if (number > max) {
       setError(`Cannot be more than ${max}`)
+      setHasError(true)
+    }
+    if (isNaN(number)) {
+      setError(`Cannot be empty`)
       setHasError(true)
     }
     onBlur(number)
