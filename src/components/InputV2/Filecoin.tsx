@@ -26,6 +26,19 @@ type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
  }
 
  /**
+ * Get the unit representation for the required denomination
+ **/
+ const getUnit = (denom: FilecoinDenomination) => {
+   switch (denom)
+   {
+     case 'fil': return 'FIL'
+     case 'picofil': return 'pFIL'
+     case 'attofil': return 'aFIL'
+     default: return ''
+   }
+ }
+
+ /**
   * FilecoinInput
   *
   * This input is based on the NumberInput, with the difference that
@@ -38,6 +51,7 @@ type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
    min,
    max,
    value,
+   denom,
    onChange,
    onBlur,
    setHasError,
@@ -76,13 +90,12 @@ type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
      }
    }
 
-   const textValue = 
- 
    return (
      <BaseInput
        error={error}
        type='number'
-       value={isFilecoinNumber(value) ? value.toString() : ''}
+       unit={getUnit(denom)}
+       value={isFilecoinNumber(value) ? getTextValue(value, denom) : ''}
        onChange={onChangeText}
        onBlur={onBlurText}
        {...baseProps}
@@ -96,6 +109,7 @@ type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
   *
   * error: set by filecoin input validation
   * type: always "number" for filecoin input
+  * unit: will be based on the FilecoinDenomination
   * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROP"
   * onChange: needs to take "FilecoinNumber" type argument
   * onBlur: needs to take "FilecoinNumber" type argument
@@ -109,10 +123,10 @@ type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
    onChange: (value: FilecoinNumber) => void
    onBlur: (value: FilecoinNumber) => void
    setHasError: (hasError: boolean) => void
- } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
+ } & Omit<BaseInputProps, 'error' | 'type' | 'unit' | 'value' | 'onChange' | 'onBlur'>
  
  // "onChange" and "onBlur" remain of type "PropTypes.func"
- const { error, type, value, ...filecoinProps } = BaseInput.propTypes
+ const { error, type, unit, value, ...filecoinProps } = BaseInput.propTypes
  
  FilecoinInput.propTypes = {
    min: FILECOIN_NUMBER_PROP,
@@ -123,7 +137,7 @@ type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
    ...filecoinProps
  }
  
- // "min", "max" and "value" have no useful defaults for BigInt
+ // "min", "max" and "value" have no useful defaults for FilecoinNumber
  FilecoinInput.defaultProps = {
    denom: 'fil',
    onChange: () => {},
