@@ -4,6 +4,7 @@ import { space } from '../theme'
 export const Label = styled.label`
   display: flex;
   gap: ${space()};
+  text-align: left;
 
   ${props =>
     props.vertical
