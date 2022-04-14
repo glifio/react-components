@@ -1,5 +1,5 @@
 import { string, func, bool, oneOf } from 'prop-types'
-import { ADDRESS_PROPTYPE_REQUIRED } from '../../customPropTypes'
+import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import Box from '../Box'
 import Glyph from '../Glyph'
 import Button from '../Button'
@@ -81,7 +81,7 @@ AccountCard.propTypes = {
   /**
    * Filecoin address
    */
-  address: ADDRESS_PROPTYPE_REQUIRED,
+  address: ADDRESS_PROPTYPE.isRequired,
   /**
    * Sets background-color of the card
    */

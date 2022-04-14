@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { string, number, bool, func } from 'prop-types'
-import { ADDRESS_PROPTYPE_REQUIRED } from '../../customPropTypes'
+import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import Box from '../Box'
 import Glyph from '../Glyph'
 import Card from '../Card'
@@ -123,7 +123,7 @@ const AccountCardAlt = ({
 }
 
 AccountCardAlt.propTypes = {
-  address: ADDRESS_PROPTYPE_REQUIRED,
+  address: ADDRESS_PROPTYPE.isRequired,
   index: number.isRequired,
   path: string.isRequired,
   balance: string,

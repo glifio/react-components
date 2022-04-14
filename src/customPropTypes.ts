@@ -1,5 +1,10 @@
-import { shape, string, oneOfType, number, oneOf, object } from 'prop-types'
+import { shape, string, oneOfType, number, oneOf, object, Requireable } from 'prop-types'
 import { validateAddressString } from '@glif/filecoin-address'
+
+interface CustomPropType {
+  (a: number, b: string): string[];
+  foo: string;
+}
 
 const createAddressPropType =
   isRequired => (props, propName, componentName) => {
@@ -15,8 +20,10 @@ const createAddressPropType =
     }
   }
 
-export const ADDRESS_PROPTYPE = createAddressPropType(false)
-export const ADDRESS_PROPTYPE_REQUIRED = createAddressPropType(true)
+export const ADDRESS_PROPTYPE: Requireable<any> = Object.assign(
+  createAddressPropType(false),
+  { isRequired: createAddressPropType(true) }
+)
 
 export const GRAPHQL_ADDRESS_PROP_TYPE = shape({
   id: string,
@@ -52,11 +59,11 @@ export const MESSAGE_PROPS = shape({
   /**
    * Message sent to this address
    */
-  to: ADDRESS_PROPTYPE_REQUIRED,
+  to: ADDRESS_PROPTYPE.isRequired,
   /**
    * Message sent from this address
    */
-  from: ADDRESS_PROPTYPE_REQUIRED,
+  from: ADDRESS_PROPTYPE.isRequired,
   /**
    * The amount of FIL sent in the message
    */

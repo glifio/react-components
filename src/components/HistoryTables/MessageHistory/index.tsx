@@ -4,7 +4,7 @@ import Box from '../../Box'
 import MessageConfirmedRow from './MessageConfirmedRow'
 import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
-import { ADDRESS_PROPTYPE_REQUIRED } from '../../../customPropTypes'
+import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import { ButtonV2 } from '../../Button/V2'
 import { TABLE, TableCaption } from '../table'
 import { useAllMessages } from '../useAllMessages'
@@ -81,7 +81,7 @@ type MessageHistoryTableProps = {
 
 MessageHistoryTable.propTypes = {
   offset: PropTypes.number,
-  address: ADDRESS_PROPTYPE_REQUIRED,
+  address: ADDRESS_PROPTYPE.isRequired,
   cidHref: PropTypes.func.isRequired
 }
 
