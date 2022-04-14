@@ -1,18 +1,19 @@
 import { shape, string, oneOfType, number, oneOf, object } from 'prop-types'
 import { validateAddressString } from '@glif/filecoin-address'
 
-const createAddressPropType = isRequired => (props, propName, componentName) => {
-  const prop = props[propName]
-  if (prop == null) {
-    if (isRequired) {
-      return new Error(`Missing prop "${propName}" in "${componentName}"`);
+const createAddressPropType =
+  isRequired => (props, propName, componentName) => {
+    const prop = props[propName]
+    if (prop == null) {
+      if (isRequired) {
+        return new Error(`Missing prop "${propName}" in "${componentName}"`)
+      }
+    } else if (!validateAddressString(prop)) {
+      return new Error(
+        `Invalid prop "${propName}" supplied to "${componentName}"`
+      )
     }
-  } else if (!validateAddressString(prop)) {
-    return new Error(
-      `Invalid prop "${propName}" supplied to "${componentName}"`
-    )
   }
-}
 
 export const ADDRESS_PROPTYPE = createAddressPropType(false)
 export const ADDRESS_PROPTYPE_REQUIRED = createAddressPropType(true)
