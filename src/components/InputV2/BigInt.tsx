@@ -27,23 +27,23 @@ export const BigIntInput = ({
   ...baseProps
 }: BigIntInputProps) => {
   const [error, setError] = useState<string>('')
-  const onChangeText = (newTextValue: string) => {
+  const onChangeText = (newValue: string) => {
     setError('')
     setHasError(false)
     try {
-      onChange(BigInt(newTextValue))
+      onChange(BigInt(newValue))
     } catch (e) {
       // Ignore faulty input while the element has focus
     }
   }
-  const onBlurText = (newTextValue: string) => {
-    if (!newTextValue) {
+  const onBlurText = (newValue: string) => {
+    if (!newValue) {
       setError(`Cannot be empty`)
       setHasError(true)
       return
     }
     try {
-      const bigint = BigInt(newTextValue)
+      const bigint = BigInt(newValue)
       if (isBigInt(min) && bigint < min) {
         setError(`Cannot be less than ${min.toString()}`)
         setHasError(true)

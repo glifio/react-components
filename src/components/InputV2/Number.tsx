@@ -18,13 +18,13 @@ export const NumberInput = ({
   ...baseProps
 }: NumberInputProps) => {
   const [error, setError] = useState<string>('')
-  const onChangeText = (newTextValue: string) => {
+  const onChangeText = (newValue: string) => {
     setError('')
     setHasError(false)
-    onChange(newTextValue ? Number(newTextValue) : NaN)
+    onChange(newValue ? Number(newValue) : NaN)
   }
-  const onBlurText = (newTextValue: string) => {
-    const number = newTextValue ? Number(newTextValue) : NaN
+  const onBlurText = (newValue: string) => {
+    const number = newValue ? Number(newValue) : NaN
     if (number < min) {
       setError(`Cannot be less than ${min}`)
       setHasError(true)

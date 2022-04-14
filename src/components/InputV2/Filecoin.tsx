@@ -64,23 +64,23 @@ export const FilecoinInput = ({
   ...baseProps
 }: FilecoinInputProps) => {
   const [error, setError] = useState<string>('')
-  const onChangeText = (newTextValue: string) => {
+  const onChangeText = (newValue: string) => {
     setError('')
     setHasError(false)
     try {
-      onChange(new FilecoinNumber(newTextValue, denom))
+      onChange(new FilecoinNumber(newValue, denom))
     } catch (e) {
       // Ignore faulty input while the element has focus
     }
   }
-  const onBlurText = (newTextValue: string) => {
-    if (!newTextValue) {
+  const onBlurText = (newValue: string) => {
+    if (!newValue) {
       setError(`Cannot be empty`)
       setHasError(true)
       return
     }
     try {
-      const filecoin = new FilecoinNumber(newTextValue, denom)
+      const filecoin = new FilecoinNumber(newValue, denom)
       if (isFilecoinNumber(min) && filecoin.isLessThan(min)) {
         setError(
           `Cannot be less than ${getTextValue(min, denom)} ${getUnit(denom)}`
