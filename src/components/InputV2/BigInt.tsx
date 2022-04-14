@@ -13,7 +13,7 @@ const isBigInt = value => typeof value === 'bigint'
  *
  * This input is based on the NumberInput, with the difference
  * that min, max and value are of type "bigint" and not "number".
- * 
+ *
  * Instead of triggering "onChange" and "onBlur" with NaN, these
  * methods will not be called when the input is empty or invalid.
  */
@@ -40,7 +40,7 @@ export const BigIntInput = ({
     if (!newTextValue) {
       setError(`Cannot be empty`)
       setHasError(true)
-      return;
+      return
     }
     try {
       const bigint = BigInt(newTextValue)
