@@ -11,7 +11,7 @@ export const BigIntInput = ({
   onChange,
   onBlur,
   setHasError,
-  ...textProps
+  ...baseProps
 }: BigIntInputProps) => {
   const [error, setError] = useState<string>('')
   const onChangeText = (newTextValue: string) => {
@@ -48,7 +48,7 @@ export const BigIntInput = ({
       value={isBigInt(value) ? value.toString() : ''}
       onChange={onChangeText}
       onBlur={onBlurText}
-      {...textProps}
+      {...baseProps}
     />
   )
 }
