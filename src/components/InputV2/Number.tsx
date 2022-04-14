@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { TextInput, TextInputProps } from './Base'
+import { BaseInput, BaseInputProps } from './Base'
 
 export const NumberInput = ({
   min,
@@ -31,7 +31,7 @@ export const NumberInput = ({
   }
 
   return (
-    <TextInput
+    <BaseInput
       error={error}
       type='number'
       value={isNaN(value) ? '' : value.toString()}
@@ -60,11 +60,11 @@ export type NumberInputProps = {
   onChange: (value: number) => void
   onBlur: (value: number) => void
   setHasError: (hasError: boolean) => void
-} & Omit<TextInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"
 // eslint-disable-next-line
-const { error, type, value, ...numberProps } = TextInput.propTypes
+const { error, type, value, ...numberProps } = BaseInput.propTypes
 
 NumberInput.propTypes = {
   min: PropTypes.number,

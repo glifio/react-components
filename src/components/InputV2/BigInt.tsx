@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { TextInput, TextInputProps } from './Base'
+import { BaseInput, BaseInputProps } from './Base'
 
 const isBigInt = value => typeof value === 'bigint'
 
@@ -42,7 +42,7 @@ export const BigIntInput = ({
   }
 
   return (
-    <TextInput
+    <BaseInput
       error={error}
       type='number'
       value={isBigInt(value) ? value.toString() : ''}
@@ -71,11 +71,11 @@ export type BigIntInputProps = {
   onChange: (value: BigInt) => void
   onBlur: (value: BigInt) => void
   setHasError: (hasError: boolean) => void
-} & Omit<TextInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"
 // eslint-disable-next-line
-const { error, type, value, ...bigIntProps } = TextInput.propTypes
+const { error, type, value, ...bigIntProps } = BaseInput.propTypes
 
 // @types/prop-types is outdated
 BigIntInput.propTypes = {
