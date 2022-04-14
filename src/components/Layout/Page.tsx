@@ -65,7 +65,7 @@ export type PageProps = {
   hideAppHeader?: boolean
 } & AppHeaderProps
 
-Page.propTypes = {
+export const PagePropTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -79,6 +79,7 @@ Page.propTypes = {
   ...AppHeader.propTypes
 }
 
+Page.propTypes = PagePropTypes
 Page.defaultProps = {
   children: <main></main>
 }
