@@ -33,14 +33,19 @@ export const BigIntInput = ({
     try {
       onChange(BigInt(newTextValue))
     } catch (e) {
-      // Ignore faulty BigInts, input won't update when controlled is "true"
+      // Ignore faulty input while the element has focus
     }
   }
   const onBlurText = (newTextValue: string) => {
+    if (!newTextValue) {
+      setError(`Cannot be empty`)
+      setHasError(true)
+      return;
+    }
     try {
       const bigint = BigInt(newTextValue)
       if (isBigInt(min) && bigint < min) {
-        setError(`Has to be at least ${min.toString()}`)
+        setError(`Cannot be less than ${min.toString()}`)
         setHasError(true)
       }
       if (isBigInt(max) && bigint > max) {
