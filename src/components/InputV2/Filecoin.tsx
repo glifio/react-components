@@ -10,7 +10,11 @@ type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
  * Since Infinity and NaN don't exist as useful defaults,
  * we use this method to check if the prop has been passed
  **/
-const isFilecoinNumber = value => value instanceof FilecoinNumber
+const isFilecoinNumber = value =>
+  typeof value === 'object' &&
+  'toFil' in value &&
+  'toAttoFil' in value &&
+  'toPicoFil' in value
 
 /**
  * Get the string representation of the Filecoin number for the required denomination
