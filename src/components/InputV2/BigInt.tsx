@@ -73,7 +73,7 @@ export const BigIntInput = ({
 
 /**
  * We strip certain properties from the standard
- * text input props because we want to override them:
+ * base input props because we want to override them:
  *
  * error: set by bigint input validation
  * type: always "number" for bigint input

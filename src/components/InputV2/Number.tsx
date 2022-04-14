@@ -5,7 +5,7 @@ import { BaseInput, BaseInputProps } from './Base'
 /**
  * NumberInput
  *
- * When the text input field is empty, value will be NaN. This is so we can
+ * When the number input field is empty, value will be NaN. This is so we can
  * differentiate between 0 and empty input while value remains of type "number".
  */
 export const NumberInput = ({
@@ -54,7 +54,7 @@ export const NumberInput = ({
 
 /**
  * We strip certain properties from the standard
- * text input props because we want to override them:
+ * base input props because we want to override them:
  *
  * error: set by number input validation
  * type: always "number" for number input
