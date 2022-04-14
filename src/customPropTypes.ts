@@ -51,9 +51,10 @@ const createFilecoinNumberPropType =
     }
   }
 
-export const FILECOIN_NUMBER_PROPTYPE = createFilecoinNumberPropType(false)
-export const FILECOIN_NUMBER_PROPTYPE_REQUIRED =
-  createFilecoinNumberPropType(true)
+export const FILECOIN_NUMBER_PROPTYPE: Requireable<any> = Object.assign(
+  createFilecoinNumberPropType(false),
+  { isRequired: createFilecoinNumberPropType(true) }
+)
 
 export const MESSAGE_PROPS = shape({
   /**
