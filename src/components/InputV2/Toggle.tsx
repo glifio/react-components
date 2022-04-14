@@ -85,13 +85,13 @@ export const Toggle = ({
 )
 
 interface ToggleProps {
-  label: string
-  info: string
-  autofocus: boolean
-  disabled: boolean
-  controlled: boolean
-  checked: boolean
-  onChange: (checked: boolean) => void
+  label?: string
+  info?: string
+  autofocus?: boolean
+  disabled?: boolean
+  controlled?: boolean
+  checked?: boolean
+  onChange?: (checked: boolean) => void
 }
 
 Toggle.propTypes = {

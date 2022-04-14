@@ -129,10 +129,10 @@ export type FilecoinInputProps = {
   min?: FilecoinNumber
   max?: FilecoinNumber
   value?: FilecoinNumber
-  denom: FilecoinDenomination
-  onChange: (value: FilecoinNumber) => void
-  onBlur: (value: FilecoinNumber) => void
-  setHasError: (hasError: boolean) => void
+  denom?: FilecoinDenomination
+  onChange?: (value: FilecoinNumber) => void
+  onBlur?: (value: FilecoinNumber) => void
+  setHasError?: (hasError: boolean) => void
 } & Omit<
   BaseInputProps,
   'error' | 'type' | 'unit' | 'value' | 'onChange' | 'onBlur'

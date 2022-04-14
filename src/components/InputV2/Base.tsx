@@ -50,20 +50,20 @@ export const BaseInput = ({
 )
 
 export interface BaseInputProps {
-  vertical: boolean
-  centered: boolean
-  label: string
-  info: string
-  error: string
-  type: string
-  autofocus: boolean
-  disabled: boolean
-  placeholder: string
-  controlled: boolean
-  value: string
-  unit: string
-  onChange: (value: string) => void
-  onBlur: (value: string) => void
+  vertical?: boolean
+  centered?: boolean
+  label?: string
+  info?: string
+  error?: string
+  type?: string
+  autofocus?: boolean
+  disabled?: boolean
+  placeholder?: string
+  controlled?: boolean
+  value?: string
+  unit?: string
+  onChange?: (value: string) => void
+  onBlur?: (value: string) => void
 }
 
 export const BaseInputPropTypes = {

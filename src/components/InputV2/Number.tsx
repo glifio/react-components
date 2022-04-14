@@ -64,12 +64,12 @@ export const NumberInput = ({
  */
 
 export type NumberInputProps = {
-  min: number
-  max: number
-  value: number
-  onChange: (value: number) => void
-  onBlur: (value: number) => void
-  setHasError: (hasError: boolean) => void
+  min?: number
+  max?: number
+  value?: number
+  onChange?: (value: number) => void
+  onBlur?: (value: number) => void
+  setHasError?: (hasError: boolean) => void
 } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"

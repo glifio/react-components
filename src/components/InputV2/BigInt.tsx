@@ -86,9 +86,9 @@ export type BigIntInputProps = {
   min?: BigInt
   max?: BigInt
   value?: BigInt
-  onChange: (value: BigInt) => void
-  onBlur: (value: BigInt) => void
-  setHasError: (hasError: boolean) => void
+  onChange?: (value: BigInt) => void
+  onBlur?: (value: BigInt) => void
+  setHasError?: (hasError: boolean) => void
 } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"
