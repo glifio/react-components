@@ -66,7 +66,7 @@ export interface BaseInputProps {
   onBlur: (value: string) => void
 }
 
-BaseInput.propTypes = {
+export const BaseInputPropTypes = {
   vertical: PropTypes.bool,
   centered: PropTypes.bool,
   label: PropTypes.string,
@@ -83,6 +83,7 @@ BaseInput.propTypes = {
   onBlur: PropTypes.func
 }
 
+BaseInput.propTypes = BaseInputPropTypes
 BaseInput.defaultProps = {
   vertical: false,
   centered: false,

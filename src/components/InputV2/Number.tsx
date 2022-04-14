@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { BaseInput, BaseInputProps } from './Base'
+import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
  * NumberInput
@@ -73,7 +73,7 @@ export type NumberInputProps = {
 } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"
-const { error, type, value, ...numberProps } = BaseInput.propTypes
+const { error, type, value, ...numberProps } = BaseInputPropTypes
 
 NumberInput.propTypes = {
   min: PropTypes.number,

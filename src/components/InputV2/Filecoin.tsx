@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { BaseInput, BaseInputProps } from './Base'
+import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 import { FILECOIN_NUMBER_PROP } from '../../customPropTypes'
 
 type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
@@ -139,7 +139,7 @@ export type FilecoinInputProps = {
 >
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"
-const { error, type, unit, value, ...filecoinProps } = BaseInput.propTypes
+const { error, type, unit, value, ...filecoinProps } = BaseInputPropTypes
 
 FilecoinInput.propTypes = {
   min: FILECOIN_NUMBER_PROP,
