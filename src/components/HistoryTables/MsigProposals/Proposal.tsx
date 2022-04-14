@@ -223,9 +223,9 @@ export default function ProposalDetail(props: ProposalDetailProps) {
 
 ProposalDetail.propTypes = {
   id: PropTypes.number.isRequired,
-  walletAddress: ADDRESS_PROPTYPE,
+  walletAddress: ADDRESS_PROPTYPE.isRequired,
   cid: PropTypes.string,
-  address: ADDRESS_PROPTYPE,
+  address: ADDRESS_PROPTYPE.isRequired,
   accept: PropTypes.func,
   reject: PropTypes.func
 }

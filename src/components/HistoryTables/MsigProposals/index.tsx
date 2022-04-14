@@ -60,8 +60,8 @@ type ProposalHistoryTableProps = {
 
 ProposalHistoryTable.propTypes = {
   idHref: PropTypes.func,
-  address: ADDRESS_PROPTYPE,
-  walletAddr: ADDRESS_PROPTYPE
+  address: ADDRESS_PROPTYPE.isRequired,
+  walletAddr: ADDRESS_PROPTYPE.isRequired
 }
 
 ProposalHistoryTable.defaultProps = {

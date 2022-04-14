@@ -81,7 +81,7 @@ AccountCard.propTypes = {
   /**
    * Filecoin address
    */
-  address: ADDRESS_PROPTYPE,
+  address: ADDRESS_PROPTYPE.isRequired,
   /**
    * Sets background-color of the card
    */

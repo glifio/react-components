@@ -5,7 +5,7 @@ import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import Box from '../Box'
 import { RawNumberInput, DenomTag } from './Number'
 import { Text, Label } from '../Typography'
-import { FILECOIN_NUMBER_PROP } from '../../customPropTypes'
+import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 import noop from '../../utils/noop'
 
 const formatFilValue = (number?: FilecoinNumber | string | number) => {
@@ -201,7 +201,7 @@ Funds.propTypes = {
   /**
    * Balance of account sending the transaction
    */
-  balance: FILECOIN_NUMBER_PROP,
+  balance: FILECOIN_NUMBER_PROPTYPE.isRequired,
   /**
    * A string that represents the error message to display
    */
@@ -212,7 +212,7 @@ Funds.propTypes = {
   setError: func,
   disabled: bool,
   valid: bool,
-  amount: oneOfType([string, FILECOIN_NUMBER_PROP]),
+  amount: oneOfType([string, FILECOIN_NUMBER_PROPTYPE.isRequired]),
   label: string,
   allowZeroValue: bool
 }
