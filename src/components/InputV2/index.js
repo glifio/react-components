@@ -2,7 +2,7 @@ import { AttoFilInput } from './AttoFil'
 import { BigIntInput } from './BigInt'
 import { FilecoinInput } from './Filecoin'
 import { NumberInput } from './Number'
-import { TextInput } from './Text'
+import { TextInput } from './Base'
 import { Toggle } from './Toggle'
 
 export default {

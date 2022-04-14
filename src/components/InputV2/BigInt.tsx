@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { TextInput, TextInputProps } from './Text'
+import { TextInput, TextInputProps } from './Base'
 
 const isBigInt = value => typeof value === 'bigint'
 
