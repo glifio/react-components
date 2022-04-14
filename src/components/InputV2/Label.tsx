@@ -59,5 +59,9 @@ export const Label = styled.label`
     props.disabled &&
     css`
       pointer-events: none;
+
+      .unit {
+        color: var(--gray-dark) !important;
+      }
     `}
 `
