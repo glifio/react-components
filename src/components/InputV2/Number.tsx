@@ -63,7 +63,6 @@ export type NumberInputProps = {
 } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"
-// eslint-disable-next-line
 const { error, type, value, ...numberProps } = BaseInput.propTypes
 
 NumberInput.propTypes = {

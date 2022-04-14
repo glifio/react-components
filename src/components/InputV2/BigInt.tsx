@@ -74,7 +74,6 @@ export type BigIntInputProps = {
 } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
 
 // "onChange" and "onBlur" remain of type "PropTypes.func"
-// eslint-disable-next-line
 const { error, type, value, ...bigIntProps } = BaseInput.propTypes
 
 // @types/prop-types is outdated
