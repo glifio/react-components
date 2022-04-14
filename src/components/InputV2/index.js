@@ -2,7 +2,7 @@ import { AttoFilInput } from './AttoFil'
 import { BigIntInput } from './BigInt'
 import { FilecoinInput } from './Filecoin'
 import { NumberInput } from './Number'
-import { BaseInput } from './Base'
+import { TextInput, EmailInput, PasswordInput, SearchInput } from './Text'
 import { Toggle } from './Toggle'
 
 export default {
@@ -10,6 +10,9 @@ export default {
   BigInt: BigIntInput,
   Filecoin: FilecoinInput,
   Number: NumberInput,
-  Text: BaseInput,
+  Text: TextInput,
+  Email: EmailInput,
+  Password: PasswordInput,
+  Search: SearchInput,
   Toggle
 }
