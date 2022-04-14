@@ -5,7 +5,7 @@ import { BaseInput, BaseInputProps } from './Base'
  * props except "type", which is passed manually for each component
  */
 type TextInputProps = Omit<BaseInputProps, 'type'>
-const { type: _type, ...textInputPropTypes } = BaseInput.propTypes
+const { type, ...textInputPropTypes } = BaseInput.propTypes
 
 /**
  * TextInput
