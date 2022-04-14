@@ -23,8 +23,8 @@ const ToggleLabel = styled(Label)`
     width: 2.25em;
     height: 1.5em;
     border-radius: 0.75em;
-    border: 2px solid var(--blue-light);
-    background-color: var(--blue-light);
+    border: 2px solid var(--blue-medium);
+    background-color: var(--blue-medium);
 
     ${props =>
       props.disabled &&
@@ -45,11 +45,9 @@ const ToggleLabel = styled(Label)`
     }
   }
 
-  input:hover ~ .toggle,
-  input:checked ~ .toggle,
-  input:focus ~ .toggle {
-    border-color: var(--blue-medium);
-    background-color: var(--blue-medium);
+  input:checked ~ .toggle {
+    border-color: var(--blue-dark);
+    background-color: var(--blue-dark);
   }
 
   input:checked ~ .toggle::after {
