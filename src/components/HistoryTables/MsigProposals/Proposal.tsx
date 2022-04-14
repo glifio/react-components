@@ -6,7 +6,7 @@ import Box from '../../Box'
 import { P } from '../../Typography'
 import { AddressLink } from '../../AddressLink'
 import { ProposalHead, Line, Parameters } from '../detail'
-import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
+import { ADDRESS_PROPTYPE_REQUIRED } from '../../../customPropTypes'
 import {
   Address,
   MsigTransaction,
@@ -223,9 +223,9 @@ export default function ProposalDetail(props: ProposalDetailProps) {
 
 ProposalDetail.propTypes = {
   id: PropTypes.number.isRequired,
-  walletAddress: ADDRESS_PROPTYPE,
+  walletAddress: ADDRESS_PROPTYPE_REQUIRED,
   cid: PropTypes.string,
-  address: ADDRESS_PROPTYPE,
+  address: ADDRESS_PROPTYPE_REQUIRED,
   accept: PropTypes.func,
   reject: PropTypes.func
 }

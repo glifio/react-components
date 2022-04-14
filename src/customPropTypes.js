@@ -1,14 +1,21 @@
 import { shape, string, oneOfType, number, oneOf, object } from 'prop-types'
 import { validateAddressString } from '@glif/filecoin-address'
 
-export const ADDRESS_PROPTYPE = (props, propName, componentName) => {
-  if (!validateAddressString(props[propName]))
+const createAddressPropType = isRequired => (props, propName, componentName) => {
+  const prop = props[propName]
+  if (prop == null) {
+    if (isRequired) {
+      return new Error(`Missing prop "${propName}" in "${componentName}"`);
+    }
+  } else if (!validateAddressString(prop)) {
     return new Error(
-      `Invalid prop: ${propName} supplied to ${componentName}. Validation failed.`
+      `Invalid prop "${propName}" supplied to "${componentName}"`
     )
-
-  return null
+  }
 }
+
+export const ADDRESS_PROPTYPE = createAddressPropType(false)
+export const ADDRESS_PROPTYPE_REQUIRED = createAddressPropType(true)
 
 export const GRAPHQL_ADDRESS_PROP_TYPE = shape({
   id: string,
@@ -35,11 +42,11 @@ export const MESSAGE_PROPS = shape({
   /**
    * Message sent to this address
    */
-  to: ADDRESS_PROPTYPE,
+  to: ADDRESS_PROPTYPE_REQUIRED,
   /**
    * Message sent from this address
    */
-  from: ADDRESS_PROPTYPE,
+  from: ADDRESS_PROPTYPE_REQUIRED,
   /**
    * The amount of FIL sent in the message
    */

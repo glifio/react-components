@@ -2,7 +2,7 @@ import { string } from 'prop-types'
 import Box from '../Box'
 import { Title as AccountAddress } from '../Typography'
 import truncate from '../../utils/truncateAddress'
-import { ADDRESS_PROPTYPE } from '../../customPropTypes'
+import { ADDRESS_PROPTYPE_REQUIRED } from '../../customPropTypes'
 import { CopyText } from './CopyText'
 
 export * from './CopyText'
@@ -25,7 +25,7 @@ export const CopyAddress = ({ address, ...props }) => {
 }
 
 CopyAddress.propTypes = {
-  address: ADDRESS_PROPTYPE,
+  address: ADDRESS_PROPTYPE_REQUIRED,
   color: string
 }
 
