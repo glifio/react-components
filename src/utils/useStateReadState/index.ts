@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { QueryHookOptions } from '@apollo/client'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
-import { Address } from '../../generated/graphql'
+import { Address, useAddressLazyQuery } from '../../generated/graphql'
 import { decodeActorCID } from '..'
 
 const lCli = new LotusRPCEngine({
@@ -51,6 +51,7 @@ export const useStateReadStateQuery = <T = any>(
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
   const [fetchedFor, setFetchedFor] = useState<string>('')
+  const [getAddress] = useAddressLazyQuery()
 
   useEffect(() => {
     const fetchState = async () => {
@@ -65,12 +66,25 @@ export const useStateReadStateQuery = <T = any>(
           res.State = res.State as MsigState<string>
           const signers = await Promise.all(
             res.State.Signers.map(async (signer: string) => {
-              const robust = await lCli.request<string>(
-                'StateAccountKey',
-                signer,
-                null
-              )
-              return { id: signer, robust } as Address
+              const {
+                error: addressLookupErr,
+                loading: addressLookupLoading,
+                data
+              } = await getAddress({
+                variables: {
+                  address: signer
+                }
+              })
+
+              if (
+                !addressLookupErr &&
+                !addressLookupLoading &&
+                !!data?.address
+              ) {
+                return data.address
+              }
+
+              return { id: signer, robust: '' } as Address
             })
           )
 
@@ -116,7 +130,8 @@ export const useStateReadStateQuery = <T = any>(
     error,
     actorState,
     fetchedFor,
-    setFetchedFor
+    setFetchedFor,
+    getAddress
   ])
 
   return { data: actorState, error, loading }
