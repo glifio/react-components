@@ -53,7 +53,7 @@ export const NumberInput = ({
     }
     setError('')
     setIsValid(true)
-  }, [min, max, value])
+  }, [min, max, value, setIsValid])
 
   return (
     <BaseInput

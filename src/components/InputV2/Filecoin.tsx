@@ -107,7 +107,7 @@ export const FilecoinInput = ({
     }
     setError('')
     setIsValid(true)
-  }, [min, max, value])
+  }, [min, max, value, denom, setIsValid])
 
   return (
     <BaseInput
