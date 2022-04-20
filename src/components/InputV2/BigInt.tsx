@@ -95,7 +95,10 @@ export type BigIntInputProps = {
   onFocus?: (value: BigInt) => void
   onBlur?: (value: BigInt) => void
   setHasError?: (hasError: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onFocus' | 'onBlur'>
+} & Omit<
+  BaseInputProps,
+  'error' | 'type' | 'value' | 'onChange' | 'onFocus' | 'onBlur'
+>
 
 // "onChange", "onFocus" and "onBlur" remain of type "PropTypes.func"
 const { error, type, value, ...bigIntProps } = BaseInputPropTypes

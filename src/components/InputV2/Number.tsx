@@ -76,7 +76,10 @@ export type NumberInputProps = {
   onFocus?: (value: number) => void
   onBlur?: (value: number) => void
   setHasError?: (hasError: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onFocus' | 'onBlur'>
+} & Omit<
+  BaseInputProps,
+  'error' | 'type' | 'value' | 'onChange' | 'onFocus' | 'onBlur'
+>
 
 // "onChange", "onFocus" and "onBlur" remain of type "PropTypes.func"
 const { error, type, value, ...numberProps } = BaseInputPropTypes
