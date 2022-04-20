@@ -210,7 +210,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     fetchMore: onClickLoadMore,
     fetchingMore,
     loading,
-    lastPage: lastPage || allMessages?.messages.length < offset,
+    lastPage: lastPage || allMessages?.messages.length < offset + DEFAULT_LIMIT,
     error
   }
 }
