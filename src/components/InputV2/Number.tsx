@@ -69,6 +69,7 @@ export const NumberInput = ({
  * type: always "number" for number input
  * value: needs to be of type "number" / "PropTypes.number"
  * onChange: needs to take "number" type argument
+ * onFocus: needs to take "number" type argument
  * onBlur: needs to take "number" type argument
  */
 

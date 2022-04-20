@@ -88,6 +88,7 @@ export const BigIntInput = ({
  * type: always "number" for bigint input
  * value: needs to be of type "BigInt" / "PropTypes.bigint"
  * onChange: needs to take "BigInt" type argument
+ * onFocus: needs to take "BigInt" type argument
  * onBlur: needs to take "BigInt" type argument
  */
 
