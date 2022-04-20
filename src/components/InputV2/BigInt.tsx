@@ -96,10 +96,7 @@ export type BigIntInputProps = {
   value?: BigInt
   onChange?: (value: BigInt) => void
   setIsValid?: (hasError: boolean) => void
-} & Omit<
-  BaseInputProps,
-  'error' | 'type' | 'value' | 'onChange'
->
+} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange'>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
 const { error, type, value, ...bigIntProps } = BaseInputPropTypes

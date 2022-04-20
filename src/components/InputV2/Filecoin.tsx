@@ -144,10 +144,7 @@ export type FilecoinInputProps = {
   denom?: FilecoinDenomination
   onChange?: (value: FilecoinNumber) => void
   setIsValid?: (hasError: boolean) => void
-} & Omit<
-  BaseInputProps,
-  'error' | 'type' | 'unit' | 'value' | 'onChange'
->
+} & Omit<BaseInputProps, 'error' | 'type' | 'unit' | 'value' | 'onChange'>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
 const { error, type, unit, value, ...filecoinProps } = BaseInputPropTypes
