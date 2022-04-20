@@ -42,7 +42,7 @@ const SeeMore = styled(P).attrs(() => ({
 `
 
 export default function MessageDetail(props: MessageDetailProps) {
-  const { cid, height, speedUp, cancel, confirmations } = props
+  const { cid, height, speedUpHref, cancelHref, confirmations } = props
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending, messageConfirmedInChainHead } =
@@ -90,8 +90,8 @@ export default function MessageDetail(props: MessageDetailProps) {
       <Head
         title='Message Overview'
         pending={pending}
-        speedUp={speedUp}
-        cancel={cancel}
+        speedUpHref={speedUpHref}
+        cancelHref={cancelHref}
       />
       <hr />
       {messageConfirmedInChainHead ? (
@@ -237,16 +237,16 @@ export default function MessageDetail(props: MessageDetailProps) {
 type MessageDetailProps = {
   cid: string
   height?: number
-  speedUp?: () => void
-  cancel?: () => void
+  speedUpHref?: string
+  cancelHref?: string
   confirmations: number
 }
 
 MessageDetail.propTypes = {
   cid: PropTypes.string.isRequired,
   height: PropTypes.number,
-  speedUp: PropTypes.func,
-  cancel: PropTypes.func,
+  speedUpHref: PropTypes.string,
+  cancelHref: PropTypes.string,
   confirmations: PropTypes.number
 }
 

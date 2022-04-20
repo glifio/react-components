@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Address, MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
-import ButtonV2 from '../Button/V2'
+import { ButtonV2, ButtonV2Link } from '../Button/V2'
 import { AddressLink } from '../AddressLink'
 import { Title, Badge } from './generic'
 import {
@@ -22,7 +22,12 @@ import { getMethodName } from './methodName'
  * Top row of the detail page, displaying
  * the title and Speed up / Cancel buttons
  */
-export const Head = ({ title, speedUp, cancel, pending }: HeadProps) => (
+export const Head = ({
+  title,
+  pending,
+  speedUpHref,
+  cancelHref
+}: HeadProps) => (
   <Box
     display='flex'
     alignItems='center'
@@ -34,18 +39,18 @@ export const Head = ({ title, speedUp, cancel, pending }: HeadProps) => (
     <Box display='flex' gridGap='1rem'>
       {pending && (
         <>
-          {speedUp && (
-            <ButtonV2 green onClick={speedUp}>
+          {speedUpHref && (
+            <ButtonV2Link green href={speedUpHref}>
               <IconSpeedUp width='1.25rem' />
               Speed up
-            </ButtonV2>
+            </ButtonV2Link>
           )}
 
-          {cancel && (
-            <ButtonV2 red onClick={cancel}>
+          {cancelHref && (
+            <ButtonV2Link red href={cancelHref}>
               <IconCancel width='0.8rem' />
               Cancel
-            </ButtonV2>
+            </ButtonV2Link>
           )}
         </>
       )}
@@ -56,15 +61,15 @@ export const Head = ({ title, speedUp, cancel, pending }: HeadProps) => (
 type HeadProps = {
   title: string
   pending: boolean
-  speedUp?: () => void
-  cancel?: () => void
+  speedUpHref?: string
+  cancelHref?: string
 }
 
 Head.propTypes = {
   title: PropTypes.string.isRequired,
   pending: PropTypes.bool.isRequired,
-  speedUp: PropTypes.func,
-  cancel: PropTypes.func
+  speedUpHref: PropTypes.string,
+  cancelHref: PropTypes.string
 }
 
 Head.defaultProps = {

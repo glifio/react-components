@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -58,13 +59,13 @@ export function Page({
 }
 
 export type PageProps = {
-  children: JSX.Element | Array<JSX.Element>
-  preFooter?: JSX.Element | Array<JSX.Element>
+  children: ReactNode
+  preFooter?: ReactNode
   phishingUrl?: string
   hideAppHeader?: boolean
 } & AppHeaderProps
 
-Page.propTypes = {
+export const PagePropTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -78,6 +79,7 @@ Page.propTypes = {
   ...AppHeader.propTypes
 }
 
+Page.propTypes = PagePropTypes
 Page.defaultProps = {
   children: <main></main>
 }

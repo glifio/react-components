@@ -123,7 +123,7 @@ const AccountCardAlt = ({
 }
 
 AccountCardAlt.propTypes = {
-  address: ADDRESS_PROPTYPE,
+  address: ADDRESS_PROPTYPE.isRequired,
   index: number.isRequired,
   path: string.isRequired,
   balance: string,

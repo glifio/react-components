@@ -5,7 +5,7 @@ import MessageConfirmedRow from './MessageConfirmedRow'
 import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
-import ButtonV2 from '../../Button/V2'
+import { ButtonV2 } from '../../Button/V2'
 import { TABLE, TableCaption } from '../table'
 import { useAllMessages } from '../useAllMessages'
 import { Title } from '../generic'
@@ -81,12 +81,10 @@ type MessageHistoryTableProps = {
 
 MessageHistoryTable.propTypes = {
   offset: PropTypes.number,
-  address: ADDRESS_PROPTYPE,
-  cidHref: PropTypes.func
+  address: ADDRESS_PROPTYPE.isRequired,
+  cidHref: PropTypes.func.isRequired
 }
 
 MessageHistoryTable.defaultProps = {
-  offset: 0,
-  // TODO
-  cidHref: (cid: string) => `/#/detail/${cid}`
+  offset: 0
 }

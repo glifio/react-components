@@ -3,7 +3,7 @@ import { func, bool } from 'prop-types'
 import Box from '../Box'
 import Button from '../Button'
 import { Num, Label } from '../Typography'
-import { FILECOIN_NUMBER_PROP } from '../../customPropTypes'
+import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
 import ApproximationToggleBtn from './ApproximationToggleBtn'
 
@@ -75,7 +75,7 @@ BalanceCard.propTypes = {
   /**
    * users balance in Filecoin denom
    */
-  balance: FILECOIN_NUMBER_PROP,
+  balance: FILECOIN_NUMBER_PROPTYPE.isRequired,
   /**
    * action fired when send button is clicked
    */

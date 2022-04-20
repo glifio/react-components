@@ -25,7 +25,7 @@ export const CopyAddress = ({ address, ...props }) => {
 }
 
 CopyAddress.propTypes = {
-  address: ADDRESS_PROPTYPE,
+  address: ADDRESS_PROPTYPE.isRequired,
   color: string
 }
 
