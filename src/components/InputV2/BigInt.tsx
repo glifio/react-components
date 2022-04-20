@@ -49,9 +49,24 @@ export const BigIntInput = ({
   }
 
   useEffect(() => {
+    if (value === null) {
+      setError(`Cannot be empty or fractional number`)
+      setIsValid(false)
+      return
+    }
+    if (isBigInt(min) && value < min) {
+      setError(`Cannot be less than ${min.toString()}`)
+      setIsValid(false)
+      return
+    }
+    if (isBigInt(max) && value > max) {
+      setError(`Cannot be more than ${max.toString()}`)
+      setIsValid(false)
+      return
+    }
     setError('')
     setIsValid(true)
-  }, [value])
+  }, [min, max, value])
 
   return (
     <BaseInput
