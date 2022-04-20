@@ -6,7 +6,7 @@ import { FilecoinInput } from './Filecoin'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-const StoryComponent = ({ min, max, value: defaultValue, ...props }) => {
+const StoryComponent = ({ min, max, value: defaultValue, denom, ...props }) => {
   const [value, setValue] = useState(defaultValue)
   const [isValid, setIsValid] = useState(false)
   const hasMin = !!min || typeof min === 'number'
@@ -17,6 +17,7 @@ const StoryComponent = ({ min, max, value: defaultValue, ...props }) => {
         min={hasMin ? new FilecoinNumber(min, denom || 'fil') : null}
         max={hasMax ? new FilecoinNumber(max, denom || 'fil') : null}
         value={value}
+        denom={denom}
         onChange={setValue}
         setIsValid={setIsValid}
         autofocus={true}
