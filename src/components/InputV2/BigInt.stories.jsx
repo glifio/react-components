@@ -12,7 +12,7 @@ const StoryComponent = ({ min, max, value: defaultValue, ...props }) => {
   const hasMax = !!max || typeof max === 'number'
   return (
     <div>
-      <FilecoinInput
+      <BigIntInput
         min={hasMin ? BigInt(min) : null}
         max={hasMax ? BigInt(max) : null}
         value={value}
