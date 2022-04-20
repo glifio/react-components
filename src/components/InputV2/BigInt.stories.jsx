@@ -5,11 +5,12 @@ import { BigIntInput } from './BigInt'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-const StoryComponent = ({ min, max, value: defaultValue, ...props }) => {
-  const [value, setValue] = useState(defaultValue)
-  const [isValid, setIsValid] = useState(false)
+const StoryComponent = ({ min, max, value: val, ...props }) => {
   const hasMin = !!min || typeof min === 'number'
   const hasMax = !!max || typeof max === 'number'
+  const defaultValue = !!val || typeof val === 'number' ? BigInt(val) : null
+  const [value, setValue] = useState(defaultValue)
+  const [isValid, setIsValid] = useState(false)
   return (
     <div>
       <BigIntInput
