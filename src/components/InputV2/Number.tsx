@@ -15,7 +15,7 @@ export const NumberInput = ({
   onChange,
   onFocus,
   onBlur,
-  setHasError,
+  setIsValid,
   ...baseProps
 }: NumberInputProps) => {
   const [error, setError] = useState<string>('')
@@ -79,7 +79,7 @@ export type NumberInputProps = {
   onChange?: (value: number) => void
   onFocus?: (value: number) => void
   onBlur?: (value: number) => void
-  setHasError?: (hasError: boolean) => void
+  setIsValid?: (hasError: boolean) => void
 } & Omit<
   BaseInputProps,
   'error' | 'type' | 'value' | 'onChange' | 'onFocus' | 'onBlur'
@@ -92,7 +92,7 @@ NumberInput.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   value: PropTypes.number,
-  setHasError: PropTypes.func,
+  setIsValid: PropTypes.func,
   ...numberProps
 }
 
@@ -103,5 +103,5 @@ NumberInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  setHasError: () => {}
+  setIsValid: () => {}
 }

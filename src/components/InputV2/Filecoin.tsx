@@ -65,7 +65,7 @@ export const FilecoinInput = ({
   onChange,
   onFocus,
   onBlur,
-  setHasError,
+  setIsValid,
   ...baseProps
 }: FilecoinInputProps) => {
   const [error, setError] = useState<string>('')
@@ -146,7 +146,7 @@ export type FilecoinInputProps = {
   onChange?: (value: FilecoinNumber) => void
   onFocus?: (value: FilecoinNumber) => void
   onBlur?: (value: FilecoinNumber) => void
-  setHasError?: (hasError: boolean) => void
+  setIsValid?: (hasError: boolean) => void
 } & Omit<
   BaseInputProps,
   'error' | 'type' | 'unit' | 'value' | 'onChange' | 'onFocus' | 'onBlur'
@@ -160,7 +160,7 @@ FilecoinInput.propTypes = {
   max: FILECOIN_NUMBER_PROPTYPE,
   value: FILECOIN_NUMBER_PROPTYPE,
   denom: PropTypes.oneOf(['fil', 'picofil', 'attofil']),
-  setHasError: PropTypes.func,
+  setIsValid: PropTypes.func,
   ...filecoinProps
 }
 
@@ -170,5 +170,5 @@ FilecoinInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  setHasError: () => {}
+  setIsValid: () => {}
 }

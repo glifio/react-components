@@ -24,7 +24,7 @@ export const BigIntInput = ({
   onChange,
   onFocus,
   onBlur,
-  setHasError,
+  setIsValid,
   ...baseProps
 }: BigIntInputProps) => {
   const [error, setError] = useState<string>('')
@@ -98,7 +98,7 @@ export type BigIntInputProps = {
   onChange?: (value: BigInt) => void
   onFocus?: (value: BigInt) => void
   onBlur?: (value: BigInt) => void
-  setHasError?: (hasError: boolean) => void
+  setIsValid?: (hasError: boolean) => void
 } & Omit<
   BaseInputProps,
   'error' | 'type' | 'value' | 'onChange' | 'onFocus' | 'onBlur'
@@ -115,7 +115,7 @@ BigIntInput.propTypes = {
   max: PropTypes.bigint,
   // @ts-ignore
   value: PropTypes.bigint,
-  setHasError: PropTypes.func,
+  setIsValid: PropTypes.func,
   ...bigIntProps
 }
 
@@ -124,5 +124,5 @@ BigIntInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  setHasError: () => {}
+  setIsValid: () => {}
 }
