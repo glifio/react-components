@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
@@ -88,6 +88,11 @@ export const FilecoinInput = ({
     setShowError(true)
     onBlur()
   }
+
+  useEffect(() => {
+    setError('')
+    setIsValid(true)
+  }, [value])
 
   return (
     <BaseInput

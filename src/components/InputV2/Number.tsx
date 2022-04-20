@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
@@ -34,6 +34,11 @@ export const NumberInput = ({
     setShowError(true)
     onBlur()
   }
+
+  useEffect(() => {
+    setError('')
+    setIsValid(true)
+  }, [value])
 
   return (
     <BaseInput
