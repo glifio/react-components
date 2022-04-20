@@ -73,9 +73,9 @@ export const FilecoinInput = ({
 
   const onChangeBase = (newValue: string) => {
     try {
-      onChange(new FilecoinNumber(newValue, denom))
+      onChange(newValue ? new FilecoinNumber(newValue, denom) : null)
     } catch (e) {
-      // Ignore onChange for faulty input
+      onChange(null)
     }
   }
 

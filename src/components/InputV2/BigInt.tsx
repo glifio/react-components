@@ -32,9 +32,9 @@ export const BigIntInput = ({
 
   const onChangeBase = (newValue: string) => {
     try {
-      onChange(BigInt(newValue))
+      onChange(newValue ? BigInt(newValue) : null)
     } catch (e) {
-      // Ignore onChange for faulty input
+      onChange(null)
     }
   }
 
