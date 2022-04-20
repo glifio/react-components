@@ -69,6 +69,8 @@ export const NumberInput = ({
  * type: always "number" for number input
  * value: needs to be of type "number" / "PropTypes.number"
  * onChange: needs to take "number" type argument
+ * 
+ * We add min, max and setIsValid
  */
 
 export type NumberInputProps = {
@@ -89,6 +91,10 @@ NumberInput.propTypes = {
   setIsValid: PropTypes.func,
   ...numberProps
 }
+
+/**
+ * Provide defaults for props that are used in this input
+ */
 
 NumberInput.defaultProps = {
   min: -Infinity,

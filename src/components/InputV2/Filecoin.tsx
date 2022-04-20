@@ -135,6 +135,8 @@ export const FilecoinInput = ({
  * unit: will be based on the FilecoinDenomination
  * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
  * onChange: needs to take "FilecoinNumber" type argument
+ * 
+ * We add min, max, denom and setIsValid
  */
 
 export type FilecoinInputProps = {
@@ -158,7 +160,11 @@ FilecoinInput.propTypes = {
   ...filecoinProps
 }
 
-// "min", "max" and "value" have no useful defaults for FilecoinNumber
+/**
+ * Provide defaults for props that are used in this input
+ * "min", "max" and "value" have no useful defaults for FilecoinNumber
+ */
+
 FilecoinInput.defaultProps = {
   denom: 'fil',
   onChange: () => {},
