@@ -26,7 +26,7 @@ const StoryComponent = ({ value: defaultValue, ...props }) => {
 
 export default {
   title: 'InputV2/Number',
-  component: NumberInput,
+  component: StoryComponent,
   decorators: [
     Story => (
       <div style={{ maxWidth: '35em', margin: '0 auto' }}>
@@ -37,29 +37,21 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <NumberInput {...args} />
-
-const sharedArgs = {
-  autofocus: true,
-  controlled: false
-}
+const Template = args => <StoryComponent {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  ...sharedArgs,
   label: 'Enter your age'
 }
 
 export const PreFilled = Template.bind({})
 PreFilled.args = {
-  ...sharedArgs,
   label: 'Enter your age',
   value: 35
 }
 
 export const MinValue = Template.bind({})
 MinValue.args = {
-  ...sharedArgs,
   label: 'Enter your age',
   info: 'You must be 21 or older',
   min: 21
@@ -67,7 +59,6 @@ MinValue.args = {
 
 export const MinMaxValue = Template.bind({})
 MinMaxValue.args = {
-  ...sharedArgs,
   label: 'Enter your age',
   info: 'You must be between 25 and 35 years old',
   min: 25,
@@ -76,14 +67,12 @@ MinMaxValue.args = {
 
 export const Vertical = Template.bind({})
 Vertical.args = {
-  ...sharedArgs,
   vertical: true,
   label: 'Enter your age'
 }
 
 export const VerticalMinValue = Template.bind({})
 VerticalMinValue.args = {
-  ...sharedArgs,
   vertical: true,
   label: 'Enter your age',
   info: 'You must be 21 or older',

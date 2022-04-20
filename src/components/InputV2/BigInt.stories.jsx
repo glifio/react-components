@@ -30,7 +30,7 @@ const StoryComponent = ({ min, max, value: defaultValue, ...props }) => {
 
 export default {
   title: 'InputV2/BigInt',
-  component: BigIntInput,
+  component: StoryComponent,
   decorators: [
     Story => (
       <div style={{ maxWidth: '35em', margin: '0 auto' }}>
@@ -41,22 +41,10 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => (
-  <BigIntInput
-    min={BigInt('9007199254740991')}
-    max={BigInt('10007199254740991')}
-    {...args}
-  />
-)
-
-const sharedArgs = {
-  autofocus: true,
-  controlled: false
-}
+const Template = args => <StoryComponent {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  ...sharedArgs,
   label: 'Enter your age',
   info: 'You must be between 9007199254740991 and 10007199254740991 years old'
 }
