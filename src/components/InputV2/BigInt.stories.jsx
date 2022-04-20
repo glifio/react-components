@@ -1,6 +1,32 @@
+import { useState } from 'react'
+import { ButtonV2 } from '../Button/V2'
+import { ButtonRowRight } from '../Layout/Buttons'
 import { BigIntInput } from './BigInt'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
+
+const StoryComponent = ({ min, max, value: defaultValue, ...props }) => {
+  const [value, setValue] = useState(defaultValue)
+  const [isValid, setIsValid] = useState(false)
+  const hasMin = !!min || typeof min === 'number'
+  const hasMax = !!max || typeof max === 'number'
+  return (
+    <div>
+      <FilecoinInput
+        min={hasMin ? BigInt(min) : null}
+        max={hasMax ? BigInt(max) : null}
+        value={value}
+        onChange={setValue}
+        setIsValid={setIsValid}
+        autofocus={true}
+        {...props}
+      />
+      <ButtonRowRight>
+        <ButtonV2 disabled={!isValid}>Send</ButtonV2>
+      </ButtonRowRight>
+    </div>
+  )
+}
 
 export default {
   title: 'InputV2/BigInt',
