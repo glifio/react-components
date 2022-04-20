@@ -54,6 +54,12 @@ Base.args = {
   label: 'Enter any amount in FIL'
 }
 
+export const PreFilled = Template.bind({})
+PreFilled.args = {
+  label: 'Adjust the amount in FIL',
+  value: 50.5
+}
+
 export const Positive = Template.bind({})
 Positive.args = {
   label: 'Enter a positive amount in FIL',
