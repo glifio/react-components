@@ -47,20 +47,43 @@ const Template = args => <StoryComponent {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
+  label: 'Enter any amount in FIL'
+}
+
+export const Positive = Template.bind({})
+Positive.args = {
+  label: 'Enter a positive amount in FIL',
+  min: 0
+}
+
+export const Negative = Template.bind({})
+Negative.args = {
+  label: 'Enter a negative amount in FIL',
+  max: 0
+}
+
+export const MinMax = Template.bind({})
+MinMax.args = {
   label: 'Enter an amount in FIL',
-  info: 'Must be between 0 and 100 FIL'
+  info: 'Must be between 0 and 100 FIL',
+  min: 0,
+  max: 100
 }
 
 export const AttoFIL = Template.bind({})
 AttoFIL.args = {
   label: 'Enter an amount in attoFIL',
-  info: 'Must be between 0 and 100 FIL',
-  denom: 'attofil'
+  info: 'Must be between -500 and 500 attoFIL',
+  denom: 'attofil',
+  min: -500,
+  max: 500
 }
 
 export const PicoFIL = Template.bind({})
 PicoFIL.args = {
   label: 'Enter an amount in picoFIL',
-  info: 'Must be between 0 and 100 FIL',
-  denom: 'picofil'
+  info: 'Must be between -1000 and 1000 picoFIL',
+  denom: 'picofil',
+  min: -1000,
+  max: 1000
 }
