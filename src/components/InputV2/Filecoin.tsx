@@ -63,6 +63,7 @@ export const FilecoinInput = ({
   value,
   denom,
   onChange,
+  onFocus,
   onBlur,
   setHasError,
   ...baseProps
@@ -76,6 +77,9 @@ export const FilecoinInput = ({
     } catch (e) {
       // Ignore faulty input while the element has focus
     }
+  }
+  const onFocusBase = (newValue: string) => {
+
   }
   const onBlurBase = (newValue: string) => {
     if (!newValue) {
@@ -111,6 +115,7 @@ export const FilecoinInput = ({
       unit={getUnit(denom)}
       value={isFilecoinNumber(value) ? getValue(value, denom) : ''}
       onChange={onChangeBase}
+      onFocus={onFocusBase}
       onBlur={onBlurBase}
       {...baseProps}
     />

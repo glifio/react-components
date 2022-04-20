@@ -22,6 +22,7 @@ export const BigIntInput = ({
   max,
   value,
   onChange,
+  onFocus,
   onBlur,
   setHasError,
   ...baseProps
@@ -35,6 +36,9 @@ export const BigIntInput = ({
     } catch (e) {
       // Ignore faulty input while the element has focus
     }
+  }
+  const onFocusBase = (newValue: string) => {
+    
   }
   const onBlurBase = (newValue: string) => {
     if (!newValue) {
@@ -65,6 +69,7 @@ export const BigIntInput = ({
       type='number'
       value={isBigInt(value) ? value.toString() : ''}
       onChange={onChangeBase}
+      onFocus={onFocusBase}
       onBlur={onBlurBase}
       {...baseProps}
     />

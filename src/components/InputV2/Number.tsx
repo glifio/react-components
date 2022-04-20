@@ -13,6 +13,7 @@ export const NumberInput = ({
   max,
   value,
   onChange,
+  onFocus,
   onBlur,
   setHasError,
   ...baseProps
@@ -22,6 +23,9 @@ export const NumberInput = ({
     setError('')
     setHasError(false)
     onChange(newValue ? Number(newValue) : NaN)
+  }
+  const onFocusBase = (newValue: string) => {
+    
   }
   const onBlurBase = (newValue: string) => {
     const number = newValue ? Number(newValue) : NaN
@@ -46,6 +50,7 @@ export const NumberInput = ({
       type='number'
       value={isNaN(value) ? '' : value.toString()}
       onChange={onChangeBase}
+      onFocus={onFocusBase}
       onBlur={onBlurBase}
       {...baseProps}
     />
