@@ -39,8 +39,8 @@ export const BaseInput = ({
         placeholder={placeholder}
         value={value}
         onChange={e => onChange(e.target.value)}
-        onFocus={e => onFocus(e.target.value)}
-        onBlur={e => onBlur(e.target.value)}
+        onFocus={() => onFocus()}
+        onBlur={() => onBlur()}
         style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
       />
       {unit && <span className='unit'>{unit}</span>}
@@ -62,8 +62,8 @@ export interface BaseInputProps {
   value?: string
   unit?: string
   onChange?: (value: string) => void
-  onFocus?: (value: string) => void
-  onBlur?: (value: string) => void
+  onFocus?: () => void
+  onBlur?: () => void
 }
 
 export const BaseInputPropTypes = {
