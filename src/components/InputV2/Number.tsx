@@ -22,8 +22,6 @@ export const NumberInput = ({
   const [showError, setShowError] = useState<boolean>(false)
 
   const onChangeBase = (newValue: string) => {
-    setError('')
-    setHasError(false)
     onChange(newValue ? Number(newValue) : NaN)
   }
 

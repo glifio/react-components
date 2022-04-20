@@ -72,12 +72,10 @@ export const FilecoinInput = ({
   const [showError, setShowError] = useState<boolean>(false)
 
   const onChangeBase = (newValue: string) => {
-    setError('')
-    setHasError(false)
     try {
       onChange(new FilecoinNumber(newValue, denom))
     } catch (e) {
-      // Ignore faulty input while the element has focus
+      // Ignore onChange for faulty input
     }
   }
 
