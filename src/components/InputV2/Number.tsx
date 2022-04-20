@@ -36,9 +36,24 @@ export const NumberInput = ({
   }
 
   useEffect(() => {
+    if (isNaN(value)) {
+      setError(`Cannot be empty`)
+      setIsValid(false)
+      return
+    }
+    if (value < min) {
+      setError(`Cannot be less than ${min}`)
+      setIsValid(false)
+      return
+    }
+    if (value > max) {
+      setError(`Cannot be more than ${max}`)
+      setIsValid(false)
+      return
+    }
     setError('')
     setIsValid(true)
-  }, [value])
+  }, [min, max, value])
 
   return (
     <BaseInput
