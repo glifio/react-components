@@ -79,10 +79,10 @@ export const BigIntInput = ({
  */
 
 export type BigIntInputProps = {
-  min?: BigInt
-  max?: BigInt
-  value?: BigInt
-  onChange?: (value: BigInt) => void
+  min?: BigInt | null
+  max?: BigInt | null
+  value?: BigInt | null
+  onChange?: (value: BigInt | null) => void
   setIsValid?: (hasError: boolean) => void
 } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange'>
 
@@ -103,10 +103,12 @@ BigIntInput.propTypes = {
 
 /**
  * Provide defaults for props that are used in this input
- * "min", "max" and "value" have no useful defaults for BigInt
  */
 
 BigIntInput.defaultProps = {
+  min: null,
+  max: null,
+  value: null,
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},

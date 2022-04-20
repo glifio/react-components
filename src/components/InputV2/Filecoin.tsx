@@ -122,11 +122,11 @@ export const FilecoinInput = ({
  */
 
 export type FilecoinInputProps = {
-  min?: FilecoinNumber
-  max?: FilecoinNumber
-  value?: FilecoinNumber
+  min?: FilecoinNumber | null
+  max?: FilecoinNumber | null
+  value?: FilecoinNumber | null
   denom?: FilecoinDenomination
-  onChange?: (value: FilecoinNumber) => void
+  onChange?: (value: FilecoinNumber | null) => void
   setIsValid?: (hasError: boolean) => void
 } & Omit<BaseInputProps, 'error' | 'type' | 'unit' | 'value' | 'onChange'>
 
@@ -144,10 +144,12 @@ FilecoinInput.propTypes = {
 
 /**
  * Provide defaults for props that are used in this input
- * "min", "max" and "value" have no useful defaults for FilecoinNumber
  */
 
 FilecoinInput.defaultProps = {
+  min: null,
+  max: null,
+  value: null,
   denom: 'fil',
   onChange: () => {},
   onFocus: () => {},
