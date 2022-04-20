@@ -38,31 +38,14 @@ export const BigIntInput = ({
     }
   }
 
-  const onFocusBase = (newValue: string) => {
-    
+  const onFocusBase = () => {
+    setShowError(false)
+    onFocus()
   }
 
-  const onBlurBase = (newValue: string) => {
-    if (!newValue) {
-      setError(`Cannot be empty`)
-      setHasError(true)
-      return
-    }
-    try {
-      const bigint = BigInt(newValue)
-      if (isBigInt(min) && bigint < min) {
-        setError(`Cannot be less than ${min.toString()}`)
-        setHasError(true)
-      }
-      if (isBigInt(max) && bigint > max) {
-        setError(`Cannot be more than ${max.toString()}`)
-        setHasError(true)
-      }
-      onBlur(bigint)
-    } catch (e) {
-      setError(`Must be a whole number`)
-      setHasError(true)
-    }
+  const onBlurBase = () => {
+    setShowError(true)
+    onBlur()
   }
 
   return (

@@ -25,25 +25,14 @@ export const NumberInput = ({
     onChange(newValue ? Number(newValue) : NaN)
   }
 
-  const onFocusBase = (newValue: string) => {
-    
+  const onFocusBase = () => {
+    setShowError(false)
+    onFocus()
   }
 
-  const onBlurBase = (newValue: string) => {
-    const number = newValue ? Number(newValue) : NaN
-    if (number < min) {
-      setError(`Cannot be less than ${min}`)
-      setHasError(true)
-    }
-    if (number > max) {
-      setError(`Cannot be more than ${max}`)
-      setHasError(true)
-    }
-    if (isNaN(number)) {
-      setError(`Cannot be empty`)
-      setHasError(true)
-    }
-    onBlur(number)
+  const onBlurBase = () => {
+    setShowError(true)
+    onBlur()
   }
 
   return (

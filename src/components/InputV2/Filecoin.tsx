@@ -79,35 +79,14 @@ export const FilecoinInput = ({
     }
   }
 
-  const onFocusBase = (newValue: string) => {
-
+  const onFocusBase = () => {
+    setShowError(false)
+    onFocus()
   }
-  
-  const onBlurBase = (newValue: string) => {
-    if (!newValue) {
-      setError(`Cannot be empty`)
-      setHasError(true)
-      return
-    }
-    try {
-      const filecoin = new FilecoinNumber(newValue, denom)
-      if (isFilecoinNumber(min) && filecoin.isLessThan(min)) {
-        setError(
-          `Cannot be less than ${getValue(min, denom)} ${getUnit(denom)}`
-        )
-        setHasError(true)
-      }
-      if (isFilecoinNumber(max) && filecoin.isGreaterThan(max)) {
-        setError(
-          `Cannot be more than ${getValue(max, denom)} ${getUnit(denom)}`
-        )
-        setHasError(true)
-      }
-      onBlur(filecoin)
-    } catch (e) {
-      setError(`Must be a valid Filecoin number`)
-      setHasError(true)
-    }
+
+  const onBlurBase = () => {
+    setShowError(true)
+    onBlur()
   }
 
   return (
