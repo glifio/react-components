@@ -87,11 +87,12 @@ export type BigIntInputProps = {
   max?: BigInt
   value?: BigInt
   onChange?: (value: BigInt) => void
+  onFocus?: (value: BigInt) => void
   onBlur?: (value: BigInt) => void
   setHasError?: (hasError: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onFocus' | 'onBlur'>
 
-// "onChange" and "onBlur" remain of type "PropTypes.func"
+// "onChange", "onFocus" and "onBlur" remain of type "PropTypes.func"
 const { error, type, value, ...bigIntProps } = BaseInputPropTypes
 
 // @types/prop-types is outdated
@@ -109,6 +110,7 @@ BigIntInput.propTypes = {
 // "min", "max" and "value" have no useful defaults for BigInt
 BigIntInput.defaultProps = {
   onChange: () => {},
+  onFocus: () => {},
   onBlur: () => {},
   setHasError: () => {}
 }

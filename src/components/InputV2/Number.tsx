@@ -68,11 +68,12 @@ export type NumberInputProps = {
   max?: number
   value?: number
   onChange?: (value: number) => void
+  onFocus?: (value: number) => void
   onBlur?: (value: number) => void
   setHasError?: (hasError: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onBlur'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange' | 'onFocus' | 'onBlur'>
 
-// "onChange" and "onBlur" remain of type "PropTypes.func"
+// "onChange", "onFocus" and "onBlur" remain of type "PropTypes.func"
 const { error, type, value, ...numberProps } = BaseInputPropTypes
 
 NumberInput.propTypes = {
@@ -88,6 +89,7 @@ NumberInput.defaultProps = {
   max: Infinity,
   value: NaN,
   onChange: () => {},
+  onFocus: () => {},
   onBlur: () => {},
   setHasError: () => {}
 }

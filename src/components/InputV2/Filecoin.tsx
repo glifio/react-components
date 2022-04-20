@@ -135,14 +135,15 @@ export type FilecoinInputProps = {
   value?: FilecoinNumber
   denom?: FilecoinDenomination
   onChange?: (value: FilecoinNumber) => void
+  onFocus?: (value: FilecoinNumber) => void
   onBlur?: (value: FilecoinNumber) => void
   setHasError?: (hasError: boolean) => void
 } & Omit<
   BaseInputProps,
-  'error' | 'type' | 'unit' | 'value' | 'onChange' | 'onBlur'
+  'error' | 'type' | 'unit' | 'value' | 'onChange' | 'onFocus' | 'onBlur'
 >
 
-// "onChange" and "onBlur" remain of type "PropTypes.func"
+// "onChange", "onFocus" and "onBlur" remain of type "PropTypes.func"
 const { error, type, unit, value, ...filecoinProps } = BaseInputPropTypes
 
 FilecoinInput.propTypes = {
@@ -158,6 +159,7 @@ FilecoinInput.propTypes = {
 FilecoinInput.defaultProps = {
   denom: 'fil',
   onChange: () => {},
+  onFocus: () => {},
   onBlur: () => {},
   setHasError: () => {}
 }
