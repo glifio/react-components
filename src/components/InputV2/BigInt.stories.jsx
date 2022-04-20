@@ -46,6 +46,19 @@ const Template = args => <StoryComponent {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
+  label: 'Enter a big number'
+}
+
+export const PreFilled = Template.bind({})
+PreFilled.args = {
+  label: 'Adjust a big number',
+  value: '10007199254740991'
+}
+
+export const MinMax = Template.bind({})
+MinMax.args = {
   label: 'Enter your age',
-  info: 'You must be between 9007199254740991 and 10007199254740991 years old'
+  info: 'You must be between 9007199254740991 and 10007199254740991 years old',
+  min: '9007199254740991',
+  max: '10007199254740991'
 }
