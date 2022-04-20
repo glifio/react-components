@@ -19,14 +19,18 @@ export const NumberInput = ({
   ...baseProps
 }: NumberInputProps) => {
   const [error, setError] = useState<string>('')
+  const [showError, setShowError] = useState<boolean>(false)
+
   const onChangeBase = (newValue: string) => {
     setError('')
     setHasError(false)
     onChange(newValue ? Number(newValue) : NaN)
   }
+
   const onFocusBase = (newValue: string) => {
     
   }
+
   const onBlurBase = (newValue: string) => {
     const number = newValue ? Number(newValue) : NaN
     if (number < min) {
@@ -46,7 +50,7 @@ export const NumberInput = ({
 
   return (
     <BaseInput
-      error={error}
+      error={showError ? error : ''}
       type='number'
       value={isNaN(value) ? '' : value.toString()}
       onChange={onChangeBase}

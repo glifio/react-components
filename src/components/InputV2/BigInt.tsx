@@ -28,6 +28,8 @@ export const BigIntInput = ({
   ...baseProps
 }: BigIntInputProps) => {
   const [error, setError] = useState<string>('')
+  const [showError, setShowError] = useState<boolean>(false)
+
   const onChangeBase = (newValue: string) => {
     setError('')
     setHasError(false)
@@ -37,9 +39,11 @@ export const BigIntInput = ({
       // Ignore faulty input while the element has focus
     }
   }
+
   const onFocusBase = (newValue: string) => {
     
   }
+
   const onBlurBase = (newValue: string) => {
     if (!newValue) {
       setError(`Cannot be empty`)
@@ -65,7 +69,7 @@ export const BigIntInput = ({
 
   return (
     <BaseInput
-      error={error}
+      error={showError ? error : ''}
       type='number'
       value={isBigInt(value) ? value.toString() : ''}
       onChange={onChangeBase}

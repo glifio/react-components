@@ -69,6 +69,8 @@ export const FilecoinInput = ({
   ...baseProps
 }: FilecoinInputProps) => {
   const [error, setError] = useState<string>('')
+  const [showError, setShowError] = useState<boolean>(false)
+
   const onChangeBase = (newValue: string) => {
     setError('')
     setHasError(false)
@@ -78,9 +80,11 @@ export const FilecoinInput = ({
       // Ignore faulty input while the element has focus
     }
   }
+
   const onFocusBase = (newValue: string) => {
 
   }
+  
   const onBlurBase = (newValue: string) => {
     if (!newValue) {
       setError(`Cannot be empty`)
@@ -110,7 +114,7 @@ export const FilecoinInput = ({
 
   return (
     <BaseInput
-      error={error}
+      error={showError ? error : ''}
       type='number'
       unit={getUnit(denom)}
       value={isFilecoinNumber(value) ? getValue(value, denom) : ''}
