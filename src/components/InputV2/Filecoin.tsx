@@ -90,9 +90,24 @@ export const FilecoinInput = ({
   }
 
   useEffect(() => {
+    if (value === null) {
+      setError(`Cannot be empty or invalid Filecoin value`)
+      setIsValid(false)
+      return
+    }
+    if (isFilecoinNumber(min) && value.isLessThan(min)) {
+      setError(`Cannot be less than ${getValue(min, denom)} ${getUnit(denom)}`)
+      setIsValid(false)
+      return
+    }
+    if (isFilecoinNumber(max) && value.isGreaterThan(max)) {
+      setError(`Cannot be more than ${getValue(max, denom)} ${getUnit(denom)}`)
+      setIsValid(false)
+      return
+    }
     setError('')
     setIsValid(true)
-  }, [value])
+  }, [min, max, value])
 
   return (
     <BaseInput
