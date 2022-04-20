@@ -61,7 +61,6 @@ export const Toggle = ({
   info,
   autofocus,
   disabled,
-  controlled,
   checked,
   onChange
 }: ToggleProps) => (
@@ -75,8 +74,7 @@ export const Toggle = ({
         type='checkbox'
         autoFocus={autofocus}
         disabled={disabled}
-        checked={controlled ? checked : undefined}
-        defaultChecked={controlled ? undefined : checked}
+        checked={checked}
         onChange={e => onChange(e.target.checked)}
       />
       <span className='toggle'></span>
@@ -89,7 +87,6 @@ interface ToggleProps {
   info?: string
   autofocus?: boolean
   disabled?: boolean
-  controlled?: boolean
   checked?: boolean
   onChange?: (checked: boolean) => void
 }
@@ -99,7 +96,6 @@ Toggle.propTypes = {
   info: PropTypes.string,
   autofocus: PropTypes.bool,
   disabled: PropTypes.bool,
-  controlled: PropTypes.bool,
   checked: PropTypes.bool,
   onChange: PropTypes.func
 }
@@ -109,7 +105,6 @@ Toggle.defaultProps = {
   info: '',
   autofocus: false,
   disabled: false,
-  controlled: true,
   checked: false,
   onChange: () => {}
 }

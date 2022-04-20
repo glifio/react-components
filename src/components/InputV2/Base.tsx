@@ -11,7 +11,6 @@ export const BaseInput = ({
   autofocus,
   disabled,
   placeholder,
-  controlled,
   value,
   unit,
   onChange,
@@ -38,8 +37,7 @@ export const BaseInput = ({
         autoFocus={autofocus}
         disabled={disabled}
         placeholder={placeholder}
-        value={controlled ? value : undefined}
-        defaultValue={controlled ? undefined : value}
+        value={value}
         onChange={e => onChange(e.target.value)}
         onFocus={e => onFocus(e.target.value)}
         onBlur={e => onBlur(e.target.value)}
@@ -61,7 +59,6 @@ export interface BaseInputProps {
   autofocus?: boolean
   disabled?: boolean
   placeholder?: string
-  controlled?: boolean
   value?: string
   unit?: string
   onChange?: (value: string) => void
@@ -79,7 +76,6 @@ export const BaseInputPropTypes = {
   autofocus: PropTypes.bool,
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
-  controlled: PropTypes.bool,
   value: PropTypes.string,
   unit: PropTypes.string,
   onChange: PropTypes.func,
@@ -98,7 +94,6 @@ BaseInput.defaultProps = {
   autofocus: false,
   disabled: false,
   placeholder: '',
-  controlled: true,
   value: '',
   unit: '',
   onChange: () => {},
