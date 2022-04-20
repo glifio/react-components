@@ -3,12 +3,6 @@ import { useEffect, useState } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
- * Since Infinity and NaN don't exist as useful defaults,
- * we use this method to check if the prop has been passed
- **/
-const isBigInt = value => typeof value === 'bigint'
-
-/**
  * BigIntInput
  *
  * This input is based on the NumberInput, with the difference
@@ -54,12 +48,12 @@ export const BigIntInput = ({
       setIsValid(false)
       return
     }
-    if (isBigInt(min) && value < min) {
+    if (min !== null && value < min) {
       setError(`Cannot be less than ${min.toString()}`)
       setIsValid(false)
       return
     }
-    if (isBigInt(max) && value > max) {
+    if (max !== null && value > max) {
       setError(`Cannot be more than ${max.toString()}`)
       setIsValid(false)
       return
@@ -72,7 +66,7 @@ export const BigIntInput = ({
     <BaseInput
       error={showError ? error : ''}
       type='number'
-      value={isBigInt(value) ? value.toString() : ''}
+      value={value === null ? '' : value.toString()}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}

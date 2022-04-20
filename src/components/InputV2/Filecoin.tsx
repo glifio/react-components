@@ -7,16 +7,6 @@ import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
 
 /**
- * Since Infinity and NaN don't exist as useful defaults,
- * we use this method to check if the prop has been passed
- **/
-const isFilecoinNumber = value =>
-  typeof value === 'object' &&
-  'toFil' in value &&
-  'toAttoFil' in value &&
-  'toPicoFil' in value
-
-/**
  * Get the string representation of the Filecoin number for the required denomination
  **/
 const getValue = (value: FilecoinNumber, denom: FilecoinDenomination) => {
@@ -95,12 +85,12 @@ export const FilecoinInput = ({
       setIsValid(false)
       return
     }
-    if (isFilecoinNumber(min) && value.isLessThan(min)) {
+    if (min !== null && value.isLessThan(min)) {
       setError(`Cannot be less than ${getValue(min, denom)} ${getUnit(denom)}`)
       setIsValid(false)
       return
     }
-    if (isFilecoinNumber(max) && value.isGreaterThan(max)) {
+    if (max !== null && value.isGreaterThan(max)) {
       setError(`Cannot be more than ${getValue(max, denom)} ${getUnit(denom)}`)
       setIsValid(false)
       return
@@ -114,7 +104,7 @@ export const FilecoinInput = ({
       error={showError ? error : ''}
       type='number'
       unit={getUnit(denom)}
-      value={isFilecoinNumber(value) ? getValue(value, denom) : ''}
+      value={value === null ? '' : getValue(value, denom)}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
