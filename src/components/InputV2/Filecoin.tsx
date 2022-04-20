@@ -135,8 +135,6 @@ export const FilecoinInput = ({
  * unit: will be based on the FilecoinDenomination
  * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
  * onChange: needs to take "FilecoinNumber" type argument
- * onFocus: needs to take "FilecoinNumber" type argument
- * onBlur: needs to take "FilecoinNumber" type argument
  */
 
 export type FilecoinInputProps = {
@@ -145,15 +143,13 @@ export type FilecoinInputProps = {
   value?: FilecoinNumber
   denom?: FilecoinDenomination
   onChange?: (value: FilecoinNumber) => void
-  onFocus?: (value: FilecoinNumber) => void
-  onBlur?: (value: FilecoinNumber) => void
   setIsValid?: (hasError: boolean) => void
 } & Omit<
   BaseInputProps,
-  'error' | 'type' | 'unit' | 'value' | 'onChange' | 'onFocus' | 'onBlur'
+  'error' | 'type' | 'unit' | 'value' | 'onChange'
 >
 
-// "onChange", "onFocus" and "onBlur" remain of type "PropTypes.func"
+// "onChange" remains "PropTypes.func", so doesn't need an override
 const { error, type, unit, value, ...filecoinProps } = BaseInputPropTypes
 
 FilecoinInput.propTypes = {

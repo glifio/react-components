@@ -88,8 +88,6 @@ export const BigIntInput = ({
  * type: always "number" for bigint input
  * value: needs to be of type "BigInt" / "PropTypes.bigint"
  * onChange: needs to take "BigInt" type argument
- * onFocus: needs to take "BigInt" type argument
- * onBlur: needs to take "BigInt" type argument
  */
 
 export type BigIntInputProps = {
@@ -97,15 +95,13 @@ export type BigIntInputProps = {
   max?: BigInt
   value?: BigInt
   onChange?: (value: BigInt) => void
-  onFocus?: (value: BigInt) => void
-  onBlur?: (value: BigInt) => void
   setIsValid?: (hasError: boolean) => void
 } & Omit<
   BaseInputProps,
-  'error' | 'type' | 'value' | 'onChange' | 'onFocus' | 'onBlur'
+  'error' | 'type' | 'value' | 'onChange'
 >
 
-// "onChange", "onFocus" and "onBlur" remain of type "PropTypes.func"
+// "onChange" remains "PropTypes.func", so doesn't need an override
 const { error, type, value, ...bigIntProps } = BaseInputPropTypes
 
 // @types/prop-types is outdated

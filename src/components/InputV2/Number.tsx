@@ -69,8 +69,6 @@ export const NumberInput = ({
  * type: always "number" for number input
  * value: needs to be of type "number" / "PropTypes.number"
  * onChange: needs to take "number" type argument
- * onFocus: needs to take "number" type argument
- * onBlur: needs to take "number" type argument
  */
 
 export type NumberInputProps = {
@@ -78,15 +76,13 @@ export type NumberInputProps = {
   max?: number
   value?: number
   onChange?: (value: number) => void
-  onFocus?: (value: number) => void
-  onBlur?: (value: number) => void
   setIsValid?: (hasError: boolean) => void
 } & Omit<
   BaseInputProps,
-  'error' | 'type' | 'value' | 'onChange' | 'onFocus' | 'onBlur'
+  'error' | 'type' | 'value' | 'onChange'
 >
 
-// "onChange", "onFocus" and "onBlur" remain of type "PropTypes.func"
+// "onChange" remains "PropTypes.func", so doesn't need an override
 const { error, type, value, ...numberProps } = BaseInputPropTypes
 
 NumberInput.propTypes = {
