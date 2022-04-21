@@ -8,7 +8,7 @@ const StoryComponent = () => (
   <OneColumnCentered>
     <Dialog>
       <StandardBox>
-        <h2>Box header</h2>
+        <h2>Box Title</h2>
         <hr />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt
@@ -27,6 +27,7 @@ const StoryComponent = () => (
         senectus et netus et malesuada fames ac turpis egestas.
       </ShadowBox>
       <ShadowBox>
+        <header>Box Header</header>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt
           nibh vitae tincidunt ultrices. Pellentesque habitant morbi tristique
