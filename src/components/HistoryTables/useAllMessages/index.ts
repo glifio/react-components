@@ -160,8 +160,6 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
       return pendingMsgList
         .filter(msg => !confirmedCids.has(msg.cid))
         .sort((a, b) => Number(b.nonce) - Number(a.nonce))
-    } else if (pendingMsgList.length > 0) {
-      return pendingMsgList.sort((a, b) => Number(b.nonce) - Number(a.nonce))
     } else {
       return []
     }
