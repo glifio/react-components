@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import PhishingBanner from '../PhishingBanner'
-import { AppHeader, AppHeaderProps } from '../AppHeader'
+import { AppHeader, AppHeaderProps, AppHeaderPropTypes } from '../AppHeader'
 import Footer from '../Footer'
 
 import { devices, space } from '../theme'
@@ -76,7 +76,7 @@ export const PagePropTypes = {
   ]),
   phishingUrl: PropTypes.string,
   hideAppHeader: PropTypes.bool,
-  ...AppHeader.propTypes
+  ...AppHeaderPropTypes
 }
 
 Page.propTypes = PagePropTypes
