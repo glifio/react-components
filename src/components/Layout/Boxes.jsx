@@ -24,8 +24,8 @@ const BoxBase = styled.div`
     margin: 0 auto 1em;
   }
 
-  > header:first-child {
-    margin: -1.5em -1.5em 1.5em -1.5em;
+  > h2:first-child {
+    margin: 0; // Should be followed by <hr />
   }
 
   ${props =>
@@ -48,6 +48,9 @@ BoxBase.defaultProps = {
  */
 export const StandardBox = styled(BoxBase)`
   background-color: var(--blue-gray);
+  hr {
+    border-color: var(--gray-medium);
+  }
 `
 
 /**
@@ -63,6 +66,9 @@ export const ShadowBox = styled(BoxBase)`
 export const InfoBox = styled(BoxBase)`
   background-color: var(--green-light);
   color: var(--green-dark);
+  hr {
+    border-color: var(--green-dark);
+  }
 `
 
 /**
@@ -71,6 +77,9 @@ export const InfoBox = styled(BoxBase)`
 const WarningBoxEl = styled(BoxBase)`
   background-color: var(--yellow-light);
   color: var(--yellow-dark);
+  hr {
+    border-color: var(--yellow-dark);
+  }
 `
 
 export const WarningBox = ({ children }) => (
@@ -86,6 +95,9 @@ export const WarningBox = ({ children }) => (
 const ErrorBoxEl = styled(BoxBase)`
   background-color: var(--red-light);
   color: var(--red-dark);
+  hr {
+    border-color: var(--red-dark);
+  }
 `
 
 export const ErrorBox = ({ children }) => (
