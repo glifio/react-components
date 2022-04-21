@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
-import { IconWarn } from '../Icons'
+import { IconWarn, IconError } from '../Icons'
 
 /**
  * Box base styling
@@ -83,7 +83,14 @@ export const WarningBox = ({ children }) => (
 /**
  * Error box
  */
-export const ErrorBox = styled(BoxBase)`
+const ErrorBoxEl = styled(BoxBase)`
   background-color: var(--red-light);
   color: var(--red-dark);
 `
+
+export const ErrorBox = ({ children }) => (
+  <ErrorBoxEl>
+    <IconError />
+    {children}
+  </ErrorBoxEl>
+)
