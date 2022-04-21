@@ -17,6 +17,19 @@ const StoryComponent = () => (
         </p>
       </StandardBox>
       <StandardBox>
+        <header>Box Header</header>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt
+          nibh vitae tincidunt ultrices. Pellentesque habitant morbi tristique
+          senectus et netus et malesuada fames ac turpis egestas.
+        </p>
+        <hr />
+        <p>
+          Donec gravida aliquam tellus ut pulvinar. Pellentesque sit amet
+          fringilla nulla. Proin dignissim venenatis turpis sed rutrum.
+        </p>
+      </StandardBox>
+      <StandardBox>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt
         nibh vitae tincidunt ultrices. Pellentesque habitant morbi tristique
         senectus et netus et malesuada fames ac turpis egestas.
