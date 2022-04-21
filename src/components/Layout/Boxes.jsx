@@ -8,6 +8,7 @@ import { IconWarn, IconError } from '../Icons'
 const BoxBase = styled.div`
   padding: 1.5em;
   border-radius: 8px;
+  overflow: hidden;
   text-align: center;
   word-break: break-word;
 
@@ -26,6 +27,13 @@ const BoxBase = styled.div`
 
   > h2:first-child {
     margin: 0; // Should be followed by <hr />
+  }
+
+  > header:first-child {
+    margin: -1.5em -1.5em 1.5em -1.5em;
+    padding: 1.5em 1.5em 1.15em 1.5em;
+    background-color: var(--purple-medium);
+    color: var(--white);
   }
 
   ${props =>
