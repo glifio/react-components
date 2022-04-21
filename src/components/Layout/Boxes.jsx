@@ -31,7 +31,7 @@ const BoxBase = styled.div`
 
   > header:first-child {
     margin: -1.5em -1.5em 1.5em -1.5em;
-    padding: 1.5em 1.5em 1.15em 1.5em;
+    padding: 1.5em;
     background-color: var(--purple-medium);
     color: var(--white);
   }
