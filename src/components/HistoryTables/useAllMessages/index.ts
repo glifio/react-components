@@ -157,9 +157,27 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
       !!allMessages?.messages
     ) {
       const confirmedCids = new Set(allMessages?.messages.map(msg => msg.cid))
-      return pendingMsgList
-        .filter(msg => !confirmedCids.has(msg.cid))
-        .sort((a, b) => Number(b.nonce) - Number(a.nonce))
+      return (
+        pendingMsgList
+          // Remove confirmed messages
+          .filter(msg => !confirmedCids.has(msg.cid))
+          // Sort messages by nonce
+          .sort((a, b) => Number(b.nonce) - Number(a.nonce))
+          // Remove replaced messages
+          .filter(
+            (msg, i, arr) =>
+              !(
+                i > 0 &&
+                msg.nonce === arr[i - 1].nonce &&
+                new BigNumber(msg.gasPremium).isLessThan(arr[i - 1].gasPremium)
+              ) &&
+              !(
+                i < arr.length - 1 &&
+                msg.nonce === arr[i + 1].nonce &&
+                new BigNumber(msg.gasPremium).isLessThan(arr[i + 1].gasPremium)
+              )
+          )
+      )
     } else {
       return []
     }
