@@ -39,6 +39,7 @@ export const AddressInput = ({
     <BaseInput
       error={hasFocus ? '' : error}
       type='text'
+      placeholder='f1...'
       value={hasFocus ? value : truncated}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
@@ -53,15 +54,16 @@ export const AddressInput = ({
  *
  * error: set by address input validation
  * type: always "text" for address input
+ * placeholder: always "f1..." for address input
  *
  * We add "setIsValid"
  */
 
 export type AddressInputProps = {
   setIsValid?: (isValid: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'placeholder'>
 
-const { error, type, ...addressProps } = BaseInputPropTypes
+const { error, type, placeholder, ...addressProps } = BaseInputPropTypes
 
 AddressInput.propTypes = {
   setIsValid: PropTypes.func,
