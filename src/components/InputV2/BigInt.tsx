@@ -83,7 +83,7 @@ export const BigIntInput = ({
  * value: needs to be of type "BigInt" / "PropTypes.bigint"
  * onChange: needs to take "BigInt" type argument
  *
- * We add min, max and setIsValid
+ * We add "min", "max" and "setIsValid"
  */
 
 export type BigIntInputProps = {

@@ -122,7 +122,7 @@ export const FilecoinInput = ({
  * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
  * onChange: needs to take "FilecoinNumber" type argument
  *
- * We add min, max, denom and setIsValid
+ * We add "min", "max", "denom" and "setIsValid"
  */
 
 export type FilecoinInputProps = {

@@ -77,7 +77,7 @@ export const NumberInput = ({
  * value: needs to be of type "number" / "PropTypes.number"
  * onChange: needs to take "number" type argument
  *
- * We add min, max and setIsValid
+ * We add "min", "max" and "setIsValid"
  */
 
 export type NumberInputProps = {
