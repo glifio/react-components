@@ -74,7 +74,7 @@ AddressInput.propTypes = {
  * Provide defaults for props that are used in this input
  */
 
- AddressInput.defaultProps = {
+AddressInput.defaultProps = {
   value: '',
   onFocus: () => {},
   onBlur: () => {},

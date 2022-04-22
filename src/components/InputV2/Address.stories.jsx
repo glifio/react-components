@@ -41,7 +41,7 @@ const Template = args => <StoryComponent {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  label: 'Enter the recipient\'s address'
+  label: "Enter the recipient's address"
 }
 
 export const Disabled = Template.bind({})
