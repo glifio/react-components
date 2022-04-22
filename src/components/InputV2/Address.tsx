@@ -14,15 +14,15 @@ export const AddressInput = ({
   ...baseProps
 }: AddressInputProps) => {
   const [error, setError] = useState<string>('')
-  const [showError, setShowError] = useState<boolean>(false)
+  const [hasFocus, setHasFocus] = useState<boolean>(false)
 
   const onFocusBase = () => {
-    setShowError(false)
+    setHasFocus(true)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setShowError(true)
+    setHasFocus(false)
     onBlur()
   }
 
@@ -34,7 +34,7 @@ export const AddressInput = ({
 
   return (
     <BaseInput
-      error={showError ? error : ''}
+      error={hasFocus ? '' : error}
       type='text'
       value={value}
       onFocus={onFocusBase}
