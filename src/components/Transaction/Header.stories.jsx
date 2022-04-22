@@ -1,6 +1,6 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { Dialog, ShadowBox, OneColumnCentered } from '../Layout'
-import { TransactionHeader } from '.'
+import { TransactionHeader } from './Header'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
@@ -23,7 +23,7 @@ const StoryComponent = ({ address, balance }) => (
 )
 
 export default {
-  title: 'TransactionHeader/TransactionHeader',
+  title: 'Transaction/Header',
   component: StoryComponent,
   decorators: [Story => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>],
   parameters: { actions: { argTypesRegex: '^on.*' } }
