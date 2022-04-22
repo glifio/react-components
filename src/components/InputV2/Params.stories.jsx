@@ -41,7 +41,7 @@ const Template = args => <StoryComponent {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  label: "Enter some parameters"
+  label: 'Enter some parameters'
 }
 
 export const Required = Template.bind({})

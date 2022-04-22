@@ -35,8 +35,7 @@ export const ParamsInput = ({
     try {
       const buffer = Buffer.from(value, 'base64')
       const result = buffer.toString('base64')
-      if (result !== value)
-        throw new Error()
+      if (result !== value) throw new Error()
     } catch (e) {
       setError('Needs to be valid Base64')
       setIsValid(false)
@@ -87,7 +86,7 @@ ParamsInput.propTypes = {
  * Provide defaults for props that are used in this input
  */
 
- ParamsInput.defaultProps = {
+ParamsInput.defaultProps = {
   value: '',
   onFocus: () => {},
   onBlur: () => {},
