@@ -65,6 +65,7 @@ export const StandardBox = styled(BoxBase)`
  * Shadow Box
  */
 export const ShadowBox = styled(BoxBase)`
+  background-color: var(--white);
   box-shadow: 0 0 0.5em var(--gray-light);
 `
 
