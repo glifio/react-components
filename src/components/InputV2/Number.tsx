@@ -85,7 +85,7 @@ export type NumberInputProps = {
   max?: number
   value?: number
   onChange?: (value: number) => void
-  setIsValid?: (hasError: boolean) => void
+  setIsValid?: (isValid: boolean) => void
 } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange'>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
