@@ -169,12 +169,12 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
               !(
                 i > 0 &&
                 msg.nonce === arr[i - 1].nonce &&
-                new BigNumber(msg.gasPremium).isLessThan(arr[i - 1].gasPremium)
+                (new BigNumber(msg.gasPremium)).isLessThan(arr[i - 1].gasPremium)
               ) &&
               !(
                 i < arr.length - 1 &&
                 msg.nonce === arr[i + 1].nonce &&
-                new BigNumber(msg.gasPremium).isLessThan(arr[i + 1].gasPremium)
+                (new BigNumber(msg.gasPremium)).isLessThan(arr[i + 1].gasPremium)
               )
           )
       )
