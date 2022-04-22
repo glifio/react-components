@@ -12,9 +12,11 @@ const StoryComponent = ({ address, balance }) => (
           address={address}
           balance={new FilecoinNumber(balance, 'fil')}
         />
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt
-        nibh vitae tincidunt ultrices. Pellentesque habitant morbi tristique
-        senectus et netus et malesuada fames ac turpis egestas.
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt
+          nibh vitae tincidunt ultrices. Pellentesque habitant morbi tristique
+          senectus et netus et malesuada fames ac turpis egestas.
+        </p>
       </ShadowBox>
     </Dialog>
   </OneColumnCentered>
