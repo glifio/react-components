@@ -39,7 +39,7 @@ export const AddressInput = ({
     <BaseInput
       error={hasFocus ? '' : error}
       type='text'
-      value={value}
+      value={hasFocus ? value : truncated}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
       {...baseProps}
