@@ -59,4 +59,4 @@ export * from './MnemonicWord'
 export * from './Layout'
 
 export * from './Typography'
-export * from './TransactionHeader'
+export * from './Transaction'
