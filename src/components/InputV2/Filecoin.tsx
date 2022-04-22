@@ -151,7 +151,7 @@ FilecoinInput.propTypes = {
  */
 
 FilecoinInput.defaultProps = {
-  min: null,
+  min: new FilecoinNumber(0, 'fil'),
   max: null,
   value: null,
   denom: 'fil',
