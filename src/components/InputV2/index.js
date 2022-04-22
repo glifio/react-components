@@ -6,7 +6,7 @@ import { ParamsInput } from './Params'
 import { TextInput, EmailInput, PasswordInput, SearchInput } from './Text'
 import { Toggle } from './Toggle'
 
-export default {
+export const InputV2 = {
   Address: AddressInput,
   BigInt: BigIntInput,
   Filecoin: FilecoinInput,
