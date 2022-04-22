@@ -43,7 +43,7 @@ export const ParamsInput = ({
     }
     setError('')
     setIsValid(true)
-  }, [value, setIsValid])
+  }, [value, setIsValid, required])
 
   return (
     <BaseInput
