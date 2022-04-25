@@ -149,13 +149,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
 
   // pluck confirmed messages from the pending message list
   const pendingMsgs = useMemo(() => {
-    if (
-      !pendingMsgsLoading &&
-      !pendingMsgsError &&
-      !allMessagesLoading &&
-      !allMessagesError &&
-      !!allMessages?.messages
-    ) {
+    if (pendingMsgList?.length > 0 && allMessages?.messages?.length > 0) {
       const confirmedCids = new Set(allMessages?.messages.map(msg => msg.cid))
       return pendingMsgList
         .filter(msg => !confirmedCids.has(msg.cid))
@@ -163,14 +157,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     } else {
       return []
     }
-  }, [
-    pendingMsgList,
-    allMessages,
-    allMessagesLoading,
-    allMessagesError,
-    pendingMsgsLoading,
-    pendingMsgsError
-  ]) as MessagePending[]
+  }, [pendingMsgList, allMessages]) as MessagePending[]
 
   const [fetchingMore, setFetchingMore] = useState(false)
   const [lastPage, setLastPage] = useState(false)
