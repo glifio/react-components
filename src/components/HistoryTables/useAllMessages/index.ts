@@ -149,7 +149,10 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
 
   // pluck confirmed messages from the pending message list
   const pendingMsgs = useMemo(() => {
-    if (pendingMsgList?.length > 0 && allMessages?.messages?.length > 0) {
+    if (
+      pendingMsgList?.length > 0 &&
+      typeof allMessages?.messages !== 'undefined'
+    ) {
       const confirmedCids = new Set(allMessages?.messages.map(msg => msg.cid))
       return pendingMsgList
         .filter(msg => !confirmedCids.has(msg.cid))
