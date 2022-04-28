@@ -23,6 +23,12 @@ Labelled.args = {
   address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy'
 }
 
+export const Black = Template.bind({})
+Black.args = {
+  address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy',
+  color: 'black'
+}
+
 export const AddressOnly = Template.bind({})
 AddressOnly.args = {
   address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy'

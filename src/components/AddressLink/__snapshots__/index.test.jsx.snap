@@ -90,6 +90,7 @@ exports[`Receive it renders correctly 1`] = `
 }
 
 .c3:hover {
+  color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
