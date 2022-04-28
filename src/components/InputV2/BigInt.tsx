@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
@@ -8,8 +8,7 @@ import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
  * This input is based on the NumberInput, with the difference
  * that min, max and value are of type "bigint" and not "number".
  *
- * Instead of triggering "onChange", "onFocus" and "onBlur" with NaN,
- * these methods will not be called when the input is empty or invalid.
+ * When the input field is empty, the value will be "null".
  */
 export const BigIntInput = ({
   min,
@@ -21,8 +20,20 @@ export const BigIntInput = ({
   setIsValid,
   ...baseProps
 }: BigIntInputProps) => {
-  const [error, setError] = useState<string>('')
   const [showError, setShowError] = useState<boolean>(false)
+
+  // Check for input errors
+  const error = useMemo<string>(() => {
+    if (value === null) return 'Cannot be empty or fractional number'
+    if (min !== null && value < min)
+      return `Cannot be less than ${min.toString()}`
+    if (max !== null && value > max)
+      return `Cannot be more than ${max.toString()}`
+    return ''
+  }, [min, max, value])
+
+  // Communicate validity to parent component
+  useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onChangeBase = (newValue: string) => {
     try {
@@ -41,26 +52,6 @@ export const BigIntInput = ({
     setShowError(true)
     onBlur()
   }
-
-  useEffect(() => {
-    if (value === null) {
-      setError(`Cannot be empty or fractional number`)
-      setIsValid(false)
-      return
-    }
-    if (min !== null && value < min) {
-      setError(`Cannot be less than ${min.toString()}`)
-      setIsValid(false)
-      return
-    }
-    if (max !== null && value > max) {
-      setError(`Cannot be more than ${max.toString()}`)
-      setIsValid(false)
-      return
-    }
-    setError('')
-    setIsValid(true)
-  }, [min, max, value, setIsValid])
 
   return (
     <BaseInput
@@ -84,7 +75,7 @@ export const BigIntInput = ({
  * value: needs to be of type "BigInt" / "PropTypes.bigint"
  * onChange: needs to take "BigInt" type argument
  *
- * We add min, max and setIsValid
+ * We add "min", "max" and "setIsValid"
  */
 
 export type BigIntInputProps = {
@@ -92,7 +83,7 @@ export type BigIntInputProps = {
   max?: BigInt | null
   value?: BigInt | null
   onChange?: (value: BigInt | null) => void
-  setIsValid?: (hasError: boolean) => void
+  setIsValid?: (isValid: boolean) => void
 } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange'>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override

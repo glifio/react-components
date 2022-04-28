@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
@@ -44,8 +44,7 @@ const getUnit = (denom: FilecoinDenomination) => {
  * This input is based on the NumberInput, with the difference that
  * min, max and value are of type "FilecoinNumber" and not "number".
  *
- * Instead of triggering "onChange", "onFocus" and "onBlur" with NaN,
- * these methods will not be called when the input is empty or invalid.
+ * When the input field is empty, the value will be "null".
  */
 export const FilecoinInput = ({
   min,
@@ -58,8 +57,20 @@ export const FilecoinInput = ({
   setIsValid,
   ...baseProps
 }: FilecoinInputProps) => {
-  const [error, setError] = useState<string>('')
   const [showError, setShowError] = useState<boolean>(false)
+
+  // Check for input errors
+  const error = useMemo<string>(() => {
+    if (value === null) return 'Cannot be empty or invalid Filecoin value'
+    if (min !== null && value.isLessThan(min))
+      return `Cannot be less than ${getValue(min, denom)} ${getUnit(denom)}`
+    if (max !== null && value.isGreaterThan(max))
+      return `Cannot be more than ${getValue(max, denom)} ${getUnit(denom)}`
+    return ''
+  }, [min, max, value, denom])
+
+  // Communicate validity to parent component
+  useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onChangeBase = (newValue: string) => {
     try {
@@ -78,26 +89,6 @@ export const FilecoinInput = ({
     setShowError(true)
     onBlur()
   }
-
-  useEffect(() => {
-    if (value === null) {
-      setError(`Cannot be empty or invalid Filecoin value`)
-      setIsValid(false)
-      return
-    }
-    if (min !== null && value.isLessThan(min)) {
-      setError(`Cannot be less than ${getValue(min, denom)} ${getUnit(denom)}`)
-      setIsValid(false)
-      return
-    }
-    if (max !== null && value.isGreaterThan(max)) {
-      setError(`Cannot be more than ${getValue(max, denom)} ${getUnit(denom)}`)
-      setIsValid(false)
-      return
-    }
-    setError('')
-    setIsValid(true)
-  }, [min, max, value, denom, setIsValid])
 
   return (
     <BaseInput
@@ -123,7 +114,7 @@ export const FilecoinInput = ({
  * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
  * onChange: needs to take "FilecoinNumber" type argument
  *
- * We add min, max, denom and setIsValid
+ * We add "min", "max", "denom" and "setIsValid"
  */
 
 export type FilecoinInputProps = {
@@ -132,7 +123,7 @@ export type FilecoinInputProps = {
   value?: FilecoinNumber | null
   denom?: FilecoinDenomination
   onChange?: (value: FilecoinNumber | null) => void
-  setIsValid?: (hasError: boolean) => void
+  setIsValid?: (isValid: boolean) => void
 } & Omit<BaseInputProps, 'error' | 'type' | 'unit' | 'value' | 'onChange'>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
@@ -152,7 +143,7 @@ FilecoinInput.propTypes = {
  */
 
 FilecoinInput.defaultProps = {
-  min: null,
+  min: new FilecoinNumber(0, 'fil'),
   max: null,
   value: null,
   denom: 'fil',

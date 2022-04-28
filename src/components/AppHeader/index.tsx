@@ -128,7 +128,7 @@ export interface AppHeaderProps {
   }>
 }
 
-AppHeader.propTypes = {
+export const AppHeaderPropTypes = {
   back: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   logout: PropTypes.func,
   connection: PropTypes.node,
@@ -144,6 +144,7 @@ AppHeader.propTypes = {
   )
 }
 
+AppHeader.propTypes = AppHeaderPropTypes
 AppHeader.defaultProps = {
   appIcon: <AppIconHeaderFooter iconStyle='dark' />,
   appUrl: '/'

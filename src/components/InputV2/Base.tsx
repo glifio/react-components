@@ -17,7 +17,12 @@ export const BaseInput = ({
   onFocus,
   onBlur
 }: BaseInputProps) => (
-  <Label disabled={disabled} vertical={vertical} centered={centered}>
+  <Label
+    disabled={disabled}
+    vertical={vertical}
+    centered={centered}
+    error={!!error}
+  >
     {vertical ? (
       <>
         {label && <span>{label}</span>}

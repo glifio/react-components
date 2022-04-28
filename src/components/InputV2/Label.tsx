@@ -7,6 +7,12 @@ export const Label = styled.label`
   text-align: left;
 
   ${props =>
+    props.disabled &&
+    css`
+      pointer-events: none;
+    `}
+
+  ${props =>
     props.vertical
       ? css`
           flex-direction: column;
@@ -53,16 +59,18 @@ export const Label = styled.label`
       right: 1em;
       transform: translateY(-50%);
       color: var(--purple-medium);
+
+      ${props =>
+        props.error &&
+        css`
+          color: var(--red-dark) !important;
+        `}
+
+      ${props =>
+        props.disabled &&
+        css`
+          color: var(--gray-dark) !important;
+        `}
     }
   }
-
-  ${props =>
-    props.disabled &&
-    css`
-      pointer-events: none;
-
-      .unit {
-        color: var(--gray-dark) !important;
-      }
-    `}
 `

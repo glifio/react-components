@@ -154,9 +154,13 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
       typeof allMessages?.messages !== 'undefined'
     ) {
       const confirmedCids = new Set(allMessages?.messages.map(msg => msg.cid))
-      return pendingMsgList
-        .filter(msg => !confirmedCids.has(msg.cid))
-        .sort((a, b) => Number(b.nonce) - Number(a.nonce))
+      return (
+        pendingMsgList
+          // Remove confirmed messages
+          .filter(msg => !confirmedCids.has(msg.cid))
+          // Sort messages by nonce
+          .sort((a, b) => Number(b.nonce) - Number(a.nonce))
+      )
     } else {
       return []
     }

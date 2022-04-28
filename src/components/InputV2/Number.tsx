@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
@@ -18,8 +18,18 @@ export const NumberInput = ({
   setIsValid,
   ...baseProps
 }: NumberInputProps) => {
-  const [error, setError] = useState<string>('')
   const [showError, setShowError] = useState<boolean>(false)
+
+  // Check for input errors
+  const error = useMemo<string>(() => {
+    if (isNaN(value)) return 'Cannot be empty'
+    if (value < min) return `Cannot be less than ${min}`
+    if (value > max) return `Cannot be more than ${max}`
+    return ''
+  }, [min, max, value])
+
+  // Communicate validity to parent component
+  useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onChangeBase = (newValue: string) => {
     onChange(newValue ? Number(newValue) : NaN)
@@ -34,26 +44,6 @@ export const NumberInput = ({
     setShowError(true)
     onBlur()
   }
-
-  useEffect(() => {
-    if (isNaN(value)) {
-      setError(`Cannot be empty`)
-      setIsValid(false)
-      return
-    }
-    if (value < min) {
-      setError(`Cannot be less than ${min}`)
-      setIsValid(false)
-      return
-    }
-    if (value > max) {
-      setError(`Cannot be more than ${max}`)
-      setIsValid(false)
-      return
-    }
-    setError('')
-    setIsValid(true)
-  }, [min, max, value, setIsValid])
 
   return (
     <BaseInput
@@ -77,7 +67,7 @@ export const NumberInput = ({
  * value: needs to be of type "number" / "PropTypes.number"
  * onChange: needs to take "number" type argument
  *
- * We add min, max and setIsValid
+ * We add "min", "max" and "setIsValid"
  */
 
 export type NumberInputProps = {
@@ -85,7 +75,7 @@ export type NumberInputProps = {
   max?: number
   value?: number
   onChange?: (value: number) => void
-  setIsValid?: (hasError: boolean) => void
+  setIsValid?: (isValid: boolean) => void
 } & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange'>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override

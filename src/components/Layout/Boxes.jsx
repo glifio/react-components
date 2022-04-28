@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
-import { IconWarn } from '../Icons'
+import { IconWarn, IconError } from '../Icons'
 
 /**
  * Box base styling
@@ -8,6 +8,7 @@ import { IconWarn } from '../Icons'
 const BoxBase = styled.div`
   padding: 1.5em;
   border-radius: 8px;
+  overflow: hidden;
   text-align: center;
   word-break: break-word;
 
@@ -24,8 +25,15 @@ const BoxBase = styled.div`
     margin: 0 auto 1em;
   }
 
+  > h2:first-child {
+    margin: 0; // Should be followed by <hr />
+  }
+
   > header:first-child {
     margin: -1.5em -1.5em 1.5em -1.5em;
+    padding: 1.5em;
+    background-color: var(--purple-medium);
+    color: var(--white);
   }
 
   ${props =>
@@ -48,12 +56,16 @@ BoxBase.defaultProps = {
  */
 export const StandardBox = styled(BoxBase)`
   background-color: var(--blue-gray);
+  hr {
+    border-color: var(--gray-medium);
+  }
 `
 
 /**
  * Shadow Box
  */
 export const ShadowBox = styled(BoxBase)`
+  background-color: var(--white);
   box-shadow: 0 0 0.5em var(--gray-light);
 `
 
@@ -63,6 +75,9 @@ export const ShadowBox = styled(BoxBase)`
 export const InfoBox = styled(BoxBase)`
   background-color: var(--green-light);
   color: var(--green-dark);
+  hr {
+    border-color: var(--green-dark);
+  }
 `
 
 /**
@@ -71,6 +86,9 @@ export const InfoBox = styled(BoxBase)`
 const WarningBoxEl = styled(BoxBase)`
   background-color: var(--yellow-light);
   color: var(--yellow-dark);
+  hr {
+    border-color: var(--yellow-dark);
+  }
 `
 
 export const WarningBox = ({ children }) => (
@@ -83,7 +101,17 @@ export const WarningBox = ({ children }) => (
 /**
  * Error box
  */
-export const ErrorBox = styled(BoxBase)`
+const ErrorBoxEl = styled(BoxBase)`
   background-color: var(--red-light);
   color: var(--red-dark);
+  hr {
+    border-color: var(--red-dark);
+  }
 `
+
+export const ErrorBox = ({ children }) => (
+  <ErrorBoxEl>
+    <IconError />
+    {children}
+  </ErrorBoxEl>
+)
