@@ -20,7 +20,7 @@ export const BigIntInput = ({
   setIsValid,
   ...baseProps
 }: BigIntInputProps) => {
-  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [showError, setShowError] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
@@ -44,18 +44,18 @@ export const BigIntInput = ({
   }
 
   const onFocusBase = () => {
-    setHasFocus(true)
+    setShowError(false)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setHasFocus(false)
+    setShowError(true)
     onBlur()
   }
 
   return (
     <BaseInput
-      error={hasFocus ? '' : error}
+      error={showError ? error : ''}
       type='number'
       value={value === null ? '' : value.toString()}
       onChange={onChangeBase}

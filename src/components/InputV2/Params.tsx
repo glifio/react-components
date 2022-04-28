@@ -13,7 +13,7 @@ export const ParamsInput = ({
   required,
   ...baseProps
 }: ParamsInputProps) => {
-  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [showError, setShowError] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
@@ -34,18 +34,18 @@ export const ParamsInput = ({
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onFocusBase = () => {
-    setHasFocus(true)
+    setShowError(false)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setHasFocus(false)
+    setShowError(true)
     onBlur()
   }
 
   return (
     <BaseInput
-      error={hasFocus ? '' : error}
+      error={showError ? error : ''}
       type='text'
       placeholder={`${required ? '' : 'Optional '}Base64 params`}
       value={value}

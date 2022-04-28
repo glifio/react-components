@@ -18,7 +18,7 @@ export const NumberInput = ({
   setIsValid,
   ...baseProps
 }: NumberInputProps) => {
-  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [showError, setShowError] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
@@ -36,18 +36,18 @@ export const NumberInput = ({
   }
 
   const onFocusBase = () => {
-    setHasFocus(true)
+    setShowError(false)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setHasFocus(false)
+    setShowError(true)
     onBlur()
   }
 
   return (
     <BaseInput
-      error={hasFocus ? '' : error}
+      error={showError ? error : ''}
       type='number'
       value={isNaN(value) ? '' : value.toString()}
       onChange={onChangeBase}

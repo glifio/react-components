@@ -14,6 +14,7 @@ export const AddressInput = ({
   setIsValid,
   ...baseProps
 }: AddressInputProps) => {
+  const [showError, setShowError] = useState<boolean>(false)
   const [hasFocus, setHasFocus] = useState<boolean>(false)
 
   // Check for input errors
@@ -32,18 +33,20 @@ export const AddressInput = ({
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onFocusBase = () => {
+    setShowError(false)
     setHasFocus(true)
     onFocus()
   }
 
   const onBlurBase = () => {
+    setShowError(true)
     setHasFocus(false)
     onBlur()
   }
 
   return (
     <BaseInput
-      error={hasFocus ? '' : error}
+      error={showError ? error : ''}
       type='text'
       placeholder='f1...'
       value={hasFocus ? value : truncated}

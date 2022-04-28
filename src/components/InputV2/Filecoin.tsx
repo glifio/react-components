@@ -57,7 +57,7 @@ export const FilecoinInput = ({
   setIsValid,
   ...baseProps
 }: FilecoinInputProps) => {
-  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [showError, setShowError] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
@@ -81,18 +81,18 @@ export const FilecoinInput = ({
   }
 
   const onFocusBase = () => {
-    setHasFocus(true)
+    setShowError(false)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setHasFocus(false)
+    setShowError(true)
     onBlur()
   }
 
   return (
     <BaseInput
-      error={hasFocus ? '' : error}
+      error={showError ? error : ''}
       type='number'
       unit={getUnit(denom)}
       value={value === null ? '' : getValue(value, denom)}
