@@ -31,7 +31,7 @@ exports[`Receive it renders correctly 1`] = `
 .c4 {
   min-width: 0;
   box-sizing: border-box;
-  color: inherit;
+  color: var(--purple-medium);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -90,6 +90,7 @@ exports[`Receive it renders correctly 1`] = `
 }
 
 .c3:hover {
+  color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -120,7 +121,7 @@ exports[`Receive it renders correctly 1`] = `
     </a>
     <div
       class="c4"
-      color="inherit"
+      color="var(--purple-medium)"
       display="flex"
     >
       <button

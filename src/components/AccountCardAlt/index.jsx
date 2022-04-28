@@ -8,13 +8,11 @@ import Box from '../Box'
 import Glyph from '../Glyph'
 import Card from '../Card'
 import { Text, Title } from '../Typography'
-import truncate from '../../utils/truncateAddress'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
 import { MAINNET_JSON_RPC_ENDPOINT } from '../../constants'
 import Button from '../Button'
-import { StyledATag } from '../Link'
-import { CopyText } from '../Copy'
 import AccountTitle from './AccountTitle'
+import { AddressLink } from '../AddressLink'
 
 const calcGlyphAcronym = (index, nDefaultWallets) => {
   if (index < nDefaultWallets) return index.toString()
@@ -75,19 +73,10 @@ const AccountCardAlt = ({
           nDefaultWallets={nDefaultWallets}
         />
       </Box>
-      <Box display='flex' flexDirection='row' justifyContent='center'>
-        <StyledATag
-          target='_blank'
-          href={`${process.env.NEXT_PUBLIC_EXPLORER_URL}/actor/?address=${address}`}
-          fontSize={4}
-          color={selected ? 'card.account.color' : 'core.primary'}
-        >
-          {truncate(address, 5, 6)}
-        </StyledATag>
-        <CopyText
-          text={address}
-          color={selected ? 'card.account.color' : 'core.primary'}
-          hideCopyText
+      <Box display='flex' justifyContent='center' fontSize={4}>
+        <AddressLink
+          address={address}
+          color={selected ? 'var(--white)' : 'var(--purple-medium)'}
         />
       </Box>
       <Box
