@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
@@ -21,7 +21,19 @@ export const BigIntInput = ({
   ...baseProps
 }: BigIntInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
+
+  // Check for input errors
+  const error = useMemo<string>(() => {
+    if (value === null) return 'Cannot be empty or fractional number'
+    if (min !== null && value < min)
+      return `Cannot be less than ${min.toString()}`
+    if (max !== null && value > max)
+      return `Cannot be more than ${max.toString()}`
+    return ''
+  }, [min, max, value])
+
+  // Communicate validity to parent component
+  useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onChangeBase = (newValue: string) => {
     try {
@@ -40,26 +52,6 @@ export const BigIntInput = ({
     setHasFocus(false)
     onBlur()
   }
-
-  useEffect(() => {
-    if (value === null) {
-      setError(`Cannot be empty or fractional number`)
-      setIsValid(false)
-      return
-    }
-    if (min !== null && value < min) {
-      setError(`Cannot be less than ${min.toString()}`)
-      setIsValid(false)
-      return
-    }
-    if (max !== null && value > max) {
-      setError(`Cannot be more than ${max.toString()}`)
-      setIsValid(false)
-      return
-    }
-    setError('')
-    setIsValid(true)
-  }, [min, max, value, setIsValid])
 
   return (
     <BaseInput

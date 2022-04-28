@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { validateAddressString } from '@glif/filecoin-address'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 import truncateAddress from '../../utils/truncateAddress'
@@ -14,9 +14,22 @@ export const AddressInput = ({
   setIsValid,
   ...baseProps
 }: AddressInputProps) => {
-  const [error, setError] = useState<string>('')
   const [hasFocus, setHasFocus] = useState<boolean>(false)
-  const [truncated, setTruncated] = useState<string>('')
+
+  // Check for input errors
+  const error = useMemo<string>(
+    () => (validateAddressString(value) ? '' : 'Needs to be a valid address'),
+    [value]
+  )
+
+  // Truncate address if valid
+  const truncated = useMemo<string>(
+    () => (error ? value : truncateAddress(value)),
+    [error, value]
+  )
+
+  // Communicate validity to parent component
+  useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onFocusBase = () => {
     setHasFocus(true)
@@ -27,13 +40,6 @@ export const AddressInput = ({
     setHasFocus(false)
     onBlur()
   }
-
-  useEffect(() => {
-    const isValid = validateAddressString(value)
-    setTruncated(isValid ? truncateAddress(value) : value)
-    setError(isValid ? '' : 'Needs to be a valid address')
-    setIsValid(isValid)
-  }, [value, setIsValid])
 
   return (
     <BaseInput

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
@@ -58,7 +58,19 @@ export const FilecoinInput = ({
   ...baseProps
 }: FilecoinInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
+
+  // Check for input errors
+  const error = useMemo<string>(() => {
+    if (value === null) return 'Cannot be empty or invalid Filecoin value'
+    if (min !== null && value.isLessThan(min))
+      return `Cannot be less than ${getValue(min, denom)} ${getUnit(denom)}`
+    if (max !== null && value.isGreaterThan(max))
+      return `Cannot be more than ${getValue(max, denom)} ${getUnit(denom)}`
+    return ''
+  }, [min, max, value, denom])
+
+  // Communicate validity to parent component
+  useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onChangeBase = (newValue: string) => {
     try {
@@ -77,26 +89,6 @@ export const FilecoinInput = ({
     setHasFocus(false)
     onBlur()
   }
-
-  useEffect(() => {
-    if (value === null) {
-      setError(`Cannot be empty or invalid Filecoin value`)
-      setIsValid(false)
-      return
-    }
-    if (min !== null && value.isLessThan(min)) {
-      setError(`Cannot be less than ${getValue(min, denom)} ${getUnit(denom)}`)
-      setIsValid(false)
-      return
-    }
-    if (max !== null && value.isGreaterThan(max)) {
-      setError(`Cannot be more than ${getValue(max, denom)} ${getUnit(denom)}`)
-      setIsValid(false)
-      return
-    }
-    setError('')
-    setIsValid(true)
-  }, [min, max, value, denom, setIsValid])
 
   return (
     <BaseInput

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
@@ -14,7 +14,24 @@ export const ParamsInput = ({
   ...baseProps
 }: ParamsInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
-  const [error, setError] = useState<string>('')
+
+  // Check for input errors
+  const error = useMemo<string>(() => {
+    if (required && !value) {
+      return 'Cannot be empty'
+    }
+    try {
+      const buffer = Buffer.from(value, 'base64')
+      const result = buffer.toString('base64')
+      if (result !== value) throw new Error()
+    } catch (e) {
+      return 'Needs to be valid Base64'
+    }
+    return ''
+  }, [value, required])
+
+  // Communicate validity to parent component
+  useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onFocusBase = () => {
     setHasFocus(true)
@@ -25,25 +42,6 @@ export const ParamsInput = ({
     setHasFocus(false)
     onBlur()
   }
-
-  useEffect(() => {
-    if (required && !value) {
-      setError('Cannot be empty')
-      setIsValid(false)
-      return
-    }
-    try {
-      const buffer = Buffer.from(value, 'base64')
-      const result = buffer.toString('base64')
-      if (result !== value) throw new Error()
-    } catch (e) {
-      setError('Needs to be valid Base64')
-      setIsValid(false)
-      return
-    }
-    setError('')
-    setIsValid(true)
-  }, [value, setIsValid, required])
 
   return (
     <BaseInput
