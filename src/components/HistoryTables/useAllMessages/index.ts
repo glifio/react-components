@@ -159,15 +159,6 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
       const confirmedCids = new Set(allMessages?.messages.map(msg => msg.cid))
       return (
         pendingMsgList
-          // Remove replaced messages
-          .filter((msg, i, arr) => {
-            return !arr.find(
-              m =>
-                m.from === msg.from &&
-                m.nonce === msg.nonce &&
-                new BigNumber(m.gasPremium).isGreaterThan(msg.gasPremium)
-            )
-          })
           // Remove confirmed messages
           .filter(msg => !confirmedCids.has(msg.cid))
           // Sort messages by nonce
