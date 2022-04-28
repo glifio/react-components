@@ -56,11 +56,7 @@ export const AddressLink = ({
           </Link>
         )}
         {!hideCopy && address && (
-          <CopyText
-            text={address}
-            hideCopyText={hideCopyText}
-            color={color}
-          />
+          <CopyText text={address} hideCopyText={hideCopyText} color={color} />
         )}
       </Box>
     </Box>
