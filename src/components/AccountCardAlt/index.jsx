@@ -76,7 +76,7 @@ const AccountCardAlt = ({
       <Box display='flex' justifyContent='center' fontSize={4}>
         <AddressLink
           address={address}
-          color={selected ? 'card.account.color' : 'core.primary'}
+          color={selected ? 'var(--white)' : 'var(--purple-medium)'}
         />
       </Box>
       <Box
