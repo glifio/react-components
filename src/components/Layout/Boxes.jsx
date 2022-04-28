@@ -36,12 +36,6 @@ const BoxBase = styled.div`
     color: var(--white);
   }
 
-  > footer:last-child {
-    margin: 1.5em -1.5em -1.5em -1.5em;
-    padding: 1.5em;
-    border-top: 2px solid var(--purple-medium);
-  }
-
   ${props =>
     props.large &&
     css`
