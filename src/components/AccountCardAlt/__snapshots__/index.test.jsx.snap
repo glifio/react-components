@@ -126,7 +126,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
 .c12 {
   min-width: 0;
   box-sizing: border-box;
-  color: inherit;
+  color: var(--purple-medium);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -256,13 +256,13 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
 }
 
 .c11 {
-  color: core.primary;
+  color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
 .c11:hover {
-  color: core.primary;
+  color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -342,7 +342,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
         </a>
         <div
           class="c12"
-          color="inherit"
+          color="var(--purple-medium)"
           display="flex"
         >
           <button
@@ -543,7 +543,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
 .c13 {
   min-width: 0;
   box-sizing: border-box;
-  color: inherit;
+  color: var(--purple-medium);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -683,13 +683,13 @@ exports[`AccountCardAlt renders legacy address 1`] = `
 }
 
 .c12 {
-  color: core.primary;
+  color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
 .c12:hover {
-  color: core.primary;
+  color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -780,7 +780,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
         </a>
         <div
           class="c13"
-          color="inherit"
+          color="var(--purple-medium)"
           display="flex"
         >
           <button
@@ -981,7 +981,7 @@ exports[`AccountCardAlt renders the card 1`] = `
 .c11 {
   min-width: 0;
   box-sizing: border-box;
-  color: inherit;
+  color: var(--white);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1102,13 +1102,13 @@ exports[`AccountCardAlt renders the card 1`] = `
 }
 
 .c10 {
-  color: card.account.color;
+  color: var(--white);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
 .c10:hover {
-  color: card.account.color;
+  color: var(--white);
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -1178,7 +1178,7 @@ exports[`AccountCardAlt renders the card 1`] = `
         </a>
         <div
           class="c11"
-          color="inherit"
+          color="var(--white)"
           display="flex"
         >
           <button
@@ -1379,7 +1379,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
 .c11 {
   min-width: 0;
   box-sizing: border-box;
-  color: inherit;
+  color: var(--purple-medium);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1500,13 +1500,13 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
 }
 
 .c10 {
-  color: core.primary;
+  color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
 .c10:hover {
-  color: core.primary;
+  color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
@@ -1576,7 +1576,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
         </a>
         <div
           class="c11"
-          color="inherit"
+          color="var(--purple-medium)"
           display="flex"
         >
           <button
