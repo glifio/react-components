@@ -163,6 +163,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
           .filter((msg, i, arr) => {
             return !arr.find(
               m =>
+                m.from === msg.from &&
                 m.nonce === msg.nonce &&
                 new BigNumber(m.gasPremium).isGreaterThan(msg.gasPremium)
             )
