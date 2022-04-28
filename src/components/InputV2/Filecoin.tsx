@@ -57,8 +57,8 @@ export const FilecoinInput = ({
   setIsValid,
   ...baseProps
 }: FilecoinInputProps) => {
+  const [hasFocus, setHasFocus] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
-  const [showError, setShowError] = useState<boolean>(false)
 
   const onChangeBase = (newValue: string) => {
     try {
@@ -69,12 +69,12 @@ export const FilecoinInput = ({
   }
 
   const onFocusBase = () => {
-    setShowError(false)
+    setHasFocus(true)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setShowError(true)
+    setHasFocus(false)
     onBlur()
   }
 
@@ -100,7 +100,7 @@ export const FilecoinInput = ({
 
   return (
     <BaseInput
-      error={showError ? error : ''}
+      error={hasFocus ? '' : error}
       type='number'
       unit={getUnit(denom)}
       value={value === null ? '' : getValue(value, denom)}

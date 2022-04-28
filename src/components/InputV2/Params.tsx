@@ -13,16 +13,16 @@ export const ParamsInput = ({
   required,
   ...baseProps
 }: ParamsInputProps) => {
+  const [hasFocus, setHasFocus] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
-  const [showError, setShowError] = useState<boolean>(false)
 
   const onFocusBase = () => {
-    setShowError(false)
+    setHasFocus(true)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setShowError(true)
+    setHasFocus(false)
     onBlur()
   }
 
@@ -47,7 +47,7 @@ export const ParamsInput = ({
 
   return (
     <BaseInput
-      error={showError ? error : ''}
+      error={hasFocus ? '' : error}
       type='text'
       placeholder={`${required ? '' : 'Optional '}Base64 params`}
       value={value}
