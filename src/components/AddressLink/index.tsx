@@ -8,10 +8,10 @@ import { CopyText } from '../Copy'
 import Box from '../Box'
 
 const Link = styled(SmartLink)`
-  color: var(--purple-medium);
+  color: ${props => props.color};
   text-decoration: none;
-
   &:hover {
+    color: ${props => props.color};
     text-decoration: underline;
   }
 `
@@ -20,6 +20,7 @@ export const AddressLink = ({
   id,
   address,
   label,
+  color,
   disableLink,
   stopPropagation,
   hideCopy,
@@ -50,7 +51,7 @@ export const AddressLink = ({
         {disableLink ? (
           <span>{linkText}</span>
         ) : (
-          <Link href={linkHref} onClick={onClick}>
+          <Link color={color} href={linkHref} onClick={onClick}>
             {linkText}
           </Link>
         )}
@@ -58,7 +59,7 @@ export const AddressLink = ({
           <CopyText
             text={address}
             hideCopyText={hideCopyText}
-            color='inherit'
+            color={color}
           />
         )}
       </Box>
@@ -70,6 +71,7 @@ export interface AddressLinkProps {
   id?: string
   address?: string
   label?: string
+  color?: string
   disableLink: boolean
   stopPropagation: boolean
   hideCopy: boolean
@@ -80,6 +82,7 @@ AddressLink.propTypes = {
   id: PropTypes.string,
   address: PropTypes.string,
   label: PropTypes.string,
+  color: PropTypes.string,
   disableLink: PropTypes.bool,
   stopPropagation: PropTypes.bool,
   hideCopy: PropTypes.bool,
@@ -87,6 +90,7 @@ AddressLink.propTypes = {
 }
 
 AddressLink.defaultProps = {
+  color: 'var(--purple-medium)',
   disableLink: false,
   stopPropagation: true,
   hideCopy: false,
