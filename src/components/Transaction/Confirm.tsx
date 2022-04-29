@@ -46,7 +46,7 @@ function getResolution(loginOption: LoginOption, msig: boolean): string {
       return 'review the details and confirm the transaction on your Ledger Device'
     case LoginOption.METAMASK:
       return msig
-        ? 'approve the transaction in MetaMask'
+        ? 'review the transaction details and click on "Approve" in MetaMask'
         : 'review the recipient and amount in MetaMask. If the details match what you see in Glif, click "Approve"'
     default:
       return 'review the recipient and amount and click "Send" at the bottom of the page.'
