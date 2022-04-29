@@ -1,5 +1,5 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { Dialog, ShadowBox, OneColumnCentered } from '@glif/react-components'
+import { Dialog, ShadowBox, OneColumnCentered } from '../Layout'
 import { TransactionTotal } from './Total'
 
 const StoryComponent = ({ total }) => (
