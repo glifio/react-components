@@ -43,22 +43,25 @@ function getMsigAction(method: MsigMethod): string {
 function getResolution(loginOption: LoginOption, msig: boolean): string {
   switch (loginOption) {
     case LoginOption.LEDGER:
-      return 'review the details and confirm the transaction on your Ledger Device'
+      return 'review the details and confirm the transaction on your <b>Ledger Device</b>.'
     case LoginOption.METAMASK:
       return msig
-        ? 'review the transaction details and click on "Approve" in MetaMask'
-        : 'review the recipient and amount in MetaMask. If the details match what you see in Glif, click "Approve"'
+        ? 'review the transaction details in <b>MetaMask</b>. If they are correct, click <b>Approve</b>.'
+        : 'review the recipient and amount in <b>MetaMask</b>. If the details match what you see in Glif, click <b>Approve</b>.'
     default:
-      return 'review the recipient and amount and click "Send" at the bottom of the page.'
+      return 'review the recipient and amount and click <b>Send</b> at the bottom of the page.'
   }
 }
 
 function getMsigApproveText(approvalsLeft: number): string {
+  const plural = approvalsLeft > 2
   return approvalsLeft === 1
-    ? 'Approving this transaction will cause it to execute.'
-    : `After you approve this transaction, ${approvalsLeft - 1} more signature${
-        approvalsLeft === 2 ? ' is' : 's are'
-      } needed for it to execute.`
+    ? 'Approving this transaction <b>will cause it to execute</b>.'
+    : `After you approve this transaction, <b>${
+        approvalsLeft - 1
+      } more signature${plural ? 's' : ''}</b> ${
+        plural ? 'are' : 'is'
+      } needed for it to <b>execute</b>.`
 }
 
 export const TransactionConfirm = ({
@@ -67,17 +70,27 @@ export const TransactionConfirm = ({
   method,
   approvalsLeft
 }: TransactionConfirmProps) => {
+  const action = getAction(msig, method)
+  const resolution = getResolution(loginOption, msig)
   return (
     <InfoBox>
-      <p>
-        To {getAction(msig, method)}, please {getResolution(loginOption, msig)}
-      </p>
+      <p
+        dangerouslySetInnerHTML={{
+          __html: `To ${action}, please ${resolution}`
+        }}
+      />
 
       {method === MsigMethod.APPROVE && (
-        <p>{getMsigApproveText(approvalsLeft)}</p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: getMsigApproveText(approvalsLeft)
+          }}
+        />
       )}
 
-      <p>Remember: <b>Transactions are final once sent.</b></p>
+      <p>
+        Remember: <b>Transactions are final once sent</b>.
+      </p>
 
       {loginOption === LoginOption.LEDGER && (
         <p>

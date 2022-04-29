@@ -45,8 +45,16 @@ MsigLedger.args = {
   method: MsigMethod.WITHDRAW
 }
 
-export const MsigApprove = Template.bind({})
-MsigApprove.args = {
+export const MsigApprove1 = Template.bind({})
+MsigApprove1.args = {
+  loginOption: LoginOption.METAMASK,
+  msig: true,
+  method: MsigMethod.APPROVE,
+  approvalsLeft: 2
+}
+
+export const MsigApprove2 = Template.bind({})
+MsigApprove2.args = {
   loginOption: LoginOption.METAMASK,
   msig: true,
   method: MsigMethod.APPROVE,
