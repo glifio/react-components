@@ -30,7 +30,7 @@ export const useGetGasParams = (
     if (message) {
       setLoading(true)
       provider
-        .gasEstimateMessageGas(message, maxFee ? maxFee.toAttoFil() : null)
+        .gasEstimateMessageGas(message, maxFee ? maxFee.toAttoFil() : undefined)
         .then((m: Message) => {
           const gasFeeCap = m.gasFeeCap.toFixed(0, BigNumber.ROUND_CEIL)
           const gasPremium = m.gasPremium.toFixed(0, BigNumber.ROUND_CEIL)
