@@ -7,7 +7,6 @@ import {
   LOGIN_OPTION_PROPTYPE,
   MsigMethod
 } from '../../customPropTypes'
-import { LEDGER, METAMASK } from '../../constants'
 
 function getAction(msig: boolean, method: MsigMethod): string {
   return msig ? getMsigAction(method) : 'complete the transaction'
@@ -42,9 +41,9 @@ function getMsigAction(method: MsigMethod): string {
 
 function getResolution(loginOption: LoginOption, msig: boolean): string {
   switch (loginOption) {
-    case LEDGER:
+    case LoginOption.LEDGER:
       return 'review the details and confirm the transaction on your Ledger Device'
-    case METAMASK:
+    case LoginOption.METAMASK:
       return msig
         ? 'approve the transaction in MetaMask'
         : 'review the recipient and amount in MetaMask. If the details match what you see in Glif, click "Approve"'
@@ -79,7 +78,7 @@ export const TransactionConfirm = ({
 
       <p>Remember: Transactions are final once sent.</p>
 
-      {loginOption === LEDGER && (
+      {loginOption === LoginOption.LEDGER && (
         <p>
           <SmartLink href='https://blog.glif.io/using-glif-with-a-ledger-device/'>
             What should I see on my Ledger Device?
@@ -87,7 +86,7 @@ export const TransactionConfirm = ({
         </p>
       )}
 
-      {loginOption === METAMASK && (
+      {loginOption === LoginOption.METAMASK && (
         <p>
           <SmartLink href='https://blog.glif.io/using-glif-with-metamask/'>
             What should I see in MetaMask?
