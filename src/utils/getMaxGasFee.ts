@@ -1,14 +1,9 @@
 import { BigNumber, FilecoinNumber } from '@glif/filecoin-number'
 
-interface GetMaxGasFeeParams {
-  gasFeeCap: FilecoinNumber
+export const getMaxGasFee = (
+  gasFeeCap: FilecoinNumber,
   gasLimit: FilecoinNumber
-}
-
-export const getMaxGasFee = ({
-  gasFeeCap,
-  gasLimit
-}: GetMaxGasFeeParams): FilecoinNumber => {
+): FilecoinNumber => {
   const gasFeeCapBigNr = new BigNumber(gasFeeCap.toAttoFil())
   const gasLimitBigNr = new BigNumber(gasLimit.toAttoFil())
   const maxGasFeeBigNr = gasFeeCapBigNr.times(gasLimitBigNr)
