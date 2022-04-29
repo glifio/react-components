@@ -5,7 +5,8 @@ import { SmartLink } from '../Link/SmartLink'
 import {
   LoginOption,
   LOGIN_OPTION_PROPTYPE,
-  MsigMethod
+  MsigMethod,
+  MSIG_METHOD_PROPTYPE
 } from '../../customPropTypes'
 
 function getAction(msig: boolean, method: MsigMethod): string {
@@ -100,19 +101,17 @@ export const TransactionConfirm = ({
 type TransactionConfirmProps = {
   loginOption: LoginOption
   msig?: boolean
-  method?: number
+  method?: MsigMethod
   approvalsLeft?: number
 }
 
 TransactionConfirm.propTypes = {
   loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
   msig: PropTypes.bool,
-  method: PropTypes.number,
+  method: MSIG_METHOD_PROPTYPE,
   approvalsLeft: PropTypes.number
 }
 
 TransactionConfirm.defaultProps = {
-  msig: false,
-  method: 0,
-  approvalsLeft: 0
+  msig: false
 }
