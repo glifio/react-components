@@ -56,5 +56,5 @@ export * from './IconButtons'
 export * from './MnemonicWord'
 
 export * from './Layout'
-
+export * from './Transaction'
 export * from './Typography'
