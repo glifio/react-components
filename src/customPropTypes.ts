@@ -8,13 +8,6 @@ import {
   Requireable
 } from 'prop-types'
 import { validateAddressString } from '@glif/filecoin-address'
-import {
-  LEDGER,
-  METAMASK,
-  CREATE_MNEMONIC,
-  IMPORT_MNEMONIC,
-  IMPORT_SINGLE_KEY
-} from './constants'
 
 /**
  * ADDRESS_PROPTYPE
@@ -97,20 +90,17 @@ export const MESSAGE_PROPS = shape({
  * Login Option
  */
 
-export type LoginOption =
-  | 'LEDGER'
-  | 'METAMASK'
-  | 'CREATE_MNEMONIC'
-  | 'IMPORT_MNEMONIC'
-  | 'IMPORT_SINGLE_KEY'
+export enum LoginOption {
+  LEDGER = 'LEDGER',
+  METAMASK = 'METAMASK',
+  CREATE_MNEMONIC = 'CREATE_MNEMONIC',
+  IMPORT_MNEMONIC = 'IMPORT_MNEMONIC',
+  IMPORT_SINGLE_KEY = 'IMPORT_SINGLE_KEY'
+}
 
-export const LOGIN_OPTION_PROPTYPE = oneOf([
-  LEDGER,
-  METAMASK,
-  CREATE_MNEMONIC,
-  IMPORT_MNEMONIC,
-  IMPORT_SINGLE_KEY
-])
+export const LOGIN_OPTION_PROPTYPE = oneOf(
+  Object.values(LoginOption) as Array<LoginOption>
+)
 
 /**
  * MSIG Method
@@ -128,3 +118,7 @@ export enum MsigMethod {
   CHANGE_NUM_APPROVALS_THRESHOLD,
   LOCK_BALANCE
 }
+
+export const MSIG_METHOD_PROPTYPE = oneOf(
+  Object.values(MsigMethod) as Array<MsigMethod>
+)
