@@ -1,14 +1,9 @@
 import { BigNumber, FilecoinNumber } from '@glif/filecoin-number'
 
-interface GetMaxAffordableFeeParams {
-  balance: FilecoinNumber
+export const getMaxAffordableFee = (
+  balance: FilecoinNumber,
   value: FilecoinNumber
-}
-
-export const getMaxAffordableFee = ({
-  balance,
-  value
-}: GetMaxAffordableFeeParams): FilecoinNumber => {
+): FilecoinNumber => {
   const balanceBigNr = new BigNumber(balance.toAttoFil())
   const valueBigNr = new BigNumber(value.toAttoFil())
   const maxAffordableFeeBigNr = BigNumber.maximum(
