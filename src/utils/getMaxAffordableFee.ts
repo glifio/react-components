@@ -11,6 +11,9 @@ export const getMaxAffordableFee = ({
 }: GetMaxAffordableFeeParams): FilecoinNumber => {
   const balanceBigNr = new BigNumber(balance.toAttoFil())
   const valueBigNr = new BigNumber(value.toAttoFil())
-  const maxAffordableFeeBigNr = balanceBigNr.minus(valueBigNr)
+  const maxAffordableFeeBigNr = BigNumber.maximum(
+    balanceBigNr.minus(valueBigNr),
+    0
+  )
   return new FilecoinNumber(maxAffordableFeeBigNr.toString(), 'attofil')
 }
