@@ -9,6 +9,10 @@ import {
 } from 'prop-types'
 import { validateAddressString } from '@glif/filecoin-address'
 
+/**
+ * ADDRESS_PROPTYPE
+ */
+
 const createAddressPropType =
   isRequired => (props, propName, componentName) => {
     const prop = props[propName]
@@ -28,10 +32,18 @@ export const ADDRESS_PROPTYPE: Requireable<any> = Object.assign(
   { isRequired: createAddressPropType(true) }
 )
 
+/**
+ * GRAPHQL_ADDRESS_PROP_TYPE
+ */
+
 export const GRAPHQL_ADDRESS_PROP_TYPE = shape({
   id: string,
   robust: string
 })
+
+/**
+ * FILECOIN_NUMBER_PROPTYPE
+ */
 
 const createFilecoinNumberPropType =
   isRequired => (props, propName, componentName) => {
@@ -59,26 +71,15 @@ export const FILECOIN_NUMBER_PROPTYPE: Requireable<any> = Object.assign(
   { isRequired: createFilecoinNumberPropType(true) }
 )
 
+/**
+ * MESSAGE_PROPS
+ */
+
 export const MESSAGE_PROPS = shape({
-  /**
-   * Message sent to this address
-   */
   to: ADDRESS_PROPTYPE.isRequired,
-  /**
-   * Message sent from this address
-   */
   from: ADDRESS_PROPTYPE.isRequired,
-  /**
-   * The amount of FIL sent in the message
-   */
   value: string.isRequired,
-  /**
-   * The message's cid
-   */
   cid: string.isRequired,
-  /**
-   * Either pending or confirmed
-   */
   status: oneOf(['confirmed', 'pending']).isRequired,
   timestamp: oneOfType([string, number]).isRequired,
   method: string.isRequired,
