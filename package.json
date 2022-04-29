@@ -86,6 +86,7 @@
     "bip39": "^3.0.3",
     "dayjs": "^1.9.6",
     "graphql": "^16.2.0",
+    "multiformats": "^9.6.4",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "styled-system": "^5.1.5",
