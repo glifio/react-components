@@ -76,7 +76,7 @@ export const TransactionConfirm = ({
         <p>{getMsigApproveText(approvalsLeft)}</p>
       )}
 
-      <p>Remember: Transactions are final once sent.</p>
+      <p>Remember: <b>Transactions are final once sent.</b></p>
 
       {loginOption === LoginOption.LEDGER && (
         <p>
