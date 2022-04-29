@@ -8,6 +8,13 @@ import {
   Requireable
 } from 'prop-types'
 import { validateAddressString } from '@glif/filecoin-address'
+import {
+  LEDGER,
+  METAMASK,
+  CREATE_MNEMONIC,
+  IMPORT_MNEMONIC,
+  IMPORT_SINGLE_KEY
+} from './constants'
 
 /**
  * ADDRESS_PROPTYPE
@@ -85,3 +92,15 @@ export const MESSAGE_PROPS = shape({
   method: string.isRequired,
   params: object.isRequired
 })
+
+/**
+ * LOGIN_OPTION_PROPTYPE
+ */
+
+export const LOGIN_OPTION_PROPTYPE = oneOf([
+  LEDGER,
+  METAMASK,
+  IMPORT_MNEMONIC,
+  CREATE_MNEMONIC,
+  IMPORT_SINGLE_KEY
+])
