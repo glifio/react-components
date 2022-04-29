@@ -98,11 +98,11 @@ export const MESSAGE_PROPS = shape({
  */
 
 export type LoginOption =
-'LEDGER' |
-'METAMASK' |
-'CREATE_MNEMONIC' |
-'IMPORT_MNEMONIC' |
-'IMPORT_SINGLE_KEY'
+  | 'LEDGER'
+  | 'METAMASK'
+  | 'CREATE_MNEMONIC'
+  | 'IMPORT_MNEMONIC'
+  | 'IMPORT_SINGLE_KEY'
 
 export const LOGIN_OPTION_PROPTYPE = oneOf([
   LEDGER,

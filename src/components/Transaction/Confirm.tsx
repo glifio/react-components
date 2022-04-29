@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { InfoBox } from '../Layout'
 import { SmartLink } from '../Link/SmartLink'
-import { LoginOption, LOGIN_OPTION_PROPTYPE, MsigMethod } from '../../customPropTypes'
 import {
-  LEDGER,
-  METAMASK
-} from '../../constants'
+  LoginOption,
+  LOGIN_OPTION_PROPTYPE,
+  MsigMethod
+} from '../../customPropTypes'
+import { LEDGER, METAMASK } from '../../constants'
 
 function getAction(msig: boolean, method: MsigMethod): string {
   return msig ? getMsigAction(method) : 'complete the transaction'
@@ -40,11 +41,13 @@ function getMsigAction(method: MsigMethod): string {
 }
 
 function getResolution(loginOption: LoginOption, msig: boolean): string {
-  switch(loginOption) {
+  switch (loginOption) {
     case LEDGER:
       return 'review the details and confirm the transaction on your Ledger Device'
     case METAMASK:
-      return msig ? 'approve the transaction in MetaMask' : 'review the recipient and amount in MetaMask. If the details match what you see in Glif, click "Approve"'
+      return msig
+        ? 'approve the transaction in MetaMask'
+        : 'review the recipient and amount in MetaMask. If the details match what you see in Glif, click "Approve"'
     default:
       return 'review the recipient and amount and click "Send" at the bottom of the page.'
   }
@@ -53,7 +56,9 @@ function getResolution(loginOption: LoginOption, msig: boolean): string {
 function getMsigApproveText(approvalsLeft: number): string {
   return approvalsLeft === 1
     ? 'Approving this transaction will cause it to execute.'
-    : `After you approve this transaction, ${approvalsLeft - 1} more signature${approvalsLeft === 2 ? ' is' : 's are'} needed for it to execute.`
+    : `After you approve this transaction, ${approvalsLeft - 1} more signature${
+        approvalsLeft === 2 ? ' is' : 's are'
+      } needed for it to execute.`
 }
 
 export const TransactionConfirm = ({
@@ -72,10 +77,8 @@ export const TransactionConfirm = ({
         <p>{getMsigApproveText(approvalsLeft)}</p>
       )}
 
-      <p>
-        Remember: Transactions are final once sent.
-      </p>
-      
+      <p>Remember: Transactions are final once sent.</p>
+
       {loginOption === LEDGER && (
         <p>
           <SmartLink href='https://blog.glif.io/using-glif-with-a-ledger-device/'>
