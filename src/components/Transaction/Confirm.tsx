@@ -1,42 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  InfoBox,
-  SmartLink,
-  LOGIN_OPTION_PROPTYPE
-} from '@glif/react-components'
-import { LoginOption } from '../../lib/WalletProvider/types'
+import { InfoBox } from '../Layout'
+import { SmartLink } from '../Link/SmartLink'
+import { LoginOption, LOGIN_OPTION_PROPTYPE, MsigMethod } from '../../customPropTypes'
 import {
   LEDGER,
-  METAMASK,
-  MSIG_METHOD
+  METAMASK
 } from '../../constants'
 
-function getAction(msig: boolean, method: MSIG_METHOD): string {
+function getAction(msig: boolean, method: MsigMethod): string {
   return msig ? getMsigAction(method) : 'complete the transaction'
 }
 
-function getMsigAction(method: MSIG_METHOD): string {
+function getMsigAction(method: MsigMethod): string {
   switch (method) {
-    case MSIG_METHOD.WITHDRAW:
+    case MsigMethod.WITHDRAW:
       return 'create a proposal to withdraw Filecoin from your Safe'
-    case MSIG_METHOD.CONSTRUCTOR:
+    case MsigMethod.CONSTRUCTOR:
       return 'create your Safe'
-    case MSIG_METHOD.PROPOSE:
+    case MsigMethod.PROPOSE:
       return 'create this proposal'
-    case MSIG_METHOD.APPROVE:
+    case MsigMethod.APPROVE:
       return 'approve this proposal'
-    case MSIG_METHOD.CANCEL:
+    case MsigMethod.CANCEL:
       return 'cancel this proposal'
-    case MSIG_METHOD.ADD_SIGNER:
+    case MsigMethod.ADD_SIGNER:
       return 'create a proposal to a add a signer to your Safe'
-    case MSIG_METHOD.REMOVE_SIGNER:
+    case MsigMethod.REMOVE_SIGNER:
       return 'create a proposal to remove a signer from your Safe'
-    case MSIG_METHOD.SWAP_SIGNER:
+    case MsigMethod.SWAP_SIGNER:
       return 'create a proposal to swap signers of your Safe'
-    case MSIG_METHOD.CHANGE_NUM_APPROVALS_THRESHOLD:
+    case MsigMethod.CHANGE_NUM_APPROVALS_THRESHOLD:
       return 'create a proposal to change the number of required approvals of your Safe'
-    case MSIG_METHOD.LOCK_BALANCE:
+    case MsigMethod.LOCK_BALANCE:
       return "lock this Safe's balance"
     default:
       return 'perform this action'
@@ -72,7 +68,7 @@ export const TransactionConfirm = ({
         To {getAction(msig, method)}, please {getResolution(loginOption, msig)}
       </p>
 
-      {method === MSIG_METHOD.APPROVE && (
+      {method === MsigMethod.APPROVE && (
         <p>{getMsigApproveText(approvalsLeft)}</p>
       )}
 

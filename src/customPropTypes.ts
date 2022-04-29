@@ -113,10 +113,10 @@ export const LOGIN_OPTION_PROPTYPE = oneOf([
 ])
 
 /**
- * MSIG_METHOD
+ * MSIG Method
  */
 
-export enum MSIG_METHOD {
+export enum MsigMethod {
   WITHDRAW = 0,
   CONSTRUCTOR,
   PROPOSE,

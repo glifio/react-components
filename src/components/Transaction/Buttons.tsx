@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import { ButtonV2, ButtonRowSpaced } from '@glif/react-components'
+import { ButtonV2 } from '../Button/V2'
+import { ButtonRowSpaced } from '../Layout'
 
 export const TransactionButtons = ({
   cancelDisabled,
