@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { LotusMessage } from '@glif/filecoin-message'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
-import { validateCID } from '../validateCID'
+import { validateCID } from './validateCID'
 
 const lotusRPC = new LotusRPCEngine({
   apiAddress:
