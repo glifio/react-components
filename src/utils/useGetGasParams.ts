@@ -17,7 +17,8 @@ interface UseGetGasParamsResult {
 
 export const useGetGasParams = (
   provider: Filecoin,
-  message?: LotusMessage
+  message?: LotusMessage,
+  maxFee?: FilecoinNumber
 ): UseGetGasParamsResult => {
   const [gasParams, setGasParams] = useState<GasParams | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -29,7 +30,7 @@ export const useGetGasParams = (
     if (message) {
       setLoading(true)
       provider
-        .gasEstimateMessageGas(message)
+        .gasEstimateMessageGas(message, maxFee ? maxFee.toAttoFil() : null)
         .then((m: Message) => {
           const gasFeeCap = m.gasFeeCap.toFixed(0, BigNumber.ROUND_CEIL)
           const gasPremium = m.gasPremium.toFixed(0, BigNumber.ROUND_CEIL)
@@ -42,7 +43,7 @@ export const useGetGasParams = (
         .catch((e: Error) => setError(e))
         .finally(() => setLoading(false))
     }
-  }, [provider, message])
+  }, [provider, message, maxFee])
 
   return { gasParams, loading, error }
 }
