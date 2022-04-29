@@ -3,8 +3,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import {
   ADDRESS_PROPTYPE,
   FILECOIN_NUMBER_PROPTYPE
-} from '@glif/react-components'
-
+} from '../../customPropTypes'
 import truncateAddress from '../../utils/truncateAddress'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
 

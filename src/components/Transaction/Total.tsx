@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { FILECOIN_NUMBER_PROPTYPE } from '@glif/react-components'
+import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 
 const Total = styled.div`
   display: flex;
