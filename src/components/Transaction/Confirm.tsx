@@ -72,8 +72,9 @@ function getResolution(loginOption: LoginOption, msig: boolean): ReactNode {
 }
 
 function getMsigApproveText(approvalsLeft: number): ReactNode {
-  const plural = approvalsLeft > 2
-  return approvalsLeft === 1 ? (
+  const remaining = approvalsLeft - 1
+  const plural = remaining > 1
+  return remaining === 0 ? (
     <>
       Approving this transaction <b>will cause it to execute</b>.
     </>
@@ -81,7 +82,7 @@ function getMsigApproveText(approvalsLeft: number): ReactNode {
     <>
       After you approve this transaction,{' '}
       <b>
-        {approvalsLeft - 1} more signature${plural ? 's' : ''}
+        {remaining} more signature${plural ? 's' : ''}
       </b>{' '}
       {plural ? 'are' : 'is'} needed for it to <b>execute</b>.
     </>
