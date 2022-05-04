@@ -8,6 +8,7 @@ import {
   Requireable
 } from 'prop-types'
 import { validateAddressString } from '@glif/filecoin-address'
+import { FilecoinNumber } from '@glif/filecoin-number'
 
 /**
  * ADDRESS_PROPTYPE
@@ -84,6 +85,22 @@ export const MESSAGE_PROPS = shape({
   timestamp: oneOfType([string, number]).isRequired,
   method: string.isRequired,
   params: object.isRequired
+})
+
+/**
+ * Gas Params
+ */
+
+export interface GasParams {
+  gasFeeCap: FilecoinNumber
+  gasPremium: FilecoinNumber
+  gasLimit: FilecoinNumber
+}
+
+export const GAS_PARAMS_PROPTYPE = shape({
+  gasFeeCap: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  gasPremium: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  gasLimit: FILECOIN_NUMBER_PROPTYPE.isRequired
 })
 
 /**
