@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Message } from '@glif/filecoin-message'
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import Filecoin from '@glif/filecoin-wallet-provider'
@@ -19,6 +19,20 @@ export const useGetGasParams = (
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 
+  // Store gas params in a ref so we can check if they changed in the 
+  // useEffect hook below without adding gasParams to the dependencies,
+  // which would cause useEffect to rerun after calling setGasParams.
+  const gasParamsRef = useRef<GasParams | null>(null)
+  const didUpdate = useCallback((params: GasParams) => {
+    const update: boolean =
+      !gasParamsRef.current ||
+      !gasParamsRef.current.gasFeeCap.isEqualTo(params.gasFeeCap) ||
+      !gasParamsRef.current.gasPremium.isEqualTo(params.gasPremium) ||
+      !gasParamsRef.current.gasLimit.isEqualTo(params.gasLimit)
+    if (update) gasParamsRef.current = params
+    return update
+  }, [])
+
   useEffect(() => {
     setGasParams(null)
     setError(null)
@@ -32,16 +46,17 @@ export const useGetGasParams = (
         .then((m: Message) => {
           const gasFeeCap = m.gasFeeCap.toFixed(0, BigNumber.ROUND_CEIL)
           const gasPremium = m.gasPremium.toFixed(0, BigNumber.ROUND_CEIL)
-          setGasParams({
+          const newGasParams = {
             gasFeeCap: new FilecoinNumber(gasFeeCap, 'attofil'),
             gasPremium: new FilecoinNumber(gasPremium, 'attofil'),
             gasLimit: new FilecoinNumber(m.gasLimit, 'attofil')
-          })
+          }
+          if (didUpdate(newGasParams)) setGasParams(newGasParams)
         })
         .catch((e: Error) => setError(e))
         .finally(() => setLoading(false))
     }
-  }, [provider, message, maxFee])
+  }, [provider, message, maxFee, didUpdate])
 
   return { gasParams, loading, error }
 }
