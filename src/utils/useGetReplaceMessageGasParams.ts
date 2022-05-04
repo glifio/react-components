@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { LotusMessage } from '@glif/filecoin-message'
+import { Message } from '@glif/filecoin-message'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import Filecoin from '@glif/filecoin-wallet-provider'
 
@@ -23,7 +23,7 @@ interface UseGetReplaceMessageGasParamsResult {
 
 export const useGetReplaceMessageGasParams = (
   provider: Filecoin,
-  message?: LotusMessage,
+  message?: Message,
   minimum?: boolean
 ): UseGetReplaceMessageGasParamsResult => {
   const [gasParams, setGasParams] = useState<GasParams | null>(null)
@@ -38,7 +38,7 @@ export const useGetReplaceMessageGasParams = (
     setError(null)
     if (message) {
       setLoading(true)
-      getGasParams(message)
+      getGasParams(message.toLotusType())
         .then((g: ProviderGasParams) =>
           setGasParams({
             gasFeeCap: new FilecoinNumber(g.gasFeeCap, 'attofil'),

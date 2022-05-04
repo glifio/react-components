@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { LotusMessage, Message } from '@glif/filecoin-message'
+import { Message } from '@glif/filecoin-message'
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import Filecoin from '@glif/filecoin-wallet-provider'
 
@@ -17,7 +17,7 @@ interface UseGetGasParamsResult {
 
 export const useGetGasParams = (
   provider: Filecoin,
-  message?: LotusMessage,
+  message?: Message,
   maxFee?: FilecoinNumber
 ): UseGetGasParamsResult => {
   const [gasParams, setGasParams] = useState<GasParams | null>(null)
@@ -30,7 +30,10 @@ export const useGetGasParams = (
     if (message) {
       setLoading(true)
       provider
-        .gasEstimateMessageGas(message, maxFee ? maxFee.toAttoFil() : undefined)
+        .gasEstimateMessageGas(
+          message.toLotusType(),
+          maxFee ? maxFee.toAttoFil() : undefined
+        )
         .then((m: Message) => {
           const gasFeeCap = m.gasFeeCap.toFixed(0, BigNumber.ROUND_CEIL)
           const gasPremium = m.gasPremium.toFixed(0, BigNumber.ROUND_CEIL)
