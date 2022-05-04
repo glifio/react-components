@@ -2,12 +2,7 @@ import { useEffect, useState } from 'react'
 import { Message } from '@glif/filecoin-message'
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import Filecoin from '@glif/filecoin-wallet-provider'
-
-interface GasParams {
-  gasFeeCap: FilecoinNumber
-  gasPremium: FilecoinNumber
-  gasLimit: FilecoinNumber
-}
+import { GasParams } from '../customPropTypes'
 
 interface UseGetGasParamsResult {
   gasParams: GasParams
