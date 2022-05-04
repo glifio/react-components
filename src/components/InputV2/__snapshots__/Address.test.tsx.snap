@@ -177,7 +177,7 @@ exports[`Address input it renders the disabled state correctly 1`] = `
       placeholder="f1..."
       style="padding-right: 1em;"
       type="text"
-      value="t1iury ... xaucza"
+      value=""
     />
     
   </div>

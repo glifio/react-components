@@ -61,7 +61,6 @@ describe('Address input', () => {
           <AddressInput
             label="Enter the recipient's address"
             info='This will receive your funds'
-            value={validAddress}
             disabled={true}
           />
         </ThemeProvider>
