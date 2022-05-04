@@ -8,6 +8,11 @@ import {
   Requireable
 } from 'prop-types'
 import { validateAddressString } from '@glif/filecoin-address'
+import { FilecoinNumber } from '@glif/filecoin-number'
+
+/**
+ * ADDRESS_PROPTYPE
+ */
 
 const createAddressPropType =
   isRequired => (props, propName, componentName) => {
@@ -28,10 +33,18 @@ export const ADDRESS_PROPTYPE: Requireable<any> = Object.assign(
   { isRequired: createAddressPropType(true) }
 )
 
+/**
+ * GRAPHQL_ADDRESS_PROP_TYPE
+ */
+
 export const GRAPHQL_ADDRESS_PROP_TYPE = shape({
   id: string,
   robust: string
 })
+
+/**
+ * FILECOIN_NUMBER_PROPTYPE
+ */
 
 const createFilecoinNumberPropType =
   isRequired => (props, propName, componentName) => {
@@ -59,28 +72,70 @@ export const FILECOIN_NUMBER_PROPTYPE: Requireable<any> = Object.assign(
   { isRequired: createFilecoinNumberPropType(true) }
 )
 
+/**
+ * MESSAGE_PROPS
+ */
+
 export const MESSAGE_PROPS = shape({
-  /**
-   * Message sent to this address
-   */
   to: ADDRESS_PROPTYPE.isRequired,
-  /**
-   * Message sent from this address
-   */
   from: ADDRESS_PROPTYPE.isRequired,
-  /**
-   * The amount of FIL sent in the message
-   */
   value: string.isRequired,
-  /**
-   * The message's cid
-   */
   cid: string.isRequired,
-  /**
-   * Either pending or confirmed
-   */
   status: oneOf(['confirmed', 'pending']).isRequired,
   timestamp: oneOfType([string, number]).isRequired,
   method: string.isRequired,
   params: object.isRequired
 })
+
+/**
+ * Gas Params
+ */
+
+export interface GasParams {
+  gasFeeCap: FilecoinNumber
+  gasPremium: FilecoinNumber
+  gasLimit: FilecoinNumber
+}
+
+export const GAS_PARAMS_PROPTYPE = shape({
+  gasFeeCap: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  gasPremium: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  gasLimit: FILECOIN_NUMBER_PROPTYPE.isRequired
+})
+
+/**
+ * Login Option
+ */
+
+export enum LoginOption {
+  LEDGER = 'LEDGER',
+  METAMASK = 'METAMASK',
+  CREATE_MNEMONIC = 'CREATE_MNEMONIC',
+  IMPORT_MNEMONIC = 'IMPORT_MNEMONIC',
+  IMPORT_SINGLE_KEY = 'IMPORT_SINGLE_KEY'
+}
+
+export const LOGIN_OPTION_PROPTYPE = oneOf(
+  Object.values(LoginOption) as Array<LoginOption>
+)
+
+/**
+ * MSIG Method
+ */
+
+export enum MsigMethod {
+  WITHDRAW = 0,
+  CONSTRUCTOR,
+  PROPOSE,
+  APPROVE,
+  CANCEL,
+  ADD_SIGNER,
+  REMOVE_SIGNER,
+  SWAP_SIGNER,
+  CHANGE_NUM_APPROVALS_THRESHOLD,
+  LOCK_BALANCE
+}
+
+export const MSIG_METHOD_PROPTYPE = oneOf(
+  Object.values(MsigMethod) as Array<MsigMethod>
+)
