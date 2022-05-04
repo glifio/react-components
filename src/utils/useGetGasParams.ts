@@ -19,7 +19,7 @@ export const useGetGasParams = (
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
 
-  // Store gas params in a ref so we can check if they changed in the 
+  // Store gas params in a ref so we can check if they changed in the
   // useEffect hook below without adding gasParams to the dependencies,
   // which would cause useEffect to rerun after calling setGasParams.
   const gasParamsRef = useRef<GasParams | null>(null)
