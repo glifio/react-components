@@ -50,8 +50,9 @@ describe('Address input', () => {
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'textbox').focus()
-      getByRole(result.container, 'textbox').blur()
+      const input = getByRole(result.container, 'textbox')
+      input.focus()
+      input.blur()
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)
