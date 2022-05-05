@@ -1,4 +1,8 @@
-import { RequireableInput, RequireableInputProps, RequireableInputPropTypes } from './Requirable'
+import {
+  RequireableInput,
+  RequireableInputProps,
+  RequireableInputPropTypes
+} from './Requirable'
 
 /**
  * The following components all allow the full set of base input
