@@ -45,13 +45,12 @@ describe('Number input', () => {
             max={100}
             value={500}
             setIsValid={setIsValid}
+            autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      const input = getByRole(result.container, 'spinbutton')
-      input.focus()
-      input.blur()
+      getByRole(result.container, 'spinbutton').blur()
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)
@@ -69,13 +68,12 @@ describe('Number input', () => {
             min={-100}
             value={-500}
             setIsValid={setIsValid}
+            autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      const input = getByRole(result.container, 'spinbutton')
-      input.focus()
-      input.blur()
+      getByRole(result.container, 'spinbutton').blur()
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)

@@ -45,13 +45,12 @@ describe('BigInt input', () => {
             max={100n}
             value={500n}
             setIsValid={setIsValid}
+            autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      const input = getByRole(result.container, 'spinbutton')
-      input.focus()
-      input.blur()
+      getByRole(result.container, 'spinbutton').blur()
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)
@@ -69,13 +68,12 @@ describe('BigInt input', () => {
             min={-100n}
             value={-500n}
             setIsValid={setIsValid}
+            autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      const input = getByRole(result.container, 'spinbutton')
-      input.focus()
-      input.blur()
+      getByRole(result.container, 'spinbutton').blur()
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)

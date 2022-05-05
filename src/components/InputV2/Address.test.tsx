@@ -46,13 +46,12 @@ describe('Address input', () => {
             info={infoText}
             value={invalidAddress}
             setIsValid={setIsValid}
+            autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      const input = getByRole(result.container, 'textbox')
-      input.focus()
-      input.blur()
+      getByRole(result.container, 'textbox').blur()
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)

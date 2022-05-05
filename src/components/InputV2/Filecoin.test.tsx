@@ -88,11 +88,11 @@ describe('Filecoin input', () => {
             max={new FilecoinNumber(10, 'fil')}
             value={new FilecoinNumber(100, 'fil')}
             setIsValid={setIsValid}
+            autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'spinbutton').focus()
       getByRole(result.container, 'spinbutton').blur()
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
@@ -112,11 +112,11 @@ describe('Filecoin input', () => {
             min={new FilecoinNumber(100, 'fil')}
             value={new FilecoinNumber(10, 'fil')}
             setIsValid={setIsValid}
+            autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'spinbutton').focus()
       getByRole(result.container, 'spinbutton').blur()
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
