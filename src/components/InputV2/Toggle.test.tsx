@@ -18,11 +18,7 @@ describe('Toggle input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <Toggle
-            label={labelText}
-            info={infoText}
-            checked={true}
-          />
+          <Toggle label={labelText} info={infoText} checked={true} />
         </ThemeProvider>
       )
     })
@@ -34,11 +30,7 @@ describe('Toggle input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <Toggle
-            label={labelText}
-            info={infoText}
-            checked={false}
-          />
+          <Toggle label={labelText} info={infoText} checked={false} />
         </ThemeProvider>
       )
     })

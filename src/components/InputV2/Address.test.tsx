@@ -1,4 +1,10 @@
-import { cleanup, render, act, getByRole, RenderResult } from '@testing-library/react'
+import {
+  cleanup,
+  render,
+  act,
+  getByRole,
+  RenderResult
+} from '@testing-library/react'
 import { AddressInput } from './Address'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
@@ -63,11 +69,7 @@ describe('Address input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <AddressInput
-            label={labelText}
-            info={infoText}
-            disabled={true}
-          />
+          <AddressInput label={labelText} info={infoText} disabled={true} />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()

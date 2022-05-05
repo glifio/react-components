@@ -1,4 +1,10 @@
-import { cleanup, render, act, getByRole, RenderResult } from '@testing-library/react'
+import {
+  cleanup,
+  render,
+  act,
+  getByRole,
+  RenderResult
+} from '@testing-library/react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { FilecoinInput } from './Filecoin'
 import ThemeProvider from '../ThemeProvider'
@@ -129,11 +135,7 @@ describe('Filecoin input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <FilecoinInput
-            label={labelText}
-            info={infoText}
-            disabled={true}
-          />
+          <FilecoinInput label={labelText} info={infoText} disabled={true} />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()

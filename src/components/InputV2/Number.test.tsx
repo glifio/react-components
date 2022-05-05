@@ -1,4 +1,10 @@
-import { cleanup, render, act, getByRole, RenderResult } from '@testing-library/react'
+import {
+  cleanup,
+  render,
+  act,
+  getByRole,
+  RenderResult
+} from '@testing-library/react'
 import { NumberInput } from './Number'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
@@ -85,11 +91,7 @@ describe('Number input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <NumberInput
-            label={labelText}
-            info={infoText}
-            disabled={true}
-          />
+          <NumberInput label={labelText} info={infoText} disabled={true} />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()

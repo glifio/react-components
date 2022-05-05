@@ -1,4 +1,10 @@
-import { cleanup, render, act, getByRole, RenderResult } from '@testing-library/react'
+import {
+  cleanup,
+  render,
+  act,
+  getByRole,
+  RenderResult
+} from '@testing-library/react'
 import { BigIntInput } from './BigInt'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
@@ -85,11 +91,7 @@ describe('BigInt input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <BigIntInput
-            label={labelText}
-            info={infoText}
-            disabled={true}
-          />
+          <BigIntInput label={labelText} info={infoText} disabled={true} />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()

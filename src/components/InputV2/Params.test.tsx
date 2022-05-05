@@ -1,4 +1,10 @@
-import { cleanup, render, act, getByRole, RenderResult } from '@testing-library/react'
+import {
+  cleanup,
+  render,
+  act,
+  getByRole,
+  RenderResult
+} from '@testing-library/react'
 import { ParamsInput } from './Params'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
@@ -85,11 +91,7 @@ describe('Params input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ParamsInput
-            label={labelText}
-            info={infoText}
-            disabled={true}
-          />
+          <ParamsInput label={labelText} info={infoText} disabled={true} />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()
