@@ -3,6 +3,8 @@ import { AddressInput } from './Address'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 
+const labelText = "Enter the recipient's address"
+const infoText = 'This will receive your funds'
 const validAddress = 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza'
 const invalidAddress = 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucz'
 
@@ -21,8 +23,8 @@ describe('Address input', () => {
       result = render(
         <ThemeProvider theme={theme}>
           <AddressInput
-            label="Enter the recipient's address"
-            info='This will receive your funds'
+            label={labelText}
+            info={infoText}
             value={validAddress}
             setIsValid={setIsValid}
           />
@@ -40,8 +42,8 @@ describe('Address input', () => {
       result = render(
         <ThemeProvider theme={theme}>
           <AddressInput
-            label="Enter the recipient's address"
-            info='This will receive your funds'
+            label={labelText}
+            info={infoText}
             value={invalidAddress}
             setIsValid={setIsValid}
           />
@@ -59,8 +61,8 @@ describe('Address input', () => {
       result = render(
         <ThemeProvider theme={theme}>
           <AddressInput
-            label="Enter the recipient's address"
-            info='This will receive your funds'
+            label={labelText}
+            info={infoText}
             disabled={true}
           />
         </ThemeProvider>
