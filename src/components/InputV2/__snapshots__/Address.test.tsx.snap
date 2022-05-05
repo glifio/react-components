@@ -243,6 +243,7 @@ exports[`Address input it renders the invalid state correctly 1`] = `
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   color: var(--purple-medium);
+  color: var(--red-dark) !important;
 }
 
 <label
@@ -257,13 +258,17 @@ exports[`Address input it renders the invalid state correctly 1`] = `
     >
       This will receive your funds
     </span>
-    
+    <span
+      class="error"
+    >
+      Needs to be a valid address
+    </span>
   </div>
   <div
     class="text-input-wrapper"
   >
     <input
-      class=""
+      class="error"
       placeholder="f1..."
       style="padding-right: 1em;"
       type="text"

@@ -1,4 +1,4 @@
-import { cleanup, render, act, RenderResult } from '@testing-library/react'
+import { cleanup, render, act, getByRole, RenderResult } from '@testing-library/react'
 import { AddressInput } from './Address'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
@@ -49,6 +49,9 @@ describe('Address input', () => {
           />
         </ThemeProvider>
       )
+      // Make sure the error is shown
+      getByRole(result.container, 'textbox').focus()
+      getByRole(result.container, 'textbox').blur()
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)
