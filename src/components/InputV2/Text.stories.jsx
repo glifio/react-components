@@ -32,6 +32,12 @@ Base.args = {
 
 export const NoLabel = Template.bind({})
 
+export const Required = Template.bind({})
+Required.args = {
+  label: 'Enter your name',
+  required: true
+}
+
 export const WithInfo = Template.bind({})
 WithInfo.args = {
   label: 'Enter your name',

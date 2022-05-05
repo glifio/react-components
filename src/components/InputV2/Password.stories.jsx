@@ -35,6 +35,12 @@ Base.args = {
   label: 'Enter your password'
 }
 
+export const Required = Template.bind({})
+Required.args = {
+  label: 'Enter your password',
+  required: true
+}
+
 export const Disabled = Template.bind({})
 Disabled.args = {
   label: 'You cannot enter your password',
