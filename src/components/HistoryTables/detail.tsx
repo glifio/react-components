@@ -207,7 +207,13 @@ export const Line = ({ label, depth, children }: LineProps) => (
     <Box minWidth='200px' flex='0 1 25%'>
       {label}
     </Box>
-    <Box flex='1 1' display='flex' alignItems='center' gridGap='0.75em'>
+    <Box
+      flex='1 1'
+      display='flex'
+      alignItems='center'
+      gridGap='0.75em'
+      style={{ wordBreak: 'break-word' }}
+    >
       {children}
     </Box>
   </Box>
