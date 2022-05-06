@@ -19,7 +19,8 @@ export const NumberInput = ({
   ...baseProps
 }: NumberInputProps) => {
   const [valueBase, setValueBase] = useState<string>('')
-  const [showError, setShowError] = useState<boolean>(false)
+  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
@@ -40,23 +41,24 @@ export const NumberInput = ({
   // Set valueBase (string) and value (number) when input changes
   const onChangeBase = (newValueBase: string) => {
     setValueBase(newValueBase)
+    setHasChanged(true)
     const newValue = newValueBase ? Number(newValueBase) : NaN
     if (newValue !== value) onChange(newValue)
   }
 
   const onFocusBase = () => {
-    setShowError(false)
+    setHasFocus(true)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setShowError(true)
+    setHasFocus(false)
     onBlur()
   }
 
   return (
     <BaseInput
-      error={showError ? error : ''}
+      error={!hasFocus && hasChanged ? error : ''}
       type='number'
       value={valueBase}
       onChange={onChangeBase}
