@@ -82,7 +82,7 @@ function getMsigApproveText(approvalsLeft: number): ReactNode {
     <>
       After you approve this transaction,{' '}
       <b>
-        {remaining} more signature${plural ? 's' : ''}
+        {remaining} more signature{plural ? 's' : ''}
       </b>{' '}
       {plural ? 'are' : 'is'} needed for it to <b>execute</b>.
     </>
@@ -97,7 +97,7 @@ export const TransactionConfirm = ({
 }: TransactionConfirmProps) => (
   <InfoBox>
     <p>
-      To ${getAction(msig, method)}, please ${getResolution(loginOption, msig)}
+      To {getAction(msig, method)}, please {getResolution(loginOption, msig)}
     </p>
 
     {method === MsigMethod.APPROVE && (
