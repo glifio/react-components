@@ -3,6 +3,17 @@ import { useEffect, useState, useMemo } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
+ * Converts a string value into a BigInt or null if invalid
+ */
+const getBigInt = (value: string): BigInt | null => {
+  try {
+    return value ? BigInt(value) : null
+  } catch (e) {
+    return null
+  }
+}
+
+/**
  * BigIntInput
  *
  * This input is based on the NumberInput, with the difference

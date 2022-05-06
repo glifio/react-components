@@ -7,6 +7,20 @@ import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
 
 /**
+ * Converts a string value into a FilecoinNumber or null if invalid
+ */
+const getFilecoinNumber = (
+  value: string,
+  denom: FilecoinDenomination
+): FilecoinNumber | null => {
+  try {
+    return value ? new FilecoinNumber(value, denom) : null
+  } catch (e) {
+    return null
+  }
+}
+
+/**
  * Get the string representation of the Filecoin number for the required denomination
  **/
 const getValue = (value: FilecoinNumber, denom: FilecoinDenomination) => {
