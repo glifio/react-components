@@ -7,13 +7,15 @@ import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
  */
 export const RequireableInput = ({
   value,
+  onChange,
   onFocus,
   onBlur,
   setIsValid,
   required,
   ...baseProps
 }: RequireableInputProps) => {
-  const [showError, setShowError] = useState<boolean>(false)
+  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(
@@ -24,20 +26,26 @@ export const RequireableInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
+  const onChangeBase = (newValue: string) => {
+    setHasChanged(true)
+    onChange(newValue)
+  }
+
   const onFocusBase = () => {
-    setShowError(false)
+    setHasFocus(true)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setShowError(true)
+    setHasFocus(false)
     onBlur()
   }
 
   return (
     <BaseInput
-      error={showError ? error : ''}
+      error={!hasFocus && hasChanged ? error : ''}
       value={value}
+      onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
       {...baseProps}
@@ -75,6 +83,7 @@ RequireableInput.propTypes = RequireableInputPropTypes
 
 RequireableInput.defaultProps = {
   value: '',
+  onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
   setIsValid: () => {},
