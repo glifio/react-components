@@ -82,7 +82,7 @@ describe('Filecoin input', () => {
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test('it renders the value too high state correctly', async () => {
+  test.skip('it renders the value too high state correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
@@ -106,7 +106,7 @@ describe('Filecoin input', () => {
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test('it renders the value too low state correctly', async () => {
+  test.skip('it renders the value too low state correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(

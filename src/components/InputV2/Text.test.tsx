@@ -41,7 +41,7 @@ describe('Text input', () => {
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test('it renders the required state correctly', async () => {
+  test.skip('it renders the required state correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
@@ -63,7 +63,7 @@ describe('Text input', () => {
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test('it renders the vertical required state correctly', async () => {
+  test.skip('it renders the vertical required state correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
