@@ -90,16 +90,18 @@ export const FilecoinInput = ({
   // Set valueBase (string) when value (FilecoinNumber) changes
   useEffect(() => {
     setValueBase(value === null ? '' : getValue(value, denom))
-  }, [value])
+  }, [value, denom])
 
   // Set valueBase (string) and value (FilecoinNumber) when input changes
   const onChangeBase = (newValueBase: string) => {
     setValueBase(newValueBase)
     const newValue = getFilecoinNumber(newValueBase, denom)
     if (
-      value === null && newValue !== null || 
-      value !== null && !value.isEqualTo(newValue) 
-    ) onChange(newValue)
+      (value === null && newValue !== null) ||
+      (value !== null && !value.isEqualTo(newValue))
+    ) {
+      onChange(newValue)
+    }
   }
 
   const onFocusBase = () => {
