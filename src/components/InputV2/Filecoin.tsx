@@ -71,6 +71,7 @@ export const FilecoinInput = ({
   setIsValid,
   ...baseProps
 }: FilecoinInputProps) => {
+  const [valueBase, setValueBase] = useState<string>('')
   const [showError, setShowError] = useState<boolean>(false)
 
   // Check for input errors
@@ -86,12 +87,19 @@ export const FilecoinInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  const onChangeBase = (newValue: string) => {
-    try {
-      onChange(newValue ? new FilecoinNumber(newValue, denom) : null)
-    } catch (e) {
-      onChange(null)
-    }
+  // Set valueBase (string) when value (FilecoinNumber) changes
+  useEffect(() => {
+    setValueBase(value === null ? '' : getValue(value, denom))
+  }, [value])
+
+  // Set valueBase (string) and value (FilecoinNumber) when input changes
+  const onChangeBase = (newValueBase: string) => {
+    setValueBase(newValueBase)
+    const newValue = getFilecoinNumber(newValueBase, denom)
+    if (
+      value === null && newValue !== null || 
+      value !== null && !value.isEqualTo(newValue) 
+    ) onChange(newValue)
   }
 
   const onFocusBase = () => {
@@ -109,7 +117,7 @@ export const FilecoinInput = ({
       error={showError ? error : ''}
       type='number'
       unit={getUnit(denom)}
-      value={value === null ? '' : getValue(value, denom)}
+      value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}

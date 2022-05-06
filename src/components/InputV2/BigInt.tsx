@@ -31,6 +31,7 @@ export const BigIntInput = ({
   setIsValid,
   ...baseProps
 }: BigIntInputProps) => {
+  const [valueBase, setValueBase] = useState<string>('')
   const [showError, setShowError] = useState<boolean>(false)
 
   // Check for input errors
@@ -46,12 +47,16 @@ export const BigIntInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  const onChangeBase = (newValue: string) => {
-    try {
-      onChange(newValue ? BigInt(newValue) : null)
-    } catch (e) {
-      onChange(null)
-    }
+  // Set valueBase (string) when value (BigInt) changes
+  useEffect(() => {
+    setValueBase(value === null ? '' : value.toString())
+  }, [value])
+
+  // Set valueBase (string) and value (BigInt) when input changes
+  const onChangeBase = (newValueBase: string) => {
+    setValueBase(newValueBase)
+    const newValue = getBigInt(newValueBase)
+    if (newValue !== value) onChange(newValue)
   }
 
   const onFocusBase = () => {
@@ -68,7 +73,7 @@ export const BigIntInput = ({
     <BaseInput
       error={showError ? error : ''}
       type='number'
-      value={value === null ? '' : value.toString()}
+      value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}

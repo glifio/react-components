@@ -18,6 +18,7 @@ export const NumberInput = ({
   setIsValid,
   ...baseProps
 }: NumberInputProps) => {
+  const [valueBase, setValueBase] = useState<string>('')
   const [showError, setShowError] = useState<boolean>(false)
 
   // Check for input errors
@@ -31,8 +32,16 @@ export const NumberInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  const onChangeBase = (newValue: string) => {
-    onChange(newValue ? Number(newValue) : NaN)
+  // Set valueBase (string) when value (number) changes
+  useEffect(() => {
+    setValueBase(isNaN(value) ? '' : value.toString())
+  }, [value])
+
+  // Set valueBase (string) and value (number) when input changes
+  const onChangeBase = (newValueBase: string) => {
+    setValueBase(newValueBase)
+    const newValue = newValueBase ? Number(newValueBase) : NaN
+    if (newValue !== value) onChange(newValue)
   }
 
   const onFocusBase = () => {
@@ -49,7 +58,7 @@ export const NumberInput = ({
     <BaseInput
       error={showError ? error : ''}
       type='number'
-      value={isNaN(value) ? '' : value.toString()}
+      value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
