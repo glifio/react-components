@@ -77,7 +77,7 @@ export const FilecoinInput = ({
 
   // Check for input errors
   const error = useMemo<string>(() => {
-    if (value === null) return 'Cannot be empty or invalid Filecoin value'
+    if (value === null) return 'Invalid value'
     if (min !== null && value.isLessThan(min))
       return `Cannot be less than ${getValue(min, denom)} ${getUnit(denom)}`
     if (max !== null && value.isGreaterThan(max))
