@@ -1,17 +1,21 @@
-import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
+import {
+  RequireableInput,
+  RequireableInputProps,
+  RequireableInputPropTypes
+} from './Requirable'
 
 /**
  * The following components all allow the full set of base input
  * props except "type", which is passed manually for each component
  */
-type TextInputProps = Omit<BaseInputProps, 'type'>
-const { type, ...textInputPropTypes } = BaseInputPropTypes
+type TextInputProps = Omit<RequireableInputProps, 'type'>
+const { type, ...textInputPropTypes } = RequireableInputPropTypes
 
 /**
  * TextInput
  */
 export const TextInput = (props: TextInputProps) => (
-  <BaseInput type='text' {...props} />
+  <RequireableInput type='text' {...props} />
 )
 TextInput.propTypes = textInputPropTypes
 
@@ -19,7 +23,7 @@ TextInput.propTypes = textInputPropTypes
  * EmailInput
  */
 export const EmailInput = (props: TextInputProps) => (
-  <BaseInput type='email' {...props} />
+  <RequireableInput type='email' {...props} />
 )
 EmailInput.propTypes = textInputPropTypes
 
@@ -27,7 +31,7 @@ EmailInput.propTypes = textInputPropTypes
  * PasswordInput
  */
 export const PasswordInput = (props: TextInputProps) => (
-  <BaseInput type='password' {...props} />
+  <RequireableInput type='password' {...props} />
 )
 PasswordInput.propTypes = textInputPropTypes
 
@@ -35,6 +39,6 @@ PasswordInput.propTypes = textInputPropTypes
  * SearchInput
  */
 export const SearchInput = (props: TextInputProps) => (
-  <BaseInput type='search' {...props} />
+  <RequireableInput type='search' {...props} />
 )
 SearchInput.propTypes = textInputPropTypes

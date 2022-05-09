@@ -3,9 +3,9 @@ import { useEffect, useState, useMemo } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
- * ParamsInput
+ * RequireableInput
  */
-export const ParamsInput = ({
+export const RequireableInput = ({
   value,
   onChange,
   onFocus,
@@ -13,24 +13,15 @@ export const ParamsInput = ({
   setIsValid,
   required,
   ...baseProps
-}: ParamsInputProps) => {
+}: RequireableInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
   const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
-  const error = useMemo<string>(() => {
-    if (required && !value) {
-      return 'Cannot be empty'
-    }
-    try {
-      const buffer = Buffer.from(value, 'base64')
-      const result = buffer.toString('base64')
-      if (result !== value) throw new Error()
-    } catch (e) {
-      return 'Needs to be valid Base64'
-    }
-    return ''
-  }, [value, required])
+  const error = useMemo<string>(
+    () => (required && !value ? 'Cannot be empty' : ''),
+    [value, required]
+  )
 
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
@@ -53,8 +44,6 @@ export const ParamsInput = ({
   return (
     <BaseInput
       error={!hasFocus && hasChanged ? error : ''}
-      type='text'
-      placeholder={`${required ? '' : 'Optional '}Base64 params`}
       value={value}
       onChange={onChangeBase}
       onFocus={onFocusBase}
@@ -68,31 +57,31 @@ export const ParamsInput = ({
  * We strip certain properties from the standard
  * base input props because we want to override them:
  *
- * error: set by params input validation
- * type: always "text" for params input
- * placeholder: set by params input
+ * error: set by requireable input validation
  *
  * We add "setIsValid" and "required"
  */
 
-export type ParamsInputProps = {
+export type RequireableInputProps = {
   setIsValid?: (isValid: boolean) => void
   required?: boolean
-} & Omit<BaseInputProps, 'error' | 'type' | 'placeholder'>
+} & Omit<BaseInputProps, 'error'>
 
-const { error, type, placeholder, ...paramsProps } = BaseInputPropTypes
+const { error, ...requireableProps } = BaseInputPropTypes
 
-ParamsInput.propTypes = {
+export const RequireableInputPropTypes = {
   setIsValid: PropTypes.func,
   required: PropTypes.bool,
-  ...paramsProps
+  ...requireableProps
 }
+
+RequireableInput.propTypes = RequireableInputPropTypes
 
 /**
  * Provide defaults for props that are used in this input
  */
 
-ParamsInput.defaultProps = {
+RequireableInput.defaultProps = {
   value: '',
   onChange: () => {},
   onFocus: () => {},

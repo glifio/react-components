@@ -18,7 +18,9 @@ export const NumberInput = ({
   setIsValid,
   ...baseProps
 }: NumberInputProps) => {
-  const [showError, setShowError] = useState<boolean>(false)
+  const [valueBase, setValueBase] = useState<string>('')
+  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
@@ -31,25 +33,34 @@ export const NumberInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  const onChangeBase = (newValue: string) => {
-    onChange(newValue ? Number(newValue) : NaN)
+  // Set valueBase (string) when value (number) changes
+  useEffect(() => {
+    setValueBase(isNaN(value) ? '' : value.toString())
+  }, [value])
+
+  // Set valueBase (string) and value (number) when input changes
+  const onChangeBase = (newValueBase: string) => {
+    setValueBase(newValueBase)
+    setHasChanged(true)
+    const newValue = newValueBase ? Number(newValueBase) : NaN
+    if (newValue !== value) onChange(newValue)
   }
 
   const onFocusBase = () => {
-    setShowError(false)
+    setHasFocus(true)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setShowError(true)
+    setHasFocus(false)
     onBlur()
   }
 
   return (
     <BaseInput
-      error={showError ? error : ''}
+      error={!hasFocus && hasChanged ? error : ''}
       type='number'
-      value={isNaN(value) ? '' : value.toString()}
+      value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}

@@ -1,0 +1,266 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toggle input it renders the off state correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c0 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c0 .text-input-wrapper {
+  position: relative;
+}
+
+.c0 .text-input-wrapper input {
+  width: 100%;
+}
+
+.c0 .text-input-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+}
+
+.c1 .toggle-wrapper {
+  position: relative;
+  padding: 0.5em 0;
+}
+
+.c1 input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.c1 .toggle {
+  display: inline-block;
+  position: relative;
+  width: 2.25em;
+  height: 1.5em;
+  border-radius: 0.75em;
+  border: 2px solid var(--blue-medium);
+  background-color: var(--blue-medium);
+}
+
+.c1 .toggle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(1.5em - 4px);
+  height: calc(1.5em - 4px);
+  border-radius: 50%;
+  background-color: var(--white);
+}
+
+.c1 input:checked ~ .toggle {
+  border-color: var(--blue-dark);
+  background-color: var(--blue-dark);
+}
+
+.c1 input:checked ~ .toggle::after {
+  left: auto;
+  right: 0;
+}
+
+<label
+  class="c0 c1"
+>
+  <div>
+    <span>
+      Turn me on or off
+    </span>
+    <span
+      class="info"
+    >
+      And see what it does
+    </span>
+  </div>
+  <span
+    class="toggle-wrapper"
+  >
+    <input
+      type="checkbox"
+    />
+    <span
+      class="toggle"
+    />
+  </span>
+</label>
+`;
+
+exports[`Toggle input it renders the on state correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c0 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c0 .text-input-wrapper {
+  position: relative;
+}
+
+.c0 .text-input-wrapper input {
+  width: 100%;
+}
+
+.c0 .text-input-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+}
+
+.c1 .toggle-wrapper {
+  position: relative;
+  padding: 0.5em 0;
+}
+
+.c1 input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.c1 .toggle {
+  display: inline-block;
+  position: relative;
+  width: 2.25em;
+  height: 1.5em;
+  border-radius: 0.75em;
+  border: 2px solid var(--blue-medium);
+  background-color: var(--blue-medium);
+}
+
+.c1 .toggle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(1.5em - 4px);
+  height: calc(1.5em - 4px);
+  border-radius: 50%;
+  background-color: var(--white);
+}
+
+.c1 input:checked ~ .toggle {
+  border-color: var(--blue-dark);
+  background-color: var(--blue-dark);
+}
+
+.c1 input:checked ~ .toggle::after {
+  left: auto;
+  right: 0;
+}
+
+<label
+  class="c0 c1"
+>
+  <div>
+    <span>
+      Turn me on or off
+    </span>
+    <span
+      class="info"
+    >
+      And see what it does
+    </span>
+  </div>
+  <span
+    class="toggle-wrapper"
+  >
+    <input
+      checked=""
+      type="checkbox"
+    />
+    <span
+      class="toggle"
+    />
+  </span>
+</label>
+`;

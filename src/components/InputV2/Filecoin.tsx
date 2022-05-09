@@ -7,6 +7,20 @@ import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 type FilecoinDenomination = 'fil' | 'picofil' | 'attofil'
 
 /**
+ * Converts a string value into a FilecoinNumber or null if invalid
+ */
+const getFilecoinNumber = (
+  value: string,
+  denom: FilecoinDenomination
+): FilecoinNumber | null => {
+  try {
+    return value ? new FilecoinNumber(value, denom) : null
+  } catch (e) {
+    return null
+  }
+}
+
+/**
  * Get the string representation of the Filecoin number for the required denomination
  **/
 const getValue = (value: FilecoinNumber, denom: FilecoinDenomination) => {
@@ -57,11 +71,13 @@ export const FilecoinInput = ({
   setIsValid,
   ...baseProps
 }: FilecoinInputProps) => {
-  const [showError, setShowError] = useState<boolean>(false)
+  const [valueBase, setValueBase] = useState<string>('')
+  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
-    if (value === null) return 'Cannot be empty or invalid Filecoin value'
+    if (value === null) return 'Invalid value'
     if (min !== null && value.isLessThan(min))
       return `Cannot be less than ${getValue(min, denom)} ${getUnit(denom)}`
     if (max !== null && value.isGreaterThan(max))
@@ -72,30 +88,40 @@ export const FilecoinInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  const onChangeBase = (newValue: string) => {
-    try {
-      onChange(newValue ? new FilecoinNumber(newValue, denom) : null)
-    } catch (e) {
-      onChange(null)
+  // Set valueBase (string) when value (FilecoinNumber) changes
+  useEffect(() => {
+    setValueBase(value === null ? '' : getValue(value, denom))
+  }, [value, denom])
+
+  // Set valueBase (string) and value (FilecoinNumber) when input changes
+  const onChangeBase = (newValueBase: string) => {
+    setValueBase(newValueBase)
+    setHasChanged(true)
+    const newValue = getFilecoinNumber(newValueBase, denom)
+    if (
+      (value === null && newValue !== null) ||
+      (value !== null && !value.isEqualTo(newValue))
+    ) {
+      onChange(newValue)
     }
   }
 
   const onFocusBase = () => {
-    setShowError(false)
+    setHasFocus(true)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setShowError(true)
+    setHasFocus(false)
     onBlur()
   }
 
   return (
     <BaseInput
-      error={showError ? error : ''}
+      error={!hasFocus && hasChanged ? error : ''}
       type='number'
       unit={getUnit(denom)}
-      value={value === null ? '' : getValue(value, denom)}
+      value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}

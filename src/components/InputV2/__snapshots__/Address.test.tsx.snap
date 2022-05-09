@@ -1,0 +1,280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Address input it renders correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c0 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c0 .text-input-wrapper {
+  position: relative;
+}
+
+.c0 .text-input-wrapper input {
+  width: 100%;
+}
+
+.c0 .text-input-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+}
+
+<label
+  class="c0"
+>
+  <div>
+    <span>
+      Enter the recipient's address
+    </span>
+    <span
+      class="info"
+    >
+      This will receive your funds
+    </span>
+    
+  </div>
+  <div
+    class="text-input-wrapper"
+  >
+    <input
+      class=""
+      placeholder="f1..."
+      style="padding-right: 1em;"
+      type="text"
+      value="t1iury ... xaucza"
+    />
+    
+  </div>
+</label>
+`;
+
+exports[`Address input it renders the disabled state correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  pointer-events: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c0 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c0 .text-input-wrapper {
+  position: relative;
+}
+
+.c0 .text-input-wrapper input {
+  width: 100%;
+}
+
+.c0 .text-input-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+  color: var(--gray-dark) !important;
+}
+
+<label
+  class="c0"
+  disabled=""
+>
+  <div>
+    <span>
+      Enter the recipient's address
+    </span>
+    <span
+      class="info"
+    >
+      This will receive your funds
+    </span>
+    
+  </div>
+  <div
+    class="text-input-wrapper"
+  >
+    <input
+      class=""
+      disabled=""
+      placeholder="f1..."
+      style="padding-right: 1em;"
+      type="text"
+      value=""
+    />
+    
+  </div>
+</label>
+`;
+
+exports[`Address input it renders the invalid state correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c0 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c0 .text-input-wrapper {
+  position: relative;
+}
+
+.c0 .text-input-wrapper input {
+  width: 100%;
+}
+
+.c0 .text-input-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+  color: var(--red-dark) !important;
+}
+
+<label
+  class="c0"
+>
+  <div>
+    <span>
+      Enter the recipient's address
+    </span>
+    <span
+      class="info"
+    >
+      This will receive your funds
+    </span>
+    <span
+      class="error"
+    >
+      Needs to be a valid address
+    </span>
+  </div>
+  <div
+    class="text-input-wrapper"
+  >
+    <input
+      class="error"
+      placeholder="f1..."
+      style="padding-right: 1em;"
+      type="text"
+      value="t1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucz"
+    />
+    
+  </div>
+</label>
+`;

@@ -3,6 +3,17 @@ import { useEffect, useState, useMemo } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
+ * Converts a string value into a BigInt or null if invalid
+ */
+const getBigInt = (value: string): BigInt | null => {
+  try {
+    return value ? BigInt(value) : null
+  } catch (e) {
+    return null
+  }
+}
+
+/**
  * BigIntInput
  *
  * This input is based on the NumberInput, with the difference
@@ -20,7 +31,9 @@ export const BigIntInput = ({
   setIsValid,
   ...baseProps
 }: BigIntInputProps) => {
-  const [showError, setShowError] = useState<boolean>(false)
+  const [valueBase, setValueBase] = useState<string>('')
+  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
@@ -35,29 +48,34 @@ export const BigIntInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  const onChangeBase = (newValue: string) => {
-    try {
-      onChange(newValue ? BigInt(newValue) : null)
-    } catch (e) {
-      onChange(null)
-    }
+  // Set valueBase (string) when value (BigInt) changes
+  useEffect(() => {
+    setValueBase(value === null ? '' : value.toString())
+  }, [value])
+
+  // Set valueBase (string) and value (BigInt) when input changes
+  const onChangeBase = (newValueBase: string) => {
+    setValueBase(newValueBase)
+    setHasChanged(true)
+    const newValue = getBigInt(newValueBase)
+    if (newValue !== value) onChange(newValue)
   }
 
   const onFocusBase = () => {
-    setShowError(false)
+    setHasFocus(true)
     onFocus()
   }
 
   const onBlurBase = () => {
-    setShowError(true)
+    setHasFocus(false)
     onBlur()
   }
 
   return (
     <BaseInput
-      error={showError ? error : ''}
+      error={!hasFocus && hasChanged ? error : ''}
       type='number'
-      value={value === null ? '' : value.toString()}
+      value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}

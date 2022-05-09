@@ -1,0 +1,352 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text input it renders correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c0 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c0 .text-input-wrapper {
+  position: relative;
+}
+
+.c0 .text-input-wrapper input {
+  width: 100%;
+}
+
+.c0 .text-input-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+}
+
+<label
+  class="c0"
+>
+  <div>
+    <span>
+      Enter your name
+    </span>
+    <span
+      class="info"
+    >
+      Nice to meet you
+    </span>
+    
+  </div>
+  <div
+    class="text-input-wrapper"
+  >
+    <input
+      class=""
+      placeholder=""
+      style="padding-right: 1em;"
+      type="text"
+      value="My name is Glif"
+    />
+    
+  </div>
+</label>
+`;
+
+exports[`Text input it renders the disabled state correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  pointer-events: none;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c0 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c0 .text-input-wrapper {
+  position: relative;
+}
+
+.c0 .text-input-wrapper input {
+  width: 100%;
+}
+
+.c0 .text-input-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+  color: var(--gray-dark) !important;
+}
+
+<label
+  class="c0"
+  disabled=""
+>
+  <div>
+    <span>
+      Enter your name
+    </span>
+    <span
+      class="info"
+    >
+      Nice to meet you
+    </span>
+    
+  </div>
+  <div
+    class="text-input-wrapper"
+  >
+    <input
+      class=""
+      disabled=""
+      placeholder=""
+      style="padding-right: 1em;"
+      type="text"
+      value=""
+    />
+    
+  </div>
+</label>
+`;
+
+exports[`Text input it renders the required state correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c0 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c0 .text-input-wrapper {
+  position: relative;
+}
+
+.c0 .text-input-wrapper input {
+  width: 100%;
+}
+
+.c0 .text-input-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+  color: var(--red-dark) !important;
+}
+
+<label
+  class="c0"
+>
+  <div>
+    <span>
+      Enter your name
+    </span>
+    <span
+      class="info"
+    >
+      Nice to meet you
+    </span>
+    <span
+      class="error"
+    >
+      Cannot be empty
+    </span>
+  </div>
+  <div
+    class="text-input-wrapper"
+  >
+    <input
+      class="error"
+      placeholder=""
+      style="padding-right: 1em;"
+      type="text"
+      value=""
+    />
+    
+  </div>
+</label>
+`;
+
+exports[`Text input it renders the vertical required state correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c0 .text-input-wrapper {
+  position: relative;
+}
+
+.c0 .text-input-wrapper input {
+  width: 100%;
+}
+
+.c0 .text-input-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+  color: var(--red-dark) !important;
+}
+
+<label
+  class="c0"
+>
+  <span>
+    Enter your name
+  </span>
+  <span
+    class="info"
+  >
+    Nice to meet you
+  </span>
+  <div
+    class="text-input-wrapper"
+  >
+    <input
+      class="error"
+      placeholder=""
+      style="padding-right: 1em;"
+      type="text"
+      value=""
+    />
+    
+  </div>
+  <span
+    class="error"
+  >
+    Cannot be empty
+  </span>
+</label>
+`;
