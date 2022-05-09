@@ -39,14 +39,14 @@ export const Head = ({
     <Box display='flex' gridGap='1rem'>
       {pending && (
         <>
-          {speedUpHref && (
+          {speedUpHref && !process.env.NEXT_PUBLIC_IS_PROD && (
             <ButtonV2Link green href={speedUpHref}>
               <IconSpeedUp width='1.25rem' />
               Speed up
             </ButtonV2Link>
           )}
 
-          {cancelHref && (
+          {cancelHref && !process.env.NEXT_PUBLIC_IS_PROD && (
             <ButtonV2Link red href={cancelHref}>
               <IconCancel width='0.8rem' />
               Cancel
