@@ -46,7 +46,7 @@ export const TransactionHeader = ({
   )
 }
 
-interface TransactionHeaderProps {
+export interface TransactionHeaderProps {
   address: string
   balance: FilecoinNumber
 }

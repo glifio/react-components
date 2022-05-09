@@ -13,7 +13,7 @@ export const TransactionMaxFee = ({ maxFee }: TransactionMaxFeeProps) => {
   )
 }
 
-interface TransactionMaxFeeProps {
+export interface TransactionMaxFeeProps {
   maxFee: FilecoinNumber
 }
 

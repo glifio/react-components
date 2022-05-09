@@ -126,7 +126,7 @@ export const TransactionConfirm = ({
   </InfoBox>
 )
 
-type TransactionConfirmProps = {
+export type TransactionConfirmProps = {
   loginOption: LoginOption
   msig?: boolean
   method?: MsigMethod
