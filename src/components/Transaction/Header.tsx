@@ -38,7 +38,9 @@ export const TransactionHeader = ({
       </div>
       <div>
         <span>Balance</span>
-        <span>{makeFriendlyBalance(balance, 6, true)} FIL</span>
+        <span>
+          <>{makeFriendlyBalance(balance, 6, true)} FIL</>
+        </span>
       </div>
     </Header>
   )
