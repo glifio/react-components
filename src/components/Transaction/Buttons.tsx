@@ -21,7 +21,7 @@ export const TransactionButtons = ({
   )
 }
 
-interface TransactionButtonsProps {
+export interface TransactionButtonsProps {
   cancelDisabled: boolean
   sendDisabled: boolean
   onClickSend: () => void

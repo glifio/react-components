@@ -25,7 +25,7 @@ export const TransactionTotal = ({ total }: TransactionTotalProps) => {
   )
 }
 
-interface TransactionTotalProps {
+export interface TransactionTotalProps {
   total: FilecoinNumber
 }
 
