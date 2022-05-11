@@ -46,7 +46,12 @@ export const AddressLink = ({
           {label}
         </Label>
       )}
-      <Box display='flex' flexDirection='row' gridGap='0.25em' lineHeight={hideCopy ? null : '1.5'}>
+      <Box
+        display='flex'
+        flexDirection='row'
+        gridGap='0.25em'
+        lineHeight={hideCopy ? null : '1.5'}
+      >
         {truncated && id && <span>{truncated}</span>}
         {disableLink ? (
           <span>{linkText}</span>

@@ -46,7 +46,7 @@ Base.args = {
 
 export const Safe = Template.bind({})
 Safe.args = {
-  label: "Enter your safe address",
+  label: 'Enter your safe address',
   msig: true
 }
 

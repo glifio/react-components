@@ -20,16 +20,12 @@ export const AddressInput = ({
   const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
-  const error = useMemo<string>(
-    () => {
-      if (!validateAddressString(value))
-        return 'Needs to be a valid address'
-      if (msig && value[1] !== '0' && value[1] !== '2')
-        return 'Second character must be 0 or 2'
-      return ''
-    },
-    [value]
-  )
+  const error = useMemo<string>(() => {
+    if (!validateAddressString(value)) return 'Needs to be a valid address'
+    if (msig && value[1] !== '0' && value[1] !== '2')
+      return 'Second character must be 0 or 2'
+    return ''
+  }, [value, msig])
 
   // Truncate address if valid
   const truncated = useMemo<string>(
