@@ -144,13 +144,11 @@ export const MSIG_METHOD_PROPTYPE = oneOf(
  * Transaction State
  */
 
- export enum TxState {
+export enum TxState {
   FillingForm = 0,
   LoadingTxDetails,
   AwaitingConfirmation,
   MPoolPushing
 }
 
-export const TX_STATE_PROPTYPE = oneOf(
-  Object.values(TxState) as Array<TxState>
-)
+export const TX_STATE_PROPTYPE = oneOf(Object.values(TxState) as Array<TxState>)
