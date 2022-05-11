@@ -42,13 +42,11 @@ export const TransactionState = ({
   return (
     <>
       {txState === TxState.FillingForm && (
-        <>
-          <StandardBox>
-            <h2>{txTitle}</h2>
-            <hr />
-            <p>{txDescription}</p>
-          </StandardBox>
-        </>
+        <StandardBox>
+          <h2>{txTitle}</h2>
+          <hr />
+          <p>{txDescription}</p>
+        </StandardBox>
       )}
       {txState === TxState.LoadingTxDetails && (
         <TransactionLoading description='Loading transaction details...' />
