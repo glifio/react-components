@@ -1,5 +1,5 @@
 export const verifiedRegistryActorCodes = [
-  'transfer',
+  'send',
   'constructor',
   'add verifier',
   'remove verifier',

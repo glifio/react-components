@@ -1,5 +1,5 @@
 export const storageMarketActorCodes = [
-  'transfer',
+  'send',
   'constructor',
   'add balance',
   'withdraw balance',

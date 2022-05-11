@@ -1,1 +1,1 @@
-export const cronActorCodes = ['transfer', 'constructor', 'exec']
+export const cronActorCodes = ['send', 'constructor', 'exec']

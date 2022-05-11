@@ -1,1 +1,1 @@
-export const accountActorCodes = ['transfer', 'constructor']
+export const accountActorCodes = ['send', 'constructor']

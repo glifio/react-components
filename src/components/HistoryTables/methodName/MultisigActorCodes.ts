@@ -1,5 +1,5 @@
 export const msigActorCodes = [
-  'transfer',
+  'send',
   'constructor',
   'propose',
   'approve',

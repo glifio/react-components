@@ -1,5 +1,5 @@
 export const minerActorCodes = [
-  'transfer',
+  'send',
   'constructor',
   'control addresses',
   'change worker address',
