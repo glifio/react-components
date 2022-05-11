@@ -4,6 +4,7 @@ const LoaderGlyphParent = styled.span`
   display: inline-block;
   height: 48px;
   width: 48px;
+  text-align: left;
   background-color: ${props => props.theme.colors.core.primary};
 `
 

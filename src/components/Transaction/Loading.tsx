@@ -1,28 +1,20 @@
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { StandardBox } from '../Layout'
 import LoaderGlyph from '../LoaderGlyph'
-import { space } from '../theme'
-
-const LoadingBox = styled(StandardBox)`
-  > *:first-child {
-    margin-right: ${space()};
-    text-align: left;
-    align-self: center;
-  }
-`
 
 export const TransactionLoading = ({
   description
-}: {
-  description?: string
-}) => {
+}: TransactionLoadingProps) => {
   return (
-    <LoadingBox>
+    <StandardBox>
       <LoaderGlyph />
       <p>{description}</p>
-    </LoadingBox>
+    </StandardBox>
   )
+}
+
+export interface TransactionLoadingProps {
+  description?: string
 }
 
 TransactionLoading.propTypes = {
