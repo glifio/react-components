@@ -5,8 +5,6 @@ import { TransactionMaxFee } from './MaxFee'
 import { TransactionState } from './State'
 import { TransactionTotal } from './Total'
 
-export { TxState } from './State'
-
 export const Transaction = {
   Buttons: TransactionButtons,
   Confirm: TransactionConfirm,
