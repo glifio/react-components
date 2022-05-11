@@ -32,6 +32,12 @@ Base.args = {
 
 export const NoLabel = Template.bind({})
 
+export const AutoComplete = Template.bind({})
+AutoComplete.args = {
+  label: 'Enter your name',
+  name: 'name'
+}
+
 export const Required = Template.bind({})
 Required.args = {
   label: 'Enter your name',
