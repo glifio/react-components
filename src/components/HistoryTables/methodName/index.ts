@@ -33,14 +33,14 @@ export const getMethodName = (
     methodName = paymentChannelActorCodes[methodNum]
   } else if (actorCode.includes('/storageminer')) {
     methodName = minerActorCodes[methodNum]
-  } else if (actorCode.includes('/storagepwer')) {
+  } else if (actorCode.includes('/storagepower')) {
     methodName = powerActorCodes[methodNum]
   } else if (actorCode.includes('/storagemarket')) {
     methodName = storageMarketActorCodes[methodNum]
   } else if (actorCode.includes('/system')) {
     methodName = 'internal'
   } else if (methodNum === 0) {
-    methodName = 'transfer'
+    methodName = 'send'
   } else {
     methodName = methodNum.toString()
   }

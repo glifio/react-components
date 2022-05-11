@@ -1,1 +1,1 @@
-export const initActorCodes = ['transfer', 'constructor', 'exec']
+export const initActorCodes = ['send', 'constructor', 'exec']
