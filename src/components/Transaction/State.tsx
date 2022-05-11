@@ -81,7 +81,3 @@ TransactionState.propTypes = {
   method: MSIG_METHOD_PROPTYPE,
   approvalsLeft: PropTypes.number
 }
-
-TransactionState.defaultProps = {
-  msig: false
-}
