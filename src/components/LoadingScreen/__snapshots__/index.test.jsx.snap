@@ -30,6 +30,7 @@ exports[`LoadingScreen renders the story 1`] = `
   display: inline-block;
   height: 48px;
   width: 48px;
+  text-align: left;
   background-color: #5E26FF;
 }
 
