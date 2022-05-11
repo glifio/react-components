@@ -13,6 +13,7 @@ export const AddressInput = ({
   onFocus,
   onBlur,
   setIsValid,
+  msig,
   ...baseProps
 }: AddressInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
@@ -20,7 +21,13 @@ export const AddressInput = ({
 
   // Check for input errors
   const error = useMemo<string>(
-    () => (validateAddressString(value) ? '' : 'Needs to be a valid address'),
+    () => {
+      if (!validateAddressString(value))
+        return 'Needs to be a valid address'
+      if (msig && value[1] !== '0' && value[1] !== '2')
+        return 'Second character must be 0 or 2'
+      return ''
+    },
     [value]
   )
 
@@ -52,7 +59,7 @@ export const AddressInput = ({
     <BaseInput
       error={!hasFocus && hasChanged ? error : ''}
       type='text'
-      placeholder='f1...'
+      placeholder={msig ? 'f2...' : 'f1...'}
       value={hasFocus ? value : truncated}
       onChange={onChangeBase}
       onFocus={onFocusBase}
@@ -70,17 +77,19 @@ export const AddressInput = ({
  * type: always "text" for address input
  * placeholder: always "f1..." for address input
  *
- * We add "setIsValid"
+ * We add "setIsValid" and "msig"
  */
 
 export type AddressInputProps = {
   setIsValid?: (isValid: boolean) => void
+  msig?: boolean
 } & Omit<BaseInputProps, 'error' | 'type' | 'placeholder'>
 
 const { error, type, placeholder, ...addressProps } = BaseInputPropTypes
 
 AddressInput.propTypes = {
   setIsValid: PropTypes.func,
+  msig: PropTypes.bool,
   ...addressProps
 }
 
@@ -93,5 +102,6 @@ AddressInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  setIsValid: () => {}
+  setIsValid: () => {},
+  msig: false
 }

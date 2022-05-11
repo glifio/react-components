@@ -44,6 +44,12 @@ Base.args = {
   label: "Enter the recipient's address"
 }
 
+export const Safe = Template.bind({})
+Safe.args = {
+  label: "Enter your safe address",
+  msig: true
+}
+
 export const Disabled = Template.bind({})
 Disabled.args = {
   label: 'This address cannot be changed',
