@@ -7,6 +7,7 @@ export const BaseInput = ({
   label,
   info,
   error,
+  name,
   type,
   autofocus,
   disabled,
@@ -38,6 +39,7 @@ export const BaseInput = ({
     <div className='text-input-wrapper'>
       <input
         className={error ? 'error' : ''}
+        name={name}
         type={type}
         autoFocus={autofocus}
         disabled={disabled}
@@ -60,6 +62,7 @@ export interface BaseInputProps {
   label?: string
   info?: string
   error?: string
+  name?: string
   type?: string
   autofocus?: boolean
   disabled?: boolean
@@ -77,6 +80,7 @@ export const BaseInputPropTypes = {
   label: PropTypes.string,
   info: PropTypes.string,
   error: PropTypes.string,
+  name: PropTypes.string,
   type: PropTypes.string,
   autofocus: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -95,6 +99,7 @@ BaseInput.defaultProps = {
   label: '',
   info: '',
   error: '',
+  name: '',
   type: 'text',
   autofocus: false,
   disabled: false,
