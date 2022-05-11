@@ -120,6 +120,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  line-height: 1.5;
   grid-gap: 0.25em;
 }
 
@@ -537,6 +538,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  line-height: 1.5;
   grid-gap: 0.25em;
 }
 
@@ -975,6 +977,7 @@ exports[`AccountCardAlt renders the card 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  line-height: 1.5;
   grid-gap: 0.25em;
 }
 
@@ -1373,6 +1376,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  line-height: 1.5;
   grid-gap: 0.25em;
 }
 

@@ -25,6 +25,7 @@ exports[`Receive it renders correctly 1`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  line-height: 1.5;
   grid-gap: 0.25em;
 }
 

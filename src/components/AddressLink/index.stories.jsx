@@ -29,6 +29,12 @@ Black.args = {
   color: 'var(--black)'
 }
 
+export const HideCopy = Template.bind({})
+HideCopy.args = {
+  address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy',
+  hideCopy: true
+}
+
 export const AddressOnly = Template.bind({})
 AddressOnly.args = {
   address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy'

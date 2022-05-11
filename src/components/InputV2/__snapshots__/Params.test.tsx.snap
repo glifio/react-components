@@ -80,6 +80,7 @@ exports[`Params input it renders correctly 1`] = `
   >
     <input
       class=""
+      name=""
       placeholder="Optional Base64 params"
       style="padding-right: 1em;"
       type="text"
@@ -174,6 +175,7 @@ exports[`Params input it renders the disabled state correctly 1`] = `
     <input
       class=""
       disabled=""
+      name=""
       placeholder="Optional Base64 params"
       style="padding-right: 1em;"
       type="text"

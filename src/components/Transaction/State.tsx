@@ -5,17 +5,12 @@ import {
   LoginOption,
   LOGIN_OPTION_PROPTYPE,
   MsigMethod,
-  MSIG_METHOD_PROPTYPE
+  MSIG_METHOD_PROPTYPE,
+  TxState,
+  TX_STATE_PROPTYPE
 } from '../../customPropTypes'
 import { TransactionConfirm } from './Confirm'
 import { TransactionLoading } from './Loading'
-
-export enum TxState {
-  FillingForm,
-  LoadingTxDetails,
-  AwaitingConfirmation,
-  MPoolPushing
-}
 
 export const TransactionState = ({
   loginOption,
@@ -42,13 +37,11 @@ export const TransactionState = ({
   return (
     <>
       {txState === TxState.FillingForm && (
-        <>
-          <StandardBox>
-            <h2>{txTitle}</h2>
-            <hr />
-            <p>{txDescription}</p>
-          </StandardBox>
-        </>
+        <StandardBox>
+          <h2>{txTitle}</h2>
+          <hr />
+          <p>{txDescription}</p>
+        </StandardBox>
       )}
       {txState === TxState.LoadingTxDetails && (
         <TransactionLoading description='Loading transaction details...' />
@@ -81,14 +74,10 @@ export interface TxStatePropTypes {
 
 TransactionState.propTypes = {
   loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
-  txState: PropTypes.oneOf(Object.values(TxState) as TxState[]).isRequired,
+  txState: TX_STATE_PROPTYPE.isRequired,
   txTitle: PropTypes.string.isRequired,
   txDescription: PropTypes.string.isRequired,
   msig: PropTypes.bool,
   method: MSIG_METHOD_PROPTYPE,
   approvalsLeft: PropTypes.number
-}
-
-TransactionState.defaultProps = {
-  msig: false
 }
