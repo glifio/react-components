@@ -38,7 +38,7 @@ export const AddressInput = ({
 
   const onChangeBase = (newValue: string) => {
     setHasChanged(true)
-    onChange(newValue)
+    onChange(newValue.trim())
   }
 
   const onFocusBase = () => {
