@@ -80,6 +80,7 @@ exports[`Number input it renders correctly 1`] = `
   >
     <input
       class=""
+      name=""
       placeholder=""
       style="padding-right: 1em;"
       type="number"
@@ -174,6 +175,7 @@ exports[`Number input it renders the disabled state correctly 1`] = `
     <input
       class=""
       disabled=""
+      name=""
       placeholder=""
       style="padding-right: 1em;"
       type="number"

@@ -80,6 +80,7 @@ exports[`Filecoin input it renders attofil correctly 1`] = `
   >
     <input
       class=""
+      name=""
       placeholder=""
       style="padding-right: 4em;"
       type="number"
@@ -174,6 +175,7 @@ exports[`Filecoin input it renders fil correctly 1`] = `
   >
     <input
       class=""
+      name=""
       placeholder=""
       style="padding-right: 3.25em;"
       type="number"
@@ -268,6 +270,7 @@ exports[`Filecoin input it renders picofil correctly 1`] = `
   >
     <input
       class=""
+      name=""
       placeholder=""
       style="padding-right: 4em;"
       type="number"
@@ -366,6 +369,7 @@ exports[`Filecoin input it renders the disabled state correctly 1`] = `
     <input
       class=""
       disabled=""
+      name=""
       placeholder=""
       style="padding-right: 3.25em;"
       type="number"

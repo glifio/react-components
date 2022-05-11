@@ -75,4 +75,21 @@ describe('Address input', () => {
       expect(result.container.firstChild).toMatchSnapshot()
     })
   })
+
+  test('it renders the not-truncated state correctly', async () => {
+    let result: RenderResult | null = null
+    await act(async () => {
+      result = render(
+        <ThemeProvider theme={theme}>
+          <AddressInput
+            label={labelText}
+            info={infoText}
+            value={validAddress}
+            truncate={false}
+          />
+        </ThemeProvider>
+      )
+      expect(result.container.firstChild).toMatchSnapshot()
+    })
+  })
 })

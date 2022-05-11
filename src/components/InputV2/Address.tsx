@@ -13,6 +13,7 @@ export const AddressInput = ({
   onFocus,
   onBlur,
   setIsValid,
+  truncate,
   msig,
   ...baseProps
 }: AddressInputProps) => {
@@ -56,7 +57,7 @@ export const AddressInput = ({
       error={!hasFocus && hasChanged ? error : ''}
       type='text'
       placeholder={msig ? 'f2...' : 'f1...'}
-      value={hasFocus ? value : truncated}
+      value={hasFocus || !truncate ? value : truncated}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
@@ -73,11 +74,12 @@ export const AddressInput = ({
  * type: always "text" for address input
  * placeholder: always "f1..." for address input
  *
- * We add "setIsValid" and "msig"
+ * We add "setIsValid", "truncate" and "msig"
  */
 
 export type AddressInputProps = {
   setIsValid?: (isValid: boolean) => void
+  truncate?: boolean
   msig?: boolean
 } & Omit<BaseInputProps, 'error' | 'type' | 'placeholder'>
 
@@ -85,6 +87,7 @@ const { error, type, placeholder, ...addressProps } = BaseInputPropTypes
 
 AddressInput.propTypes = {
   setIsValid: PropTypes.func,
+  truncate: PropTypes.bool,
   msig: PropTypes.bool,
   ...addressProps
 }
@@ -99,5 +102,6 @@ AddressInput.defaultProps = {
   onFocus: () => {},
   onBlur: () => {},
   setIsValid: () => {},
+  truncate: true,
   msig: false
 }

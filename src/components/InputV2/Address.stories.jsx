@@ -50,6 +50,13 @@ Safe.args = {
   msig: true
 }
 
+export const NotTruncated = Template.bind({})
+NotTruncated.args = {
+  label: "Enter the recipient's address",
+  value: 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza',
+  truncate: false
+}
+
 export const Disabled = Template.bind({})
 Disabled.args = {
   label: 'This address cannot be changed',
