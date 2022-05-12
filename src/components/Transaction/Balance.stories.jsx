@@ -9,7 +9,9 @@ const StoryComponent = ({ address, balance, msigBalance }) => (
         <TransactionBalance
           address={address}
           balance={new FilecoinNumber(balance, 'fil')}
-          msigBalance={msigBalance ? new FilecoinNumber(msigBalance, 'fil') : null}
+          msigBalance={
+            msigBalance ? new FilecoinNumber(msigBalance, 'fil') : null
+          }
         />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt
