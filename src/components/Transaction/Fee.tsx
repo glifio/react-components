@@ -27,7 +27,6 @@ export const TransactionFee = ({
   useEffect(() => {
     if (calculatedFee && !initialFeeSet) {
       setInitialFeeSet(true)
-      setTxFee(calculatedFee)
     }
   }, [calculatedFee, initialFeeSet])
 
@@ -47,8 +46,12 @@ export const TransactionFee = ({
     }
   }
 
-  // Reset custom tx fee when disabling expert mode
-  useEffect(() => !expert && setMaxFee(null), [expert])
+  // When enabling expert mode, set TX fee input value
+  // When disabling expert mode, reset to default TX fee
+  useEffect(
+    () => (expert ? calculatedFee && setTxFee(calculatedFee) : setMaxFee(null)),
+    [expert, calculatedFee, setMaxFee]
+  )
 
   return (
     <>
