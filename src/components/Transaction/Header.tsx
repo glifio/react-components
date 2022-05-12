@@ -12,7 +12,7 @@ import {
 import LoaderGlyph from '../LoaderGlyph'
 import { TransactionConfirm } from './Confirm'
 
-export const TransactionState = ({
+export const TransactionHeader = ({
   txState,
   title,
   description,
@@ -21,7 +21,7 @@ export const TransactionState = ({
   method,
   approvalsLeft,
   errorMessage
-}: TxStatePropTypes) => (
+}: TransactionHeaderProps) => (
   <>
     <StandardBox>
       <h2>{title}</h2>
@@ -52,7 +52,7 @@ export const TransactionState = ({
   </>
 )
 
-export interface TxStatePropTypes {
+export interface TransactionHeaderProps {
   txState: TxState
   title: string
   description: string
@@ -63,7 +63,7 @@ export interface TxStatePropTypes {
   errorMessage?: string
 }
 
-TransactionState.propTypes = {
+TransactionHeader.propTypes = {
   txState: TX_STATE_PROPTYPE.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

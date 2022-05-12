@@ -1,15 +1,15 @@
+import { TransactionBalance } from './Balance'
 import { TransactionButtons } from './Buttons'
 import { TransactionConfirm } from './Confirm'
-import { TransactionBalance } from './Balance'
+import { TransactionHeader } from './Header'
 import { TransactionMaxFee } from './MaxFee'
-import { TransactionState } from './State'
 import { TransactionTotal } from './Total'
 
 export const Transaction = {
+  Balance: TransactionBalance,
   Buttons: TransactionButtons,
   Confirm: TransactionConfirm,
-  Balance: TransactionBalance,
+  Header: TransactionHeader,
   MaxFee: TransactionMaxFee,
-  State: TransactionState,
   Total: TransactionTotal
 }
