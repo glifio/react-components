@@ -9,8 +9,8 @@ import {
   TxState,
   TX_STATE_PROPTYPE
 } from '../../customPropTypes'
+import LoaderGlyph from '../LoaderGlyph'
 import { TransactionConfirm } from './Confirm'
-import { TransactionLoading } from './Loading'
 
 export const TransactionState = ({
   txState,
@@ -21,45 +21,36 @@ export const TransactionState = ({
   method,
   approvalsLeft,
   errorMessage
-}: TxStatePropTypes) => {
-  if (!!errorMessage) {
-    return (
-      <>
-        <StandardBox>
-          <h2>{title}</h2>
-          <hr />
-          <p>Something went wrong</p>
-        </StandardBox>
-        <ErrorBox>{errorMessage}</ErrorBox>
-      </>
-    )
-  }
-  return (
-    <>
-      {txState === TxState.FillingForm && (
-        <StandardBox>
-          <h2>{title}</h2>
-          <hr />
-          <p>{description}</p>
-        </StandardBox>
-      )}
-      {txState === TxState.LoadingTxDetails && (
-        <TransactionLoading description='Loading transaction details...' />
-      )}
-      {txState === TxState.MPoolPushing && (
-        <TransactionLoading description='Sending your transaction...' />
-      )}
-      {txState === TxState.AwaitingConfirmation && (
-        <TransactionConfirm
-          loginOption={loginOption}
-          msig={msig}
-          method={method}
-          approvalsLeft={approvalsLeft}
-        />
-      )}
-    </>
-  )
-}
+}: TxStatePropTypes) => (
+  <>
+    <StandardBox>
+      <h2>{title}</h2>
+      <hr />
+      <p>
+        {errorMessage
+          ? 'Something went wrong'
+          : txState === TxState.LoadingTxDetails
+          ? 'Loading transaction details...'
+          : txState === TxState.MPoolPushing
+          ? 'Sending your transaction...'
+          : txState === TxState.AwaitingConfirmation
+          ? 'Awaiting confirmation...'
+          : description}
+      </p>
+      {(txState === TxState.LoadingTxDetails ||
+        txState === TxState.MPoolPushing) && <LoaderGlyph />}
+    </StandardBox>
+    {errorMessage && <ErrorBox>{errorMessage}</ErrorBox>}
+    {txState === TxState.AwaitingConfirmation && (
+      <TransactionConfirm
+        loginOption={loginOption}
+        msig={msig}
+        method={method}
+        approvalsLeft={approvalsLeft}
+      />
+    )}
+  </>
+)
 
 export interface TxStatePropTypes {
   txState: TxState
