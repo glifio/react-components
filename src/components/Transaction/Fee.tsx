@@ -6,7 +6,6 @@ import Filecoin from '@glif/filecoin-wallet-provider'
 
 import { getMaxAffordableFee } from '../../utils/getMaxAffordableFee'
 import { getMaxGasFee } from '../../utils/getMaxGasFee'
-import { getTotalAmount } from '../../utils/getTotalAmount'
 import { useGetGasParams } from '../../utils/useGetGasParams'
 import { FilecoinInput } from '../InputV2/Filecoin'
 import { TransactionMaxFee } from './MaxFee'
