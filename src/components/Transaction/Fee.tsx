@@ -10,7 +10,11 @@ import { getTotalAmount } from '../../utils/getTotalAmount'
 import { useGetGasParams } from '../../utils/useGetGasParams'
 import { FilecoinInput } from '../InputV2/Filecoin'
 import { TransactionMaxFee } from './MaxFee'
-import { Wallet, WALLET_PROPTYPE, FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
+import {
+  Wallet,
+  WALLET_PROPTYPE,
+  FILECOIN_NUMBER_PROPTYPE
+} from '../../customPropTypes'
 
 export const TransactionFee = ({
   provider,
@@ -33,7 +37,7 @@ export const TransactionFee = ({
     loading: gasParamsLoading,
     error: gasParamsError
   } = useGetGasParams(provider, message, maxFee)
-  
+
   // Calculate max affordable fee (balance minus value)
   const maxAffordableFee = useMemo<FilecoinNumber | null>(() => {
     return sendAmount ? getMaxAffordableFee(wallet.balance, sendAmount) : null
@@ -82,20 +86,20 @@ export const TransactionFee = ({
 
   return (
     <>
-    {initialFeeSet && (
-      <FilecoinInput
-        label='Transaction Fee'
-        max={maxAffordableFee}
-        value={txFee}
-        denom='attofil'
-        onBlur={onBlurTxFee}
-        onChange={setTxFee}
-        setIsValid={setIsTxFeeValid}
-        disabled={disabled}
-      />
-    )}
-    {gasParamsLoading && <p>Calculating transaction fees...</p>}
-        {calculatedMaxFee && <TransactionMaxFee maxFee={calculatedMaxFee} />}
+      {initialFeeSet && (
+        <FilecoinInput
+          label='Transaction Fee'
+          max={maxAffordableFee}
+          value={txFee}
+          denom='attofil'
+          onBlur={onBlurTxFee}
+          onChange={setTxFee}
+          setIsValid={setIsTxFeeValid}
+          disabled={disabled}
+        />
+      )}
+      {gasParamsLoading && <p>Calculating transaction fees...</p>}
+      {calculatedMaxFee && <TransactionMaxFee maxFee={calculatedMaxFee} />}
     </>
   )
 }
