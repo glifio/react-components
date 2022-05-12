@@ -50,13 +50,6 @@ export const TransactionFee = ({
       : null
   }, [gasParams])
 
-  // Calculate total amount (value plus max fee)
-  const total = useMemo<FilecoinNumber | null>(() => {
-    return sendAmount && calculatedMaxFee
-      ? getTotalAmount(sendAmount, calculatedMaxFee)
-      : null
-  }, [sendAmount, calculatedMaxFee])
-
   // The first time we calculate a valid maximum transaction fee, we set the value
   // for the transaction fee input. Afterwards, the transaction fee input becomes
   // editable and the calculated fee is updated according to the user's input.
