@@ -6,29 +6,31 @@ import {
 } from '../../customPropTypes'
 import truncateAddress from '../../utils/truncateAddress'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
+import { space } from '../theme'
 
 const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: ${space('large')};
 
   > * {
     display: flex;
     flex-direction: column;
+    align-items: flex-end;
+    flex: 0 0 auto;
 
     &:first-child {
       align-items: flex-start;
-    }
-
-    &:last-child {
-      align-items: flex-end;
+      flex: 1 0 auto;
     }
   }
 `
 
 export const TransactionBalance = ({
   address,
-  balance
+  balance,
+  msigBalance
 }: TransactionBalanceProps) => {
   return (
     <Header>
@@ -37,11 +39,19 @@ export const TransactionBalance = ({
         <span>{truncateAddress(address)}</span>
       </div>
       <div>
-        <span>Balance</span>
+        <span>{msigBalance && 'Signer '}Balance</span>
         <span>
           <>{makeFriendlyBalance(balance, 6, true)} FIL</>
         </span>
       </div>
+      {msigBalance &&
+        <div>
+          <span>Safe Balance</span>
+          <span>
+            <>{makeFriendlyBalance(balance, 6, true)} FIL</>
+          </span>
+        </div>
+      }
     </Header>
   )
 }
@@ -49,9 +59,11 @@ export const TransactionBalance = ({
 export interface TransactionBalanceProps {
   address: string
   balance: FilecoinNumber
+  msigBalance?: FilecoinNumber
 }
 
 TransactionBalance.propTypes = {
   address: ADDRESS_PROPTYPE.isRequired,
-  balance: FILECOIN_NUMBER_PROPTYPE.isRequired
+  balance: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  msigBalance: FILECOIN_NUMBER_PROPTYPE
 }
