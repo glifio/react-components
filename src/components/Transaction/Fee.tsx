@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
+import { Toggle } from '../InputV2/Toggle'
 import { FilecoinInput } from '../InputV2/Filecoin'
 import { TransactionMaxFee } from './MaxFee'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
@@ -15,6 +16,7 @@ export const TransactionFee = ({
   disabled
 }: TransactionFeeProps) => {
   // Input states
+  const [expert, setExpert] = useState<boolean>(false)
   const [txFee, setTxFee] = useState<FilecoinNumber | null>(null)
   const [isTxFeeValid, setIsTxFeeValid] = useState<boolean>(false)
 
@@ -45,19 +47,32 @@ export const TransactionFee = ({
     }
   }
 
+  // Reset custom tx fee when disabling expert mode
+  useEffect(() => !expert && setMaxFee(null), [expert])
+
   return (
     <>
       {initialFeeSet && (
-        <FilecoinInput
-          label='Transaction Fee'
-          max={affordableFee}
-          value={txFee}
-          denom='attofil'
-          onBlur={onBlurTxFee}
-          onChange={setTxFee}
-          setIsValid={setIsTxFeeValid}
-          disabled={disabled}
-        />
+        <>
+          <Toggle
+            label='Expert Mode'
+            checked={expert}
+            onChange={setExpert}
+            disabled={disabled}
+          />
+          {expert && (
+            <FilecoinInput
+              label='Transaction Fee'
+              max={affordableFee}
+              value={txFee}
+              denom='attofil'
+              onBlur={onBlurTxFee}
+              onChange={setTxFee}
+              setIsValid={setIsTxFeeValid}
+              disabled={disabled}
+            />
+          )}
+        </>
       )}
       {gasLoading && <p>Calculating transaction fees...</p>}
       {calculatedFee && <TransactionMaxFee maxFee={calculatedFee} />}
