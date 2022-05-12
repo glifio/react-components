@@ -1,12 +1,12 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { Dialog, ShadowBox, OneColumnCentered } from '../Layout'
-import { TransactionHeader } from './Header'
+import { TransactionBalance } from './Balance'
 
 const StoryComponent = ({ address, balance }) => (
   <OneColumnCentered>
     <Dialog>
       <ShadowBox>
-        <TransactionHeader
+        <TransactionBalance
           address={address}
           balance={new FilecoinNumber(balance, 'fil')}
         />

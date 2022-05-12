@@ -7,7 +7,7 @@ import {
 import truncateAddress from '../../utils/truncateAddress'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
 
-const Header = styled.header`
+const BalanceEl = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,12 +26,12 @@ const Header = styled.header`
   }
 `
 
-export const TransactionHeader = ({
+export const TransactionBalance = ({
   address,
   balance
-}: TransactionHeaderProps) => {
+}: TransactionBalanceProps) => {
   return (
-    <Header>
+    <BalanceEl>
       <div>
         <span>From</span>
         <span>{truncateAddress(address)}</span>
@@ -42,16 +42,16 @@ export const TransactionHeader = ({
           <>{makeFriendlyBalance(balance, 6, true)} FIL</>
         </span>
       </div>
-    </Header>
+    </BalanceEl>
   )
 }
 
-export interface TransactionHeaderProps {
+export interface TransactionBalanceProps {
   address: string
   balance: FilecoinNumber
 }
 
-TransactionHeader.propTypes = {
+TransactionBalance.propTypes = {
   address: ADDRESS_PROPTYPE.isRequired,
   balance: FILECOIN_NUMBER_PROPTYPE.isRequired
 }
