@@ -7,7 +7,7 @@ import {
 import truncateAddress from '../../utils/truncateAddress'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
 
-const BalanceEl = styled.header`
+const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,7 +31,7 @@ export const TransactionBalance = ({
   balance
 }: TransactionBalanceProps) => {
   return (
-    <BalanceEl>
+    <Header>
       <div>
         <span>From</span>
         <span>{truncateAddress(address)}</span>
@@ -42,7 +42,7 @@ export const TransactionBalance = ({
           <>{makeFriendlyBalance(balance, 6, true)} FIL</>
         </span>
       </div>
-    </BalanceEl>
+    </Header>
   )
 }
 
