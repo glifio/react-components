@@ -29,6 +29,8 @@ export const TransactionHeader = ({
       <p>
         {errorMessage
           ? 'Something went wrong'
+          : txState === TxState.LoadingMessage
+          ? 'Loading message information...'
           : txState === TxState.LoadingTxDetails
           ? 'Loading transaction details...'
           : txState === TxState.MPoolPushing
@@ -37,7 +39,8 @@ export const TransactionHeader = ({
           ? 'Awaiting confirmation...'
           : description}
       </p>
-      {(txState === TxState.LoadingTxDetails ||
+      {(txState === TxState.LoadingMessage ||
+        txState === TxState.LoadingTxDetails ||
         txState === TxState.MPoolPushing) && <LoaderGlyph />}
     </StandardBox>
     {errorMessage && <ErrorBox>{errorMessage}</ErrorBox>}

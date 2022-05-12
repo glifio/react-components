@@ -24,6 +24,14 @@ Base.args = {
   loginOption: LoginOption.METAMASK
 }
 
+export const LoadingMessage = Template.bind({})
+LoadingMessage.args = {
+  txState: TxState.LoadingMessage,
+  title: 'Filecoin Transaction',
+  description: 'Enter the transaction details',
+  loginOption: LoginOption.METAMASK
+}
+
 export const LoadingTxDetails = Template.bind({})
 LoadingTxDetails.args = {
   txState: TxState.LoadingTxDetails,
