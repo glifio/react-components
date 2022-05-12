@@ -20,16 +20,6 @@ export const TransactionFee = ({
   const [txFee, setTxFee] = useState<FilecoinNumber | null>(null)
   const [isTxFeeValid, setIsTxFeeValid] = useState<boolean>(false)
 
-  // The first time we calculate a valid maximum transaction fee, we set the value
-  // for the transaction fee input. Afterwards, the transaction fee input becomes
-  // editable and the calculated fee is updated according to the user's input.
-  const [initialFeeSet, setInitialFeeSet] = useState<boolean>(false)
-  useEffect(() => {
-    if (calculatedFee && !initialFeeSet) {
-      setInitialFeeSet(true)
-    }
-  }, [calculatedFee, initialFeeSet])
-
   // When leaving the transaction fee input, we set maxFee to
   // update the gas params if the following conditions are met:
   // - the input is valid
@@ -55,13 +45,13 @@ export const TransactionFee = ({
 
   return (
     <>
-      {initialFeeSet && (
+      {(gasLoading || calculatedFee) && (
         <>
           <Toggle
             label='Expert Mode'
             checked={expert}
             onChange={setExpert}
-            disabled={disabled}
+            disabled={gasLoading || disabled}
           />
           {expert && (
             <FilecoinInput
@@ -72,7 +62,7 @@ export const TransactionFee = ({
               onBlur={onBlurTxFee}
               onChange={setTxFee}
               setIsValid={setIsTxFeeValid}
-              disabled={disabled}
+              disabled={gasLoading || disabled}
             />
           )}
         </>
