@@ -21,7 +21,7 @@ const StoryComponent = ({ address, balance }) => (
 )
 
 export default {
-  title: 'Transaction/Header',
+  title: 'Transaction/Balance',
   component: StoryComponent
 }
 
