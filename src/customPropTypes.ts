@@ -153,19 +153,3 @@ export enum TxState {
 }
 
 export const TX_STATE_PROPTYPE = oneOf(Object.values(TxState) as Array<TxState>)
-
-/**
- * Wallet
- */
-
-export interface Wallet {
-  path: string
-  address: string
-  balance: FilecoinNumber
-}
-
-export const WALLET_PROPTYPE = shape({
-  path: string.isRequired,
-  address: ADDRESS_PROPTYPE.isRequired,
-  balance: FILECOIN_NUMBER_PROPTYPE.isRequired
-})
