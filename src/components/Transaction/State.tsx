@@ -13,24 +13,24 @@ import { TransactionConfirm } from './Confirm'
 import { TransactionLoading } from './Loading'
 
 export const TransactionState = ({
+  txState,
+  title,
+  description,
   loginOption,
   msig,
   method,
   approvalsLeft,
-  txTitle,
-  txDescription,
-  txState,
-  error
+  errorMessage
 }: TxStatePropTypes) => {
-  if (!!error) {
+  if (!!errorMessage) {
     return (
       <>
         <StandardBox>
-          <h2>{txTitle}</h2>
+          <h2>{title}</h2>
           <hr />
           <p>Something went wrong</p>
         </StandardBox>
-        <ErrorBox>{error}</ErrorBox>
+        <ErrorBox>{errorMessage}</ErrorBox>
       </>
     )
   }
@@ -38,9 +38,9 @@ export const TransactionState = ({
     <>
       {txState === TxState.FillingForm && (
         <StandardBox>
-          <h2>{txTitle}</h2>
+          <h2>{title}</h2>
           <hr />
-          <p>{txDescription}</p>
+          <p>{description}</p>
         </StandardBox>
       )}
       {txState === TxState.LoadingTxDetails && (
@@ -62,22 +62,23 @@ export const TransactionState = ({
 }
 
 export interface TxStatePropTypes {
-  loginOption: LoginOption
   txState: TxState
-  txTitle: string
-  txDescription: string
-  error?: string
+  title: string
+  description: string
+  loginOption: LoginOption
   msig?: boolean
   method?: MsigMethod
   approvalsLeft?: number
+  errorMessage?: string
 }
 
 TransactionState.propTypes = {
-  loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
   txState: TX_STATE_PROPTYPE.isRequired,
-  txTitle: PropTypes.string.isRequired,
-  txDescription: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
   msig: PropTypes.bool,
   method: MSIG_METHOD_PROPTYPE,
-  approvalsLeft: PropTypes.number
+  approvalsLeft: PropTypes.number,
+  errorMessage: PropTypes.string
 }
