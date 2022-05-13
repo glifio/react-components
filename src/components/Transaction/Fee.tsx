@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
 import { Toggle } from '../InputV2/Toggle'
