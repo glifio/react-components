@@ -38,10 +38,10 @@ export const TransactionFee = ({
 
   // When enabling expert mode, set TX fee input value
   // When disabling expert mode, reset to default TX fee
-  useEffect(
-    () => (expert ? calculatedFee && setTxFee(calculatedFee) : setMaxFee(null)),
-    [expert, calculatedFee, setMaxFee]
-  )
+  const onChangeExpertToggle = (checked: boolean) => {
+    checked ? setTxFee(calculatedFee) : setMaxFee(null)
+    setExpert(checked)
+  }
 
   return (
     <>
@@ -53,7 +53,7 @@ export const TransactionFee = ({
           <Toggle
             label='Expert Mode'
             checked={expert}
-            onChange={setExpert}
+            onChange={onChangeExpertToggle}
             disabled={gasLoading || disabled}
           />
           {expert && (
