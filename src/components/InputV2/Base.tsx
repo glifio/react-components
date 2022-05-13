@@ -16,7 +16,8 @@ export const BaseInput = ({
   unit,
   onChange,
   onFocus,
-  onBlur
+  onBlur,
+  onEnter
 }: BaseInputProps) => (
   <Label
     disabled={disabled}
@@ -48,6 +49,7 @@ export const BaseInput = ({
         onChange={e => onChange(e.target.value)}
         onFocus={() => onFocus()}
         onBlur={() => onBlur()}
+        onKeyDown={e => e.key === 'Enter' && onEnter()}
         style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
       />
       {unit && <span className='unit'>{unit}</span>}
@@ -72,6 +74,7 @@ export interface BaseInputProps {
   onChange?: (value: string) => void
   onFocus?: () => void
   onBlur?: () => void
+  onEnter?: () => void
 }
 
 export const BaseInputPropTypes = {
@@ -89,7 +92,8 @@ export const BaseInputPropTypes = {
   unit: PropTypes.string,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
+  onEnter: PropTypes.func
 }
 
 BaseInput.propTypes = BaseInputPropTypes
@@ -108,5 +112,6 @@ BaseInput.defaultProps = {
   unit: '',
   onChange: () => {},
   onFocus: () => {},
-  onBlur: () => {}
+  onBlur: () => {},
+  onEnter: () => {}
 }
