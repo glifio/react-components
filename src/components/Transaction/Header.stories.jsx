@@ -1,34 +1,66 @@
-import { FilecoinNumber } from '@glif/filecoin-number'
-import { Dialog, ShadowBox, OneColumnCentered } from '../Layout'
+import { Dialog, OneColumnCentered } from '../Layout'
 import { TransactionHeader } from './Header'
-
-const StoryComponent = ({ address, balance }) => (
-  <OneColumnCentered>
-    <Dialog>
-      <ShadowBox>
-        <TransactionHeader
-          address={address}
-          balance={new FilecoinNumber(balance, 'fil')}
-        />
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt
-          nibh vitae tincidunt ultrices. Pellentesque habitant morbi tristique
-          senectus et netus et malesuada fames ac turpis egestas.
-        </p>
-      </ShadowBox>
-    </Dialog>
-  </OneColumnCentered>
-)
+import { TxState, LoginOption } from '../../customPropTypes'
 
 export default {
   title: 'Transaction/Header',
-  component: StoryComponent
+  component: TransactionHeader,
+  decorators: [
+    Story => (
+      <OneColumnCentered>
+        <Dialog>{Story()}</Dialog>
+      </OneColumnCentered>
+    )
+  ]
 }
 
-const Template = args => <StoryComponent {...args} />
+const Template = args => <TransactionHeader {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy',
-  balance: '2.9302943024234324234234'
+  txState: TxState.FillingForm,
+  title: 'Filecoin Transaction',
+  description: 'Enter the transaction details',
+  loginOption: LoginOption.METAMASK
+}
+
+export const LoadingMessage = Template.bind({})
+LoadingMessage.args = {
+  txState: TxState.LoadingMessage,
+  title: 'Filecoin Transaction',
+  description: 'Enter the transaction details',
+  loginOption: LoginOption.METAMASK
+}
+
+export const LoadingTxDetails = Template.bind({})
+LoadingTxDetails.args = {
+  txState: TxState.LoadingTxDetails,
+  title: 'Filecoin Transaction',
+  description: 'Enter the transaction details',
+  loginOption: LoginOption.METAMASK
+}
+
+export const MPoolPushing = Template.bind({})
+MPoolPushing.args = {
+  txState: TxState.MPoolPushing,
+  title: 'Filecoin Transaction',
+  description: 'Enter the transaction details',
+  loginOption: LoginOption.METAMASK
+}
+
+export const AwaitingConfirmation = Template.bind({})
+AwaitingConfirmation.args = {
+  txState: TxState.AwaitingConfirmation,
+  title: 'Filecoin Transaction',
+  description: 'Enter the transaction details',
+  loginOption: LoginOption.METAMASK
+}
+
+export const Error = Template.bind({})
+Error.args = {
+  txState: TxState.FillingForm,
+  title: 'Filecoin Transaction',
+  description: 'Enter the transaction details',
+  loginOption: LoginOption.METAMASK,
+  errorMessage: 'Failed to send the transaction'
 }

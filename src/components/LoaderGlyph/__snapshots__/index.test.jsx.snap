@@ -6,14 +6,14 @@ exports[`LoaderGlyph renders the story 1`] = `
   height: 48px;
   width: 48px;
   text-align: left;
-  background-color: #5E26FF;
+  background-color: var(--purple-medium);
 }
 
 .c1 {
   display: inline-block;
   height: 24px;
   width: 24px;
-  background-color: rgb(26,0,102);
+  background-color: var(--purple-dark);
   -webkit-animation-name: bvGDKI;
   animation-name: bvGDKI;
   -webkit-animation-duration: 2s;

@@ -1,57 +1,78 @@
-import styled from 'styled-components'
-import { FilecoinNumber } from '@glif/filecoin-number'
+import PropTypes from 'prop-types'
+import { ErrorBox } from '../Layout'
+import { StandardBox } from '../Layout'
 import {
-  ADDRESS_PROPTYPE,
-  FILECOIN_NUMBER_PROPTYPE
+  LoginOption,
+  LOGIN_OPTION_PROPTYPE,
+  MsigMethod,
+  MSIG_METHOD_PROPTYPE,
+  TxState,
+  TX_STATE_PROPTYPE
 } from '../../customPropTypes'
-import truncateAddress from '../../utils/truncateAddress'
-import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
-
-const Header = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  > * {
-    display: flex;
-    flex-direction: column;
-
-    &:first-child {
-      align-items: flex-start;
-    }
-
-    &:last-child {
-      align-items: flex-end;
-    }
-  }
-`
+import LoaderGlyph from '../LoaderGlyph'
+import { TransactionConfirm } from './Confirm'
 
 export const TransactionHeader = ({
-  address,
-  balance
-}: TransactionHeaderProps) => {
-  return (
-    <Header>
-      <div>
-        <span>From</span>
-        <span>{truncateAddress(address)}</span>
-      </div>
-      <div>
-        <span>Balance</span>
-        <span>
-          <>{makeFriendlyBalance(balance, 6, true)} FIL</>
-        </span>
-      </div>
-    </Header>
-  )
-}
+  txState,
+  title,
+  description,
+  loginOption,
+  msig,
+  method,
+  approvalsLeft,
+  errorMessage
+}: TransactionHeaderProps) => (
+  <>
+    <StandardBox>
+      <h2>{title}</h2>
+      <hr />
+      <p>
+        {errorMessage
+          ? 'Something went wrong'
+          : txState === TxState.LoadingMessage
+          ? 'Loading message information...'
+          : txState === TxState.LoadingTxDetails
+          ? 'Loading transaction details...'
+          : txState === TxState.MPoolPushing
+          ? 'Sending your transaction...'
+          : txState === TxState.AwaitingConfirmation
+          ? 'Awaiting confirmation...'
+          : description}
+      </p>
+      {(txState === TxState.LoadingMessage ||
+        txState === TxState.LoadingTxDetails ||
+        txState === TxState.MPoolPushing) && <LoaderGlyph />}
+    </StandardBox>
+    {errorMessage && <ErrorBox>{errorMessage}</ErrorBox>}
+    {txState === TxState.AwaitingConfirmation && (
+      <TransactionConfirm
+        loginOption={loginOption}
+        msig={msig}
+        method={method}
+        approvalsLeft={approvalsLeft}
+      />
+    )}
+  </>
+)
 
 export interface TransactionHeaderProps {
-  address: string
-  balance: FilecoinNumber
+  txState: TxState
+  title: string
+  description: string
+  loginOption: LoginOption
+  msig?: boolean
+  method?: MsigMethod
+  approvalsLeft?: number
+  errorMessage?: string
 }
 
 TransactionHeader.propTypes = {
-  address: ADDRESS_PROPTYPE.isRequired,
-  balance: FILECOIN_NUMBER_PROPTYPE.isRequired
+  txState: TX_STATE_PROPTYPE.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
+  msig: PropTypes.bool,
+  method: MSIG_METHOD_PROPTYPE,
+  approvalsLeft: PropTypes.number,
+  errorMessage: PropTypes.string
 }

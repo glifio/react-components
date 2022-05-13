@@ -5,7 +5,7 @@ const LoaderGlyphParent = styled.span`
   height: 48px;
   width: 48px;
   text-align: left;
-  background-color: ${props => props.theme.colors.core.primary};
+  background-color: var(--purple-medium);
 `
 
 const LoaderGlyphAnimation = keyframes`
@@ -20,7 +20,7 @@ const LoaderGlyphChild = styled.span`
   display: inline-block;
   height: 24px;
   width: 24px;
-  background-color: rgb(26, 0, 102);
+  background-color: var(--purple-dark);
   animation-name: ${LoaderGlyphAnimation};
   animation-duration: 2s;
   animation-iteration-count: infinite;
