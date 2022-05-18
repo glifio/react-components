@@ -9,7 +9,7 @@ import theme from '../theme'
 import composeMockAppTree from '../../test-utils/composeMockAppTree'
 import { flushPromises } from '../../test-utils'
 
-jest.mock('../../lib/WalletProvider')
+jest.mock('../../services/WalletProvider')
 
 // eslint-disable-next-line
 function expectAllAccountsInView(screen) {

@@ -39,14 +39,15 @@ exports[`AccountSelector it renders the loading screen first 1`] = `
   display: inline-block;
   height: 48px;
   width: 48px;
-  background-color: #5E26FF;
+  text-align: left;
+  background-color: var(--purple-medium);
 }
 
 .c2 {
   display: inline-block;
   height: 24px;
   width: 24px;
-  background-color: rgb(26,0,102);
+  background-color: var(--purple-dark);
   -webkit-animation-name: bvGDKI;
   animation-name: bvGDKI;
   -webkit-animation-duration: 2s;
@@ -259,6 +260,7 @@ exports[`AccountSelector it renders the wallets in state with the title and help
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  line-height: 1.5;
   grid-gap: 0.25em;
 }
 
@@ -629,48 +631,19 @@ exports[`AccountSelector it renders the wallets in state with the title and help
   text-decoration: underline;
 }
 
-.c38 {
-  min-width: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding-left: 8px;
-  padding-right: 8px;
-  border-radius: 1px;
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
+.c8 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-transition: 0.18s ease-in-out;
+  transition: 0.18s ease-in-out;
+  border-bottom: 2px solid #5E26FF00;
+  color: #5E26FF;
   font-size: 1.125rem;
-  text-align: left;
-  cursor: text;
-  background: #d1ddfa;
-  width: 50%;
-  display: inline-block;
-  height: 48px;
-  border-radius: 4px;
-  border: 0;
-  border-color: #999999;
+  margin-left: 8px;
 }
 
-.c38:hover {
-  background: #bacbf7;
-  cursor: text;
-}
-
-.c38:focus {
-  box-shadow: 0;
-  outline: 0;
-  background: #bacbf7;
-}
-
-.c39 {
-  -moz-appearance: textfield;
-}
-
-.c39::-webkit-outer-spin-button,
-.c39::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.c8:hover {
+  border-bottom: 2px solid #5E26FF;
 }
 
 .c41 {
@@ -757,19 +730,48 @@ exports[`AccountSelector it renders the wallets in state with the title and help
   background: props.theme.colors.input.background.valid;
 }
 
-.c8 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-bottom: 2px solid #5E26FF00;
-  color: #5E26FF;
+.c38 {
+  min-width: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 1px;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
   font-size: 1.125rem;
-  margin-left: 8px;
+  text-align: left;
+  cursor: text;
+  background: #d1ddfa;
+  width: 50%;
+  display: inline-block;
+  height: 48px;
+  border-radius: 4px;
+  border: 0;
+  border-color: #999999;
 }
 
-.c8:hover {
-  border-bottom: 2px solid #5E26FF;
+.c38:hover {
+  background: #bacbf7;
+  cursor: text;
+}
+
+.c38:focus {
+  box-shadow: 0;
+  outline: 0;
+  background: #bacbf7;
+}
+
+.c39 {
+  -moz-appearance: textfield;
+}
+
+.c39::-webkit-outer-spin-button,
+.c39::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .c9 {
@@ -1811,6 +1813,7 @@ exports[`AccountSelector it renders the wallets in state, and an option to creat
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
+  line-height: 1.5;
   grid-gap: 0.25em;
 }
 
@@ -2181,48 +2184,19 @@ exports[`AccountSelector it renders the wallets in state, and an option to creat
   text-decoration: underline;
 }
 
-.c38 {
-  min-width: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding-left: 8px;
-  padding-right: 8px;
-  border-radius: 1px;
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
+.c8 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-transition: 0.18s ease-in-out;
+  transition: 0.18s ease-in-out;
+  border-bottom: 2px solid #5E26FF00;
+  color: #5E26FF;
   font-size: 1.125rem;
-  text-align: left;
-  cursor: text;
-  background: #d1ddfa;
-  width: 50%;
-  display: inline-block;
-  height: 48px;
-  border-radius: 4px;
-  border: 0;
-  border-color: #999999;
+  margin-left: 8px;
 }
 
-.c38:hover {
-  background: #bacbf7;
-  cursor: text;
-}
-
-.c38:focus {
-  box-shadow: 0;
-  outline: 0;
-  background: #bacbf7;
-}
-
-.c39 {
-  -moz-appearance: textfield;
-}
-
-.c39::-webkit-outer-spin-button,
-.c39::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.c8:hover {
+  border-bottom: 2px solid #5E26FF;
 }
 
 .c41 {
@@ -2309,19 +2283,48 @@ exports[`AccountSelector it renders the wallets in state, and an option to creat
   background: props.theme.colors.input.background.valid;
 }
 
-.c8 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-bottom: 2px solid #5E26FF00;
-  color: #5E26FF;
+.c38 {
+  min-width: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 1px;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
   font-size: 1.125rem;
-  margin-left: 8px;
+  text-align: left;
+  cursor: text;
+  background: #d1ddfa;
+  width: 50%;
+  display: inline-block;
+  height: 48px;
+  border-radius: 4px;
+  border: 0;
+  border-color: #999999;
 }
 
-.c8:hover {
-  border-bottom: 2px solid #5E26FF;
+.c38:hover {
+  background: #bacbf7;
+  cursor: text;
+}
+
+.c38:focus {
+  box-shadow: 0;
+  outline: 0;
+  background: #bacbf7;
+}
+
+.c39 {
+  -moz-appearance: textfield;
+}
+
+.c39::-webkit-outer-spin-button,
+.c39::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .c9 {

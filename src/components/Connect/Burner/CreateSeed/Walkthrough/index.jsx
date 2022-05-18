@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Text } from '@glif/react-components'
+import { Text } from '../../../../Typography'
 import { MNEMONIC_PROPTYPE } from '../../../../../customPropTypes'
 import RevealMnemonic from './RevealMnemonic'
 import WordPrompt from './WordPrompt'

@@ -6,7 +6,7 @@ import { HelperText } from './Helper'
 import { flushPromises } from '../../../test-utils'
 import { TESTNET_PATH_CODE } from '../../../constants'
 import createPath from '../../../utils/createPath'
-import { initialMetaMaskState } from '../../../utils/metamask'
+import { initialMetaMaskState } from '../../../services/WalletProvider/metamaskUtils'
 
 describe('metamask onboarding', () => {
   let backSpy, nextSpy

@@ -14,10 +14,11 @@ import reducer, {
   switchWallet,
   updateBalance
 } from './state'
-import { initialLedgerState } from '../../utils/ledger/ledgerStateManagement'
+import { initialLedgerState } from './ledgerUtils'
 import { IMPORT_MNEMONIC, SINGLE_KEY } from '../../constants'
 import { WalletProviderAction } from './types'
-import { initialMetaMaskState } from '../../utils/metamask'
+import { initialMetaMaskState } from './metamaskUtils'
+import { LoginOption } from '../../customPropTypes'
 
 const mockSubProvider: WalletSubProvider = {
   type: 'MOCK',
@@ -89,7 +90,7 @@ describe('WalletProvider', () => {
     })
 
     test('setLoginOption', () => {
-      const loginOption = IMPORT_MNEMONIC
+      const loginOption = LoginOption.IMPORT_MNEMONIC
       const expectedAction: WalletProviderAction = {
         type: 'SET_LOGIN_OPTION',
         payload: { loginOption }
@@ -105,9 +106,9 @@ describe('WalletProvider', () => {
         payload: { provider, loginOption: 'IMPORT_SINGLE_KEY' }
       }
 
-      expect(createWalletProvider(provider, 'IMPORT_SINGLE_KEY')).toEqual(
-        expectedAction
-      )
+      expect(
+        createWalletProvider(provider, LoginOption.IMPORT_SINGLE_KEY)
+      ).toEqual(expectedAction)
     })
 
     test('setError', () => {
@@ -308,7 +309,7 @@ describe('WalletProvider', () => {
       })
     })
     test('it sets the login option', () => {
-      const loginOption = IMPORT_MNEMONIC
+      const loginOption = LoginOption.IMPORT_MNEMONIC
       const nextState = reducer(initialState, setLoginOption(loginOption))
       expect(nextState.loginOption).toBe(IMPORT_MNEMONIC)
     })
@@ -316,11 +317,14 @@ describe('WalletProvider', () => {
     test('it creates the wallet provider', () => {
       const nextState = reducer(
         initialState,
-        createWalletProvider(new Filecoin(mockSubProvider), 'IMPORT_SINGLE_KEY')
+        createWalletProvider(
+          new Filecoin(mockSubProvider),
+          LoginOption.IMPORT_SINGLE_KEY
+        )
       )
 
       expect(nextState.walletProvider.wallet.type).toEqual('MOCK')
-      expect(nextState.loginOption).toEqual('IMPORT_SINGLE_KEY')
+      expect(nextState.loginOption).toEqual(LoginOption.IMPORT_SINGLE_KEY)
     })
 
     test('it stores wallet error', () => {

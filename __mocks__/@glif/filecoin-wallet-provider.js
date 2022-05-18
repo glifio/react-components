@@ -1,18 +1,17 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { Message } from '@glif/filecoin-message'
-import { TESTNET } from '../../constants'
 
-const mockGetAccounts = jest
-  .fn()
-  // eslint-disable-next-line no-unused-vars
-  .mockImplementation((start = 0, end = 1, network = TESTNET) => {
-    const accounts = []
-    for (let i = start; i < end; i++) {
-      accounts.push(`t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb${i}uq`)
-    }
+export * from '../../node_modules/@glif/filecoin-wallet-provider/dist/errors'
+export * from '../../node_modules/@glif/filecoin-wallet-provider/dist/providers/metamask-provider'
 
-    return Promise.resolve(accounts)
-  })
+const mockGetAccounts = jest.fn().mockImplementation((start = 0, end = 1) => {
+  const accounts = []
+  for (let i = start; i < end; i++) {
+    accounts.push(`t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb${i}uq`)
+  }
+
+  return Promise.resolve(accounts)
+})
 
 const mockGetBalance = jest
   .fn()
@@ -28,7 +27,7 @@ const mockSuprovider = {
   sign: jest.fn().mockImplementation(() => 'xxxyyyyzzzz')
 }
 
-const mockRequest = jest.fn().mockImplementation((method) => {
+const mockRequest = jest.fn().mockImplementation(method => {
   switch (method) {
     case 'ChainHead': {
       return { Height: '1000' }
@@ -50,17 +49,7 @@ class MockWalletProvider {
   getBalance = mockGetBalance
   getNonce = jest.fn().mockImplementation(() => 0)
   gasEstimateMessageGas = jest.fn().mockImplementation(
-    ({
-      To,
-      From,
-      Value,
-      GasPremium, //eslint-disable-line no-unused-vars
-      GasFeeCap, //eslint-disable-line no-unused-vars
-      GasLimit, //eslint-disable-line no-unused-vars
-      Method,
-      Nonce,
-      Params
-    }) =>
+    ({ To, From, Value, Method, Nonce, Params }) =>
       new Message({
         to: To,
         from: From,
@@ -76,7 +65,7 @@ class MockWalletProvider {
   gasCalcTxFee = jest
     .fn()
     .mockImplementation(async () => new FilecoinNumber('1000000', 'attofil'))
-  gasEstimateMaxFee = jest.fn().mockImplementation(async (message) => ({
+  gasEstimateMaxFee = jest.fn().mockImplementation(async message => ({
     maxFee: new FilecoinNumber('1000000', 'attofil'),
     message: { ...message, GasLimit: 1, GasFeeCap: '1', GasPremium: '1' }
   }))

@@ -19,8 +19,6 @@ export const CREATE_MNEMONIC = 'CREATE_MNEMONIC'
 export const IMPORT_SINGLE_KEY = 'IMPORT_SINGLE_KEY'
 
 /* NETWORK VARS */
-export const MAINNET = 'f'
-export const TESTNET = 't'
 export const MAINNET_PATH_CODE = 461
 export const TESTNET_PATH_CODE = 1
 

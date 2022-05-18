@@ -9,14 +9,14 @@ import {
   border
 } from 'styled-system'
 import { bool } from 'prop-types'
+import Box from '../../../../Box'
+import Button from '../../../../Button'
 import {
-  Box,
-  Button,
   DisplayWord as Word,
-  MenuItem,
-  Text,
   MnemonicWordContainer
-} from '@glif/react-components'
+} from '../../../../MnemonicWord'
+import { MenuItem } from '../../../../Menu'
+import { Text } from '../../../../Typography'
 import { MNEMONIC_PROPTYPE } from '../../../../../customPropTypes'
 import copyToClipboard from '../../../../../utils/copyToClipboard'
 

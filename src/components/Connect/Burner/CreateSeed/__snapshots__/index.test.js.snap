@@ -126,28 +126,6 @@ exports[`Create seed phrase configuration it renders the warning correctly 1`] =
   justify-content: space-between;
 }
 
-.c5 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c6 {
-  color: #661800;
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c8 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
 .c11 {
   cursor: pointer;
   border: 1px solid #262626;
@@ -194,6 +172,28 @@ exports[`Create seed phrase configuration it renders the warning correctly 1`] =
 
 .c12:hover {
   opacity: 0.8;
+}
+
+.c6 {
+  color: #661800;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c8 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
+.c5 {
+  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .c9 {
@@ -338,14 +338,15 @@ exports[`Create seed phrase configuration it sends the user to wallet view, with
   display: inline-block;
   height: 48px;
   width: 48px;
-  background-color: #5E26FF;
+  text-align: left;
+  background-color: var(--purple-medium);
 }
 
 .c2 {
   display: inline-block;
   height: 24px;
   width: 24px;
-  background-color: rgb(26,0,102);
+  background-color: var(--purple-dark);
   -webkit-animation-name: bvGDKI;
   animation-name: bvGDKI;
   -webkit-animation-duration: 2s;

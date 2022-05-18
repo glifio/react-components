@@ -3,7 +3,7 @@ import {
   LEDGER_VERSION_PATCH,
   LEDGER_VERSION_MAJOR,
   LEDGER_VERSION_MINOR
-} from '../../../constants'
+} from '../../../../constants'
 
 describe('reportLedgerConfigError', () => {
   test('it gives connectedFailure message', () => {

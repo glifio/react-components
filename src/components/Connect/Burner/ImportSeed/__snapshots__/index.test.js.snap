@@ -126,28 +126,6 @@ exports[`Import seed phrase configuration it renders step one correctly 1`] = `
   justify-content: space-between;
 }
 
-.c5 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c6 {
-  color: #661800;
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c8 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
 .c11 {
   cursor: pointer;
   border: 1px solid #262626;
@@ -194,6 +172,28 @@ exports[`Import seed phrase configuration it renders step one correctly 1`] = `
 
 .c12:hover {
   opacity: 0.8;
+}
+
+.c6 {
+  color: #661800;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c8 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
+.c5 {
+  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 .c9 {
@@ -466,37 +466,6 @@ exports[`Import seed phrase configuration it renders step one correctly 2`] = `
   justify-content: space-between;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c8 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-  margin-top: 16px;
-}
-
-.c9 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
-.c17 {
-  color: #262626;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
 .c12 {
   cursor: pointer;
   border: 1px solid #1AD08F;
@@ -572,6 +541,69 @@ exports[`Import seed phrase configuration it renders step one correctly 2`] = `
   opacity: 1;
 }
 
+.c8 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+  margin-top: 16px;
+}
+
+.c9 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
+.c17 {
+  color: #262626;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c2 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin: 8px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  border-color: silver;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c6 {
+  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
 .c19 {
   min-width: 0;
   -webkit-box-flex: 1;
@@ -617,38 +649,6 @@ exports[`Import seed phrase configuration it renders step one correctly 2`] = `
 .c13 {
   cursor: pointer;
   outline: none;
-}
-
-.c2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin: 8px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  border-color: silver;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
 }
 
 <div
@@ -839,14 +839,15 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   display: inline-block;
   height: 48px;
   width: 48px;
-  background-color: #5E26FF;
+  text-align: left;
+  background-color: var(--purple-medium);
 }
 
 .c2 {
   display: inline-block;
   height: 24px;
   width: 24px;
-  background-color: rgb(26,0,102);
+  background-color: var(--purple-dark);
   -webkit-animation-name: bvGDKI;
   animation-name: bvGDKI;
   -webkit-animation-duration: 2s;

@@ -1,6 +1,6 @@
 import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
-import { initialState as wpInitialState } from '../../../lib/WalletProvider/state'
-import { initialLedgerState } from '../../../utils/ledger'
+import { initialState as wpInitialState } from '../../../services/WalletProvider/state'
+import { initialLedgerState } from '../../../services/WalletProvider/ledgerUtils'
 import composeMockAppTree from '../../../test-utils/composeMockAppTree'
 import { mockFetchDefaultWallet } from '../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import ConnectLedger from '.'

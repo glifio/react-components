@@ -144,27 +144,6 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   justify-content: space-between;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
 .c14 {
   cursor: pointer;
   border: 1px solid #262626;
@@ -213,6 +192,21 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   opacity: 0.8;
 }
 
+.c10 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c12 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
 .c2 {
   list-style: none;
   margin: 0;
@@ -242,6 +236,12 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.c6 {
+  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 <div
@@ -491,27 +491,6 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   justify-content: space-between;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
 .c14 {
   cursor: pointer;
   border: 1px solid #262626;
@@ -560,6 +539,21 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   opacity: 0.8;
 }
 
+.c10 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c12 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
 .c2 {
   list-style: none;
   margin: 0;
@@ -589,6 +583,12 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.c6 {
+  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 <div
@@ -836,21 +836,6 @@ exports[`Ledger configuration it renders correctly 1`] = `
   justify-content: space-between;
 }
 
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
 .c15 {
   cursor: pointer;
   border: 1px solid #262626;
@@ -899,9 +884,19 @@ exports[`Ledger configuration it renders correctly 1`] = `
   opacity: 0.8;
 }
 
-.c6 {
-  width: 40px;
-  height: 40px;
+.c10 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c12 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
 }
 
 .c2 {
@@ -947,6 +942,11 @@ exports[`Ledger configuration it renders correctly 1`] = `
 
 .c13:hover {
   border-bottom: 2px solid #5E26FF;
+}
+
+.c6 {
+  width: 40px;
+  height: 40px;
 }
 
 <div
@@ -1216,27 +1216,6 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   justify-content: space-between;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
 .c14 {
   cursor: pointer;
   border: 1px solid #262626;
@@ -1285,6 +1264,21 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   opacity: 0.8;
 }
 
+.c10 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c12 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
 .c2 {
   list-style: none;
   margin: 0;
@@ -1314,6 +1308,12 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.c6 {
+  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 <div
@@ -1563,27 +1563,6 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   justify-content: space-between;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
 .c14 {
   cursor: pointer;
   border: 1px solid #262626;
@@ -1632,6 +1611,21 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   opacity: 0.8;
 }
 
+.c10 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c12 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
 .c2 {
   list-style: none;
   margin: 0;
@@ -1661,6 +1655,12 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.c6 {
+  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 <div
@@ -1918,27 +1918,6 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   justify-content: space-between;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
 .c14 {
   cursor: pointer;
   border: 1px solid #262626;
@@ -1987,6 +1966,21 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   opacity: 0.8;
 }
 
+.c10 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c12 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
 .c2 {
   list-style: none;
   margin: 0;
@@ -2016,6 +2010,12 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.c6 {
+  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 <div
@@ -2265,27 +2265,6 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   justify-content: space-between;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
 .c14 {
   cursor: pointer;
   border: 1px solid #262626;
@@ -2334,6 +2313,21 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   opacity: 0.8;
 }
 
+.c10 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c12 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
 .c2 {
   list-style: none;
   margin: 0;
@@ -2363,6 +2357,12 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.c6 {
+  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 <div

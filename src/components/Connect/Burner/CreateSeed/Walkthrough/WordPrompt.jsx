@@ -1,16 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
+import Box from '../../../../Box'
+import { Text } from '../../../../Typography'
+import { MenuItem } from '../../../../Menu'
 import {
-  Box,
-  Text,
-  MenuItem,
   DisplayWord as Word,
   InputWord,
   MnemonicWordContainer
-} from '@glif/react-components'
+} from '../../../../MnemonicWord'
 import { MNEMONIC_PROPTYPE } from '../../../../../customPropTypes'
-import generateRandomWords from '../generateRandomWords'
+import generateRandomWords from '../generateRandomWords/index.ts'
 
 const WordPrompt = ({
   importSeedError,
