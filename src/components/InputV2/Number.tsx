@@ -101,7 +101,10 @@ export type NumberInputProps = {
   value?: number
   onChange?: (value: number) => void
   setIsValid?: (isValid: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'min' | 'max' | 'value' | 'onChange'>
+} & Omit<
+  BaseInputProps,
+  'error' | 'type' | 'min' | 'max' | 'value' | 'onChange'
+>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
 const { error, type, min, max, value, ...numberProps } = BaseInputPropTypes
