@@ -69,8 +69,8 @@ export const NumberInput = ({
     <BaseInput
       error={!hasFocus && hasChanged ? error : ''}
       type='number'
-      min={min}
-      max={max}
+      min={min === -Infinity ? '' : min}
+      max={max === Infinity ? '' : max}
       value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
