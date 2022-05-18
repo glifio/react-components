@@ -137,10 +137,12 @@ export const FilecoinInput = ({
  * error: set by filecoin input validation
  * type: always "number" for filecoin input
  * unit: will be based on the FilecoinDenomination
+ * min: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
+ * max: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
  * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
  * onChange: needs to take "FilecoinNumber" type argument
  *
- * We add "min", "max", "denom" and "setIsValid"
+ * We add "denom" and "setIsValid"
  */
 
 export type FilecoinInputProps = {
@@ -150,10 +152,10 @@ export type FilecoinInputProps = {
   denom?: FilecoinDenomination
   onChange?: (value: FilecoinNumber | null) => void
   setIsValid?: (isValid: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'unit' | 'value' | 'onChange'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'unit' | 'min' | 'max' | 'value' | 'onChange'>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
-const { error, type, unit, value, ...filecoinProps } = BaseInputPropTypes
+const { error, type, unit, min, max, value, ...filecoinProps } = BaseInputPropTypes
 
 FilecoinInput.propTypes = {
   min: FILECOIN_NUMBER_PROPTYPE,

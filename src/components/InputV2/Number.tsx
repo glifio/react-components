@@ -75,10 +75,12 @@ export const NumberInput = ({
  *
  * error: set by number input validation
  * type: always "number" for number input
+ * min: needs to be of type "number" / "PropTypes.number"
+ * max: needs to be of type "number" / "PropTypes.number"
  * value: needs to be of type "number" / "PropTypes.number"
  * onChange: needs to take "number" type argument
  *
- * We add "min", "max" and "setIsValid"
+ * We add "setIsValid"
  */
 
 export type NumberInputProps = {
@@ -87,10 +89,10 @@ export type NumberInputProps = {
   value?: number
   onChange?: (value: number) => void
   setIsValid?: (isValid: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'min' | 'max' | 'value' | 'onChange'>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
-const { error, type, value, ...numberProps } = BaseInputPropTypes
+const { error, type, min, max, value, ...numberProps } = BaseInputPropTypes
 
 NumberInput.propTypes = {
   min: PropTypes.number,

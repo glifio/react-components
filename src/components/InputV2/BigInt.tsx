@@ -90,10 +90,12 @@ export const BigIntInput = ({
  *
  * error: set by bigint input validation
  * type: always "number" for bigint input
+ * min: needs to be of type "BigInt" / "PropTypes.bigint"
+ * max: needs to be of type "BigInt" / "PropTypes.bigint"
  * value: needs to be of type "BigInt" / "PropTypes.bigint"
  * onChange: needs to take "BigInt" type argument
  *
- * We add "min", "max" and "setIsValid"
+ * We add "setIsValid"
  */
 
 export type BigIntInputProps = {
@@ -102,10 +104,10 @@ export type BigIntInputProps = {
   value?: BigInt | null
   onChange?: (value: BigInt | null) => void
   setIsValid?: (isValid: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'min' | 'max' | 'value' | 'onChange'>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
-const { error, type, value, ...bigIntProps } = BaseInputPropTypes
+const { error, type, min, max, value, ...bigIntProps } = BaseInputPropTypes
 
 // @types/prop-types is outdated
 BigIntInput.propTypes = {
