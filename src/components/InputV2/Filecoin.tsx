@@ -68,6 +68,7 @@ export const FilecoinInput = ({
   onChange,
   onFocus,
   onBlur,
+  onEnter,
   setIsValid,
   ...baseProps
 }: FilecoinInputProps) => {
@@ -117,6 +118,13 @@ export const FilecoinInput = ({
     onBlur()
   }
 
+  // Update "valueBase" (string) from "value" (FilecoinNumber)
+  // when pressing enter to format the input value
+  const onEnterBase = () => {
+    setValueBase(value === null ? '' : getValue(value, denom))
+    onEnter()
+  }
+
   return (
     <BaseInput
       error={!hasFocus && hasChanged ? error : ''}
@@ -128,6 +136,7 @@ export const FilecoinInput = ({
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
+      onEnter={onEnterBase}
       {...baseProps}
     />
   )
@@ -181,5 +190,6 @@ FilecoinInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  onEnter: () => {},
   setIsValid: () => {}
 }

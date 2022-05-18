@@ -15,6 +15,7 @@ export const NumberInput = ({
   onChange,
   onFocus,
   onBlur,
+  onEnter,
   setIsValid,
   ...baseProps
 }: NumberInputProps) => {
@@ -57,6 +58,13 @@ export const NumberInput = ({
     onBlur()
   }
 
+  // Update "valueBase" (string) from "value" (number)
+  // when pressing enter to format the input value
+  const onEnterBase = () => {
+    setValueBase(isNaN(value) ? '' : value.toString())
+    onEnter()
+  }
+
   return (
     <BaseInput
       error={!hasFocus && hasChanged ? error : ''}
@@ -67,6 +75,7 @@ export const NumberInput = ({
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
+      onEnter={onEnterBase}
       {...baseProps}
     />
   )
@@ -116,5 +125,6 @@ NumberInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  onEnter: () => {},
   setIsValid: () => {}
 }

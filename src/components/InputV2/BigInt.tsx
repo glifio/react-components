@@ -28,6 +28,7 @@ export const BigIntInput = ({
   onChange,
   onFocus,
   onBlur,
+  onEnter,
   setIsValid,
   ...baseProps
 }: BigIntInputProps) => {
@@ -72,6 +73,13 @@ export const BigIntInput = ({
     onBlur()
   }
 
+  // Update "valueBase" (string) from "value" (BigInt)
+  // when pressing enter to format the input value
+  const onEnterBase = () => {
+    setValueBase(value === null ? '' : value.toString())
+    onEnter()
+  }
+
   return (
     <BaseInput
       error={!hasFocus && hasChanged ? error : ''}
@@ -82,6 +90,7 @@ export const BigIntInput = ({
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
+      onEnter={onEnterBase}
       {...baseProps}
     />
   )
@@ -135,5 +144,6 @@ BigIntInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  onEnter: () => {},
   setIsValid: () => {}
 }
