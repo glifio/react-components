@@ -223,5 +223,7 @@ export const useWalletProvider = () => {
 
 export * from './state'
 export * from './types'
+export * from './ledgerUtils'
+export * from './metamaskUtils'
 
 export default WalletProviderWrapper

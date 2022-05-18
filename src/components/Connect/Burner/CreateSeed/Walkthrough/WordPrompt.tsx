@@ -10,7 +10,7 @@ import {
   MnemonicWordContainer
 } from '../../../../MnemonicWord'
 import { MNEMONIC_PROPTYPE } from '../../../../../customPropTypes'
-import generateRandomWords from '../generateRandomWords/index.ts'
+import generateRandomWords from '../generateRandomWords'
 
 const WordPrompt = ({
   importSeedError,
@@ -18,7 +18,7 @@ const WordPrompt = ({
   mnemonic,
   setCanContinue
 }) => {
-  const randoms = useRef()
+  const randoms = useRef<Set<number>>()
   if (!randoms.current) randoms.current = generateRandomWords(mnemonic, 4)
   const [correctWordCount, setCorrectWordCount] = useState(0)
 
