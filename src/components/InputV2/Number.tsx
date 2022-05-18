@@ -41,8 +41,8 @@ export const NumberInput = ({
 
   // Set valueBase (string) and value (number) when input changes
   const onChangeBase = (newValueBase: string) => {
-    setValueBase(newValueBase)
     setHasChanged(true)
+    setValueBase(newValueBase)
     const newValue = newValueBase ? Number(newValueBase) : NaN
     if (newValue !== value) onChange(newValue)
   }

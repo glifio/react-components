@@ -96,8 +96,8 @@ export const FilecoinInput = ({
 
   // Set valueBase (string) and value (FilecoinNumber) when input changes
   const onChangeBase = (newValueBase: string) => {
-    setValueBase(newValueBase)
     setHasChanged(true)
+    setValueBase(newValueBase)
     const newValue = getFilecoinNumber(newValueBase, denom)
     if (
       (value === null && newValue !== null) ||

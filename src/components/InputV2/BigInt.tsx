@@ -56,8 +56,8 @@ export const BigIntInput = ({
 
   // Set valueBase (string) and value (BigInt) when input changes
   const onChangeBase = (newValueBase: string) => {
-    setValueBase(newValueBase)
     setHasChanged(true)
+    setValueBase(newValueBase)
     const newValue = getBigInt(newValueBase)
     if (newValue !== value) onChange(newValue)
   }
