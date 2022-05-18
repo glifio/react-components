@@ -116,7 +116,7 @@ const Reveal = ({ mnemonic, valid }) => {
           return (
             /* eslint-disable react/no-array-index-key */
             <MenuItem key={i}>
-              <Word ml={0} num={i + 1} word={word} valid={valid} />
+              <Word num={i + 1} word={word} valid={valid} />
             </MenuItem>
           )
         })}
