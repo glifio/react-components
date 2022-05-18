@@ -481,7 +481,11 @@ exports[`Filecoin input it renders the value too high state correctly 1`] = `
   >
     <input
       class="error"
+      max="10"
+      min="0"
+      name=""
       placeholder=""
+      step=""
       style="padding-right: 3.25em;"
       type="number"
       value="100"
@@ -580,7 +584,11 @@ exports[`Filecoin input it renders the value too low state correctly 1`] = `
   >
     <input
       class="error"
+      max=""
+      min="100"
+      name=""
       placeholder=""
+      step=""
       style="padding-right: 3.25em;"
       type="number"
       value="10"

@@ -277,7 +277,11 @@ exports[`Params input it renders the invalid state correctly 1`] = `
   >
     <input
       class="error"
+      max=""
+      min=""
+      name=""
       placeholder="Optional Base64 params"
+      step=""
       style="padding-right: 1em;"
       type="text"
       value="test123"
@@ -372,7 +376,11 @@ exports[`Params input it renders the required state correctly 1`] = `
   >
     <input
       class="error"
+      max=""
+      min=""
+      name=""
       placeholder="Base64 params"
+      step=""
       style="padding-right: 1em;"
       type="text"
       value=""
