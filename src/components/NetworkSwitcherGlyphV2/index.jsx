@@ -1,8 +1,8 @@
+import { Network } from '@glif/filecoin-address'
 import styled from 'styled-components'
 import { bool, func, oneOf } from 'prop-types'
 import { border, typography, layout, flexbox, space } from 'styled-system'
 import Box from '../Box'
-import { TESTNET, MAINNET } from '../../constants'
 
 const NetworkSwitcherButton = styled.button.attrs(() => ({
   display: 'flex',
@@ -49,16 +49,16 @@ const NetworkSwitcherGlyph = ({ onNetworkSwitch, network, ...props }) => {
   return (
     <Box display='flex' justifyContent='flex-start' {...props}>
       <NetworkSwitcherButton
-        active={network === TESTNET}
-        onClick={() => onNetworkSwitch(TESTNET)}
+        active={network === Network.TEST}
+        onClick={() => onNetworkSwitch(Network.TEST)}
         borderTopLeftRadius={2}
         borderBottomLeftRadius={2}
       >
         Legacy address
       </NetworkSwitcherButton>
       <NetworkSwitcherButton
-        active={network === MAINNET}
-        onClick={() => onNetworkSwitch(MAINNET)}
+        active={network === Network.MAIN}
+        onClick={() => onNetworkSwitch(Network.MAIN)}
         borderTopRightRadius={2}
         borderBottomRightRadius={2}
       >
@@ -70,7 +70,7 @@ const NetworkSwitcherGlyph = ({ onNetworkSwitch, network, ...props }) => {
 
 NetworkSwitcherGlyph.propTypes = {
   onNetworkSwitch: func,
-  network: oneOf([TESTNET, MAINNET])
+  network: oneOf([Network.TEST, Network.MAIN])
 }
 
 NetworkSwitcherButton.propTypes = {

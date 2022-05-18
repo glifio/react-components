@@ -1,0 +1,392 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create seed phrase configuration it renders the warning correctly 1`] = `
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c1 {
+  min-width: 0;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+}
+
+.c2 {
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-radius: 4px;
+  border-width: 1px;
+  padding: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  max-width: 560px;
+  min-height: 300px;
+  overflow: hidden;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.c3 {
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 16px;
+  background-color: #FF9E80;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c4 {
+  min-width: 0;
+  box-sizing: border-box;
+  border-width: 0.1875rem;
+  border-radius: 8px;
+  border-style: solid;
+  background-color: #FF9E80;
+  color: #661800;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c7 {
+  min-width: 0;
+  box-sizing: border-box;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.c10 {
+  min-width: 0;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c11 {
+  cursor: pointer;
+  border: 1px solid #262626;
+  background-color: transparent;
+  border-color: #262626;
+  color: #262626;
+  font-size: 1.125rem;
+  -webkit-transition: 0.18s ease-in-out;
+  transition: 0.18s ease-in-out;
+  border-radius: 4px;
+  margin-top: 32px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 48px;
+  border-width: 1px;
+  border-radius: 4px;
+}
+
+.c11:hover {
+  opacity: 0.8;
+}
+
+.c12 {
+  cursor: pointer;
+  border: 1px solid #1AD08F;
+  background-color: #1AD08F;
+  border-color: #1AD08F;
+  color: #08442F;
+  font-size: 1.125rem;
+  -webkit-transition: 0.18s ease-in-out;
+  transition: 0.18s ease-in-out;
+  border-radius: 4px;
+  margin-top: 32px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  height: 48px;
+  border-width: 1px;
+  border-radius: 4px;
+}
+
+.c12:hover {
+  opacity: 0.8;
+}
+
+.c6 {
+  color: #661800;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+.c8 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
+.c5 {
+  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.c9 {
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  -webkit-transition: 0.18s ease-in-out;
+  transition: 0.18s ease-in-out;
+  border-bottom: 2px solid #5E26FF00;
+  color: #5E26FF;
+  font-size: 1.25rem;
+}
+
+.c9:hover {
+  border-bottom: 2px solid #5E26FF;
+}
+
+<div
+  class="c0"
+  display="flex"
+>
+  <div
+    class="c1"
+    display="flex"
+    width="100%"
+  >
+    <div
+      class="c2"
+      display="flex"
+      overflow="hidden"
+      width="100%"
+    >
+      <div
+        class="c3"
+        display="flex"
+      >
+        <div
+          class="c4"
+          color="status.warning.foreground"
+          display="flex"
+          size="6"
+        >
+          <h3
+            class="c5"
+          >
+            Wn
+          </h3>
+        </div>
+        <h2
+          class="c6"
+          color="status.warning.foreground"
+          font-family="RT-Alias-Grotesk"
+          font-size="4"
+          font-weight="400"
+        >
+          Warning
+        </h2>
+      </div>
+      <div
+        class="c7"
+      >
+        <p
+          class="c8"
+          font-family="RT-Alias-Grotesk"
+          font-size="2"
+          font-weight="400"
+        >
+          We do not recommend you use this burner wallet to hold or transact significant sums of Filecoin. For significant sums, Glif Sender should be used with a non-burner wallet.
+        </p>
+        <a
+          class="c9"
+          color="core.primary"
+          font-size="3"
+          href="https://coinsutra.com/security-risks-bitcoin-wallets/"
+          rel="noopener"
+          target="_blank"
+        >
+          Why isn't it secure?
+        </a>
+      </div>
+    </div>
+    <div
+      class="c10"
+      display="flex"
+    >
+      <button
+        class="c11"
+        font-size="3"
+        height="6"
+        type="button"
+      >
+        Back
+      </button>
+      <button
+        class="c12"
+        font-size="3"
+        height="6"
+        type="button"
+      >
+        I Understand
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Create seed phrase configuration it sends the user to wallet view, with a wallet in state upon successful config 1`] = `
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c3 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+  margin-top: 16px;
+}
+
+.c1 {
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+  text-align: left;
+  background-color: var(--purple-medium);
+}
+
+.c2 {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  background-color: var(--purple-dark);
+  -webkit-animation-name: bvGDKI;
+  animation-name: bvGDKI;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+@media screen and (min-width:40em) {
+
+}
+
+@media screen and (min-width:40em) {
+
+}
+
+@media screen and (min-width:40em) {
+
+}
+
+<div
+  class="c0"
+  display="flex"
+  height="100%"
+  width="100%"
+>
+  <span
+    class="c1"
+  >
+    <span
+      class="c2"
+    />
+  </span>
+  <h4
+    class="c3"
+    font-family="RT-Alias-Grotesk"
+    font-size="2"
+    font-weight="400"
+  >
+    Loading...
+  </h4>
+</div>
+`;

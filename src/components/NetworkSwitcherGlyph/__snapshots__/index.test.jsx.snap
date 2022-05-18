@@ -58,7 +58,7 @@ exports[`NetworkSwitcherGlyph renders NetworkSwitcherGlyph 1`] = `
 }
 
 .c2 {
-  background: #1AD08F;
+  background: #E4EBFC;
   -webkit-transition: 0.2s ease-in-out;
   transition: 0.2s ease-in-out;
   outline: none;
