@@ -159,27 +159,7 @@ export const TX_STATE_PROPTYPE = oneOf(Object.values(TxState) as Array<TxState>)
  * CoinType
  */
 
-const createCoinTypePropType =
-  isRequired => (props, propName, componentName) => {
-    const prop = props[propName]
-    if (prop == null) {
-      if (isRequired) {
-        return new Error(`Missing prop "${propName}" in "${componentName}"`)
-      }
-    } else {
-      const coinType = props[propName] as CoinType
-      if (coinType !== 'f' && coinType !== 't') {
-        return new Error(
-          `Invalid prop: ${propName} supplied to ${componentName}. Validation failed.`
-        )
-      }
-    }
-  }
-
-export const COIN_TYPE_PROPTYPE: Requireable<any> = Object.assign(
-  createCoinTypePropType(false),
-  { isRequired: createFilecoinNumberPropType(true) }
-)
+export const COIN_TYPE_PROPTYPE = oneOf([CoinType.MAIN, CoinType.TEST])
 
 /**
  * Mnemonic proptype
