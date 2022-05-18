@@ -3,6 +3,7 @@ import {
   render,
   act,
   getByRole,
+  fireEvent,
   RenderResult
 } from '@testing-library/react'
 import { BigIntInput } from './BigInt'
@@ -40,8 +41,10 @@ describe('BigInt input', () => {
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the value too high state correctly', async () => {
+  test('it renders the value too high state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
+    const value = 500n
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
@@ -49,22 +52,27 @@ describe('BigInt input', () => {
             label={labelText}
             info={infoText}
             max={100n}
-            value={500n}
+            value={value}
             setIsValid={setIsValid}
             autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'spinbutton').blur()
+      input = getByRole(result.container, 'spinbutton')
+      fireEvent.change(input, { target: { value: value.toString() } })
+      input.blur()
     })
+    expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the value too low state correctly', async () => {
+  test('it renders the value too low state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
+    const value = -500n
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
@@ -72,15 +80,18 @@ describe('BigInt input', () => {
             label={labelText}
             info={infoText}
             min={-100n}
-            value={-500n}
+            value={value}
             setIsValid={setIsValid}
             autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'spinbutton').blur()
+      input = getByRole(result.container, 'spinbutton')
+      fireEvent.change(input, { target: { value: value.toString() } })
+      input.blur()
     })
+    expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()

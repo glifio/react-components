@@ -3,6 +3,7 @@ import {
   render,
   act,
   getByRole,
+  fireEvent,
   RenderResult
 } from '@testing-library/react'
 import { FilecoinNumber } from '@glif/filecoin-number'
@@ -82,8 +83,10 @@ describe('Filecoin input', () => {
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the value too high state correctly', async () => {
+  test('it renders the value too high state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
+    const value = new FilecoinNumber(100, 'fil')
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
@@ -92,22 +95,27 @@ describe('Filecoin input', () => {
             info={infoText}
             denom='fil'
             max={new FilecoinNumber(10, 'fil')}
-            value={new FilecoinNumber(100, 'fil')}
+            value={value}
             setIsValid={setIsValid}
             autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'spinbutton').blur()
+      input = getByRole(result.container, 'spinbutton')
+      fireEvent.change(input, { target: { value: value.toFil() } })
+      input.blur()
     })
+    expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the value too low state correctly', async () => {
+  test('it renders the value too low state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
+    const value = new FilecoinNumber(10, 'fil')
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
@@ -116,15 +124,18 @@ describe('Filecoin input', () => {
             info={infoText}
             denom='fil'
             min={new FilecoinNumber(100, 'fil')}
-            value={new FilecoinNumber(10, 'fil')}
+            value={value}
             setIsValid={setIsValid}
             autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'spinbutton').blur()
+      input = getByRole(result.container, 'spinbutton')
+      fireEvent.change(input, { target: { value: value.toFil() } })
+      input.blur()
     })
+    expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
