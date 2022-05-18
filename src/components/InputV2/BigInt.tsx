@@ -75,6 +75,8 @@ export const BigIntInput = ({
     <BaseInput
       error={!hasFocus && hasChanged ? error : ''}
       type='number'
+      min={min === null ? '' : min.toString()}
+      max={max === null ? '' : max.toString()}
       value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}

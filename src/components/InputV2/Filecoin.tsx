@@ -121,6 +121,8 @@ export const FilecoinInput = ({
       error={!hasFocus && hasChanged ? error : ''}
       type='number'
       unit={getUnit(denom)}
+      min={min === null ? '' : getValue(min, denom)}
+      max={max === null ? '' : getValue(max, denom)}
       value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
