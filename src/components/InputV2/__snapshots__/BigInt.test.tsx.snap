@@ -80,8 +80,11 @@ exports[`BigInt input it renders correctly 1`] = `
   >
     <input
       class=""
+      max=""
+      min=""
       name=""
       placeholder=""
+      step=""
       style="padding-right: 1em;"
       type="number"
       value="500"
@@ -175,8 +178,11 @@ exports[`BigInt input it renders the disabled state correctly 1`] = `
     <input
       class=""
       disabled=""
+      max=""
+      min=""
       name=""
       placeholder=""
+      step=""
       style="padding-right: 1em;"
       type="number"
       value=""

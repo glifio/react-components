@@ -80,8 +80,11 @@ exports[`Text input it renders correctly 1`] = `
   >
     <input
       class=""
+      max=""
+      min=""
       name=""
       placeholder=""
+      step=""
       style="padding-right: 1em;"
       type="text"
       value="My name is Glif"
@@ -175,8 +178,11 @@ exports[`Text input it renders the disabled state correctly 1`] = `
     <input
       class=""
       disabled=""
+      max=""
+      min=""
       name=""
       placeholder=""
+      step=""
       style="padding-right: 1em;"
       type="text"
       value=""
