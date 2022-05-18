@@ -54,7 +54,7 @@ export const BigIntInput = ({
     if (!hasFocus) setValueBase(value === null ? '' : value.toString())
   }, [hasFocus, value])
 
-  // Set valueBase (string) and value (BigInt) when input changes
+  // Set "valueBase" (string) and "value" (BigInt) when input changes
   const onChangeBase = (newValueBase: string) => {
     setHasChanged(true)
     setValueBase(newValueBase)

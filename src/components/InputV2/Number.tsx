@@ -39,7 +39,7 @@ export const NumberInput = ({
     if (!hasFocus) setValueBase(isNaN(value) ? '' : value.toString())
   }, [hasFocus, value])
 
-  // Set valueBase (string) and value (number) when input changes
+  // Set "valueBase" (string) and "value" (number) when input changes
   const onChangeBase = (newValueBase: string) => {
     setHasChanged(true)
     setValueBase(newValueBase)
