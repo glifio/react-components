@@ -68,6 +68,7 @@ export const FilecoinInput = ({
   onChange,
   onFocus,
   onBlur,
+  onEnter,
   setIsValid,
   ...baseProps
 }: FilecoinInputProps) => {
@@ -88,15 +89,16 @@ export const FilecoinInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  // Set valueBase (string) when value (FilecoinNumber) changes
+  // Update "valueBase" (string) from "value" (FilecoinNumber) when the input
+  // doesn't have focus. This prevents undesired behaviour while entering numbers
   useEffect(() => {
-    setValueBase(value === null ? '' : getValue(value, denom))
-  }, [value, denom])
+    if (!hasFocus) setValueBase(value === null ? '' : getValue(value, denom))
+  }, [hasFocus, value, denom])
 
-  // Set valueBase (string) and value (FilecoinNumber) when input changes
+  // Set "valueBase" (string) and "value" (FilecoinNumber) when input changes
   const onChangeBase = (newValueBase: string) => {
-    setValueBase(newValueBase)
     setHasChanged(true)
+    setValueBase(newValueBase)
     const newValue = getFilecoinNumber(newValueBase, denom)
     if (
       (value === null && newValue !== null) ||
@@ -116,15 +118,25 @@ export const FilecoinInput = ({
     onBlur()
   }
 
+  // Update "valueBase" (string) from "value" (FilecoinNumber)
+  // when pressing enter to format the input value
+  const onEnterBase = () => {
+    setValueBase(value === null ? '' : getValue(value, denom))
+    onEnter()
+  }
+
   return (
     <BaseInput
       error={!hasFocus && hasChanged ? error : ''}
       type='number'
       unit={getUnit(denom)}
+      min={min === null ? '' : getValue(min, denom)}
+      max={max === null ? '' : getValue(max, denom)}
       value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
+      onEnter={onEnterBase}
       {...baseProps}
     />
   )
@@ -137,10 +149,12 @@ export const FilecoinInput = ({
  * error: set by filecoin input validation
  * type: always "number" for filecoin input
  * unit: will be based on the FilecoinDenomination
+ * min: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
+ * max: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
  * value: needs to be of type "FilecoinNumber" / "FILECOIN_NUMBER_PROPTYPE"
  * onChange: needs to take "FilecoinNumber" type argument
  *
- * We add "min", "max", "denom" and "setIsValid"
+ * We add "denom" and "setIsValid"
  */
 
 export type FilecoinInputProps = {
@@ -150,10 +164,14 @@ export type FilecoinInputProps = {
   denom?: FilecoinDenomination
   onChange?: (value: FilecoinNumber | null) => void
   setIsValid?: (isValid: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'unit' | 'value' | 'onChange'>
+} & Omit<
+  BaseInputProps,
+  'error' | 'type' | 'unit' | 'min' | 'max' | 'value' | 'onChange'
+>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
-const { error, type, unit, value, ...filecoinProps } = BaseInputPropTypes
+const { error, type, unit, min, max, value, ...filecoinProps } =
+  BaseInputPropTypes
 
 FilecoinInput.propTypes = {
   min: FILECOIN_NUMBER_PROPTYPE,
@@ -176,5 +194,6 @@ FilecoinInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  onEnter: () => {},
   setIsValid: () => {}
 }

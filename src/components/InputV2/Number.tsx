@@ -15,6 +15,7 @@ export const NumberInput = ({
   onChange,
   onFocus,
   onBlur,
+  onEnter,
   setIsValid,
   ...baseProps
 }: NumberInputProps) => {
@@ -33,15 +34,16 @@ export const NumberInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  // Set valueBase (string) when value (number) changes
+  // Update "valueBase" (string) from "value" (number) when the input doesn't
+  // have focus. This prevents undesired behaviour while entering numbers
   useEffect(() => {
-    setValueBase(isNaN(value) ? '' : value.toString())
-  }, [value])
+    if (!hasFocus) setValueBase(isNaN(value) ? '' : value.toString())
+  }, [hasFocus, value])
 
-  // Set valueBase (string) and value (number) when input changes
+  // Set "valueBase" (string) and "value" (number) when input changes
   const onChangeBase = (newValueBase: string) => {
-    setValueBase(newValueBase)
     setHasChanged(true)
+    setValueBase(newValueBase)
     const newValue = newValueBase ? Number(newValueBase) : NaN
     if (newValue !== value) onChange(newValue)
   }
@@ -56,14 +58,24 @@ export const NumberInput = ({
     onBlur()
   }
 
+  // Update "valueBase" (string) from "value" (number)
+  // when pressing enter to format the input value
+  const onEnterBase = () => {
+    setValueBase(isNaN(value) ? '' : value.toString())
+    onEnter()
+  }
+
   return (
     <BaseInput
       error={!hasFocus && hasChanged ? error : ''}
       type='number'
+      min={min === -Infinity ? '' : min}
+      max={max === Infinity ? '' : max}
       value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
+      onEnter={onEnterBase}
       {...baseProps}
     />
   )
@@ -75,10 +87,12 @@ export const NumberInput = ({
  *
  * error: set by number input validation
  * type: always "number" for number input
+ * min: needs to be of type "number" / "PropTypes.number"
+ * max: needs to be of type "number" / "PropTypes.number"
  * value: needs to be of type "number" / "PropTypes.number"
  * onChange: needs to take "number" type argument
  *
- * We add "min", "max" and "setIsValid"
+ * We add "setIsValid"
  */
 
 export type NumberInputProps = {
@@ -87,10 +101,13 @@ export type NumberInputProps = {
   value?: number
   onChange?: (value: number) => void
   setIsValid?: (isValid: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange'>
+} & Omit<
+  BaseInputProps,
+  'error' | 'type' | 'min' | 'max' | 'value' | 'onChange'
+>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
-const { error, type, value, ...numberProps } = BaseInputPropTypes
+const { error, type, min, max, value, ...numberProps } = BaseInputPropTypes
 
 NumberInput.propTypes = {
   min: PropTypes.number,
@@ -111,5 +128,6 @@ NumberInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  onEnter: () => {},
   setIsValid: () => {}
 }

@@ -12,6 +12,9 @@ export const BaseInput = ({
   autofocus,
   disabled,
   placeholder,
+  min,
+  max,
+  step,
   value,
   unit,
   onChange,
@@ -45,6 +48,9 @@ export const BaseInput = ({
         autoFocus={autofocus}
         disabled={disabled}
         placeholder={placeholder}
+        min={min}
+        max={max}
+        step={step}
         value={value}
         onChange={e => onChange(e.target.value)}
         onFocus={() => onFocus()}
@@ -69,6 +75,9 @@ export interface BaseInputProps {
   autofocus?: boolean
   disabled?: boolean
   placeholder?: string
+  min?: number | string
+  max?: number | string
+  step?: number | string
   value?: string
   unit?: string
   onChange?: (value: string) => void
@@ -88,6 +97,9 @@ export const BaseInputPropTypes = {
   autofocus: PropTypes.bool,
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
+  min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   value: PropTypes.string,
   unit: PropTypes.string,
   onChange: PropTypes.func,
@@ -108,6 +120,9 @@ BaseInput.defaultProps = {
   autofocus: false,
   disabled: false,
   placeholder: '',
+  min: '',
+  max: '',
+  step: '',
   value: '',
   unit: '',
   onChange: () => {},

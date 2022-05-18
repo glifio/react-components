@@ -28,6 +28,7 @@ export const BigIntInput = ({
   onChange,
   onFocus,
   onBlur,
+  onEnter,
   setIsValid,
   ...baseProps
 }: BigIntInputProps) => {
@@ -48,15 +49,16 @@ export const BigIntInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  // Set valueBase (string) when value (BigInt) changes
+  // Update "valueBase" (string) from "value" (BigInt) when the input doesn't
+  // have focus. This prevents undesired behaviour while entering numbers
   useEffect(() => {
-    setValueBase(value === null ? '' : value.toString())
-  }, [value])
+    if (!hasFocus) setValueBase(value === null ? '' : value.toString())
+  }, [hasFocus, value])
 
-  // Set valueBase (string) and value (BigInt) when input changes
+  // Set "valueBase" (string) and "value" (BigInt) when input changes
   const onChangeBase = (newValueBase: string) => {
-    setValueBase(newValueBase)
     setHasChanged(true)
+    setValueBase(newValueBase)
     const newValue = getBigInt(newValueBase)
     if (newValue !== value) onChange(newValue)
   }
@@ -71,14 +73,24 @@ export const BigIntInput = ({
     onBlur()
   }
 
+  // Update "valueBase" (string) from "value" (BigInt)
+  // when pressing enter to format the input value
+  const onEnterBase = () => {
+    setValueBase(value === null ? '' : value.toString())
+    onEnter()
+  }
+
   return (
     <BaseInput
       error={!hasFocus && hasChanged ? error : ''}
       type='number'
+      min={min === null ? '' : min.toString()}
+      max={max === null ? '' : max.toString()}
       value={valueBase}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
+      onEnter={onEnterBase}
       {...baseProps}
     />
   )
@@ -90,10 +102,12 @@ export const BigIntInput = ({
  *
  * error: set by bigint input validation
  * type: always "number" for bigint input
+ * min: needs to be of type "BigInt" / "PropTypes.bigint"
+ * max: needs to be of type "BigInt" / "PropTypes.bigint"
  * value: needs to be of type "BigInt" / "PropTypes.bigint"
  * onChange: needs to take "BigInt" type argument
  *
- * We add "min", "max" and "setIsValid"
+ * We add "setIsValid"
  */
 
 export type BigIntInputProps = {
@@ -102,10 +116,13 @@ export type BigIntInputProps = {
   value?: BigInt | null
   onChange?: (value: BigInt | null) => void
   setIsValid?: (isValid: boolean) => void
-} & Omit<BaseInputProps, 'error' | 'type' | 'value' | 'onChange'>
+} & Omit<
+  BaseInputProps,
+  'error' | 'type' | 'min' | 'max' | 'value' | 'onChange'
+>
 
 // "onChange" remains "PropTypes.func", so doesn't need an override
-const { error, type, value, ...bigIntProps } = BaseInputPropTypes
+const { error, type, min, max, value, ...bigIntProps } = BaseInputPropTypes
 
 // @types/prop-types is outdated
 BigIntInput.propTypes = {
@@ -130,5 +147,6 @@ BigIntInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  onEnter: () => {},
   setIsValid: () => {}
 }
