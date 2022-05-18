@@ -48,10 +48,11 @@ export const BigIntInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  // Set valueBase (string) when value (BigInt) changes
+  // Update "valueBase" (string) from "value" (BigInt) when the input doesn't
+  // have focus. This prevents undesired behaviour while entering numbers
   useEffect(() => {
-    setValueBase(value === null ? '' : value.toString())
-  }, [value])
+    if (!hasFocus) setValueBase(value === null ? '' : value.toString())
+  }, [hasFocus, value])
 
   // Set valueBase (string) and value (BigInt) when input changes
   const onChangeBase = (newValueBase: string) => {

@@ -88,10 +88,11 @@ export const FilecoinInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  // Set valueBase (string) when value (FilecoinNumber) changes
+  // Update "valueBase" (string) from "value" (FilecoinNumber) when the input
+  // doesn't have focus. This prevents undesired behaviour while entering numbers
   useEffect(() => {
-    setValueBase(value === null ? '' : getValue(value, denom))
-  }, [value, denom])
+    if (!hasFocus) setValueBase(value === null ? '' : getValue(value, denom))
+  }, [hasFocus, value, denom])
 
   // Set valueBase (string) and value (FilecoinNumber) when input changes
   const onChangeBase = (newValueBase: string) => {

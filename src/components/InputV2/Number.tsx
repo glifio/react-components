@@ -33,10 +33,11 @@ export const NumberInput = ({
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
-  // Set valueBase (string) when value (number) changes
+  // Update "valueBase" (string) from "value" (number) when the input doesn't
+  // have focus. This prevents undesired behaviour while entering numbers
   useEffect(() => {
-    setValueBase(isNaN(value) ? '' : value.toString())
-  }, [value])
+    if (!hasFocus) setValueBase(isNaN(value) ? '' : value.toString())
+  }, [hasFocus, value])
 
   // Set valueBase (string) and value (number) when input changes
   const onChangeBase = (newValueBase: string) => {
