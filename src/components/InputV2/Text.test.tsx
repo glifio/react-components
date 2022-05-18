@@ -3,6 +3,7 @@ import {
   render,
   act,
   getByRole,
+  fireEvent,
   RenderResult
 } from '@testing-library/react'
 import { TextInput } from './Text'
@@ -41,8 +42,9 @@ describe('Text input', () => {
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the required state correctly', async () => {
+  test('it renders the required state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
@@ -56,15 +58,19 @@ describe('Text input', () => {
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'textbox').blur()
+      input = getByRole(result.container, 'textbox')
+      fireEvent.change(input, { target: { value: 'test' } })
+      input.blur()
     })
+    expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the vertical required state correctly', async () => {
+  test('it renders the vertical required state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
@@ -79,8 +85,11 @@ describe('Text input', () => {
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'textbox').blur()
+      input = getByRole(result.container, 'textbox')
+      fireEvent.change(input, { target: { value: 'test' } })
+      input.blur()
     })
+    expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
