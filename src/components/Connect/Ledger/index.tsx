@@ -80,10 +80,17 @@ const ConnectLedger: FC<{ next: () => void; back: () => void }> = ({
   next,
   back
 }) => {
-  const { connectLedger, dispatch, ledger, fetchDefaultWallet, walletList } =
-    useWalletProvider()
+  const {
+    connectLedger,
+    dispatch,
+    ledger,
+    fetchDefaultWallet,
+    walletList,
+    setLoginOption
+  } = useWalletProvider()
   const [uncaughtError, setUncaughtError] = useState('')
   const [loading, setLoading] = useState(false)
+
   const error = hasLedgerError({
     ...ledger,
     otherError: uncaughtError
@@ -92,6 +99,7 @@ const ConnectLedger: FC<{ next: () => void; back: () => void }> = ({
   const onClick = async () => {
     setLoading(true)
     setUncaughtError('')
+    setLoginOption(LoginOption.LEDGER)
     try {
       const provider = await connectLedger()
       if (provider) {
