@@ -57,7 +57,6 @@ describe('Number input', () => {
             label={labelText}
             info={infoText}
             max={100}
-            value={NaN}
             setIsValid={setIsValid}
             autofocus={true}
           />
@@ -85,7 +84,6 @@ describe('Number input', () => {
             label={labelText}
             info={infoText}
             min={-100}
-            value={NaN}
             setIsValid={setIsValid}
             autofocus={true}
           />

@@ -100,7 +100,6 @@ describe('Filecoin input', () => {
             info={infoText}
             denom='fil'
             max={new FilecoinNumber(10, 'fil')}
-            value={null}
             setIsValid={setIsValid}
             autofocus={true}
           />
@@ -129,7 +128,6 @@ describe('Filecoin input', () => {
             info={infoText}
             denom='fil'
             min={new FilecoinNumber(100, 'fil')}
-            value={null}
             setIsValid={setIsValid}
             autofocus={true}
           />

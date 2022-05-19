@@ -57,7 +57,6 @@ describe('BigInt input', () => {
             label={labelText}
             info={infoText}
             max={100n}
-            value={null}
             setIsValid={setIsValid}
             autofocus={true}
           />
@@ -85,7 +84,6 @@ describe('BigInt input', () => {
             label={labelText}
             info={infoText}
             min={-100n}
-            value={null}
             setIsValid={setIsValid}
             autofocus={true}
           />
