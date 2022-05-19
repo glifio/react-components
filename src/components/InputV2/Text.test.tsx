@@ -83,11 +83,7 @@ describe('Text input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <TextInput
-            label={labelText}
-            info={infoText}
-            onTimeout={onTimeout}
-          />
+          <TextInput label={labelText} info={infoText} onTimeout={onTimeout} />
         </ThemeProvider>
       )
       // Enter something in the input field
