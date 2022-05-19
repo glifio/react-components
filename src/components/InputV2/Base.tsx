@@ -49,7 +49,7 @@ export const BaseInput = ({
   useEffect(() => {
     // Clear timer on dismount
     return () => stopTimer()
-  }, [timerId])
+  }, [stopTimer])
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     stopTimer()
