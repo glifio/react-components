@@ -21,14 +21,21 @@ function ControlledInput({ value, ...props }: TextInputProps) {
 }
 
 describe('Text input', () => {
-  afterEach(cleanup)
   let setIsValid = jest.fn()
   let onDelete = jest.fn()
+  let onTimeout = jest.fn()
 
   beforeEach(() => {
+    jest.useFakeTimers()
     jest.clearAllMocks()
     setIsValid = jest.fn()
     onDelete = jest.fn()
+    onTimeout = jest.fn()
+  })
+
+  afterEach(() => {
+    jest.clearAllTimers()
+    cleanup()
   })
 
   test('it renders correctly', async () => {
@@ -68,6 +75,27 @@ describe('Text input', () => {
       fireEvent.click(result.container.querySelector('svg'))
     })
     expect(onDelete).toHaveBeenCalledTimes(1)
+    expect(result.container.firstChild).toMatchSnapshot()
+  })
+
+  test('it calls onTimeout after the user enters text', async () => {
+    let result: RenderResult | null = null
+    await act(async () => {
+      result = render(
+        <ThemeProvider theme={theme}>
+          <TextInput
+            label={labelText}
+            info={infoText}
+            onTimeout={onTimeout}
+          />
+        </ThemeProvider>
+      )
+      // Enter something in the input field
+      const input = getByRole(result.container, 'textbox')
+      fireEvent.change(input, { target: { value: inputValue } })
+      jest.runAllTimers()
+    })
+    expect(onTimeout).toHaveBeenCalledTimes(1)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
