@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types'
 import { Label } from './Label'
+import { IconClose } from '../Icons'
 
 export const BaseInput = ({
+  deletable,
   vertical,
   centered,
   label,
@@ -40,31 +42,37 @@ export const BaseInput = ({
         {error && <span className='error'>{error}</span>}
       </div>
     )}
-    <div className='text-input-wrapper'>
-      <input
-        className={error ? 'error' : ''}
-        name={name}
-        type={type}
-        autoFocus={autofocus}
-        disabled={disabled}
-        placeholder={placeholder}
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        onFocus={() => onFocus()}
-        onBlur={() => onBlur()}
-        onKeyDown={e => e.key === 'Enter' && onEnter()}
-        style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
-      />
-      {unit && <span className='unit'>{unit}</span>}
+    <div className='button-wrapper'>
+      <div className='unit-wrapper'>
+        <input
+          className={error ? 'error' : ''}
+          name={name}
+          type={type}
+          autoFocus={autofocus}
+          disabled={disabled}
+          placeholder={placeholder}
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          onFocus={() => onFocus()}
+          onBlur={() => onBlur()}
+          onKeyDown={e => e.key === 'Enter' && onEnter()}
+          style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
+        />
+        {unit && <span className='unit'>{unit}</span>}
+      </div>
+      {deletable && (
+        <IconClose />
+      )}
     </div>
     {vertical && error && <span className='error'>{error}</span>}
   </Label>
 )
 
 export interface BaseInputProps {
+  deletable?: boolean
   vertical?: boolean
   centered?: boolean
   label?: string
@@ -87,6 +95,7 @@ export interface BaseInputProps {
 }
 
 export const BaseInputPropTypes = {
+  deletable: PropTypes.bool,
   vertical: PropTypes.bool,
   centered: PropTypes.bool,
   label: PropTypes.string,
@@ -110,6 +119,7 @@ export const BaseInputPropTypes = {
 
 BaseInput.propTypes = BaseInputPropTypes
 BaseInput.defaultProps = {
+  deletable: false,
   vertical: false,
   centered: false,
   label: '',
