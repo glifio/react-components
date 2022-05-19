@@ -8,6 +8,7 @@ import {
 } from '@testing-library/react'
 import { useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
+import { flushPromises } from '../../test-utils'
 import { FilecoinInput, FilecoinInputProps } from './Filecoin'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
@@ -154,6 +155,41 @@ describe('Filecoin input', () => {
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()
+    })
+  })
+
+  test('the user can input fractional values', async () => {
+    let result: RenderResult | null = null
+    let input: HTMLElement | null = null
+    await act(async () => {
+      result = render(
+        <ThemeProvider theme={theme}>
+          <ControlledInput
+            label={labelText}
+            info={infoText}
+            autofocus={true}
+          />
+        </ThemeProvider>
+      )
+      input = getByRole(result.container, 'spinbutton')
+      
+      // It treats a "." as an invalid number
+      fireEvent.change(input, { target: { value: '.' } })
+      input.blur()
+      await flushPromises()
+      expect(input).toHaveValue(null)
+      
+      // It treats ".0" as "0"
+      fireEvent.change(input, { target: { value: '.0' } })
+      input.blur()
+      await flushPromises()
+      expect(input).toHaveValue(0)
+      
+      // It treats ".01" as "0.01"
+      fireEvent.change(input, { target: { value: '.01' } })
+      input.blur()
+      await flushPromises()
+      expect(input).toHaveValue(0.01)
     })
   })
 })
