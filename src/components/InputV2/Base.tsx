@@ -22,7 +22,8 @@ export const BaseInput = ({
   onChange,
   onFocus,
   onBlur,
-  onEnter
+  onEnter,
+  onDelete
 }: BaseInputProps) => (
   <Label
     disabled={disabled}
@@ -64,7 +65,7 @@ export const BaseInput = ({
         {unit && <span className='unit'>{unit}</span>}
       </div>
       {deletable && (
-        <IconClose />
+        <IconClose onClick={onDelete} />
       )}
     </div>
     {vertical && error && <span className='error'>{error}</span>}
@@ -92,6 +93,7 @@ export interface BaseInputProps {
   onFocus?: () => void
   onBlur?: () => void
   onEnter?: () => void
+  onDelete?: () => void
 }
 
 export const BaseInputPropTypes = {
@@ -114,7 +116,8 @@ export const BaseInputPropTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  onEnter: PropTypes.func
+  onEnter: PropTypes.func,
+  onDelete: PropTypes.func
 }
 
 BaseInput.propTypes = BaseInputPropTypes
@@ -138,5 +141,6 @@ BaseInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  onEnter: () => {}
+  onEnter: () => {},
+  onDelete: () => {}
 }
