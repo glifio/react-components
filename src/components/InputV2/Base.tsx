@@ -24,53 +24,55 @@ export const BaseInput = ({
   onBlur,
   onEnter,
   onDelete
-}: BaseInputProps) => (
-  <Label
-    disabled={disabled}
-    vertical={vertical}
-    centered={centered}
-    error={!!error}
-  >
-    {vertical ? (
-      <>
-        {label && <span>{label}</span>}
-        {info && <span className='info'>{info}</span>}
-      </>
-    ) : (
-      <div>
-        {label && <span>{label}</span>}
-        {info && <span className='info'>{info}</span>}
-        {error && <span className='error'>{error}</span>}
-      </div>
-    )}
-    <div className='button-wrapper'>
-      <div className='unit-wrapper'>
-        <input
-          className={error ? 'error' : ''}
-          name={name}
-          type={type}
-          autoFocus={autofocus}
-          disabled={disabled}
-          placeholder={placeholder}
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          onChange={e => onChange(e.target.value)}
-          onFocus={() => onFocus()}
-          onBlur={() => onBlur()}
-          onKeyDown={e => e.key === 'Enter' && onEnter()}
-          style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
-        />
-        {unit && <span className='unit'>{unit}</span>}
-      </div>
-      {deletable && (
-        <IconClose onClick={onDelete} />
+}: BaseInputProps) => {
+  return (
+    <Label
+      disabled={disabled}
+      vertical={vertical}
+      centered={centered}
+      error={!!error}
+    >
+      {vertical ? (
+        <>
+          {label && <span>{label}</span>}
+          {info && <span className='info'>{info}</span>}
+        </>
+      ) : (
+        <div>
+          {label && <span>{label}</span>}
+          {info && <span className='info'>{info}</span>}
+          {error && <span className='error'>{error}</span>}
+        </div>
       )}
-    </div>
-    {vertical && error && <span className='error'>{error}</span>}
-  </Label>
-)
+      <div className='button-wrapper'>
+        <div className='unit-wrapper'>
+          <input
+            className={error ? 'error' : ''}
+            name={name}
+            type={type}
+            autoFocus={autofocus}
+            disabled={disabled}
+            placeholder={placeholder}
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            onChange={e => onChange(e.target.value)}
+            onFocus={() => onFocus()}
+            onBlur={() => onBlur()}
+            onKeyDown={e => e.key === 'Enter' && onEnter()}
+            style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
+          />
+          {unit && <span className='unit'>{unit}</span>}
+        </div>
+        {deletable && (
+          <IconClose onClick={onDelete} />
+        )}
+      </div>
+      {vertical && error && <span className='error'>{error}</span>}
+    </Label>
+  )
+}
 
 export interface BaseInputProps {
   deletable?: boolean
