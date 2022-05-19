@@ -39,6 +39,10 @@ const connectWithLedger = async (
       })
     }
     await subProvider.ready()
+
+    return new Filecoin(subProvider, {
+      apiAddress: lotusApiAddr
+    }) as Filecoin & { wallet: LedgerProvider }
   } catch (err) {
     if (err instanceof Error) {
       if (err instanceof walletProviderErrors.LedgerFilecoinAppNotOpenError) {
@@ -75,10 +79,6 @@ const connectWithLedger = async (
       dispatch({ type: 'LEDGER_REPLUG' })
     }
   }
-
-  return new Filecoin(subProvider, {
-    apiAddress: lotusApiAddr
-  }) as Filecoin & { wallet: LedgerProvider }
 }
 
 export default connectWithLedger
