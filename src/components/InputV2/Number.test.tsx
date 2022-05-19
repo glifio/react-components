@@ -43,7 +43,7 @@ describe('Number input', () => {
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(true)
+    expect(setIsValid).toHaveBeenLastCalledWith(true)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
@@ -70,7 +70,7 @@ describe('Number input', () => {
     expect(input).toHaveValue(500)
     expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(2)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
@@ -97,7 +97,7 @@ describe('Number input', () => {
     expect(input).toHaveValue(-500)
     expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(2)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 

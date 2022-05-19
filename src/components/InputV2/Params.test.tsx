@@ -39,7 +39,7 @@ describe('Params input', () => {
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(true)
+    expect(setIsValid).toHaveBeenLastCalledWith(true)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
@@ -65,7 +65,7 @@ describe('Params input', () => {
     })
     expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
@@ -91,7 +91,7 @@ describe('Params input', () => {
     })
     expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 

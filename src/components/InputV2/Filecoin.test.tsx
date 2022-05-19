@@ -45,7 +45,7 @@ describe('Filecoin input', () => {
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(true)
+    expect(setIsValid).toHaveBeenLastCalledWith(true)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
@@ -65,7 +65,7 @@ describe('Filecoin input', () => {
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(true)
+    expect(setIsValid).toHaveBeenLastCalledWith(true)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
@@ -85,7 +85,7 @@ describe('Filecoin input', () => {
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(true)
+    expect(setIsValid).toHaveBeenLastCalledWith(true)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
@@ -113,7 +113,7 @@ describe('Filecoin input', () => {
     expect(input).toHaveValue(100)
     expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(2)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
@@ -141,7 +141,7 @@ describe('Filecoin input', () => {
     expect(input).toHaveValue(10)
     expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(2)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
