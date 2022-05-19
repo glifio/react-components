@@ -6,13 +6,19 @@ import {
   fireEvent,
   RenderResult
 } from '@testing-library/react'
-import { TextInput } from './Text'
+import { useState } from 'react'
+import { TextInput, TextInputProps } from './Text'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 
 const labelText = 'Enter your name'
 const infoText = 'Nice to meet you'
 const value = 'My name is Glif'
+
+function ControlledInput({ value, ...props }: TextInputProps) {
+  const [controlled, setControlled] = useState<string>(value)
+  return <TextInput value={controlled} onChange={setControlled} {...props} />
+}
 
 describe('Text input', () => {
   afterEach(cleanup)
@@ -48,9 +54,10 @@ describe('Text input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <TextInput
+          <ControlledInput
             label={labelText}
             info={infoText}
+            value={value}
             setIsValid={setIsValid}
             required={true}
             autofocus={true}
@@ -59,12 +66,13 @@ describe('Text input', () => {
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'textbox')
-      fireEvent.change(input, { target: { value: 'test' } })
+      fireEvent.change(input, { target: { value: '' } })
       input.blur()
     })
+    expect(input).toHaveValue('')
     expect(input).toHaveClass('error')
-    expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(setIsValid).toHaveBeenCalledTimes(2)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
@@ -74,9 +82,10 @@ describe('Text input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <TextInput
+          <ControlledInput
             label={labelText}
             info={infoText}
+            value={value}
             setIsValid={setIsValid}
             vertical={true}
             required={true}
@@ -86,11 +95,12 @@ describe('Text input', () => {
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'textbox')
-      fireEvent.change(input, { target: { value: 'test' } })
+      fireEvent.change(input, { target: { value: '' } })
       input.blur()
     })
+    expect(input).toHaveValue('')
     expect(input).toHaveClass('error')
-    expect(setIsValid).toHaveBeenCalledTimes(1)
+    expect(setIsValid).toHaveBeenCalledTimes(2)
     expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
