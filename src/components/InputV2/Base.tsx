@@ -1,5 +1,11 @@
 import PropTypes from 'prop-types'
-import { ChangeEvent, KeyboardEvent, useEffect, useRef } from 'react'
+import {
+  ChangeEvent,
+  KeyboardEvent,
+  useEffect,
+  useRef,
+  useCallback
+} from 'react'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
 
@@ -30,19 +36,19 @@ export const BaseInput = ({
   let timerId = useRef<NodeJS.Timeout | null>(null)
   const timerMs = 1000
 
-  const startTimer = () => {
+  const startTimer = useCallback(() => {
     timerId.current = setTimeout(() => {
       timerId.current = null
       onTimeout()
     }, timerMs)
-  }
+  }, [onTimeout])
 
-  const stopTimer = () => {
+  const stopTimer = useCallback(() => {
     if (timerId.current) {
       clearTimeout(timerId.current)
       timerId.current = null
     }
-  }
+  }, [])
 
   useEffect(() => {
     // Clear timer on dismount
