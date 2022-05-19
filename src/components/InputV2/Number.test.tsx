@@ -3,14 +3,22 @@ import {
   render,
   act,
   getByRole,
+  fireEvent,
   RenderResult
 } from '@testing-library/react'
-import { NumberInput } from './Number'
+import { useState } from 'react'
+import { flushPromises } from '../../test-utils'
+import { NumberInput, NumberInputProps } from './Number'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 
 const labelText = 'What is your favourite number?'
 const infoText = 'Or your second favourite'
+
+function ControlledInput({ value, ...props }: NumberInputProps) {
+  const [controlled, setControlled] = useState<number>(value)
+  return <NumberInput value={controlled} onChange={setControlled} {...props} />
+}
 
 describe('Number input', () => {
   afterEach(cleanup)
@@ -36,53 +44,61 @@ describe('Number input', () => {
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(true)
+    expect(setIsValid).toHaveBeenLastCalledWith(true)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the value too high state correctly', async () => {
+  test('it renders the value too high state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <NumberInput
+          <ControlledInput
             label={labelText}
             info={infoText}
             max={100}
-            value={500}
             setIsValid={setIsValid}
             autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'spinbutton').blur()
+      input = getByRole(result.container, 'spinbutton')
+      fireEvent.change(input, { target: { value: 500 } })
+      input.blur()
     })
-    expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(input).toHaveValue(500)
+    expect(input).toHaveClass('error')
+    expect(setIsValid).toHaveBeenCalledTimes(2)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the value too low state correctly', async () => {
+  test('it renders the value too low state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <NumberInput
+          <ControlledInput
             label={labelText}
             info={infoText}
             min={-100}
-            value={-500}
             setIsValid={setIsValid}
             autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'spinbutton').blur()
+      input = getByRole(result.container, 'spinbutton')
+      fireEvent.change(input, { target: { value: -500 } })
+      input.blur()
     })
-    expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(input).toHaveValue(-500)
+    expect(input).toHaveClass('error')
+    expect(setIsValid).toHaveBeenCalledTimes(2)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
@@ -95,6 +111,37 @@ describe('Number input', () => {
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()
+    })
+  })
+
+  test('the user can input fractional values', async () => {
+    let result: RenderResult | null = null
+    let input: HTMLElement | null = null
+    await act(async () => {
+      result = render(
+        <ThemeProvider theme={theme}>
+          <ControlledInput label={labelText} info={infoText} autofocus={true} />
+        </ThemeProvider>
+      )
+      input = getByRole(result.container, 'spinbutton')
+
+      // It treats a "." as an invalid number
+      fireEvent.change(input, { target: { value: '.' } })
+      input.blur()
+      await flushPromises()
+      expect(input).toHaveValue(null)
+
+      // It treats ".0" as "0"
+      fireEvent.change(input, { target: { value: '.0' } })
+      input.blur()
+      await flushPromises()
+      expect(input).toHaveValue(0)
+
+      // It treats ".01" as "0.01"
+      fireEvent.change(input, { target: { value: '.01' } })
+      input.blur()
+      await flushPromises()
+      expect(input).toHaveValue(0.01)
     })
   })
 })

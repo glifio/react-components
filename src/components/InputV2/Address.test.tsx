@@ -3,9 +3,11 @@ import {
   render,
   act,
   getByRole,
+  fireEvent,
   RenderResult
 } from '@testing-library/react'
-import { AddressInput } from './Address'
+import { useState } from 'react'
+import { AddressInput, AddressInputProps } from './Address'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 
@@ -13,6 +15,11 @@ const labelText = "Enter the recipient's address"
 const infoText = 'This will receive your funds'
 const validAddress = 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza'
 const invalidAddress = 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucz'
+
+function ControlledInput({ value, ...props }: AddressInputProps) {
+  const [controlled, setControlled] = useState<string>(value)
+  return <AddressInput value={controlled} onChange={setControlled} {...props} />
+}
 
 describe('Address input', () => {
   afterEach(cleanup)
@@ -38,29 +45,33 @@ describe('Address input', () => {
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(true)
+    expect(setIsValid).toHaveBeenLastCalledWith(true)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the invalid state correctly', async () => {
+  test('it renders the invalid state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <AddressInput
+          <ControlledInput
             label={labelText}
             info={infoText}
-            value={invalidAddress}
             setIsValid={setIsValid}
             autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'textbox').blur()
+      input = getByRole(result.container, 'textbox')
+      fireEvent.change(input, { target: { value: invalidAddress } })
+      input.blur()
     })
+    expect(input).toHaveValue(invalidAddress)
+    expect(input).toHaveClass('error')
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 

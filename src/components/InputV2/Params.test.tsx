@@ -3,9 +3,11 @@ import {
   render,
   act,
   getByRole,
+  fireEvent,
   RenderResult
 } from '@testing-library/react'
-import { ParamsInput } from './Params'
+import { useState } from 'react'
+import { ParamsInput, ParamsInputProps } from './Params'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 
@@ -13,6 +15,11 @@ const labelText = 'Enter some Base64 parameters'
 const infoText = 'Only valid Base64 is allowed'
 const validBase64 = 'dGVzdDEyMw=='
 const invalidBase64 = 'test123'
+
+function ControlledInput({ value, ...props }: ParamsInputProps) {
+  const [controlled, setControlled] = useState<string>(value)
+  return <ParamsInput value={controlled} onChange={setControlled} {...props} />
+}
 
 describe('Params input', () => {
   afterEach(cleanup)
@@ -38,40 +45,46 @@ describe('Params input', () => {
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(true)
+    expect(setIsValid).toHaveBeenLastCalledWith(true)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the invalid state correctly', async () => {
+  test('it renders the invalid state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ParamsInput
+          <ControlledInput
             label={labelText}
             info={infoText}
-            value={invalidBase64}
             setIsValid={setIsValid}
             autofocus={true}
           />
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'textbox').blur()
+      input = getByRole(result.container, 'textbox')
+      fireEvent.change(input, { target: { value: invalidBase64 } })
+      input.blur()
     })
-    expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(input).toHaveValue(invalidBase64)
+    expect(input).toHaveClass('error')
+    expect(setIsValid).toHaveBeenCalledTimes(2)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
-  test.skip('it renders the required state correctly', async () => {
+  test('it renders the required state correctly', async () => {
     let result: RenderResult | null = null
+    let input: HTMLElement | null = null
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ParamsInput
+          <ControlledInput
             label={labelText}
             info={infoText}
+            value={validBase64}
             setIsValid={setIsValid}
             required={true}
             autofocus={true}
@@ -79,10 +92,14 @@ describe('Params input', () => {
         </ThemeProvider>
       )
       // Make sure the error is shown
-      getByRole(result.container, 'textbox').blur()
+      input = getByRole(result.container, 'textbox')
+      fireEvent.change(input, { target: { value: '' } })
+      input.blur()
     })
-    expect(setIsValid).toHaveBeenCalledTimes(1)
-    expect(setIsValid).toHaveBeenCalledWith(false)
+    expect(input).toHaveValue('')
+    expect(input).toHaveClass('error')
+    expect(setIsValid).toHaveBeenCalledTimes(2)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 

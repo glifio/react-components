@@ -277,7 +277,11 @@ exports[`Number input it renders the value too high state correctly 1`] = `
   >
     <input
       class="error"
+      max="100"
+      min=""
+      name=""
       placeholder=""
+      step=""
       style="padding-right: 1em;"
       type="number"
       value="500"
@@ -372,7 +376,11 @@ exports[`Number input it renders the value too low state correctly 1`] = `
   >
     <input
       class="error"
+      max=""
+      min="-100"
+      name=""
       placeholder=""
+      step=""
       style="padding-right: 1em;"
       type="number"
       value="-500"

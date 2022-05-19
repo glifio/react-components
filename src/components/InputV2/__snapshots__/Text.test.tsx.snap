@@ -277,7 +277,11 @@ exports[`Text input it renders the required state correctly 1`] = `
   >
     <input
       class="error"
+      max=""
+      min=""
+      name=""
       placeholder=""
+      step=""
       style="padding-right: 1em;"
       type="text"
       value=""
@@ -344,7 +348,11 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
   >
     <input
       class="error"
+      max=""
+      min=""
+      name=""
       placeholder=""
+      step=""
       style="padding-right: 1em;"
       type="text"
       value=""

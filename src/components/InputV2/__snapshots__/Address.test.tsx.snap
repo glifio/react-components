@@ -277,7 +277,11 @@ exports[`Address input it renders the invalid state correctly 1`] = `
   >
     <input
       class="error"
+      max=""
+      min=""
+      name=""
       placeholder="f1..."
+      step=""
       style="padding-right: 1em;"
       type="text"
       value="t1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucz"
