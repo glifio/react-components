@@ -23,10 +23,12 @@ function ControlledInput({ value, ...props }: TextInputProps) {
 describe('Text input', () => {
   afterEach(cleanup)
   let setIsValid = jest.fn()
+  let onDelete = jest.fn()
 
   beforeEach(() => {
     jest.clearAllMocks()
     setIsValid = jest.fn()
+    onDelete = jest.fn()
   })
 
   test('it renders correctly', async () => {
@@ -45,6 +47,27 @@ describe('Text input', () => {
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
     expect(setIsValid).toHaveBeenLastCalledWith(true)
+    expect(result.container.firstChild).toMatchSnapshot()
+  })
+
+  test('it calls onDelete when the delete button is clicked', async () => {
+    let result: RenderResult | null = null
+    await act(async () => {
+      result = render(
+        <ThemeProvider theme={theme}>
+          <TextInput
+            deletable={true}
+            label={labelText}
+            info={infoText}
+            value={inputValue}
+            onDelete={onDelete}
+          />
+        </ThemeProvider>
+      )
+      // Click on the delete button
+      fireEvent.click(result.container.querySelector('svg'))
+    })
+    expect(onDelete).toHaveBeenCalledTimes(1)
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
