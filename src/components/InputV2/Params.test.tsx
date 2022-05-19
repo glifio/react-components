@@ -6,7 +6,8 @@ import {
   fireEvent,
   RenderResult
 } from '@testing-library/react'
-import { ParamsInput } from './Params'
+import { useState } from 'react'
+import { ParamsInput, ParamsInputProps } from './Params'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 
@@ -14,6 +15,11 @@ const labelText = 'Enter some Base64 parameters'
 const infoText = 'Only valid Base64 is allowed'
 const validBase64 = 'dGVzdDEyMw=='
 const invalidBase64 = 'test123'
+
+function ControlledInput({ value, ...props }: ParamsInputProps) {
+  const [controlled, setControlled] = useState<string>(value)
+  return <ParamsInput value={controlled} onChange={setControlled} {...props} />
+}
 
 describe('Params input', () => {
   afterEach(cleanup)
@@ -49,10 +55,9 @@ describe('Params input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ParamsInput
+          <ControlledInput
             label={labelText}
             info={infoText}
-            value={invalidBase64}
             setIsValid={setIsValid}
             autofocus={true}
           />
@@ -60,11 +65,12 @@ describe('Params input', () => {
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'textbox')
-      fireEvent.change(input, { target: { value: 'test' } })
+      fireEvent.change(input, { target: { value: invalidBase64 } })
       input.blur()
     })
+    expect(input).toHaveValue(invalidBase64)
     expect(input).toHaveClass('error')
-    expect(setIsValid).toHaveBeenCalledTimes(1)
+    expect(setIsValid).toHaveBeenCalledTimes(2)
     expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
@@ -75,9 +81,10 @@ describe('Params input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ParamsInput
+          <ControlledInput
             label={labelText}
             info={infoText}
+            value={validBase64}
             setIsValid={setIsValid}
             required={true}
             autofocus={true}
@@ -86,11 +93,12 @@ describe('Params input', () => {
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'textbox')
-      fireEvent.change(input, { target: { value: 'test' } })
+      fireEvent.change(input, { target: { value: '' } })
       input.blur()
     })
+    expect(input).toHaveValue('')
     expect(input).toHaveClass('error')
-    expect(setIsValid).toHaveBeenCalledTimes(1)
+    expect(setIsValid).toHaveBeenCalledTimes(2)
     expect(setIsValid).toHaveBeenLastCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
