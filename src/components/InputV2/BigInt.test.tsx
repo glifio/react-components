@@ -6,12 +6,18 @@ import {
   fireEvent,
   RenderResult
 } from '@testing-library/react'
-import { BigIntInput } from './BigInt'
+import { useState } from 'react'
+import { BigIntInput, BigIntInputProps } from './BigInt'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 
 const labelText = 'Enter a really big value'
 const infoText = 'This can exceed MAX_SAFE_INTEGER'
+
+function ControlledInput({ value, ...props }: BigIntInputProps) {
+  const [controlled, setControlled] = useState<BigInt>(value)
+  return <BigIntInput value={controlled} onChange={setControlled} {...props} />
+}
 
 describe('BigInt input', () => {
   afterEach(cleanup)
@@ -44,15 +50,14 @@ describe('BigInt input', () => {
   test('it renders the value too high state correctly', async () => {
     let result: RenderResult | null = null
     let input: HTMLElement | null = null
-    const value = 500n
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <BigIntInput
+          <ControlledInput
             label={labelText}
             info={infoText}
             max={100n}
-            value={value}
+            value={null}
             setIsValid={setIsValid}
             autofocus={true}
           />
@@ -60,11 +65,11 @@ describe('BigInt input', () => {
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'spinbutton')
-      fireEvent.change(input, { target: { value: value.toString() } })
+      fireEvent.change(input, { target: { value: 500 } })
       input.blur()
     })
     expect(input).toHaveClass('error')
-    expect(setIsValid).toHaveBeenCalledTimes(1)
+    expect(setIsValid).toHaveBeenCalledTimes(2)
     expect(setIsValid).toHaveBeenCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
@@ -72,15 +77,14 @@ describe('BigInt input', () => {
   test('it renders the value too low state correctly', async () => {
     let result: RenderResult | null = null
     let input: HTMLElement | null = null
-    const value = -500n
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <BigIntInput
+          <ControlledInput
             label={labelText}
             info={infoText}
             min={-100n}
-            value={value}
+            value={null}
             setIsValid={setIsValid}
             autofocus={true}
           />
@@ -88,11 +92,11 @@ describe('BigInt input', () => {
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'spinbutton')
-      fireEvent.change(input, { target: { value: value.toString() } })
+      fireEvent.change(input, { target: { value: -500 } })
       input.blur()
     })
     expect(input).toHaveClass('error')
-    expect(setIsValid).toHaveBeenCalledTimes(1)
+    expect(setIsValid).toHaveBeenCalledTimes(2)
     expect(setIsValid).toHaveBeenCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
