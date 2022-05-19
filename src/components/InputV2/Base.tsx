@@ -30,25 +30,43 @@ export const BaseInput = ({
   let [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null)
   const timerMs = 1000
 
-  useEffect(() => {
-    return () => {
-      // Clear timer on dismount
-      if (timerId) {
-        clearTimeout(timerId)
-        setTimerId(null)
-      }
-    }
-  }, [timerId])
-
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (timerId) clearTimeout(timerId)
+  const startTimer = () => {
     setTimerId(
       setTimeout(() => {
         setTimerId(null)
         onTimeout()
       }, timerMs)
     )
+  }
+
+  const stopTimer = () => {
+    if (timerId) {
+      clearTimeout(timerId)
+      setTimerId(null)
+    }
+  }
+
+  useEffect(() => {
+    // Clear timer on dismount
+    return () => stopTimer()
+  }, [timerId])
+
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    stopTimer()
+    startTimer()
     onChange(e.target.value)
+  }
+
+  const onInputBlur = () => {
+    stopTimer()
+    onBlur()
+  }
+
+  const onInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      stopTimer()
+      onEnter()
+    }
   }
 
   return (
@@ -85,8 +103,8 @@ export const BaseInput = ({
             value={value}
             onChange={onInputChange}
             onFocus={() => onFocus()}
-            onBlur={() => onBlur()}
-            onKeyDown={e => e.key === 'Enter' && onEnter()}
+            onBlur={onInputBlur}
+            onKeyDown={onInputKeyDown}
             style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
           />
           {unit && <span className='unit'>{unit}</span>}
