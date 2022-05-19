@@ -43,15 +43,53 @@ exports[`Text input it renders correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .text-input-wrapper {
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
   position: relative;
 }
 
-.c0 .text-input-wrapper input {
+.c0 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .text-input-wrapper .unit {
+.c0 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -76,20 +114,24 @@ exports[`Text input it renders correctly 1`] = `
     
   </div>
   <div
-    class="text-input-wrapper"
+    class="button-wrapper"
   >
-    <input
-      class=""
-      max=""
-      min=""
-      name=""
-      placeholder=""
-      step=""
-      style="padding-right: 1em;"
-      type="text"
-      value="My name is Glif"
-    />
-    
+    <div
+      class="unit-wrapper"
+    >
+      <input
+        class=""
+        max=""
+        min=""
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 1em;"
+        type="text"
+        value="My name is Glif"
+      />
+      
+    </div>
   </div>
 </label>
 `;
@@ -138,15 +180,53 @@ exports[`Text input it renders the disabled state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .text-input-wrapper {
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
   position: relative;
 }
 
-.c0 .text-input-wrapper input {
+.c0 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .text-input-wrapper .unit {
+.c0 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -173,21 +253,25 @@ exports[`Text input it renders the disabled state correctly 1`] = `
     
   </div>
   <div
-    class="text-input-wrapper"
+    class="button-wrapper"
   >
-    <input
-      class=""
-      disabled=""
-      max=""
-      min=""
-      name=""
-      placeholder=""
-      step=""
-      style="padding-right: 1em;"
-      type="text"
-      value=""
-    />
-    
+    <div
+      class="unit-wrapper"
+    >
+      <input
+        class=""
+        disabled=""
+        max=""
+        min=""
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 1em;"
+        type="text"
+        value=""
+      />
+      
+    </div>
   </div>
 </label>
 `;
@@ -235,15 +319,53 @@ exports[`Text input it renders the required state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .text-input-wrapper {
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
   position: relative;
 }
 
-.c0 .text-input-wrapper input {
+.c0 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .text-input-wrapper .unit {
+.c0 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -273,20 +395,24 @@ exports[`Text input it renders the required state correctly 1`] = `
     </span>
   </div>
   <div
-    class="text-input-wrapper"
+    class="button-wrapper"
   >
-    <input
-      class="error"
-      max=""
-      min=""
-      name=""
-      placeholder=""
-      step=""
-      style="padding-right: 1em;"
-      type="text"
-      value=""
-    />
-    
+    <div
+      class="unit-wrapper"
+    >
+      <input
+        class="error"
+        max=""
+        min=""
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 1em;"
+        type="text"
+        value=""
+      />
+      
+    </div>
   </div>
 </label>
 `;
@@ -313,15 +439,53 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .text-input-wrapper {
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
   position: relative;
 }
 
-.c0 .text-input-wrapper input {
+.c0 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .text-input-wrapper .unit {
+.c0 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -344,20 +508,24 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
     Nice to meet you
   </span>
   <div
-    class="text-input-wrapper"
+    class="button-wrapper"
   >
-    <input
-      class="error"
-      max=""
-      min=""
-      name=""
-      placeholder=""
-      step=""
-      style="padding-right: 1em;"
-      type="text"
-      value=""
-    />
-    
+    <div
+      class="unit-wrapper"
+    >
+      <input
+        class="error"
+        max=""
+        min=""
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 1em;"
+        type="text"
+        value=""
+      />
+      
+    </div>
   </div>
   <span
     class="error"
