@@ -18,7 +18,9 @@ const infoText = 'This is how much will be transferred'
 
 function ControlledInput({ value, ...props }: FilecoinInputProps) {
   const [controlled, setControlled] = useState<FilecoinNumber>(value)
-  return <FilecoinInput value={controlled} onChange={setControlled} {...props} />
+  return (
+    <FilecoinInput value={controlled} onChange={setControlled} {...props} />
+  )
 }
 
 describe('Filecoin input', () => {
@@ -164,27 +166,23 @@ describe('Filecoin input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ControlledInput
-            label={labelText}
-            info={infoText}
-            autofocus={true}
-          />
+          <ControlledInput label={labelText} info={infoText} autofocus={true} />
         </ThemeProvider>
       )
       input = getByRole(result.container, 'spinbutton')
-      
+
       // It treats a "." as an invalid number
       fireEvent.change(input, { target: { value: '.' } })
       input.blur()
       await flushPromises()
       expect(input).toHaveValue(null)
-      
+
       // It treats ".0" as "0"
       fireEvent.change(input, { target: { value: '.0' } })
       input.blur()
       await flushPromises()
       expect(input).toHaveValue(0)
-      
+
       // It treats ".01" as "0.01"
       fireEvent.change(input, { target: { value: '.01' } })
       input.blur()

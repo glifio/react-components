@@ -8,7 +8,7 @@ import {
  * The following components all allow the full set of base input
  * props except "type", which is passed manually for each component
  */
- export type TextInputProps = Omit<RequireableInputProps, 'type'>
+export type TextInputProps = Omit<RequireableInputProps, 'type'>
 const { type, ...textInputPropTypes } = RequireableInputPropTypes
 
 /**

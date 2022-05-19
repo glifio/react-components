@@ -13,7 +13,7 @@ import theme from '../theme'
 
 const labelText = 'Enter your name'
 const infoText = 'Nice to meet you'
-const value = 'My name is Glif'
+const inputValue = 'My name is Glif'
 
 function ControlledInput({ value, ...props }: TextInputProps) {
   const [controlled, setControlled] = useState<string>(value)
@@ -37,7 +37,7 @@ describe('Text input', () => {
           <TextInput
             label={labelText}
             info={infoText}
-            value={value}
+            value={inputValue}
             setIsValid={setIsValid}
           />
         </ThemeProvider>
@@ -57,7 +57,7 @@ describe('Text input', () => {
           <ControlledInput
             label={labelText}
             info={infoText}
-            value={value}
+            value={inputValue}
             setIsValid={setIsValid}
             required={true}
             autofocus={true}
@@ -85,7 +85,7 @@ describe('Text input', () => {
           <ControlledInput
             label={labelText}
             info={infoText}
-            value={value}
+            value={inputValue}
             setIsValid={setIsValid}
             vertical={true}
             required={true}
