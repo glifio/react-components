@@ -52,18 +52,21 @@ export const BaseInput = ({
   }, [stopTimer])
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // Restart timer on input
     stopTimer()
     startTimer()
     onChange(e.target.value)
   }
 
   const onInputBlur = () => {
+    // Clear timer on blur
     stopTimer()
     onBlur()
   }
 
   const onInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
+      // Clear timer on enter
       stopTimer()
       onEnter()
     }
