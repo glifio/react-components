@@ -50,6 +50,12 @@ WithInfo.args = {
   info: 'Or your nickname'
 }
 
+export const Deletable = Template.bind({})
+Deletable.args = {
+  deletable: true,
+  label: 'Enter your name'
+}
+
 export const Error = Template.bind({})
 Error.args = {
   label: 'Enter something else',
@@ -95,6 +101,13 @@ VerticalWithInfo.args = {
   vertical: true,
   label: 'Enter your name',
   info: 'Or your nickname'
+}
+
+export const VerticalDeletable = Template.bind({})
+VerticalDeletable.args = {
+  deletable: true,
+  vertical: true,
+  label: 'Enter your name'
 }
 
 export const VerticalError = Template.bind({})
