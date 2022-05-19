@@ -38,14 +38,16 @@ export const BaseInput = ({
         setTimerId(null)
       }
     }
-  }, [])
+  }, [timerId])
 
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (timerId) clearTimeout(timerId)
-    setTimerId(setTimeout(() => {
-      setTimerId(null)
-      onTimeout()
-    }, timerMs))
+    setTimerId(
+      setTimeout(() => {
+        setTimerId(null)
+        onTimeout()
+      }, timerMs)
+    )
     onChange(e.target.value)
   }
 
@@ -89,9 +91,7 @@ export const BaseInput = ({
           />
           {unit && <span className='unit'>{unit}</span>}
         </div>
-        {deletable && (
-          <IconClose onClick={onDelete} />
-        )}
+        {deletable && <IconClose onClick={onDelete} />}
       </div>
       {vertical && error && <span className='error'>{error}</span>}
     </Label>
