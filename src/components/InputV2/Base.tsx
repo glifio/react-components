@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
 
@@ -23,8 +24,31 @@ export const BaseInput = ({
   onFocus,
   onBlur,
   onEnter,
-  onDelete
+  onDelete,
+  onTimeout
 }: BaseInputProps) => {
+  let [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null)
+  const timerMs = 1000
+
+  useEffect(() => {
+    return () => {
+      // Clear timer on dismount
+      if (timerId) {
+        clearTimeout(timerId)
+        setTimerId(null)
+      }
+    }
+  }, [])
+
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (timerId) clearTimeout(timerId)
+    setTimerId(setTimeout(() => {
+      setTimerId(null)
+      onTimeout()
+    }, timerMs))
+    onChange(e.target.value)
+  }
+
   return (
     <Label
       disabled={disabled}
@@ -57,7 +81,7 @@ export const BaseInput = ({
             max={max}
             step={step}
             value={value}
-            onChange={e => onChange(e.target.value)}
+            onChange={onInputChange}
             onFocus={() => onFocus()}
             onBlur={() => onBlur()}
             onKeyDown={e => e.key === 'Enter' && onEnter()}
@@ -96,6 +120,7 @@ export interface BaseInputProps {
   onBlur?: () => void
   onEnter?: () => void
   onDelete?: () => void
+  onTimeout?: () => void
 }
 
 export const BaseInputPropTypes = {
@@ -119,7 +144,8 @@ export const BaseInputPropTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   onEnter: PropTypes.func,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  onTimeout: PropTypes.func
 }
 
 BaseInput.propTypes = BaseInputPropTypes
@@ -144,5 +170,6 @@ BaseInput.defaultProps = {
   onFocus: () => {},
   onBlur: () => {},
   onEnter: () => {},
-  onDelete: () => {}
+  onDelete: () => {},
+  onTimeout: () => {}
 }
