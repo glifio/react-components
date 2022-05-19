@@ -6,12 +6,18 @@ import {
   fireEvent,
   RenderResult
 } from '@testing-library/react'
-import { NumberInput } from './Number'
+import { useState } from 'react'
+import { NumberInput, NumberInputProps } from './Number'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 
 const labelText = 'What is your favourite number?'
 const infoText = 'Or your second favourite'
+
+function ControlledInput({ value, ...props }: NumberInputProps) {
+  const [controlled, setControlled] = useState<number>(value)
+  return <NumberInput value={controlled} onChange={setControlled} {...props} />
+}
 
 describe('Number input', () => {
   afterEach(cleanup)
@@ -44,15 +50,14 @@ describe('Number input', () => {
   test('it renders the value too high state correctly', async () => {
     let result: RenderResult | null = null
     let input: HTMLElement | null = null
-    const value = 500
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <NumberInput
+          <ControlledInput
             label={labelText}
             info={infoText}
             max={100}
-            value={value}
+            value={NaN}
             setIsValid={setIsValid}
             autofocus={true}
           />
@@ -60,11 +65,11 @@ describe('Number input', () => {
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'spinbutton')
-      fireEvent.change(input, { target: { value: value.toString() } })
+      fireEvent.change(input, { target: { value: 500 } })
       input.blur()
     })
     expect(input).toHaveClass('error')
-    expect(setIsValid).toHaveBeenCalledTimes(1)
+    expect(setIsValid).toHaveBeenCalledTimes(2)
     expect(setIsValid).toHaveBeenCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
@@ -72,15 +77,14 @@ describe('Number input', () => {
   test('it renders the value too low state correctly', async () => {
     let result: RenderResult | null = null
     let input: HTMLElement | null = null
-    const value = -500
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <NumberInput
+          <ControlledInput
             label={labelText}
             info={infoText}
             min={-100}
-            value={value}
+            value={NaN}
             setIsValid={setIsValid}
             autofocus={true}
           />
@@ -88,11 +92,11 @@ describe('Number input', () => {
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'spinbutton')
-      fireEvent.change(input, { target: { value: value.toString() } })
+      fireEvent.change(input, { target: { value: -500 } })
       input.blur()
     })
     expect(input).toHaveClass('error')
-    expect(setIsValid).toHaveBeenCalledTimes(1)
+    expect(setIsValid).toHaveBeenCalledTimes(2)
     expect(setIsValid).toHaveBeenCalledWith(false)
     expect(result.container.firstChild).toMatchSnapshot()
   })
