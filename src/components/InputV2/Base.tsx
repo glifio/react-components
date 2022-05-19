@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useEffect, useRef } from 'react'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
 
@@ -27,22 +27,20 @@ export const BaseInput = ({
   onDelete,
   onTimeout
 }: BaseInputProps) => {
-  let [timerId, setTimerId] = useState<NodeJS.Timeout | null>(null)
+  let timerId = useRef<NodeJS.Timeout | null>(null)
   const timerMs = 1000
 
   const startTimer = () => {
-    setTimerId(
-      setTimeout(() => {
-        setTimerId(null)
-        onTimeout()
-      }, timerMs)
-    )
+    timerId.current = setTimeout(() => {
+      timerId.current = null
+      onTimeout()
+    }, timerMs)
   }
 
   const stopTimer = () => {
-    if (timerId) {
-      clearTimeout(timerId)
-      setTimerId(null)
+    if (timerId.current) {
+      clearTimeout(timerId.current)
+      timerId.current = null
     }
   }
 
