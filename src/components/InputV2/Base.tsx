@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
 
