@@ -35,8 +35,19 @@ const getButtonClassName = (props: ButtonClassNameProps): string => {
  * ButtonInput
  */
 
-export const ButtonInput = (props: ButtonInputProps) => (
-  <BaseInput type='button' {...props} />
+export const ButtonInput = ({
+  large,
+  white,
+  gray,
+  red,
+  green,
+  ...baseInputProps
+}: ButtonInputProps) => (
+  <BaseInput
+    type='button'
+    className={getButtonClassName({ large, white, gray, red, green })}
+    {...baseInputProps}
+  />
 )
 
 /**
