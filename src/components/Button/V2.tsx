@@ -68,7 +68,7 @@ ButtonV2.defaultProps = ButtonDefaultProps
 
 const getClassName = (props: ButtonClassNameProps): string => {
   const allowed = ['disabled', 'large', 'white', 'gray', 'red', 'green']
-  const classes = Object.keys(props).filter(name => allowed.includes(name))
+  const classes = Object.keys(props).filter(name => props[name] && allowed.includes(name))
   return classes.join(' ')
 }
 
