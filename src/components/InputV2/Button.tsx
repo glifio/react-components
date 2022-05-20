@@ -1,8 +1,4 @@
-import {
-  BaseInput,
-  BaseInputProps,
-  BaseInputPropTypes
-} from './Base'
+import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 
 /**
  * ButtonInput
