@@ -26,7 +26,9 @@ const ButtonClassNamePropTypes = {
 }
 
 const getButtonClassName = (props: ButtonClassNameProps): string => {
-  return Object.keys(props).filter(name => props[name] && buttonClassNames.includes(name)).join(' ')
+  return Object.keys(props)
+    .filter(name => props[name] && buttonClassNames.includes(name))
+    .join(' ')
 }
 
 /**
