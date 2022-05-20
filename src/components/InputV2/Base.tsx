@@ -6,6 +6,7 @@ export const BaseInput = ({
   deletable,
   vertical,
   centered,
+  className,
   label,
   info,
   error,
@@ -47,7 +48,7 @@ export const BaseInput = ({
     <div className='button-wrapper'>
       <div className='unit-wrapper'>
         <input
-          className={error ? 'error' : ''}
+          className={error ? className.concat(' error') : className}
           name={name}
           type={type}
           autoFocus={autofocus}
@@ -76,6 +77,7 @@ export interface BaseInputProps {
   deletable?: boolean
   vertical?: boolean
   centered?: boolean
+  className?: string
   label?: string
   info?: string
   error?: string
@@ -101,6 +103,7 @@ export const BaseInputPropTypes = {
   deletable: PropTypes.bool,
   vertical: PropTypes.bool,
   centered: PropTypes.bool,
+  className: PropTypes.string,
   label: PropTypes.string,
   info: PropTypes.string,
   error: PropTypes.string,
@@ -127,6 +130,7 @@ BaseInput.defaultProps = {
   deletable: false,
   vertical: false,
   centered: false,
+  className: '',
   label: '',
   info: '',
   error: '',
