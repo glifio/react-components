@@ -46,7 +46,30 @@ export const Label = styled.label`
     color: var(--red-medium);
   }
 
-  .text-input-wrapper {
+  .button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: ${space()};
+
+    > *:first-child {
+      flex: 1 0 auto;
+    }
+
+    > *:not(:first-child) {
+      flex: 0 0 auto;
+      transition: transform 0.1s ease-out;
+
+      &:hover:not(:active) {
+        transform: scale(1.2);
+      }
+
+      &:active {
+        transition: none;
+      }
+    }
+  }
+
+  .unit-wrapper {
     position: relative;
 
     input {
