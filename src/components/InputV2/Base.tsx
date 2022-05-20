@@ -22,6 +22,7 @@ export const BaseInput = ({
   onChange,
   onFocus,
   onBlur,
+  onClick,
   onEnter,
   onDelete
 }: BaseInputProps) => (
@@ -59,6 +60,7 @@ export const BaseInput = ({
           onChange={e => onChange(e.target.value)}
           onFocus={() => onFocus()}
           onBlur={() => onBlur()}
+          onClick={() => onClick()}
           onKeyDown={e => e.key === 'Enter' && onEnter()}
           style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
         />
@@ -90,6 +92,7 @@ export interface BaseInputProps {
   onChange?: (value: string) => void
   onFocus?: () => void
   onBlur?: () => void
+  onClick?: () => void
   onEnter?: () => void
   onDelete?: () => void
 }
@@ -114,6 +117,7 @@ export const BaseInputPropTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  onClick: PropTypes.func,
   onEnter: PropTypes.func,
   onDelete: PropTypes.func
 }
@@ -139,6 +143,7 @@ BaseInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  onClick: () => {},
   onEnter: () => {},
   onDelete: () => {}
 }
