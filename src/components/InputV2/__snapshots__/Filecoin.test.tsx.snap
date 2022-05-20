@@ -43,15 +43,53 @@ exports[`Filecoin input it renders attofil correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .text-input-wrapper {
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
   position: relative;
 }
 
-.c0 .text-input-wrapper input {
+.c0 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .text-input-wrapper .unit {
+.c0 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -76,24 +114,28 @@ exports[`Filecoin input it renders attofil correctly 1`] = `
     
   </div>
   <div
-    class="text-input-wrapper"
+    class="button-wrapper"
   >
-    <input
-      class=""
-      max=""
-      min="0"
-      name=""
-      placeholder=""
-      step=""
-      style="padding-right: 4em;"
-      type="number"
-      value="100"
-    />
-    <span
-      class="unit"
+    <div
+      class="unit-wrapper"
     >
-      aFIL
-    </span>
+      <input
+        class=""
+        max=""
+        min="0"
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 4em;"
+        type="number"
+        value="100"
+      />
+      <span
+        class="unit"
+      >
+        aFIL
+      </span>
+    </div>
   </div>
 </label>
 `;
@@ -141,15 +183,53 @@ exports[`Filecoin input it renders fil correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .text-input-wrapper {
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
   position: relative;
 }
 
-.c0 .text-input-wrapper input {
+.c0 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .text-input-wrapper .unit {
+.c0 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -174,24 +254,28 @@ exports[`Filecoin input it renders fil correctly 1`] = `
     
   </div>
   <div
-    class="text-input-wrapper"
+    class="button-wrapper"
   >
-    <input
-      class=""
-      max=""
-      min="0"
-      name=""
-      placeholder=""
-      step=""
-      style="padding-right: 3.25em;"
-      type="number"
-      value="100"
-    />
-    <span
-      class="unit"
+    <div
+      class="unit-wrapper"
     >
-      FIL
-    </span>
+      <input
+        class=""
+        max=""
+        min="0"
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 3.25em;"
+        type="number"
+        value="100"
+      />
+      <span
+        class="unit"
+      >
+        FIL
+      </span>
+    </div>
   </div>
 </label>
 `;
@@ -239,15 +323,53 @@ exports[`Filecoin input it renders picofil correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .text-input-wrapper {
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
   position: relative;
 }
 
-.c0 .text-input-wrapper input {
+.c0 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .text-input-wrapper .unit {
+.c0 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -272,24 +394,28 @@ exports[`Filecoin input it renders picofil correctly 1`] = `
     
   </div>
   <div
-    class="text-input-wrapper"
+    class="button-wrapper"
   >
-    <input
-      class=""
-      max=""
-      min="0"
-      name=""
-      placeholder=""
-      step=""
-      style="padding-right: 4em;"
-      type="number"
-      value="100"
-    />
-    <span
-      class="unit"
+    <div
+      class="unit-wrapper"
     >
-      pFIL
-    </span>
+      <input
+        class=""
+        max=""
+        min="0"
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 4em;"
+        type="number"
+        value="100"
+      />
+      <span
+        class="unit"
+      >
+        pFIL
+      </span>
+    </div>
   </div>
 </label>
 `;
@@ -338,15 +464,53 @@ exports[`Filecoin input it renders the disabled state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .text-input-wrapper {
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
   position: relative;
 }
 
-.c0 .text-input-wrapper input {
+.c0 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .text-input-wrapper .unit {
+.c0 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -373,25 +537,29 @@ exports[`Filecoin input it renders the disabled state correctly 1`] = `
     
   </div>
   <div
-    class="text-input-wrapper"
+    class="button-wrapper"
   >
-    <input
-      class=""
-      disabled=""
-      max=""
-      min="0"
-      name=""
-      placeholder=""
-      step=""
-      style="padding-right: 3.25em;"
-      type="number"
-      value=""
-    />
-    <span
-      class="unit"
+    <div
+      class="unit-wrapper"
     >
-      FIL
-    </span>
+      <input
+        class=""
+        disabled=""
+        max=""
+        min="0"
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 3.25em;"
+        type="number"
+        value=""
+      />
+      <span
+        class="unit"
+      >
+        FIL
+      </span>
+    </div>
   </div>
 </label>
 `;
@@ -439,15 +607,53 @@ exports[`Filecoin input it renders the value too high state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .text-input-wrapper {
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
   position: relative;
 }
 
-.c0 .text-input-wrapper input {
+.c0 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .text-input-wrapper .unit {
+.c0 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -477,24 +683,28 @@ exports[`Filecoin input it renders the value too high state correctly 1`] = `
     </span>
   </div>
   <div
-    class="text-input-wrapper"
+    class="button-wrapper"
   >
-    <input
-      class="error"
-      max="10"
-      min="0"
-      name=""
-      placeholder=""
-      step=""
-      style="padding-right: 3.25em;"
-      type="number"
-      value="100"
-    />
-    <span
-      class="unit"
+    <div
+      class="unit-wrapper"
     >
-      FIL
-    </span>
+      <input
+        class="error"
+        max="10"
+        min="0"
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 3.25em;"
+        type="number"
+        value="100"
+      />
+      <span
+        class="unit"
+      >
+        FIL
+      </span>
+    </div>
   </div>
 </label>
 `;
@@ -542,15 +752,53 @@ exports[`Filecoin input it renders the value too low state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .text-input-wrapper {
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
   position: relative;
 }
 
-.c0 .text-input-wrapper input {
+.c0 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .text-input-wrapper .unit {
+.c0 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -580,24 +828,28 @@ exports[`Filecoin input it renders the value too low state correctly 1`] = `
     </span>
   </div>
   <div
-    class="text-input-wrapper"
+    class="button-wrapper"
   >
-    <input
-      class="error"
-      max=""
-      min="100"
-      name=""
-      placeholder=""
-      step=""
-      style="padding-right: 3.25em;"
-      type="number"
-      value="10"
-    />
-    <span
-      class="unit"
+    <div
+      class="unit-wrapper"
     >
-      FIL
-    </span>
+      <input
+        class="error"
+        max=""
+        min="100"
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 3.25em;"
+        type="number"
+        value="10"
+      />
+      <span
+        class="unit"
+      >
+        FIL
+      </span>
+    </div>
   </div>
 </label>
 `;
