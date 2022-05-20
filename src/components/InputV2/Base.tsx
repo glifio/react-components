@@ -64,9 +64,7 @@ export const BaseInput = ({
         />
         {unit && <span className='unit'>{unit}</span>}
       </div>
-      {deletable && (
-        <IconClose onClick={onDelete} />
-      )}
+      {deletable && <IconClose onClick={onDelete} />}
     </div>
     {vertical && error && <span className='error'>{error}</span>}
   </Label>

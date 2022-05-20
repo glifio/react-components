@@ -58,11 +58,11 @@ export const Label = styled.label`
     > *:not(:first-child) {
       flex: 0 0 auto;
       transition: transform 0.1s ease-out;
-      
+
       &:hover:not(:active) {
         transform: scale(1.2);
       }
-      
+
       &:active {
         transition: none;
       }
