@@ -40,11 +40,21 @@ export const ButtonInput = (props: ButtonInputProps) => (
 )
 
 /**
- * Allow the full set of base input props, except
- * "type", which is always "button" for button input
+ * Allow the full set of base input props, except:
+ *
+ * type: always "button" for button input
+ * className: generated from ButtonClassNameProps
+ *
+ * We add the button class name props except "disabled",
+ * which is already present in the base input props
  */
 
-export type ButtonInputProps = Omit<BaseInputProps, 'type'>
-const { type, ...buttonInputPropTypes } = BaseInputPropTypes
+export type ButtonInputProps = Omit<ButtonClassNameProps, 'disabled'> &
+  Omit<BaseInputProps, 'type' | 'className'>
 
-ButtonInput.propTypes = buttonInputPropTypes
+const { type, className, ...buttonProps } = BaseInputPropTypes
+
+ButtonInput.propTypes = {
+  ...ButtonClassNamePropTypes,
+  ...buttonProps
+}
