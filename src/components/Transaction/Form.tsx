@@ -11,6 +11,7 @@ import {
 } from '../../customPropTypes'
 import { MessagePending } from '../../generated/graphql'
 import { TransactionButtons } from './Buttons'
+import { TransactionFee } from './Fee'
 import { TransactionHeader } from './Header'
 import { TransactionTotal } from './Total'
 import { Dialog, ShadowBox } from '../Layout'
@@ -27,6 +28,7 @@ export const TransactionForm = ({
   total,
   txState,
   setTxState,
+  maxFee,
   txFee,
   setTxFee,
   getParams,
@@ -117,6 +119,14 @@ export const TransactionForm = ({
       <ShadowBox>
         <form>
           {children}
+          <TransactionFee
+            inputFee={inputFee}
+            setInputFee={setInputFee}
+            affordableFee={maxFee}
+            calculatedFee={txFee}
+            gasLoading={gasParamsLoading}
+            disabled={gasParamsLoading || txState !== TxState.FillingForm}
+          />
         </form>
         {total && <TransactionTotal total={total} />}
       </ShadowBox>
@@ -152,6 +162,7 @@ export type TransactionFormProps = {
   total?: FilecoinNumber
   txState: TxState
   setTxState: (state: TxState) => void
+  maxFee: FilecoinNumber
   txFee: FilecoinNumber
   setTxFee: (fee: FilecoinNumber) => void
   getParams?: (nonce: number) => string
@@ -169,6 +180,7 @@ TransactionForm.propTypes = {
   total: FILECOIN_NUMBER_PROPTYPE,
   txState: TX_STATE_PROPTYPE.isRequired,
   setTxState: PropTypes.func.isRequired,
+  maxFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   txFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   setTxFee: PropTypes.func.isRequired,
   getParams: PropTypes.func,
