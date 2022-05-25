@@ -63,9 +63,10 @@ export const ButtonInput = ({
 export type ButtonInputProps = Omit<ButtonClassNameProps, 'disabled'> &
   Omit<BaseInputProps, 'type' | 'className'>
 
-const { type, className, ...buttonProps } = BaseInputPropTypes
+const { disabled, ...buttonClassNameProps } = ButtonClassNamePropTypes
+const { type, className, ...buttonInputProps } = BaseInputPropTypes
 
 ButtonInput.propTypes = {
-  ...ButtonClassNamePropTypes,
-  ...buttonProps
+  ...buttonClassNameProps,
+  ...buttonInputProps
 }
