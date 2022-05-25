@@ -16,7 +16,7 @@ import { TransactionHeader } from './Header'
 import { TransactionTotal } from './Total'
 import { Dialog, ShadowBox } from '../Layout'
 import { useSubmittedMessages } from '../HistoryTables/PendingMsgContext'
-import { getMaxGasFee, useGetGasParams } from '../../utils'
+import { getMaxGasFee } from '../../utils'
 import { useWallet, useWalletProvider } from '../../services'
 import { logger } from '../../logger'
 
@@ -37,25 +37,16 @@ export const TransactionForm = ({
   const router = useRouter()
   const wallet = useWallet()
   const { pushPendingMessage } = useSubmittedMessages()
-  const { loginOption, walletProvider, walletError, getProvider } =
-    useWalletProvider()
+  const { loginOption, walletError, getProvider } = useWalletProvider()
 
   // Transaction states
   const [txError, setTxError] = useState<Error | null>(null)
-
-  // Placeholder message for getting gas params
-  const [gasParamsMessage, setGasParamsMessage] = useState<Message | null>(null)
+  const [gasParamsError, setGasParamsError] = useState<Error | null>(null)
+  const [messageWithGas, setMessageWithGas] = useState<Message | null>(null)
 
   // Max transaction fee used for getting gas params. Will be
   // null until the user manually changes the transaction fee.
   const [inputFee, setInputFee] = useState<FilecoinNumber | null>(null)
-
-  // Load gas parameters when message or max fee changes
-  const {
-    gasParams,
-    loading: gasParamsLoading,
-    error: gasParamsError
-  } = useGetGasParams(walletProvider, gasParamsMessage, inputFee)
 
   // Calculate maximum transaction fee (fee cap times limit)
   useEffect(() => {
