@@ -69,7 +69,7 @@ TransactionForm.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  LoginOption: LOGIN_OPTION_PROPTYPE.isRequired,
+  loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
   txState: TX_STATE_PROPTYPE.isRequired,
   setTxState: PropTypes.func.isRequired
 }
