@@ -12,13 +12,14 @@ export const TransactionButtons = ({
   onClickNext
 }: TransactionButtonsProps) => {
   const router = useRouter()
+  const onBack = onClickBack ? onClickBack : router ? router.back : () => {}
   return (
     <ButtonRowSpaced>
-      <ButtonV2 large disabled={backDisabled} onClick={onClickBack ? onClickBack : router.back}>
-        { backText }
+      <ButtonV2 large disabled={backDisabled} onClick={onBack}>
+        {backText}
       </ButtonV2>
       <ButtonV2 large green disabled={nextDisabled} onClick={onClickNext}>
-        { nextText }
+        {nextText}
       </ButtonV2>
     </ButtonRowSpaced>
   )
