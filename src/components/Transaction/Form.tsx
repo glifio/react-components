@@ -55,6 +55,27 @@ export const TransactionForm = ({
     )
   }, [setTxFee, gasParams])
 
+  //Load gas params with the current message and input fee
+  const getGasParams = async () => {
+    setTxState(TxState.LoadingTxFee)
+    setGasParamsError(null)
+    setMessageWithGas(null)
+    try {
+      const provider = await getProvider()
+      setMessageWithGas(
+        await provider.gasEstimateMessageGas(
+          message.toLotusType(),
+          inputFee ? inputFee.toAttoFil() : undefined
+        )
+      )
+    } catch (e: any) {
+      logger.error(e)
+      setGasParamsError(e)
+    } finally {
+      setTxState(TxState.FillingTxFee)
+    }
+  }
+
   // Attempt sending message
   const onSend = async () => {
     setTxState(TxState.LoadingTxDetails)
