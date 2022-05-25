@@ -103,8 +103,8 @@ export const TransactionForm = ({
       <ShadowBox>
         <form>
           {children}
-          {total && <TransactionTotal total={total} />}
         </form>
+        {total && <TransactionTotal total={total} />}
       </ShadowBox>
       <TransactionButtons
         backDisabled={
