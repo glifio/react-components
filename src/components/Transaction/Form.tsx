@@ -22,6 +22,8 @@ export const TransactionForm = ({
   total,
   txState,
   setTxState,
+  txFee,
+  setTxFee,
   getParams,
   onComplete
 }: TransactionFormProps) => {
@@ -138,6 +140,8 @@ export type TransactionFormProps = {
   total?: FilecoinNumber
   txState: TxState
   setTxState: (state: TxState) => void
+  txFee: FilecoinNumber
+  setTxFee: (fee: FilecoinNumber) => void
   getParams?: (nonce: number) => string
   onComplete: () => void
 }
@@ -153,6 +157,8 @@ TransactionForm.propTypes = {
   total: FILECOIN_NUMBER_PROPTYPE,
   txState: TX_STATE_PROPTYPE.isRequired,
   setTxState: PropTypes.func.isRequired,
+  txFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  setTxFee: PropTypes.func.isRequired,
   getParams: PropTypes.func,
   onComplete: PropTypes.func.isRequired
 }
