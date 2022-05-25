@@ -24,13 +24,14 @@ export const TransactionForm = ({
     setTxError(null)
     try {
       const provider = await getProvider()
+      const nonce = await provider.getNonce(wallet.address)
       const newMessage = new Message({
         to: message.to,
         from: message.from,
-        nonce: await provider.getNonce(wallet.address),
+        nonce,
         value: message.value,
         method: message.method,
-        params: message.params,
+        params: getParams ? getParams(nonce) : message.params,
         gasPremium: gasParams.gasPremium.toAttoFil(),
         gasFeeCap: gasParams.gasFeeCap.toAttoFil(),
         gasLimit: new BigNumber(gasParams.gasLimit.toAttoFil()).toNumber()
@@ -102,8 +103,9 @@ export type TransactionFormProps = {
   description: string
   message: Message
   txState: TxState
-  setTxState: (state: TxState) => {}
-  onComplete: () => {}
+  setTxState: (state: TxState) => void
+  getParams?: (nonce: number) => string
+  onComplete: () => void
 }
 
 TransactionForm.propTypes = {
@@ -116,5 +118,6 @@ TransactionForm.propTypes = {
   message: MESSAGE_PROPTYPE.isRequired,
   txState: TX_STATE_PROPTYPE.isRequired,
   setTxState: PropTypes.func.isRequired,
+  getParams: PropTypes.func,
   onComplete: PropTypes.func.isRequired
 }
