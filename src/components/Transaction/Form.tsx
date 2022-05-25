@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import { TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
+import { TxState, TX_STATE_PROPTYPE, LoginOption, LOGIN_OPTION_PROPTYPE } from '../../customPropTypes'
 import { TransactionButtons } from './Buttons'
 import { Dialog, ShadowBox } from '../Layout'
 
