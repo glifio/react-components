@@ -48,12 +48,13 @@ export const TransactionForm = ({
   // null until the user manually changes the transaction fee.
   const [inputFee, setInputFee] = useState<FilecoinNumber | null>(null)
 
-  // Calculate maximum transaction fee (fee cap times limit)
+  // Calculate transaction fee (fee cap times limit)
   useEffect(() => {
-    setTxFee(
-      gasParams ? getMaxGasFee(gasParams.gasFeeCap, gasParams.gasLimit) : null
-    )
-  }, [setTxFee, gasParams])
+    const feeCapStr = messageWithGas.gasFeeCap.toFixed(0, BigNumber.ROUND_CEIL)
+    const feeCap = new FilecoinNumber(feeCapStr, 'attofil')
+    const limit = messageWithGas.gasLimit
+    setTxFee(messageWithGas ? getMaxGasFee(feeCap, limit) : null)
+  }, [setTxFee, messageWithGas])
 
   //Load gas params with the current message and input fee
   const getGasParams = async () => {
