@@ -28,6 +28,8 @@ export const TransactionHeader = ({
           ? 'Something went wrong'
           : txState === TxState.LoadingMessage
           ? 'Loading message information...'
+          : txState === TxState.FillingTxFee
+          ? 'Please review the transaction below'
           : txState === TxState.LoadingTxDetails
           ? 'Loading transaction details...'
           : txState === TxState.MPoolPushing
