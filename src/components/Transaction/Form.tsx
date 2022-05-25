@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types'
-import { ReactNode } from 'react'
+import { useState, ReactNode } from 'react'
 import { useRouter } from 'next/router'
 import { Message } from '@glif/filecoin-message'
+import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import { MESSAGE_PROPTYPE, TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
+import { MessagePending } from '../../generated/graphql'
 import { TransactionButtons } from './Buttons'
 import { TransactionHeader } from './Header'
 import { Dialog, ShadowBox } from '../Layout'
+import { useSubmittedMessages } from '../HistoryTables/PendingMsgContext'
+import { useWallet, useWalletProvider } from '../../services'
+import { logger } from '../../logger'
 
 export const TransactionForm = ({
   children,
@@ -17,6 +22,13 @@ export const TransactionForm = ({
   onComplete
 }: TransactionFormProps) => {
   const router = useRouter()
+  const wallet = useWallet()
+  const { pushPendingMessage } = useSubmittedMessages()
+  const { loginOption, walletProvider, walletError, getProvider } =
+    useWalletProvider()
+
+  // Transaction states
+  const [txError, setTxError] = useState<Error | null>(null)
 
   // Attempt sending message
   const onSend = async () => {
