@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types'
-import { useState, ReactNode } from 'react'
+import { useState, ReactNode, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Message } from '@glif/filecoin-message'
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
-import { FILECOIN_NUMBER_PROPTYPE, MESSAGE_PROPTYPE, TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
+import {
+  FILECOIN_NUMBER_PROPTYPE,
+  MESSAGE_PROPTYPE,
+  TxState,
+  TX_STATE_PROPTYPE
+} from '../../customPropTypes'
 import { MessagePending } from '../../generated/graphql'
 import { TransactionButtons } from './Buttons'
 import { TransactionHeader } from './Header'
 import { TransactionTotal } from './Total'
 import { Dialog, ShadowBox } from '../Layout'
-import { useGetGasParams } from '../../utils'
 import { useSubmittedMessages } from '../HistoryTables/PendingMsgContext'
+import { getMaxGasFee, useGetGasParams } from '../../utils'
 import { useWallet, useWalletProvider } from '../../services'
 import { logger } from '../../logger'
 
@@ -49,6 +54,13 @@ export const TransactionForm = ({
     loading: gasParamsLoading,
     error: gasParamsError
   } = useGetGasParams(walletProvider, gasParamsMessage, maxFee)
+
+  // Calculate maximum transaction fee (fee cap times limit)
+  useEffect(() => {
+    setTxFee(
+      gasParams ? getMaxGasFee(gasParams.gasFeeCap, gasParams.gasLimit) : null
+    )
+  }, [setTxFee, gasParams])
 
   // Attempt sending message
   const onSend = async () => {
