@@ -16,7 +16,7 @@ export const TransactionFee = ({
   disabled
 }: TransactionFeeProps) => {
   // Input states
-  const [expert, setExpert] = useState<boolean>(false)
+  const [expertMode, setExpertMode] = useState<boolean>(false)
   const [txFee, setTxFee] = useState<FilecoinNumber | null>(null)
   const [isTxFeeValid, setIsTxFeeValid] = useState<boolean>(false)
 
@@ -40,7 +40,7 @@ export const TransactionFee = ({
   // When disabling expert mode, reset to default TX fee
   const onChangeExpertToggle = (checked: boolean) => {
     checked ? setTxFee(calculatedFee) : setInputFee(null)
-    setExpert(checked)
+    setExpertMode(checked)
   }
 
   return (
@@ -52,11 +52,11 @@ export const TransactionFee = ({
         <>
           <Toggle
             label='Expert Mode'
-            checked={expert}
+            checked={expertMode}
             onChange={onChangeExpertToggle}
             disabled={gasLoading || disabled}
           />
-          {expert && (
+          {expertMode && (
             <FilecoinInput
               label='Transaction Fee'
               max={affordableFee}
