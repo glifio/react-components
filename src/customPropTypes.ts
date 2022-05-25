@@ -10,6 +10,7 @@ import {
 import { validateMnemonic } from 'bip39'
 import { validateAddressString, CoinType } from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
+import BigNumber from 'bignumber.js'
 
 /**
  * ADDRESS_PROPTYPE
@@ -71,6 +72,29 @@ const createFilecoinNumberPropType =
 export const FILECOIN_NUMBER_PROPTYPE: Requireable<any> = Object.assign(
   createFilecoinNumberPropType(false),
   { isRequired: createFilecoinNumberPropType(true) }
+)
+
+/**
+ * BigNumber
+ */
+
+const createBigNumberPropType =
+isRequired => (props, propName, componentName) => {
+  const prop = props[propName]
+  if (prop == null) {
+    if (isRequired) {
+      return new Error(`Missing prop "${propName}" in "${componentName}"`)
+    }
+  } else if (!BigNumber.isBigNumber(prop)) {
+    return new Error(
+      `Invalid prop "${propName}" supplied to "${componentName}"`
+    )
+  }
+}
+
+export const BIGNUMBER_PROPTYPE: Requireable<any> = Object.assign(
+  createBigNumberPropType(false),
+  { isRequired: createBigNumberPropType(true) }
 )
 
 /**
