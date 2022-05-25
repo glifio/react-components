@@ -45,7 +45,30 @@ export const GRAPHQL_ADDRESS_PROP_TYPE = shape({
 })
 
 /**
- * FILECOIN_NUMBER_PROPTYPE
+ * BigNumber
+ */
+
+const createBigNumberPropType =
+isRequired => (props, propName, componentName) => {
+  const prop = props[propName]
+  if (prop == null) {
+    if (isRequired) {
+      return new Error(`Missing prop "${propName}" in "${componentName}"`)
+    }
+  } else if (!BigNumber.isBigNumber(prop)) {
+    return new Error(
+      `Invalid prop "${propName}" supplied to "${componentName}"`
+    )
+  }
+}
+
+export const BIGNUMBER_PROPTYPE: Requireable<any> = Object.assign(
+  createBigNumberPropType(false),
+  { isRequired: createBigNumberPropType(true) }
+)
+
+/**
+ * FilecoinNumber
  */
 
 const createFilecoinNumberPropType =
@@ -72,29 +95,6 @@ const createFilecoinNumberPropType =
 export const FILECOIN_NUMBER_PROPTYPE: Requireable<any> = Object.assign(
   createFilecoinNumberPropType(false),
   { isRequired: createFilecoinNumberPropType(true) }
-)
-
-/**
- * BigNumber
- */
-
-const createBigNumberPropType =
-isRequired => (props, propName, componentName) => {
-  const prop = props[propName]
-  if (prop == null) {
-    if (isRequired) {
-      return new Error(`Missing prop "${propName}" in "${componentName}"`)
-    }
-  } else if (!BigNumber.isBigNumber(prop)) {
-    return new Error(
-      `Invalid prop "${propName}" supplied to "${componentName}"`
-    )
-  }
-}
-
-export const BIGNUMBER_PROPTYPE: Requireable<any> = Object.assign(
-  createBigNumberPropType(false),
-  { isRequired: createBigNumberPropType(true) }
 )
 
 /**
