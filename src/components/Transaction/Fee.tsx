@@ -9,7 +9,7 @@ import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 
 export const TransactionFee = ({
   inputFee,
-  setMaxFee,
+  setInputFee,
   affordableFee,
   calculatedFee,
   gasLoading,
@@ -32,14 +32,14 @@ export const TransactionFee = ({
       (!inputFee || txFee.toAttoFil() !== inputFee.toAttoFil()) &&
       (!calculatedFee || txFee.toAttoFil() !== calculatedFee.toAttoFil())
     ) {
-      setMaxFee(txFee)
+      setInputFee(txFee)
     }
   }
 
   // When enabling expert mode, set TX fee input value
   // When disabling expert mode, reset to default TX fee
   const onChangeExpertToggle = (checked: boolean) => {
-    checked ? setTxFee(calculatedFee) : setMaxFee(null)
+    checked ? setTxFee(calculatedFee) : setInputFee(null)
     setExpert(checked)
   }
 
@@ -79,7 +79,7 @@ export const TransactionFee = ({
 
 export interface TransactionFeeProps {
   inputFee: FilecoinNumber
-  setMaxFee: (inputFee: FilecoinNumber) => void
+  setInputFee: (inputFee: FilecoinNumber) => void
   affordableFee: FilecoinNumber
   calculatedFee: FilecoinNumber
   gasLoading: boolean
@@ -88,7 +88,7 @@ export interface TransactionFeeProps {
 
 TransactionFee.propTypes = {
   inputFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  setMaxFee: PropTypes.func.isRequired,
+  setInputFee: PropTypes.func.isRequired,
   affordableFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   calculatedFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   gasLoading: PropTypes.bool,
