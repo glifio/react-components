@@ -9,6 +9,7 @@ import { TransactionButtons } from './Buttons'
 import { TransactionHeader } from './Header'
 import { TransactionTotal } from './Total'
 import { Dialog, ShadowBox } from '../Layout'
+import { useGetGasParams } from '../../utils'
 import { useSubmittedMessages } from '../HistoryTables/PendingMsgContext'
 import { useWallet, useWalletProvider } from '../../services'
 import { logger } from '../../logger'
@@ -33,6 +34,20 @@ export const TransactionForm = ({
   // Transaction states
   const [txError, setTxError] = useState<Error | null>(null)
 
+  // Placeholder message for getting gas params
+  const [gasParamsMessage, setGasParamsMessage] = useState<Message | null>(null)
+
+  // Max transaction fee used for getting gas params. Will be
+  // null until the user manually changes the transaction fee.
+  const [maxFee, setMaxFee] = useState<FilecoinNumber | null>(null)
+
+  // Load gas parameters when message or max fee changes
+  const {
+    gasParams,
+    loading: gasParamsLoading,
+    error: gasParamsError
+  } = useGetGasParams(walletProvider, gasParamsMessage, maxFee)
+
   // Attempt sending message
   const onSend = async () => {
     setTxState(TxState.LoadingTxDetails)
@@ -41,12 +56,12 @@ export const TransactionForm = ({
       const provider = await getProvider()
       const nonce = await provider.getNonce(wallet.address)
       const newMessage = new Message({
-        to: message.to,
-        from: message.from,
+        to: gasParamsMessage.to,
+        from: gasParamsMessage.from,
         nonce,
-        value: message.value,
-        method: message.method,
-        params: getParams ? getParams(nonce) : message.params,
+        value: gasParamsMessage.value,
+        method: gasParamsMessage.method,
+        params: getParams ? getParams(nonce) : gasParamsMessage.params,
         gasPremium: gasParams.gasPremium.toAttoFil(),
         gasFeeCap: gasParams.gasFeeCap.toAttoFil(),
         gasLimit: new BigNumber(gasParams.gasLimit.toAttoFil()).toNumber()
