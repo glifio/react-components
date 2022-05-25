@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
 import { Toggle } from '../InputV2/Toggle'
+import { ButtonInput } from '../InputV2/Button'
 import { FilecoinInput } from '../InputV2/Filecoin'
 import { TransactionMaxFee } from './MaxFee'
 import {
@@ -20,31 +21,26 @@ export const TransactionFee = ({
   onUpdate
 }: TransactionFeeProps) => {
   // Input states
+  const [isDirty, setIsDirty] = useState<boolean>(false)
   const [expertMode, setExpertMode] = useState<boolean>(false)
-  const [localFee, setLocalFee] = useState<FilecoinNumber | null>(null)
-  const [isLocalFeeValid, setIsLocalFeeValid] = useState<boolean>(false)
-
-  // When leaving the tx fee input or pressing Enter, we set inputFee
-  // to update the gas params if the following conditions are met:
-  // - the input is valid
-  // - the value is different from the previous max fee
-  // - the value is different from the calculated max fee
-  const setMaxFeeIfChanged = () => {
-    if (
-      localFee &&
-      isLocalFeeValid &&
-      (!inputFee || localFee.toAttoFil() !== inputFee.toAttoFil()) &&
-      (!calculatedFee || localFee.toAttoFil() !== calculatedFee.toAttoFil())
-    ) {
-      setInputFee(localFee)
-    }
-  }
+  const [isInputFeeValid, setIsInputFeeValid] = useState<boolean>(false)
 
   // When enabling expert mode, set TX fee input value
   // When disabling expert mode, reset to default TX fee
   const onChangeExpertToggle = (checked: boolean) => {
-    checked ? setLocalFee(calculatedFee) : setInputFee(null)
+    setInputFee(checked ? calculatedFee : null)
+    setIsDirty(false)
     setExpertMode(checked)
+  }
+
+  const onChangeTxFee = (fee: FilecoinNumber) => {
+    setInputFee(fee)
+    setIsDirty(true)
+  }
+
+  const onClickUpdate = () => {
+    setIsDirty(false)
+    onUpdate()
   }
 
   return (
@@ -61,13 +57,19 @@ export const TransactionFee = ({
             <FilecoinInput
               label='Transaction Fee'
               max={affordableFee}
-              value={localFee}
+              value={inputFee}
               denom='attofil'
-              onBlur={setMaxFeeIfChanged}
-              onEnter={setMaxFeeIfChanged}
-              onChange={setLocalFee}
-              setIsValid={setIsLocalFeeValid}
+              onChange={onChangeTxFee}
+              setIsValid={setIsInputFeeValid}
               disabled={txState !== TxState.FillingTxFee}
+            />
+          )}
+          {isDirty && (
+            <ButtonInput
+              label='Update Transaction Fee'
+              value='Update'
+              onClick={onClickUpdate}
+              disabled={!isInputFeeValid || txState !== TxState.FillingTxFee}
             />
           )}
         </>
