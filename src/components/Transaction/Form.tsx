@@ -125,7 +125,7 @@ export const TransactionForm = ({
             affordableFee={maxFee}
             calculatedFee={txFee}
             gasLoading={gasParamsLoading}
-            disabled={gasParamsLoading || txState !== TxState.FillingForm}
+            disabled={gasParamsLoading || txState !== TxState.FillingTxFee}
           />
         </form>
         {total && <TransactionTotal total={total} />}
@@ -134,9 +134,10 @@ export const TransactionForm = ({
         backDisabled={
           txState !== TxState.FillingForm && txState !== TxState.FillingTxFee
         }
-        nextDisabled={
-          txState !== TxState.FillingForm && txState !== TxState.FillingTxFee
-        }
+        nextDisabled={!(
+          txState === TxState.FillingForm && message ||
+          txState === TxState.FillingTxFee && txFee
+        )}
         backText={txState < TxState.FillingTxFee ? 'Cancel' : 'Back'}
         nextText={txState < TxState.FillingTxFee ? 'Review' : 'Send'}
         onClickBack={
