@@ -146,12 +146,12 @@ export const MSIG_METHOD_PROPTYPE = oneOf(
  */
 
 export enum TxState {
-  FillingForm = 'FillingForm',
-  FillingTxFee = 'FillingTxFee',
-  LoadingMessage = 'LoadingMessage',
-  LoadingTxDetails = 'LoadingTxDetails',
-  AwaitingConfirmation = 'AwaitingConfirmation',
-  MPoolPushing = 'MPoolPushing'
+  LoadingMessage = 0,
+  FillingForm,
+  FillingTxFee,
+  LoadingTxDetails,
+  AwaitingConfirmation,
+  MPoolPushing
 }
 
 export const TX_STATE_PROPTYPE = oneOf(Object.values(TxState) as Array<TxState>)
