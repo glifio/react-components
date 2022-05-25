@@ -8,7 +8,7 @@ import { TransactionMaxFee } from './MaxFee'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 
 export const TransactionFee = ({
-  maxFee,
+  inputFee,
   setMaxFee,
   affordableFee,
   calculatedFee,
@@ -20,7 +20,7 @@ export const TransactionFee = ({
   const [txFee, setTxFee] = useState<FilecoinNumber | null>(null)
   const [isTxFeeValid, setIsTxFeeValid] = useState<boolean>(false)
 
-  // When leaving the tx fee input or pressing Enter, we set maxFee
+  // When leaving the tx fee input or pressing Enter, we set inputFee
   // to update the gas params if the following conditions are met:
   // - the input is valid
   // - the value is different from the previous max fee
@@ -29,7 +29,7 @@ export const TransactionFee = ({
     if (
       txFee &&
       isTxFeeValid &&
-      (!maxFee || txFee.toAttoFil() !== maxFee.toAttoFil()) &&
+      (!inputFee || txFee.toAttoFil() !== inputFee.toAttoFil()) &&
       (!calculatedFee || txFee.toAttoFil() !== calculatedFee.toAttoFil())
     ) {
       setMaxFee(txFee)
@@ -78,8 +78,8 @@ export const TransactionFee = ({
 }
 
 export interface TransactionFeeProps {
-  maxFee: FilecoinNumber
-  setMaxFee: (maxFee: FilecoinNumber) => void
+  inputFee: FilecoinNumber
+  setMaxFee: (inputFee: FilecoinNumber) => void
   affordableFee: FilecoinNumber
   calculatedFee: FilecoinNumber
   gasLoading: boolean
@@ -87,7 +87,7 @@ export interface TransactionFeeProps {
 }
 
 TransactionFee.propTypes = {
-  maxFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  inputFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   setMaxFee: PropTypes.func.isRequired,
   affordableFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   calculatedFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
