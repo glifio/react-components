@@ -5,15 +5,14 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { Toggle } from '../InputV2/Toggle'
 import { FilecoinInput } from '../InputV2/Filecoin'
 import { TransactionMaxFee } from './MaxFee'
-import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
+import { FILECOIN_NUMBER_PROPTYPE, TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
 
 export const TransactionFee = ({
   inputFee,
   setInputFee,
   affordableFee,
   calculatedFee,
-  gasLoading,
-  disabled
+  txState
 }: TransactionFeeProps) => {
   // Input states
   const [expertMode, setExpertMode] = useState<boolean>(false)
@@ -45,16 +44,13 @@ export const TransactionFee = ({
 
   return (
     <>
-      {/* Once we have an initially calculated
-          fee, or we are loading a new one, we
-          display the UI to modify the fee */}
-      {(gasLoading || calculatedFee) && (
+      {txState >= TxState.FillingTxFee && (
         <>
           <Toggle
             label='Expert Mode'
             checked={expertMode}
             onChange={onChangeExpertToggle}
-            disabled={gasLoading || disabled}
+            disabled={txState !== TxState.FillingTxFee}
           />
           {expertMode && (
             <FilecoinInput
@@ -66,12 +62,12 @@ export const TransactionFee = ({
               onEnter={setMaxFeeIfChanged}
               onChange={setLocalFee}
               setIsValid={setIsLocalFeeValid}
-              disabled={gasLoading || disabled}
+              disabled={txState !== TxState.FillingTxFee}
             />
           )}
         </>
       )}
-      {gasLoading && <p>Calculating transaction fees...</p>}
+      {txState === TxState.LoadingTxFee && <p>Calculating transaction fees...</p>}
       {calculatedFee && <TransactionMaxFee maxFee={calculatedFee} />}
     </>
   )
@@ -82,8 +78,7 @@ export interface TransactionFeeProps {
   setInputFee: (inputFee: FilecoinNumber) => void
   affordableFee: FilecoinNumber
   calculatedFee: FilecoinNumber
-  gasLoading: boolean
-  disabled: boolean
+  txState: TxState
 }
 
 TransactionFee.propTypes = {
@@ -91,6 +86,5 @@ TransactionFee.propTypes = {
   setInputFee: PropTypes.func.isRequired,
   affordableFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   calculatedFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  gasLoading: PropTypes.bool,
-  disabled: PropTypes.bool
+  txState: TX_STATE_PROPTYPE.isRequired
 }
