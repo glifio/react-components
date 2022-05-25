@@ -7,6 +7,7 @@ import { MESSAGE_PROPTYPE, TxState, TX_STATE_PROPTYPE } from '../../customPropTy
 import { MessagePending } from '../../generated/graphql'
 import { TransactionButtons } from './Buttons'
 import { TransactionHeader } from './Header'
+import { TransactionTotal } from './Total'
 import { Dialog, ShadowBox } from '../Layout'
 import { useSubmittedMessages } from '../HistoryTables/PendingMsgContext'
 import { useWallet, useWalletProvider } from '../../services'
@@ -85,7 +86,10 @@ export const TransactionForm = ({
         }
       />
       <ShadowBox>
-        {children}
+        <form>
+          {children}
+          {total && <TransactionTotal total={total} />}
+        </form>
       </ShadowBox>
       <TransactionButtons
         backDisabled={
