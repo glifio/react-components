@@ -49,18 +49,18 @@ export const GRAPHQL_ADDRESS_PROP_TYPE = shape({
  */
 
 const createBigNumberPropType =
-isRequired => (props, propName, componentName) => {
-  const prop = props[propName]
-  if (prop == null) {
-    if (isRequired) {
-      return new Error(`Missing prop "${propName}" in "${componentName}"`)
+  isRequired => (props, propName, componentName) => {
+    const prop = props[propName]
+    if (prop == null) {
+      if (isRequired) {
+        return new Error(`Missing prop "${propName}" in "${componentName}"`)
+      }
+    } else if (!BigNumber.isBigNumber(prop)) {
+      return new Error(
+        `Invalid prop "${propName}" supplied to "${componentName}"`
+      )
     }
-  } else if (!BigNumber.isBigNumber(prop)) {
-    return new Error(
-      `Invalid prop "${propName}" supplied to "${componentName}"`
-    )
   }
-}
 
 export const BIGNUMBER_PROPTYPE: Requireable<any> = Object.assign(
   createBigNumberPropType(false),
