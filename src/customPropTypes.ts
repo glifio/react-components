@@ -58,7 +58,7 @@ const createFilecoinNumberPropType =
     } else {
       // instanceof prop checking is broken in nextjs on server side render cycles
       const isFilecoinNumber =
-        typeof prop === 'object' &&
+        BigNumber.isBigNumber(prop) &&
         'toFil' in prop &&
         'toAttoFil' in prop &&
         'toPicoFil' in prop
