@@ -72,15 +72,15 @@ export const TransactionForm = ({
       const provider = await getProvider()
       const nonce = await provider.getNonce(wallet.address)
       const newMessage = new Message({
-        to: message.to,
-        from: message.from,
+        to: messageWithGas.to,
+        from: messageWithGas.from,
         nonce,
-        value: message.value,
-        method: message.method,
-        params: getParams ? getParams(nonce) : message.params,
-        gasPremium: gasParams.gasPremium.toAttoFil(),
-        gasFeeCap: gasParams.gasFeeCap.toAttoFil(),
-        gasLimit: new BigNumber(gasParams.gasLimit.toAttoFil()).toNumber()
+        value: messageWithGas.value,
+        method: messageWithGas.method,
+        params: getParams ? getParams(nonce) : messageWithGas.params,
+        gasPremium: messageWithGas.gasPremium,
+        gasFeeCap: messageWithGas.gasFeeCap,
+        gasLimit: messageWithGas.gasLimit
       })
       setTxState(TxState.AwaitingConfirmation)
       const lotusMessage = newMessage.toLotusType()
