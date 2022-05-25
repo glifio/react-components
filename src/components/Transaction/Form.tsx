@@ -18,7 +18,45 @@ export const TransactionForm = ({
 }: TransactionFormProps) => {
   const router = useRouter()
 
-  const onSend = () => {}
+  // Attempt sending message
+  const onSend = async () => {
+    setTxState(TxState.LoadingTxDetails)
+    setTxError(null)
+    try {
+      const provider = await getProvider()
+      const newMessage = new Message({
+        to: message.to,
+        from: message.from,
+        nonce: await provider.getNonce(wallet.address),
+        value: message.value,
+        method: message.method,
+        params: message.params,
+        gasPremium: gasParams.gasPremium.toAttoFil(),
+        gasFeeCap: gasParams.gasFeeCap.toAttoFil(),
+        gasLimit: new BigNumber(gasParams.gasLimit.toAttoFil()).toNumber()
+      })
+      setTxState(TxState.AwaitingConfirmation)
+      const lotusMessage = newMessage.toLotusType()
+      const signedMessage = await provider.wallet.sign(
+        wallet.address,
+        lotusMessage
+      )
+      setTxState(TxState.MPoolPushing)
+      const msgValid = await provider.simulateMessage(lotusMessage)
+      if (!msgValid) {
+        throw new Error('Filecoin message invalid. No gas or fees were spent.')
+      }
+      const msgCid = await provider.sendMessage(signedMessage)
+      pushPendingMessage(
+        newMessage.toPendingMessage(msgCid['/']) as MessagePending
+      )
+      onComplete()
+    } catch (e: any) {
+      logger.error(e)
+      setTxState(TxState.FillingTxFee)
+      setTxError(e)
+    }
+  }
 
   return (
     <Dialog>
