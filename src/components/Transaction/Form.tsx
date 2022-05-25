@@ -124,8 +124,7 @@ export const TransactionForm = ({
             setInputFee={setInputFee}
             affordableFee={maxFee}
             calculatedFee={txFee}
-            gasLoading={gasParamsLoading}
-            disabled={gasParamsLoading || txState !== TxState.FillingTxFee}
+            txState={txState}
           />
         </form>
         {total && <TransactionTotal total={total} />}
