@@ -72,12 +72,12 @@ export const TransactionForm = ({
       const provider = await getProvider()
       const nonce = await provider.getNonce(wallet.address)
       const newMessage = new Message({
-        to: gasParamsMessage.to,
-        from: gasParamsMessage.from,
+        to: message.to,
+        from: message.from,
         nonce,
-        value: gasParamsMessage.value,
-        method: gasParamsMessage.method,
-        params: getParams ? getParams(nonce) : gasParamsMessage.params,
+        value: message.value,
+        method: message.method,
+        params: getParams ? getParams(nonce) : message.params,
         gasPremium: gasParams.gasPremium.toAttoFil(),
         gasFeeCap: gasParams.gasFeeCap.toAttoFil(),
         gasLimit: new BigNumber(gasParams.gasLimit.toAttoFil()).toNumber()
