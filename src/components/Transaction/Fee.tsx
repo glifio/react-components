@@ -18,7 +18,7 @@ export const TransactionFee = ({
   // Input states
   const [expertMode, setExpertMode] = useState<boolean>(false)
   const [localFee, setLocalFee] = useState<FilecoinNumber | null>(null)
-  const [isTxFeeValid, setIsTxFeeValid] = useState<boolean>(false)
+  const [isLocalFeeValid, setIsLocalFeeValid] = useState<boolean>(false)
 
   // When leaving the tx fee input or pressing Enter, we set inputFee
   // to update the gas params if the following conditions are met:
@@ -28,7 +28,7 @@ export const TransactionFee = ({
   const setMaxFeeIfChanged = () => {
     if (
       localFee &&
-      isTxFeeValid &&
+      isLocalFeeValid &&
       (!inputFee || localFee.toAttoFil() !== inputFee.toAttoFil()) &&
       (!calculatedFee || localFee.toAttoFil() !== calculatedFee.toAttoFil())
     ) {
@@ -65,7 +65,7 @@ export const TransactionFee = ({
               onBlur={setMaxFeeIfChanged}
               onEnter={setMaxFeeIfChanged}
               onChange={setLocalFee}
-              setIsValid={setIsTxFeeValid}
+              setIsValid={setIsLocalFeeValid}
               disabled={gasLoading || disabled}
             />
           )}
