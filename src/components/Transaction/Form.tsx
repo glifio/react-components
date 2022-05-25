@@ -65,6 +65,9 @@ export const TransactionForm = ({
         title={title}
         description={description}
         loginOption={loginOption}
+        errorMessage={
+          gasParamsError?.message || txError?.message || walletError() || ''
+        }
       />
       <ShadowBox>
         {children}
