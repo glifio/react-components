@@ -174,6 +174,7 @@ export enum TxState {
   LoadingMessage = 0,
   FillingForm,
   FillingTxFee,
+  LoadingTxFee,
   LoadingTxDetails,
   AwaitingConfirmation,
   MPoolPushing
