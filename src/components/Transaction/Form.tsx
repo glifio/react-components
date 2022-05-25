@@ -50,14 +50,11 @@ export const TransactionForm = ({
 
   // Calculate transaction fee (fee cap times limit)
   useEffect(() => {
-    if (messageWithGas) {
-      const feeCapStr = messageWithGas.gasFeeCap.toFixed(0, BigNumber.ROUND_CEIL)
-      const feeCap = new FilecoinNumber(feeCapStr, 'attofil')
-      const limit = messageWithGas.gasLimit
-      setTxFee(getMaxGasFee(feeCap, limit))
-    } else {
-      setTxFee(null)
-    }
+    if (!messageWithGas) return setTxFee(null)
+    const feeCapStr = messageWithGas.gasFeeCap.toFixed(0, BigNumber.ROUND_CEIL)
+    const feeCap = new FilecoinNumber(feeCapStr, 'attofil')
+    const limit = messageWithGas.gasLimit
+    setTxFee(getMaxGasFee(feeCap, limit))
   }, [setTxFee, messageWithGas])
 
   //Load gas params with the current message and input fee
@@ -161,11 +158,7 @@ export const TransactionForm = ({
             ? router.back
             : () => setTxState(TxState.FillingForm)
         }
-        onClickNext={
-          txState < TxState.FillingTxFee
-            ? getGasParams
-            : onSend
-        }
+        onClickNext={txState < TxState.FillingTxFee ? getGasParams : onSend}
       />
     </Dialog>
   )
