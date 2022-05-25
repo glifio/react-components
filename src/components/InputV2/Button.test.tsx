@@ -28,11 +28,7 @@ describe('Button input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ButtonInput
-            label={labelText}
-            info={infoText}
-            value={inputValue}
-          />
+          <ButtonInput label={labelText} info={infoText} value={inputValue} />
         </ThemeProvider>
       )
     })
