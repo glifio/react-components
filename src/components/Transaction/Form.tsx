@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types'
+import { ReactNode } from 'react'
 import { useRouter } from 'next/router'
 import { TxState, TX_STATE_PROPTYPE, LoginOption, LOGIN_OPTION_PROPTYPE } from '../../customPropTypes'
 import { TransactionButtons } from './Buttons'
+import { TransactionHeader } from './Header'
 import { Dialog, ShadowBox } from '../Layout'
 
 export const TransactionForm = ({
+  children,
   title,
   description,
   loginOption,
@@ -17,8 +20,14 @@ export const TransactionForm = ({
 
   return (
     <Dialog>
+      <TransactionHeader
+        txState={txState}
+        title={title}
+        description={description}
+        loginOption={loginOption}
+      />
       <ShadowBox>
-        
+        {children}
       </ShadowBox>
       <TransactionButtons
         backDisabled={
@@ -45,6 +54,7 @@ export const TransactionForm = ({
 }
 
 export type TransactionFormProps = {
+  children: ReactNode
   title: string
   description: string
   loginOption: LoginOption
@@ -53,6 +63,10 @@ export type TransactionFormProps = {
 }
 
 TransactionForm.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   LoginOption: LOGIN_OPTION_PROPTYPE.isRequired,
