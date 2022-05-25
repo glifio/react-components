@@ -13,7 +13,8 @@ export const TransactionForm = ({
   description,
   message,
   txState,
-  setTxState
+  setTxState,
+  onComplete
 }: TransactionFormProps) => {
   const router = useRouter()
 
@@ -61,6 +62,7 @@ export type TransactionFormProps = {
   message: Message
   txState: TxState
   setTxState: (state: TxState) => {}
+  onComplete: () => {}
 }
 
 TransactionForm.propTypes = {
@@ -72,5 +74,6 @@ TransactionForm.propTypes = {
   description: PropTypes.string.isRequired,
   message: MESSAGE_PROPTYPE.isRequired,
   txState: TX_STATE_PROPTYPE.isRequired,
-  setTxState: PropTypes.func.isRequired
+  setTxState: PropTypes.func.isRequired,
+  onComplete: PropTypes.func.isRequired
 }
