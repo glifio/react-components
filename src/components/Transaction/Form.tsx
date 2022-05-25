@@ -46,14 +46,14 @@ export const TransactionForm = ({
 
   // Max transaction fee used for getting gas params. Will be
   // null until the user manually changes the transaction fee.
-  const [maxFee, setMaxFee] = useState<FilecoinNumber | null>(null)
+  const [inputFee, setInputFee] = useState<FilecoinNumber | null>(null)
 
   // Load gas parameters when message or max fee changes
   const {
     gasParams,
     loading: gasParamsLoading,
     error: gasParamsError
-  } = useGetGasParams(walletProvider, gasParamsMessage, maxFee)
+  } = useGetGasParams(walletProvider, gasParamsMessage, inputFee)
 
   // Calculate maximum transaction fee (fee cap times limit)
   useEffect(() => {
