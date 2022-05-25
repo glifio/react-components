@@ -4,6 +4,9 @@ import { TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
 import { TransactionButtons } from './Buttons'
 
 export const TransactionForm = ({
+  title,
+  description,
+  loginOption,
   txState,
   setTxState
 }: TransactionFormProps) => {
@@ -38,11 +41,17 @@ export const TransactionForm = ({
 }
 
 export type TransactionFormProps = {
+  title: string
+  description: string
+  loginOption: LoginOption
   txState: TxState
   setTxState: (state: TxState) => {}
 }
 
 TransactionForm.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  LoginOption: LOGIN_OPTION_PROPTYPE.isRequired,
   txState: TX_STATE_PROPTYPE.isRequired,
   setTxState: PropTypes.func.isRequired
 }
