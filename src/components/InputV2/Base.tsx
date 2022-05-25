@@ -48,7 +48,10 @@ export const BaseInput = ({
     <div className='button-wrapper'>
       <div className='unit-wrapper'>
         <input
-          className={error ? className.concat(' error') : className}
+          className={[
+            ...(className ? [className] : []),
+            ...(error ? ['error'] : [])
+          ].join(' ')}
           name={name}
           type={type}
           autoFocus={autofocus}
