@@ -4,7 +4,7 @@ import {
   oneOfType,
   number,
   oneOf,
-  object,
+  arrayOf,
   Requireable
 } from 'prop-types'
 import { validateMnemonic } from 'bip39'
@@ -98,18 +98,19 @@ export const BIGNUMBER_PROPTYPE: Requireable<any> = Object.assign(
 )
 
 /**
- * MESSAGE_PROPS
+ * Message
  */
 
-export const MESSAGE_PROPS = shape({
+export const MESSAGE_PROPTYPE = shape({
   to: ADDRESS_PROPTYPE.isRequired,
   from: ADDRESS_PROPTYPE.isRequired,
-  value: string.isRequired,
-  cid: string.isRequired,
-  status: oneOf(['confirmed', 'pending']).isRequired,
-  timestamp: oneOfType([string, number]).isRequired,
-  method: string.isRequired,
-  params: object.isRequired
+  nonce: number.isRequired,
+  method: number.isRequired,
+  value: BIGNUMBER_PROPTYPE.isRequired,
+  gasPremium: BIGNUMBER_PROPTYPE.isRequired,
+  gasFeeCap: BIGNUMBER_PROPTYPE.isRequired,
+  gasLimit: number.isRequired,
+  params: oneOfType([string, arrayOf(string)])
 })
 
 /**
