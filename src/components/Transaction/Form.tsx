@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
 import { ReactNode } from 'react'
 import { useRouter } from 'next/router'
-import { TxState, TX_STATE_PROPTYPE, LoginOption, LOGIN_OPTION_PROPTYPE } from '../../customPropTypes'
+import { Message } from '@glif/filecoin-message'
+import { MESSAGE_PROPTYPE, TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
 import { TransactionButtons } from './Buttons'
 import { TransactionHeader } from './Header'
 import { Dialog, ShadowBox } from '../Layout'
@@ -10,7 +11,7 @@ export const TransactionForm = ({
   children,
   title,
   description,
-  loginOption,
+  message,
   txState,
   setTxState
 }: TransactionFormProps) => {
@@ -57,7 +58,7 @@ export type TransactionFormProps = {
   children: ReactNode
   title: string
   description: string
-  loginOption: LoginOption
+  message: Message
   txState: TxState
   setTxState: (state: TxState) => {}
 }
@@ -69,7 +70,7 @@ TransactionForm.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
+  message: MESSAGE_PROPTYPE.isRequired,
   txState: TX_STATE_PROPTYPE.isRequired,
   setTxState: PropTypes.func.isRequired
 }
