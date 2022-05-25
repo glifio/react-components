@@ -2,10 +2,11 @@ import { BigNumber, FilecoinNumber } from '@glif/filecoin-number'
 
 export const getMaxGasFee = (
   gasFeeCap: FilecoinNumber,
-  gasLimit: FilecoinNumber
+  gasLimit: FilecoinNumber | number
 ): FilecoinNumber => {
   const gasFeeCapBigNr = new BigNumber(gasFeeCap.toAttoFil())
-  const gasLimitBigNr = new BigNumber(gasLimit.toAttoFil())
-  const maxGasFeeBigNr = gasFeeCapBigNr.times(gasLimitBigNr)
+  const maxGasFeeBigNr = gasFeeCapBigNr.times(
+    typeof gasLimit === 'number' ? gasLimit : gasLimit.toAttoFil()
+  )
   return new FilecoinNumber(maxGasFeeBigNr.toString(), 'attofil')
 }
