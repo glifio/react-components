@@ -26,11 +26,11 @@ export const TransactionButtons = ({
 }
 
 export interface TransactionButtonsProps {
-  backDisabled: boolean
-  nextDisabled: boolean
-  backText: string
-  nextText: string
-  onClickBack: () => void
+  backDisabled?: boolean
+  nextDisabled?: boolean
+  backText?: string
+  nextText?: string
+  onClickBack?: () => void
   onClickNext: () => void
 }
 
