@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 import { TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
 import { TransactionButtons } from './Buttons'
+import { Dialog, ShadowBox } from '../Layout'
 
 export const TransactionForm = ({
   title,
@@ -15,7 +16,10 @@ export const TransactionForm = ({
   const onSend = () => {}
 
   return (
-    <>
+    <Dialog>
+      <ShadowBox>
+        
+      </ShadowBox>
       <TransactionButtons
         backDisabled={
           txState !== TxState.FillingForm && txState !== TxState.FillingTxFee
@@ -36,7 +40,7 @@ export const TransactionForm = ({
             : onSend
         }
       />
-    </>
+    </Dialog>
   )
 }
 
