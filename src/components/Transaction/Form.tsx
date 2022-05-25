@@ -139,6 +139,7 @@ export const TransactionForm = ({
             affordableFee={maxFee}
             calculatedFee={txFee}
             txState={txState}
+            onUpdate={getGasParams}
           />
         </form>
         {total && <TransactionTotal total={total} />}

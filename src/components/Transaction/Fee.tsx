@@ -16,7 +16,8 @@ export const TransactionFee = ({
   setInputFee,
   affordableFee,
   calculatedFee,
-  txState
+  txState,
+  onUpdate
 }: TransactionFeeProps) => {
   // Input states
   const [expertMode, setExpertMode] = useState<boolean>(false)
@@ -85,6 +86,7 @@ export interface TransactionFeeProps {
   affordableFee: FilecoinNumber
   calculatedFee: FilecoinNumber
   txState: TxState
+  onUpdate: () => void
 }
 
 TransactionFee.propTypes = {
@@ -92,5 +94,6 @@ TransactionFee.propTypes = {
   setInputFee: PropTypes.func.isRequired,
   affordableFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   calculatedFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  txState: TX_STATE_PROPTYPE.isRequired
+  txState: TX_STATE_PROPTYPE.isRequired,
+  onUpdate: PropTypes.func.isRequired
 }
