@@ -133,10 +133,10 @@ export const TransactionForm = ({
         backDisabled={
           txState !== TxState.FillingForm && txState !== TxState.FillingTxFee
         }
-        nextDisabled={!(
-          txState === TxState.FillingForm && message ||
-          txState === TxState.FillingTxFee && txFee
-        )}
+        nextDisabled={
+          (txState !== TxState.FillingForm || !message) &&
+          (txState !== TxState.FillingTxFee || !messageWithGas)
+        }
         backText={txState < TxState.FillingTxFee ? 'Cancel' : 'Back'}
         nextText={txState < TxState.FillingTxFee ? 'Review' : 'Send'}
         onClickBack={
