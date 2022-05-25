@@ -5,7 +5,11 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { Toggle } from '../InputV2/Toggle'
 import { FilecoinInput } from '../InputV2/Filecoin'
 import { TransactionMaxFee } from './MaxFee'
-import { FILECOIN_NUMBER_PROPTYPE, TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
+import {
+  FILECOIN_NUMBER_PROPTYPE,
+  TxState,
+  TX_STATE_PROPTYPE
+} from '../../customPropTypes'
 
 export const TransactionFee = ({
   inputFee,
@@ -67,7 +71,9 @@ export const TransactionFee = ({
           )}
         </>
       )}
-      {txState === TxState.LoadingTxFee && <p>Calculating transaction fees...</p>}
+      {txState === TxState.LoadingTxFee && (
+        <p>Calculating transaction fees...</p>
+      )}
       {calculatedFee && <TransactionMaxFee maxFee={calculatedFee} />}
     </>
   )
