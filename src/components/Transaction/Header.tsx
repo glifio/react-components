@@ -1,26 +1,23 @@
 import PropTypes from 'prop-types'
 import { ErrorBox } from '../Layout'
 import { StandardBox } from '../Layout'
-import {
-  LoginOption,
-  LOGIN_OPTION_PROPTYPE,
-  MsigMethod,
-  MSIG_METHOD_PROPTYPE,
-  TxState,
-  TX_STATE_PROPTYPE
-} from '../../customPropTypes'
+import { TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
 import LoaderGlyph from '../LoaderGlyph'
-import { TransactionConfirm } from './Confirm'
+import {
+  TransactionConfirm,
+  TransactionConfirmProps,
+  TransactionConfirmPropTypes
+} from './Confirm'
 
 export const TransactionHeader = ({
   txState,
   title,
   description,
+  errorMessage,
   loginOption,
   msig,
   method,
-  approvalsLeft,
-  errorMessage
+  approvalsLeft
 }: TransactionHeaderProps) => (
   <>
     <StandardBox>
@@ -55,24 +52,17 @@ export const TransactionHeader = ({
   </>
 )
 
-export interface TransactionHeaderProps {
+export type TransactionHeaderProps = {
   txState: TxState
   title: string
   description: string
-  loginOption: LoginOption
-  msig?: boolean
-  method?: MsigMethod
-  approvalsLeft?: number
   errorMessage?: string
-}
+} & TransactionConfirmProps
 
 TransactionHeader.propTypes = {
   txState: TX_STATE_PROPTYPE.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
-  msig: PropTypes.bool,
-  method: MSIG_METHOD_PROPTYPE,
-  approvalsLeft: PropTypes.number,
-  errorMessage: PropTypes.string
+  errorMessage: PropTypes.string,
+  ...TransactionConfirmPropTypes
 }

@@ -133,13 +133,14 @@ export type TransactionConfirmProps = {
   approvalsLeft?: number
 }
 
-TransactionConfirm.propTypes = {
+export const TransactionConfirmPropTypes = {
   loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
   msig: PropTypes.bool,
   method: MSIG_METHOD_PROPTYPE,
   approvalsLeft: PropTypes.number
 }
 
+TransactionConfirm.propTypes = TransactionConfirmPropTypes
 TransactionConfirm.defaultProps = {
   msig: false
 }
