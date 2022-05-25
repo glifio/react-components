@@ -147,6 +147,7 @@ export const MSIG_METHOD_PROPTYPE = oneOf(
 
 export enum TxState {
   FillingForm = 'FillingForm',
+  FillingTxFee = 'FillingTxFee',
   LoadingMessage = 'LoadingMessage',
   LoadingTxDetails = 'LoadingTxDetails',
   AwaitingConfirmation = 'AwaitingConfirmation',
