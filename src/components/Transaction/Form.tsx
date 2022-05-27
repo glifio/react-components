@@ -6,6 +6,8 @@ import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import {
   FILECOIN_NUMBER_PROPTYPE,
   MESSAGE_PROPTYPE,
+  MsigMethod,
+  MSIG_METHOD_PROPTYPE,
   TxState,
   TX_STATE_PROPTYPE
 } from '../../customPropTypes'
@@ -24,6 +26,9 @@ export const TransactionForm = ({
   children,
   title,
   description,
+  msig,
+  method,
+  approvalsLeft,
   message,
   total,
   txState,
@@ -125,10 +130,13 @@ export const TransactionForm = ({
         txState={txState}
         title={title}
         description={description}
-        loginOption={loginOption}
         errorMessage={
           gasParamsError?.message || txError?.message || walletError() || ''
         }
+        loginOption={loginOption}
+        msig={msig}
+        method={method}
+        approvalsLeft={approvalsLeft}
       />
       <ShadowBox>
         <form>
@@ -169,6 +177,9 @@ export type TransactionFormProps = {
   children: ReactNode
   title: string
   description: string
+  msig?: boolean
+  method?: MsigMethod
+  approvalsLeft?: number
   message: Message
   total?: FilecoinNumber
   txState: TxState
@@ -187,6 +198,9 @@ TransactionForm.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  msig: PropTypes.bool,
+  method: MSIG_METHOD_PROPTYPE,
+  approvalsLeft: PropTypes.number,
   message: MESSAGE_PROPTYPE.isRequired,
   total: FILECOIN_NUMBER_PROPTYPE,
   txState: TX_STATE_PROPTYPE.isRequired,
