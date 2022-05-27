@@ -2,10 +2,10 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
+import { SmartLink } from '../Link/SmartLink'
 import { Toggle } from '../InputV2/Toggle'
 import { ButtonInput } from '../InputV2/Button'
 import { FilecoinInput } from '../InputV2/Filecoin'
-import { TransactionMaxFee } from './MaxFee'
 import {
   FILECOIN_NUMBER_PROPTYPE,
   TxState,
@@ -15,7 +15,7 @@ import {
 export const TransactionFee = ({
   inputFee,
   setInputFee,
-  affordableFee,
+  maxFee,
   txFee,
   txState,
   onUpdate
@@ -56,7 +56,7 @@ export const TransactionFee = ({
           {expertMode && (
             <FilecoinInput
               label='Transaction Fee'
-              max={affordableFee}
+              max={maxFee}
               value={inputFee}
               denom='attofil'
               onChange={onChangeTxFee}
@@ -77,7 +77,14 @@ export const TransactionFee = ({
       {txState === TxState.LoadingTxFee && (
         <p>Calculating transaction fees...</p>
       )}
-      {txFee && <TransactionMaxFee maxFee={txFee} />}
+      {txFee && (
+        <p>
+          You will not pay more than {txFee.toFil()} FIL for this transaction.{' '}
+          <SmartLink href='https://filfox.info/en/stats/gas'>
+            More information on average gas fee statistics.
+          </SmartLink>
+        </p>
+      )}
     </>
   )
 }
@@ -85,7 +92,7 @@ export const TransactionFee = ({
 export interface TransactionFeeProps {
   inputFee: FilecoinNumber
   setInputFee: (inputFee: FilecoinNumber) => void
-  affordableFee: FilecoinNumber
+  maxFee: FilecoinNumber
   txFee: FilecoinNumber
   txState: TxState
   onUpdate: () => void
@@ -94,7 +101,7 @@ export interface TransactionFeeProps {
 TransactionFee.propTypes = {
   inputFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   setInputFee: PropTypes.func.isRequired,
-  affordableFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  maxFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   txFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   txState: TX_STATE_PROPTYPE.isRequired,
   onUpdate: PropTypes.func.isRequired
