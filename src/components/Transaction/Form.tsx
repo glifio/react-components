@@ -36,7 +36,6 @@ export const TransactionForm = ({
   maxFee,
   txFee,
   setTxFee,
-  getParams,
   onComplete
 }: TransactionFormProps) => {
   const router = useRouter()
@@ -89,14 +88,13 @@ export const TransactionForm = ({
     setTxError(null)
     try {
       const provider = await getProvider()
-      const nonce = await provider.getNonce(wallet.address)
       const newMessage = new Message({
         to: messageWithGas.to,
         from: messageWithGas.from,
-        nonce,
+        nonce: await provider.getNonce(wallet.address),
         value: messageWithGas.value,
         method: messageWithGas.method,
-        params: getParams ? getParams(nonce) : messageWithGas.params,
+        params: messageWithGas.params,
         gasPremium: messageWithGas.gasPremium,
         gasFeeCap: messageWithGas.gasFeeCap,
         gasLimit: messageWithGas.gasLimit
@@ -189,7 +187,6 @@ export type TransactionFormProps = {
   maxFee: FilecoinNumber
   txFee: FilecoinNumber
   setTxFee: (fee: FilecoinNumber) => void
-  getParams?: (nonce: number) => string
   onComplete: () => void
 }
 
@@ -210,6 +207,5 @@ TransactionForm.propTypes = {
   maxFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   txFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   setTxFee: PropTypes.func.isRequired,
-  getParams: PropTypes.func,
   onComplete: PropTypes.func.isRequired
 }
