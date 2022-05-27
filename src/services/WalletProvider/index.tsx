@@ -35,7 +35,7 @@ import { reportMetaMaskError } from './metamaskUtils'
 import { reducerLogger } from '../../logger'
 import { LoginOption } from '../../customPropTypes'
 
-type WalletProviderContextType = {
+export type WalletProviderContextType = {
   state: WalletProviderState
   lotusApiAddr: string
   dispatch: Dispatch<WalletProviderAction> | null

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useState, ReactNode, useEffect } from 'react'
+import { useState, ReactNode, useEffect, Context } from 'react'
 import { useRouter } from 'next/router'
 import { Message } from '@glif/filecoin-message'
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
@@ -17,7 +17,10 @@ import { TransactionFee } from './Fee'
 import { TransactionHeader } from './Header'
 import { TransactionTotal } from './Total'
 import { Dialog, ShadowBox } from '../Layout'
-import { useSubmittedMessages } from '../HistoryTables/PendingMsgContext'
+import {
+  PendingMsgContextType,
+  useSubmittedMessages
+} from '../HistoryTables/PendingMsgContext'
 import { getMaxGasFee } from '../../utils'
 import {
   useWallet,
@@ -41,11 +44,12 @@ export const TransactionForm = ({
   txFee,
   setTxFee,
   onComplete,
-  walletProviderOpts
+  walletProviderOpts,
+  pendingMsgContext
 }: TransactionFormProps) => {
   const router = useRouter()
   const wallet = useWallet()
-  const { pushPendingMessage } = useSubmittedMessages()
+  const { pushPendingMessage } = useSubmittedMessages(pendingMsgContext)
   const { loginOption, walletError, walletProvider, getProvider } =
     useWalletProvider(walletProviderOpts)
 
@@ -195,6 +199,7 @@ export type TransactionFormProps = {
   onComplete: () => void
   // used for testing with a stubbed context value
   walletProviderOpts?: WalletProviderOpts
+  pendingMsgContext?: Context<PendingMsgContextType>
 }
 
 TransactionForm.propTypes = {
@@ -215,5 +220,6 @@ TransactionForm.propTypes = {
   txFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   setTxFee: PropTypes.func.isRequired,
   onComplete: PropTypes.func.isRequired,
-  walletProviderOpts: PropTypes.object
+  walletProviderOpts: PropTypes.object,
+  pendingMsgContext: PropTypes.object
 }
