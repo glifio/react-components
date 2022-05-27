@@ -4,7 +4,8 @@ import {
   useReducer,
   useCallback,
   Dispatch,
-  ReactChildren
+  ReactChildren,
+  Context
 } from 'react'
 import PropTypes from 'prop-types'
 import Filecoin, {
@@ -212,8 +213,19 @@ WalletProviderWrapper.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export const useWalletProvider = () => {
-  const value = useContext(WalletProviderContext)
+export type WalletProviderOpts = {
+  context: Context<WalletProviderContextType>
+}
+
+export const useWalletProvider = (opts?: WalletProviderOpts) => {
+  let ctx: Context<WalletProviderContextType>
+  if (opts?.context) {
+    ctx = opts.context
+  } else {
+    ctx = WalletProviderContext
+  }
+
+  const value = useContext(ctx)
   const { state } = value
   return {
     ...state,
