@@ -168,6 +168,8 @@ export const MSIG_METHOD_PROPTYPE = oneOf(
 
 /**
  * Transaction State
+ * These values are numeric and should stay in order of the tx flow.
+ * This is so we can check e.g. txState > TxState.FillingTxForm.
  */
 
 export enum TxState {
