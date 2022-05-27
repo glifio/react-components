@@ -44,48 +44,46 @@ export const TransactionFee = ({
   }
 
   return (
-    <>
-      {txState >= TxState.FillingTxFee && (
-        <>
-          <Toggle
-            label='Expert Mode'
-            checked={expertMode}
-            onChange={onChangeExpertToggle}
+    txState >= TxState.FillingTxFee && (
+      <>
+        <Toggle
+          label='Expert Mode'
+          checked={expertMode}
+          onChange={onChangeExpertToggle}
+          disabled={txState !== TxState.FillingTxFee}
+        />
+        {expertMode && (
+          <FilecoinInput
+            label='Transaction Fee'
+            max={maxFee}
+            value={inputFee}
+            denom='attofil'
+            onChange={onChangeTxFee}
+            setIsValid={setIsInputFeeValid}
             disabled={txState !== TxState.FillingTxFee}
           />
-          {expertMode && (
-            <FilecoinInput
-              label='Transaction Fee'
-              max={maxFee}
-              value={inputFee}
-              denom='attofil'
-              onChange={onChangeTxFee}
-              setIsValid={setIsInputFeeValid}
-              disabled={txState !== TxState.FillingTxFee}
-            />
-          )}
-          {isDirty && (
-            <ButtonInput
-              label='Update Transaction Fee'
-              value='Update'
-              onClick={onClickUpdate}
-              disabled={!isInputFeeValid || txState !== TxState.FillingTxFee}
-            />
-          )}
-        </>
-      )}
-      {txState === TxState.LoadingTxFee && (
-        <p>Calculating transaction fees...</p>
-      )}
-      {txFee && (
-        <p>
-          You will not pay more than {txFee.toFil()} FIL for this transaction.{' '}
-          <SmartLink href='https://filfox.info/en/stats/gas'>
-            More information on average gas fee statistics.
-          </SmartLink>
-        </p>
-      )}
-    </>
+        )}
+        {isDirty && (
+          <ButtonInput
+            label='Update Transaction Fee'
+            value='Update'
+            onClick={onClickUpdate}
+            disabled={!isInputFeeValid || txState !== TxState.FillingTxFee}
+          />
+        )}
+        {txState === TxState.LoadingTxFee && (
+          <p>Calculating transaction fees...</p>
+        )}
+        {txFee && (
+          <p>
+            You will not pay more than {txFee.toFil()} FIL for this transaction.{' '}
+            <SmartLink href='https://filfox.info/en/stats/gas'>
+              More information on average gas fee statistics.
+            </SmartLink>
+          </p>
+        )}
+      </>
+    )
   )
 }
 
