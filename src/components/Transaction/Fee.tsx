@@ -43,36 +43,32 @@ export const TransactionFee = ({
     onUpdate()
   }
 
-  return (
+  return txState >= TxState.FillingTxFee && (
     <>
-      {txState >= TxState.FillingTxFee && (
-        <>
-          <Toggle
-            label='Expert Mode'
-            checked={expertMode}
-            onChange={onChangeExpertToggle}
-            disabled={txState !== TxState.FillingTxFee}
-          />
-          {expertMode && (
-            <FilecoinInput
-              label='Transaction Fee'
-              max={maxFee}
-              value={inputFee}
-              denom='attofil'
-              onChange={onChangeTxFee}
-              setIsValid={setIsInputFeeValid}
-              disabled={txState !== TxState.FillingTxFee}
-            />
-          )}
-          {isDirty && (
-            <ButtonInput
-              label='Update Transaction Fee'
-              value='Update'
-              onClick={onClickUpdate}
-              disabled={!isInputFeeValid || txState !== TxState.FillingTxFee}
-            />
-          )}
-        </>
+      <Toggle
+        label='Expert Mode'
+        checked={expertMode}
+        onChange={onChangeExpertToggle}
+        disabled={txState !== TxState.FillingTxFee}
+      />
+      {expertMode && (
+        <FilecoinInput
+          label='Transaction Fee'
+          max={maxFee}
+          value={inputFee}
+          denom='attofil'
+          onChange={onChangeTxFee}
+          setIsValid={setIsInputFeeValid}
+          disabled={txState !== TxState.FillingTxFee}
+        />
+      )}
+      {isDirty && (
+        <ButtonInput
+          label='Update Transaction Fee'
+          value='Update'
+          onClick={onClickUpdate}
+          disabled={!isInputFeeValid || txState !== TxState.FillingTxFee}
+        />
       )}
       {txState === TxState.LoadingTxFee && (
         <p>Calculating transaction fees...</p>
