@@ -16,7 +16,7 @@ export const TransactionFee = ({
   inputFee,
   setInputFee,
   affordableFee,
-  calculatedFee,
+  txFee,
   txState,
   onUpdate
 }: TransactionFeeProps) => {
@@ -25,10 +25,10 @@ export const TransactionFee = ({
   const [expertMode, setExpertMode] = useState<boolean>(false)
   const [isInputFeeValid, setIsInputFeeValid] = useState<boolean>(false)
 
-  // When enabling expert mode, set TX fee input value
-  // When disabling expert mode, reset to default TX fee
+  // When enabling expert mode, set TX fee input to current value
+  // When disabling expert mode, clear TX fee input
   const onChangeExpertToggle = (checked: boolean) => {
-    setInputFee(checked ? calculatedFee : null)
+    setInputFee(checked ? txFee : null)
     setIsDirty(false)
     setExpertMode(checked)
   }
@@ -77,7 +77,7 @@ export const TransactionFee = ({
       {txState === TxState.LoadingTxFee && (
         <p>Calculating transaction fees...</p>
       )}
-      {calculatedFee && <TransactionMaxFee maxFee={calculatedFee} />}
+      {txFee && <TransactionMaxFee maxFee={txFee} />}
     </>
   )
 }
@@ -86,7 +86,7 @@ export interface TransactionFeeProps {
   inputFee: FilecoinNumber
   setInputFee: (inputFee: FilecoinNumber) => void
   affordableFee: FilecoinNumber
-  calculatedFee: FilecoinNumber
+  txFee: FilecoinNumber
   txState: TxState
   onUpdate: () => void
 }
@@ -95,7 +95,7 @@ TransactionFee.propTypes = {
   inputFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   setInputFee: PropTypes.func.isRequired,
   affordableFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  calculatedFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  txFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   txState: TX_STATE_PROPTYPE.isRequired,
   onUpdate: PropTypes.func.isRequired
 }

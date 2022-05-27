@@ -137,7 +137,7 @@ export const TransactionForm = ({
             inputFee={inputFee}
             setInputFee={setInputFee}
             affordableFee={maxFee}
-            calculatedFee={txFee}
+            txFee={txFee}
             txState={txState}
             onUpdate={getGasParams}
           />
