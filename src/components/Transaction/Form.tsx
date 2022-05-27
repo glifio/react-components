@@ -194,7 +194,7 @@ export type TransactionFormProps = {
   setTxFee: (fee: FilecoinNumber) => void
   onComplete: () => void
   // used for testing with a stubbed context value
-  walletProviderOpts: WalletProviderOpts
+  walletProviderOpts?: WalletProviderOpts
 }
 
 TransactionForm.propTypes = {
