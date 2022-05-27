@@ -29,7 +29,7 @@ const BoxBase = styled.div`
     margin: 0; // Should be followed by <hr />
   }
 
-  > header:first-child {
+  header:first-child {
     margin: -1.5em -1.5em 1.5em -1.5em;
     padding: 1.5em;
     background-color: var(--purple-medium);

@@ -4,12 +4,13 @@ import {
   oneOfType,
   number,
   oneOf,
-  object,
+  arrayOf,
   Requireable
 } from 'prop-types'
 import { validateMnemonic } from 'bip39'
 import { validateAddressString, CoinType } from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
+import BigNumber from 'bignumber.js'
 
 /**
  * ADDRESS_PROPTYPE
@@ -44,7 +45,30 @@ export const GRAPHQL_ADDRESS_PROP_TYPE = shape({
 })
 
 /**
- * FILECOIN_NUMBER_PROPTYPE
+ * BigNumber
+ */
+
+const createBigNumberPropType =
+  isRequired => (props, propName, componentName) => {
+    const prop = props[propName]
+    if (prop == null) {
+      if (isRequired) {
+        return new Error(`Missing prop "${propName}" in "${componentName}"`)
+      }
+    } else if (!BigNumber.isBigNumber(prop)) {
+      return new Error(
+        `Invalid prop "${propName}" supplied to "${componentName}"`
+      )
+    }
+  }
+
+export const BIGNUMBER_PROPTYPE: Requireable<any> = Object.assign(
+  createBigNumberPropType(false),
+  { isRequired: createBigNumberPropType(true) }
+)
+
+/**
+ * FilecoinNumber
  */
 
 const createFilecoinNumberPropType =
@@ -57,7 +81,7 @@ const createFilecoinNumberPropType =
     } else {
       // instanceof prop checking is broken in nextjs on server side render cycles
       const isFilecoinNumber =
-        typeof prop === 'object' &&
+        BigNumber.isBigNumber(prop) &&
         'toFil' in prop &&
         'toAttoFil' in prop &&
         'toPicoFil' in prop
@@ -74,18 +98,19 @@ export const FILECOIN_NUMBER_PROPTYPE: Requireable<any> = Object.assign(
 )
 
 /**
- * MESSAGE_PROPS
+ * Message
  */
 
-export const MESSAGE_PROPS = shape({
+export const MESSAGE_PROPTYPE = shape({
   to: ADDRESS_PROPTYPE.isRequired,
   from: ADDRESS_PROPTYPE.isRequired,
-  value: string.isRequired,
-  cid: string.isRequired,
-  status: oneOf(['confirmed', 'pending']).isRequired,
-  timestamp: oneOfType([string, number]).isRequired,
-  method: string.isRequired,
-  params: object.isRequired
+  nonce: number.isRequired,
+  method: number.isRequired,
+  value: BIGNUMBER_PROPTYPE.isRequired,
+  gasPremium: BIGNUMBER_PROPTYPE.isRequired,
+  gasFeeCap: BIGNUMBER_PROPTYPE.isRequired,
+  gasLimit: number.isRequired,
+  params: oneOfType([string, arrayOf(string)])
 })
 
 /**
@@ -143,14 +168,18 @@ export const MSIG_METHOD_PROPTYPE = oneOf(
 
 /**
  * Transaction State
+ * These values are numeric and should stay in order of the tx flow.
+ * This is so we can check e.g. txState > TxState.FillingTxForm.
  */
 
 export enum TxState {
-  FillingForm = 'FillingForm',
-  LoadingMessage = 'LoadingMessage',
-  LoadingTxDetails = 'LoadingTxDetails',
-  AwaitingConfirmation = 'AwaitingConfirmation',
-  MPoolPushing = 'MPoolPushing'
+  LoadingMessage = 0,
+  FillingForm,
+  FillingTxFee,
+  LoadingTxFee,
+  LoadingTxDetails,
+  AwaitingConfirmation,
+  MPoolPushing
 }
 
 export const TX_STATE_PROPTYPE = oneOf(Object.values(TxState) as Array<TxState>)

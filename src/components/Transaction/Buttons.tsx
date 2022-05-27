@@ -4,31 +4,48 @@ import { ButtonV2 } from '../Button/V2'
 import { ButtonRowSpaced } from '../Layout'
 
 export const TransactionButtons = ({
-  cancelDisabled,
-  sendDisabled,
-  onClickSend
+  backDisabled,
+  nextDisabled,
+  backText,
+  nextText,
+  onClickBack,
+  onClickNext
 }: TransactionButtonsProps) => {
   const router = useRouter()
+  const onBack = onClickBack ? onClickBack : router ? router.back : () => {}
   return (
     <ButtonRowSpaced>
-      <ButtonV2 large disabled={cancelDisabled} onClick={() => router.back()}>
-        Cancel
+      <ButtonV2 large disabled={backDisabled} onClick={onBack}>
+        {backText}
       </ButtonV2>
-      <ButtonV2 large green disabled={sendDisabled} onClick={onClickSend}>
-        Send
+      <ButtonV2 large green disabled={nextDisabled} onClick={onClickNext}>
+        {nextText}
       </ButtonV2>
     </ButtonRowSpaced>
   )
 }
 
 export interface TransactionButtonsProps {
-  cancelDisabled: boolean
-  sendDisabled: boolean
-  onClickSend: () => void
+  backDisabled?: boolean
+  nextDisabled?: boolean
+  backText?: string
+  nextText?: string
+  onClickBack?: () => void
+  onClickNext: () => void
 }
 
 TransactionButtons.propTypes = {
-  cancelDisabled: PropTypes.bool.isRequired,
-  sendDisabled: PropTypes.bool.isRequired,
-  onClickSend: PropTypes.func.isRequired
+  backDisabled: PropTypes.bool,
+  nextDisabled: PropTypes.bool,
+  backText: PropTypes.string,
+  nextText: PropTypes.string,
+  onClickBack: PropTypes.func,
+  onClickNext: PropTypes.func.isRequired
+}
+
+TransactionButtons.defaultProps = {
+  backDisabled: false,
+  nextDisabled: false,
+  backText: 'Back',
+  nextText: 'Next'
 }

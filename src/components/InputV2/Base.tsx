@@ -6,6 +6,7 @@ export const BaseInput = ({
   deletable,
   vertical,
   centered,
+  className,
   label,
   info,
   error,
@@ -22,6 +23,7 @@ export const BaseInput = ({
   onChange,
   onFocus,
   onBlur,
+  onClick,
   onEnter,
   onDelete
 }: BaseInputProps) => (
@@ -46,7 +48,10 @@ export const BaseInput = ({
     <div className='button-wrapper'>
       <div className='unit-wrapper'>
         <input
-          className={error ? 'error' : ''}
+          className={[
+            ...(className ? [className] : []),
+            ...(error ? ['error'] : [])
+          ].join(' ')}
           name={name}
           type={type}
           autoFocus={autofocus}
@@ -59,6 +64,7 @@ export const BaseInput = ({
           onChange={e => onChange(e.target.value)}
           onFocus={() => onFocus()}
           onBlur={() => onBlur()}
+          onClick={() => onClick()}
           onKeyDown={e => e.key === 'Enter' && onEnter()}
           style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
         />
@@ -74,6 +80,7 @@ export interface BaseInputProps {
   deletable?: boolean
   vertical?: boolean
   centered?: boolean
+  className?: string
   label?: string
   info?: string
   error?: string
@@ -90,6 +97,7 @@ export interface BaseInputProps {
   onChange?: (value: string) => void
   onFocus?: () => void
   onBlur?: () => void
+  onClick?: () => void
   onEnter?: () => void
   onDelete?: () => void
 }
@@ -98,6 +106,7 @@ export const BaseInputPropTypes = {
   deletable: PropTypes.bool,
   vertical: PropTypes.bool,
   centered: PropTypes.bool,
+  className: PropTypes.string,
   label: PropTypes.string,
   info: PropTypes.string,
   error: PropTypes.string,
@@ -114,6 +123,7 @@ export const BaseInputPropTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  onClick: PropTypes.func,
   onEnter: PropTypes.func,
   onDelete: PropTypes.func
 }
@@ -123,6 +133,7 @@ BaseInput.defaultProps = {
   deletable: false,
   vertical: false,
   centered: false,
+  className: '',
   label: '',
   info: '',
   error: '',
@@ -139,6 +150,7 @@ BaseInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  onClick: () => {},
   onEnter: () => {},
   onDelete: () => {}
 }

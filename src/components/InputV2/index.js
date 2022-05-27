@@ -1,5 +1,6 @@
 import { AddressInput } from './Address'
 import { BigIntInput } from './BigInt'
+import { ButtonInput } from './Button'
 import { FilecoinInput } from './Filecoin'
 import { NumberInput } from './Number'
 import { ParamsInput } from './Params'
@@ -9,6 +10,7 @@ import { Toggle } from './Toggle'
 export const InputV2 = {
   Address: AddressInput,
   BigInt: BigIntInput,
+  Button: ButtonInput,
   Filecoin: FilecoinInput,
   Number: NumberInput,
   Params: ParamsInput,

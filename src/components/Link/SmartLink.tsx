@@ -5,8 +5,8 @@ import Link from 'next/link'
 // uses next/link for internal page routing
 // uses <a> tag for external page routing
 export function SmartLink({
-  href,
   children,
+  href,
   download,
   className,
   onClick
@@ -19,9 +19,9 @@ export function SmartLink({
     </Link>
   ) : (
     <a
-      href={href}
       target='_blank'
       rel='noreferrer noopener'
+      href={href}
       download={download}
       className={className}
       onClick={onClick}
@@ -31,21 +31,26 @@ export function SmartLink({
   )
 }
 
-interface SmartLinkProps {
-  href: string
+export interface SmartLinkProps {
   children: ReactNode
+  href?: string
   download?: string
   className?: string
-  onClick?: (...args: any[]) => void
+  onClick?: () => void
 }
 
-SmartLink.propTypes = {
-  href: PropTypes.string.isRequired,
+export const SmartLinkPropTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]),
+  ]).isRequired,
+  href: PropTypes.string,
   download: PropTypes.string,
   className: PropTypes.string,
   onClick: PropTypes.func
+}
+
+SmartLink.propTypes = SmartLinkPropTypes
+SmartLink.defaultProps = {
+  onClick: () => {}
 }
