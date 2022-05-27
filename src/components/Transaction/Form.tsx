@@ -150,7 +150,9 @@ export const TransactionForm = ({
             onUpdate={getGasParams}
           />
         </form>
-        {total && <TransactionTotal total={total} />}
+        {txState > TxState.FillingForm && total && (
+          <TransactionTotal total={total} />
+        )}
       </ShadowBox>
       <TransactionButtons
         backDisabled={
