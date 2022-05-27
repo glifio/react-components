@@ -69,7 +69,7 @@ class MockWalletProvider {
     maxFee: new FilecoinNumber('1000000', 'attofil'),
     message: { ...message, GasLimit: 1, GasFeeCap: '1', GasPremium: '1' }
   }))
-  sendMessage = jest.fn().mockImplementation(() => 'QmZCid!')
+  sendMessage = jest.fn().mockImplementation(() => ({ '/': 'QmZCid!' }))
   simulateMessage = mockSimulateMessage
 }
 
