@@ -12,8 +12,7 @@ export const SeedPhraseInput = ({
   onFocus,
   onBlur,
   setIsValid,
-  truncate,
-  actor,
+  importError,
   ...baseProps
 }: SeedPhraseInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
@@ -22,9 +21,9 @@ export const SeedPhraseInput = ({
   const error = useMemo<string>(() => {
     const trimmed = value.trim()
     const isValid = validateMnemonic(trimmed)
-    if (!isValid) return 'Invalid seed phrase'
+    if (!isValid || importError) return 'Invalid seed phrase'
     return ''
-  }, [value])
+  }, [value, importError])
 
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
@@ -70,8 +69,7 @@ export const SeedPhraseInput = ({
 
 export type SeedPhraseInputProps = {
   setIsValid?: (isValid: boolean) => void
-  truncate?: boolean
-  actor?: boolean
+  importError?: string
 } & Omit<BaseInputProps, 'error' | 'type' | 'placeholder'>
 
 const { error, type, placeholder, ...addressProps } = BaseInputPropTypes

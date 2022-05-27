@@ -35,6 +35,7 @@ export default function ImportSeed({
   const [seed, setSeed] = useState('')
   const [isValid, setIsValid] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [importError, setImportError] = useState('')
   return (
     <Dialog>
       <ShadowBox>
@@ -57,7 +58,10 @@ export default function ImportSeed({
                   walletList([w])
                   next()
                 })
-                .catch(() => setLoading(false))
+                .catch(err => {
+                  setImportError(err?.message || JSON.stringify(err))
+                  setLoading(false)
+                })
             }
           }}
         >
@@ -73,8 +77,8 @@ export default function ImportSeed({
               vertical={true}
               centered={true}
               autofocus={true}
-              truncate={false}
               value={seed}
+              importError={importError}
               onChange={setSeed}
               setIsValid={setIsValid}
             />
