@@ -19,7 +19,11 @@ import { TransactionTotal } from './Total'
 import { Dialog, ShadowBox } from '../Layout'
 import { useSubmittedMessages } from '../HistoryTables/PendingMsgContext'
 import { getMaxGasFee } from '../../utils'
-import { useWallet, useWalletProvider } from '../../services'
+import {
+  useWallet,
+  useWalletProvider,
+  WalletProviderOpts
+} from '../../services'
 import { logger } from '../../logger'
 
 export const TransactionForm = ({
@@ -36,13 +40,14 @@ export const TransactionForm = ({
   maxFee,
   txFee,
   setTxFee,
-  onComplete
+  onComplete,
+  walletProviderOpts
 }: TransactionFormProps) => {
   const router = useRouter()
   const wallet = useWallet()
   const { pushPendingMessage } = useSubmittedMessages()
   const { loginOption, walletError, walletProvider, getProvider } =
-    useWalletProvider()
+    useWalletProvider(walletProviderOpts)
 
   // Transaction states
   const [txError, setTxError] = useState<Error | null>(null)
@@ -188,6 +193,8 @@ export type TransactionFormProps = {
   txFee: FilecoinNumber
   setTxFee: (fee: FilecoinNumber) => void
   onComplete: () => void
+  // used for testing with a stubbed context value
+  walletProviderOpts: WalletProviderOpts
 }
 
 TransactionForm.propTypes = {
@@ -207,5 +214,6 @@ TransactionForm.propTypes = {
   maxFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   txFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   setTxFee: PropTypes.func.isRequired,
-  onComplete: PropTypes.func.isRequired
+  onComplete: PropTypes.func.isRequired,
+  walletProviderOpts: PropTypes.object
 }
