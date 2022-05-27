@@ -62,9 +62,9 @@ export const BaseInput = ({
           step={step}
           value={value}
           onChange={e => onChange(e.target.value)}
-          onFocus={() => onFocus()}
-          onBlur={() => onBlur()}
-          onClick={() => onClick()}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onClick={onClick}
           onKeyDown={e => e.key === 'Enter' && onEnter()}
           style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
         />
