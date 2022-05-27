@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
+import { InputHTMLAttributes } from 'react'
 
 export const BaseInput = ({
+  autoComplete,
   deletable,
   vertical,
   centered,
@@ -55,6 +57,7 @@ export const BaseInput = ({
           name={name}
           type={type}
           autoFocus={autofocus}
+          autoComplete={autoComplete}
           disabled={disabled}
           placeholder={placeholder}
           min={min}
@@ -76,7 +79,8 @@ export const BaseInput = ({
   </Label>
 )
 
-export interface BaseInputProps {
+export interface BaseInputProps
+  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
   deletable?: boolean
   vertical?: boolean
   centered?: boolean

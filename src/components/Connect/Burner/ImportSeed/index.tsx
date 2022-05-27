@@ -1,113 +1,95 @@
-import React, { FC, useState } from 'react'
 import Filecoin, { HDWalletProvider } from '@glif/filecoin-wallet-provider'
-import { validateMnemonic } from 'bip39'
-
-import Box from '../../../Box'
-import Button from '../../../Button'
-import OnboardCard from '../../../Card/OnboardCard'
-import { Text, Title } from '../../../Typography'
-import StepHeader from '../../../StepHeader'
-import LoadingScreen from '../../../LoadingScreen'
-import Input from '../../../Input'
-import {
-  createWalletProvider,
-  useWalletProvider
-} from '../../../../services/WalletProvider'
-import BurnerWalletWarning from '../Warning'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import { LoginOption } from '../../../../customPropTypes'
+import { createWalletProvider, useWalletProvider } from '../../../../services'
+import { ButtonV2 } from '../../../Button/V2'
+import { InputV2 } from '../../../InputV2'
+import { Dialog, ShadowBox, ButtonRowSpaced } from '../../../Layout'
+import LoaderGlyph from '../../../LoaderGlyph'
+import { space } from '../../../theme'
 
-const InputMnemonic: FC<{ next: () => void; back: () => void }> = ({
-  next,
-  back
-}) => {
-  const { dispatch, fetchDefaultWallet, lotusApiAddr } = useWalletProvider()
-  const [mnemonic, setMnemonic] = useState('')
-  const [mnemonicError, setMnemonicError] = useState('')
-  const [loadingNextScreen, setLoadingNextScreen] = useState(false)
-  const { walletList } = useWalletProvider()
-  const [acceptedWarning, setAcceptedWarning] = useState(false)
+const Loading = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 
-  const instantiateProvider = async () => {
-    setLoadingNextScreen(true)
-    setMnemonic('')
-    try {
-      const trimmed = mnemonic.trim()
-      const isValid = validateMnemonic(trimmed)
-      if (isValid) {
-        const provider = new Filecoin(new HDWalletProvider(mnemonic), {
-          apiAddress: lotusApiAddr
-        })
-        dispatch(createWalletProvider(provider, LoginOption.IMPORT_MNEMONIC))
-        const wallet = await fetchDefaultWallet(provider)
-        walletList([wallet])
-        next()
-      } else {
-        setMnemonicError('Invalid seed phrase')
-      }
-    } catch (err) {
-      setLoadingNextScreen(false)
-      setMnemonicError(err.message || JSON.stringify(err))
+  > * {
+    &:first-child {
+      margin-bottom: ${space('small')};
     }
   }
+`
 
+export default function ImportSeed({
+  back,
+  next
+}: {
+  back: () => void
+  next: () => void
+}) {
+  const { dispatch, fetchDefaultWallet, lotusApiAddr, walletList } =
+    useWalletProvider()
+  const [seed, setSeed] = useState('')
+  const [isValid, setIsValid] = useState(false)
+  const [loading, setLoading] = useState(false)
   return (
-    <>
-      {acceptedWarning ? (
-        <>
-          {loadingNextScreen ? (
-            <LoadingScreen />
+    <Dialog>
+      <ShadowBox>
+        <h2>Import seed phrase</h2>
+        <hr />
+        <form
+          autoComplete='off'
+          onSubmit={e => {
+            e.preventDefault()
+            setLoading(true)
+            if (isValid) {
+              const provider = new Filecoin(new HDWalletProvider(seed), {
+                apiAddress: lotusApiAddr
+              })
+              dispatch(
+                createWalletProvider(provider, LoginOption.IMPORT_MNEMONIC)
+              )
+              fetchDefaultWallet(provider)
+                .then(w => {
+                  walletList([w])
+                  next()
+                })
+                .catch(() => setLoading(false))
+            }
+          }}
+        >
+          {loading ? (
+            <Loading>
+              <LoaderGlyph />
+              <p>Loading...</p>
+            </Loading>
           ) : (
-            <Box display='flex' flexDirection='column' justifyContent='center'>
-              <OnboardCard>
-                <StepHeader
-                  currentStep={1}
-                  totalSteps={2}
-                  glyphAcronym='Sp'
-                  m={2}
-                  showStepper={false}
-                />
-
-                <Title mt={3}>Input, Import & Proceed</Title>
-                <Text>Please input your seed phrase below to continue </Text>
-                <Input.Mnemonic
-                  error={mnemonicError}
-                  setError={setMnemonicError}
-                  value={mnemonic}
-                  onChange={e => setMnemonic(e.target.value)}
-                />
-              </OnboardCard>
-              <Box
-                mt={6}
-                display='flex'
-                flexDirection='row'
-                width='100%'
-                justifyContent='space-between'
-              >
-                <Button
-                  title='Back'
-                  onClick={back}
-                  variant='secondary'
-                  mr={2}
-                />
-                <Button
-                  title='Next'
-                  disabled={!!(mnemonic.length === 0 || mnemonicError)}
-                  onClick={instantiateProvider}
-                  variant='primary'
-                  ml={2}
-                />
-              </Box>
-            </Box>
+            <InputV2.SeedPhrase
+              name='seed-phrase'
+              label='Please enter your seed phrase below to continue'
+              vertical={true}
+              centered={true}
+              autofocus={true}
+              truncate={false}
+              value={seed}
+              onChange={setSeed}
+              setIsValid={setIsValid}
+            />
           )}
-        </>
-      ) : (
-        <BurnerWalletWarning
-          back={back}
-          next={() => setAcceptedWarning(true)}
-        />
-      )}
-    </>
+
+          <ButtonRowSpaced>
+            <ButtonV2 large disabled={loading} onClick={back} type='button'>
+              Back
+            </ButtonV2>
+            <ButtonV2 large disabled={loading} green type='submit'>
+              Connect
+            </ButtonV2>
+          </ButtonRowSpaced>
+        </form>
+      </ShadowBox>
+    </Dialog>
   )
 }
-
-export default InputMnemonic
