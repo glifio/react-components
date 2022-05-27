@@ -42,8 +42,7 @@ export const TransactionForm = ({
   const router = useRouter()
   const wallet = useWallet()
   const { pushPendingMessage } = useSubmittedMessages()
-  const { loginOption, walletError, walletProvider, getProvider } =
-    useWalletProvider()
+  const { loginOption, walletError, getProvider } = useWalletProvider()
 
   // Transaction states
   const [txError, setTxError] = useState<Error | null>(null)
@@ -69,8 +68,9 @@ export const TransactionForm = ({
     setGasParamsError(null)
     setMessageWithGas(null)
     try {
+      const provider = await getProvider()
       setMessageWithGas(
-        await walletProvider.gasEstimateMessageGas(
+        await provider.gasEstimateMessageGas(
           message.toLotusType(),
           inputFee ? inputFee.toAttoFil() : undefined
         )
