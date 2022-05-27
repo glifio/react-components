@@ -36,13 +36,13 @@ export const TransactionForm = ({
   maxFee,
   txFee,
   setTxFee,
-  getParams,
   onComplete
 }: TransactionFormProps) => {
   const router = useRouter()
   const wallet = useWallet()
   const { pushPendingMessage } = useSubmittedMessages()
-  const { loginOption, walletError, getProvider } = useWalletProvider()
+  const { loginOption, walletError, walletProvider, getProvider } =
+    useWalletProvider()
 
   // Transaction states
   const [txError, setTxError] = useState<Error | null>(null)
@@ -68,9 +68,8 @@ export const TransactionForm = ({
     setGasParamsError(null)
     setMessageWithGas(null)
     try {
-      const provider = await getProvider()
       setMessageWithGas(
-        await provider.gasEstimateMessageGas(
+        await walletProvider.gasEstimateMessageGas(
           message.toLotusType(),
           inputFee ? inputFee.toAttoFil() : undefined
         )
@@ -89,29 +88,28 @@ export const TransactionForm = ({
     setTxError(null)
     try {
       const provider = await getProvider()
-      const nonce = await provider.getNonce(wallet.address)
       const newMessage = new Message({
         to: messageWithGas.to,
         from: messageWithGas.from,
-        nonce,
+        nonce: await provider.getNonce(wallet.address),
         value: messageWithGas.value,
         method: messageWithGas.method,
-        params: getParams ? getParams(nonce) : messageWithGas.params,
+        params: messageWithGas.params,
         gasPremium: messageWithGas.gasPremium,
         gasFeeCap: messageWithGas.gasFeeCap,
         gasLimit: messageWithGas.gasLimit
       })
-      setTxState(TxState.AwaitingConfirmation)
       const lotusMessage = newMessage.toLotusType()
+      const msgValid = await provider.simulateMessage(lotusMessage)
+      if (!msgValid) {
+        throw new Error('Filecoin message invalid. No gas or fees were spent.')
+      }
+      setTxState(TxState.AwaitingConfirmation)
       const signedMessage = await provider.wallet.sign(
         wallet.address,
         lotusMessage
       )
       setTxState(TxState.MPoolPushing)
-      const msgValid = await provider.simulateMessage(lotusMessage)
-      if (!msgValid) {
-        throw new Error('Filecoin message invalid. No gas or fees were spent.')
-      }
       const msgCid = await provider.sendMessage(signedMessage)
       pushPendingMessage(
         newMessage.toPendingMessage(msgCid['/']) as MessagePending
@@ -189,7 +187,6 @@ export type TransactionFormProps = {
   maxFee: FilecoinNumber
   txFee: FilecoinNumber
   setTxFee: (fee: FilecoinNumber) => void
-  getParams?: (nonce: number) => string
   onComplete: () => void
 }
 
@@ -210,6 +207,5 @@ TransactionForm.propTypes = {
   maxFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   txFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
   setTxFee: PropTypes.func.isRequired,
-  getParams: PropTypes.func,
   onComplete: PropTypes.func.isRequired
 }
