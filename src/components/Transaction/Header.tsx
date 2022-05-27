@@ -30,12 +30,14 @@ export const TransactionHeader = ({
           ? 'Loading message information...'
           : txState === TxState.FillingTxFee
           ? 'Please review the transaction below'
+          : txState === TxState.LoadingTxFee
+          ? 'Loading transaction fee...'
           : txState === TxState.LoadingTxDetails
           ? 'Loading transaction details...'
-          : txState === TxState.MPoolPushing
-          ? 'Sending your transaction...'
           : txState === TxState.AwaitingConfirmation
           ? 'Awaiting confirmation...'
+          : txState === TxState.MPoolPushing
+          ? 'Sending your transaction...'
           : description}
       </p>
       {(txState === TxState.LoadingMessage ||
