@@ -43,25 +43,24 @@ export default function ImportSeed({
         <hr />
         <form
           autoComplete='off'
-          onSubmit={e => {
+          onSubmit={async e => {
             e.preventDefault()
             setLoading(true)
             if (isValid) {
-              const provider = new Filecoin(new HDWalletProvider(seed), {
-                apiAddress: lotusApiAddr
-              })
-              dispatch(
-                createWalletProvider(provider, LoginOption.IMPORT_MNEMONIC)
-              )
-              fetchDefaultWallet(provider)
-                .then(w => {
-                  walletList([w])
-                  next()
+              try {
+                const provider = new Filecoin(new HDWalletProvider(seed), {
+                  apiAddress: lotusApiAddr
                 })
-                .catch(err => {
-                  setImportError(err?.message || JSON.stringify(err))
-                  setLoading(false)
-                })
+                dispatch(
+                  createWalletProvider(provider, LoginOption.IMPORT_MNEMONIC)
+                )
+                const wallet = await fetchDefaultWallet(provider)
+                walletList([wallet])
+                next()
+              } catch (err) {
+                setImportError(err?.message || JSON.stringify(err))
+                setLoading(false)
+              }
             }
           }}
         >

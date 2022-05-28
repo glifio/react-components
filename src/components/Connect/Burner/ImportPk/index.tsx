@@ -1,123 +1,101 @@
-import React, { FC, useState } from 'react'
 import Filecoin, { SECP256K1KeyProvider } from '@glif/filecoin-wallet-provider'
-
-import Box from '../../../Box'
-import Button from '../../../Button'
-import OnboardCard from '../../../Card/OnboardCard'
-import { Text, Title } from '../../../Typography'
-import StepHeader from '../../../StepHeader'
-import LoadingScreen from '../../../LoadingScreen'
-import Input from '../../../Input'
-import {
-  createWalletProvider,
-  useWalletProvider
-} from '../../../../services/WalletProvider'
-import BurnerWalletWarning from '../Warning'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import { LoginOption } from '../../../../customPropTypes'
+import { createWalletProvider, useWalletProvider } from '../../../../services'
+import { ButtonV2 } from '../../../Button/V2'
+import { InputV2 } from '../../../InputV2'
+import { Dialog, ShadowBox, ButtonRowSpaced } from '../../../Layout'
+import LoaderGlyph from '../../../LoaderGlyph'
+import { space } from '../../../theme'
 
-const InputPrivateKey: FC<{ next: () => void; back: () => void }> = ({
-  next,
-  back
-}) => {
-  const {
-    dispatch,
-    fetchDefaultWallet,
-    setLoginOption,
-    walletList,
-    lotusApiAddr
-  } = useWalletProvider()
-  const [privateKey, setPrivateKey] = useState('')
-  const [privateKeyError, setPrivateKeyError] = useState('')
-  const [loadingNextScreen, setLoadingNextScreen] = useState(false)
-  const [acceptedWarning, setAcceptedWarning] = useState(false)
+const Loading = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 
-  const instantiateProvider = async () => {
-    try {
-      setLoadingNextScreen(true)
-      setPrivateKey('')
-      const provider = new Filecoin(new SECP256K1KeyProvider(privateKey), {
-        apiAddress: lotusApiAddr
-      })
-      dispatch(createWalletProvider(provider, LoginOption.IMPORT_SINGLE_KEY))
-      const wallet = await fetchDefaultWallet(provider)
-      walletList([wallet])
-      next()
-    } catch (err) {
-      setLoadingNextScreen(false)
-      setPrivateKeyError(err.message || JSON.stringify(err))
+  > * {
+    &:first-child {
+      margin-bottom: ${space('small')};
     }
   }
+`
 
+export default function ImportSeed({
+  back,
+  next
+}: {
+  back: () => void
+  next: () => void
+}) {
+  const { dispatch, fetchDefaultWallet, lotusApiAddr, walletList } =
+    useWalletProvider()
+  const [privateKey, setPrivateKey] = useState('')
+  const [isValid, setIsValid] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [importError, setImportError] = useState('')
   return (
-    <>
-      {acceptedWarning ? (
-        <>
-          {loadingNextScreen ? (
-            <LoadingScreen />
+    <Dialog>
+      <ShadowBox>
+        <h2>Import private key</h2>
+        <hr />
+        <form
+          autoComplete='off'
+          onSubmit={async e => {
+            e.preventDefault()
+            setLoading(true)
+            if (isValid) {
+              try {
+                const provider = new Filecoin(
+                  new SECP256K1KeyProvider(privateKey),
+                  {
+                    apiAddress: lotusApiAddr
+                  }
+                )
+                dispatch(
+                  createWalletProvider(provider, LoginOption.IMPORT_SINGLE_KEY)
+                )
+                const wallet = await fetchDefaultWallet(provider)
+                walletList([wallet])
+                next()
+              } catch (err) {
+                setImportError(err?.message || JSON.stringify(err))
+                setLoading(false)
+              }
+            }
+          }}
+        >
+          {loading ? (
+            <Loading>
+              <LoaderGlyph />
+              <p>Loading...</p>
+            </Loading>
           ) : (
-            <Box
-              display='flex'
-              flexDirection='column'
-              alignItems='center'
-              justifyContent='center'
-            >
-              <OnboardCard>
-                <StepHeader
-                  currentStep={1}
-                  totalSteps={2}
-                  description='Import'
-                  glyphAcronym='Pk'
-                  showStepper={false}
-                />
-                <Box
-                  width='auto'
-                  display='flex'
-                  flexDirection='column'
-                  justifyContent='space-between'
-                  borderColor='core.lightgray'
-                  m={2}
-                >
-                  <Title mt={3}>Import</Title>
-                  <Text>Please input your private key below</Text>
-                  <Input.PrivateKey
-                    error={privateKeyError}
-                    setError={setPrivateKeyError}
-                    value={privateKey}
-                    onChange={e => setPrivateKey(e.target.value)}
-                  />
-                </Box>
-              </OnboardCard>
-              <Box
-                mt={6}
-                display='flex'
-                width='100%'
-                justifyContent='space-between'
-              >
-                <Button
-                  title='Back'
-                  onClick={() => setLoginOption(null)}
-                  variant='secondary'
-                  mr={2}
-                />
-                <Button
-                  title='Next'
-                  disabled={!!(privateKey.length === 0 || privateKeyError)}
-                  onClick={instantiateProvider}
-                  variant='primary'
-                  ml={2}
-                />
-              </Box>
-            </Box>
+            <InputV2.PrivateKey
+              name='private-key'
+              label='Please enter your private key below to continue'
+              vertical={true}
+              centered={true}
+              autofocus={true}
+              value={privateKey}
+              importError={importError}
+              onChange={setPrivateKey}
+              setIsValid={setIsValid}
+            />
           )}
-        </>
-      ) : (
-        <BurnerWalletWarning
-          back={back}
-          next={() => setAcceptedWarning(true)}
-        />
-      )}
-    </>
+
+          <ButtonRowSpaced>
+            <ButtonV2 large disabled={loading} onClick={back} type='button'>
+              Back
+            </ButtonV2>
+            <ButtonV2 large disabled={loading} green type='submit'>
+              Connect
+            </ButtonV2>
+          </ButtonRowSpaced>
+        </form>
+      </ShadowBox>
+    </Dialog>
   )
 }
-
-export default InputPrivateKey
