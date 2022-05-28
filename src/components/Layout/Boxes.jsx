@@ -5,7 +5,7 @@ import { IconWarn, IconError } from '../Icons'
 /**
  * Box base styling
  */
-const BoxBase = styled.div`
+export const BoxBase = styled.div`
   padding: 1.5em;
   border-radius: 8px;
   overflow: hidden;

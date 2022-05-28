@@ -45,7 +45,9 @@ const StepHeader = ({
         <MenuItem display='flex' justifyContent='space-between'>
           {error && <ErrorGlyph />}
           {loading && !error && <Loading />}
-          {!loading && !error && <Glyph Icon={Icon} acronym={glyphAcronym} />}
+          {!loading && !error && glyphAcronym && (
+            <Glyph Icon={Icon} acronym={glyphAcronym} />
+          )}
         </MenuItem>
         <Box width={2} />
         {title && <Title>{title}</Title>}
