@@ -109,8 +109,8 @@ const ErrorBoxEl = styled(BoxBase)`
   }
 `
 
-export const ErrorBox = ({ children }) => (
-  <ErrorBoxEl>
+export const ErrorBox = ({ children, ...props }) => (
+  <ErrorBoxEl {...props}>
     <IconError />
     {children}
   </ErrorBoxEl>

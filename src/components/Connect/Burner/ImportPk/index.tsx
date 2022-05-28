@@ -1,27 +1,12 @@
 import Filecoin, { SECP256K1KeyProvider } from '@glif/filecoin-wallet-provider'
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import { LoginOption } from '../../../../customPropTypes'
 import { createWalletProvider, useWalletProvider } from '../../../../services'
 import { ButtonV2 } from '../../../Button/V2'
 import { InputV2 } from '../../../InputV2'
 import { Dialog, ShadowBox, ButtonRowSpaced } from '../../../Layout'
 import LoaderGlyph from '../../../LoaderGlyph'
-import { space } from '../../../theme'
-
-const Loading = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-
-  > * {
-    &:first-child {
-      margin-bottom: ${space('small')};
-    }
-  }
-`
+import { Loading } from '../../Loading'
 
 export default function ImportSeed({
   back,
