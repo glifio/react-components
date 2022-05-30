@@ -24,12 +24,12 @@ describe('Ledger configuration', () => {
         <ConnectLedger back={backSpy} next={nextSpy} />
       </Tree>
     )
-    expect(screen.getByText(/Unlock & Open/)).toBeInTheDocument()
     expect(
       screen.getByText(
         /Please unlock your Ledger device and open the Filecoin App/
       )
     ).toBeInTheDocument()
+    expect(screen.getByText(/Connect with Ledger Device/)).toBeInTheDocument()
 
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -195,9 +195,7 @@ describe('Ledger configuration', () => {
     )
 
     await act(async () => {
-      fireEvent.click(
-        screen.getByText('My Ledger device is unlocked & Filecoin app open')
-      )
+      fireEvent.click(screen.getByText('Connect'))
       await flushPromises()
     })
 
@@ -218,9 +216,7 @@ describe('Ledger configuration', () => {
     )
 
     await act(async () => {
-      fireEvent.click(
-        screen.getByText('My Ledger device is unlocked & Filecoin app open')
-      )
+      fireEvent.click(screen.getByText('Connect'))
       await flushPromises()
     })
     expect(nextSpy).toHaveBeenCalled()

@@ -1,226 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  max-width: 560px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
-  border-width: 1px;
-  border-color: #FC6D6F;
-  padding: 16px;
-  background-color: #FC6D6F;
-  display: inline-block;
-  width: 100%;
-  max-width: 560px;
-  min-height: 160px;
+  padding: 1.5em;
+  border-radius: 8px;
   overflow: hidden;
+  text-align: center;
+  word-break: break-word;
 }
 
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
+  margin: 0;
+}
+
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  background-color: #FC6D6F;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
-}
-
-.c8 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-color: silver;
-  margin-top: 24px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  min-height: 160px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-}
-
-.c9 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c11 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 16px;
-  color: #660000;
-}
-
-.c13 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 48px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c14 {
-  cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-right: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c14:hover {
-  opacity: 0.8;
-}
-
-.c15 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-left: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c15:hover {
-  opacity: 0.8;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
 }
 
 .c2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  background-color: var(--red-light);
+  color: var(--red-dark);
+}
+
+.c2 hr {
+  border-color: var(--red-dark);
+}
+
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  border-color: silver;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  gap: 10px;
+  margin: 1.5em 0;
+}
+
+.c7 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -232,342 +68,281 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 35em;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
+.c4 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
 }
 
-<div
-  class="c0"
-  display="flex"
-  width="100%"
->
+.c8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+}
+
+.c8 svg path {
+  stroke: var(--black);
+}
+
+.c8:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c8:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c8:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c8:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c9 svg path {
+  stroke: var(--black);
+}
+
+.c9:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c9:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c9:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c9:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 svg path {
+  stroke: var(--white);
+}
+
+.c9:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c9:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.c3 {
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+<div>
   <div
-    class="c1"
-    display="inline-block"
-    overflow="hidden"
-    width="100%"
+    class="c0"
   >
-    <ul
-      class="c2"
-      display="flex"
-      width="100%"
-    >
-      <div
-        class="c3"
-        display="flex"
-      >
-        <li
-          class="c4"
-          display="flex"
-        >
-          <div
-            class="c5"
-            color="status.fail.foreground"
-            display="flex"
-            size="6"
-          >
-            <h3
-              class="c6"
-            >
-              Er
-            </h3>
-          </div>
-        </li>
-        <div
-          class="c7"
-          width="2"
-        />
-        
-      </div>
-    </ul>
     <div
-      class="c8"
-      display="flex"
-      width="100%"
+      class="c1 c2 c3"
     >
-      <div
-        class="c9"
-        color="status.fail.foreground"
-        display="flex"
+      <svg
+        fill="none"
+        height="24px"
+        viewBox="0 0 24 24"
+        width="24px"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <h2
-          class="c10"
-          font-family="RT-Alias-Grotesk"
-          font-size="4"
-          font-weight="400"
-        >
-          Oops!
-        </h2>
-      </div>
-      <div
-        class="c11"
-        color="status.fail.foreground"
-      >
-        <p
-          class="c12"
-          font-family="RT-Alias-Grotesk"
-          font-size="2"
-          font-weight="400"
-        >
-          Is your Ledger device locked or busy?
-        </p>
-      </div>
+        <circle
+          cx="12"
+          cy="12"
+          r="11"
+          stroke="var(--red-dark)"
+          stroke-width="2"
+        />
+        <path
+          clip-rule="evenodd"
+          d="M7.29489 15.2921C6.90442 15.6826 6.90442 16.3157 7.29489 16.7062C7.68535 17.0966 8.31842 17.0966 8.70888 16.7062L11.9994 13.4155L15.2916 16.7079C15.6821 17.0984 16.3151 17.0984 16.7056 16.7079C17.0961 16.3174 17.0961 15.6843 16.7056 15.2938L13.4134 12.0014L16.7076 8.70694C17.0981 8.31645 17.0981 7.68335 16.7076 7.29286C16.3172 6.90238 15.6841 6.90238 15.2937 7.29286L11.9994 10.5873L8.70684 7.29462C8.31638 6.90413 7.68331 6.90413 7.29285 7.29462C6.90238 7.68511 6.90238 8.31821 7.29285 8.7087L10.5854 12.0014L7.29489 15.2921Z"
+          fill="var(--red-dark)"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <p>
+        Is your Ledger device locked or busy?
+      </p>
     </div>
   </div>
   <div
-    class="c13"
-    display="flex"
-    width="100%"
+    class="c4"
   >
-    <button
-      class="c14"
-      font-size="3"
-      height="6"
-      type="button"
+    <div
+      class="c1 c5"
     >
-      Back
-    </button>
-    <button
-      class="c15"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      My Ledger device is unlocked & Filecoin app open
-    </button>
+      <h2>
+        Connect with Ledger Device
+      </h2>
+      <hr />
+      <p>
+        Please unlock your Ledger device and open the Filecoin App
+      </p>
+      <a
+        href="https://blog.glif.io/install-filecoin-ledger/"
+      >
+        Click here for installation instructions.
+      </a>
+      <div
+        class="c6 c7"
+      >
+        <button
+          class="c8"
+          type="button"
+        >
+          Back
+        </button>
+        <button
+          class="c9"
+        >
+          Connect
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 `;
 
 exports[`Ledger configuration it renders connectedFailure ledger error in the UI correctly 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  max-width: 560px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
-  border-width: 1px;
-  border-color: #FC6D6F;
-  padding: 16px;
-  background-color: #FC6D6F;
-  display: inline-block;
-  width: 100%;
-  max-width: 560px;
-  min-height: 160px;
+  padding: 1.5em;
+  border-radius: 8px;
   overflow: hidden;
+  text-align: center;
+  word-break: break-word;
 }
 
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
+  margin: 0;
+}
+
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  background-color: #FC6D6F;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
-}
-
-.c8 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-color: silver;
-  margin-top: 24px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  min-height: 160px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-}
-
-.c9 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c11 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 16px;
-  color: #660000;
-}
-
-.c13 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 48px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c14 {
-  cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-right: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c14:hover {
-  opacity: 0.8;
-}
-
-.c15 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-left: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c15:hover {
-  opacity: 0.8;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
 }
 
 .c2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  background-color: var(--red-light);
+  color: var(--red-dark);
+}
+
+.c2 hr {
+  border-color: var(--red-dark);
+}
+
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  border-color: silver;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  gap: 10px;
+  margin: 1.5em 0;
+}
+
+.c7 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -579,344 +354,260 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 35em;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
+.c4 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
 }
 
-<div
-  class="c0"
-  display="flex"
-  width="100%"
->
+.c8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+}
+
+.c8 svg path {
+  stroke: var(--black);
+}
+
+.c8:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c8:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c8:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c8:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c9 svg path {
+  stroke: var(--black);
+}
+
+.c9:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c9:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c9:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c9:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 svg path {
+  stroke: var(--white);
+}
+
+.c9:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c9:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.c3 {
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+<div>
   <div
-    class="c1"
-    display="inline-block"
-    overflow="hidden"
-    width="100%"
+    class="c0"
   >
-    <ul
-      class="c2"
-      display="flex"
-      width="100%"
-    >
-      <div
-        class="c3"
-        display="flex"
-      >
-        <li
-          class="c4"
-          display="flex"
-        >
-          <div
-            class="c5"
-            color="status.fail.foreground"
-            display="flex"
-            size="6"
-          >
-            <h3
-              class="c6"
-            >
-              Er
-            </h3>
-          </div>
-        </li>
-        <div
-          class="c7"
-          width="2"
-        />
-        
-      </div>
-    </ul>
     <div
-      class="c8"
-      display="flex"
-      width="100%"
+      class="c1 c2 c3"
     >
-      <div
-        class="c9"
-        color="status.fail.foreground"
-        display="flex"
+      <svg
+        fill="none"
+        height="24px"
+        viewBox="0 0 24 24"
+        width="24px"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <h2
-          class="c10"
-          font-family="RT-Alias-Grotesk"
-          font-size="4"
-          font-weight="400"
-        >
-          Oops!
-        </h2>
-      </div>
-      <div
-        class="c11"
-        color="status.fail.foreground"
-      >
-        <p
-          class="c12"
-          font-family="RT-Alias-Grotesk"
-          font-size="2"
-          font-weight="400"
-        >
-          Is your Ledger device plugged in?
-        </p>
-      </div>
+        <circle
+          cx="12"
+          cy="12"
+          r="11"
+          stroke="var(--red-dark)"
+          stroke-width="2"
+        />
+        <path
+          clip-rule="evenodd"
+          d="M7.29489 15.2921C6.90442 15.6826 6.90442 16.3157 7.29489 16.7062C7.68535 17.0966 8.31842 17.0966 8.70888 16.7062L11.9994 13.4155L15.2916 16.7079C15.6821 17.0984 16.3151 17.0984 16.7056 16.7079C17.0961 16.3174 17.0961 15.6843 16.7056 15.2938L13.4134 12.0014L16.7076 8.70694C17.0981 8.31645 17.0981 7.68335 16.7076 7.29286C16.3172 6.90238 15.6841 6.90238 15.2937 7.29286L11.9994 10.5873L8.70684 7.29462C8.31638 6.90413 7.68331 6.90413 7.29285 7.29462C6.90238 7.68511 6.90238 8.31821 7.29285 8.7087L10.5854 12.0014L7.29489 15.2921Z"
+          fill="var(--red-dark)"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <p>
+        Is your Ledger device plugged in?
+      </p>
     </div>
   </div>
   <div
-    class="c13"
-    display="flex"
-    width="100%"
+    class="c4"
   >
-    <button
-      class="c14"
-      font-size="3"
-      height="6"
-      type="button"
+    <div
+      class="c1 c5"
     >
-      Back
-    </button>
-    <button
-      class="c15"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      My Ledger device is unlocked & Filecoin app open
-    </button>
+      <h2>
+        Connect with Ledger Device
+      </h2>
+      <hr />
+      <p>
+        Please unlock your Ledger device and open the Filecoin App
+      </p>
+      <a
+        href="https://blog.glif.io/install-filecoin-ledger/"
+      >
+        Click here for installation instructions.
+      </a>
+      <div
+        class="c6 c7"
+      >
+        <button
+          class="c8"
+          type="button"
+        >
+          Back
+        </button>
+        <button
+          class="c9"
+        >
+          Connect
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 `;
 
 exports[`Ledger configuration it renders correctly 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  max-width: 560px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c2 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
 }
 
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
-  border-width: 1px;
-  padding: 16px;
-  background-color: transparent;
-  display: inline-block;
-  width: 100%;
-  max-width: 560px;
-  min-height: 160px;
-  overflow: hidden;
+.c2 > *:first-child {
+  margin-top: 0;
+}
+
+.c2 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c2 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c2 > h2:first-child {
+  margin: 0;
+}
+
+.c2 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
 }
 
 .c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  color: #000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
-}
-
-.c8 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-color: silver;
-  margin-top: 24px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  min-height: 160px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-}
-
-.c9 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #262626;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c11 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 16px;
-  color: #262626;
-}
-
-.c14 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 48px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c15 {
-  cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-right: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c15:hover {
-  opacity: 0.8;
-}
-
-.c16 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-left: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c16:hover {
-  opacity: 0.8;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
-.c2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  border-color: silver;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
 }
 
 .c4 {
@@ -924,375 +615,262 @@ exports[`Ledger configuration it renders correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  gap: 10px;
+  margin: 1.5em 0;
+}
+
+.c5 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
 
-.c13 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-bottom: 2px solid #5E26FF00;
-  color: #5E26FF;
-  font-size: 1.125rem;
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 35em;
 }
 
-.c13:hover {
-  border-bottom: 2px solid #5E26FF;
+.c1 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .c6 {
-  width: 40px;
-  height: 40px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
 }
 
-<div
-  class="c0"
-  display="flex"
-  width="100%"
->
+.c6 svg path {
+  stroke: var(--black);
+}
+
+.c6:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c6:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c6:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c6:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c7 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c7 svg path {
+  stroke: var(--black);
+}
+
+.c7:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c7:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c7:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c7:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c7 svg path {
+  stroke: var(--white);
+}
+
+.c7:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c7:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+<div>
+  <div
+    class="c0"
+  />
   <div
     class="c1"
-    display="inline-block"
-    overflow="hidden"
-    width="100%"
   >
-    <ul
-      class="c2"
-      display="flex"
-      width="100%"
-    >
-      <div
-        class="c3"
-        display="flex"
-      >
-        <li
-          class="c4"
-          display="flex"
-        >
-          <div
-            class="c5"
-            color="#000"
-            display="flex"
-            size="6"
-          >
-            <svg
-              class="c6"
-              fill="none"
-              height="40px"
-              viewBox="0 0 24 24"
-              width="40px"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                clip-rule="evenodd"
-                d="M10.0934 4H17.4067H17.4148C18.8148 4 19.9676 5.15197 19.9676 6.55279V13.866H10.0934V4ZM6.55349 4.00065H7.81386V7.81378H4.00065V6.55344C4.00065 5.15342 5.15345 4.00065 6.55349 4.00065ZM4 10.0934H7.81321V13.9066H4V10.0934ZM17.4479 19.9679H16.1875V16.1869H20.0007V17.4071V17.4151C20.0007 18.8151 18.8487 19.9679 17.4479 19.9679ZM10.0938 16.1869H13.907V20H10.0938V16.1869ZM4 17.4472V16.1869H7.81321V20H6.55284C5.15279 20 4 18.8472 4 17.4472Z"
-                fill="#333333"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </div>
-        </li>
-        <div
-          class="c7"
-          width="2"
-        />
-        
-      </div>
-    </ul>
     <div
-      class="c8"
-      display="flex"
-      width="100%"
+      class="c2 c3"
     >
-      <div
-        class="c9"
-        color="core.nearblack"
-        display="flex"
+      <h2>
+        Connect with Ledger Device
+      </h2>
+      <hr />
+      <p>
+        Please unlock your Ledger device and open the Filecoin App
+      </p>
+      <a
+        href="https://blog.glif.io/install-filecoin-ledger/"
       >
-        <h2
-          class="c10"
-          font-family="RT-Alias-Grotesk"
-          font-size="4"
-          font-weight="400"
-        >
-          Unlock & Open
-        </h2>
-      </div>
+        Click here for installation instructions.
+      </a>
       <div
-        class="c11"
-        color="core.nearblack"
+        class="c4 c5"
       >
-        <p
-          class="c12"
-          font-family="RT-Alias-Grotesk"
-          font-size="2"
-          font-weight="400"
+        <button
+          class="c6"
+          type="button"
         >
-          Please unlock your Ledger device and open the Filecoin App
-        </p>
-        <a
-          class="c13"
-          color="core.primary"
-          font-size="2"
-          href="https://reading.supply/@glif/install-the-filecoin-app-on-your-ledger-device-y33vhX"
-          rel="noopener noreferrer"
-          target="_blank"
+          Back
+        </button>
+        <button
+          class="c7"
         >
-          Click here for installation instructions.
-        </a>
+          Connect
+        </button>
       </div>
     </div>
-  </div>
-  <div
-    class="c14"
-    display="flex"
-    width="100%"
-  >
-    <button
-      class="c15"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Back
-    </button>
-    <button
-      class="c16"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      My Ledger device is unlocked & Filecoin app open
-    </button>
   </div>
 </div>
 `;
 
 exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI correctly 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  max-width: 560px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
-  border-width: 1px;
-  border-color: #FC6D6F;
-  padding: 16px;
-  background-color: #FC6D6F;
-  display: inline-block;
-  width: 100%;
-  max-width: 560px;
-  min-height: 160px;
+  padding: 1.5em;
+  border-radius: 8px;
   overflow: hidden;
+  text-align: center;
+  word-break: break-word;
 }
 
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
+  margin: 0;
+}
+
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  background-color: #FC6D6F;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
-}
-
-.c8 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-color: silver;
-  margin-top: 24px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  min-height: 160px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-}
-
-.c9 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c11 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 16px;
-  color: #660000;
-}
-
-.c13 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 48px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c14 {
-  cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-right: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c14:hover {
-  opacity: 0.8;
-}
-
-.c15 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-left: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c15:hover {
-  opacity: 0.8;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
 }
 
 .c2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  background-color: var(--red-light);
+  color: var(--red-dark);
+}
+
+.c2 hr {
+  border-color: var(--red-dark);
+}
+
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  border-color: silver;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  gap: 10px;
+  margin: 1.5em 0;
+}
+
+.c7 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -1304,342 +882,281 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 35em;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
+.c4 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
 }
 
-<div
-  class="c0"
-  display="flex"
-  width="100%"
->
+.c8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+}
+
+.c8 svg path {
+  stroke: var(--black);
+}
+
+.c8:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c8:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c8:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c8:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c9 svg path {
+  stroke: var(--black);
+}
+
+.c9:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c9:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c9:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c9:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 svg path {
+  stroke: var(--white);
+}
+
+.c9:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c9:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.c3 {
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+<div>
   <div
-    class="c1"
-    display="inline-block"
-    overflow="hidden"
-    width="100%"
+    class="c0"
   >
-    <ul
-      class="c2"
-      display="flex"
-      width="100%"
-    >
-      <div
-        class="c3"
-        display="flex"
-      >
-        <li
-          class="c4"
-          display="flex"
-        >
-          <div
-            class="c5"
-            color="status.fail.foreground"
-            display="flex"
-            size="6"
-          >
-            <h3
-              class="c6"
-            >
-              Er
-            </h3>
-          </div>
-        </li>
-        <div
-          class="c7"
-          width="2"
-        />
-        
-      </div>
-    </ul>
     <div
-      class="c8"
-      display="flex"
-      width="100%"
+      class="c1 c2 c3"
     >
-      <div
-        class="c9"
-        color="status.fail.foreground"
-        display="flex"
+      <svg
+        fill="none"
+        height="24px"
+        viewBox="0 0 24 24"
+        width="24px"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <h2
-          class="c10"
-          font-family="RT-Alias-Grotesk"
-          font-size="4"
-          font-weight="400"
-        >
-          Oops!
-        </h2>
-      </div>
-      <div
-        class="c11"
-        color="status.fail.foreground"
-      >
-        <p
-          class="c12"
-          font-family="RT-Alias-Grotesk"
-          font-size="2"
-          font-weight="400"
-        >
-          Is the Filecoin App open on your Ledger device?
-        </p>
-      </div>
+        <circle
+          cx="12"
+          cy="12"
+          r="11"
+          stroke="var(--red-dark)"
+          stroke-width="2"
+        />
+        <path
+          clip-rule="evenodd"
+          d="M7.29489 15.2921C6.90442 15.6826 6.90442 16.3157 7.29489 16.7062C7.68535 17.0966 8.31842 17.0966 8.70888 16.7062L11.9994 13.4155L15.2916 16.7079C15.6821 17.0984 16.3151 17.0984 16.7056 16.7079C17.0961 16.3174 17.0961 15.6843 16.7056 15.2938L13.4134 12.0014L16.7076 8.70694C17.0981 8.31645 17.0981 7.68335 16.7076 7.29286C16.3172 6.90238 15.6841 6.90238 15.2937 7.29286L11.9994 10.5873L8.70684 7.29462C8.31638 6.90413 7.68331 6.90413 7.29285 7.29462C6.90238 7.68511 6.90238 8.31821 7.29285 8.7087L10.5854 12.0014L7.29489 15.2921Z"
+          fill="var(--red-dark)"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <p>
+        Is the Filecoin App open on your Ledger device?
+      </p>
     </div>
   </div>
   <div
-    class="c13"
-    display="flex"
-    width="100%"
+    class="c4"
   >
-    <button
-      class="c14"
-      font-size="3"
-      height="6"
-      type="button"
+    <div
+      class="c1 c5"
     >
-      Back
-    </button>
-    <button
-      class="c15"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      My Ledger device is unlocked & Filecoin app open
-    </button>
+      <h2>
+        Connect with Ledger Device
+      </h2>
+      <hr />
+      <p>
+        Please unlock your Ledger device and open the Filecoin App
+      </p>
+      <a
+        href="https://blog.glif.io/install-filecoin-ledger/"
+      >
+        Click here for installation instructions.
+      </a>
+      <div
+        class="c6 c7"
+      >
+        <button
+          class="c8"
+          type="button"
+        >
+          Back
+        </button>
+        <button
+          class="c9"
+        >
+          Connect
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 `;
 
 exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctly 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  max-width: 560px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
-  border-width: 1px;
-  border-color: #FC6D6F;
-  padding: 16px;
-  background-color: #FC6D6F;
-  display: inline-block;
-  width: 100%;
-  max-width: 560px;
-  min-height: 160px;
+  padding: 1.5em;
+  border-radius: 8px;
   overflow: hidden;
+  text-align: center;
+  word-break: break-word;
 }
 
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
+  margin: 0;
+}
+
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  background-color: #FC6D6F;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
-}
-
-.c8 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-color: silver;
-  margin-top: 24px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  min-height: 160px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-}
-
-.c9 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c11 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 16px;
-  color: #660000;
-}
-
-.c13 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 48px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c14 {
-  cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-right: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c14:hover {
-  opacity: 0.8;
-}
-
-.c15 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-left: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c15:hover {
-  opacity: 0.8;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
 }
 
 .c2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  background-color: var(--red-light);
+  color: var(--red-dark);
+}
+
+.c2 hr {
+  border-color: var(--red-dark);
+}
+
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  border-color: silver;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  gap: 10px;
+  margin: 1.5em 0;
+}
+
+.c7 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -1651,350 +1168,284 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 35em;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
+.c4 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
 }
 
-<div
-  class="c0"
-  display="flex"
-  width="100%"
->
+.c8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+}
+
+.c8 svg path {
+  stroke: var(--black);
+}
+
+.c8:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c8:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c8:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c8:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c9 svg path {
+  stroke: var(--black);
+}
+
+.c9:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c9:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c9:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c9:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 svg path {
+  stroke: var(--white);
+}
+
+.c9:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c9:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.c3 {
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+<div>
   <div
-    class="c1"
-    display="inline-block"
-    overflow="hidden"
-    width="100%"
+    class="c0"
   >
-    <ul
-      class="c2"
-      display="flex"
-      width="100%"
-    >
-      <div
-        class="c3"
-        display="flex"
-      >
-        <li
-          class="c4"
-          display="flex"
-        >
-          <div
-            class="c5"
-            color="status.fail.foreground"
-            display="flex"
-            size="6"
-          >
-            <h3
-              class="c6"
-            >
-              Er
-            </h3>
-          </div>
-        </li>
-        <div
-          class="c7"
-          width="2"
-        />
-        
-      </div>
-    </ul>
     <div
-      class="c8"
-      display="flex"
-      width="100%"
+      class="c1 c2 c3"
     >
-      <div
-        class="c9"
-        color="status.fail.foreground"
-        display="flex"
+      <svg
+        fill="none"
+        height="24px"
+        viewBox="0 0 24 24"
+        width="24px"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <h2
-          class="c10"
-          font-family="RT-Alias-Grotesk"
-          font-size="4"
-          font-weight="400"
-        >
-          Oops!
-        </h2>
-      </div>
-      <div
-        class="c11"
-        color="status.fail.foreground"
-      >
-        <p
-          class="c12"
-          font-family="RT-Alias-Grotesk"
-          font-size="2"
-          font-weight="400"
-        >
-          Please quit any other App using your Ledger device.
-        </p>
-        <p
-          class="c12"
-          font-family="RT-Alias-Grotesk"
-          font-size="2"
-          font-weight="400"
-        >
-          (Most of the time, this is Ledger Live!)
-        </p>
-      </div>
+        <circle
+          cx="12"
+          cy="12"
+          r="11"
+          stroke="var(--red-dark)"
+          stroke-width="2"
+        />
+        <path
+          clip-rule="evenodd"
+          d="M7.29489 15.2921C6.90442 15.6826 6.90442 16.3157 7.29489 16.7062C7.68535 17.0966 8.31842 17.0966 8.70888 16.7062L11.9994 13.4155L15.2916 16.7079C15.6821 17.0984 16.3151 17.0984 16.7056 16.7079C17.0961 16.3174 17.0961 15.6843 16.7056 15.2938L13.4134 12.0014L16.7076 8.70694C17.0981 8.31645 17.0981 7.68335 16.7076 7.29286C16.3172 6.90238 15.6841 6.90238 15.2937 7.29286L11.9994 10.5873L8.70684 7.29462C8.31638 6.90413 7.68331 6.90413 7.29285 7.29462C6.90238 7.68511 6.90238 8.31821 7.29285 8.7087L10.5854 12.0014L7.29489 15.2921Z"
+          fill="var(--red-dark)"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <p>
+        Please quit any other App using your Ledger device.
+      </p>
+      <p>
+        (Most of the time, this is Ledger Live!)
+      </p>
     </div>
   </div>
   <div
-    class="c13"
-    display="flex"
-    width="100%"
+    class="c4"
   >
-    <button
-      class="c14"
-      font-size="3"
-      height="6"
-      type="button"
+    <div
+      class="c1 c5"
     >
-      Back
-    </button>
-    <button
-      class="c15"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      My Ledger device is unlocked & Filecoin app open
-    </button>
+      <h2>
+        Connect with Ledger Device
+      </h2>
+      <hr />
+      <p>
+        Please unlock your Ledger device and open the Filecoin App
+      </p>
+      <a
+        href="https://blog.glif.io/install-filecoin-ledger/"
+      >
+        Click here for installation instructions.
+      </a>
+      <div
+        class="c6 c7"
+      >
+        <button
+          class="c8"
+          type="button"
+        >
+          Back
+        </button>
+        <button
+          class="c9"
+        >
+          Connect
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 `;
 
 exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  max-width: 560px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
-  border-width: 1px;
-  border-color: #FC6D6F;
-  padding: 16px;
-  background-color: #FC6D6F;
-  display: inline-block;
-  width: 100%;
-  max-width: 560px;
-  min-height: 160px;
+  padding: 1.5em;
+  border-radius: 8px;
   overflow: hidden;
+  text-align: center;
+  word-break: break-word;
 }
 
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
+  margin: 0;
+}
+
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  background-color: #FC6D6F;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
-}
-
-.c8 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-color: silver;
-  margin-top: 24px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  min-height: 160px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-}
-
-.c9 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c11 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 16px;
-  color: #660000;
-}
-
-.c13 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 48px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c14 {
-  cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-right: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c14:hover {
-  opacity: 0.8;
-}
-
-.c15 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-left: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c15:hover {
-  opacity: 0.8;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
 }
 
 .c2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  background-color: var(--red-light);
+  color: var(--red-dark);
+}
+
+.c2 hr {
+  border-color: var(--red-dark);
+}
+
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  border-color: silver;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  gap: 10px;
+  margin: 1.5em 0;
+}
+
+.c7 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -2006,342 +1457,281 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 35em;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
+.c4 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
 }
 
-<div
-  class="c0"
-  display="flex"
-  width="100%"
->
+.c8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+}
+
+.c8 svg path {
+  stroke: var(--black);
+}
+
+.c8:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c8:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c8:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c8:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c9 svg path {
+  stroke: var(--black);
+}
+
+.c9:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c9:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c9:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c9:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 svg path {
+  stroke: var(--white);
+}
+
+.c9:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c9:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.c3 {
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+<div>
   <div
-    class="c1"
-    display="inline-block"
-    overflow="hidden"
-    width="100%"
+    class="c0"
   >
-    <ul
-      class="c2"
-      display="flex"
-      width="100%"
-    >
-      <div
-        class="c3"
-        display="flex"
-      >
-        <li
-          class="c4"
-          display="flex"
-        >
-          <div
-            class="c5"
-            color="status.fail.foreground"
-            display="flex"
-            size="6"
-          >
-            <h3
-              class="c6"
-            >
-              Er
-            </h3>
-          </div>
-        </li>
-        <div
-          class="c7"
-          width="2"
-        />
-        
-      </div>
-    </ul>
     <div
-      class="c8"
-      display="flex"
-      width="100%"
+      class="c1 c2 c3"
     >
-      <div
-        class="c9"
-        color="status.fail.foreground"
-        display="flex"
+      <svg
+        fill="none"
+        height="24px"
+        viewBox="0 0 24 24"
+        width="24px"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <h2
-          class="c10"
-          font-family="RT-Alias-Grotesk"
-          font-size="4"
-          font-weight="400"
-        >
-          Oops!
-        </h2>
-      </div>
-      <div
-        class="c11"
-        color="status.fail.foreground"
-      >
-        <p
-          class="c12"
-          font-family="RT-Alias-Grotesk"
-          font-size="2"
-          font-weight="400"
-        >
-          Is your Ledger device unlocked?
-        </p>
-      </div>
+        <circle
+          cx="12"
+          cy="12"
+          r="11"
+          stroke="var(--red-dark)"
+          stroke-width="2"
+        />
+        <path
+          clip-rule="evenodd"
+          d="M7.29489 15.2921C6.90442 15.6826 6.90442 16.3157 7.29489 16.7062C7.68535 17.0966 8.31842 17.0966 8.70888 16.7062L11.9994 13.4155L15.2916 16.7079C15.6821 17.0984 16.3151 17.0984 16.7056 16.7079C17.0961 16.3174 17.0961 15.6843 16.7056 15.2938L13.4134 12.0014L16.7076 8.70694C17.0981 8.31645 17.0981 7.68335 16.7076 7.29286C16.3172 6.90238 15.6841 6.90238 15.2937 7.29286L11.9994 10.5873L8.70684 7.29462C8.31638 6.90413 7.68331 6.90413 7.29285 7.29462C6.90238 7.68511 6.90238 8.31821 7.29285 8.7087L10.5854 12.0014L7.29489 15.2921Z"
+          fill="var(--red-dark)"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <p>
+        Is your Ledger device unlocked?
+      </p>
     </div>
   </div>
   <div
-    class="c13"
-    display="flex"
-    width="100%"
+    class="c4"
   >
-    <button
-      class="c14"
-      font-size="3"
-      height="6"
-      type="button"
+    <div
+      class="c1 c5"
     >
-      Back
-    </button>
-    <button
-      class="c15"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      My Ledger device is unlocked & Filecoin app open
-    </button>
+      <h2>
+        Connect with Ledger Device
+      </h2>
+      <hr />
+      <p>
+        Please unlock your Ledger device and open the Filecoin App
+      </p>
+      <a
+        href="https://blog.glif.io/install-filecoin-ledger/"
+      >
+        Click here for installation instructions.
+      </a>
+      <div
+        class="c6 c7"
+      >
+        <button
+          class="c8"
+          type="button"
+        >
+          Back
+        </button>
+        <button
+          class="c9"
+        >
+          Connect
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 `;
 
 exports[`Ledger configuration it renders replug error correctly 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  max-width: 560px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
-  border-width: 1px;
-  border-color: #FC6D6F;
-  padding: 16px;
-  background-color: #FC6D6F;
-  display: inline-block;
-  width: 100%;
-  max-width: 560px;
-  min-height: 160px;
+  padding: 1.5em;
+  border-radius: 8px;
   overflow: hidden;
+  text-align: center;
+  word-break: break-word;
 }
 
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
+  margin: 0;
+}
+
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  background-color: #FC6D6F;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
-}
-
-.c8 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-color: silver;
-  margin-top: 24px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  min-height: 160px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-}
-
-.c9 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c11 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 16px;
-  color: #660000;
-}
-
-.c13 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 48px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c14 {
-  cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-right: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c14:hover {
-  opacity: 0.8;
-}
-
-.c15 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-left: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c15:hover {
-  opacity: 0.8;
-}
-
-.c10 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c12 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
 }
 
 .c2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  background-color: var(--red-light);
+  color: var(--red-dark);
+}
+
+.c2 hr {
+  border-color: var(--red-dark);
+}
+
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  border-color: silver;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  gap: 10px;
+  margin: 1.5em 0;
+}
+
+.c7 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -2353,117 +1743,220 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 35em;
 }
 
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
+.c4 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
 }
 
-<div
-  class="c0"
-  display="flex"
-  width="100%"
->
+.c8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+}
+
+.c8 svg path {
+  stroke: var(--black);
+}
+
+.c8:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c8:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c8:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c8:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c9 svg path {
+  stroke: var(--black);
+}
+
+.c9:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c9:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c9:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c9:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c9 svg path {
+  stroke: var(--white);
+}
+
+.c9:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c9:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.c3 {
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+<div>
   <div
-    class="c1"
-    display="inline-block"
-    overflow="hidden"
-    width="100%"
+    class="c0"
   >
-    <ul
-      class="c2"
-      display="flex"
-      width="100%"
-    >
-      <div
-        class="c3"
-        display="flex"
-      >
-        <li
-          class="c4"
-          display="flex"
-        >
-          <div
-            class="c5"
-            color="status.fail.foreground"
-            display="flex"
-            size="6"
-          >
-            <h3
-              class="c6"
-            >
-              Er
-            </h3>
-          </div>
-        </li>
-        <div
-          class="c7"
-          width="2"
-        />
-        
-      </div>
-    </ul>
     <div
-      class="c8"
-      display="flex"
-      width="100%"
+      class="c1 c2 c3"
     >
-      <div
-        class="c9"
-        color="status.fail.foreground"
-        display="flex"
+      <svg
+        fill="none"
+        height="24px"
+        viewBox="0 0 24 24"
+        width="24px"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <h2
-          class="c10"
-          font-family="RT-Alias-Grotesk"
-          font-size="4"
-          font-weight="400"
-        >
-          Oops!
-        </h2>
-      </div>
-      <div
-        class="c11"
-        color="status.fail.foreground"
-      >
-        <p
-          class="c12"
-          font-family="RT-Alias-Grotesk"
-          font-size="2"
-          font-weight="400"
-        >
-          Please quit the Filecoin app, and unplug/replug your Ledger device, and try again.
-        </p>
-      </div>
+        <circle
+          cx="12"
+          cy="12"
+          r="11"
+          stroke="var(--red-dark)"
+          stroke-width="2"
+        />
+        <path
+          clip-rule="evenodd"
+          d="M7.29489 15.2921C6.90442 15.6826 6.90442 16.3157 7.29489 16.7062C7.68535 17.0966 8.31842 17.0966 8.70888 16.7062L11.9994 13.4155L15.2916 16.7079C15.6821 17.0984 16.3151 17.0984 16.7056 16.7079C17.0961 16.3174 17.0961 15.6843 16.7056 15.2938L13.4134 12.0014L16.7076 8.70694C17.0981 8.31645 17.0981 7.68335 16.7076 7.29286C16.3172 6.90238 15.6841 6.90238 15.2937 7.29286L11.9994 10.5873L8.70684 7.29462C8.31638 6.90413 7.68331 6.90413 7.29285 7.29462C6.90238 7.68511 6.90238 8.31821 7.29285 8.7087L10.5854 12.0014L7.29489 15.2921Z"
+          fill="var(--red-dark)"
+          fill-rule="evenodd"
+        />
+      </svg>
+      <p>
+        Please quit the Filecoin app, and unplug/replug your Ledger device, and try again.
+      </p>
     </div>
   </div>
   <div
-    class="c13"
-    display="flex"
-    width="100%"
+    class="c4"
   >
-    <button
-      class="c14"
-      font-size="3"
-      height="6"
-      type="button"
+    <div
+      class="c1 c5"
     >
-      Back
-    </button>
-    <button
-      class="c15"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      My Ledger device is unlocked & Filecoin app open
-    </button>
+      <h2>
+        Connect with Ledger Device
+      </h2>
+      <hr />
+      <p>
+        Please unlock your Ledger device and open the Filecoin App
+      </p>
+      <a
+        href="https://blog.glif.io/install-filecoin-ledger/"
+      >
+        Click here for installation instructions.
+      </a>
+      <div
+        class="c6 c7"
+      >
+        <button
+          class="c8"
+          type="button"
+        >
+          Back
+        </button>
+        <button
+          class="c9"
+        >
+          Connect
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 `;

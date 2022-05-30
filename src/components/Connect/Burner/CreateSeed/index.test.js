@@ -23,22 +23,6 @@ describe('Create seed phrase configuration', () => {
     cleanup()
   })
 
-  test('it renders the warning correctly', () => {
-    const { Tree } = composeMockAppTree('preOnboard')
-
-    const { container } = render(
-      <Tree>
-        <Create initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
-      </Tree>
-    )
-    expect(
-      screen.getByText(
-        /We do not recommend you use this burner wallet to hold or transact significant sums of Filecoin/
-      )
-    ).toBeInTheDocument()
-    expect(container.firstChild).toMatchSnapshot()
-  })
-
   test('it renders step 1 correctly', () => {
     const { Tree } = composeMockAppTree('preOnboard')
 
@@ -47,9 +31,7 @@ describe('Create seed phrase configuration', () => {
         <Create initialWalkthroughStep={1} next={nextSpy} back={backSpy} />
       </Tree>
     )
-    act(() => {
-      fireEvent.click(screen.getByText('I Understand'))
-    })
+
     expect(screen.getByText(/Step 1/)).toBeInTheDocument()
     expect(screen.getByText(/Copy/)).toBeInTheDocument()
     expect(screen.getByText(/Download/)).toBeInTheDocument()
@@ -66,10 +48,6 @@ describe('Create seed phrase configuration', () => {
       </Tree>
     )
 
-    act(() => {
-      fireEvent.click(screen.getByText('I Understand'))
-    })
-
     expect(
       screen.getByText(/Add the correct words to the empty inputs/)
     ).toBeInTheDocument()
@@ -85,10 +63,6 @@ describe('Create seed phrase configuration', () => {
       </Tree>
     )
 
-    act(() => {
-      fireEvent.click(screen.getByText('I Understand'))
-    })
-
     expect(
       screen.getByText(/Success! Please click 'Next' to access your wallet./)
     ).toBeInTheDocument()
@@ -103,10 +77,6 @@ describe('Create seed phrase configuration', () => {
         <Create initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
       </Tree>
     )
-
-    act(() => {
-      fireEvent.click(screen.getByText('I Understand'))
-    })
 
     await act(async () => {
       fireEvent.click(screen.getByText('Next'))
