@@ -58,7 +58,7 @@ describe('BigInt input', () => {
             info={infoText}
             max={100n}
             setIsValid={setIsValid}
-            autofocus={true}
+            autofocus
           />
         </ThemeProvider>
       )
@@ -85,7 +85,7 @@ describe('BigInt input', () => {
             info={infoText}
             min={-100n}
             setIsValid={setIsValid}
-            autofocus={true}
+            autofocus
           />
         </ThemeProvider>
       )
@@ -106,7 +106,7 @@ describe('BigInt input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <BigIntInput label={labelText} info={infoText} disabled={true} />
+          <BigIntInput label={labelText} info={infoText} disabled />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()
