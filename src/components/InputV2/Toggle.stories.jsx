@@ -5,14 +5,7 @@ import ThemeProvider from '../ThemeProvider'
 
 const StoryComponent = ({ checked: defaultChecked, ...props }) => {
   const [checked, setChecked] = useState(defaultChecked)
-  return (
-    <Toggle
-      checked={checked}
-      onChange={setChecked}
-      autofocus
-      {...props}
-    />
-  )
+  return <Toggle checked={checked} onChange={setChecked} autofocus {...props} />
 }
 
 export default {
