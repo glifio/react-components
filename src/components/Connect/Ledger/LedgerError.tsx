@@ -12,7 +12,7 @@ import {
 import { space } from '../../theme'
 
 const ErrorBox = styled(_ErrorBox)`
-  width: 560px;
+  width: 100%;
   gap: ${space()};
   margin-bottom: ${space()};
 `

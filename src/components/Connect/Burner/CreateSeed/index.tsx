@@ -32,7 +32,6 @@ const Create: FC<{
     useWalletProvider()
 
   const nextStep = () => {
-    console.log('hi')
     setImportSeedError(false)
     if (walkthroughStep === 1) setWalkthroughStep(2)
     else if (walkthroughStep === 2 && canContinue) setWalkthroughStep(3)
@@ -82,7 +81,6 @@ const Create: FC<{
         <form
           onSubmit={e => {
             e.preventDefault()
-            console.log('in here')
             nextStep()
           }}
         >

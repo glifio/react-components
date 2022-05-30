@@ -47,7 +47,7 @@ const ConnectLedger: FC<{ next: () => void; back: () => void }> = ({
   }
 
   return (
-    <>
+    <div>
       <LedgerError {...ledger} otherError={uncaughtError} />
       <Dialog>
         <ShadowBox>
@@ -77,7 +77,7 @@ const ConnectLedger: FC<{ next: () => void; back: () => void }> = ({
           </ButtonRowSpaced>
         </ShadowBox>
       </Dialog>
-    </>
+    </div>
   )
 }
 
