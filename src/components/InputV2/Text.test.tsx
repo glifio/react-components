@@ -56,7 +56,7 @@ describe('Text input', () => {
       result = render(
         <ThemeProvider theme={theme}>
           <TextInput
-            deletable={true}
+            deletable
             label={labelText}
             info={infoText}
             value={inputValue}
@@ -82,8 +82,8 @@ describe('Text input', () => {
             info={infoText}
             value={inputValue}
             setIsValid={setIsValid}
-            required={true}
-            autofocus={true}
+            required
+            autofocus
           />
         </ThemeProvider>
       )
@@ -110,9 +110,9 @@ describe('Text input', () => {
             info={infoText}
             value={inputValue}
             setIsValid={setIsValid}
-            vertical={true}
-            required={true}
-            autofocus={true}
+            vertical
+            required
+            autofocus
           />
         </ThemeProvider>
       )
@@ -133,7 +133,7 @@ describe('Text input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <TextInput label={labelText} info={infoText} disabled={true} />
+          <TextInput label={labelText} info={infoText} disabled />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()

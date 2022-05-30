@@ -9,7 +9,7 @@ const StoryComponent = ({ value: defaultValue, ...props }) => {
     <PasswordInput
       value={value}
       onChange={setValue}
-      autofocus={true}
+      autofocus
       {...props}
     />
   )
