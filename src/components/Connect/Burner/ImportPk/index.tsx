@@ -5,7 +5,7 @@ import { LoginOption } from '../../../../customPropTypes'
 import { createWalletProvider, useWalletProvider } from '../../../../services'
 import { ButtonV2 } from '../../../Button/V2'
 import { InputV2 } from '../../../InputV2'
-import { Dialog, ShadowBox, ButtonRowSpaced } from '../../../Layout'
+import { Dialog, ShadowBox, ButtonRowSpaced, ErrorBox } from '../../../Layout'
 import LoaderGlyph from '../../../LoaderGlyph'
 import { Loading } from '../../Loading'
 
@@ -22,6 +22,7 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
         autoComplete='off'
         onSubmit={async e => {
           e.preventDefault()
+          setImportError('')
           setLoading(true)
           if (isValid) {
             try {
@@ -44,6 +45,7 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
           }
         }}
       >
+        {importError && <ErrorBox>{importError}</ErrorBox>}
         <ShadowBox>
           <h2>Import private key</h2>
           <hr />
@@ -60,7 +62,6 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
               centered={true}
               autoFocus={true}
               value={privateKey}
-              importError={importError}
               onChange={setPrivateKey}
               setIsValid={setIsValid}
             />

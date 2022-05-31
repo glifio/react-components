@@ -5,7 +5,7 @@ import { LoginOption } from '../../../../customPropTypes'
 import { createWalletProvider, useWalletProvider } from '../../../../services'
 import { ButtonV2 } from '../../../Button/V2'
 import { InputV2 } from '../../../InputV2'
-import { Dialog, ShadowBox, ButtonRowSpaced } from '../../../Layout'
+import { Dialog, ShadowBox, ButtonRowSpaced, ErrorBox } from '../../../Layout'
 import LoaderGlyph from '../../../LoaderGlyph'
 import { Loading } from '../../Loading'
 
@@ -22,6 +22,7 @@ export const ImportSeed = ({ back, next }: ImportSeedProps) => {
         autoComplete='off'
         onSubmit={async e => {
           e.preventDefault()
+          setImportError('')
           setLoading(true)
           if (isValid) {
             try {
@@ -41,6 +42,7 @@ export const ImportSeed = ({ back, next }: ImportSeedProps) => {
           }
         }}
       >
+        {importError && <ErrorBox>{importError}</ErrorBox>}
         <ShadowBox>
           <h2>Import seed phrase</h2>
           <hr />
@@ -57,7 +59,6 @@ export const ImportSeed = ({ back, next }: ImportSeedProps) => {
               centered={true}
               autoFocus={true}
               value={seed}
-              importError={importError}
               onChange={setSeed}
               setIsValid={setIsValid}
             />
