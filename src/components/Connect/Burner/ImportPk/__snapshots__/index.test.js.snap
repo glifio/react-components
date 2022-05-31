@@ -282,6 +282,7 @@ exports[`Import private key configuration it renders correctly 1`] = `
   <form
     autocomplete="off"
   >
+    
     <div
       class="c1 c2"
     >
@@ -597,6 +598,7 @@ exports[`Import private key configuration it sends the user to wallet view, with
   <form
     autocomplete="off"
   >
+    
     <div
       class="c1 c2"
     >
