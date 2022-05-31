@@ -15,7 +15,11 @@ import { LoginOption } from '../../../../customPropTypes'
 import { ButtonRowSpaced, WideDialog, StandardBox } from '../../../Layout'
 import { ButtonV2 } from '../../../Button/V2'
 
-export const CreateSeed = ({ initialWalkthroughStep, back, next }: CreateProps) => {
+export const CreateSeed = ({
+  initialWalkthroughStep,
+  back,
+  next
+}: CreateProps) => {
   const [mnemonic, setMnemonic] = useState('')
   const [walkthroughStep, setWalkthroughStep] = useState(initialWalkthroughStep)
   const [loading, setLoading] = useState(true)
@@ -94,10 +98,11 @@ export const CreateSeed = ({ initialWalkthroughStep, back, next }: CreateProps) 
               <ButtonV2
                 large
                 type='button'
-                onClick={() => {
-                  if (walkthroughStep === 1) back()
-                  else if (walkthroughStep === 2) setWalkthroughStep(1)
-                }}
+                onClick={() =>
+                  walkthroughStep === 1
+                    ? back()
+                    : setWalkthroughStep(walkthroughStep - 1)
+                }
               >
                 Back
               </ButtonV2>
