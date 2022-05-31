@@ -11,7 +11,7 @@ import { ButtonV2 } from '../../Button/V2'
 import { Loading } from '../Loading'
 import LoaderGlyph from '../../LoaderGlyph'
 
-export const ConnectLedger = ({ next, back }: ConnectLedgerProps) => {
+export const Ledger = ({ next, back }: LedgerProps) => {
   const {
     connectLedger,
     dispatch,
@@ -76,12 +76,12 @@ export const ConnectLedger = ({ next, back }: ConnectLedgerProps) => {
   )
 }
 
-export interface ConnectLedgerProps {
+export interface LedgerProps {
   back: () => void
   next: () => void
 }
 
-ConnectLedger.propTypes = {
+Ledger.propTypes = {
   back: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired
 }
