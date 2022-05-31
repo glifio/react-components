@@ -97,6 +97,7 @@ const Create: FC<{
             </StandardBox>
             <ButtonRowSpaced>
               <ButtonV2
+                large
                 onClick={() => {
                   if (walkthroughStep === 1) back()
                   else if (walkthroughStep === 2) setWalkthroughStep(1)
