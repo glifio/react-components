@@ -104,7 +104,7 @@ describe('Filecoin input', () => {
             denom='fil'
             max={new FilecoinNumber(10, 'fil')}
             setIsValid={setIsValid}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -132,7 +132,7 @@ describe('Filecoin input', () => {
             denom='fil'
             min={new FilecoinNumber(100, 'fil')}
             setIsValid={setIsValid}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -166,7 +166,7 @@ describe('Filecoin input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ControlledInput label={labelText} info={infoText} autofocus={true} />
+          <ControlledInput label={labelText} info={infoText} autoFocus={true} />
         </ThemeProvider>
       )
       input = getByRole(result.container, 'spinbutton')

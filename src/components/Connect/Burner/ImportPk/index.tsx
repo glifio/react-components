@@ -63,7 +63,7 @@ export default function ImportSeed({
               label='Please enter your private key below to continue'
               vertical={true}
               centered={true}
-              autofocus={true}
+              autoFocus={true}
               value={privateKey}
               importError={importError}
               onChange={setPrivateKey}

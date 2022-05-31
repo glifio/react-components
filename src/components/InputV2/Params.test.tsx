@@ -59,7 +59,7 @@ describe('Params input', () => {
             label={labelText}
             info={infoText}
             setIsValid={setIsValid}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -87,7 +87,7 @@ describe('Params input', () => {
             value={validBase64}
             setIsValid={setIsValid}
             required={true}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )

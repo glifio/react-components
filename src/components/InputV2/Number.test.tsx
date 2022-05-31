@@ -59,7 +59,7 @@ describe('Number input', () => {
             info={infoText}
             max={100}
             setIsValid={setIsValid}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -86,7 +86,7 @@ describe('Number input', () => {
             info={infoText}
             min={-100}
             setIsValid={setIsValid}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -120,7 +120,7 @@ describe('Number input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ControlledInput label={labelText} info={infoText} autofocus={true} />
+          <ControlledInput label={labelText} info={infoText} autoFocus={true} />
         </ThemeProvider>
       )
       input = getByRole(result.container, 'spinbutton')

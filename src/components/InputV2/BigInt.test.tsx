@@ -58,7 +58,7 @@ describe('BigInt input', () => {
             info={infoText}
             max={100n}
             setIsValid={setIsValid}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -85,7 +85,7 @@ describe('BigInt input', () => {
             info={infoText}
             min={-100n}
             setIsValid={setIsValid}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )

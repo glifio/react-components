@@ -60,7 +60,7 @@ export default function ImportSeed({
               label='Please enter your seed phrase below to continue'
               vertical={true}
               centered={true}
-              autofocus={true}
+              autoFocus={true}
               value={seed}
               importError={importError}
               onChange={setSeed}
