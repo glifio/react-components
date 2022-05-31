@@ -2,8 +2,6 @@ import React, { FC, useEffect, useState } from 'react'
 import { number } from 'prop-types'
 import Filecoin, { HDWalletProvider } from '@glif/filecoin-wallet-provider'
 import { generateMnemonic } from '@zondax/filecoin-signing-tools/js'
-import Box from '../../../Box'
-import OnboardCard from '../../../Card/OnboardCard'
 import StepHeader from '../../../StepHeader'
 import LoadingScreen from '../../../LoadingScreen'
 
@@ -14,7 +12,7 @@ import {
 
 import Walkthrough from './Walkthrough'
 import { LoginOption } from '../../../../customPropTypes'
-import { ButtonRowSpaced } from '../../../Layout'
+import { ButtonRowSpaced, WideDialog, StandardBox } from '../../../Layout'
 import { ButtonV2 } from '../../../Button/V2'
 
 const Create: FC<{
@@ -78,29 +76,14 @@ const Create: FC<{
       {loading || walkthroughStep === 4 ? (
         <LoadingScreen />
       ) : (
-        <form
-          onSubmit={e => {
-            e.preventDefault()
-            nextStep()
-          }}
-        >
-          <Box
-            display='flex'
-            flexDirection='column'
-            justifyContent='center'
-            alignItems='center'
+        <WideDialog>
+          <form
+            onSubmit={e => {
+              e.preventDefault()
+              nextStep()
+            }}
           >
-            <OnboardCard
-              display='flex'
-              flexDirection='row'
-              flexWrap='wrap'
-              justifyContent='center'
-              maxWidth={16}
-              border={0}
-              css={`
-                background-color: var(--blue-gray);
-              `}
-            >
+            <StandardBox>
               <StepHeader currentStep={walkthroughStep} totalSteps={3} />
               {mnemonic && (
                 <Walkthrough
@@ -111,7 +94,7 @@ const Create: FC<{
                   setCanContinue={setCanContinue}
                 />
               )}
-            </OnboardCard>
+            </StandardBox>
             <ButtonRowSpaced>
               <ButtonV2
                 onClick={() => {
@@ -131,8 +114,8 @@ const Create: FC<{
                 }
               />
             </ButtonRowSpaced>
-          </Box>
-        </form>
+          </form>
+        </WideDialog>
       )}
     </>
   )
