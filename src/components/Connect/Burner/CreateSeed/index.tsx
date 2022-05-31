@@ -19,7 +19,7 @@ export const CreateSeed = ({
   initialWalkthroughStep,
   back,
   next
-}: CreateProps) => {
+}: CreateSeedProps) => {
   const [mnemonic, setMnemonic] = useState('')
   const [walkthroughStep, setWalkthroughStep] = useState(initialWalkthroughStep)
   const [loading, setLoading] = useState(true)
@@ -123,7 +123,7 @@ export const CreateSeed = ({
   )
 }
 
-export interface CreateProps {
+export interface CreateSeedProps {
   // we pass this optional prop to make testing the core wallet functionality easier
   initialWalkthroughStep?: number
   back: () => void
