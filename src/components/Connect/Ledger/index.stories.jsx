@@ -1,11 +1,10 @@
 import theme from '../../theme'
 import ThemeProvider from '../../ThemeProvider'
-
-import Ledger from './'
+import { ConnectLedger } from '.'
 
 export default {
-  title: 'Ledger/Ledger',
-  component: Ledger,
+  title: 'Connect/Ledger',
+  component: ConnectLedger,
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -16,7 +15,10 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <Ledger {...args} />
+const Template = args => <ConnectLedger {...args} />
 
 export const Base = Template.bind({})
-Base.args = {}
+Base.args = {
+  back: () => console.log('Clicked Back'),
+  next: () => console.log('Clicked Next')
+}

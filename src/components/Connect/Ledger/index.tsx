@@ -63,16 +63,15 @@ export const ConnectLedger = ({ next, back }: ConnectLedgerProps) => {
             </a>
           </>
         )}
-
-        <ButtonRowSpaced>
-          <ButtonV2 large disabled={loading} onClick={back} type='button'>
-            Back
-          </ButtonV2>
-          <ButtonV2 large disabled={loading} green onClick={onClick}>
-            Connect
-          </ButtonV2>
-        </ButtonRowSpaced>
       </ShadowBox>
+      <ButtonRowSpaced>
+        <ButtonV2 large disabled={loading} onClick={back} type='button'>
+          Back
+        </ButtonV2>
+        <ButtonV2 large disabled={loading} green onClick={onClick}>
+          Connect
+        </ButtonV2>
+      </ButtonRowSpaced>
     </Dialog>
   )
 }

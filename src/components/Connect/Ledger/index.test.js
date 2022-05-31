@@ -3,7 +3,7 @@ import { initialState as wpInitialState } from '../../../services/WalletProvider
 import { initialLedgerState } from '../../../services/WalletProvider/ledgerUtils'
 import composeMockAppTree from '../../../test-utils/composeMockAppTree'
 import { mockFetchDefaultWallet } from '../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
-import ConnectLedger from '.'
+import { ConnectLedger } from '.'
 import { flushPromises } from '../../../test-utils'
 import { TESTNET_PATH_CODE } from '../../../constants'
 import createPath from '../../../utils/createPath'
