@@ -12,7 +12,7 @@ import {
 
 import Walkthrough from './Walkthrough'
 import { LoginOption } from '../../../../customPropTypes'
-import { ButtonRowSpaced, WideDialog, StandardBox } from '../../../Layout'
+import { ButtonRowSpaced, WideDialog, ShadowBox } from '../../../Layout'
 import { ButtonV2 } from '../../../Button/V2'
 
 export const CreateSeed = ({
@@ -80,7 +80,7 @@ export const CreateSeed = ({
           nextStep()
         }}
       >
-        <StandardBox>
+        <ShadowBox>
           <StepHeader currentStep={walkthroughStep} totalSteps={3} />
           {mnemonic && (
             <Walkthrough
@@ -91,7 +91,7 @@ export const CreateSeed = ({
               setCanContinue={setCanContinue}
             />
           )}
-        </StandardBox>
+        </ShadowBox>
         <ButtonRowSpaced>
           <ButtonV2
             large
