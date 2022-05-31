@@ -41,5 +41,5 @@ const Template = args => <StoryComponent {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  label: "Enter a seed phrase"
+  label: 'Enter a seed phrase'
 }
