@@ -19,10 +19,10 @@ export const PrivateKeyInput = ({
 
   // Check for input errors
   const error = useMemo<string>(() => {
+    if (importError) return 'Error importing private key'
     if (!value) {
       return 'Cannot be empty'
     }
-    if (importError) return 'Error importing private key'
     try {
       const buffer = Buffer.from(value, 'base64')
       const result = buffer.toString('base64')
