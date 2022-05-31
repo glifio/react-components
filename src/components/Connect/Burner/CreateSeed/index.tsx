@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useState } from 'react'
-import { number } from 'prop-types'
+import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import Filecoin, { HDWalletProvider } from '@glif/filecoin-wallet-provider'
 import { generateMnemonic } from '@zondax/filecoin-signing-tools/js'
 import StepHeader from '../../../StepHeader'
@@ -15,12 +15,7 @@ import { LoginOption } from '../../../../customPropTypes'
 import { ButtonRowSpaced, WideDialog, StandardBox } from '../../../Layout'
 import { ButtonV2 } from '../../../Button/V2'
 
-const Create: FC<{
-  // we pass this optional prop to make testing the core wallet functionality easier
-  initialWalkthroughStep?: number
-  back: () => void
-  next: () => void
-}> = ({ initialWalkthroughStep, back, next }) => {
+const Create = ({ initialWalkthroughStep, back, next }: CreateProps) => {
   const [mnemonic, setMnemonic] = useState('')
   const [walkthroughStep, setWalkthroughStep] = useState(initialWalkthroughStep)
   const [loading, setLoading] = useState(true)
@@ -122,8 +117,17 @@ const Create: FC<{
   )
 }
 
+interface CreateProps {
+  // we pass this optional prop to make testing the core wallet functionality easier
+  initialWalkthroughStep?: number
+  back: () => void
+  next: () => void
+}
+
 Create.propTypes = {
-  initialWalkthroughStep: number
+  initialWalkthroughStep: PropTypes.number,
+  back: PropTypes.func.isRequired,
+  next: PropTypes.func.isRequired
 }
 
 Create.defaultProps = {
