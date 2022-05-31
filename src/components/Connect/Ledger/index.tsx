@@ -12,21 +12,14 @@ import { Loading } from '../Loading'
 import LoaderGlyph from '../../LoaderGlyph'
 
 export const Ledger = ({ next, back }: LedgerProps) => {
-  const {
-    connectLedger,
-    dispatch,
-    ledger,
-    fetchDefaultWallet,
-    walletList,
-    setLoginOption
-  } = useWalletProvider()
+  const { connectLedger, dispatch, ledger, fetchDefaultWallet, walletList } =
+    useWalletProvider()
   const [uncaughtError, setUncaughtError] = useState('')
   const [loading, setLoading] = useState(false)
 
   const onClick = async () => {
     setLoading(true)
     setUncaughtError('')
-    setLoginOption(LoginOption.LEDGER)
     try {
       const provider = await connectLedger()
       if (provider) {
