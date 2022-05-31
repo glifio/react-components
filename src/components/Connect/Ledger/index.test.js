@@ -10,10 +10,12 @@ import createPath from '../../../utils/createPath'
 
 describe('Ledger configuration', () => {
   let backSpy, nextSpy
-  afterEach(() => {
-    jest.clearAllMocks()
+  beforeEach(() => {
     backSpy = jest.fn()
     nextSpy = jest.fn()
+  })
+  afterEach(() => {
+    jest.clearAllMocks()
     cleanup()
   })
 
