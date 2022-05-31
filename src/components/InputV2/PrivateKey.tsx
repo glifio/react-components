@@ -84,13 +84,13 @@ export type PrivateKeyInputProps = {
   importError?: string
 } & Omit<BaseInputProps, 'error' | 'type' | 'autoComplete' | 'placeholder'>
 
-const { error, type, autoComplete, placeholder, ...addressProps } =
+const { error, type, autoComplete, placeholder, ...privateKeyProps } =
   BaseInputPropTypes
 
 PrivateKeyInput.propTypes = {
   setIsValid: PropTypes.func,
   importError: PropTypes.string,
-  ...addressProps
+  ...privateKeyProps
 }
 
 /**
