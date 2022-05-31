@@ -126,7 +126,7 @@ const Create: FC<{
                 className='large green'
                 value={
                   walkthroughStep === 1
-                    ? 'I&apos;ve recorded my seed phrase'
+                    ? "I've recorded my seed phrase"
                     : 'Next'
                 }
               />
