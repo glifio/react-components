@@ -22,6 +22,7 @@ export const PrivateKeyInput = ({
     if (!value) {
       return 'Cannot be empty'
     }
+    if (importError) return 'Error importing private key'
     try {
       const buffer = Buffer.from(value, 'base64')
       const result = buffer.toString('base64')
@@ -29,8 +30,6 @@ export const PrivateKeyInput = ({
     } catch (e) {
       return 'Needs to be valid Base64'
     }
-
-    if (importError) return 'Error importing private key'
     return ''
   }, [value, importError])
 
