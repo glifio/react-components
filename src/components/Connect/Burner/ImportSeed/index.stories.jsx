@@ -1,10 +1,10 @@
 import theme from '../../../theme'
 import ThemeProvider from '../../../ThemeProvider'
-import InputMnemonic from './'
+import { ImportSeed } from '.'
 
 export default {
   title: 'Connect/ImportSeed',
-  component: InputMnemonic,
+  component: ImportSeed,
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -15,12 +15,10 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => {
-  return (
-    <>
-      <InputMnemonic {...args}>{args.name}</InputMnemonic>
-    </>
-  )
-}
+const Template = args => <ImportSeed {...args} />
 
 export const Base = Template.bind({})
+Base.args = {
+  back: () => console.log('Clicked Back'),
+  next: () => console.log('Clicked Next')
+}
