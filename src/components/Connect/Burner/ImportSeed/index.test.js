@@ -58,7 +58,7 @@ describe('Import seed phrase configuration', () => {
       // if we dont flush twice, the isValid hook doesnt rerender into a true state
       await flushPromises()
 
-      await fireEvent.click(getByText(container, 'Connect'))
+      fireEvent.click(getByText(container, 'Connect'))
       await flushPromises()
     })
     expect(nextSpy).toHaveBeenCalled()
