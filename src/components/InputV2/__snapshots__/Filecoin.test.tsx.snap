@@ -120,6 +120,7 @@ exports[`Filecoin input it renders attofil correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         max=""
         min="0"
@@ -260,6 +261,7 @@ exports[`Filecoin input it renders fil correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         max=""
         min="0"
@@ -400,6 +402,7 @@ exports[`Filecoin input it renders picofil correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         max=""
         min="0"
@@ -543,6 +546,7 @@ exports[`Filecoin input it renders the disabled state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         disabled=""
         max=""
@@ -689,6 +693,7 @@ exports[`Filecoin input it renders the value too high state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class="error"
         max="10"
         min="0"
@@ -834,6 +839,7 @@ exports[`Filecoin input it renders the value too low state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class="error"
         max=""
         min="100"

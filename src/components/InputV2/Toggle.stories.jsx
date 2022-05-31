@@ -9,7 +9,7 @@ const StoryComponent = ({ checked: defaultChecked, ...props }) => {
     <Toggle
       checked={checked}
       onChange={setChecked}
-      autofocus={true}
+      autoFocus={true}
       {...props}
     />
   )

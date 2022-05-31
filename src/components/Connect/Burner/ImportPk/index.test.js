@@ -9,7 +9,7 @@ import {
 import composeMockAppTree from '../../../../test-utils/composeMockAppTree'
 import { flushPromises } from '../../../../test-utils'
 
-import ImportPrivateKey from '.'
+import { ImportPk } from '.'
 import { TESTNET_PATH_CODE } from '../../../../constants'
 import { mockFetchDefaultWallet } from '../../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import createPath from '../../../../utils/createPath'
@@ -31,7 +31,7 @@ describe('Import private key configuration', () => {
 
     const { container } = render(
       <Tree>
-        <ImportPrivateKey next={nextSpy} back={backSpy} />
+        <ImportPk next={nextSpy} back={backSpy} />
       </Tree>
     )
     expect(container.firstChild).toMatchSnapshot()
@@ -42,7 +42,7 @@ describe('Import private key configuration', () => {
 
     const { container } = render(
       <Tree>
-        <ImportPrivateKey next={nextSpy} back={backSpy} />
+        <ImportPk next={nextSpy} back={backSpy} />
       </Tree>
     )
 

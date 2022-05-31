@@ -83,7 +83,7 @@ describe('Text input', () => {
             value={inputValue}
             setIsValid={setIsValid}
             required={true}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -112,7 +112,7 @@ describe('Text input', () => {
             setIsValid={setIsValid}
             vertical={true}
             required={true}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )

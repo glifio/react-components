@@ -120,6 +120,7 @@ exports[`Button input it renders correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         max=""
         min=""
@@ -259,6 +260,7 @@ exports[`Button input it renders the disabled state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         disabled=""
         max=""
@@ -396,6 +398,7 @@ exports[`Button input it renders the green state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class="green"
         max=""
         min=""
@@ -532,6 +535,7 @@ exports[`Button input it renders the red state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class="red"
         max=""
         min=""
@@ -540,6 +544,143 @@ exports[`Button input it renders the red state correctly 1`] = `
         step=""
         style="padding-right: 1em;"
         type="button"
+        value="Click here"
+      />
+      
+    </div>
+  </div>
+</label>
+`;
+
+exports[`Button input it renders the submit button correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c0 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c0 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.c0 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c0 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c0 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c0 .unit-wrapper {
+  position: relative;
+}
+
+.c0 .unit-wrapper input {
+  width: 100%;
+}
+
+.c0 .unit-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+}
+
+<label
+  class="c0"
+>
+  <div>
+    <span>
+      Do something
+    </span>
+    <span
+      class="info"
+    >
+      Now is your chance
+    </span>
+    
+  </div>
+  <div
+    class="button-wrapper"
+  >
+    <div
+      class="unit-wrapper"
+    >
+      <input
+        autocomplete="on"
+        class=""
+        max=""
+        min=""
+        name=""
+        placeholder=""
+        step=""
+        style="padding-right: 1em;"
+        type="submit"
         value="Click here"
       />
       

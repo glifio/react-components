@@ -59,7 +59,7 @@ describe('Address input', () => {
             label={labelText}
             info={infoText}
             setIsValid={setIsValid}
-            autofocus={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )

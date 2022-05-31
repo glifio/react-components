@@ -1,10 +1,10 @@
 import theme from '../../../theme'
 import ThemeProvider from '../../../ThemeProvider'
-import { CreateSeed } from '.'
+import { ImportPk } from '.'
 
 export default {
-  title: 'Connect/CreateSeed',
-  component: CreateSeed,
+  title: 'Connect/ImportPrivateKey',
+  component: ImportPk,
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -15,7 +15,7 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <CreateSeed {...args} />
+const Template = args => <ImportPk {...args} />
 
 export const Base = Template.bind({})
 Base.args = {

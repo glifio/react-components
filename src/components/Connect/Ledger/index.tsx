@@ -1,5 +1,6 @@
-import React, { FC, useState } from 'react'
-import LedgerError from './LedgerError'
+import PropTypes from 'prop-types'
+import { useState } from 'react'
+import { LedgerError } from './LedgerError'
 import {
   useWalletProvider,
   createWalletProvider
@@ -10,10 +11,7 @@ import { ButtonV2 } from '../../Button/V2'
 import { Loading } from '../Loading'
 import LoaderGlyph from '../../LoaderGlyph'
 
-const ConnectLedger: FC<{ next: () => void; back: () => void }> = ({
-  next,
-  back
-}) => {
+export const Ledger = ({ next, back }: LedgerProps) => {
   const {
     connectLedger,
     dispatch,
@@ -47,38 +45,43 @@ const ConnectLedger: FC<{ next: () => void; back: () => void }> = ({
   }
 
   return (
-    <div>
+    <Dialog>
       <LedgerError {...ledger} otherError={uncaughtError} />
-      <Dialog>
-        <ShadowBox>
-          <h2>Connect with Ledger Device</h2>
-          <hr />
-          {loading ? (
-            <Loading>
-              <LoaderGlyph />
-              <p>Loading...</p>
-            </Loading>
-          ) : (
-            <>
-              <p>Please unlock your Ledger device and open the Filecoin App</p>
-              <a href='https://blog.glif.io/install-filecoin-ledger/'>
-                Click here for installation instructions.
-              </a>
-            </>
-          )}
-
-          <ButtonRowSpaced>
-            <ButtonV2 large disabled={loading} onClick={back} type='button'>
-              Back
-            </ButtonV2>
-            <ButtonV2 large disabled={loading} green onClick={onClick}>
-              Connect
-            </ButtonV2>
-          </ButtonRowSpaced>
-        </ShadowBox>
-      </Dialog>
-    </div>
+      <ShadowBox>
+        <h2>Connect with Ledger Device</h2>
+        <hr />
+        {loading ? (
+          <Loading>
+            <LoaderGlyph />
+            <p>Loading...</p>
+          </Loading>
+        ) : (
+          <>
+            <p>Please unlock your Ledger device and open the Filecoin App</p>
+            <a href='https://blog.glif.io/install-filecoin-ledger/'>
+              Click here for installation instructions.
+            </a>
+          </>
+        )}
+      </ShadowBox>
+      <ButtonRowSpaced>
+        <ButtonV2 large disabled={loading} onClick={back} type='button'>
+          Back
+        </ButtonV2>
+        <ButtonV2 large disabled={loading} green onClick={onClick}>
+          Connect
+        </ButtonV2>
+      </ButtonRowSpaced>
+    </Dialog>
   )
 }
 
-export default ConnectLedger
+export interface LedgerProps {
+  back: () => void
+  next: () => void
+}
+
+Ledger.propTypes = {
+  back: PropTypes.func.isRequired,
+  next: PropTypes.func.isRequired
+}

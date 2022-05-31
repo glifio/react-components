@@ -2,7 +2,7 @@ import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
 import composeMockAppTree from '../../../../test-utils/composeMockAppTree'
 import { flushPromises } from '../../../../test-utils'
 
-import Create from '.'
+import { CreateSeed } from '.'
 import { TESTNET_PATH_CODE } from '../../../../constants'
 import { mockFetchDefaultWallet } from '../../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import createPath from '../../../../utils/createPath'
@@ -28,7 +28,7 @@ describe('Create seed phrase configuration', () => {
 
     render(
       <Tree>
-        <Create initialWalkthroughStep={1} next={nextSpy} back={backSpy} />
+        <CreateSeed initialWalkthroughStep={1} next={nextSpy} back={backSpy} />
       </Tree>
     )
 
@@ -44,7 +44,7 @@ describe('Create seed phrase configuration', () => {
 
     render(
       <Tree>
-        <Create initialWalkthroughStep={2} next={nextSpy} back={backSpy} />
+        <CreateSeed initialWalkthroughStep={2} next={nextSpy} back={backSpy} />
       </Tree>
     )
 
@@ -59,7 +59,7 @@ describe('Create seed phrase configuration', () => {
 
     render(
       <Tree>
-        <Create initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
+        <CreateSeed initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
       </Tree>
     )
 
@@ -74,7 +74,7 @@ describe('Create seed phrase configuration', () => {
 
     const { container } = render(
       <Tree>
-        <Create initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
+        <CreateSeed initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
       </Tree>
     )
 

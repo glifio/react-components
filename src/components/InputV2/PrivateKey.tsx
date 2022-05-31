@@ -15,9 +15,11 @@ export const PrivateKeyInput = ({
   ...baseProps
 }: PrivateKeyInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
+    if (importError) return 'Error importing private key'
     if (!value) {
       return 'Cannot be empty'
     }
@@ -28,8 +30,6 @@ export const PrivateKeyInput = ({
     } catch (e) {
       return 'Needs to be valid Base64'
     }
-
-    if (importError) return 'Error importing private key'
     return ''
   }, [value, importError])
 
@@ -37,6 +37,7 @@ export const PrivateKeyInput = ({
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onChangeBase = (newValue: string) => {
+    setHasChanged(true)
     onChange(newValue.trim())
   }
 
@@ -52,9 +53,9 @@ export const PrivateKeyInput = ({
 
   return (
     <BaseInput
-      autoComplete='off'
-      error={!hasFocus ? error : ''}
+      error={!hasFocus && hasChanged ? error : ''}
       type='text'
+      autoComplete='off'
       placeholder='Enter your private key'
       value={value}
       onChange={onChangeBase}
@@ -71,20 +72,24 @@ export const PrivateKeyInput = ({
  *
  * error: set by private key input validation
  * type: always "text" for private key input
+ * autoComplete: always "off" for private key
+ * placeholder: always "Enter your private key"
  *
- * We add "setIsValid"
+ * We add "setIsValid" and "importError"
  */
 
 export type PrivateKeyInputProps = {
   setIsValid?: (isValid: boolean) => void
   importError?: string
-} & Omit<BaseInputProps, 'error' | 'type' | 'placeholder'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'autoComplete' | 'placeholder'>
 
-const { error, type, placeholder, ...addressProps } = BaseInputPropTypes
+const { error, type, autoComplete, placeholder, ...privateKeyProps } =
+  BaseInputPropTypes
 
 PrivateKeyInput.propTypes = {
   setIsValid: PropTypes.func,
-  ...addressProps
+  importError: PropTypes.string,
+  ...privateKeyProps
 }
 
 /**
@@ -96,5 +101,6 @@ PrivateKeyInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  setIsValid: () => {}
+  setIsValid: () => {},
+  importError: ''
 }

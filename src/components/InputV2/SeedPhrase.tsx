@@ -16,20 +16,21 @@ export const SeedPhraseInput = ({
   ...baseProps
 }: SeedPhraseInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
-  const error = useMemo<string>(() => {
-    const trimmed = value.trim()
-    const isValid = validateMnemonic(trimmed)
-    if (!isValid || importError) return 'Invalid seed phrase'
-    return ''
-  }, [value, importError])
+  const error = useMemo<string>(
+    () =>
+      importError || !validateMnemonic(value) ? 'Invalid seed phrase' : '',
+    [value, importError]
+  )
 
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onChangeBase = (newValue: string) => {
-    onChange(newValue.trim())
+    setHasChanged(true)
+    onChange(newValue)
   }
 
   const onFocusBase = () => {
@@ -44,9 +45,9 @@ export const SeedPhraseInput = ({
 
   return (
     <BaseInput
-      autoComplete='off'
-      error={!hasFocus ? error : ''}
+      error={!hasFocus && hasChanged ? error : ''}
       type='text'
+      autoComplete='off'
       placeholder='talk online harbor bulb duty athlete short follow fitness basket calm zero cabbage donkey base'
       value={value}
       onChange={onChangeBase}
@@ -63,20 +64,24 @@ export const SeedPhraseInput = ({
  *
  * error: set by seed phrase input validation
  * type: always "text" for seed phrase input
+ * autoComplete: always "off" for seed phrase
+ * placeholder: shows example seed phrase
  *
- * We add "setIsValid"
+ * We add "setIsValid" and "importError"
  */
 
 export type SeedPhraseInputProps = {
   setIsValid?: (isValid: boolean) => void
   importError?: string
-} & Omit<BaseInputProps, 'error' | 'type' | 'placeholder'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'autoComplete' | 'placeholder'>
 
-const { error, type, placeholder, ...addressProps } = BaseInputPropTypes
+const { error, type, autoComplete, placeholder, ...seedPhraseProps } =
+  BaseInputPropTypes
 
 SeedPhraseInput.propTypes = {
   setIsValid: PropTypes.func,
-  ...addressProps
+  importError: PropTypes.string,
+  ...seedPhraseProps
 }
 
 /**
@@ -88,5 +93,6 @@ SeedPhraseInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  setIsValid: () => {}
+  setIsValid: () => {},
+  importError: ''
 }
