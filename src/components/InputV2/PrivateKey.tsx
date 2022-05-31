@@ -15,6 +15,7 @@ export const PrivateKeyInput = ({
   ...baseProps
 }: PrivateKeyInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
@@ -37,6 +38,7 @@ export const PrivateKeyInput = ({
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onChangeBase = (newValue: string) => {
+    setHasChanged(true)
     onChange(newValue.trim())
   }
 
@@ -53,7 +55,7 @@ export const PrivateKeyInput = ({
   return (
     <BaseInput
       autoComplete='off'
-      error={!hasFocus ? error : ''}
+      error={!hasFocus && hasChanged ? error : ''}
       type='text'
       placeholder='Enter your private key'
       value={value}
