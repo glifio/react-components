@@ -48,13 +48,7 @@ const WordPrompt = ({
           </Text>
         )}
       </Box>
-      <MnemonicWordContainer
-        display='flex'
-        alignItems='center'
-        justifyItems='center'
-        flexWrap='wrap'
-        mt={3}
-      >
+      <MnemonicWordContainer>
         {mnemonic.split(' ').map((word, i) => {
           return randoms.current.has(i) ? (
             <InputWord

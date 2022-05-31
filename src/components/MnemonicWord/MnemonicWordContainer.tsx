@@ -1,13 +1,9 @@
 import styled from 'styled-components'
-import Menu from '../Box'
+import { space } from '../theme'
 
-export default styled(Menu).attrs(props => ({
-  mt: 3,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: ['center', 'space-between'],
-  flexWrap: 'wrap',
-  ...props
-}))`
-  list-style: none;
+export default styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: ${space('large')};
 `
