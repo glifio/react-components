@@ -104,7 +104,7 @@ describe('Filecoin input', () => {
             denom='fil'
             max={new FilecoinNumber(10, 'fil')}
             setIsValid={setIsValid}
-            autofocus
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -132,7 +132,7 @@ describe('Filecoin input', () => {
             denom='fil'
             min={new FilecoinNumber(100, 'fil')}
             setIsValid={setIsValid}
-            autofocus
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -153,7 +153,7 @@ describe('Filecoin input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <FilecoinInput label={labelText} info={infoText} disabled />
+          <FilecoinInput label={labelText} info={infoText} disabled={true} />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()
@@ -166,7 +166,7 @@ describe('Filecoin input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ControlledInput label={labelText} info={infoText} autofocus />
+          <ControlledInput label={labelText} info={infoText} autoFocus={true} />
         </ThemeProvider>
       )
       input = getByRole(result.container, 'spinbutton')

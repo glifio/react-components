@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 
 import Box from '../../../../Box'
 import { Text } from '../../../../Typography'
-import { MenuItem } from '../../../../Menu'
 import {
   DisplayWord as Word,
   InputWord,
@@ -49,29 +48,19 @@ const WordPrompt = ({
           </Text>
         )}
       </Box>
-      <MnemonicWordContainer
-        display='flex'
-        alignItems='center'
-        justifyItems='center'
-        flexWrap='wrap'
-        mt={3}
-      >
+      <MnemonicWordContainer>
         {mnemonic.split(' ').map((word, i) => {
-          return (
-            /* eslint-disable react/no-array-index-key */
-            <MenuItem key={i}>
-              {randoms.current.has(i) ? (
-                <InputWord
-                  correctWordCount={correctWordCount}
-                  num={i + 1}
-                  wordToMatch={word}
-                  setCorrectWordCount={setCorrectWordCount}
-                  importSeedError={importSeedError}
-                />
-              ) : (
-                <Word num={i + 1} word={word} />
-              )}
-            </MenuItem>
+          return randoms.current.has(i) ? (
+            <InputWord
+              key={i}
+              correctWordCount={correctWordCount}
+              num={i + 1}
+              wordToMatch={word}
+              setCorrectWordCount={setCorrectWordCount}
+              importSeedError={importSeedError}
+            />
+          ) : (
+            <Word key={i} num={i + 1} word={word} />
           )
         })}
       </MnemonicWordContainer>

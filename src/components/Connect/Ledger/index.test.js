@@ -3,17 +3,19 @@ import { initialState as wpInitialState } from '../../../services/WalletProvider
 import { initialLedgerState } from '../../../services/WalletProvider/ledgerUtils'
 import composeMockAppTree from '../../../test-utils/composeMockAppTree'
 import { mockFetchDefaultWallet } from '../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
-import ConnectLedger from '.'
+import { Ledger } from '.'
 import { flushPromises } from '../../../test-utils'
 import { TESTNET_PATH_CODE } from '../../../constants'
 import createPath from '../../../utils/createPath'
 
 describe('Ledger configuration', () => {
   let backSpy, nextSpy
-  afterEach(() => {
-    jest.clearAllMocks()
+  beforeEach(() => {
     backSpy = jest.fn()
     nextSpy = jest.fn()
+  })
+  afterEach(() => {
+    jest.clearAllMocks()
     cleanup()
   })
 
@@ -21,15 +23,15 @@ describe('Ledger configuration', () => {
     const { Tree } = composeMockAppTree('preOnboard')
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
-    expect(screen.getByText(/Unlock & Open/)).toBeInTheDocument()
     expect(
       screen.getByText(
         /Please unlock your Ledger device and open the Filecoin App/
       )
     ).toBeInTheDocument()
+    expect(screen.getByText(/Connect with Ledger Device/)).toBeInTheDocument()
 
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -48,7 +50,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -76,7 +78,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -100,7 +102,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -124,7 +126,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -148,7 +150,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -174,7 +176,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -190,14 +192,12 @@ describe('Ledger configuration', () => {
       /* container */
     } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
 
     await act(async () => {
-      fireEvent.click(
-        screen.getByText('My Ledger device is unlocked & Filecoin app open')
-      )
+      fireEvent.click(screen.getByText('Connect'))
       await flushPromises()
     })
 
@@ -213,14 +213,12 @@ describe('Ledger configuration', () => {
       /* container */
     } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
 
     await act(async () => {
-      fireEvent.click(
-        screen.getByText('My Ledger device is unlocked & Filecoin app open')
-      )
+      fireEvent.click(screen.getByText('Connect'))
       await flushPromises()
     })
     expect(nextSpy).toHaveBeenCalled()

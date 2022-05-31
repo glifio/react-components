@@ -23,6 +23,13 @@ Base.args = {
   value: 'Click here'
 }
 
+export const Submit = Template.bind({})
+Submit.args = {
+  label: 'Do something',
+  value: 'Click here',
+  submit: true
+}
+
 export const Large = Template.bind({})
 Large.args = {
   large: true,

@@ -6,6 +6,8 @@ import { NumberInput } from './Number'
 import { ParamsInput } from './Params'
 import { TextInput, EmailInput, PasswordInput, SearchInput } from './Text'
 import { Toggle } from './Toggle'
+import { SeedPhraseInput } from './SeedPhrase'
+import { PrivateKeyInput } from './PrivateKey'
 
 export const InputV2 = {
   Address: AddressInput,
@@ -18,5 +20,7 @@ export const InputV2 = {
   Email: EmailInput,
   Password: PasswordInput,
   Search: SearchInput,
+  SeedPhrase: SeedPhraseInput,
+  PrivateKey: PrivateKeyInput,
   Toggle
 }

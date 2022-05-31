@@ -59,7 +59,7 @@ describe('Number input', () => {
             info={infoText}
             max={100}
             setIsValid={setIsValid}
-            autofocus
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -86,7 +86,7 @@ describe('Number input', () => {
             info={infoText}
             min={-100}
             setIsValid={setIsValid}
-            autofocus
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -107,7 +107,7 @@ describe('Number input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <NumberInput label={labelText} info={infoText} disabled />
+          <NumberInput label={labelText} info={infoText} disabled={true} />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()
@@ -120,7 +120,7 @@ describe('Number input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ControlledInput label={labelText} info={infoText} autofocus />
+          <ControlledInput label={labelText} info={infoText} autoFocus={true} />
         </ThemeProvider>
       )
       input = getByRole(result.container, 'spinbutton')

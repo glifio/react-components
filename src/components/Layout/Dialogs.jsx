@@ -14,3 +14,7 @@ export const Dialog = styled.div`
     gap: ${space()};
   }
 `
+
+export const WideDialog = styled(Dialog)`
+  max-width: 50em;
+`

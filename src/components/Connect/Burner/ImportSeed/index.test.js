@@ -1,8 +1,15 @@
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
+import {
+  cleanup,
+  render,
+  getByText,
+  act,
+  fireEvent,
+  getAllByRole
+} from '@testing-library/react'
 import composeMockAppTree from '../../../../test-utils/composeMockAppTree'
 import { flushPromises } from '../../../../test-utils'
 
-import ImportMnemonic from '.'
+import { ImportSeed } from '.'
 import { TESTNET_PATH_CODE } from '../../../../constants'
 import { mockFetchDefaultWallet } from '../../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import createPath from '../../../../utils/createPath'
@@ -18,39 +25,15 @@ describe('Import seed phrase configuration', () => {
     jest.clearAllMocks()
     cleanup()
   })
-  test('it renders step one correctly', () => {
+  test('it renders correctly', () => {
     const { Tree } = composeMockAppTree('preOnboard')
 
     const { container } = render(
       <Tree>
-        <ImportMnemonic next={nextSpy} back={backSpy} />
+        <ImportSeed next={nextSpy} back={backSpy} />
       </Tree>
     )
 
-    expect(
-      screen.getByText(
-        /We do not recommend you use this burner wallet to hold or transact significant sums of Filecoin/
-      )
-    ).toBeInTheDocument()
-    expect(container.firstChild).toMatchSnapshot()
-  })
-
-  test('it renders step one correctly', () => {
-    const { Tree } = composeMockAppTree('preOnboard')
-
-    const { container } = render(
-      <Tree>
-        <ImportMnemonic next={nextSpy} back={backSpy} />
-      </Tree>
-    )
-    act(() => {
-      fireEvent.click(screen.getByText('I Understand'))
-    })
-    expect(screen.getByText(/Input, Import & Proceed/)).toBeInTheDocument()
-    expect(
-      screen.getByText(/Please input your seed phrase below to continue/)
-    ).toBeInTheDocument()
-    expect(screen.getByText(/Show/)).toBeInTheDocument()
     expect(container.firstChild).toMatchSnapshot()
   })
 
@@ -59,23 +42,23 @@ describe('Import seed phrase configuration', () => {
 
     const { container } = render(
       <Tree>
-        <ImportMnemonic next={nextSpy} back={backSpy} />
+        <ImportSeed next={nextSpy} back={backSpy} />
       </Tree>
     )
 
+    const [seed] = getAllByRole(container, 'textbox')
     await act(async () => {
-      fireEvent.click(screen.getByText('I Understand'))
-      await flushPromises()
-
-      fireEvent.change(screen.getByPlaceholderText('Your seed phrase'), {
+      fireEvent.change(seed, {
         target: {
           value:
             'slender spread awkward chicken noise useful thank dentist tip bronze ritual explain version spot collect whisper glow peanut bus local country album punch frown'
         }
       })
       await flushPromises()
+      // if we dont flush twice, the isValid hook doesnt rerender into a true state
+      await flushPromises()
 
-      fireEvent.click(screen.getByText('Next'))
+      fireEvent.click(getByText(container, 'Connect'))
       await flushPromises()
     })
     expect(nextSpy).toHaveBeenCalled()

@@ -3,7 +3,6 @@ import { TESTNET_PATH_CODE } from '../../constants'
 import createPath from '../../utils/createPath'
 
 import {
-  setLoginOption,
   setError,
   resetLedgerState,
   resetState,
@@ -27,11 +26,6 @@ export default (walletProviderDispatch, state) => ({
     .fn()
     .mockImplementation(errorMessage =>
       walletProviderDispatch(setError(errorMessage))
-    ),
-  setLoginOption: jest
-    .fn()
-    .mockImplementation(loginOption =>
-      walletProviderDispatch(setLoginOption(loginOption))
     ),
   connectLedger: jest.fn().mockImplementation(() => mockWalletProviderInstance),
   connectMetaMask: jest.fn().mockImplementation(() => {

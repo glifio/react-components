@@ -59,7 +59,7 @@ describe('Params input', () => {
             label={labelText}
             info={infoText}
             setIsValid={setIsValid}
-            autofocus
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -86,8 +86,8 @@ describe('Params input', () => {
             info={infoText}
             value={validBase64}
             setIsValid={setIsValid}
-            required
-            autofocus
+            required={true}
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -108,7 +108,7 @@ describe('Params input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <ParamsInput label={labelText} info={infoText} disabled />
+          <ParamsInput label={labelText} info={infoText} disabled={true} />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()

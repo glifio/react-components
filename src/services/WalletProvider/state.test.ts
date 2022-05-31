@@ -4,7 +4,6 @@ import clonedeep from 'lodash.clonedeep'
 import { Message, SignedLotusMessage } from '@glif/filecoin-message'
 import reducer, {
   initialState,
-  setLoginOption,
   createWalletProvider,
   setError,
   clearError,
@@ -15,7 +14,7 @@ import reducer, {
   updateBalance
 } from './state'
 import { initialLedgerState } from './ledgerUtils'
-import { IMPORT_MNEMONIC, SINGLE_KEY } from '../../constants'
+import { SINGLE_KEY } from '../../constants'
 import { WalletProviderAction } from './types'
 import { initialMetaMaskState } from './metamaskUtils'
 import { LoginOption } from '../../customPropTypes'
@@ -87,16 +86,6 @@ describe('WalletProvider', () => {
       }
 
       expect(updateBalance(balance, walletIdx)).toEqual(expectedAction)
-    })
-
-    test('setLoginOption', () => {
-      const loginOption = LoginOption.IMPORT_MNEMONIC
-      const expectedAction: WalletProviderAction = {
-        type: 'SET_LOGIN_OPTION',
-        payload: { loginOption }
-      }
-
-      expect(setLoginOption(loginOption)).toEqual(expectedAction)
     })
 
     test('createWalletProvider', () => {
@@ -307,11 +296,6 @@ describe('WalletProvider', () => {
         expect(nextState.wallets[selectedWalletIdx].balance.toFil()).toBe('2')
         expect(nextState.selectedWalletIdx).toBe(selectedWalletIdx)
       })
-    })
-    test('it sets the login option', () => {
-      const loginOption = LoginOption.IMPORT_MNEMONIC
-      const nextState = reducer(initialState, setLoginOption(loginOption))
-      expect(nextState.loginOption).toBe(IMPORT_MNEMONIC)
     })
 
     test('it creates the wallet provider', () => {

@@ -6,7 +6,12 @@ import ThemeProvider from '../ThemeProvider'
 const StoryComponent = ({ value: defaultValue, ...props }) => {
   const [value, setValue] = useState(defaultValue)
   return (
-    <PasswordInput value={value} onChange={setValue} autofocus {...props} />
+    <PasswordInput
+      value={value}
+      onChange={setValue}
+      autoFocus={true}
+      {...props}
+    />
   )
 }
 

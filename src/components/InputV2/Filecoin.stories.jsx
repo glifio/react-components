@@ -24,7 +24,7 @@ const StoryComponent = ({ min, max, value: val, denom, ...props }) => {
         denom={denom}
         onChange={setValue}
         setIsValid={setIsValid}
-        autofocus
+        autoFocus={true}
         {...props}
       />
       <ButtonRowRight>

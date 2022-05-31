@@ -17,7 +17,6 @@ import { CoinType } from '@glif/filecoin-address'
 
 import reducer, {
   initialState,
-  setLoginOption,
   setError,
   clearError,
   resetLedgerState,
@@ -33,7 +32,6 @@ import { Wallet, WalletProviderAction, WalletProviderState } from './types'
 import { hasLedgerError, reportLedgerConfigError } from './ledgerUtils'
 import { reportMetaMaskError } from './metamaskUtils'
 import { reducerLogger } from '../../logger'
-import { LoginOption } from '../../customPropTypes'
 
 export type WalletProviderContextType = {
   state: WalletProviderState
@@ -44,7 +42,6 @@ export type WalletProviderContextType = {
   connectLedger: () => Promise<Filecoin & { wallet: LedgerProvider }>
   connectMetaMask: () => Promise<Filecoin & { wallet: MetaMaskProvider }>
   setWalletError: (errorMessage: string) => void
-  setLoginOption: (loginOption: LoginOption) => void
   resetWalletError: () => void
   resetLedgerState: () => void
   resetState: () => void
@@ -64,7 +61,6 @@ export const WalletProviderContext = createContext<WalletProviderContextType>({
   connectLedger: null,
   connectMetaMask: null,
   setWalletError: null,
-  setLoginOption: null,
   resetWalletError: () => {},
   resetLedgerState: null,
   resetState: null,
@@ -110,10 +106,6 @@ const WalletProviderWrapper = ({
         ),
         setWalletError: useCallback(
           errorMessage => dispatch(setError(errorMessage)),
-          [dispatch]
-        ),
-        setLoginOption: useCallback(
-          loginOption => dispatch(setLoginOption(loginOption)),
           [dispatch]
         ),
         getProvider: useCallback(async (): Promise<Filecoin> => {

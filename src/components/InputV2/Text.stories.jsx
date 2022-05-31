@@ -5,7 +5,9 @@ import ThemeProvider from '../ThemeProvider'
 
 const StoryComponent = ({ value: defaultValue, ...props }) => {
   const [value, setValue] = useState(defaultValue)
-  return <TextInput value={value} onChange={setValue} autofocus {...props} />
+  return (
+    <TextInput value={value} onChange={setValue} autoFocus={true} {...props} />
+  )
 }
 
 export default {

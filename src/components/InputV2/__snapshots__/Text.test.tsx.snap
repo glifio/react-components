@@ -125,6 +125,7 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         max=""
         min=""
@@ -276,6 +277,7 @@ exports[`Text input it renders correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         max=""
         min=""
@@ -415,6 +417,7 @@ exports[`Text input it renders the disabled state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         disabled=""
         max=""
@@ -557,6 +560,7 @@ exports[`Text input it renders the required state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class="error"
         max=""
         min=""
@@ -670,6 +674,7 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class="error"
         max=""
         min=""

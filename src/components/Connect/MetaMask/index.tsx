@@ -38,14 +38,8 @@ const ConnectMM: FC<{ next: () => void; back: () => void }> = ({
   back
 }) => {
   const [fetchingState, setFetchingState] = useState(false)
-  const {
-    dispatch,
-    state,
-    connectMetaMask,
-    fetchDefaultWallet,
-    setLoginOption,
-    walletList
-  } = useWalletProvider()
+  const { dispatch, state, connectMetaMask, fetchDefaultWallet, walletList } =
+    useWalletProvider()
 
   const _next = useCallback(
     async (time = 500) => {
@@ -57,7 +51,6 @@ const ConnectMM: FC<{ next: () => void; back: () => void }> = ({
   )
 
   const fetchMetaMaskState = useCallback(async () => {
-    setLoginOption(LoginOption.METAMASK)
     const provider = await connectMetaMask()
     if (provider) {
       dispatch(createWalletProvider(provider, LoginOption.METAMASK))
@@ -68,14 +61,7 @@ const ConnectMM: FC<{ next: () => void; back: () => void }> = ({
         await _next()
       }
     }
-  }, [
-    dispatch,
-    walletList,
-    fetchDefaultWallet,
-    _next,
-    connectMetaMask,
-    setLoginOption
-  ])
+  }, [dispatch, walletList, fetchDefaultWallet, _next, connectMetaMask])
 
   useEffect(() => {
     if (state.metamask.loading && !state.metamask.error && !fetchingState) {

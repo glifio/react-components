@@ -12,7 +12,8 @@ export const BaseInput = ({
   error,
   name,
   type,
-  autofocus,
+  autoFocus,
+  autoComplete,
   disabled,
   placeholder,
   min,
@@ -54,7 +55,8 @@ export const BaseInput = ({
           ].join(' ')}
           name={name}
           type={type}
-          autoFocus={autofocus}
+          autoFocus={autoFocus}
+          autoComplete={autoComplete}
           disabled={disabled}
           placeholder={placeholder}
           min={min}
@@ -86,7 +88,8 @@ export interface BaseInputProps {
   error?: string
   name?: string
   type?: string
-  autofocus?: boolean
+  autoFocus?: boolean
+  autoComplete?: 'on' | 'off'
   disabled?: boolean
   placeholder?: string
   min?: number | string
@@ -112,7 +115,8 @@ export const BaseInputPropTypes = {
   error: PropTypes.string,
   name: PropTypes.string,
   type: PropTypes.string,
-  autofocus: PropTypes.bool,
+  autoFocus: PropTypes.bool,
+  autoComplete: PropTypes.oneOf(['on', 'off']),
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -139,7 +143,8 @@ BaseInput.defaultProps = {
   error: '',
   name: '',
   type: 'text',
-  autofocus: false,
+  autoFocus: false,
+  autoComplete: 'on',
   disabled: false,
   placeholder: '',
   min: '',

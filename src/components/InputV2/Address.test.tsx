@@ -59,7 +59,7 @@ describe('Address input', () => {
             label={labelText}
             info={infoText}
             setIsValid={setIsValid}
-            autofocus
+            autoFocus={true}
           />
         </ThemeProvider>
       )
@@ -80,7 +80,7 @@ describe('Address input', () => {
     await act(async () => {
       result = render(
         <ThemeProvider theme={theme}>
-          <AddressInput label={labelText} info={infoText} disabled />
+          <AddressInput label={labelText} info={infoText} disabled={true} />
         </ThemeProvider>
       )
       expect(result.container.firstChild).toMatchSnapshot()
