@@ -70,56 +70,50 @@ export const CreateSeed = ({
     lotusApiAddr
   ])
 
-  return (
-    <>
-      {loading || walkthroughStep === 4 ? (
-        <LoadingScreen />
-      ) : (
-        <WideDialog>
-          <form
-            onSubmit={e => {
-              e.preventDefault()
-              nextStep()
-            }}
+  return loading || walkthroughStep === 4 ? (
+    <LoadingScreen />
+  ) : (
+    <WideDialog>
+      <form
+        onSubmit={e => {
+          e.preventDefault()
+          nextStep()
+        }}
+      >
+        <StandardBox>
+          <StepHeader currentStep={walkthroughStep} totalSteps={3} />
+          {mnemonic && (
+            <Walkthrough
+              importSeedError={importSeedError}
+              canContinue={canContinue}
+              walkthroughStep={walkthroughStep}
+              mnemonic={mnemonic}
+              setCanContinue={setCanContinue}
+            />
+          )}
+        </StandardBox>
+        <ButtonRowSpaced>
+          <ButtonV2
+            large
+            type='button'
+            onClick={() =>
+              walkthroughStep === 1
+                ? back()
+                : setWalkthroughStep(walkthroughStep - 1)
+            }
           >
-            <StandardBox>
-              <StepHeader currentStep={walkthroughStep} totalSteps={3} />
-              {mnemonic && (
-                <Walkthrough
-                  importSeedError={importSeedError}
-                  canContinue={canContinue}
-                  walkthroughStep={walkthroughStep}
-                  mnemonic={mnemonic}
-                  setCanContinue={setCanContinue}
-                />
-              )}
-            </StandardBox>
-            <ButtonRowSpaced>
-              <ButtonV2
-                large
-                type='button'
-                onClick={() =>
-                  walkthroughStep === 1
-                    ? back()
-                    : setWalkthroughStep(walkthroughStep - 1)
-                }
-              >
-                Back
-              </ButtonV2>
-              <input
-                type='submit'
-                className='large green'
-                value={
-                  walkthroughStep === 1
-                    ? "I've recorded my seed phrase"
-                    : 'Next'
-                }
-              />
-            </ButtonRowSpaced>
-          </form>
-        </WideDialog>
-      )}
-    </>
+            Back
+          </ButtonV2>
+          <input
+            type='submit'
+            className='large green'
+            value={
+              walkthroughStep === 1 ? "I've recorded my seed phrase" : 'Next'
+            }
+          />
+        </ButtonRowSpaced>
+      </form>
+    </WideDialog>
   )
 }
 
