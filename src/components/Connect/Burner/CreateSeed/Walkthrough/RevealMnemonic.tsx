@@ -15,7 +15,6 @@ import {
   DisplayWord as Word,
   MnemonicWordContainer
 } from '../../../../MnemonicWord'
-import { MenuItem } from '../../../../Menu'
 import { Text } from '../../../../Typography'
 import { MNEMONIC_PROPTYPE } from '../../../../../customPropTypes'
 import copyToClipboard from '../../../../../utils/copyToClipboard'
@@ -112,14 +111,9 @@ const Reveal = ({ mnemonic, valid }) => {
       </Box>
 
       <MnemonicWordContainer>
-        {mnemonic.split(' ').map((word, i) => {
-          return (
-            /* eslint-disable react/no-array-index-key */
-            <MenuItem key={i}>
-              <Word num={i + 1} word={word} valid={valid} />
-            </MenuItem>
-          )
-        })}
+        {mnemonic.split(' ').map((word, i) => (
+          <Word key={i} num={i + 1} word={word} valid={valid} />
+        ))}
       </MnemonicWordContainer>
     </>
   )
