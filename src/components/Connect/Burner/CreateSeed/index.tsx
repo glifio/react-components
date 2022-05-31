@@ -15,7 +15,7 @@ import { LoginOption } from '../../../../customPropTypes'
 import { ButtonRowSpaced, WideDialog, StandardBox } from '../../../Layout'
 import { ButtonV2 } from '../../../Button/V2'
 
-const Create = ({ initialWalkthroughStep, back, next }: CreateProps) => {
+export const CreateSeed = ({ initialWalkthroughStep, back, next }: CreateProps) => {
   const [mnemonic, setMnemonic] = useState('')
   const [walkthroughStep, setWalkthroughStep] = useState(initialWalkthroughStep)
   const [loading, setLoading] = useState(true)
@@ -124,14 +124,12 @@ interface CreateProps {
   next: () => void
 }
 
-Create.propTypes = {
+CreateSeed.propTypes = {
   initialWalkthroughStep: PropTypes.number,
   back: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired
 }
 
-Create.defaultProps = {
+CreateSeed.defaultProps = {
   initialWalkthroughStep: 1
 }
-
-export default Create

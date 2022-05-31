@@ -1,6 +1,6 @@
 import theme from '../../../theme'
 import ThemeProvider from '../../../ThemeProvider'
-import CreateSeed from './'
+import { CreateSeed } from '.'
 
 export default {
   title: 'Connect/CreateSeed',
