@@ -85,4 +85,3 @@ ConnectLedger.propTypes = {
   back: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired
 }
-
