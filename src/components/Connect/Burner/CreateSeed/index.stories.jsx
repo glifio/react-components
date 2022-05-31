@@ -15,12 +15,6 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => {
-  return (
-    <>
-      <CreateSeed {...args}>{args.name}</CreateSeed>
-    </>
-  )
-}
+const Template = args => <CreateSeed {...args}>{args.name}</CreateSeed>
 
 export const Base = Template.bind({})
