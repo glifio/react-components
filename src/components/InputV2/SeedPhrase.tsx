@@ -75,13 +75,13 @@ export type SeedPhraseInputProps = {
   importError?: string
 } & Omit<BaseInputProps, 'error' | 'type' | 'autoComplete' | 'placeholder'>
 
-const { error, type, autoComplete, placeholder, ...addressProps } =
+const { error, type, autoComplete, placeholder, ...seedPhraseProps } =
   BaseInputPropTypes
 
 SeedPhraseInput.propTypes = {
   setIsValid: PropTypes.func,
   importError: PropTypes.string,
-  ...addressProps
+  ...seedPhraseProps
 }
 
 /**
