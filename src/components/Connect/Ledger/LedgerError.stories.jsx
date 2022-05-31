@@ -1,8 +1,8 @@
 import { initialLedgerState } from '../../../services/WalletProvider'
+import { Dialog } from '../../Layout'
 import theme from '../../theme'
 import ThemeProvider from '../../ThemeProvider'
-
-import LedgerError from './LedgerError'
+import { LedgerError } from './LedgerError'
 
 /**
  * LEDGER STATE
@@ -26,12 +26,14 @@ const ledgerState = newLedgerState => ({
 })
 
 export default {
-  title: 'LedgerError/LedgerError',
+  title: 'Connect/LedgerError',
   component: LedgerError,
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <Dialog>{Story()}</Dialog>
+        </ThemeProvider>
       </div>
     )
   ],

@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import LedgerError from './LedgerError'
+import { LedgerError } from './LedgerError'
 import {
   useWalletProvider,
   createWalletProvider
@@ -48,8 +48,8 @@ const ConnectLedger: FC<{ next: () => void; back: () => void }> = ({
 
   return (
     <div>
-      <LedgerError {...ledger} otherError={uncaughtError} />
       <Dialog>
+        <LedgerError {...ledger} otherError={uncaughtError} />
         <ShadowBox>
           <h2>Connect with Ledger Device</h2>
           <hr />
