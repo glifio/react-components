@@ -54,9 +54,9 @@ export const PrivateKeyInput = ({
 
   return (
     <BaseInput
-      autoComplete='off'
       error={!hasFocus && hasChanged ? error : ''}
       type='text'
+      autoComplete='off'
       placeholder='Enter your private key'
       value={value}
       onChange={onChangeBase}
@@ -73,19 +73,23 @@ export const PrivateKeyInput = ({
  *
  * error: set by private key input validation
  * type: always "text" for private key input
+ * autoComplete: always "off" for private key
+ * placeholder: always "Enter your private key"
  *
- * We add "setIsValid"
+ * We add "setIsValid" and "importError"
  */
 
 export type PrivateKeyInputProps = {
   setIsValid?: (isValid: boolean) => void
   importError?: string
-} & Omit<BaseInputProps, 'error' | 'type' | 'placeholder'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'autoComplete' | 'placeholder'>
 
-const { error, type, placeholder, ...addressProps } = BaseInputPropTypes
+const { error, type, autoComplete, placeholder, ...addressProps } =
+  BaseInputPropTypes
 
 PrivateKeyInput.propTypes = {
   setIsValid: PropTypes.func,
+  importError: PropTypes.string,
   ...addressProps
 }
 
@@ -98,5 +102,6 @@ PrivateKeyInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  setIsValid: () => {}
+  setIsValid: () => {},
+  importError: ''
 }
