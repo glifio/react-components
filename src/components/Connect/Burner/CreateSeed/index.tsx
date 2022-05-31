@@ -114,7 +114,6 @@ const Create: FC<{
             </OnboardCard>
             <ButtonRowSpaced>
               <ButtonV2
-                type='button'
                 onClick={() => {
                   if (walkthroughStep === 1) back()
                   else if (walkthroughStep === 2) setWalkthroughStep(1)
