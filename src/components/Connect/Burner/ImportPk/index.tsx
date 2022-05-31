@@ -70,12 +70,9 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
           <ButtonV2 large disabled={loading} onClick={back} type='button'>
             Back
           </ButtonV2>
-          <input
-            type='submit'
-            className='large green'
-            disabled={loading}
-            value='Connect'
-          />
+          <ButtonV2 large disabled={loading} green type='submit'>
+            Connect
+          </ButtonV2>
         </ButtonRowSpaced>
       </form>
     </Dialog>

@@ -104,13 +104,9 @@ export const CreateSeed = ({
           >
             Back
           </ButtonV2>
-          <input
-            type='submit'
-            className='large green'
-            value={
-              walkthroughStep === 1 ? "I've recorded my seed phrase" : 'Next'
-            }
-          />
+          <ButtonV2 large green type='submit'>
+            {walkthroughStep === 1 ? "I've recorded my seed phrase" : 'Next'}
+          </ButtonV2>
         </ButtonRowSpaced>
       </form>
     </WideDialog>
