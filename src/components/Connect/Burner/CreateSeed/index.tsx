@@ -93,6 +93,7 @@ export const CreateSeed = ({ initialWalkthroughStep, back, next }: CreateProps) 
             <ButtonRowSpaced>
               <ButtonV2
                 large
+                type='button'
                 onClick={() => {
                   if (walkthroughStep === 1) back()
                   else if (walkthroughStep === 2) setWalkthroughStep(1)
