@@ -122,15 +122,15 @@ const Create: FC<{
               >
                 Back
               </ButtonV2>
-              {walkthroughStep === 1 ? (
-                <ButtonV2 type='submit' large green>
-                  I&apos;ve recorded my seed phrase
-                </ButtonV2>
-              ) : (
-                <ButtonV2 type='submit' large green>
-                  Next
-                </ButtonV2>
-              )}
+              <input
+                type='submit'
+                className='large green'
+                value={
+                  walkthroughStep === 1
+                    ? 'I&apos;ve recorded my seed phrase'
+                    : 'Next'
+                }
+              />
             </ButtonRowSpaced>
           </Box>
         </form>
