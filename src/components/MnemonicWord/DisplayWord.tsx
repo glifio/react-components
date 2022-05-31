@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import { string, number, bool } from 'prop-types'
 import Box from '../Box'
-import { Text } from '../Typography'
 import StyledWrapper from './StyledWrapper'
 import Circle from './Circle'
 import contentProps from './contentProps'
@@ -26,11 +25,7 @@ export const Word = styled(Box).attrs(props => ({
 const DisplayWord = ({ word, num, valid }) => {
   return (
     <StyledWrapper>
-      <Circle color='core.black'>
-        <Text fontSize={2} color='core.black'>
-          {num}
-        </Text>
-      </Circle>
+      <Circle>{num}</Circle>
       <Word
         valid={valid}
         borderColor={valid ? 'status.success.background' : 'core.primary'}

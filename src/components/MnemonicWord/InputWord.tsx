@@ -74,7 +74,7 @@ const MnemonicWord = ({
 
   return (
     <StyledWrapper>
-      <Circle color='core.black'>{num}</Circle>
+      <Circle>{num}</Circle>
       <MnemonicWordInput
         onBlur={() => setCompleted(true)}
         backgroundColor={setBackgroundColor({
