@@ -120,6 +120,7 @@ exports[`Address input it renders correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         max=""
         min=""
@@ -259,6 +260,7 @@ exports[`Address input it renders the disabled state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         disabled=""
         max=""
@@ -401,6 +403,7 @@ exports[`Address input it renders the invalid state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class="error"
         max=""
         min=""
@@ -537,6 +540,7 @@ exports[`Address input it renders the not-truncated state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         max=""
         min=""

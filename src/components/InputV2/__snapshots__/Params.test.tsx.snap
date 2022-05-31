@@ -120,6 +120,7 @@ exports[`Params input it renders correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         max=""
         min=""
@@ -259,6 +260,7 @@ exports[`Params input it renders the disabled state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class=""
         disabled=""
         max=""
@@ -401,6 +403,7 @@ exports[`Params input it renders the invalid state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class="error"
         max=""
         min=""
@@ -542,6 +545,7 @@ exports[`Params input it renders the required state correctly 1`] = `
       class="unit-wrapper"
     >
       <input
+        autocomplete="on"
         class="error"
         max=""
         min=""
