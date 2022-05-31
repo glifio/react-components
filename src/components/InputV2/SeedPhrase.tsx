@@ -16,6 +16,7 @@ export const SeedPhraseInput = ({
   ...baseProps
 }: SeedPhraseInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [hasChanged, setHasChanged] = useState<boolean>(false)
 
   // Check for input errors
   const error = useMemo<string>(() => {
@@ -29,6 +30,7 @@ export const SeedPhraseInput = ({
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
   const onChangeBase = (newValue: string) => {
+    setHasChanged(true)
     onChange(newValue.trim())
   }
 
@@ -45,7 +47,7 @@ export const SeedPhraseInput = ({
   return (
     <BaseInput
       autoComplete='off'
-      error={!hasFocus ? error : ''}
+      error={!hasFocus && hasChanged ? error : ''}
       type='text'
       placeholder='talk online harbor bulb duty athlete short follow fitness basket calm zero cabbage donkey base'
       value={value}
