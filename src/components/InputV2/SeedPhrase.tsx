@@ -12,7 +12,6 @@ export const SeedPhraseInput = ({
   onFocus,
   onBlur,
   setIsValid,
-  importError,
   ...baseProps
 }: SeedPhraseInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
@@ -20,9 +19,8 @@ export const SeedPhraseInput = ({
 
   // Check for input errors
   const error = useMemo<string>(
-    () =>
-      importError || !validateMnemonic(value) ? 'Invalid seed phrase' : '',
-    [value, importError]
+    () => (validateMnemonic(value) ? '' : 'Invalid seed phrase'),
+    [value]
   )
 
   // Communicate validity to parent component
@@ -67,12 +65,11 @@ export const SeedPhraseInput = ({
  * autoComplete: always "off" for seed phrase
  * placeholder: shows example seed phrase
  *
- * We add "setIsValid" and "importError"
+ * We add "setIsValid"
  */
 
 export type SeedPhraseInputProps = {
   setIsValid?: (isValid: boolean) => void
-  importError?: string
 } & Omit<BaseInputProps, 'error' | 'type' | 'autoComplete' | 'placeholder'>
 
 const { error, type, autoComplete, placeholder, ...seedPhraseProps } =
@@ -80,7 +77,6 @@ const { error, type, autoComplete, placeholder, ...seedPhraseProps } =
 
 SeedPhraseInput.propTypes = {
   setIsValid: PropTypes.func,
-  importError: PropTypes.string,
   ...seedPhraseProps
 }
 
@@ -93,6 +89,5 @@ SeedPhraseInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  setIsValid: () => {},
-  importError: ''
+  setIsValid: () => {}
 }

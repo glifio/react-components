@@ -11,7 +11,6 @@ export const PrivateKeyInput = ({
   onFocus,
   onBlur,
   setIsValid,
-  importError,
   ...baseProps
 }: PrivateKeyInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
@@ -19,10 +18,7 @@ export const PrivateKeyInput = ({
 
   // Check for input errors
   const error = useMemo<string>(() => {
-    if (importError) return 'Error importing private key'
-    if (!value) {
-      return 'Cannot be empty'
-    }
+    if (!value) return 'Cannot be empty'
     try {
       const buffer = Buffer.from(value, 'base64')
       const result = buffer.toString('base64')
@@ -31,7 +27,7 @@ export const PrivateKeyInput = ({
       return 'Needs to be valid Base64'
     }
     return ''
-  }, [value, importError])
+  }, [value])
 
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
@@ -75,12 +71,11 @@ export const PrivateKeyInput = ({
  * autoComplete: always "off" for private key
  * placeholder: always "Enter your private key"
  *
- * We add "setIsValid" and "importError"
+ * We add "setIsValid"
  */
 
 export type PrivateKeyInputProps = {
   setIsValid?: (isValid: boolean) => void
-  importError?: string
 } & Omit<BaseInputProps, 'error' | 'type' | 'autoComplete' | 'placeholder'>
 
 const { error, type, autoComplete, placeholder, ...privateKeyProps } =
@@ -88,7 +83,6 @@ const { error, type, autoComplete, placeholder, ...privateKeyProps } =
 
 PrivateKeyInput.propTypes = {
   setIsValid: PropTypes.func,
-  importError: PropTypes.string,
   ...privateKeyProps
 }
 
@@ -101,6 +95,5 @@ PrivateKeyInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  setIsValid: () => {},
-  importError: ''
+  setIsValid: () => {}
 }
