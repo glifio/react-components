@@ -35,6 +35,23 @@ describe('Button input', () => {
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
+  test('it renders the submit button correctly', async () => {
+    let result: RenderResult | null = null
+    await act(async () => {
+      result = render(
+        <ThemeProvider theme={theme}>
+          <ButtonInput
+            label={labelText}
+            info={infoText}
+            value={inputValue}
+            submit
+          />
+        </ThemeProvider>
+      )
+    })
+    expect(result.container.firstChild).toMatchSnapshot()
+  })
+
   test('it renders the red state correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {

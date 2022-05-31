@@ -36,6 +36,7 @@ const getButtonClassName = (props: ButtonClassNameProps): string => {
  */
 
 export const ButtonInput = ({
+  submit,
   large,
   white,
   gray,
@@ -44,7 +45,7 @@ export const ButtonInput = ({
   ...baseInputProps
 }: ButtonInputProps) => (
   <BaseInput
-    type='button'
+    type={submit ? 'submit' : 'button'}
     className={getButtonClassName({ large, white, gray, red, green })}
     {...baseInputProps}
   />
@@ -56,17 +57,20 @@ export const ButtonInput = ({
  * type: always "button" for button input
  * className: generated from ButtonClassNameProps
  *
- * We add the button class name props except "disabled",
- * which is already present in the base input props
+ * We add "submit" and all the button class name props except
+ * "disabled", which is already present in the base input props
  */
 
-export type ButtonInputProps = Omit<ButtonClassNameProps, 'disabled'> &
+export type ButtonInputProps = {
+  submit?: boolean
+} & Omit<ButtonClassNameProps, 'disabled'> &
   Omit<BaseInputProps, 'type' | 'className'>
 
 const { disabled, ...buttonClassNameProps } = ButtonClassNamePropTypes
 const { type, className, ...buttonInputProps } = BaseInputPropTypes
 
 ButtonInput.propTypes = {
+  submit: PropTypes.bool,
   ...buttonClassNameProps,
   ...buttonInputProps
 }
