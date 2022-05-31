@@ -1,5 +1,6 @@
+import PropTypes from 'prop-types'
 import Filecoin, { SECP256K1KeyProvider } from '@glif/filecoin-wallet-provider'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { LoginOption } from '../../../../customPropTypes'
 import { createWalletProvider, useWalletProvider } from '../../../../services'
 import { ButtonV2 } from '../../../Button/V2'
@@ -8,13 +9,7 @@ import { Dialog, ShadowBox, ButtonRowSpaced } from '../../../Layout'
 import LoaderGlyph from '../../../LoaderGlyph'
 import { Loading } from '../../Loading'
 
-export default function ImportSeed({
-  back,
-  next
-}: {
-  back: () => void
-  next: () => void
-}) {
+export const ImportPk = ({ back, next }: ImportPkProps) => {
   const { dispatch, fetchDefaultWallet, lotusApiAddr, walletList } =
     useWalletProvider()
   const [privateKey, setPrivateKey] = useState('')
@@ -23,35 +18,35 @@ export default function ImportSeed({
   const [importError, setImportError] = useState('')
   return (
     <Dialog>
-      <ShadowBox>
-        <h2>Import private key</h2>
-        <hr />
-        <form
-          autoComplete='off'
-          onSubmit={async e => {
-            e.preventDefault()
-            setLoading(true)
-            if (isValid) {
-              try {
-                const provider = new Filecoin(
-                  new SECP256K1KeyProvider(privateKey),
-                  {
-                    apiAddress: lotusApiAddr
-                  }
-                )
-                dispatch(
-                  createWalletProvider(provider, LoginOption.IMPORT_SINGLE_KEY)
-                )
-                const wallet = await fetchDefaultWallet(provider)
-                walletList([wallet])
-                next()
-              } catch (err) {
-                setImportError(err?.message || JSON.stringify(err))
-                setLoading(false)
-              }
+      <form
+        autoComplete='off'
+        onSubmit={async e => {
+          e.preventDefault()
+          setLoading(true)
+          if (isValid) {
+            try {
+              const provider = new Filecoin(
+                new SECP256K1KeyProvider(privateKey),
+                {
+                  apiAddress: lotusApiAddr
+                }
+              )
+              dispatch(
+                createWalletProvider(provider, LoginOption.IMPORT_SINGLE_KEY)
+              )
+              const wallet = await fetchDefaultWallet(provider)
+              walletList([wallet])
+              next()
+            } catch (err) {
+              setImportError(err?.message || JSON.stringify(err))
+              setLoading(false)
             }
-          }}
-        >
+          }
+        }}
+      >
+        <ShadowBox>
+          <h2>Import private key</h2>
+          <hr />
           {loading ? (
             <Loading>
               <LoaderGlyph />
@@ -70,17 +65,29 @@ export default function ImportSeed({
               setIsValid={setIsValid}
             />
           )}
-
-          <ButtonRowSpaced>
-            <ButtonV2 large disabled={loading} onClick={back} type='button'>
-              Back
-            </ButtonV2>
-            <ButtonV2 large disabled={loading} green type='submit'>
-              Connect
-            </ButtonV2>
-          </ButtonRowSpaced>
-        </form>
-      </ShadowBox>
+        </ShadowBox>
+        <ButtonRowSpaced>
+          <ButtonV2 large disabled={loading} onClick={back} type='button'>
+            Back
+          </ButtonV2>
+          <input
+            type='submit'
+            className='large green'
+            disabled={loading}
+            value='Connect'
+          />
+        </ButtonRowSpaced>
+      </form>
     </Dialog>
   )
+}
+
+export interface ImportPkProps {
+  back: () => void
+  next: () => void
+}
+
+ImportPk.propTypes = {
+  back: PropTypes.func.isRequired,
+  next: PropTypes.func.isRequired
 }
