@@ -123,7 +123,7 @@ export const TransactionForm = ({
       pushPendingMessage(
         newMessage.toPendingMessage(msgCid['/']) as MessagePending
       )
-      onComplete()
+      onComplete(msgCid['/'], newMessage)
     } catch (e: any) {
       logger.error(e)
       setTxState(TxState.FillingTxFee)
@@ -196,7 +196,7 @@ export type TransactionFormProps = {
   maxFee: FilecoinNumber
   txFee: FilecoinNumber
   setTxFee: (fee: FilecoinNumber) => void
-  onComplete: () => void
+  onComplete: (cid: string, message: Message) => void
   // used for testing with a stubbed context value
   walletProviderOpts?: WalletProviderOpts
   pendingMsgContext?: Context<PendingMsgContextType>
