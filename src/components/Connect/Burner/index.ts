@@ -1,4 +1,4 @@
-import CreateSeed from './CreateSeed'
+import { CreateSeed } from './CreateSeed'
 import ImportPk from './ImportPk'
 import ImportSeed from './ImportSeed'
 

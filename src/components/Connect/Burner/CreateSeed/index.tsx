@@ -123,7 +123,7 @@ export const CreateSeed = ({
   )
 }
 
-interface CreateProps {
+export interface CreateProps {
   // we pass this optional prop to make testing the core wallet functionality easier
   initialWalkthroughStep?: number
   back: () => void
