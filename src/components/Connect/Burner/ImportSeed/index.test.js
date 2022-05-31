@@ -9,7 +9,7 @@ import {
 import composeMockAppTree from '../../../../test-utils/composeMockAppTree'
 import { flushPromises } from '../../../../test-utils'
 
-import ImportMnemonic from '.'
+import { ImportSeed } from '.'
 import { TESTNET_PATH_CODE } from '../../../../constants'
 import { mockFetchDefaultWallet } from '../../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import createPath from '../../../../utils/createPath'
@@ -30,7 +30,7 @@ describe('Import seed phrase configuration', () => {
 
     const { container } = render(
       <Tree>
-        <ImportMnemonic next={nextSpy} back={backSpy} />
+        <ImportSeed next={nextSpy} back={backSpy} />
       </Tree>
     )
 
@@ -42,7 +42,7 @@ describe('Import seed phrase configuration', () => {
 
     const { container } = render(
       <Tree>
-        <ImportMnemonic next={nextSpy} back={backSpy} />
+        <ImportSeed next={nextSpy} back={backSpy} />
       </Tree>
     )
 

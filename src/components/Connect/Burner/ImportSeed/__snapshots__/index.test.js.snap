@@ -279,16 +279,16 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
 <div
   class="c0"
 >
-  <div
-    class="c1 c2"
+  <form
+    autocomplete="off"
   >
-    <h2>
-      Import seed phrase
-    </h2>
-    <hr />
-    <form
-      autocomplete="off"
+    <div
+      class="c1 c2"
     >
+      <h2>
+        Import seed phrase
+      </h2>
+      <hr />
       <label
         class="c3"
       >
@@ -319,24 +319,24 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
         </div>
         
       </label>
-      <div
-        class="c4 c5"
+    </div>
+    <div
+      class="c4 c5"
+    >
+      <button
+        class="c6"
+        type="button"
       >
-        <button
-          class="c6"
-          type="button"
-        >
-          Back
-        </button>
-        <button
-          class="c7"
-          type="submit"
-        >
-          Connect
-        </button>
-      </div>
-    </form>
-  </div>
+        Back
+      </button>
+      <button
+        class="c7"
+        type="submit"
+      >
+        Connect
+      </button>
+    </div>
+  </form>
 </div>
 `;
 
@@ -594,16 +594,16 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
 <div
   class="c0"
 >
-  <div
-    class="c1 c2"
+  <form
+    autocomplete="off"
   >
-    <h2>
-      Import seed phrase
-    </h2>
-    <hr />
-    <form
-      autocomplete="off"
+    <div
+      class="c1 c2"
     >
+      <h2>
+        Import seed phrase
+      </h2>
+      <hr />
       <div
         class="c3"
       >
@@ -618,25 +618,25 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
           Loading...
         </p>
       </div>
-      <div
-        class="c6 c7"
+    </div>
+    <div
+      class="c6 c7"
+    >
+      <button
+        class="c8"
+        disabled=""
+        type="button"
       >
-        <button
-          class="c8"
-          disabled=""
-          type="button"
-        >
-          Back
-        </button>
-        <button
-          class="c9"
-          disabled=""
-          type="submit"
-        >
-          Connect
-        </button>
-      </div>
-    </form>
-  </div>
+        Back
+      </button>
+      <button
+        class="c9"
+        disabled=""
+        type="submit"
+      >
+        Connect
+      </button>
+    </div>
+  </form>
 </div>
 `;
