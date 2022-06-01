@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { Label } from './Label'
+import truncateAddress from '../../utils/truncateAddress'
 
 export const Select = ({
   vertical,
@@ -9,6 +10,7 @@ export const Select = ({
   info,
   autoFocus,
   disabled,
+  address,
   required,
   placeholder,
   options,
@@ -19,8 +21,18 @@ export const Select = ({
   onEnter,
   setIsValid
 }: SelectProps) => {
+  // Unless there is a placeholder option, ensure value
+  // is set to the first supplied option when it's empty
+  useEffect(
+    () => !placeholder && !value && options[0] && onChange(options[0]),
+    [value, placeholder, options, onChange]
+  )
+
   // Communicate validity to parent component
-  useEffect(() => setIsValid(!required || !!value), [value, required])
+  useEffect(
+    () => setIsValid(!required || !!value),
+    [value, required, setIsValid]
+  )
 
   return (
     <Label disabled={disabled} vertical={vertical} centered={centered}>
@@ -52,7 +64,7 @@ export const Select = ({
           )}
           {options.map(option => (
             <option key={option} value={option}>
-              {option}
+              {address && option === value ? truncateAddress(option) : option}
             </option>
           ))}
         </select>
@@ -69,6 +81,7 @@ export interface SelectProps {
   info?: string
   autoFocus?: boolean
   disabled?: boolean
+  address?: boolean
   required?: boolean
   placeholder?: string
   options?: Array<string>
@@ -87,6 +100,7 @@ Select.propTypes = {
   info: PropTypes.string,
   autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
+  address: PropTypes.bool,
   required: PropTypes.bool,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.string),
@@ -105,6 +119,7 @@ Select.defaultProps = {
   info: '',
   autoFocus: false,
   disabled: false,
+  address: false,
   required: true,
   placeholder: '',
   options: [],
