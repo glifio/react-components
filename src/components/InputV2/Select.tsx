@@ -19,12 +19,7 @@ export const Select = ({
   setIsValid
 }: SelectProps) => {
   return (
-    <Label
-      disabled={disabled}
-      vertical={vertical}
-      centered={centered}
-      error={!!error}
-    >
+    <Label disabled={disabled} vertical={vertical} centered={centered}>
       {vertical ? (
         <>
           {label && <span>{label}</span>}
@@ -34,12 +29,10 @@ export const Select = ({
         <div>
           {label && <span>{label}</span>}
           {info && <span className='info'>{info}</span>}
-          {error && <span className='error'>{error}</span>}
         </div>
       )}
       <div className='select-wrapper'>
         <select
-          className={error ? 'error' : ''}
           autoFocus={autoFocus}
           disabled={disabled}
           value={value}
@@ -61,7 +54,6 @@ export const Select = ({
         </select>
         <div className='select-arrow' />
       </div>
-      {vertical && error && <span className='error'>{error}</span>}
     </Label>
   )
 }
