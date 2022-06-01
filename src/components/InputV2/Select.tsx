@@ -6,16 +6,17 @@ export const Select = ({
   centered,
   label,
   info,
-  error,
   autoFocus,
   disabled,
+  required,
   placeholder,
   options,
   value,
   onChange,
   onFocus,
   onBlur,
-  onEnter
+  onEnter,
+  setIsValid
 }: SelectProps) => {
   return (
     <Label
@@ -70,9 +71,9 @@ export interface SelectProps {
   centered?: boolean
   label?: string
   info?: string
-  error?: string
   autoFocus?: boolean
   disabled?: boolean
+  required?: boolean
   placeholder?: string
   options?: Array<string>
   value?: string
@@ -80,6 +81,7 @@ export interface SelectProps {
   onFocus?: () => void
   onBlur?: () => void
   onEnter?: () => void
+  setIsValid?: (isValid: boolean) => void
 }
 
 Select.propTypes = {
@@ -87,16 +89,17 @@ Select.propTypes = {
   centered: PropTypes.bool,
   label: PropTypes.string,
   info: PropTypes.string,
-  error: PropTypes.string,
   autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
+  required: PropTypes.bool,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.string),
   value: PropTypes.string,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  onEnter: PropTypes.func
+  onEnter: PropTypes.func,
+  setIsValid: PropTypes.func
 }
 
 Select.defaultProps = {
@@ -104,14 +107,15 @@ Select.defaultProps = {
   centered: false,
   label: '',
   info: '',
-  error: '',
   autoFocus: false,
   disabled: false,
+  required: true,
   placeholder: '',
   options: [],
   value: '',
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  onEnter: () => {}
+  onEnter: () => {},
+  setIsValid: () => {}
 }
