@@ -9,8 +9,9 @@ export const Select = ({
   error,
   autoFocus,
   disabled,
-  value,
+  placeholder,
   options,
+  value,
   onChange,
   onFocus,
   onBlur,
@@ -44,6 +45,7 @@ export const Select = ({
       onBlur={onBlur}
       onKeyDown={e => e.key === 'Enter' && onEnter()}
     >
+      {placeholder && <option value=''>{placeholder}</option>}
       {options.map((option) => <option value={option}>{option}</option>)}
     </select>
     {vertical && error && <span className='error'>{error}</span>}
@@ -58,8 +60,9 @@ export interface SelectProps {
   error?: string
   autoFocus?: boolean
   disabled?: boolean
-  value?: string
+  placeholder?: string
   options?: Array<string>
+  value?: string
   onChange?: (value: string) => void
   onFocus?: () => void
   onBlur?: () => void
@@ -74,8 +77,9 @@ Select.propTypes = {
   error: PropTypes.string,
   autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
-  value: PropTypes.string,
+  placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.string),
+  value: PropTypes.string,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
@@ -90,6 +94,7 @@ Select.defaultProps = {
   error: '',
   autoFocus: false,
   disabled: false,
+  placeholder: '',
   options: [],
   value: '',
   onChange: () => {},
