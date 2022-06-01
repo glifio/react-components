@@ -46,7 +46,11 @@ export const Select = ({
         onBlur={onBlur}
         onKeyDown={e => e.key === 'Enter' && onEnter()}
       >
-        {placeholder && <option value=''>{placeholder}</option>}
+        {placeholder && (
+          <option value='' disabled selected hidden>
+            {placeholder}
+          </option>
+        )}
         {options.map(option => (
           <option key={option} value={option}>
             {option}
