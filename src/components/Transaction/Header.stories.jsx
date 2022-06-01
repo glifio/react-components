@@ -62,7 +62,7 @@ Warning.args = {
   title: 'Filecoin Transaction',
   description: 'Enter the transaction details',
   loginOption: LoginOption.METAMASK,
-  warningMessage:
+  warning:
     "You're changing a signer of your multisig account to a new Filecoin address. Make sure you or someone you trust owns the private key to this new Filecoin address. If you or anyone else does not own this address, you could lose access to your funds permanently. There is no way to resolve this."
 }
 

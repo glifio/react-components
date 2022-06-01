@@ -33,6 +33,7 @@ export const TransactionForm = ({
   children,
   title,
   description,
+  warning,
   msig,
   method,
   approvalsLeft,
@@ -137,6 +138,7 @@ export const TransactionForm = ({
         txState={txState}
         title={title}
         description={description}
+        warning={warning}
         errorMessage={
           gasParamsError?.message || txError?.message || walletError() || ''
         }
@@ -186,6 +188,7 @@ export type TransactionFormProps = {
   children: ReactNode
   title: string
   description: string
+  warning: string
   msig?: boolean
   method?: MsigMethod
   approvalsLeft?: number
@@ -209,6 +212,7 @@ TransactionForm.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  warning: PropTypes.string.isRequired,
   msig: PropTypes.bool,
   method: MSIG_METHOD_PROPTYPE,
   approvalsLeft: PropTypes.number,
