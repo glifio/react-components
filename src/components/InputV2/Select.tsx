@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
 import { Label } from './Label'
 
 export const Select = ({
@@ -18,6 +19,9 @@ export const Select = ({
   onEnter,
   setIsValid
 }: SelectProps) => {
+  // Communicate validity to parent component
+  useEffect(() => setIsValid(!required || !!value), [value, required])
+
   return (
     <Label disabled={disabled} vertical={vertical} centered={centered}>
       {vertical ? (
