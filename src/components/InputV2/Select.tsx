@@ -64,7 +64,7 @@ export const Select = ({
           )}
           {options.map(option => (
             <option key={option} value={option}>
-              {address && option === value ? truncateAddress(option) : option}
+              {address ? truncateAddress(option) : option}
             </option>
           ))}
         </select>
