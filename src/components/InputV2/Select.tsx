@@ -35,23 +35,26 @@ export const Select = ({
         {error && <span className='error'>{error}</span>}
       </div>
     )}
-    <select
-      className={error ? 'error' : ''}
-      autoFocus={autoFocus}
-      disabled={disabled}
-      value={value}
-      onChange={e => onChange(e.target.value)}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      onKeyDown={e => e.key === 'Enter' && onEnter()}
-    >
-      {placeholder && <option value=''>{placeholder}</option>}
-      {options.map(option => (
-        <option key={option} value={option}>
-          {option}
-        </option>
-      ))}
-    </select>
+    <div className='select-wrapper'>
+      <select
+        className={error ? 'error' : ''}
+        autoFocus={autoFocus}
+        disabled={disabled}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onKeyDown={e => e.key === 'Enter' && onEnter()}
+      >
+        {placeholder && <option value=''>{placeholder}</option>}
+        {options.map(option => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+      <div className='select-arrow' />
+    </div>
     {vertical && error && <span className='error'>{error}</span>}
   </Label>
 )
