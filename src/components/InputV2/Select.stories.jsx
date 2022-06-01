@@ -37,6 +37,19 @@ WithInfo.args = { label, options, info }
 export const Disabled = Template.bind({})
 Disabled.args = { label, options, info, disabled: true }
 
+export const Address = Template.bind({})
+Address.args = {
+  label: 'Select an address',
+  options: [
+    't16xlkjp3dcfrsb257duoqfgj7glo2uvvgxyy4gmy',
+    't1dywbadna5yyf546mloeoc7gxrzj7n5uog6llv5y',
+    't16sfr4wmxu7ouxayxqqmacmgdfqfbasm4qr472fq',
+    't1fbagfbmhk52hhbih2yt2jixkbisoqtrg4k2kn7a',
+    't1ov46djkc4iojaxmg5t4tjayfm6ngjfwunpkkj5i'
+  ],
+  address: true
+}
+
 export const Placeholder = Template.bind({})
 Placeholder.args = { label, options, placeholder: 'Make your pick' }
 
