@@ -199,6 +199,31 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
   color: var(--purple-medium);
 }
 
+.c3 .select-wrapper {
+  position: relative;
+}
+
+.c3 .select-wrapper select {
+  width: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.c3 .select-wrapper .select-arrow {
+  position: absolute;
+  pointer-events: none;
+  top: 50%;
+  right: 1.2em;
+  width: 0.6em;
+  height: 0.6em;
+  border-right: 1.5px solid var(--black);
+  border-bottom: 1.5px solid var(--black);
+  -webkit-transform: translateY(-0.35em) rotate(45deg);
+  -ms-transform: translateY(-0.35em) rotate(45deg);
+  transform: translateY(-0.35em) rotate(45deg);
+}
+
 .c1 {
   padding: 1.5em;
   border-radius: 8px;
