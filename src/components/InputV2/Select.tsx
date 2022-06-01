@@ -16,52 +16,54 @@ export const Select = ({
   onFocus,
   onBlur,
   onEnter
-}: SelectProps) => (
-  <Label
-    disabled={disabled}
-    vertical={vertical}
-    centered={centered}
-    error={!!error}
-  >
-    {vertical ? (
-      <>
-        {label && <span>{label}</span>}
-        {info && <span className='info'>{info}</span>}
-      </>
-    ) : (
-      <div>
-        {label && <span>{label}</span>}
-        {info && <span className='info'>{info}</span>}
-        {error && <span className='error'>{error}</span>}
+}: SelectProps) => {
+  return (
+    <Label
+      disabled={disabled}
+      vertical={vertical}
+      centered={centered}
+      error={!!error}
+    >
+      {vertical ? (
+        <>
+          {label && <span>{label}</span>}
+          {info && <span className='info'>{info}</span>}
+        </>
+      ) : (
+        <div>
+          {label && <span>{label}</span>}
+          {info && <span className='info'>{info}</span>}
+          {error && <span className='error'>{error}</span>}
+        </div>
+      )}
+      <div className='select-wrapper'>
+        <select
+          className={error ? 'error' : ''}
+          autoFocus={autoFocus}
+          disabled={disabled}
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onKeyDown={e => e.key === 'Enter' && onEnter()}
+        >
+          {placeholder && (
+            <option value='' disabled selected hidden>
+              {placeholder}
+            </option>
+          )}
+          {options.map(option => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <div className='select-arrow' />
       </div>
-    )}
-    <div className='select-wrapper'>
-      <select
-        className={error ? 'error' : ''}
-        autoFocus={autoFocus}
-        disabled={disabled}
-        value={value}
-        onChange={e => onChange(e.target.value)}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onKeyDown={e => e.key === 'Enter' && onEnter()}
-      >
-        {placeholder && (
-          <option value='' disabled selected hidden>
-            {placeholder}
-          </option>
-        )}
-        {options.map(option => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-      <div className='select-arrow' />
-    </div>
-    {vertical && error && <span className='error'>{error}</span>}
-  </Label>
-)
+      {vertical && error && <span className='error'>{error}</span>}
+    </Label>
+  )
+}
 
 export interface SelectProps {
   vertical?: boolean
