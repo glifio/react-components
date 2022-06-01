@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { ErrorBox } from '../Layout'
+import { ErrorBox, WarningBox } from '../Layout'
 import { StandardBox } from '../Layout'
 import { TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
 import LoaderGlyph from '../LoaderGlyph'
@@ -13,6 +13,7 @@ export const TransactionHeader = ({
   txState,
   title,
   description,
+  warningMessage,
   errorMessage,
   loginOption,
   msig,
@@ -44,6 +45,7 @@ export const TransactionHeader = ({
         txState === TxState.LoadingTxDetails ||
         txState === TxState.MPoolPushing) && <LoaderGlyph />}
     </StandardBox>
+    {warningMessage && <WarningBox>{warningMessage}</WarningBox>}
     {errorMessage && <ErrorBox>{errorMessage}</ErrorBox>}
     {txState === TxState.AwaitingConfirmation && (
       <TransactionConfirm
@@ -60,6 +62,7 @@ export type TransactionHeaderProps = {
   txState: TxState
   title: string
   description: string
+  warningMessage?: string
   errorMessage?: string
 } & TransactionConfirmProps
 
@@ -67,6 +70,7 @@ TransactionHeader.propTypes = {
   txState: TX_STATE_PROPTYPE.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
+  warningMessage: PropTypes.string,
   errorMessage: PropTypes.string,
   ...TransactionConfirmPropTypes
 }
