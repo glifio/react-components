@@ -46,7 +46,11 @@ export const Select = ({
       onKeyDown={e => e.key === 'Enter' && onEnter()}
     >
       {placeholder && <option value=''>{placeholder}</option>}
-      {options.map((option) => <option value={option}>{option}</option>)}
+      {options.map(option => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
     </select>
     {vertical && error && <span className='error'>{error}</span>}
   </Label>
@@ -83,7 +87,7 @@ Select.propTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  onEnter: PropTypes.func,
+  onEnter: PropTypes.func
 }
 
 Select.defaultProps = {
@@ -100,5 +104,5 @@ Select.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  onEnter: () => {},
+  onEnter: () => {}
 }
