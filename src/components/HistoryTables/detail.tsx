@@ -256,7 +256,9 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
           )
         }
 
-        case 'to': {
+        case 'to':
+        case 'from':
+        case 'signer': {
           switch (typeof value) {
             case 'string':
               return (
