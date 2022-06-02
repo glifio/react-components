@@ -10,7 +10,7 @@ import {
 import Box from '../../Box'
 import { P } from '../../Typography'
 import { Title } from '../generic'
-import { DetailCaption, Line } from '../detail'
+import { DetailCaption, LineWrapper, Line } from '../detail'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 const ViewState = styled(P).attrs(() => ({
@@ -60,7 +60,7 @@ export function ActorState({ address }: { address: string }) {
   }, [actorStateError, adddressError])
 
   return (
-    <Box>
+    <div>
       <Title>Overview</Title>
       <hr />
       <DetailCaption
@@ -70,7 +70,7 @@ export function ActorState({ address }: { address: string }) {
         error={error}
       />
       {!loading && !error && (
-        <>
+        <LineWrapper>
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
           )}
@@ -93,7 +93,6 @@ export function ActorState({ address }: { address: string }) {
           <Box
             display='flex'
             gridGap='1em'
-            my='1em'
             lineHeight='2em'
             alignItems='center'
           >
@@ -106,8 +105,8 @@ export function ActorState({ address }: { address: string }) {
             </ViewState>
           </Box>
           <Box>{viewActorState && <State state={actorStateData?.State} />}</Box>
-        </>
+        </LineWrapper>
       )}
-    </Box>
+    </div>
   )
 }
