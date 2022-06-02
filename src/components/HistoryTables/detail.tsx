@@ -326,7 +326,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
             case 'object':
               if (value)
                 return (
-                  <div key={`${depth}-${key}`}>
+                  <LineWrapper key={`${depth}-${key}`}>
                     <Line
                       label={key === 'params' ? 'Parameters' : key}
                       depth={depth}
@@ -336,7 +336,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
                       depth={depth + 1}
                       actorName={actorName}
                     />
-                  </div>
+                  </LineWrapper>
                 )
 
             case 'boolean':
