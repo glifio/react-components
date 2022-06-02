@@ -147,22 +147,24 @@ export const TransactionForm = ({
         method={method}
         approvalsLeft={approvalsLeft}
       />
-      <ShadowBox>
-        <form>
-          {children}
-          <TransactionFee
-            inputFee={inputFee}
-            setInputFee={setInputFee}
-            maxFee={maxFee}
-            txFee={txFee}
-            txState={txState}
-            onUpdate={getGasParams}
-          />
-        </form>
-        {txState > TxState.FillingForm && total && (
-          <TransactionTotal total={total} />
-        )}
-      </ShadowBox>
+      {txState >= TxState.FillingForm && (
+        <ShadowBox>
+          <form>
+            {children}
+            <TransactionFee
+              inputFee={inputFee}
+              setInputFee={setInputFee}
+              maxFee={maxFee}
+              txFee={txFee}
+              txState={txState}
+              onUpdate={getGasParams}
+            />
+          </form>
+          {txState >= TxState.FillingTxFee && total && (
+            <TransactionTotal total={total} />
+          )}
+        </ShadowBox>
+      )}
       <TransactionButtons
         backDisabled={
           txState !== TxState.FillingForm && txState !== TxState.FillingTxFee
