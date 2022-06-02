@@ -192,7 +192,7 @@ export const Line = ({ label, depth, children }: LineProps) => (
     lineHeight='2em'
     textAlign='left'
     my='1em'
-    pl={`${depth * 5}%`}
+    pl={`${depth * 1.5}em`}
     css={`
       a {
         color: ${props => props.theme.colors.core.primary};
