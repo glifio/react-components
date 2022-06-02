@@ -294,6 +294,16 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
             />
           )
 
+        case 'approved':
+          return value.map((signer, index) => (
+            <AddressLine
+              key={`${depth}-${key}`}
+              value={signer}
+              label={index ? '' : 'Approved by'}
+              depth={depth + 1}
+            />
+          ))
+
         case 'value':
           return (
             <Line key={`${depth}-${key}`} label={key} depth={depth}>
