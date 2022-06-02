@@ -29,6 +29,8 @@ export const TransactionHeader = ({
           ? 'Something went wrong'
           : txState === TxState.LoadingMessage
           ? 'Loading message information...'
+          : txState === TxState.LoadingFailed
+          ? 'Failed to load message information'
           : txState === TxState.FillingTxFee
           ? 'Please review the transaction below'
           : txState === TxState.LoadingTxFee
@@ -49,6 +51,11 @@ export const TransactionHeader = ({
       (txState === TxState.FillingTxFee ||
         txState === TxState.LoadingTxFee) && <WarningBox>{warning}</WarningBox>}
     {errorMessage && <ErrorBox>{errorMessage}</ErrorBox>}
+    {txState === TxState.LoadingFailed && (
+      <ErrorBox>
+        The message you are trying to access could not be loaded
+      </ErrorBox>
+    )}
     {txState === TxState.AwaitingConfirmation && (
       <TransactionConfirm
         loginOption={loginOption}

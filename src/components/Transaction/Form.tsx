@@ -167,7 +167,9 @@ export const TransactionForm = ({
       )}
       <TransactionButtons
         backDisabled={
-          txState !== TxState.FillingForm && txState !== TxState.FillingTxFee
+          txState !== TxState.LoadingFailed &&
+          txState !== TxState.FillingForm &&
+          txState !== TxState.FillingTxFee
         }
         nextDisabled={
           (txState !== TxState.FillingForm || !message) &&
