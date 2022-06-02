@@ -188,7 +188,7 @@ export type TransactionFormProps = {
   children: ReactNode
   title: string
   description: string
-  warning: string
+  warning?: string
   msig?: boolean
   method?: MsigMethod
   approvalsLeft?: number
@@ -212,7 +212,7 @@ TransactionForm.propTypes = {
   ]).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  warning: PropTypes.string.isRequired,
+  warning: PropTypes.string,
   msig: PropTypes.bool,
   method: MSIG_METHOD_PROPTYPE,
   approvalsLeft: PropTypes.number,
