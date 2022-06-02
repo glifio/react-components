@@ -96,4 +96,25 @@ export const Label = styled.label`
         `}
     }
   }
+
+  .select-wrapper {
+    position: relative;
+
+    select {
+      width: 100%;
+      appearance: none;
+    }
+
+    .select-arrow {
+      position: absolute;
+      pointer-events: none;
+      top: 50%;
+      right: 1.2em;
+      width: 0.6em;
+      height: 0.6em;
+      border-right: 1.5px solid var(--black);
+      border-bottom: 1.5px solid var(--black);
+      transform: translateY(-0.35em) rotate(45deg);
+    }
+  }
 `

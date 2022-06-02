@@ -5,6 +5,7 @@ import { FilecoinInput } from './Filecoin'
 import { NumberInput } from './Number'
 import { ParamsInput } from './Params'
 import { TextInput, EmailInput, PasswordInput, SearchInput } from './Text'
+import { Select } from './Select'
 import { Toggle } from './Toggle'
 import { SeedPhraseInput } from './SeedPhrase'
 import { PrivateKeyInput } from './PrivateKey'
@@ -22,5 +23,6 @@ export const InputV2 = {
   Search: SearchInput,
   SeedPhrase: SeedPhraseInput,
   PrivateKey: PrivateKeyInput,
+  Select,
   Toggle
 }
