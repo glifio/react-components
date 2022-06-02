@@ -190,6 +190,7 @@ export const Line = ({ label, depth, children }: LineProps) => (
     alignItems='center'
     gridGap='1em'
     lineHeight='2em'
+    textAlign='left'
     my='1em'
     pl={`${depth * 5}%`}
     css={`
