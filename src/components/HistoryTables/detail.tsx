@@ -14,6 +14,7 @@ import {
   IconPending,
   IconFail
 } from '../Icons'
+import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
 
@@ -225,16 +226,41 @@ type LineProps = {
   children?: React.ReactNode
 }
 
-Line.propTypes = {
+const LinePropTypes = {
   label: PropTypes.string,
   depth: PropTypes.number,
   children: PropTypes.node
 }
 
+Line.propTypes = LinePropTypes
 Line.defaultProps = {
   label: '',
   depth: 0,
   children: <></>
+}
+
+/**
+ * AddressLine
+ */
+
+export const AddressLine = ({ value, label, depth }: AddressLineProps) =>
+  typeof value === 'string' ? (
+    <Line label={label} depth={depth}>
+      <AddressLink address={value} hideCopyText={false} />
+    </Line>
+  ) : (
+    <Line label={label} depth={depth}>
+      <AddressLink id={value.id} address={value.robust} hideCopyText={false} />
+    </Line>
+  )
+
+type AddressLineProps = {
+  value: string | Address
+} & LineProps
+
+AddressLine.propTypes = {
+  value: PropTypes.oneOfType([PropTypes.string, ADDRESS_PROPTYPE]).isRequired,
+  ...LinePropTypes
 }
 
 /**
@@ -258,30 +284,15 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
 
         case 'to':
         case 'from':
-        case 'signer': {
-          switch (typeof value) {
-            case 'string':
-              return (
-                <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                  <AddressLink address={value} hideCopyText={false} />
-                </Line>
-              )
-
-            case 'object':
-              if (value) {
-                const address = value as Address
-                return (
-                  <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                    <AddressLink
-                      id={address.id}
-                      address={address.robust}
-                      hideCopyText={false}
-                    />
-                  </Line>
-                )
-              }
-          }
-        }
+        case 'signer':
+          return (
+            <AddressLine
+              key={`${depth}-${key}`}
+              value={value}
+              label={key}
+              depth={depth}
+            />
+          )
 
         case 'value':
           return (
