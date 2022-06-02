@@ -45,9 +45,9 @@ export const TransactionHeader = ({
         txState === TxState.LoadingTxDetails ||
         txState === TxState.MPoolPushing) && <LoaderGlyph />}
     </StandardBox>
-    {warning && txState < TxState.LoadingTxDetails && (
-      <WarningBox>{warning}</WarningBox>
-    )}
+    {warning &&
+      (txState === TxState.FillingTxFee ||
+        txState === TxState.LoadingTxFee) && <WarningBox>{warning}</WarningBox>}
     {errorMessage && <ErrorBox>{errorMessage}</ErrorBox>}
     {txState === TxState.AwaitingConfirmation && (
       <TransactionConfirm
