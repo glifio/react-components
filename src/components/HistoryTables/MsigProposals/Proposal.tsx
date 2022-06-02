@@ -201,7 +201,9 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         <hr />
         {seeMore && (
           <>
-            <Line label='Next Transaction ID'>{stateData?.State.NextTxnID}</Line>
+            <Line label='Next Transaction ID'>
+              {stateData?.State.NextTxnID}
+            </Line>
             <Line
               label={`Approvers${
                 proposal?.approved ? ` (${proposal?.approved.length})` : ''

@@ -184,8 +184,9 @@ export const LineWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
-  
-  p, hr {
+
+  p,
+  hr {
     margin: 0;
   }
 `
