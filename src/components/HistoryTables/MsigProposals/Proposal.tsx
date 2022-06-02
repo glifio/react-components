@@ -2,10 +2,9 @@ import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import Box from '../../Box'
 import { P } from '../../Typography'
 import { AddressLink } from '../../AddressLink'
-import { ProposalHead, Line, Parameters } from '../detail'
+import { ProposalHead, LineWrapper, Line, Parameters } from '../detail'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import {
   Address,
@@ -157,7 +156,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     )
 
   return (
-    <Box>
+    <div>
       <ProposalHead
         title='Proposal Overview'
         accept={props.accept}
@@ -168,56 +167,60 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         isProposer={isProposer}
       />
       <hr />
-      <Line label='Proposal ID'>{props.id}</Line>
-      <Line label='Proposer'>
-        {proposal?.approved[0] && (
-          <AddressLink
-            id={proposal.approved[0].id}
-            address={proposal.approved[0].robust}
-            hideCopyText={false}
-          />
+      <LineWrapper>
+        <Line label='Proposal ID'>{props.id}</Line>
+        <Line label='Proposer'>
+          {proposal?.approved[0] && (
+            <AddressLink
+              id={proposal.approved[0].id}
+              address={proposal.approved[0].robust}
+              hideCopyText={false}
+            />
+          )}
+        </Line>
+        <Line label='Approvals until execution'>
+          {approvalsUntilExecution.toString()}
+        </Line>
+        <hr />
+        <Parameters
+          params={{
+            params: {
+              to: proposal.to.robust,
+              value: proposal.value,
+              method: proposal.method,
+              params: proposal.params
+            }
+          }}
+          actorName='/multisig'
+          depth={0}
+        />
+        <hr />
+        <SeeMore onClick={() => setSeeMore(!seeMore)}>
+          Click to see {seeMore ? 'less ↑' : 'more ↓'}
+        </SeeMore>
+        <hr />
+        {seeMore && (
+          <>
+            <Line label='Next Transaction ID'>
+              {stateData?.State.NextTxnID}
+            </Line>
+            <Line
+              label={`Approvers${
+                proposal?.approved ? ` (${proposal?.approved.length})` : ''
+              }`}
+            >
+              {proposal?.approved.map((approver: Address) => (
+                <AddressLink
+                  key={approver.robust || approver.id}
+                  id={approver.id}
+                  address={approver.robust}
+                />
+              ))}
+            </Line>
+          </>
         )}
-      </Line>
-      <Line label='Approvals until execution'>
-        {approvalsUntilExecution.toString()}
-      </Line>
-      <hr />
-      <Parameters
-        params={{
-          params: {
-            to: proposal.to.robust,
-            value: proposal.value,
-            method: proposal.method,
-            params: proposal.params
-          }
-        }}
-        actorName='/multisig'
-        depth={0}
-      />
-      <hr />
-      <SeeMore onClick={() => setSeeMore(!seeMore)}>
-        Click to see {seeMore ? 'less ↑' : 'more ↓'}
-      </SeeMore>
-      <hr />
-      {seeMore && (
-        <>
-          <Line label='Next Transaction ID'>{stateData?.State.NextTxnID}</Line>
-          <Line
-            label={`Approvers${
-              proposal?.approved ? ` (${proposal?.approved.length})` : ''
-            }`}
-          >
-            {proposal?.approved.map((approver: Address) => (
-              <AddressLink
-                key={approver.robust || approver.id}
-                id={approver.id}
-                address={approver.robust}
-              />
-            ))}
-          </Line>
-        </>
-      )}
-    </Box>
+      </LineWrapper>
+    </div>
   )
 }
 

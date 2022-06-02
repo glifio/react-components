@@ -7,7 +7,6 @@ import {
   useChainHeadSubscription,
   MessageConfirmed
 } from '../../../generated/graphql'
-import Box from '../../Box'
 import { IconClock } from '../../Icons'
 import { AddressLink } from '../../AddressLink'
 import { P } from '../../Typography'
@@ -15,6 +14,7 @@ import { Badge } from '../generic'
 import {
   Head,
   DetailCaption,
+  LineWrapper,
   Line,
   Status,
   Confirmations,
@@ -86,7 +86,7 @@ export default function MessageDetail(props: MessageDetailProps) {
   )
 
   return (
-    <Box>
+    <>
       <Head
         title='Message Overview'
         pending={pending}
@@ -102,7 +102,7 @@ export default function MessageDetail(props: MessageDetailProps) {
           </P>
         </Card>
       ) : (
-        <>
+        <LineWrapper>
           <DetailCaption
             name='Message Overview'
             captian='Scanning Filecoin for your message... This could take a minute.'
@@ -228,9 +228,9 @@ export default function MessageDetail(props: MessageDetailProps) {
               </P>
             </Card>
           )}
-        </>
+        </LineWrapper>
       )}
-    </Box>
+    </>
   )
 }
 

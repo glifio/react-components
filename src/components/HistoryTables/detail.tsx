@@ -14,6 +14,7 @@ import {
   IconPending,
   IconFail
 } from '../Icons'
+import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
 
@@ -179,6 +180,17 @@ DetailCaption.propTypes = {
   error: PropTypes.object
 }
 
+export const LineWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  p,
+  hr {
+    margin: 0;
+  }
+`
+
 /**
  * Line
  * Content row of the detail page
@@ -189,8 +201,8 @@ export const Line = ({ label, depth, children }: LineProps) => (
     alignItems='center'
     gridGap='1em'
     lineHeight='2em'
-    my='1em'
-    pl={`${depth * 5}%`}
+    textAlign='left'
+    pl={`${depth * 1.5}em`}
     css={`
       a {
         color: ${props => props.theme.colors.core.primary};
@@ -225,16 +237,41 @@ type LineProps = {
   children?: React.ReactNode
 }
 
-Line.propTypes = {
+const LinePropTypes = {
   label: PropTypes.string,
   depth: PropTypes.number,
   children: PropTypes.node
 }
 
+Line.propTypes = LinePropTypes
 Line.defaultProps = {
   label: '',
   depth: 0,
   children: <></>
+}
+
+/**
+ * AddressLine
+ */
+
+export const AddressLine = ({ value, label, depth }: AddressLineProps) =>
+  typeof value === 'string' ? (
+    <Line label={label} depth={depth}>
+      <AddressLink address={value} hideCopyText={false} />
+    </Line>
+  ) : (
+    <Line label={label} depth={depth}>
+      <AddressLink id={value.id} address={value.robust} hideCopyText={false} />
+    </Line>
+  )
+
+type AddressLineProps = {
+  value: string | Address
+} & LineProps
+
+AddressLine.propTypes = {
+  value: PropTypes.oneOfType([PropTypes.string, ADDRESS_PROPTYPE]).isRequired,
+  ...LinePropTypes
 }
 
 /**
@@ -256,30 +293,27 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
           )
         }
 
-        case 'to': {
-          switch (typeof value) {
-            case 'string':
-              return (
-                <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                  <AddressLink address={value} hideCopyText={false} />
-                </Line>
-              )
+        case 'to':
+        case 'from':
+        case 'signer':
+          return (
+            <AddressLine
+              key={`${depth}-${key}`}
+              value={value}
+              label={key}
+              depth={depth}
+            />
+          )
 
-            case 'object':
-              if (value) {
-                const address = value as Address
-                return (
-                  <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                    <AddressLink
-                      id={address.id}
-                      address={address.robust}
-                      hideCopyText={false}
-                    />
-                  </Line>
-                )
-              }
-          }
-        }
+        case 'approved':
+          return value.map((signer, index) => (
+            <AddressLine
+              key={`${depth}-${key}`}
+              value={signer}
+              label={index ? '' : 'Approved by'}
+              depth={depth + 1}
+            />
+          ))
 
         case 'value':
           return (
@@ -293,7 +327,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
             case 'object':
               if (value)
                 return (
-                  <div key={`${depth}-${key}`}>
+                  <LineWrapper key={`${depth}-${key}`}>
                     <Line
                       label={key === 'params' ? 'Parameters' : key}
                       depth={depth}
@@ -303,7 +337,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
                       depth={depth + 1}
                       actorName={actorName}
                     />
-                  </div>
+                  </LineWrapper>
                 )
 
             case 'boolean':
