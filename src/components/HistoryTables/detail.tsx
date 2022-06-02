@@ -180,6 +180,16 @@ DetailCaption.propTypes = {
   error: PropTypes.object
 }
 
+export const LineWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  
+  p, hr {
+    margin: 0;
+  }
+`
+
 /**
  * Line
  * Content row of the detail page
@@ -191,7 +201,6 @@ export const Line = ({ label, depth, children }: LineProps) => (
     gridGap='1em'
     lineHeight='2em'
     textAlign='left'
-    my='1em'
     pl={`${depth * 1.5}em`}
     css={`
       a {
