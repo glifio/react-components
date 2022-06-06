@@ -58,7 +58,7 @@ export const Select = ({
           onKeyDown={e => e.key === 'Enter' && onEnter()}
         >
           {placeholder && (
-            <option value='' disabled selected hidden>
+            <option value='' disabled hidden>
               {placeholder}
             </option>
           )}
