@@ -34,6 +34,9 @@ Base.args = { label, options }
 export const WithInfo = Template.bind({})
 WithInfo.args = { label, options, info }
 
+export const PreSelected = Template.bind({})
+PreSelected.args = { label, options, value: 'Horse', info }
+
 export const Disabled = Template.bind({})
 Disabled.args = { label, options, info, disabled: true }
 
