@@ -37,13 +37,13 @@ export const Base = Template.bind({})
 Base.args = { label, options }
 
 export const WithInfo = Template.bind({})
-WithInfo.args = { label, options, info }
+WithInfo.args = { label, info, options }
 
 export const PreSelected = Template.bind({})
-PreSelected.args = { label, options, value: 1999, info }
+PreSelected.args = { label, info, options, value: 1999 }
 
 export const Disabled = Template.bind({})
-Disabled.args = { label, options, info, disabled: true }
+Disabled.args = { label, info, options, disabled: true }
 
 export const Placeholder = Template.bind({})
 Placeholder.args = { label, options, placeholder: 'Make your pick' }
@@ -55,4 +55,4 @@ export const VerticalCentered = Template.bind({})
 VerticalCentered.args = { label, options, vertical: true, centered: true }
 
 export const VerticalWithInfo = Template.bind({})
-VerticalWithInfo.args = { label, options, info, vertical: true }
+VerticalWithInfo.args = { label, info, options, vertical: true }
