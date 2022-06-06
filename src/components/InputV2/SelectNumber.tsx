@@ -60,11 +60,13 @@ export type SelectNumberProps = {
 // "onChange" remains "PropTypes.func", so doesn't need an override
 const { options, value, ...selectNumberProps } = SelectPropTypes
 
-SelectNumber.propTypes = {
+export const SelectNumberPropTypes = {
   options: PropTypes.arrayOf(PropTypes.number),
   value: PropTypes.number,
   ...selectNumberProps
 }
+
+SelectNumber.propTypes = SelectNumberPropTypes
 
 /**
  * Provide defaults for props that are used in this input
