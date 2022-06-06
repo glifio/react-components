@@ -93,7 +93,7 @@ export interface SelectProps {
   setIsValid?: (isValid: boolean) => void
 }
 
-Select.propTypes = {
+export const SelectPropTypes = {
   vertical: PropTypes.bool,
   centered: PropTypes.bool,
   label: PropTypes.string,
@@ -112,6 +112,7 @@ Select.propTypes = {
   setIsValid: PropTypes.func
 }
 
+Select.propTypes = SelectPropTypes
 Select.defaultProps = {
   vertical: false,
   centered: false,
