@@ -2,6 +2,7 @@ import { AddressInput } from './Address'
 import { BigIntInput } from './BigInt'
 import { ButtonInput } from './Button'
 import { FilecoinInput } from './Filecoin'
+import { Info } from './Info'
 import { NumberInput } from './Number'
 import { ParamsInput } from './Params'
 import { TextInput, EmailInput, PasswordInput, SearchInput } from './Text'
@@ -25,6 +26,7 @@ export const InputV2 = {
   Search: SearchInput,
   SeedPhrase: SeedPhraseInput,
   PrivateKey: PrivateKeyInput,
+  Info,
   Select,
   SelectNumber,
   SelectRange,
