@@ -124,6 +124,10 @@ exports[`Toggle input it renders the off state correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
+.c0 .info-wrapper {
+  padding: 0.7em 1em;
+}
+
 .c1 .toggle-wrapper {
   position: relative;
   padding: 0.5em 0;
@@ -317,6 +321,10 @@ exports[`Toggle input it renders the on state correctly 1`] = `
   -webkit-transform: translateY(-0.35em) rotate(45deg);
   -ms-transform: translateY(-0.35em) rotate(45deg);
   transform: translateY(-0.35em) rotate(45deg);
+}
+
+.c0 .info-wrapper {
+  padding: 0.7em 1em;
 }
 
 .c1 .toggle-wrapper {

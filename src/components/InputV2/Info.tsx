@@ -22,7 +22,7 @@ export const Info = ({
         {info && <span className='info'>{info}</span>}
       </div>
     )}
-    <div>
+    <div className='info-wrapper'>
       {address && typeof value === 'string' ? (
         <AddressLink address={value} />
       ) : (
