@@ -117,4 +117,8 @@ export const Label = styled.label`
       transform: translateY(-0.35em) rotate(45deg);
     }
   }
+
+  .info-wrapper {
+    padding: 0.7em 1em;
+  }
 `
