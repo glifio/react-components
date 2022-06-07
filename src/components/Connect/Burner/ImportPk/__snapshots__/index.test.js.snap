@@ -224,6 +224,10 @@ exports[`Import private key configuration it renders correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
+.c3 .info-wrapper {
+  padding: 0.7em 1em;
+}
+
 .c1 {
   padding: 1.5em;
   border-radius: 8px;

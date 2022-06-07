@@ -124,6 +124,10 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
+.c0 .info-wrapper {
+  padding: 0.7em 1em;
+}
+
 .c1 {
   width: 24;
   height: 24;
@@ -306,6 +310,10 @@ exports[`Text input it renders correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
+.c0 .info-wrapper {
+  padding: 0.7em 1em;
+}
+
 <label
   class="c0"
 >
@@ -468,6 +476,10 @@ exports[`Text input it renders the disabled state correctly 1`] = `
   -webkit-transform: translateY(-0.35em) rotate(45deg);
   -ms-transform: translateY(-0.35em) rotate(45deg);
   transform: translateY(-0.35em) rotate(45deg);
+}
+
+.c0 .info-wrapper {
+  padding: 0.7em 1em;
 }
 
 <label
@@ -635,6 +647,10 @@ exports[`Text input it renders the required state correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
+.c0 .info-wrapper {
+  padding: 0.7em 1em;
+}
+
 <label
   class="c0"
 >
@@ -779,6 +795,10 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
   -webkit-transform: translateY(-0.35em) rotate(45deg);
   -ms-transform: translateY(-0.35em) rotate(45deg);
   transform: translateY(-0.35em) rotate(45deg);
+}
+
+.c0 .info-wrapper {
+  padding: 0.7em 1em;
 }
 
 <label
