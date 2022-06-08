@@ -290,6 +290,7 @@ exports[`Address input it renders the disabled state correctly 1`] = `
   -webkit-transform: translateY(-0.35em) rotate(45deg);
   -ms-transform: translateY(-0.35em) rotate(45deg);
   transform: translateY(-0.35em) rotate(45deg);
+  border-color: var(--gray-dark);
 }
 
 .c0 .info-wrapper {
