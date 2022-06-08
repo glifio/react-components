@@ -1,5 +1,4 @@
 import { render, cleanup, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
 
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
