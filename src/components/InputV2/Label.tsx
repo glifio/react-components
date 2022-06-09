@@ -115,6 +115,12 @@ export const Label = styled.label`
       border-right: 1.5px solid var(--black);
       border-bottom: 1.5px solid var(--black);
       transform: translateY(-0.35em) rotate(45deg);
+
+      ${props =>
+        props.disabled &&
+        css`
+          border-color: var(--gray-dark);
+        `}
     }
   }
 
