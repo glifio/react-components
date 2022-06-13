@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HeaderGlyph renders the story 1`] = `
+exports[`Warning renders the story 1`] = `
 .c0 {
   min-width: 0;
   box-sizing: border-box;
