@@ -123,8 +123,4 @@ export const Label = styled.label`
         `}
     }
   }
-
-  .info-wrapper {
-    padding: 0.7em 1em;
-  }
 `

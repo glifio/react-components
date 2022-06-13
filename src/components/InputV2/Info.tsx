@@ -1,6 +1,14 @@
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Label } from './Label'
 import { AddressLink } from '../AddressLink'
+
+const InfoLabel = styled(Label)`
+  .info-wrapper {
+    padding: 0.7em 1em;
+    text-align: right;
+  }
+`
 
 export const Info = ({
   vertical,
@@ -10,7 +18,7 @@ export const Info = ({
   address,
   value
 }: InfoProps) => (
-  <Label vertical={vertical} centered={centered}>
+  <InfoLabel vertical={vertical} centered={centered}>
     {vertical ? (
       <>
         {label && <span>{label}</span>}
@@ -29,7 +37,7 @@ export const Info = ({
         value
       )}
     </div>
-  </Label>
+  </InfoLabel>
 )
 
 export interface InfoProps {
