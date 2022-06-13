@@ -124,10 +124,6 @@ exports[`BigInt input it renders correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
-}
-
 <label
   class="c0"
 >
@@ -291,10 +287,6 @@ exports[`BigInt input it renders the disabled state correctly 1`] = `
   -ms-transform: translateY(-0.35em) rotate(45deg);
   transform: translateY(-0.35em) rotate(45deg);
   border-color: var(--gray-dark);
-}
-
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
 }
 
 <label
@@ -462,10 +454,6 @@ exports[`BigInt input it renders the value too high state correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
-}
-
 <label
   class="c0"
 >
@@ -631,10 +619,6 @@ exports[`BigInt input it renders the value too low state correctly 1`] = `
   -webkit-transform: translateY(-0.35em) rotate(45deg);
   -ms-transform: translateY(-0.35em) rotate(45deg);
   transform: translateY(-0.35em) rotate(45deg);
-}
-
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
 }
 
 <label

@@ -124,13 +124,8 @@ exports[`Toggle input it renders the off state correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
-}
-
 .c1 .toggle-wrapper {
   position: relative;
-  padding: 0.5em 0;
 }
 
 .c1 input {
@@ -186,7 +181,7 @@ exports[`Toggle input it renders the off state correctly 1`] = `
       And see what it does
     </span>
   </div>
-  <span
+  <div
     class="toggle-wrapper"
   >
     <input
@@ -195,7 +190,7 @@ exports[`Toggle input it renders the off state correctly 1`] = `
     <span
       class="toggle"
     />
-  </span>
+  </div>
 </label>
 `;
 
@@ -323,13 +318,8 @@ exports[`Toggle input it renders the on state correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
-}
-
 .c1 .toggle-wrapper {
   position: relative;
-  padding: 0.5em 0;
 }
 
 .c1 input {
@@ -385,7 +375,7 @@ exports[`Toggle input it renders the on state correctly 1`] = `
       And see what it does
     </span>
   </div>
-  <span
+  <div
     class="toggle-wrapper"
   >
     <input
@@ -395,6 +385,6 @@ exports[`Toggle input it renders the on state correctly 1`] = `
     <span
       class="toggle"
     />
-  </span>
+  </div>
 </label>
 `;

@@ -124,10 +124,6 @@ exports[`Filecoin input it renders attofil correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
-}
-
 <label
   class="c0"
 >
@@ -294,10 +290,6 @@ exports[`Filecoin input it renders fil correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
-}
-
 <label
   class="c0"
 >
@@ -462,10 +454,6 @@ exports[`Filecoin input it renders picofil correctly 1`] = `
   -webkit-transform: translateY(-0.35em) rotate(45deg);
   -ms-transform: translateY(-0.35em) rotate(45deg);
   transform: translateY(-0.35em) rotate(45deg);
-}
-
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
 }
 
 <label
@@ -637,10 +625,6 @@ exports[`Filecoin input it renders the disabled state correctly 1`] = `
   border-color: var(--gray-dark);
 }
 
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
-}
-
 <label
   class="c0"
   disabled=""
@@ -808,10 +792,6 @@ exports[`Filecoin input it renders the value too high state correctly 1`] = `
   -webkit-transform: translateY(-0.35em) rotate(45deg);
   -ms-transform: translateY(-0.35em) rotate(45deg);
   transform: translateY(-0.35em) rotate(45deg);
-}
-
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
 }
 
 <label
@@ -983,10 +963,6 @@ exports[`Filecoin input it renders the value too low state correctly 1`] = `
   -webkit-transform: translateY(-0.35em) rotate(45deg);
   -ms-transform: translateY(-0.35em) rotate(45deg);
   transform: translateY(-0.35em) rotate(45deg);
-}
-
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
 }
 
 <label
