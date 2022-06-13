@@ -125,25 +125,3 @@ export const Highlight = styled.span`
 Highlight.propTypes = {
   fontSize: number.isRequired
 }
-
-export const P = styled.p`
-  line-height: 1.3em;
-
-  & + p {
-    margin-top: 1em;
-  }
-
-  a {
-    color: inherit;
-    font-size: inherit;
-    text-decoration: underline;
-    &:hover {
-      color: ${props => props.theme.colors.core.primary};
-    }
-  }
-
-  ${color}
-  ${typography}
-  ${layout}
-  ${space}
-`

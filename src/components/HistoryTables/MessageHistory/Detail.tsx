@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
@@ -9,7 +8,6 @@ import {
 } from '../../../generated/graphql'
 import { IconClock } from '../../Icons'
 import { AddressLink } from '../../AddressLink'
-import { P } from '../../Typography'
 import { Badge } from '../generic'
 import {
   Head,
@@ -29,17 +27,10 @@ import {
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
-import Card from '../../Card'
+import { InfoBox, StandardBox } from '../../Layout'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
-
-const SeeMore = styled(P).attrs(() => ({
-  color: 'core.primary',
-  role: 'button'
-}))`
-  cursor: pointer;
-`
 
 export default function MessageDetail(props: MessageDetailProps) {
   const { cid, height, speedUpHref, cancelHref, confirmations } = props
@@ -95,12 +86,18 @@ export default function MessageDetail(props: MessageDetailProps) {
       />
       <hr />
       {messageConfirmedInChainHead ? (
-        <Card width='100%' bg='background.screen' border={0}>
-          <P color='core.darkgray'>
-            Message {cid} has been included into the Filecoin Blockchain and
-            will be shown here in 1-2 minutes.
-          </P>
-        </Card>
+        <InfoBox>
+          Message {cid} has been included into the Filecoin Blockchain and will
+          be shown here in 1-2 minutes.
+        </InfoBox>
+      ) : !loading && !error && !message ? (
+        <StandardBox>
+          <p>Message {cid} not found.</p>
+          <p>
+            Note - it may take 1-2 minutes for a recently confirmed message to
+            show up here.
+          </p>
+        </StandardBox>
       ) : (
         <LineWrapper>
           <DetailCaption
@@ -165,9 +162,9 @@ export default function MessageDetail(props: MessageDetailProps) {
                 </Line>
               )}
               <hr />
-              <SeeMore onClick={() => setSeeMore(!seeMore)}>
+              <p role='button' onClick={() => setSeeMore(!seeMore)}>
                 Click to see {seeMore ? 'less ↑' : 'more ↓'}
-              </SeeMore>
+              </p>
               <hr />
               {seeMore && (
                 <>
@@ -216,17 +213,6 @@ export default function MessageDetail(props: MessageDetailProps) {
                 </>
               )}
             </>
-          )}
-          {!loading && !error && !message && (
-            <Card width='100%' bg='background.screen' border={0}>
-              <P color='core.darkgray'>
-                Message {cid} not found.
-                <br />
-                <br />
-                Note - it may take 1-2 minutes for a recently confirmed message
-                to show up here.
-              </P>
-            </Card>
           )}
         </LineWrapper>
       )}

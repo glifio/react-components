@@ -1,8 +1,6 @@
 import React, { useMemo, useState } from 'react'
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import { P } from '../../Typography'
 import { AddressLink } from '../../AddressLink'
 import { ProposalHead, LineWrapper, Line, Parameters } from '../detail'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
@@ -30,13 +28,6 @@ type ProposalDetailProps = {
   accept: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
   cancel: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
 }
-
-const SeeMore = styled(P).attrs(() => ({
-  color: 'core.primary',
-  role: 'button'
-}))`
-  cursor: pointer;
-`
 
 export default function ProposalDetail(props: ProposalDetailProps) {
   const router = useRouter()
@@ -195,9 +186,9 @@ export default function ProposalDetail(props: ProposalDetailProps) {
           depth={0}
         />
         <hr />
-        <SeeMore onClick={() => setSeeMore(!seeMore)}>
+        <p role='button' onClick={() => setSeeMore(!seeMore)}>
           Click to see {seeMore ? 'less ↑' : 'more ↓'}
-        </SeeMore>
+        </p>
         <hr />
         {seeMore && (
           <>
