@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode } from 'react'
 import { color, typography, layout, space, border } from 'styled-system'
 import styled from 'styled-components'
-import { node, oneOf, number } from 'prop-types'
+import { node, oneOf } from 'prop-types'
 
 import theme from '../theme'
 
