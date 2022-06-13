@@ -44,7 +44,6 @@ export { defaultMessageHistoryClientCacheConfig } from './HistoryTables/defaultC
 export * from './NetworkConnection'
 export { default as NetworkSwitcherGlyph } from './NetworkSwitcherGlyph'
 export { default as NetworkSwitcherGlyphV2 } from './NetworkSwitcherGlyphV2'
-export { default as NodeConnectingGlyph } from './NodeConnected'
 export { default as StepHeader } from './StepHeader'
 export { default as ErrorView } from './Error'
 export { default as Warning } from './Warning'
