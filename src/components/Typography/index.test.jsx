@@ -1,13 +1,7 @@
 import { cleanup, render } from '@testing-library/react'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import {
-  BigTitle,
-  Title,
-  Text,
-  Label,
-  Num
-} from './index.stories'
+import { BigTitle, Title, Text, Label, Num } from './index.stories'
 
 describe('ButtonClose', () => {
   afterEach(cleanup)
