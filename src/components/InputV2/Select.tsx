@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { Label } from './Label'
