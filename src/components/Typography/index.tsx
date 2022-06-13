@@ -17,16 +17,6 @@ const H1Base = styled.h1`
   ${space}
 `
 
-export const Header = forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ children, ...props }, ref) => (
-    <H1Base ref={ref} {...theme.textStyles.header} {...props}>
-      {children}
-    </H1Base>
-  )
-)
-
-Header.propTypes = { children: node.isRequired }
-
 export const BigTitle = forwardRef<HTMLHeadingElement, TypographyProps>(
   ({ children, ...props }, ref) => (
     <H1Base ref={ref} {...theme.textStyles.bigTitle} {...props}>
