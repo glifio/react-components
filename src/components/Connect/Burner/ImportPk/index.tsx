@@ -17,34 +17,34 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
   const [loading, setLoading] = useState(false)
   const [importError, setImportError] = useState('')
   return (
-    <Dialog>
-      <form
-        autoComplete='off'
-        onSubmit={async e => {
-          e.preventDefault()
-          setImportError('')
-          setLoading(true)
-          if (isValid) {
-            try {
-              const provider = new Filecoin(
-                new SECP256K1KeyProvider(privateKey),
-                {
-                  apiAddress: lotusApiAddr
-                }
-              )
-              dispatch(
-                createWalletProvider(provider, LoginOption.IMPORT_SINGLE_KEY)
-              )
-              const wallet = await fetchDefaultWallet(provider)
-              walletList([wallet])
-              next()
-            } catch (err) {
-              setImportError(err?.message || JSON.stringify(err))
-              setLoading(false)
-            }
+    <form
+      autoComplete='off'
+      onSubmit={async e => {
+        e.preventDefault()
+        setImportError('')
+        setLoading(true)
+        if (isValid) {
+          try {
+            const provider = new Filecoin(
+              new SECP256K1KeyProvider(privateKey),
+              {
+                apiAddress: lotusApiAddr
+              }
+            )
+            dispatch(
+              createWalletProvider(provider, LoginOption.IMPORT_SINGLE_KEY)
+            )
+            const wallet = await fetchDefaultWallet(provider)
+            walletList([wallet])
+            next()
+          } catch (err) {
+            setImportError(err?.message || JSON.stringify(err))
+            setLoading(false)
           }
-        }}
-      >
+        }
+      }}
+    >
+      <Dialog>
         {importError && <ErrorBox>{importError}</ErrorBox>}
         <ShadowBox>
           <h2>Import private key</h2>
@@ -75,8 +75,8 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
             Connect
           </ButtonV2>
         </ButtonRowSpaced>
-      </form>
-    </Dialog>
+      </Dialog>
+    </form>
   )
 }
 

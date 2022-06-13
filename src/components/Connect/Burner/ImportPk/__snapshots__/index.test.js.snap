@@ -224,10 +224,6 @@ exports[`Import private key configuration it renders correctly 1`] = `
   transform: translateY(-0.35em) rotate(45deg);
 }
 
-.c3 .info-wrapper {
-  padding: 0.7em 1em;
-}
-
 .c1 {
   padding: 1.5em;
   border-radius: 8px;
@@ -294,22 +290,11 @@ exports[`Import private key configuration it renders correctly 1`] = `
   max-width: 35em;
 }
 
-.c0 form {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 10px;
-}
-
-<div
-  class="c0"
+<form
+  autocomplete="off"
 >
-  <form
-    autocomplete="off"
+  <div
+    class="c0"
   >
     
     <div
@@ -366,8 +351,8 @@ exports[`Import private key configuration it renders correctly 1`] = `
         Connect
       </button>
     </div>
-  </form>
-</div>
+  </div>
+</form>
 `;
 
 exports[`Import private key configuration it sends the user to wallet view, with a wallet in state upon successful config 1`] = `
@@ -570,17 +555,6 @@ exports[`Import private key configuration it sends the user to wallet view, with
   max-width: 35em;
 }
 
-.c0 form {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 10px;
-}
-
 .c4 {
   display: inline-block;
   height: 48px;
@@ -621,11 +595,11 @@ exports[`Import private key configuration it sends the user to wallet view, with
   justify-content: center;
 }
 
-<div
-  class="c0"
+<form
+  autocomplete="off"
 >
-  <form
-    autocomplete="off"
+  <div
+    class="c0"
   >
     
     <div
@@ -668,6 +642,6 @@ exports[`Import private key configuration it sends the user to wallet view, with
         Connect
       </button>
     </div>
-  </form>
-</div>
+  </div>
+</form>
 `;

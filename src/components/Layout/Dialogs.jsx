@@ -7,12 +7,6 @@ export const Dialog = styled.div`
   gap: ${space()};
   width: 100%;
   max-width: 35em;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: ${space()};
-  }
 `
 
 export const WideDialog = styled(Dialog)`
