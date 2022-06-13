@@ -99,31 +99,6 @@ exports[`Toggle input it renders the off state correctly 1`] = `
   color: var(--purple-medium);
 }
 
-.c0 .select-wrapper {
-  position: relative;
-}
-
-.c0 .select-wrapper select {
-  width: 100%;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.c0 .select-wrapper .select-arrow {
-  position: absolute;
-  pointer-events: none;
-  top: 50%;
-  right: 1.2em;
-  width: 0.6em;
-  height: 0.6em;
-  border-right: 1.5px solid var(--black);
-  border-bottom: 1.5px solid var(--black);
-  -webkit-transform: translateY(-0.35em) rotate(45deg);
-  -ms-transform: translateY(-0.35em) rotate(45deg);
-  transform: translateY(-0.35em) rotate(45deg);
-}
-
 .c1 .toggle-wrapper {
   position: relative;
 }
@@ -291,31 +266,6 @@ exports[`Toggle input it renders the on state correctly 1`] = `
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   color: var(--purple-medium);
-}
-
-.c0 .select-wrapper {
-  position: relative;
-}
-
-.c0 .select-wrapper select {
-  width: 100%;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.c0 .select-wrapper .select-arrow {
-  position: absolute;
-  pointer-events: none;
-  top: 50%;
-  right: 1.2em;
-  width: 0.6em;
-  height: 0.6em;
-  border-right: 1.5px solid var(--black);
-  border-bottom: 1.5px solid var(--black);
-  -webkit-transform: translateY(-0.35em) rotate(45deg);
-  -ms-transform: translateY(-0.35em) rotate(45deg);
-  transform: translateY(-0.35em) rotate(45deg);
 }
 
 .c1 .toggle-wrapper {
