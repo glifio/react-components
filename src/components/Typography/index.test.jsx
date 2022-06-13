@@ -7,8 +7,7 @@ import {
   Title,
   Text,
   Label,
-  Num,
-  Highlight
+  Num
 } from './index.stories'
 
 describe('ButtonClose', () => {
@@ -58,14 +57,6 @@ describe('ButtonClose', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>
         <Num {...Num.args} />
-      </ThemeProvider>
-    )
-    expect(container.firstChild).toMatchSnapshot()
-  })
-  test('Highlight story renders', () => {
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Highlight {...Highlight.args} fontSize={16} />
       </ThemeProvider>
     )
     expect(container.firstChild).toMatchSnapshot()

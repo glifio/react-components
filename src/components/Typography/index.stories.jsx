@@ -7,8 +7,7 @@ import {
   Title as TitleComp,
   Text as TextComp,
   Label as LabelComp,
-  Num as NumComp,
-  Highlight as HighlightComp
+  Num as NumComp
 } from './index'
 
 export default {
@@ -64,11 +63,3 @@ Num.args = {
 }
 Num.component = NumComp
 Num.title = 'Typography/Num'
-
-export const Highlight = args => <HighlightComp {...args} />
-Highlight.args = {
-  children: <>Hello world</>,
-  fontSize: 16
-}
-Highlight.component = HighlightComp
-Highlight.title = 'Typography/Highlight'

@@ -114,14 +114,3 @@ export const InputLabelBase = styled.label`
   ${layout}
   ${space}
 `
-
-export const Highlight = styled.span`
-  border-radius: ${props => props.theme.radii[6]};
-  padding: 0rem 1rem;
-  margin-right: 0.5rem;
-  background-color: #ffc0cb;
-  ${typography}
-`
-Highlight.propTypes = {
-  fontSize: number.isRequired
-}
