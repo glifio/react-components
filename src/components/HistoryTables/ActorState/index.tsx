@@ -7,8 +7,9 @@ import {
   MsigState
 } from '../../../utils'
 import Box from '../../Box'
+import { Lines, Line } from '../../Layout'
 import { Title } from '../generic'
-import { DetailCaption, LineWrapper, Line } from '../detail'
+import { DetailCaption } from '../detail'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 function State({ state }: { state: unknown }) {
@@ -61,7 +62,7 @@ export function ActorState({ address }: { address: string }) {
         error={error}
       />
       {!loading && !error && (
-        <LineWrapper>
+        <Lines>
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
           )}
@@ -96,7 +97,7 @@ export function ActorState({ address }: { address: string }) {
             </p>
           </Box>
           <Box>{viewActorState && <State state={actorStateData?.State} />}</Box>
-        </LineWrapper>
+        </Lines>
       )}
     </div>
   )

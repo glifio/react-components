@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import React, { useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
@@ -12,8 +13,6 @@ import { Badge } from '../generic'
 import {
   Head,
   DetailCaption,
-  LineWrapper,
-  Line,
   Status,
   Confirmations,
   Parameters
@@ -27,10 +26,14 @@ import {
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
-import { InfoBox, StandardBox } from '../../Layout'
+import { Lines, Line, InfoBox, StandardBox } from '../../Layout'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
+
+const SpanGray = styled.span`
+  color: var(--gray-medium);
+`
 
 export default function MessageDetail(props: MessageDetailProps) {
   const { cid, height, speedUpHref, cancelHref, confirmations } = props
@@ -99,7 +102,7 @@ export default function MessageDetail(props: MessageDetailProps) {
           </p>
         </StandardBox>
       ) : (
-        <LineWrapper>
+        <Lines>
           <DetailCaption
             name='Message Overview'
             captian='Scanning Filecoin for your message... This could take a minute.'
@@ -170,7 +173,7 @@ export default function MessageDetail(props: MessageDetailProps) {
                 <>
                   <Line label='Gas Limit & Usage by Txn'>
                     {formatNumber(message.gasLimit)}
-                    <span className='gray'>|</span>
+                    <SpanGray>|</SpanGray>
                     {pending ? (
                       '?'
                     ) : (
@@ -182,17 +185,17 @@ export default function MessageDetail(props: MessageDetailProps) {
                     )}
                   </Line>
                   <Line label='Gas Fees'>
-                    <span className='gray'>Premium</span>
+                    <SpanGray>Premium</SpanGray>
                     {formatNumber(message.gasPremium)} attoFIL
                   </Line>
                   <Line label=''>
-                    <span className='gray'>Fee Cap</span>
+                    <SpanGray>Fee Cap</SpanGray>
                     {formatNumber(message.gasFeeCap)} attoFIL
                   </Line>
                   {!pending && (
                     <>
                       <Line label=''>
-                        <span className='gray'>Base</span>
+                        <SpanGray>Base</SpanGray>
                         {formatNumber(
                           (message as MessageConfirmed).baseFeeBurn
                         )}{' '}
@@ -214,7 +217,7 @@ export default function MessageDetail(props: MessageDetailProps) {
               )}
             </>
           )}
-        </LineWrapper>
+        </Lines>
       )}
     </>
   )

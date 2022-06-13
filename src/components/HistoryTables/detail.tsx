@@ -2,10 +2,9 @@ import React, { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Address, MsigTransaction } from '../../generated/graphql'
+import { MsigTransaction } from '../../generated/graphql'
 import Box from '../Box'
 import { ButtonV2, ButtonV2Link } from '../Button/V2'
-import { AddressLink } from '../AddressLink'
 import { Title, Badge } from './generic'
 import {
   IconSpeedUp,
@@ -14,7 +13,7 @@ import {
   IconPending,
   IconFail
 } from '../Icons'
-import { ADDRESS_PROPTYPE } from '../../customPropTypes'
+import { Lines, Line, AddressLine } from '../Layout'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
 
@@ -180,100 +179,6 @@ DetailCaption.propTypes = {
   error: PropTypes.object
 }
 
-export const LineWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-
-  p,
-  hr {
-    margin: 0;
-  }
-`
-
-/**
- * Line
- * Content row of the detail page
- */
-export const Line = ({ label, depth, children }: LineProps) => (
-  <Box
-    display='flex'
-    alignItems='center'
-    gridGap='1em'
-    lineHeight='2em'
-    textAlign='left'
-    pl={`${depth * 1.5}em`}
-    css={`
-      a {
-        color: ${props => props.theme.colors.core.primary};
-        text-decoration: none;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-      .gray {
-        color: ${props => props.theme.colors.gray.medium};
-      }
-    `}
-  >
-    <Box minWidth='200px' flex='0 1 25%'>
-      {label}
-    </Box>
-    <Box
-      flex='1 1'
-      display='flex'
-      alignItems='center'
-      gridGap='0.75em'
-      style={{ wordBreak: 'break-word' }}
-    >
-      {children}
-    </Box>
-  </Box>
-)
-
-type LineProps = {
-  label?: string
-  depth?: number
-  children?: React.ReactNode
-}
-
-const LinePropTypes = {
-  label: PropTypes.string,
-  depth: PropTypes.number,
-  children: PropTypes.node
-}
-
-Line.propTypes = LinePropTypes
-Line.defaultProps = {
-  label: '',
-  depth: 0,
-  children: <></>
-}
-
-/**
- * AddressLine
- */
-
-export const AddressLine = ({ value, label, depth }: AddressLineProps) =>
-  typeof value === 'string' ? (
-    <Line label={label} depth={depth}>
-      <AddressLink address={value} hideCopyText={false} />
-    </Line>
-  ) : (
-    <Line label={label} depth={depth}>
-      <AddressLink id={value.id} address={value.robust} hideCopyText={false} />
-    </Line>
-  )
-
-type AddressLineProps = {
-  value: string | Address
-} & LineProps
-
-AddressLine.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, ADDRESS_PROPTYPE]).isRequired,
-  ...LinePropTypes
-}
-
 /**
  * Parameters
  * Parameter rows of the detail page
@@ -327,7 +232,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
             case 'object':
               if (value)
                 return (
-                  <LineWrapper key={`${depth}-${key}`}>
+                  <Lines key={`${depth}-${key}`}>
                     <Line
                       label={key === 'params' ? 'Parameters' : key}
                       depth={depth}
@@ -337,7 +242,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
                       depth={depth + 1}
                       actorName={actorName}
                     />
-                  </LineWrapper>
+                  </Lines>
                 )
 
             case 'boolean':

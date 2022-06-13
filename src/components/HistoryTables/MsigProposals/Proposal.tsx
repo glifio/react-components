@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 import { AddressLink } from '../../AddressLink'
-import { ProposalHead, LineWrapper, Line, Parameters } from '../detail'
+import { ProposalHead, Parameters } from '../detail'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import {
   Address,
@@ -16,6 +16,7 @@ import {
   useStateReadStateQuery,
   MsigState
 } from '../../../utils'
+import { Lines, Line } from '../../Layout'
 import LoadingScreen from '../../LoadingScreen'
 import ErrorView from '../../Error'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
@@ -158,7 +159,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         isProposer={isProposer}
       />
       <hr />
-      <LineWrapper>
+      <Lines>
         <Line label='Proposal ID'>{props.id}</Line>
         <Line label='Proposer'>
           {proposal?.approved[0] && (
@@ -210,7 +211,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
             </Line>
           </>
         )}
-      </LineWrapper>
+      </Lines>
     </div>
   )
 }
