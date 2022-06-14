@@ -133,8 +133,13 @@ export const TransactionForm = ({
   }
 
   return (
-    <form>
-      <Dialog>
+    <Dialog>
+      <form
+        onSubmit={e => {
+          e.preventDefault()
+          txState < TxState.FillingTxFee ? getGasParams() : onSend()
+        }}
+      >
         <TransactionHeader
           txState={txState}
           title={title}
@@ -183,10 +188,9 @@ export const TransactionForm = ({
               ? router.back
               : () => setTxState(TxState.FillingForm)
           }
-          onClickNext={txState < TxState.FillingTxFee ? getGasParams : onSend}
         />
-      </Dialog>
-    </form>
+      </form>
+    </Dialog>
   )
 }
 
