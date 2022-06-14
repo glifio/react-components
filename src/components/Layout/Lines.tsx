@@ -15,11 +15,11 @@ export const Lines = styled.div`
   gap: ${space()};
 
   > p {
-    margin: 0.5em 0;
+    margin: 0.25em 0;
   }
 
   > hr {
-    margin: 0;
+    margin: 0.5em 0;
   }
 `
 
