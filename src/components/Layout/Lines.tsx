@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { AddressLink } from '../AddressLink'
 import { Address } from '../../generated/graphql'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
+import { space } from '../theme'
 
 /**
  * Lines
@@ -11,10 +12,13 @@ import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 export const Lines = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: ${space()};
 
-  p,
-  hr {
+  > p {
+    margin: 0.5em 0;
+  }
+
+  > hr {
     margin: 0;
   }
 `
@@ -27,7 +31,7 @@ const LineEl = styled.div`
   display: flex;
   align-items: center;
   gap: 1em;
-  line-height: 2em;
+  line-height: 2.5em;
   text-align: left;
   padding-left: ${props => `${props.depth * 1.5}em`};
 
