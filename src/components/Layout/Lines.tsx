@@ -14,10 +14,7 @@ export const Lines = styled.div`
   flex-direction: column;
   gap: ${space()};
 
-  > p {
-    margin: 0.25em 0;
-  }
-
+  > p,
   > hr {
     margin: 0.5em 0;
   }
