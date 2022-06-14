@@ -204,7 +204,7 @@ BaseInput.defaultProps = {
   placeholder: '',
   min: '',
   max: '',
-  step: '',
+  step: 'any',
   value: '',
   unit: '',
   onChange: () => {},
