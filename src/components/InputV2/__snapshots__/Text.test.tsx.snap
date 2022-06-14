@@ -43,7 +43,12 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .button-wrapper {
+.c2 {
+  width: 24;
+  height: 24;
+}
+
+.c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -55,13 +60,13 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
   gap: 10px;
 }
 
-.c0 .button-wrapper > *:first-child {
+.c1 .button-wrapper > *:first-child {
   -webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
 }
 
-.c0 .button-wrapper > *:not(:first-child) {
+.c1 .button-wrapper > *:not(:first-child) {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
@@ -70,26 +75,26 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
   transition: transform 0.1s ease-out;
 }
 
-.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+.c1 .button-wrapper > *:not(:first-child):hover:not(:active) {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
-.c0 .button-wrapper > *:not(:first-child):active {
+.c1 .button-wrapper > *:not(:first-child):active {
   -webkit-transition: none;
   transition: none;
 }
 
-.c0 .unit-wrapper {
+.c1 .unit-wrapper {
   position: relative;
 }
 
-.c0 .unit-wrapper input {
+.c1 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .unit-wrapper .unit {
+.c1 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -99,13 +104,8 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
   color: var(--purple-medium);
 }
 
-.c1 {
-  width: 24;
-  height: 24;
-}
-
 <label
-  class="c0"
+  class="c0 c1"
 >
   <div>
     <span>
@@ -139,7 +139,7 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
       
     </div>
     <svg
-      class="c1"
+      class="c2"
       fill="none"
       height="24"
       viewBox="0 0 24 24"
@@ -200,7 +200,7 @@ exports[`Text input it renders correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .button-wrapper {
+.c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -212,13 +212,13 @@ exports[`Text input it renders correctly 1`] = `
   gap: 10px;
 }
 
-.c0 .button-wrapper > *:first-child {
+.c1 .button-wrapper > *:first-child {
   -webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
 }
 
-.c0 .button-wrapper > *:not(:first-child) {
+.c1 .button-wrapper > *:not(:first-child) {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
@@ -227,26 +227,26 @@ exports[`Text input it renders correctly 1`] = `
   transition: transform 0.1s ease-out;
 }
 
-.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+.c1 .button-wrapper > *:not(:first-child):hover:not(:active) {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
-.c0 .button-wrapper > *:not(:first-child):active {
+.c1 .button-wrapper > *:not(:first-child):active {
   -webkit-transition: none;
   transition: none;
 }
 
-.c0 .unit-wrapper {
+.c1 .unit-wrapper {
   position: relative;
 }
 
-.c0 .unit-wrapper input {
+.c1 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .unit-wrapper .unit {
+.c1 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -257,7 +257,7 @@ exports[`Text input it renders correctly 1`] = `
 }
 
 <label
-  class="c0"
+  class="c0 c1"
 >
   <div>
     <span>
@@ -338,7 +338,7 @@ exports[`Text input it renders the disabled state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .button-wrapper {
+.c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -350,13 +350,13 @@ exports[`Text input it renders the disabled state correctly 1`] = `
   gap: 10px;
 }
 
-.c0 .button-wrapper > *:first-child {
+.c1 .button-wrapper > *:first-child {
   -webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
 }
 
-.c0 .button-wrapper > *:not(:first-child) {
+.c1 .button-wrapper > *:not(:first-child) {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
@@ -365,26 +365,26 @@ exports[`Text input it renders the disabled state correctly 1`] = `
   transition: transform 0.1s ease-out;
 }
 
-.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+.c1 .button-wrapper > *:not(:first-child):hover:not(:active) {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
-.c0 .button-wrapper > *:not(:first-child):active {
+.c1 .button-wrapper > *:not(:first-child):active {
   -webkit-transition: none;
   transition: none;
 }
 
-.c0 .unit-wrapper {
+.c1 .unit-wrapper {
   position: relative;
 }
 
-.c0 .unit-wrapper input {
+.c1 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .unit-wrapper .unit {
+.c1 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -396,7 +396,7 @@ exports[`Text input it renders the disabled state correctly 1`] = `
 }
 
 <label
-  class="c0"
+  class="c0 c1"
   disabled=""
 >
   <div>
@@ -478,7 +478,7 @@ exports[`Text input it renders the required state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .button-wrapper {
+.c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -490,13 +490,13 @@ exports[`Text input it renders the required state correctly 1`] = `
   gap: 10px;
 }
 
-.c0 .button-wrapper > *:first-child {
+.c1 .button-wrapper > *:first-child {
   -webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
 }
 
-.c0 .button-wrapper > *:not(:first-child) {
+.c1 .button-wrapper > *:not(:first-child) {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
@@ -505,26 +505,26 @@ exports[`Text input it renders the required state correctly 1`] = `
   transition: transform 0.1s ease-out;
 }
 
-.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+.c1 .button-wrapper > *:not(:first-child):hover:not(:active) {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
-.c0 .button-wrapper > *:not(:first-child):active {
+.c1 .button-wrapper > *:not(:first-child):active {
   -webkit-transition: none;
   transition: none;
 }
 
-.c0 .unit-wrapper {
+.c1 .unit-wrapper {
   position: relative;
 }
 
-.c0 .unit-wrapper input {
+.c1 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .unit-wrapper .unit {
+.c1 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -536,7 +536,7 @@ exports[`Text input it renders the required state correctly 1`] = `
 }
 
 <label
-  class="c0"
+  class="c0 c1"
 >
   <div>
     <span>
@@ -599,7 +599,7 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .button-wrapper {
+.c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -611,13 +611,13 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
   gap: 10px;
 }
 
-.c0 .button-wrapper > *:first-child {
+.c1 .button-wrapper > *:first-child {
   -webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
 }
 
-.c0 .button-wrapper > *:not(:first-child) {
+.c1 .button-wrapper > *:not(:first-child) {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
@@ -626,26 +626,26 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
   transition: transform 0.1s ease-out;
 }
 
-.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
+.c1 .button-wrapper > *:not(:first-child):hover:not(:active) {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
-.c0 .button-wrapper > *:not(:first-child):active {
+.c1 .button-wrapper > *:not(:first-child):active {
   -webkit-transition: none;
   transition: none;
 }
 
-.c0 .unit-wrapper {
+.c1 .unit-wrapper {
   position: relative;
 }
 
-.c0 .unit-wrapper input {
+.c1 .unit-wrapper input {
   width: 100%;
 }
 
-.c0 .unit-wrapper .unit {
+.c1 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -657,7 +657,7 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
 }
 
 <label
-  class="c0"
+  class="c0 c1"
 >
   <span>
     Enter your name
