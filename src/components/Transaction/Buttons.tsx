@@ -8,6 +8,8 @@ export const TransactionButtons = ({
   nextDisabled,
   backText,
   nextText,
+  backType,
+  nextType,
   onClickBack,
   onClickNext
 }: TransactionButtonsProps) => {
@@ -15,10 +17,10 @@ export const TransactionButtons = ({
   const onBack = onClickBack ? onClickBack : router ? router.back : () => {}
   return (
     <ButtonRowSpaced>
-      <ButtonV2 large disabled={backDisabled} onClick={onBack}>
+      <ButtonV2 large disabled={backDisabled} type={backType} onClick={onBack}>
         {backText}
       </ButtonV2>
-      <ButtonV2 large green disabled={nextDisabled} onClick={onClickNext}>
+      <ButtonV2 large green disabled={nextDisabled} type={nextType} onClick={onClickNext}>
         {nextText}
       </ButtonV2>
     </ButtonRowSpaced>
@@ -30,8 +32,10 @@ export interface TransactionButtonsProps {
   nextDisabled?: boolean
   backText?: string
   nextText?: string
+  backType?: string
+  nextType?: string
   onClickBack?: () => void
-  onClickNext: () => void
+  onClickNext?: () => void
 }
 
 TransactionButtons.propTypes = {
@@ -39,13 +43,17 @@ TransactionButtons.propTypes = {
   nextDisabled: PropTypes.bool,
   backText: PropTypes.string,
   nextText: PropTypes.string,
+  backType: PropTypes.string,
+  nextType: PropTypes.string,
   onClickBack: PropTypes.func,
-  onClickNext: PropTypes.func.isRequired
+  onClickNext: PropTypes.func
 }
 
 TransactionButtons.defaultProps = {
   backDisabled: false,
   nextDisabled: false,
   backText: 'Back',
-  nextText: 'Next'
+  nextText: 'Next',
+  backType: 'button',
+  nextType: 'submit'
 }
