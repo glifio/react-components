@@ -73,13 +73,13 @@ export const CreateSeed = ({
   return loading || walkthroughStep === 4 ? (
     <LoadingScreen />
   ) : (
-    <form
-      onSubmit={e => {
-        e.preventDefault()
-        nextStep()
-      }}
-    >
-      <WideDialog>
+    <WideDialog>
+      <form
+        onSubmit={e => {
+          e.preventDefault()
+          nextStep()
+        }}
+      >
         <ShadowBox>
           <StepHeader currentStep={walkthroughStep} totalSteps={3} />
           {mnemonic && (
@@ -108,8 +108,8 @@ export const CreateSeed = ({
             {walkthroughStep === 1 ? "I've recorded my seed phrase" : 'Next'}
           </ButtonV2>
         </ButtonRowSpaced>
-      </WideDialog>
-    </form>
+      </form>
+    </WideDialog>
   )
 }
 

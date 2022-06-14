@@ -76,6 +76,17 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   max-width: 35em;
 }
 
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .c6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -334,6 +345,17 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   max-width: 35em;
 }
 
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .c6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -583,6 +605,17 @@ exports[`Ledger configuration it renders correctly 1`] = `
   max-width: 35em;
 }
 
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .c5 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -811,6 +844,17 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   gap: 10px;
   width: 100%;
   max-width: 35em;
+}
+
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .c6 {
@@ -1069,6 +1113,17 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   gap: 10px;
   width: 100%;
   max-width: 35em;
+}
+
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .c6 {
@@ -1332,6 +1387,17 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   max-width: 35em;
 }
 
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .c6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1588,6 +1654,17 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   gap: 10px;
   width: 100%;
   max-width: 35em;
+}
+
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .c6 {

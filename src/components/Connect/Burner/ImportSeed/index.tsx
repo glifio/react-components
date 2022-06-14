@@ -17,31 +17,31 @@ export const ImportSeed = ({ back, next }: ImportSeedProps) => {
   const [loading, setLoading] = useState(false)
   const [importError, setImportError] = useState('')
   return (
-    <form
-      autoComplete='off'
-      onSubmit={async e => {
-        e.preventDefault()
-        setImportError('')
-        setLoading(true)
-        if (isValid) {
-          try {
-            const provider = new Filecoin(new HDWalletProvider(seed), {
-              apiAddress: lotusApiAddr
-            })
-            dispatch(
-              createWalletProvider(provider, LoginOption.IMPORT_MNEMONIC)
-            )
-            const wallet = await fetchDefaultWallet(provider)
-            walletList([wallet])
-            next()
-          } catch (err) {
-            setImportError(err?.message || JSON.stringify(err))
-            setLoading(false)
+    <Dialog>
+      <form
+        autoComplete='off'
+        onSubmit={async e => {
+          e.preventDefault()
+          setImportError('')
+          setLoading(true)
+          if (isValid) {
+            try {
+              const provider = new Filecoin(new HDWalletProvider(seed), {
+                apiAddress: lotusApiAddr
+              })
+              dispatch(
+                createWalletProvider(provider, LoginOption.IMPORT_MNEMONIC)
+              )
+              const wallet = await fetchDefaultWallet(provider)
+              walletList([wallet])
+              next()
+            } catch (err) {
+              setImportError(err?.message || JSON.stringify(err))
+              setLoading(false)
+            }
           }
-        }
-      }}
-    >
-      <Dialog>
+        }}
+      >
         {importError && <ErrorBox>{importError}</ErrorBox>}
         <ShadowBox>
           <h2>Import seed phrase</h2>
@@ -72,8 +72,8 @@ export const ImportSeed = ({ back, next }: ImportSeedProps) => {
             Connect
           </ButtonV2>
         </ButtonRowSpaced>
-      </Dialog>
-    </form>
+      </form>
+    </Dialog>
   )
 }
 
