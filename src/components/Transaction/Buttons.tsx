@@ -20,7 +20,13 @@ export const TransactionButtons = ({
       <ButtonV2 large disabled={backDisabled} type={backType} onClick={onBack}>
         {backText}
       </ButtonV2>
-      <ButtonV2 large green disabled={nextDisabled} type={nextType} onClick={onClickNext}>
+      <ButtonV2
+        large
+        green
+        disabled={nextDisabled}
+        type={nextType}
+        onClick={onClickNext}
+      >
         {nextText}
       </ButtonV2>
     </ButtonRowSpaced>
