@@ -6,11 +6,14 @@ module.exports = {
     '!**/node_modules/**'
   ],
   modulePathIgnorePatterns: ['<rootDir>/.*/__mocks__'],
-  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
-  transform: {},
-  jest: {
-    extensionsToTreatAsEsm: ['.ts']
-  },
   setupFilesAfterEnv: ['./jest.setup.js'],
-  testEnvironment: 'jsdom'
+  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  testEnvironment: 'jsdom',
+  transform: {
+    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest'
+  },
+  transformIgnorePatterns: [
+    '/node_modules/',
+    '^.+\\.module\\.(css|sass|scss)$'
+  ]
 }

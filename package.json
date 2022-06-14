@@ -75,6 +75,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
+    "@babel/plugin-transform-modules-commonjs": "^7.18.2",
     "@chainsafe/filsnap-adapter": "^2.1.1",
     "@chainsafe/filsnap-types": "^2.1.2",
     "@glif/base-css": "^0.0.24",
