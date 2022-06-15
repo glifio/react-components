@@ -18,6 +18,10 @@ export const Lines = styled.div`
   > hr {
     margin: 0.5em 0;
   }
+
+  > p[role='button'] {
+    margin: 0;
+  }
 `
 
 /**
