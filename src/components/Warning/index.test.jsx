@@ -4,7 +4,7 @@ import ThemeProvider from '../ThemeProvider'
 
 import { Base } from './index.stories'
 
-describe('HeaderGlyph', () => {
+describe('Warning', () => {
   afterEach(cleanup)
 
   test('renders the story', () => {

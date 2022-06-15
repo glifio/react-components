@@ -15,13 +15,13 @@ const Total = styled.div`
 
 export const TransactionTotal = ({ total }: TransactionTotalProps) => {
   return (
-    <footer>
+    <>
       <hr />
       <Total>
         <span>Total</span>
         <span>{total.toFil()} FIL</span>
       </Total>
-    </footer>
+    </>
   )
 }
 

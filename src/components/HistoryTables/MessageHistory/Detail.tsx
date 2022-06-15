@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react'
 import styled from 'styled-components'
+import React, { useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
@@ -9,13 +9,10 @@ import {
 } from '../../../generated/graphql'
 import { IconClock } from '../../Icons'
 import { AddressLink } from '../../AddressLink'
-import { P } from '../../Typography'
 import { Badge } from '../generic'
 import {
   Head,
   DetailCaption,
-  LineWrapper,
-  Line,
   Status,
   Confirmations,
   Parameters
@@ -29,16 +26,13 @@ import {
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
-import Card from '../../Card'
+import { Lines, Line, InfoBox, StandardBox } from '../../Layout'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
-const SeeMore = styled(P).attrs(() => ({
-  color: 'core.primary',
-  role: 'button'
-}))`
-  cursor: pointer;
+const SpanGray = styled.span`
+  color: var(--gray-medium);
 `
 
 export default function MessageDetail(props: MessageDetailProps) {
@@ -95,14 +89,20 @@ export default function MessageDetail(props: MessageDetailProps) {
       />
       <hr />
       {messageConfirmedInChainHead ? (
-        <Card width='100%' bg='background.screen' border={0}>
-          <P color='core.darkgray'>
-            Message {cid} has been included into the Filecoin Blockchain and
-            will be shown here in 1-2 minutes.
-          </P>
-        </Card>
+        <InfoBox>
+          Message {cid} has been included into the Filecoin Blockchain and will
+          be shown here in 1-2 minutes.
+        </InfoBox>
+      ) : !loading && !error && !message ? (
+        <StandardBox>
+          <p>Message {cid} not found.</p>
+          <p>
+            Note - it may take 1-2 minutes for a recently confirmed message to
+            show up here.
+          </p>
+        </StandardBox>
       ) : (
-        <LineWrapper>
+        <Lines>
           <DetailCaption
             name='Message Overview'
             captian='Scanning Filecoin for your message... This could take a minute.'
@@ -165,15 +165,21 @@ export default function MessageDetail(props: MessageDetailProps) {
                 </Line>
               )}
               <hr />
-              <SeeMore onClick={() => setSeeMore(!seeMore)}>
-                Click to see {seeMore ? 'less ↑' : 'more ↓'}
-              </SeeMore>
+              {seeMore ? (
+                <p role='button' onClick={() => setSeeMore(false)}>
+                  Click to see less ↑
+                </p>
+              ) : (
+                <p role='button' onClick={() => setSeeMore(true)}>
+                  Click to see more ↓
+                </p>
+              )}
               <hr />
               {seeMore && (
                 <>
                   <Line label='Gas Limit & Usage by Txn'>
                     {formatNumber(message.gasLimit)}
-                    <span className='gray'>|</span>
+                    <SpanGray>|</SpanGray>
                     {pending ? (
                       '?'
                     ) : (
@@ -185,17 +191,17 @@ export default function MessageDetail(props: MessageDetailProps) {
                     )}
                   </Line>
                   <Line label='Gas Fees'>
-                    <span className='gray'>Premium</span>
+                    <SpanGray>Premium</SpanGray>
                     {formatNumber(message.gasPremium)} attoFIL
                   </Line>
                   <Line label=''>
-                    <span className='gray'>Fee Cap</span>
+                    <SpanGray>Fee Cap</SpanGray>
                     {formatNumber(message.gasFeeCap)} attoFIL
                   </Line>
                   {!pending && (
                     <>
                       <Line label=''>
-                        <span className='gray'>Base</span>
+                        <SpanGray>Base</SpanGray>
                         {formatNumber(
                           (message as MessageConfirmed).baseFeeBurn
                         )}{' '}
@@ -217,18 +223,7 @@ export default function MessageDetail(props: MessageDetailProps) {
               )}
             </>
           )}
-          {!loading && !error && !message && (
-            <Card width='100%' bg='background.screen' border={0}>
-              <P color='core.darkgray'>
-                Message {cid} not found.
-                <br />
-                <br />
-                Note - it may take 1-2 minutes for a recently confirmed message
-                to show up here.
-              </P>
-            </Card>
-          )}
-        </LineWrapper>
+        </Lines>
       )}
     </>
   )

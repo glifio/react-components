@@ -46,6 +46,7 @@ export const TransactionFee = ({
   return (
     txState >= TxState.FillingTxFee && (
       <>
+        <hr />
         <Toggle
           label='Expert Mode'
           checked={expertMode}

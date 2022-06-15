@@ -5,7 +5,6 @@ import { Label } from './Label'
 const ToggleLabel = styled(Label)`
   .toggle-wrapper {
     position: relative;
-    padding: 0.5em 0;
   }
 
   input {
@@ -69,7 +68,7 @@ export const Toggle = ({
       {label && <span>{label}</span>}
       {info && <span className='info'>{info}</span>}
     </div>
-    <span className='toggle-wrapper'>
+    <div className='toggle-wrapper'>
       <input
         type='checkbox'
         autoFocus={autoFocus}
@@ -78,7 +77,7 @@ export const Toggle = ({
         onChange={e => onChange(e.target.checked)}
       />
       <span className='toggle'></span>
-    </span>
+    </div>
   </ToggleLabel>
 )
 

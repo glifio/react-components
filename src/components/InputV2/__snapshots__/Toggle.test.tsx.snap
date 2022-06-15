@@ -43,94 +43,8 @@ exports[`Toggle input it renders the off state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .button-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.c0 .button-wrapper > *:first-child {
-  -webkit-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
-}
-
-.c0 .button-wrapper > *:not(:first-child) {
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  -webkit-transition: -webkit-transform 0.1s ease-out;
-  -webkit-transition: transform 0.1s ease-out;
-  transition: transform 0.1s ease-out;
-}
-
-.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-}
-
-.c0 .button-wrapper > *:not(:first-child):active {
-  -webkit-transition: none;
-  transition: none;
-}
-
-.c0 .unit-wrapper {
-  position: relative;
-}
-
-.c0 .unit-wrapper input {
-  width: 100%;
-}
-
-.c0 .unit-wrapper .unit {
-  position: absolute;
-  top: 50%;
-  right: 1em;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  color: var(--purple-medium);
-}
-
-.c0 .select-wrapper {
-  position: relative;
-}
-
-.c0 .select-wrapper select {
-  width: 100%;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.c0 .select-wrapper .select-arrow {
-  position: absolute;
-  pointer-events: none;
-  top: 50%;
-  right: 1.2em;
-  width: 0.6em;
-  height: 0.6em;
-  border-right: 1.5px solid var(--black);
-  border-bottom: 1.5px solid var(--black);
-  -webkit-transform: translateY(-0.35em) rotate(45deg);
-  -ms-transform: translateY(-0.35em) rotate(45deg);
-  transform: translateY(-0.35em) rotate(45deg);
-}
-
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
-}
-
 .c1 .toggle-wrapper {
   position: relative;
-  padding: 0.5em 0;
 }
 
 .c1 input {
@@ -186,7 +100,7 @@ exports[`Toggle input it renders the off state correctly 1`] = `
       And see what it does
     </span>
   </div>
-  <span
+  <div
     class="toggle-wrapper"
   >
     <input
@@ -195,7 +109,7 @@ exports[`Toggle input it renders the off state correctly 1`] = `
     <span
       class="toggle"
     />
-  </span>
+  </div>
 </label>
 `;
 
@@ -242,94 +156,8 @@ exports[`Toggle input it renders the on state correctly 1`] = `
   color: var(--red-medium);
 }
 
-.c0 .button-wrapper {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.c0 .button-wrapper > *:first-child {
-  -webkit-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
-}
-
-.c0 .button-wrapper > *:not(:first-child) {
-  -webkit-flex: 0 0 auto;
-  -ms-flex: 0 0 auto;
-  flex: 0 0 auto;
-  -webkit-transition: -webkit-transform 0.1s ease-out;
-  -webkit-transition: transform 0.1s ease-out;
-  transition: transform 0.1s ease-out;
-}
-
-.c0 .button-wrapper > *:not(:first-child):hover:not(:active) {
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-}
-
-.c0 .button-wrapper > *:not(:first-child):active {
-  -webkit-transition: none;
-  transition: none;
-}
-
-.c0 .unit-wrapper {
-  position: relative;
-}
-
-.c0 .unit-wrapper input {
-  width: 100%;
-}
-
-.c0 .unit-wrapper .unit {
-  position: absolute;
-  top: 50%;
-  right: 1em;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  color: var(--purple-medium);
-}
-
-.c0 .select-wrapper {
-  position: relative;
-}
-
-.c0 .select-wrapper select {
-  width: 100%;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.c0 .select-wrapper .select-arrow {
-  position: absolute;
-  pointer-events: none;
-  top: 50%;
-  right: 1.2em;
-  width: 0.6em;
-  height: 0.6em;
-  border-right: 1.5px solid var(--black);
-  border-bottom: 1.5px solid var(--black);
-  -webkit-transform: translateY(-0.35em) rotate(45deg);
-  -ms-transform: translateY(-0.35em) rotate(45deg);
-  transform: translateY(-0.35em) rotate(45deg);
-}
-
-.c0 .info-wrapper {
-  padding: 0.7em 1em;
-}
-
 .c1 .toggle-wrapper {
   position: relative;
-  padding: 0.5em 0;
 }
 
 .c1 input {
@@ -385,7 +213,7 @@ exports[`Toggle input it renders the on state correctly 1`] = `
       And see what it does
     </span>
   </div>
-  <span
+  <div
     class="toggle-wrapper"
   >
     <input
@@ -395,6 +223,6 @@ exports[`Toggle input it renders the on state correctly 1`] = `
     <span
       class="toggle"
     />
-  </span>
+  </div>
 </label>
 `;

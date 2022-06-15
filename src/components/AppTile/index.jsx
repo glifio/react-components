@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { AppTileWrapper } from './AppTileWrapper'
 import { space, fontSize } from '../theme'
 
-import { P } from '../Typography'
 import {
   AppTitleContent,
   AppTitleHeader,
@@ -75,7 +74,7 @@ export function AppTile({
         </AppTitleHeader>
 
         {soon && (
-          <P
+          <p
             style={{
               position: 'absolute',
               top: '0',
@@ -92,7 +91,7 @@ export function AppTile({
             }}
           >
             (Soon)
-          </P>
+          </p>
         )}
 
         {small && (

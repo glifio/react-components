@@ -1,7 +1,37 @@
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { Label } from './Label'
 import truncateAddress from '../../utils/truncateAddress'
+
+const SelectLabel = styled(Label)`
+  .select-wrapper {
+    position: relative;
+
+    select {
+      width: 100%;
+      appearance: none;
+    }
+
+    .select-arrow {
+      position: absolute;
+      pointer-events: none;
+      top: 50%;
+      right: 1.2em;
+      width: 0.6em;
+      height: 0.6em;
+      border-right: 1.5px solid var(--black);
+      border-bottom: 1.5px solid var(--black);
+      transform: translateY(-0.35em) rotate(45deg);
+
+      ${props =>
+        props.disabled &&
+        css`
+          border-color: var(--gray-dark);
+        `}
+    }
+  }
+`
 
 export const Select = ({
   vertical,
@@ -37,7 +67,7 @@ export const Select = ({
   )
 
   return (
-    <Label disabled={disabled} vertical={vertical} centered={centered}>
+    <SelectLabel disabled={disabled} vertical={vertical} centered={centered}>
       {vertical ? (
         <>
           {label && <span>{label}</span>}
@@ -72,7 +102,7 @@ export const Select = ({
         </select>
         <div className='select-arrow' />
       </div>
-    </Label>
+    </SelectLabel>
   )
 }
 

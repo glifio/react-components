@@ -1,6 +1,5 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { useMemo, useState } from 'react'
-import styled from 'styled-components'
 import { useAddressQuery } from '../../../generated/graphql'
 import {
   useStateReadStateQuery,
@@ -8,17 +7,10 @@ import {
   MsigState
 } from '../../../utils'
 import Box from '../../Box'
-import { P } from '../../Typography'
+import { Lines, Line } from '../../Layout'
 import { Title } from '../generic'
-import { DetailCaption, LineWrapper, Line } from '../detail'
+import { DetailCaption } from '../detail'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
-
-const ViewState = styled(P).attrs(() => ({
-  color: 'core.primary',
-  role: 'button'
-}))`
-  cursor: pointer;
-`
 
 function State({ state }: { state: unknown }) {
   return (
@@ -70,7 +62,7 @@ export function ActorState({ address }: { address: string }) {
         error={error}
       />
       {!loading && !error && (
-        <LineWrapper>
+        <Lines>
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
           )}
@@ -99,13 +91,18 @@ export function ActorState({ address }: { address: string }) {
             <Box minWidth='200px' flex='0 1 25%'>
               State
             </Box>
-            <ViewState onClick={() => setViewActorState(!viewActorState)}>
-              Click to{' '}
-              {viewActorState ? 'hide actor state ↑' : 'see actor state ↓'}
-            </ViewState>
+            {viewActorState ? (
+              <p role='button' onClick={() => setViewActorState(false)}>
+                Click to hide actor state ↑
+              </p>
+            ) : (
+              <p role='button' onClick={() => setViewActorState(true)}>
+                Click to see actor state ↓
+              </p>
+            )}
           </Box>
           <Box>{viewActorState && <State state={actorStateData?.State} />}</Box>
-        </LineWrapper>
+        </Lines>
       )}
     </div>
   )

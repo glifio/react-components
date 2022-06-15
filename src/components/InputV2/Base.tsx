@@ -1,6 +1,61 @@
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
+import { space } from '../theme'
+
+const BaseLabel = styled(Label)`
+  .button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: ${space()};
+
+    > *:first-child {
+      flex: 1 0 auto;
+    }
+
+    > *:not(:first-child) {
+      flex: 0 0 auto;
+      transition: transform 0.1s ease-out;
+
+      &:hover:not(:active) {
+        transform: scale(1.2);
+      }
+
+      &:active {
+        transition: none;
+      }
+    }
+  }
+
+  .unit-wrapper {
+    position: relative;
+
+    input {
+      width: 100%;
+    }
+
+    .unit {
+      position: absolute;
+      top: 50%;
+      right: 1em;
+      transform: translateY(-50%);
+      color: var(--purple-medium);
+
+      ${props =>
+        props.error &&
+        css`
+          color: var(--red-dark) !important;
+        `}
+
+      ${props =>
+        props.disabled &&
+        css`
+          color: var(--gray-dark) !important;
+        `}
+    }
+  }
+`
 
 export const BaseInput = ({
   deletable,
@@ -28,7 +83,7 @@ export const BaseInput = ({
   onEnter,
   onDelete
 }: BaseInputProps) => (
-  <Label
+  <BaseLabel
     disabled={disabled}
     vertical={vertical}
     centered={centered}
@@ -75,7 +130,7 @@ export const BaseInput = ({
       {deletable && <IconClose onClick={onDelete} />}
     </div>
     {vertical && error && <span className='error'>{error}</span>}
-  </Label>
+  </BaseLabel>
 )
 
 export interface BaseInputProps {
@@ -149,7 +204,7 @@ BaseInput.defaultProps = {
   placeholder: '',
   min: '',
   max: '',
-  step: '',
+  step: 'any',
   value: '',
   unit: '',
   onChange: () => {},

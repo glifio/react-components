@@ -16,7 +16,7 @@ import { TransactionButtons } from './Buttons'
 import { TransactionFee } from './Fee'
 import { TransactionHeader } from './Header'
 import { TransactionTotal } from './Total'
-import { Dialog, ShadowBox } from '../Layout'
+import { Dialog, Lines, ShadowBox } from '../Layout'
 import {
   PendingMsgContextType,
   useSubmittedMessages
@@ -134,56 +134,62 @@ export const TransactionForm = ({
 
   return (
     <Dialog>
-      <TransactionHeader
-        txState={txState}
-        title={title}
-        description={description}
-        warning={warning}
-        errorMessage={
-          gasParamsError?.message || txError?.message || walletError() || ''
-        }
-        loginOption={loginOption}
-        msig={msig}
-        method={method}
-        approvalsLeft={approvalsLeft}
-      />
-      {txState >= TxState.FillingForm && (
-        <ShadowBox>
-          <form>
-            {children}
-            <TransactionFee
-              inputFee={inputFee}
-              setInputFee={setInputFee}
-              maxFee={maxFee}
-              txFee={txFee}
-              txState={txState}
-              onUpdate={getGasParams}
-            />
-          </form>
-          {txState >= TxState.FillingTxFee && total && (
-            <TransactionTotal total={total} />
-          )}
-        </ShadowBox>
-      )}
-      <TransactionButtons
-        backDisabled={
-          txState !== TxState.LoadingFailed &&
-          txState !== TxState.FillingForm &&
-          txState !== TxState.FillingTxFee
-        }
-        nextDisabled={
-          (txState !== TxState.FillingForm || !message) &&
-          (txState !== TxState.FillingTxFee || !messageWithGas)
-        }
-        backText={txState < TxState.FillingTxFee ? 'Cancel' : 'Back'}
-        nextText={txState < TxState.FillingTxFee ? 'Review' : 'Send'}
-        onClickBack={
-          txState < TxState.FillingTxFee
-            ? router.back
-            : () => setTxState(TxState.FillingForm)
-        }
-        onClickNext={txState < TxState.FillingTxFee ? getGasParams : onSend}
-      />
+      <form
+        onSubmit={e => {
+          e.preventDefault()
+          txState < TxState.FillingTxFee ? getGasParams() : onSend()
+        }}
+      >
+        <TransactionHeader
+          txState={txState}
+          title={title}
+          description={description}
+          warning={warning}
+          errorMessage={
+            gasParamsError?.message || txError?.message || walletError() || ''
+          }
+          loginOption={loginOption}
+          msig={msig}
+          method={method}
+          approvalsLeft={approvalsLeft}
+        />
+        {txState >= TxState.FillingForm && (
+          <ShadowBox>
+            <Lines>
+              {children}
+              <TransactionFee
+                inputFee={inputFee}
+                setInputFee={setInputFee}
+                maxFee={maxFee}
+                txFee={txFee}
+                txState={txState}
+                onUpdate={getGasParams}
+              />
+              {txState >= TxState.FillingTxFee && total && (
+                <TransactionTotal total={total} />
+              )}
+            </Lines>
+          </ShadowBox>
+        )}
+        <TransactionButtons
+          backDisabled={
+            txState !== TxState.LoadingFailed &&
+            txState !== TxState.FillingForm &&
+            txState !== TxState.FillingTxFee
+          }
+          nextDisabled={
+            (txState !== TxState.FillingForm || !message) &&
+            (txState !== TxState.FillingTxFee || !messageWithGas)
+          }
+          backText={txState < TxState.FillingTxFee ? 'Cancel' : 'Back'}
+          nextText={txState < TxState.FillingTxFee ? 'Review' : 'Send'}
+          onClickBack={
+            txState < TxState.FillingTxFee
+              ? router.back
+              : () => setTxState(TxState.FillingForm)
+          }
+        />
+      </form>
     </Dialog>
   )
 }

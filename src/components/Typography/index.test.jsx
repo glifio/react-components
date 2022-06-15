@@ -1,27 +1,11 @@
 import { cleanup, render } from '@testing-library/react'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import {
-  Header,
-  BigTitle,
-  Title,
-  Text,
-  Label,
-  Num,
-  Highlight
-} from './index.stories'
+import { BigTitle, Title, Text, Label, Num } from './index.stories'
 
 describe('ButtonClose', () => {
   afterEach(cleanup)
 
-  test('Header story renders', () => {
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Header {...Header.args} />
-      </ThemeProvider>
-    )
-    expect(container.firstChild).toMatchSnapshot()
-  })
   test('BigTitle story renders', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>
@@ -58,14 +42,6 @@ describe('ButtonClose', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>
         <Num {...Num.args} />
-      </ThemeProvider>
-    )
-    expect(container.firstChild).toMatchSnapshot()
-  })
-  test('Highlight story renders', () => {
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Highlight {...Highlight.args} fontSize={16} />
       </ThemeProvider>
     )
     expect(container.firstChild).toMatchSnapshot()

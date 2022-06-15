@@ -1,7 +1,7 @@
 import { forwardRef, ReactNode } from 'react'
 import { color, typography, layout, space, border } from 'styled-system'
 import styled from 'styled-components'
-import { node, oneOf, number } from 'prop-types'
+import { node, oneOf } from 'prop-types'
 
 import theme from '../theme'
 
@@ -16,16 +16,6 @@ const H1Base = styled.h1`
   ${layout}
   ${space}
 `
-
-export const Header = forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ children, ...props }, ref) => (
-    <H1Base ref={ref} {...theme.textStyles.header} {...props}>
-      {children}
-    </H1Base>
-  )
-)
-
-Header.propTypes = { children: node.isRequired }
 
 export const BigTitle = forwardRef<HTMLHeadingElement, TypographyProps>(
   ({ children, ...props }, ref) => (
@@ -109,39 +99,6 @@ Num.propTypes = {
 }
 
 export const InputLabelBase = styled.label`
-  ${color}
-  ${typography}
-  ${layout}
-  ${space}
-`
-
-export const Highlight = styled.span`
-  border-radius: ${props => props.theme.radii[6]};
-  padding: 0rem 1rem;
-  margin-right: 0.5rem;
-  background-color: #ffc0cb;
-  ${typography}
-`
-Highlight.propTypes = {
-  fontSize: number.isRequired
-}
-
-export const P = styled.p`
-  line-height: 1.3em;
-
-  & + p {
-    margin-top: 1em;
-  }
-
-  a {
-    color: inherit;
-    font-size: inherit;
-    text-decoration: underline;
-    &:hover {
-      color: ${props => props.theme.colors.core.primary};
-    }
-  }
-
   ${color}
   ${typography}
   ${layout}
