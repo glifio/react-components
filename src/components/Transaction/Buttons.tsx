@@ -8,8 +8,7 @@ export const TransactionButtons = ({
   nextDisabled,
   backText,
   nextText,
-  onClickBack,
-  onClickNext
+  onClickBack
 }: TransactionButtonsProps) => {
   const router = useRouter()
   const onBack = onClickBack ? onClickBack : router ? router.back : () => {}
@@ -18,13 +17,7 @@ export const TransactionButtons = ({
       <ButtonV2 large type='button' disabled={backDisabled} onClick={onBack}>
         {backText}
       </ButtonV2>
-      <ButtonV2
-        large
-        green
-        type='submit'
-        disabled={nextDisabled}
-        onClick={onClickNext}
-      >
+      <ButtonV2 large green type='submit' disabled={nextDisabled}>
         {nextText}
       </ButtonV2>
     </ButtonRowSpaced>
@@ -37,7 +30,6 @@ export interface TransactionButtonsProps {
   backText?: string
   nextText?: string
   onClickBack?: () => void
-  onClickNext?: () => void
 }
 
 TransactionButtons.propTypes = {
@@ -45,8 +37,7 @@ TransactionButtons.propTypes = {
   nextDisabled: PropTypes.bool,
   backText: PropTypes.string,
   nextText: PropTypes.string,
-  onClickBack: PropTypes.func,
-  onClickNext: PropTypes.func
+  onClickBack: PropTypes.func
 }
 
 TransactionButtons.defaultProps = {

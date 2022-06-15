@@ -16,37 +16,26 @@ export default {
 const Template = args => <TransactionButtons {...args} />
 
 export const Base = Template.bind({})
-Base.args = {
-  onClickBack: () => console.log('Clicked Back'),
-  onClickNext: () => console.log('Clicked Next')
-}
+Base.args = {}
 
 export const BackDisabled = Template.bind({})
 BackDisabled.args = {
-  backDisabled: true,
-  onClickBack: () => console.log('Clicked Back'),
-  onClickNext: () => console.log('Clicked Next')
+  backDisabled: true
 }
 
 export const NextDisabled = Template.bind({})
 NextDisabled.args = {
-  nextDisabled: true,
-  onClickBack: () => console.log('Clicked Back'),
-  onClickNext: () => console.log('Clicked Next')
+  nextDisabled: true
 }
 
 export const Confirm = Template.bind({})
 Confirm.args = {
   backText: 'Cancel',
-  nextText: 'Confirm',
-  onClickBack: () => console.log('Clicked Cancel'),
-  onClickNext: () => console.log('Clicked Confirm')
+  nextText: 'Confirm'
 }
 
 export const Send = Template.bind({})
 Send.args = {
   backText: 'Cancel',
-  nextText: 'Send',
-  onClickBack: () => console.log('Clicked Cancel'),
-  onClickNext: () => console.log('Clicked Send')
+  nextText: 'Send'
 }
