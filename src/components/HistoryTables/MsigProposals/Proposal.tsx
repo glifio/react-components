@@ -187,9 +187,15 @@ export default function ProposalDetail(props: ProposalDetailProps) {
           depth={0}
         />
         <hr />
-        <p role='button' onClick={() => setSeeMore(!seeMore)}>
-          Click to see {seeMore ? 'less ↑' : 'more ↓'}
-        </p>
+        {seeMore ? (
+          <p role='button' onClick={() => setSeeMore(false)}>
+            Click to see less ↑
+          </p>
+        ) : (
+          <p role='button' onClick={() => setSeeMore(true)}>
+            Click to see more ↓
+          </p>
+        )}
         <hr />
         {seeMore && (
           <>

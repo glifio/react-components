@@ -91,10 +91,15 @@ export function ActorState({ address }: { address: string }) {
             <Box minWidth='200px' flex='0 1 25%'>
               State
             </Box>
-            <p role='button' onClick={() => setViewActorState(!viewActorState)}>
-              Click to{' '}
-              {viewActorState ? 'hide actor state ↑' : 'see actor state ↓'}
-            </p>
+            {viewActorState ? (
+              <p role='button' onClick={() => setViewActorState(false)}>
+                Click to hide actor state ↑
+              </p>
+            ) : (
+              <p role='button' onClick={() => setViewActorState(true)}>
+                Click to see actor state ↓
+              </p>
+            )}
           </Box>
           <Box>{viewActorState && <State state={actorStateData?.State} />}</Box>
         </Lines>
