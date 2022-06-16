@@ -41,7 +41,7 @@ export function ActorState({ address }: { address: string }) {
   const [viewActorState, setViewActorState] = useState(false)
 
   const actorType = useMemo<string>(() => {
-    if (!actorStateData) return ''
+    if (!actorStateData?.Code) return ''
     try {
       return decodeActorCID(actorStateData?.Code['/'])
     } catch (e) {
