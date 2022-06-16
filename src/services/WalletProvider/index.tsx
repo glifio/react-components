@@ -4,7 +4,7 @@ import {
   useReducer,
   useCallback,
   Dispatch,
-  ReactChildren,
+  ReactNode,
   Context
 } from 'react'
 import PropTypes from 'prop-types'
@@ -76,7 +76,7 @@ const WalletProviderWrapper = ({
   lotusApiAddr,
   coinType
 }: {
-  children: ReactChildren
+  children: ReactNode
   lotusApiAddr: string
   coinType: CoinType
 }) => {

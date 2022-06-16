@@ -20,6 +20,7 @@ import { Lines, Line } from '../../Layout'
 import LoadingScreen from '../../LoadingScreen'
 import ErrorView from '../../Error'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
+import { logger } from '../../../logger'
 
 type ProposalDetailProps = {
   id: number
@@ -60,16 +61,24 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     variables: { address: convertAddrToPrefix(props.address) }
   })
 
+  const loadMsigState = useMemo<boolean>(() => {
+    try {
+      return (
+        !!actorData && decodeActorCID(actorData.actor.Code).includes('multisig')
+      )
+    } catch (e) {
+      logger.error(e)
+      return false
+    }
+  }, [actorData])
+
   const {
     data: stateData,
     loading: stateLoading,
     error: stateError
   } = useStateReadStateQuery<MsigState>({
     variables: { address: convertAddrToPrefix(props.address) },
-    skip:
-      !!actorError ||
-      (!actorLoading &&
-        !decodeActorCID(actorData.actor.Code).includes('multisig'))
+    skip: !loadMsigState
   })
 
   const proposalFoundError = useMemo(() => {
