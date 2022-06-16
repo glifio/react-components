@@ -4,6 +4,7 @@ import { getMethodName } from '../methodName'
 import { decodeActorCID } from '../../../utils'
 import { MessageConfirmedRow, MessagePendingRow } from '../types'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
+import { logger } from '../../../logger'
 
 type MessageForMethodNameType =
   | Pick<MessageConfirmedRow, 'actorName' | 'to' | 'cid' | 'method'>
@@ -21,12 +22,16 @@ export const useMethodName = (
     skip: !message?.cid || !!(message?.cid && message?.actorName)
   })
 
-  const actorName = useMemo(() => {
+  const actorName = useMemo<string>(() => {
     if (message?.actorName) return message.actorName
-    else if (message?.cid && !(actor.loading || actor.error)) {
+    if (!message?.cid || actor.loading || actor.error || !actor.data)
+      return ''
+    try {
       return decodeActorCID(actor.data?.actor.Code)
+    } catch (e) {
+      logger.error(e)
+      return 'unknown'
     }
-    return ''
   }, [message?.actorName, actor, message?.cid])
 
   const methodName = useMemo(() => {

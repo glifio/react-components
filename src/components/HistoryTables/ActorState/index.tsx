@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react'
 import { useAddressQuery } from '../../../generated/graphql'
 import {
   useStateReadStateQuery,
+  convertAddrToPrefix,
   decodeActorCID,
   MsigState
 } from '../../../utils'
@@ -10,7 +11,7 @@ import Box from '../../Box'
 import { Lines, Line } from '../../Layout'
 import { Title } from '../generic'
 import { DetailCaption } from '../detail'
-import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
+import { logger } from '../../../logger'
 
 function State({ state }: { state: unknown }) {
   return (
@@ -39,8 +40,14 @@ export function ActorState({ address }: { address: string }) {
 
   const [viewActorState, setViewActorState] = useState(false)
 
-  const actorType = useMemo(() => {
-    return decodeActorCID(actorStateData?.Code['/'])
+  const actorType = useMemo<string>(() => {
+    if (!actorStateData) return ''
+    try {
+      return decodeActorCID(actorStateData?.Code['/'])
+    } catch (e) {
+      logger.error(e)
+      return 'unknown'
+    }
   }, [actorStateData?.Code])
 
   const loading = useMemo(() => {
