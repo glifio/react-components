@@ -89,17 +89,11 @@
     "base32-decode": "^1.0.0",
     "bip39": "^3.0.4",
     "dayjs": "^1.9.6",
-    "glob-parent": "^6.0.2",
-    "graphql": "^16.2.0",
     "lodash.clonedeep": "^4.5.0",
     "multiformats": "^9.6.5",
-    "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "styled-system": "^5.1.5",
-    "subscriptions-transport-ws": "^0.11.0",
-    "swr": "^1.0.1",
-    "trim": "^1.0.1",
-    "ws": "^8.4.2"
+    "swr": "^1.0.1"
   },
   "peerDependencies": {
     "next": ">= 9.0.0",
