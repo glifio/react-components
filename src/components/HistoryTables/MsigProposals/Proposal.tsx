@@ -63,8 +63,10 @@ export default function ProposalDetail(props: ProposalDetailProps) {
 
   const loadMsigState = useMemo<boolean>(() => {
     try {
-      return !!actorData && decodeActorCID(actorData.actor.Code).includes('multisig')
-    } catch(e) {
+      return (
+        !!actorData && decodeActorCID(actorData.actor.Code).includes('multisig')
+      )
+    } catch (e) {
       logger.error(e)
       return false
     }

@@ -24,8 +24,7 @@ export const useMethodName = (
 
   const actorName = useMemo<string>(() => {
     if (message?.actorName) return message.actorName
-    if (!message?.cid || actor.loading || actor.error || !actor.data)
-      return ''
+    if (!message?.cid || actor.loading || actor.error || !actor.data) return ''
     try {
       return decodeActorCID(actor.data?.actor.Code)
     } catch (e) {
