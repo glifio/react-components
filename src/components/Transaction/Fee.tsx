@@ -77,7 +77,18 @@ export const TransactionFee = ({
         )}
         {txFee && (
           <p>
-            You will not pay more than {txFee.toFil()} FIL for this transaction.{' '}
+            {txFee.isGreaterThan(maxFee) ? (
+              <>
+                The current account does not have sufficient balance to afford
+                the transaction fee of {txFee.toFil()} FIL. Please credit your
+                account to perform this transaction.
+              </>
+            ) : (
+              <>
+                You will not pay more than {txFee.toFil()} FIL for this
+                transaction.
+              </>
+            )}{' '}
             <SmartLink href='https://filfox.info/en/stats/gas'>
               More information on average gas fee statistics.
             </SmartLink>

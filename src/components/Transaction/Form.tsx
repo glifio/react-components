@@ -179,7 +179,9 @@ export const TransactionForm = ({
           }
           nextDisabled={
             (txState !== TxState.FillingForm || !message) &&
-            (txState !== TxState.FillingTxFee || !messageWithGas)
+            (txState !== TxState.FillingTxFee ||
+              !messageWithGas ||
+              txFee.isGreaterThan(maxFee))
           }
           backText={txState < TxState.FillingTxFee ? 'Cancel' : 'Back'}
           nextText={txState < TxState.FillingTxFee ? 'Review' : 'Send'}
