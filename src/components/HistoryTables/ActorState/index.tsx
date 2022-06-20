@@ -43,7 +43,7 @@ export function ActorState({ address }: { address: string }) {
   const actorType = useMemo<string>(() => {
     if (!actorStateData?.Code) return ''
     try {
-      return decodeActorCID(actorStateData?.Code['/'])
+      return decodeActorCID(actorStateData?.Code)
     } catch (e) {
       logger.error(e)
       return 'unknown'
