@@ -79,9 +79,8 @@ export const TransactionFee = ({
           <p>
             {txFee.isGreaterThan(maxFee) ? (
               <>
-                The current account does not have sufficient balance to afford
-                the transaction fee of {txFee.toFil()} FIL. Please credit your
-                account to perform this transaction.
+                Your wallet address does not have sufficient funds to afford the
+                transaction fee of {txFee.toFil()} FIL.
               </>
             ) : (
               <>
