@@ -22,15 +22,6 @@ import ErrorView from '../../Error'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import { logger } from '../../../logger'
 
-type ProposalDetailProps = {
-  id: number
-  address: string
-  walletAddress?: string
-
-  accept: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
-  cancel: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
-}
-
 export default function ProposalDetail(props: ProposalDetailProps) {
   const router = useRouter()
   let {
@@ -231,15 +222,18 @@ export default function ProposalDetail(props: ProposalDetailProps) {
   )
 }
 
-ProposalDetail.propTypes = {
-  id: PropTypes.number.isRequired,
-  walletAddress: ADDRESS_PROPTYPE.isRequired,
-  cid: PropTypes.string,
-  address: ADDRESS_PROPTYPE.isRequired,
-  accept: PropTypes.func,
-  reject: PropTypes.func
+type ProposalDetailProps = {
+  id: number
+  address: string
+  walletAddress?: string
+  accept: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
+  cancel: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
 }
 
-ProposalDetail.defaultProps = {
-  cid: ''
+ProposalDetail.propTypes = {
+  id: PropTypes.number.isRequired,
+  address: ADDRESS_PROPTYPE.isRequired,
+  walletAddress: ADDRESS_PROPTYPE,
+  accept: PropTypes.func.isRequired,
+  cancel: PropTypes.func.isRequired
 }
