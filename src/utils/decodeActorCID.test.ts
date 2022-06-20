@@ -7,9 +7,9 @@ describe('decodeActorCID', () => {
   })
 
   test('it throws an error if the CID is not a valid actor code', () => {
-    expect(() =>
-      decodeActorCID('abc123')
-    ).toThrowError(/^Invalid actor CID: .*$/)
+    expect(() => decodeActorCID('abc123')).toThrowError(
+      /^Invalid actor CID: .*$/
+    )
   })
 
   test('it throws an error if the CID is not a known actor code', () => {
