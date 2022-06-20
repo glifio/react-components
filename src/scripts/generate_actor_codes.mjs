@@ -11,6 +11,15 @@ import fs from 'fs'
 
 const SYSTEM_ACTOR = 'f00'
 
+const templateTS = codes => `/**
+* THIS FILE WAS GENERATED WITH A SCRIPT, DO NOT EDIT
+*/
+
+import { BuiltInActorRegistry } from '../customPropTypes'
+
+export const actorCodes = ${JSON.stringify(codes)} as BuiltInActorRegistry;
+`
+
 const generateActorCIDs = async apiAddress => {
   const lCli = new LotusRPCEngine.default({
     apiAddress
@@ -64,8 +73,8 @@ async function main() {
   console.log('Fetched actor codes: ', JSON.stringify(json, null, 2))
 
   fs.writeFileSync(
-    `${process.cwd()}/src/utils/decodeActorCID/actorCodes.json`,
-    Buffer.from(JSON.stringify(json))
+    `${process.cwd()}/src/generated/actorCodes.ts`,
+    Buffer.from(templateTS(json))
   )
 }
 

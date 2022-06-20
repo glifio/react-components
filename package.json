@@ -15,7 +15,7 @@
     "test-watch": "jest --watch",
     "clean": "rimraf dist/* && mkdirp dist",
     "codegen": "run-s codegen:*",
-    "codegen:actorCids": "rimraf src/utils/decodeActorCID/actorCodes.json && touch src/utils/decodeActorCID/actorCodes.json && node src/scripts/generate_actor_codes.mjs",
+    "codegen:actorCids": "rimraf src/generated/actorCodes.ts && mkdir -p src/generated && touch src/generated/actorCodes.ts && node src/scripts/generate_actor_codes.mjs && eslint ./src/generated/actorCodes.ts --fix",
     "codegen:graphql": "graphql-codegen --config codegen.yml && eslint ./src/generated/graphql.tsx --fix",
     "build": "run-s clean codegen build:*",
     "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --source-maps --ignore 'src/**/*.stories.jsx','src/**/*.test.jsx','src/**/*.test.js','src/**/*.test.tsx','src/**/*.test.ts','src/test-utils/**/*'",
