@@ -5,7 +5,7 @@ export const decodeActorCID = (cid: string): string => {
   try {
     const decoded = base32Decode(cid.slice(1).toUpperCase(), 'RFC4648')
     actorCode = new TextDecoder('utf-8').decode(decoded.slice(4))
-  } catch(e) {
+  } catch (e) {
     throw new Error('invalid actor code')
   }
   if (!actorCode.includes('fil/')) {
