@@ -8,9 +8,15 @@ import {
   Requireable
 } from 'prop-types'
 import { validateMnemonic } from 'bip39'
-import { validateAddressString, CoinType } from '@glif/filecoin-address'
+import {
+  validateAddressString,
+  CoinType,
+  Network
+} from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import BigNumber from 'bignumber.js'
+import type { CID as IPLDNode } from '@glif/filecoin-wallet-provider'
+import { CID } from 'multiformats/cid'
 
 /**
  * ADDRESS_PROPTYPE
@@ -217,3 +223,30 @@ export const MNEMONIC_PROPTYPE: Requireable<any> = Object.assign(
   createMnemonicPropType(false),
   { isRequired: createMnemonicPropType(true) }
 )
+
+/* Actor types */
+
+export type SystemActorState = {
+  BuiltinActors: IPLDNode
+}
+
+export type BuiltInActorName =
+  | 'system'
+  | 'init'
+  | 'cron'
+  | 'account'
+  | 'storagepower'
+  | 'storageminer'
+  | 'storagemarket'
+  | 'paymentchannel'
+  | 'multisig'
+  | 'reward'
+  | 'verifiedregistry'
+
+export type BuiltInActorRecord = [BuiltInActorName, CID]
+
+export type BuiltInActorRegistryReturn = BuiltInActorRecord[]
+
+export type BuiltInActorNetworkRegistry = Record<string, BuiltInActorName>
+
+export type BuiltInActorRegistry = Record<Network, BuiltInActorNetworkRegistry>

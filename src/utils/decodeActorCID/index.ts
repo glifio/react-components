@@ -1,9 +1,7 @@
 import { Network } from '@glif/filecoin-address'
 import type { CID as IPLDNode } from '@glif/filecoin-wallet-provider'
-import actorCodeJSON from './actorCodes.json'
-import type { BuiltInActorRegistry, BuiltInActorName } from './types'
-
-const actorCodes = actorCodeJSON as BuiltInActorRegistry
+import { actorCodes } from '../../generated/actorCodes'
+import type { BuiltInActorName } from '../../customPropTypes'
 
 export const decodeActorCID = (
   cid: IPLDNode | string
