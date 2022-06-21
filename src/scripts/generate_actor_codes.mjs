@@ -1,6 +1,7 @@
+import { Network } from '@glif/filecoin-address'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { decode } from '@ipld/dag-cbor'
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile } from 'node:fs/promises'
 
 /**
  * A script for generating the built-in actor actor codes
@@ -11,6 +12,21 @@ import { mkdir, writeFile } from 'node:fs/promises';
 
 const SYSTEM_ACTOR = 'f00'
 
+const inverse = obj => {
+  let retobj = {}
+  for (let key in obj) {
+    retobj[obj[key]] = key
+  }
+  return retobj
+}
+
+const mirror = codes => {
+  return {
+    [Network.MAIN]: inverse(codes[Network.MAIN]),
+    [Network.TEST]: inverse(codes[Network.TEST])
+  }
+}
+
 const templateTS = codes => `
 /**
  * THIS FILE WAS GENERATED WITH A SCRIPT, DO NOT EDIT
@@ -19,6 +35,8 @@ const templateTS = codes => `
 import { BuiltInActorRegistry } from '../customPropTypes'
 
 export const actorCodes = ${JSON.stringify(codes)} as BuiltInActorRegistry;
+
+export const actorCodesToNames = ${JSON.stringify(mirror(codes))};
 `
 
 const generateActorCIDs = async apiAddress => {

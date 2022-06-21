@@ -57,7 +57,10 @@ describe('decodeActorCID', () => {
         '/': 'bafk2bzaceaihibfu625lbtzdp3tcftscshrmbgghgrc7kzqhxn4455pycpdkm'
       })
     ).toBe('verifiedregistry')
+  })
 
-    expect(true).toBe(true)
+  test('it decodes v7 actors', () => {
+    const decoded = decodeActorCID('bafkqadtgnfwc6njpnv2wy5djonuwo')
+    expect(decoded).toBe('multisig')
   })
 })

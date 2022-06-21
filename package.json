@@ -75,7 +75,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.10",
+    "@apollo/client": "^3.6.8",
     "@chainsafe/filsnap-adapter": "^2.1.1",
     "@chainsafe/filsnap-types": "^2.1.2",
     "@glif/base-css": "^0.0.25",
