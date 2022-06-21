@@ -1,5 +1,5 @@
 declare module '@zondax/filecoin-signing-tools/js' {
-  enum ProtocolIndicator {
+  export enum ProtocolIndicator {
     ID = 0,
     SECP256K1,
     ACTOR,
@@ -60,6 +60,11 @@ declare module '@zondax/filecoin-signing-tools/js' {
 
   export function transactionSerializeRaw(transaction: Message): Uint8Array
 
+  export function transactionParse(
+    cborMessage: string,
+    testnet: boolean
+  ): Message
+
   export function transactionSign(
     unsignedMessage: Message,
     privateKey: string | Buffer
@@ -74,4 +79,8 @@ declare module '@zondax/filecoin-signing-tools/js' {
     signature: string | Buffer,
     message: Message | string | Buffer
   ): boolean
+
+  export function addressAsBytes(address: string): Buffer
+
+  export function bytesToAddress(address: any, testnet: boolean): string
 }
