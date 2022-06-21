@@ -47,5 +47,5 @@ declare module '@zondax/filecoin-signing-tools/js' {
   export function transactionSerializeRaw(transaction: Message): Uint8Array
   export function transactionSign(unsignedMessage: Message, privateKey: string | Buffer): SignedMessage
   export function transactionSignRaw(unsignedMessage: Message | string | Buffer, privateKey: string | Buffer): Buffer
-  export function verifySignature(signature: string | Buffer, message: Message | string | Buffer)
+  export function verifySignature(signature: string | Buffer, message: Message | string | Buffer): boolean
 }
