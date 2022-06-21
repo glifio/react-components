@@ -57,7 +57,8 @@ declare module '@zondax/filecoin-signing-tools' {
     start_epoch: string,
     gas_limit: string,
     gas_fee_cap: string,
-    gas_premium: string
+    gas_premium: string,
+    network: string
   ): any
 
   export function createMultisig(
@@ -67,7 +68,8 @@ declare module '@zondax/filecoin-signing-tools' {
     required: number,
     nonce: number,
     duration: string,
-    start_epoch: string
+    start_epoch: string,
+    network: string
   ): any
 
   export function proposeMultisigWithFee(
@@ -146,14 +148,16 @@ declare module '@zondax/filecoin-signing-tools' {
     nonce: number,
     gas_limit: string,
     gas_fee_cap: string,
-    gas_premium: string
+    gas_premium: string,
+    network: string
   ): any
 
   export function createPymtChan(
     from_address: string,
     to_address: string,
     amount: string,
-    nonce: number
+    nonce: number,
+    network: string
   ): any
 
   export function settlePymtChanWithFee(
