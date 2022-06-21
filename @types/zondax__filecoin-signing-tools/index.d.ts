@@ -1,10 +1,17 @@
 declare module '@zondax/filecoin-signing-tools/js' {
+
+  enum ProtocolIndicator {
+    ID = 0,
+    SECP256K1,
+    ACTOR,
+    BLS
+  }
+  
   export class ExtendedKey {
-    constructor(privateKey: Buffer, testnet?: boolean)
+    constructor(privateKey: Buffer, testnet: boolean)
+    publicKey: Buffer
+    privateKey: Buffer
     address: string
-    privateKey: Buffer | Uint8Array
-    publicKey: Buffer | Uint8Array
-    // getters
     get public_raw(): Uint8Array
     get private_raw(): Uint8Array
     get public_hexstring(): string
@@ -14,49 +21,31 @@ declare module '@zondax/filecoin-signing-tools/js' {
   }
 
   export interface Message {
-    to: string
-    from: string
-    nonce: number
-    value: string
-    gasfeecap: string
-    gaspremium: string
-    gaslimit: number
-    method: number
-    params?: any
+    To: string
+    From: string
+    Nonce: number
+    Value: string
+    GasFeeCap: string
+    GasPremium: string
+    GasLimit: number
+    Method: number
+    Params: string
   }
 
   export interface SignedMessage {
-    message: Message
-    signature: {
-      data: string
-      type: number
+    Signature: {
+      Data: string
+      Type: ProtocolIndicator
     }
   }
 
   export function generateMnemonic(): string
-  export function keyDeriveFromSeed(seed: string, path: string): ExtendedKey
-
-  export function transactionSerializeRaw(transaction: Message): Buffer
+  export function keyDerive(mnemonic: string, path: string, password: string): ExtendedKey
+  export function keyDeriveFromSeed(seed: string | Buffer, path: string): ExtendedKey
+  export function keyRecover(privateKey: string | Buffer, testnet: boolean): ExtendedKey
   export function transactionSerialize(transaction: Message): string
-
-  export function transactionSignRaw(
-    unsignedMessage: Message | string,
-    privateKey: string,
-  ): Buffer
-  export function transactionSign(
-    unsignedMessage: Message,
-    privateKey: string,
-  ): SignedMessage
-
-  export function keyRecover(privateKey: Buffer, testnet: boolean): ExtendedKey
-
-  export function keyDerive(
-    mnemonic: string,
-    path: string,
-    password: string,
-  ): ExtendedKey
-
-  export interface Buffer {
-    toString(encoding: 'utf8' | 'hex' | 'binary' | 'base64' | 'ascii'): string
-  }
+  export function transactionSerializeRaw(transaction: Message): Uint8Array
+  export function transactionSign(unsignedMessage: Message, privateKey: string | Buffer): SignedMessage
+  export function transactionSignRaw(unsignedMessage: Message | string | Buffer, privateKey: string | Buffer): Buffer
+  export function verifySignature(signature: string | Buffer, message: Message | string | Buffer)
 }
