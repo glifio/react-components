@@ -1,12 +1,11 @@
 declare module '@zondax/filecoin-signing-tools/js' {
-
   enum ProtocolIndicator {
     ID = 0,
     SECP256K1,
     ACTOR,
     BLS
   }
-  
+
   export class ExtendedKey {
     constructor(privateKey: Buffer, testnet: boolean)
     publicKey: Buffer
@@ -40,12 +39,39 @@ declare module '@zondax/filecoin-signing-tools/js' {
   }
 
   export function generateMnemonic(): string
-  export function keyDerive(mnemonic: string, path: string, password: string): ExtendedKey
-  export function keyDeriveFromSeed(seed: string | Buffer, path: string): ExtendedKey
-  export function keyRecover(privateKey: string | Buffer, testnet: boolean): ExtendedKey
+
+  export function keyDerive(
+    mnemonic: string,
+    path: string,
+    password: string
+  ): ExtendedKey
+
+  export function keyDeriveFromSeed(
+    seed: string | Buffer,
+    path: string
+  ): ExtendedKey
+
+  export function keyRecover(
+    privateKey: string | Buffer,
+    testnet: boolean
+  ): ExtendedKey
+
   export function transactionSerialize(transaction: Message): string
+
   export function transactionSerializeRaw(transaction: Message): Uint8Array
-  export function transactionSign(unsignedMessage: Message, privateKey: string | Buffer): SignedMessage
-  export function transactionSignRaw(unsignedMessage: Message | string | Buffer, privateKey: string | Buffer): Buffer
-  export function verifySignature(signature: string | Buffer, message: Message | string | Buffer): boolean
+
+  export function transactionSign(
+    unsignedMessage: Message,
+    privateKey: string | Buffer
+  ): SignedMessage
+
+  export function transactionSignRaw(
+    unsignedMessage: Message | string | Buffer,
+    privateKey: string | Buffer
+  ): Buffer
+
+  export function verifySignature(
+    signature: string | Buffer,
+    message: Message | string | Buffer
+  ): boolean
 }
