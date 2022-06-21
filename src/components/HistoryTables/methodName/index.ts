@@ -17,27 +17,27 @@ export const getMethodName = (
 ): string => {
   let methodName = ''
 
-  if (actorCode.includes('/multisig')) {
+  if (actorCode.includes('multisig')) {
     methodName = msigActorCodes[methodNum]
-  } else if (actorCode.includes('/account')) {
+  } else if (actorCode.includes('account')) {
     methodName = accountActorCodes[methodNum]
-  } else if (actorCode.includes('/init')) {
+  } else if (actorCode.includes('init')) {
     methodName = initActorCodes[methodNum]
-  } else if (actorCode.includes('/cron')) {
+  } else if (actorCode.includes('cron')) {
     methodName = cronActorCodes[methodNum]
-  } else if (actorCode.includes('/verifiedregistry')) {
+  } else if (actorCode.includes('verifiedregistry')) {
     methodName = verifiedRegistryActorCodes[methodNum]
-  } else if (actorCode.includes('/reward')) {
+  } else if (actorCode.includes('reward')) {
     methodName = rewardActorCodes[methodNum]
-  } else if (actorCode.includes('/paymentchannel')) {
+  } else if (actorCode.includes('paymentchannel')) {
     methodName = paymentChannelActorCodes[methodNum]
-  } else if (actorCode.includes('/storageminer')) {
+  } else if (actorCode.includes('storageminer')) {
     methodName = minerActorCodes[methodNum]
-  } else if (actorCode.includes('/storagepower')) {
+  } else if (actorCode.includes('storagepower')) {
     methodName = powerActorCodes[methodNum]
-  } else if (actorCode.includes('/storagemarket')) {
+  } else if (actorCode.includes('storagemarket')) {
     methodName = storageMarketActorCodes[methodNum]
-  } else if (actorCode.includes('/system')) {
+  } else if (actorCode.includes('system')) {
     methodName = 'internal'
   } else if (methodNum === 0) {
     methodName = 'send'

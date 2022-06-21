@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { QueryHookOptions } from '@apollo/client'
+import type { CID } from '@glif/filecoin-wallet-provider'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { Address, useAddressLazyQuery } from '../../generated/graphql'
 import { decodeActorCID } from '..'
@@ -9,10 +10,6 @@ const lCli = new LotusRPCEngine({
     process.env.NEXT_PUBLIC_LOTUS_NODE_JSONRPC ||
     'https://calibration.node.glif.io'
 })
-
-type CID = {
-  '/': string
-}
 
 export type LotusRPCActorState<T> = {
   Balance: string
@@ -62,7 +59,7 @@ export const useStateReadStateQuery = <T = any>(
           null
         )
 
-        if (res && decodeActorCID(res.Code['/']).includes('multisig')) {
+        if (res && decodeActorCID(res.Code).includes('multisig')) {
           res.State = res.State as MsigState<string>
           const signers = await Promise.all(
             res.State.Signers.map(async (signer: string) => {

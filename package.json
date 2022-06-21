@@ -1,6 +1,6 @@
 {
   "name": "@glif/react-components",
-  "version": "2.0.0-alpha.108",
+  "version": "2.0.0-alpha.110",
   "description": "Shared react components for @glif projects",
   "main": "dist/index.js",
   "repository": {
@@ -14,7 +14,9 @@
     "test:jest": "jest --coverage",
     "test-watch": "jest --watch",
     "clean": "rimraf dist/* && mkdirp dist",
-    "codegen": "graphql-codegen --config codegen.yml && eslint ./src/generated/graphql.tsx --fix",
+    "codegen": "run-s codegen:*",
+    "codegen:actorCids": "rimraf src/generated/actorCodes.ts && mkdir -p src/generated && touch src/generated/actorCodes.ts && node src/scripts/generate_actor_codes.mjs && eslint ./src/generated/actorCodes.ts --fix",
+    "codegen:graphql": "graphql-codegen --config codegen.yml && eslint ./src/generated/graphql.tsx --fix",
     "build": "run-s clean codegen build:*",
     "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --source-maps --ignore 'src/**/*.stories.jsx','src/**/*.test.jsx','src/**/*.test.js','src/**/*.test.tsx','src/**/*.test.ts','src/test-utils/**/*'",
     "build:types": "tsc --emitDeclarationOnly",
@@ -70,7 +72,7 @@
     "rimraf": "^3.0.2",
     "styled-components": "^5.2.1",
     "ts-jest": "^28.0.4",
-    "typescript": "^4.5.2"
+    "typescript": "^4.7.4"
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
@@ -83,6 +85,7 @@
     "@glif/filecoin-rpc-client": "^2.0.0-beta.8",
     "@glif/filecoin-wallet-provider": "^2.0.0-beta.15",
     "@glif/logger": "^2.0.0-alpha.16",
+    "@ipld/dag-cbor": "^7.0.2",
     "@zondax/filecoin-signing-tools": "^1.0.0-rc2",
     "axios": "^0.27.2",
     "base32-decode": "^1.0.0",
