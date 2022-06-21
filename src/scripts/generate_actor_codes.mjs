@@ -79,4 +79,4 @@ async function main() {
   await writeFile(file, Buffer.from(templateTS(json)))
 }
 
-main().catch((e) => console.error(`Failed to generate actor codes: ${e.message}`))
+main()
