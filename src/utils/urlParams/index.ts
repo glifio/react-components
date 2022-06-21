@@ -90,6 +90,6 @@ export const navigate = (
 }
 
 export const resetWallet = () => {
-  // a full page reload will reset the wallet
-  window?.location?.reload()
+  // perform a hard reload of the landing page without path and parameters
+  window.location.assign(`${window.location.protocol}//${window.location.host}`)
 }
