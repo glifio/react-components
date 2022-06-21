@@ -1,15 +1,16 @@
 import React, { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import Link from 'next/link'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { Badge } from '../generic'
 import { TR, TD } from '../table'
+import { SmartLink } from '../../Link/SmartLink'
 import { AddressLink } from '../../AddressLink'
 import { MessagePendingRow, MESSAGE_PENDING_ROW_PROP_TYPE } from '../types'
 import { useMethodName } from './useMethodName'
 import { isAddrEqual } from '../../../utils/isAddrEqual'
+import truncateAddress from '../../../utils/truncateAddress'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -30,18 +31,9 @@ export default function PendingMessageHistoryRow(
   return (
     <TR>
       <TD>
-        <Link href={cidHref(message.cid)}>
-          <a
-            style={{
-              display: 'inline-block',
-              maxWidth: '8rem',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis'
-            }}
-          >
-            {message.cid.slice()}
-          </a>
-        </Link>
+        <SmartLink href={cidHref(message.cid)}>
+          {truncateAddress(message.cid)}
+        </SmartLink>
       </TD>
       {props.inspectingAddress && (
         <TD>
