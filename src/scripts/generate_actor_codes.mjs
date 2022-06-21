@@ -1,6 +1,6 @@
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { decode } from '@ipld/dag-cbor'
-import fs from 'fs'
+import { mkdir, writeFile } from 'node:fs/promises';
 
 /**
  * A script for generating the built-in actor actor codes
@@ -11,9 +11,10 @@ import fs from 'fs'
 
 const SYSTEM_ACTOR = 'f00'
 
-const templateTS = codes => `/**
-* THIS FILE WAS GENERATED WITH A SCRIPT, DO NOT EDIT
-*/
+const templateTS = codes => `
+/**
+ * THIS FILE WAS GENERATED WITH A SCRIPT, DO NOT EDIT
+ */
 
 import { BuiltInActorRegistry } from '../customPropTypes'
 
@@ -72,10 +73,10 @@ async function main() {
 
   console.log('Fetched actor codes: ', JSON.stringify(json, null, 2))
 
-  fs.writeFileSync(
-    `${process.cwd()}/src/generated/actorCodes.ts`,
-    Buffer.from(templateTS(json))
-  )
+  const dir = `${process.cwd()}/src/generated`
+  const file = `${dir}/actorCodes.ts`
+  await mkdir(dir, { recursive: true })
+  await writeFile(file, Buffer.from(templateTS(json)))
 }
 
 main()
