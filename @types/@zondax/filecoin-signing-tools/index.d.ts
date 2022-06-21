@@ -139,6 +139,82 @@ declare module '@zondax/filecoin-signing-tools' {
     nonce: number
   ): any
 
+  export function createPymtChanWithFee(
+    from_address: string,
+    to_address: string,
+    amount: string,
+    nonce: number,
+    gas_limit: string,
+    gas_fee_cap: string,
+    gas_premium: string
+  ): any
+
+  export function createPymtChan(
+    from_address: string,
+    to_address: string,
+    amount: string,
+    nonce: number
+  ): any
+
+  export function settlePymtChanWithFee(
+    pch_address: string,
+    from_address: string,
+    nonce: number,
+    gas_limit: string,
+    gas_fee_cap: string,
+    gas_premium: string
+  ): any
+
+  export function settlePymtChan(
+    pch_address: string,
+    from_address: string,
+    nonce: number
+  ): any
+
+  export function collectPymtChanWithFee(
+    pch_address: string,
+    from_address: string,
+    nonce: number,
+    gas_limit: string,
+    gas_fee_cap: string,
+    gas_premium: string
+  ): any
+
+  export function collectPymtChan(
+    pch_address: string,
+    from_address: string,
+    nonce: number
+  ): any
+
+  export function updatePymtChanWithFee(
+    pch_address: string,
+    from_address: string,
+    signed_voucher: string,
+    nonce: number,
+    gas_limit: string,
+    gas_fee_cap: string,
+    gas_premium: string
+  ): any
+
+  export function updatePymtChan(
+    pch_address: string,
+    from_address: string,
+    signed_voucher: string,
+    nonce: number
+  ): any
+
+  export function signVoucher(voucher: string, private_key_js: any): any
+
+  export function createVoucher(
+    payment_channel_address: string,
+    time_lock_min: string,
+    time_lock_max: string,
+    amount: string,
+    lane: string,
+    nonce: number,
+    min_settle_height: string
+  ): any
+
   export function serializeParams(params_value: any): Uint8Array
 
   export function deserializeParams(
