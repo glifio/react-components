@@ -41,30 +41,25 @@ describe('generateRouteWithRequiredUrlParams', () => {
   test('it allows for adding computed paths', () => {
     const route = generateRouteWithRequiredUrlParams({
       existingQParams: { network: 't' },
-      pageUrl: PAGE.HOME,
-      urlPathExtension: ['extension']
+      pageUrl: PAGE.HOME
     })
 
     expect(route.includes(PAGE.HOME)).toBe(true)
     expect(route.includes('network=t')).toBe(true)
-    expect(route.includes('/extension')).toBe(true)
 
     const route2 = generateRouteWithRequiredUrlParams({
       existingQParams: {},
-      pageUrl: PAGE.HOME,
-      urlPathExtension: ['extension']
+      pageUrl: PAGE.HOME
     })
 
     expect(route2.includes(PAGE.HOME)).toBe(true)
     expect(route2.includes('?')).toBe(false)
-    expect(route2.includes('/extension')).toBe(true)
   })
 
   test('it deletes not required q params with the flag', () => {
     const route = generateRouteWithRequiredUrlParams({
       existingQParams: { network: 't', param2: 'kobe' },
       pageUrl: PAGE.HOME,
-      urlPathExtension: ['extension', 'second-extension'],
       newQueryParams: {
         test: 'value',
         test2: 'thingy'
@@ -75,7 +70,6 @@ describe('generateRouteWithRequiredUrlParams', () => {
     expect(route.includes(PAGE.HOME)).toBe(true)
     expect(route.includes('network=t')).toBe(false)
     expect(route.includes('param2=kobe')).toBe(false)
-    expect(route.includes('/extension/second-extension')).toBe(true)
     expect(route.includes('test=value')).toBe(true)
     expect(route.includes('test2=thingy')).toBe(true)
   })
@@ -85,7 +79,6 @@ describe('generateRouteWithRequiredUrlParams', () => {
       existingQParams: { network: 't', param2: 'kobe' },
       pageUrl: PAGE.HOME,
       maintainQueryParams: true,
-      urlPathExtension: ['extension', 'second-extension'],
       newQueryParams: {
         test: 'value',
         test2: 'thingy'
@@ -95,7 +88,6 @@ describe('generateRouteWithRequiredUrlParams', () => {
     expect(route.includes(PAGE.HOME)).toBe(true)
     expect(route.includes('network=t')).toBe(true)
     expect(route.includes('param2=kobe')).toBe(true)
-    expect(route.includes('/extension/second-extension')).toBe(true)
   })
 
   test('it does not prepend a query question mark if no params are present', () => {

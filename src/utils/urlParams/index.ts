@@ -5,7 +5,6 @@ const requiredUrlParamsWithDefaults = {}
 interface NavigationOptions {
   existingQParams: Record<string, string | string[]>
   pageUrl: string
-  urlPathExtension?: string[]
   newQueryParams?: Record<string, any>
   maintainQueryParams?: boolean
 }
@@ -58,16 +57,6 @@ export const generateRouteWithRequiredUrlParams = (
     opts?.newQueryParams,
     maintain
   )
-
-  if (opts?.urlPathExtension) {
-    let route = `${opts.pageUrl}/${opts.urlPathExtension.join('/')}`
-
-    if (newParams.toString().length > 0) {
-      route += `?${newParams.toString()}`
-    }
-
-    return route
-  }
 
   if (!newParams.toString()) {
     return opts.pageUrl
