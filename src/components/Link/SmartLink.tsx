@@ -12,8 +12,8 @@ export function SmartLink({
   href,
   download,
   className,
-  retainExtraParams,
-  retainDefaultParams,
+  params,
+  retainParams,
   onClick
 }: SmartLinkProps) {
   const { query } = useRouter()
@@ -70,8 +70,8 @@ export interface SmartLinkProps {
   href?: string
   download?: string
   className?: string
-  retainExtraParams?: Array<string>
-  retainDefaultParams?: boolean
+  params?: Record<string, string | string[] | number | number[]>
+  retainParams?: boolean
   onClick?: () => void
 }
 
@@ -83,8 +83,15 @@ export const SmartLinkPropTypes = {
   href: PropTypes.string,
   download: PropTypes.string,
   className: PropTypes.string,
-  retainExtraParams: PropTypes.arrayOf(PropTypes.string),
-  retainDefaultParams: PropTypes.bool,
+  params: PropTypes.objectOf(
+    PropTypes.oneOf([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+      PropTypes.number,
+      PropTypes.arrayOf(PropTypes.number)
+    ])
+  ),
+  retainParams: PropTypes.bool,
   onClick: PropTypes.func
 }
 
