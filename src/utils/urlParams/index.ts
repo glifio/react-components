@@ -1,6 +1,6 @@
 import { NextRouter } from 'next/router'
 
-const appendParam = (
+const appendQueryParam = (
   params: URLSearchParams,
   key: string,
   value: string | number
@@ -9,7 +9,7 @@ const appendParam = (
   params.append(key, valueStr)
 }
 
-export const appendParams = (
+export const appendQueryParams = (
   url: string,
   params: Record<string, string | string[] | number | number[]>
 ): string => {
@@ -25,9 +25,9 @@ export const appendParams = (
     if (paramObject.has(key)) paramObject.delete(key)
     // Append array values
     if (Array.isArray(value))
-      value.forEach(v => appendParam(paramObject, key, v))
+      value.forEach(v => appendQueryParam(paramObject, key, v))
     // Append single values
-    else appendParam(paramObject, key, value)
+    else appendQueryParam(paramObject, key, value)
   })
 
   // Return URL with updated parameters
@@ -49,10 +49,10 @@ export function navigate(
 
   // Add existing query params if retained
   if (router.query && retainParams)
-    updatedUrl = appendParams(updatedUrl, router.query)
+    updatedUrl = appendQueryParams(updatedUrl, router.query)
 
   // Add new query params if passed
-  if (params) updatedUrl = appendParams(updatedUrl, params)
+  if (params) updatedUrl = appendQueryParams(updatedUrl, params)
 
   router.push(updatedUrl)
 }

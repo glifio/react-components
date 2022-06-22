@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 
-import { appendParams } from '../../utils'
+import { appendQueryParams } from '../../utils'
 
 const absoluteUrlRegex = new RegExp('^(?:[a-z]+:)?//', 'i')
 
@@ -34,10 +34,10 @@ export function SmartLink({
 
     // Add existing query params if retained
     if (query && isInternalLink && retainParams)
-      updatedHref = appendParams(updatedHref, query)
+      updatedHref = appendQueryParams(updatedHref, query)
 
     // Add new query params if passed
-    if (params) updatedHref = appendParams(updatedHref, params)
+    if (params) updatedHref = appendQueryParams(updatedHref, params)
 
     return updatedHref
   }, [query, isInternalLink, href, params, retainParams])
