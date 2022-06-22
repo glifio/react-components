@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import { layout, space } from 'styled-system'
 import PropTypes from 'prop-types'
 
-import { SmartLink } from '../Link/SmartLink'
+import { SmartLink, SmartLinkPropTypes } from '../Link/SmartLink'
 
 const buttonStyle = css`
   display: inline-flex;
@@ -156,7 +156,7 @@ export const ButtonV2Link = styled(SmartLink)`
 `
 ButtonV2Link.propTypes = {
   ...buttonPropTypes,
-  ...SmartLink.propTypes
+  ...SmartLinkPropTypes
 }
 ButtonV2Link.defaultProps = {
   ...buttonDefaultProps,
