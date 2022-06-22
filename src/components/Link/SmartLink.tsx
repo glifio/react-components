@@ -19,8 +19,12 @@ export function SmartLink({
   const router = useRouter()
   const query = router?.query
 
-  const isInternalLink = useMemo<boolean>(() => !href ? false : absoluteUrlRegex.test(href), [href])
-  
+  const isInternalLink = useMemo<boolean>(
+    // href can be undefined for a download button
+    () => (!href ? false : absoluteUrlRegex.test(href)),
+    [href]
+  )
+
   const hrefWithParams = useMemo<string>(() => {
     // Don't alter absolute URLs or when not retaining params
     if (isAbsolute || !retainParams.length) return href
