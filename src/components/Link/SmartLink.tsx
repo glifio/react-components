@@ -89,7 +89,3 @@ export const SmartLinkPropTypes = {
 }
 
 SmartLink.propTypes = SmartLinkPropTypes
-SmartLink.defaultProps = {
-  retainDefaultParams: true,
-  onClick: () => {}
-}
