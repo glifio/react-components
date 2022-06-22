@@ -48,7 +48,8 @@ export function navigate(
   let updatedUrl = pageUrl
 
   // Add existing query params if retained
-  if (retainParams) updatedUrl = appendParams(updatedUrl, router.query)
+  if (router.query && retainParams)
+    updatedUrl = appendParams(updatedUrl, router.query)
 
   // Add new query params if passed
   if (params) updatedUrl = appendParams(updatedUrl, params)
