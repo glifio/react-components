@@ -1,4 +1,4 @@
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen, act, fireEvent } from '@testing-library/react'
 import composeMockAppTree from '../../../test-utils/composeMockAppTree'
 import { mockFetchDefaultWallet } from '../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import ConnectMetaMask from '.'
@@ -8,16 +8,10 @@ import { TESTNET_PATH_CODE } from '../../../constants'
 import createPath from '../../../utils/createPath'
 import { initialMetaMaskState } from '../../../services/WalletProvider/metamaskUtils'
 
-describe('metamask onboarding', () => {
-  let backSpy, nextSpy
-  afterEach(() => {
-    jest.clearAllMocks()
-    jest.useFakeTimers()
-    backSpy = jest.fn()
-    nextSpy = jest.fn()
-    cleanup()
-  })
+const backSpy = jest.fn()
+const nextSpy = jest.fn()
 
+describe('metamask onboarding', () => {
   test('it renders loading state', async () => {
     const { Tree } = composeMockAppTree('preOnboard')
     let res

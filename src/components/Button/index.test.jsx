@@ -1,10 +1,9 @@
-import { cleanup, render, act, fireEvent } from '@testing-library/react'
+import { render, act, fireEvent } from '@testing-library/react'
 import Button from '.'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
 describe('Button', () => {
-  afterEach(cleanup)
   test('renders the Button', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>

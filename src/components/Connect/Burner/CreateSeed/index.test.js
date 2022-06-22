@@ -1,4 +1,4 @@
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen, act, fireEvent } from '@testing-library/react'
 import composeMockAppTree from '../../../../test-utils/composeMockAppTree'
 import { flushPromises } from '../../../../test-utils'
 
@@ -7,20 +7,12 @@ import { TESTNET_PATH_CODE } from '../../../../constants'
 import { mockFetchDefaultWallet } from '../../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import createPath from '../../../../utils/createPath'
 
+const backSpy = jest.fn()
+const nextSpy = jest.fn()
+
 describe('Create seed phrase configuration', () => {
   beforeAll(() => {
     global.URL.createObjectURL = jest.fn()
-  })
-
-  let backSpy, nextSpy
-  beforeEach(() => {
-    backSpy = jest.fn()
-    nextSpy = jest.fn()
-  })
-
-  afterEach(() => {
-    jest.clearAllMocks()
-    cleanup()
   })
 
   test('it renders step 1 correctly', () => {

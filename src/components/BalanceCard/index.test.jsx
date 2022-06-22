@@ -1,5 +1,5 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { fireEvent, cleanup, render, act } from '@testing-library/react'
+import { fireEvent, render, act } from '@testing-library/react'
 import BalanceCard from '.'
 import noop from '../../utils/noop'
 import theme from '../theme'
@@ -7,8 +7,6 @@ import ThemeProvider from '../ThemeProvider'
 import { Base } from './index.stories'
 
 describe('BalanceCard', () => {
-  afterEach(cleanup)
-
   test('renders the story', () => {
     const mockOnSend = jest.fn()
     const { container } = render(

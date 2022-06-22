@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -15,6 +14,7 @@ import theme from '../theme'
 
 const labelText = 'Enter an amount in Filecoin'
 const infoText = 'This is how much will be transferred'
+const setIsValid = jest.fn()
 
 function ControlledInput({ value, ...props }: FilecoinInputProps) {
   const [controlled, setControlled] = useState<FilecoinNumber>(value)
@@ -24,14 +24,6 @@ function ControlledInput({ value, ...props }: FilecoinInputProps) {
 }
 
 describe('Filecoin input', () => {
-  afterEach(cleanup)
-  let setIsValid = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setIsValid = jest.fn()
-  })
-
   test('it renders fil correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {

@@ -23,10 +23,6 @@ jest.mock('@glif/filecoin-wallet-provider', () => ({
 }))
 
 describe('connectLedger', () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-
   test('it returns a ledger wallet provider upon successful connection, when one doesnt exist in state yet', async () => {
     const mockDispatch = jest.fn()
     const provider = await connectLedger(mockDispatch)
@@ -52,10 +48,6 @@ describe('connectLedger', () => {
   })
 
   describe('ledger error state handling', () => {
-    beforeEach(() => {
-      jest.clearAllMocks()
-    })
-
     // the errors in these tests are simulated
     // if we find new errors, we can add specific test cases to address them
     test('it captures filecoin app not open errors', async () => {

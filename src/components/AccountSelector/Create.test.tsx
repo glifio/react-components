@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, act, screen, cleanup, fireEvent } from '@testing-library/react'
+import { render, act, screen, fireEvent } from '@testing-library/react'
 import { CoinType } from '@glif/filecoin-address'
 
 import ThemeProvider from '../ThemeProvider'
@@ -8,10 +8,6 @@ import Create from './Create'
 import { flushPromises } from '../../test-utils'
 
 describe('Create Account', () => {
-  afterEach(() => {
-    cleanup()
-    jest.clearAllMocks()
-  })
   test('it calls the callback with the right network and index', () => {
     const mock = jest.fn()
     const nextAccountIdx = 1

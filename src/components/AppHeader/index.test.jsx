@@ -1,11 +1,10 @@
-import { render, cleanup, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 import { Base } from './index.stories'
 
 describe('AppHeader', () => {
-  afterEach(cleanup)
   test('renders the box', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>

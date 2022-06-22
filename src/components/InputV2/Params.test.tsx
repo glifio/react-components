@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -15,6 +14,7 @@ const labelText = 'Enter some Base64 parameters'
 const infoText = 'Only valid Base64 is allowed'
 const validBase64 = 'dGVzdDEyMw=='
 const invalidBase64 = 'test123'
+const setIsValid = jest.fn()
 
 function ControlledInput({ value, ...props }: ParamsInputProps) {
   const [controlled, setControlled] = useState<string>(value)
@@ -22,14 +22,6 @@ function ControlledInput({ value, ...props }: ParamsInputProps) {
 }
 
 describe('Params input', () => {
-  afterEach(cleanup)
-  let setIsValid = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setIsValid = jest.fn()
-  })
-
   test('it renders correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {

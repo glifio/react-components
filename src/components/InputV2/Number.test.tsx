@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -14,6 +13,7 @@ import theme from '../theme'
 
 const labelText = 'What is your favourite number?'
 const infoText = 'Or your second favourite'
+const setIsValid = jest.fn()
 
 function ControlledInput({ value, ...props }: NumberInputProps) {
   const [controlled, setControlled] = useState<number>(value)
@@ -21,14 +21,6 @@ function ControlledInput({ value, ...props }: NumberInputProps) {
 }
 
 describe('Number input', () => {
-  afterEach(cleanup)
-  let setIsValid = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setIsValid = jest.fn()
-  })
-
   test('it renders correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {

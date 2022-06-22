@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -13,16 +12,9 @@ import theme from '../theme'
 const labelText = 'Do something'
 const infoText = 'Now is your chance'
 const inputValue = 'Click here'
+const onClick = jest.fn()
 
 describe('Button input', () => {
-  afterEach(cleanup)
-  let onClick = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    onClick = jest.fn()
-  })
-
   test('it renders correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {

@@ -1,13 +1,10 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { cleanup } from '@testing-library/react'
 import { CoinType } from '@glif/filecoin-address'
 
 import WalletProviderWrapper, { useWalletProvider } from '.'
 import { initialState } from './state'
 
 describe('useWalletProvider', () => {
-  afterEach(cleanup)
-
   test('it exposes the necessary methods to manipulate state', () => {
     const wrapper = ({ children }) => (
       <WalletProviderWrapper

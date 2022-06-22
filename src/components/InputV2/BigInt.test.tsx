@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -13,6 +12,7 @@ import theme from '../theme'
 
 const labelText = 'Enter a really big value'
 const infoText = 'This can exceed MAX_SAFE_INTEGER'
+const setIsValid = jest.fn()
 
 function ControlledInput({ value, ...props }: BigIntInputProps) {
   const [controlled, setControlled] = useState<BigInt>(value)
@@ -20,14 +20,6 @@ function ControlledInput({ value, ...props }: BigIntInputProps) {
 }
 
 describe('BigInt input', () => {
-  afterEach(cleanup)
-  let setIsValid = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setIsValid = jest.fn()
-  })
-
   test('it renders correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {

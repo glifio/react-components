@@ -1,4 +1,4 @@
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen, act, fireEvent } from '@testing-library/react'
 import { initialState as wpInitialState } from '../../../services/WalletProvider/state'
 import { initialLedgerState } from '../../../services/WalletProvider/ledgerUtils'
 import composeMockAppTree from '../../../test-utils/composeMockAppTree'
@@ -8,17 +8,10 @@ import { flushPromises } from '../../../test-utils'
 import { TESTNET_PATH_CODE } from '../../../constants'
 import createPath from '../../../utils/createPath'
 
-describe('Ledger configuration', () => {
-  let backSpy, nextSpy
-  beforeEach(() => {
-    backSpy = jest.fn()
-    nextSpy = jest.fn()
-  })
-  afterEach(() => {
-    jest.clearAllMocks()
-    cleanup()
-  })
+const backSpy = jest.fn()
+const nextSpy = jest.fn()
 
+describe('Ledger configuration', () => {
   test('it renders correctly', () => {
     const { Tree } = composeMockAppTree('preOnboard')
     const { container } = render(

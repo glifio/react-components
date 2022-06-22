@@ -25,7 +25,6 @@ describe('metamask error handling', () => {
       // @ts-expect-error
       window.ethereum._metamask = {}
       window.ethereum._metamask.isUnlocked = jest.fn()
-      jest.clearAllMocks()
     })
     test('it throws a MetaMaskNotInstalledError when metamask is not installed', async () => {
       jest

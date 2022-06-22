@@ -1,9 +1,8 @@
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 import { Base } from './index.stories'
 
 describe('Box', () => {
-  afterEach(cleanup)
   test('renders the box', () => {
     const { container } = render(<Base {...Base.args} />)
     expect(container.firstChild).toMatchSnapshot()

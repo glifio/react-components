@@ -1,4 +1,4 @@
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen, act, fireEvent } from '@testing-library/react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
@@ -6,16 +6,10 @@ import ThemeProvider from '../ThemeProvider'
 import Funds from './Funds'
 import { flushPromises } from '../../test-utils'
 
-describe('Funds input', () => {
-  afterEach(cleanup)
-  let setError = jest.fn()
-  let onAmountChange = jest.fn()
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setError = jest.fn()
-    onAmountChange = jest.fn()
-  })
+const setError = jest.fn()
+const onAmountChange = jest.fn()
 
+describe('Funds input', () => {
   test('it renders correctly', async () => {
     const value = new FilecoinNumber('1', 'fil')
     const balance = new FilecoinNumber('2', 'fil')

@@ -1,6 +1,5 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
-import { cleanup } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import { SWRConfig } from 'swr'
 import WalletProviderWrapper, {
@@ -14,13 +13,8 @@ jest.mock('@glif/filecoin-rpc-client')
 jest.mock('../WalletProvider')
 
 describe('useBalancePoller', () => {
-  afterEach(cleanup)
-
   let Tree = ({ children }) => <>{children}</>
   let walletProviderState
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
 
   test('it updates the wallets balance in the walletprovider state when the balance changes', async () => {
     const statePreset = 'postOnboard'

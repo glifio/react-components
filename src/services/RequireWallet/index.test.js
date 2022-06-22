@@ -1,5 +1,5 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { cleanup, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { RequireWallet } from './'
 import { SINGLE_KEY } from '../../constants'
 
@@ -14,9 +14,6 @@ const defaultWallet = {
 }
 
 describe('RequireWallet', () => {
-  beforeEach(jest.clearAllMocks)
-  afterEach(cleanup)
-
   test('it renders its children when a valid wallet is passed as a prop', async () => {
     useWalletMock.mockImplementation(() => defaultWallet)
     render(
