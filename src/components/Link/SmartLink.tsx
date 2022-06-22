@@ -16,14 +16,11 @@ export function SmartLink({
   retainParams,
   onClick
 }: SmartLinkProps) {
-  const { query } = useRouter()
+  const router = useRouter()
+  const query = router?.query
 
-  const isAbsolute = useMemo<boolean>(() => absoluteUrlRegex.test(href), [href])
-  const defaultParams = ['address', 'msigAddress']
-  const retainParams = [
-    ...(retainDefaultParams ? defaultParams : []),
-    ...(retainExtraParams ? retainExtraParams : [])
-  ]
+  const isInternalLink = useMemo<boolean>(() => !href ? false : absoluteUrlRegex.test(href), [href])
+  
   const hrefWithParams = useMemo<string>(() => {
     // Don't alter absolute URLs or when not retaining params
     if (isAbsolute || !retainParams.length) return href
@@ -45,7 +42,13 @@ export function SmartLink({
     return updatedParams ? `${path}?${updatedParams}` : path
   }, [query, isAbsolute, href, retainParams])
 
-  return isAbsolute ? (
+  return isInternalLink ? (
+    <Link href={hrefWithParams}>
+      <a className={className} onClick={onClick}>
+        {children}
+      </a>
+    </Link>
+  ) : (
     <a
       target='_blank'
       rel='noreferrer noopener'
@@ -56,12 +59,6 @@ export function SmartLink({
     >
       {children}
     </a>
-  ) : (
-    <Link href={hrefWithParams}>
-      <a className={className} onClick={onClick}>
-        {children}
-      </a>
-    </Link>
   )
 }
 
