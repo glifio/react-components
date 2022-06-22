@@ -40,14 +40,14 @@ export const Head = ({
       {pending && (
         <>
           {speedUpHref && !process.env.NEXT_PUBLIC_IS_PROD && (
-            <ButtonV2Link green href={speedUpHref}>
+            <ButtonV2Link green href={speedUpHref} retainParams>
               <IconSpeedUp width='1.25rem' />
               Speed up
             </ButtonV2Link>
           )}
 
           {cancelHref && !process.env.NEXT_PUBLIC_IS_PROD && (
-            <ButtonV2Link red href={cancelHref}>
+            <ButtonV2Link red href={cancelHref} retainParams>
               <IconCancel width='0.8rem' />
               Cancel
             </ButtonV2Link>
