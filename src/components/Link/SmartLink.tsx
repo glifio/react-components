@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 
+import { appendParams } from '../../utils'
+
 const absoluteUrlRegex = new RegExp('^(?:[a-z]+:)?//', 'i')
 
 // uses next/link for internal page routing
@@ -26,25 +28,19 @@ export function SmartLink({
   )
 
   const hrefWithParams = useMemo<string>(() => {
-    // Don't alter absolute URLs or when not retaining params
-    if (isAbsolute || !retainParams.length) return href
+    // Ignore params when href is empty or undefined
+    if (!href) return href
+    let updatedHref = href
 
-    // Get query params from passed href
-    const [path, paramString] = href.split('?')
+    // Add existing query params if retained
+    if (isInternalLink && retainParams)
+      updatedHref = appendParams(updatedHref, query)
 
-    // Create parameters object
-    const params = new URLSearchParams(paramString)
+    // Add new query params if passed
+    if (params) updatedHref = appendParams(updatedHref, params)
 
-    // Add retained parameters
-    retainParams.forEach(param => {
-      if (param in query && !params.has(param))
-        params.set(param, query[param] as string)
-    })
-
-    // Return final URL with updated params
-    const updatedParams = params.toString()
-    return updatedParams ? `${path}?${updatedParams}` : path
-  }, [query, isAbsolute, href, retainParams])
+    return updatedHref
+  }, [query, isInternalLink, href, params, retainParams])
 
   return isInternalLink ? (
     <Link href={hrefWithParams}>
