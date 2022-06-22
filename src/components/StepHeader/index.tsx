@@ -1,7 +1,7 @@
+import styled from 'styled-components'
 import React, { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 
-import { Menu, MenuItem } from '../Menu'
 import Stepper from '../Stepper'
 import Loading from '../LoaderGlyph'
 import Glyph from '../Glyph'
@@ -21,6 +21,19 @@ type StepHeaderProps = {
   [x: string]: any
 }
 
+const Menu = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-color: silver;
+  width: 100%;
+`
+
+const MenuItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+`
+
 const StepHeader = ({
   currentStep,
   glyphAcronym,
@@ -29,20 +42,12 @@ const StepHeader = ({
   totalSteps,
   showStepper,
   title,
-  error,
-  ...props
+  error
 }: Partial<StepHeaderProps>) => {
   return (
-    <Menu
-      display='flex'
-      alignItems='center'
-      justifyContent='space-between'
-      borderColor='silver'
-      width='100%'
-      {...props}
-    >
+    <Menu>
       <Box display='flex' flexDirection='row' alignItems='center'>
-        <MenuItem display='flex' justifyContent='space-between'>
+        <MenuItem>
           {error && <ErrorGlyph />}
           {loading && !error && <Loading />}
           {!loading && !error && glyphAcronym && (
@@ -53,7 +58,7 @@ const StepHeader = ({
         {title && <Title>{title}</Title>}
       </Box>
       {showStepper && (
-        <MenuItem>
+        <li>
           <Stepper
             textColor={error ? 'status.fail.foreground' : 'core.nearblack'}
             completedDotColor={
@@ -65,7 +70,7 @@ const StepHeader = ({
             ml={4}
             my={0}
           />
-        </MenuItem>
+        </li>
       )}
     </Menu>
   )
