@@ -7,6 +7,9 @@
     "type": "git",
     "url": "https://github.com/glifio/react-components.git"
   },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "test": "run-s test:*",
     "test:lint": "eslint --ext .jsx,.js,.ts,.tsx ./src",
