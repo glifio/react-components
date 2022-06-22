@@ -1,6 +1,6 @@
 {
   "name": "@glif/react-components",
-  "version": "2.0.0-alpha.110",
+  "version": "2.0.0-alpha.112",
   "description": "Shared react components for @glif projects",
   "main": "dist/index.js",
   "repository": {
@@ -42,7 +42,7 @@
     "@babel/preset-env": "^7.12.17",
     "@babel/preset-typescript": "^7.17.12",
     "@graphql-codegen/cli": "2.6.2",
-    "@graphql-codegen/typescript": "2.4.11",
+    "@graphql-codegen/typescript": "2.5.1",
     "@graphql-codegen/typescript-operations": "^2.2.2",
     "@graphql-codegen/typescript-react-apollo": "^3.2.3",
     "@storybook/addon-actions": "^6.1.0-beta.2",
@@ -68,7 +68,7 @@
     "jest-styled-components": "7.0.8",
     "mkdirp": "^1.0.4",
     "next": "^12.0.7",
-    "npm-run-all2": "^5.0.1",
+    "npm-run-all2": "^6.0.1",
     "prettier": "^2.1.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
@@ -78,7 +78,7 @@
     "typescript": "^4.7.4"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.10",
+    "@apollo/client": "^3.6.8",
     "@chainsafe/filsnap-adapter": "^2.1.1",
     "@chainsafe/filsnap-types": "^2.1.2",
     "@glif/base-css": "^0.0.25",
@@ -89,7 +89,7 @@
     "@glif/filecoin-wallet-provider": "^2.0.0-beta.15",
     "@glif/logger": "^2.0.0-alpha.16",
     "@ipld/dag-cbor": "^7.0.2",
-    "@zondax/filecoin-signing-tools": "^0.20.1",
+    "@zondax/filecoin-signing-tools": "^1.0.0",
     "axios": "^0.27.2",
     "base32-decode": "^1.0.0",
     "bignumber.js": "^9.0.1",
