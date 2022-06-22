@@ -22,7 +22,6 @@ function ControlledInput({ value, ...props }: TextInputProps) {
 }
 
 describe('Text input', () => {
-
   test('it renders correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {
