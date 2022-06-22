@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -7,13 +6,13 @@ import {
   RenderResult
 } from '@testing-library/react'
 import { useState } from 'react'
-import { flushPromises } from '../../test-utils'
 import { NumberInput, NumberInputProps } from './Number'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 
 const labelText = 'What is your favourite number?'
 const infoText = 'Or your second favourite'
+const setIsValid = jest.fn()
 
 function ControlledInput({ value, ...props }: NumberInputProps) {
   const [controlled, setControlled] = useState<number>(value)
@@ -21,14 +20,6 @@ function ControlledInput({ value, ...props }: NumberInputProps) {
 }
 
 describe('Number input', () => {
-  afterEach(cleanup)
-  let setIsValid = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setIsValid = jest.fn()
-  })
-
   test('it renders correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {
@@ -127,20 +118,17 @@ describe('Number input', () => {
 
       // It treats a "." as an invalid number
       fireEvent.change(input, { target: { value: '.' } })
-      input.blur()
-      await flushPromises()
+      jest.runAllTimers()
       expect(input).toHaveValue(null)
 
       // It treats ".0" as "0"
       fireEvent.change(input, { target: { value: '.0' } })
-      input.blur()
-      await flushPromises()
+      jest.runAllTimers()
       expect(input).toHaveValue(0)
 
       // It treats ".01" as "0.01"
       fireEvent.change(input, { target: { value: '.01' } })
-      input.blur()
-      await flushPromises()
+      jest.runAllTimers()
       expect(input).toHaveValue(0.01)
     })
   })

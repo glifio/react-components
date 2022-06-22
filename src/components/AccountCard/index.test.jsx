@@ -1,6 +1,6 @@
 /* eslint-disable import/first */
 /* eslint-disable import/newline-after-import */
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen, act, fireEvent } from '@testing-library/react'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import AccountCard from '.'
@@ -9,8 +9,6 @@ import copyToClipboard from '../../utils/copyToClipboard'
 import { Base } from './index.stories'
 
 describe('AccountCard', () => {
-  afterEach(cleanup)
-
   test('renders the story', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>

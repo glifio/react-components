@@ -1,14 +1,7 @@
 import useDesktopBrowser from '.'
-import { cleanup } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 
 describe('useDesktopBrowser', () => {
-  afterEach(cleanup)
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-
   test('it does not redirect to the mobile error page on Mac Chrome desktop', async () => {
     const { navigator } = window
     const mockRouterReplace = jest.fn(() => {})

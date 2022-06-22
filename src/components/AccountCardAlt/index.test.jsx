@@ -1,4 +1,4 @@
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen, act, fireEvent } from '@testing-library/react'
 import AccountCardAlt from '.'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
@@ -6,7 +6,6 @@ import ThemeProvider from '../ThemeProvider'
 jest.mock('../../utils/copyToClipboard')
 
 describe('AccountCardAlt', () => {
-  afterEach(cleanup)
   test('renders the card', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>

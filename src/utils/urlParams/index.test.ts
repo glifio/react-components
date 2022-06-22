@@ -1,108 +1,132 @@
-import { generateRouteWithRequiredUrlParams } from '.'
+import { NextRouter } from 'next/router'
+import { navigate } from '.'
 
 enum PAGE {
   LANDING = '/',
   HOME = '/home'
 }
 
-describe('generateRouteWithRequiredUrlParams', () => {
-  test('it does not change the required params when generating navigation urls', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 't' },
-      pageUrl: PAGE.HOME
-    })
+const router = {
+  push: jest.fn()
+} as unknown as NextRouter
 
-    expect(route.includes(PAGE.HOME)).toBe(true)
-    expect(route.includes('?network=t')).toBe(true)
+const routerWithQuery = {
+  query: { foo: 'bar' },
+  push: jest.fn()
+} as unknown as NextRouter
+
+const routerWithQuery2 = {
+  query: { foo: 'bar', glif: 'ftw' },
+  push: jest.fn()
+} as unknown as NextRouter
+
+describe('navigate', () => {
+  test('it navigates to the URL', () => {
+    navigate(router, { pageUrl: PAGE.HOME })
+    expect(router.push).toHaveBeenCalledTimes(1)
+    expect(router.push).toHaveBeenCalledWith(PAGE.HOME)
   })
 
-  test('it allows for adding new query params', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 't' },
-      pageUrl: PAGE.HOME,
-      newQueryParams: { test: 'value' }
-    })
-
-    expect(route.includes(PAGE.HOME)).toBe(true)
-    expect(route.includes('network=t')).toBe(true)
-    expect(route.includes('test=value')).toBe(true)
-
-    const route2 = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 'f' },
-      pageUrl: PAGE.HOME,
-      newQueryParams: { test: 'value' }
-    })
-
-    expect(route2.includes(PAGE.HOME)).toBe(true)
-    expect(route2.includes('network=f')).toBe(true)
-    expect(route2.includes('test=value')).toBe(true)
+  test('it discards existing query params by default', () => {
+    navigate(routerWithQuery, { pageUrl: PAGE.HOME })
+    expect(routerWithQuery.push).toHaveBeenCalledTimes(1)
+    expect(routerWithQuery.push).toHaveBeenCalledWith(PAGE.HOME)
   })
 
-  test('it allows for adding computed paths', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 't' },
-      pageUrl: PAGE.HOME,
-      urlPathExtension: ['extension']
-    })
-
-    expect(route.includes(PAGE.HOME)).toBe(true)
-    expect(route.includes('network=t')).toBe(true)
-    expect(route.includes('/extension')).toBe(true)
-
-    const route2 = generateRouteWithRequiredUrlParams({
-      existingQParams: {},
-      pageUrl: PAGE.HOME,
-      urlPathExtension: ['extension']
-    })
-
-    expect(route2.includes(PAGE.HOME)).toBe(true)
-    expect(route2.includes('?')).toBe(false)
-    expect(route2.includes('/extension')).toBe(true)
+  test('it retains existing query params when requested', () => {
+    navigate(routerWithQuery, { pageUrl: PAGE.HOME, retainParams: true })
+    expect(routerWithQuery.push).toHaveBeenCalledTimes(1)
+    expect(routerWithQuery.push).toHaveBeenCalledWith(`${PAGE.HOME}?foo=bar`)
   })
 
-  test('it deletes not required q params with the flag', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 't', param2: 'kobe' },
-      pageUrl: PAGE.HOME,
-      urlPathExtension: ['extension', 'second-extension'],
-      newQueryParams: {
-        test: 'value',
-        test2: 'thingy'
-      },
-      maintainQueryParams: false
-    })
-
-    expect(route.includes(PAGE.HOME)).toBe(true)
-    expect(route.includes('network=t')).toBe(false)
-    expect(route.includes('param2=kobe')).toBe(false)
-    expect(route.includes('/extension/second-extension')).toBe(true)
-    expect(route.includes('test=value')).toBe(true)
-    expect(route.includes('test2=thingy')).toBe(true)
+  test('it adds new query params', () => {
+    navigate(router, { pageUrl: PAGE.HOME, params: { test: 'abc' } })
+    expect(router.push).toHaveBeenCalledTimes(1)
+    expect(router.push).toHaveBeenCalledWith(`${PAGE.HOME}?test=abc`)
   })
 
-  test('it works for the most complex cases', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 't', param2: 'kobe' },
+  test('it discards existing query params when new ones are added', () => {
+    navigate(routerWithQuery, { pageUrl: PAGE.HOME, params: { test: 'abc' } })
+    expect(routerWithQuery.push).toHaveBeenCalledTimes(1)
+    expect(routerWithQuery.push).toHaveBeenCalledWith(`${PAGE.HOME}?test=abc`)
+  })
+
+  test('it merges existing query params with new ones when retained', () => {
+    navigate(routerWithQuery, {
       pageUrl: PAGE.HOME,
-      maintainQueryParams: true,
-      urlPathExtension: ['extension', 'second-extension'],
-      newQueryParams: {
-        test: 'value',
-        test2: 'thingy'
+      params: { test: 'abc' },
+      retainParams: true
+    })
+    expect(routerWithQuery.push).toHaveBeenCalledTimes(1)
+    expect(routerWithQuery.push).toHaveBeenCalledWith(
+      `${PAGE.HOME}?foo=bar&test=abc`
+    )
+  })
+
+  test('it overwrites existing query params with new ones with the same name', () => {
+    navigate(routerWithQuery, {
+      pageUrl: PAGE.HOME,
+      params: { foo: 'baz' },
+      retainParams: true
+    })
+    expect(routerWithQuery.push).toHaveBeenCalledTimes(1)
+    expect(routerWithQuery.push).toHaveBeenCalledWith(`${PAGE.HOME}?foo=baz`)
+  })
+
+  test('it adds multiple new query params, string and number', () => {
+    navigate(router, {
+      pageUrl: PAGE.HOME,
+      params: { test1: 'abc', test2: 123, test3: 'xyz' }
+    })
+    expect(router.push).toHaveBeenCalledTimes(1)
+    expect(router.push).toHaveBeenCalledWith(
+      `${PAGE.HOME}?test1=abc&test2=123&test3=xyz`
+    )
+  })
+
+  test('it adds new query params that are arrays of string and number', () => {
+    navigate(router, {
+      pageUrl: PAGE.HOME,
+      params: { test1: ['a', 'b', 'c'], test2: [1, 2, 3] }
+    })
+    expect(router.push).toHaveBeenCalledTimes(1)
+    expect(router.push).toHaveBeenCalledWith(
+      `${PAGE.HOME}?test1=a&test1=b&test1=c&test2=1&test2=2&test2=3`
+    )
+  })
+
+  test('it ignores invalid query params', () => {
+    navigate(router, {
+      pageUrl: PAGE.HOME,
+      params: {
+        test: NaN,
+        test2: 'abc',
+        test3: '',
+        // @ts-ignore
+        test4: null,
+        // @ts-ignore
+        test5: undefined
       }
     })
-
-    expect(route.includes(PAGE.HOME)).toBe(true)
-    expect(route.includes('network=t')).toBe(true)
-    expect(route.includes('param2=kobe')).toBe(true)
-    expect(route.includes('/extension/second-extension')).toBe(true)
+    expect(router.push).toHaveBeenCalledTimes(1)
+    expect(router.push).toHaveBeenCalledWith(`${PAGE.HOME}?test2=abc`)
   })
 
-  test('it does not prepend a query question mark if no params are present', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      pageUrl: PAGE.LANDING,
-      existingQParams: {}
+  test('it handles retaining params, overwriting params and adding all new types at the same time', () => {
+    navigate(routerWithQuery2, {
+      pageUrl: PAGE.HOME,
+      params: {
+        foo: 'baz',
+        test1: ['a', 'b', 'c'],
+        test2: [1, 2, 3],
+        test4: 'xyz',
+        test5: 789
+      },
+      retainParams: true
     })
-    expect(route).toBe('/')
+    expect(routerWithQuery2.push).toHaveBeenCalledTimes(1)
+    expect(routerWithQuery2.push).toHaveBeenCalledWith(
+      `${PAGE.HOME}?glif=ftw&foo=baz&test1=a&test1=b&test1=c&test2=1&test2=2&test2=3&test4=xyz&test5=789`
+    )
   })
 })

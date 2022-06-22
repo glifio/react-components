@@ -1,12 +1,10 @@
 import { renderHook } from '@testing-library/react-hooks'
-import { cleanup } from '@testing-library/react'
 import useWallet from '.'
 import composeMockAppTree from '../../../test-utils/composeMockAppTree'
 
 jest.mock('../')
 
 describe('useWallet', () => {
-  afterEach(cleanup)
   test('it returns a nullWallet state when no wallet exists in redux', () => {
     const { Tree } = composeMockAppTree('preOnboard')
     const { result } = renderHook(useWallet, { wrapper: Tree })

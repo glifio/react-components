@@ -21,7 +21,6 @@ import {
   PendingMsgContextType,
   useSubmittedMessages
 } from '../HistoryTables/PendingMsgContext'
-import { getMaxGasFee } from '../../utils'
 import {
   useWallet,
   useWalletProvider,
@@ -68,8 +67,7 @@ export const TransactionForm = ({
     if (!messageWithGas) return setTxFee(null)
     const feeCapStr = messageWithGas.gasFeeCap.toFixed(0, BigNumber.ROUND_CEIL)
     const feeCap = new FilecoinNumber(feeCapStr, 'attofil')
-    const limit = messageWithGas.gasLimit
-    setTxFee(getMaxGasFee(feeCap, limit))
+    setTxFee(feeCap.times(messageWithGas.gasLimit))
   }, [setTxFee, messageWithGas])
 
   //Load gas params with the current message and input fee

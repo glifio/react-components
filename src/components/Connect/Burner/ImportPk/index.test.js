@@ -1,31 +1,21 @@
 import {
-  cleanup,
   render,
-  screen,
+  getByRole,
+  getByText,
   act,
-  fireEvent,
-  getAllByRole
+  fireEvent
 } from '@testing-library/react'
 import composeMockAppTree from '../../../../test-utils/composeMockAppTree'
-import { flushPromises } from '../../../../test-utils'
 
 import { ImportPk } from '.'
 import { TESTNET_PATH_CODE } from '../../../../constants'
 import { mockFetchDefaultWallet } from '../../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import createPath from '../../../../utils/createPath'
 
+const backSpy = jest.fn()
+const nextSpy = jest.fn()
+
 describe('Import private key configuration', () => {
-  let backSpy, nextSpy
-  beforeEach(() => {
-    backSpy = jest.fn()
-    nextSpy = jest.fn()
-  })
-
-  afterEach(() => {
-    jest.clearAllMocks()
-    cleanup()
-  })
-
   test('it renders correctly', () => {
     const { Tree } = composeMockAppTree('preOnboard')
 
@@ -34,34 +24,47 @@ describe('Import private key configuration', () => {
         <ImportPk next={nextSpy} back={backSpy} />
       </Tree>
     )
+
     expect(container.firstChild).toMatchSnapshot()
   })
 
   test('it sends the user to wallet view, with a wallet in state upon successful config', async () => {
     const { Tree, getWalletProviderState } = composeMockAppTree('preOnboard')
+    let result = null
 
-    const { container } = render(
-      <Tree>
-        <ImportPk next={nextSpy} back={backSpy} />
-      </Tree>
-    )
-
-    const [pk] = getAllByRole(container, 'textbox')
     await act(async () => {
+      result = render(
+        <Tree>
+          <ImportPk next={nextSpy} back={backSpy} />
+        </Tree>
+      )
+
+      // Get HTML elements
+      const pk = getByRole(result.container, 'textbox')
+      const connect = getByText(result.container, 'Connect')
+
+      // Check initial state
+      expect(pk).toHaveDisplayValue('')
+      expect(connect).toBeDisabled()
+
+      // Enter private key
       fireEvent.change(pk, {
         target: { value: '+UXJi0663hCExYMxiib9J+wKyFWiii51jnG7WXkeAw0=' }
       })
-      await flushPromises()
-      await flushPromises()
+      jest.runAllTimers()
 
-      fireEvent.click(screen.getByText('Connect'))
-      await flushPromises()
+      // Connect should now be enabled
+      expect(connect).toBeEnabled()
+
+      // Click Connect
+      fireEvent.click(connect)
     })
+
     expect(nextSpy).toHaveBeenCalled()
     expect(mockFetchDefaultWallet).toHaveBeenCalled()
     const wallet = getWalletProviderState().wallets[0]
     expect(wallet.address).toBeTruthy()
     expect(wallet.path).toBe(createPath(TESTNET_PATH_CODE, 0))
-    expect(container.firstChild).toMatchSnapshot()
+    expect(result.container.firstChild).toMatchSnapshot()
   })
 })

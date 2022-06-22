@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, act, screen, cleanup, fireEvent } from '@testing-library/react'
+import { render, act, screen, fireEvent } from '@testing-library/react'
 import { CoinType } from '@glif/filecoin-address'
 import AccountSelector from '.'
 import HelperText from './HelperText'
@@ -7,7 +7,6 @@ import HelperText from './HelperText'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 import composeMockAppTree from '../../test-utils/composeMockAppTree'
-import { flushPromises } from '../../test-utils'
 
 jest.mock('../../services/WalletProvider')
 
@@ -21,7 +20,6 @@ function expectAllAccountsInView(screen) {
 }
 
 describe('AccountSelector', () => {
-  afterEach(cleanup)
   test('it renders the loading screen first', async () => {
     const { Tree } = composeMockAppTree('postOnboard')
     await act(async () => {
@@ -81,7 +79,6 @@ describe('AccountSelector', () => {
         { wrapper: Tree }
       )
     })
-    await flushPromises()
 
     expect(getWalletProviderState().wallets.length).toBe(5)
     getWalletProviderState().wallets.forEach((w, i) => {
@@ -150,7 +147,6 @@ describe('AccountSelector', () => {
 })
 
 describe('HelperText', () => {
-  afterEach(cleanup)
   test('it renders the right text', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>

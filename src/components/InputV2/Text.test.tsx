@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -14,6 +13,8 @@ import theme from '../theme'
 const labelText = 'Enter your name'
 const infoText = 'Nice to meet you'
 const inputValue = 'My name is Glif'
+const setIsValid = jest.fn()
+const onDelete = jest.fn()
 
 function ControlledInput({ value, ...props }: TextInputProps) {
   const [controlled, setControlled] = useState<string>(value)
@@ -21,16 +22,6 @@ function ControlledInput({ value, ...props }: TextInputProps) {
 }
 
 describe('Text input', () => {
-  afterEach(cleanup)
-  let setIsValid = jest.fn()
-  let onDelete = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setIsValid = jest.fn()
-    onDelete = jest.fn()
-  })
-
   test('it renders correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {

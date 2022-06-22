@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -8,13 +7,13 @@ import {
 } from '@testing-library/react'
 import { useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { flushPromises } from '../../test-utils'
 import { FilecoinInput, FilecoinInputProps } from './Filecoin'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 
 const labelText = 'Enter an amount in Filecoin'
 const infoText = 'This is how much will be transferred'
+const setIsValid = jest.fn()
 
 function ControlledInput({ value, ...props }: FilecoinInputProps) {
   const [controlled, setControlled] = useState<FilecoinNumber>(value)
@@ -24,14 +23,6 @@ function ControlledInput({ value, ...props }: FilecoinInputProps) {
 }
 
 describe('Filecoin input', () => {
-  afterEach(cleanup)
-  let setIsValid = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setIsValid = jest.fn()
-  })
-
   test('it renders fil correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {
@@ -173,20 +164,17 @@ describe('Filecoin input', () => {
 
       // It treats a "." as an invalid number
       fireEvent.change(input, { target: { value: '.' } })
-      input.blur()
-      await flushPromises()
+      jest.runAllTimers()
       expect(input).toHaveValue(null)
 
       // It treats ".0" as "0"
       fireEvent.change(input, { target: { value: '.0' } })
-      input.blur()
-      await flushPromises()
+      jest.runAllTimers()
       expect(input).toHaveValue(0)
 
       // It treats ".01" as "0.01"
       fireEvent.change(input, { target: { value: '.01' } })
-      input.blur()
-      await flushPromises()
+      jest.runAllTimers()
       expect(input).toHaveValue(0.01)
     })
   })

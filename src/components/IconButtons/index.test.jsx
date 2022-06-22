@@ -1,4 +1,4 @@
-import { cleanup, render, act, fireEvent } from '@testing-library/react'
+import { render, act, fireEvent } from '@testing-library/react'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { ButtonClose, ButtonCopyAccountAddress } from '.'
@@ -6,8 +6,6 @@ import { ButtonCloseStory } from './ButtonClose.stories'
 import { ButtonCopyAccountAddressStory } from './ButtonCopyAccountAddress.stories'
 
 describe('ButtonClose', () => {
-  afterEach(cleanup)
-
   test('story renders', () => {
     const mockOnClick = jest.fn()
     const { container } = render(
@@ -42,8 +40,6 @@ describe('ButtonClose', () => {
 })
 
 describe('ButtonCopyAccountAddress', () => {
-  afterEach(cleanup)
-
   test('story renders', () => {
     const mockOnClick = jest.fn()
     const { container } = render(

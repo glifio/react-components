@@ -68,7 +68,7 @@ export const ImportSeed = ({ back, next }: ImportSeedProps) => {
           <ButtonV2 large disabled={loading} onClick={back} type='button'>
             Back
           </ButtonV2>
-          <ButtonV2 large disabled={loading} green type='submit'>
+          <ButtonV2 large disabled={loading || !isValid} green type='submit'>
             Connect
           </ButtonV2>
         </ButtonRowSpaced>

@@ -1,11 +1,10 @@
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { Base } from './InputWord.stories'
 
 describe('Box', () => {
-  afterEach(cleanup)
   test('renders the story', () => {
     const mockSetCorrectWordCount = jest.fn()
     const { container } = render(

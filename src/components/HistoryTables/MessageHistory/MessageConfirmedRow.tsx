@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
-import Link from 'next/link'
 import { SubscriptionResult } from '@apollo/client'
 import PropTypes from 'prop-types'
 import { TR, TD } from '../table'
 import { Badge } from '../generic'
+import { SmartLink } from '../../Link/SmartLink'
 import { AddressLink } from '../../AddressLink'
 import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
 import { attoFilToFil } from '../utils'
@@ -11,6 +11,7 @@ import { ChainHeadSubscription } from '../../../generated/graphql'
 import { useAge } from './useAge'
 import { useMethodName } from './useMethodName'
 import { isAddrEqual } from '../../../utils/isAddrEqual'
+import truncateAddress from '../../../utils/truncateAddress'
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const { message, cidHref, inspectingAddress } = props
@@ -31,18 +32,9 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   return (
     <TR>
       <TD>
-        <Link href={cidHref(message.cid, message.height)}>
-          <a
-            style={{
-              display: 'inline-block',
-              maxWidth: '8rem',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis'
-            }}
-          >
-            {message.cid.slice()}
-          </a>
-        </Link>
+        <SmartLink href={cidHref(message.cid, message.height)}>
+          {truncateAddress(message.cid)}
+        </SmartLink>
       </TD>
       <TD>
         <Badge color='purple' text={methodName} />

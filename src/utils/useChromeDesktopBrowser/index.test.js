@@ -1,15 +1,8 @@
 import useDesktopChromeBrowser from '.'
-import { cleanup } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 
 describe('useDesktopChromeBrowser', () => {
   const redirectUrl = 'test'
-
-  afterEach(cleanup)
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
 
   test('it does not redirect to the error page on Mac Chrome desktop', async () => {
     const { navigator } = window

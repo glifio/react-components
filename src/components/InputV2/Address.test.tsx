@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -15,6 +14,7 @@ const labelText = "Enter the recipient's address"
 const infoText = 'This will receive your funds'
 const validAddress = 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza'
 const invalidAddress = 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucz'
+const setIsValid = jest.fn()
 
 function ControlledInput({ value, ...props }: AddressInputProps) {
   const [controlled, setControlled] = useState<string>(value)
@@ -22,14 +22,6 @@ function ControlledInput({ value, ...props }: AddressInputProps) {
 }
 
 describe('Address input', () => {
-  afterEach(cleanup)
-  let setIsValid = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setIsValid = jest.fn()
-  })
-
   test('it renders correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {

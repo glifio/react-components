@@ -1,12 +1,10 @@
-import { cleanup, render } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import ThemeProvider from '../ThemeProvider'
 import Glyph from '.'
 import theme from '../theme'
 import { Base } from './index.stories'
 
 describe('Glyph', () => {
-  afterEach(cleanup)
-
   test('renders the story', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>

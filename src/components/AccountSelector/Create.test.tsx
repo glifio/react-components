@@ -1,17 +1,12 @@
 import React from 'react'
-import { render, act, screen, cleanup, fireEvent } from '@testing-library/react'
+import { render, act, screen, fireEvent } from '@testing-library/react'
 import { CoinType } from '@glif/filecoin-address'
 
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 import Create from './Create'
-import { flushPromises } from '../../test-utils'
 
 describe('Create Account', () => {
-  afterEach(() => {
-    cleanup()
-    jest.clearAllMocks()
-  })
   test('it calls the callback with the right network and index', () => {
     const mock = jest.fn()
     const nextAccountIdx = 1
@@ -50,7 +45,7 @@ describe('Create Account', () => {
         </ThemeProvider>
       )
       fireEvent.click(screen.getByText('Normal address'))
-      await flushPromises()
+      jest.runAllTimers()
       fireEvent.click(screen.getByText('Create'))
     })
 

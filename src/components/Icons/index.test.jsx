@@ -1,4 +1,4 @@
-import { render, cleanup } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 import {
   IconGlif,
@@ -17,7 +17,6 @@ import {
 } from './index.stories'
 
 describe('Icons', () => {
-  afterEach(cleanup)
   test(' renders IconGlif', () => {
     const { container } = render(<IconGlif {...IconGlif.args} />)
     expect(container.firstChild).toMatchSnapshot()

@@ -1,9 +1,8 @@
-import { cleanup, render, act, fireEvent } from '@testing-library/react'
+import { render, act, fireEvent } from '@testing-library/react'
 import Card from '.'
 import { Base } from './index.stories'
 
 describe('Card', () => {
-  afterEach(cleanup)
   test('renders the card', () => {
     const { container } = render(<Card />)
     expect(container.firstChild).toMatchSnapshot()
