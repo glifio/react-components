@@ -33,7 +33,7 @@ export function SmartLink({
     let updatedHref = href
 
     // Add existing query params if retained
-    if (isInternalLink && retainParams)
+    if (query && isInternalLink && retainParams)
       updatedHref = appendParams(updatedHref, query)
 
     // Add new query params if passed
