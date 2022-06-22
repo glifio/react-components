@@ -31,7 +31,7 @@ export const appendParams = (
   })
 
   // Return URL with updated parameters
-  const updatedParams = params.toString()
+  const updatedParams = paramObject.toString()
   return updatedParams ? `${path}?${updatedParams}` : path
 }
 
