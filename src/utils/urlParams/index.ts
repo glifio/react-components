@@ -57,7 +57,7 @@ export function navigate(
   router.push(updatedUrl)
 }
 
-export const resetWallet = (): void => {
-  // perform a hard reload of the landing page without path and parameters
-  window.location.assign(`${window.location.protocol}//${window.location.host}`)
+export const resetWallet = () => {
+  // A full page reload resets the wallet
+  window?.location?.reload()
 }
