@@ -3,7 +3,6 @@ import composeMockAppTree from '../../../test-utils/composeMockAppTree'
 import { mockFetchDefaultWallet } from '../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import ConnectMetaMask from '.'
 import { HelperText } from './Helper'
-import { flushPromises } from '../../../test-utils'
 import { TESTNET_PATH_CODE } from '../../../constants'
 import createPath from '../../../utils/createPath'
 import { initialMetaMaskState } from '../../../services/WalletProvider/metamaskUtils'
@@ -35,9 +34,8 @@ describe('metamask onboarding', () => {
           <ConnectMetaMask back={backSpy} next={nextSpy} />
         </Tree>
       )
+      jest.runAllTimers()
     })
-    await jest.runOnlyPendingTimers()
-    await flushPromises()
     expect(nextSpy).toHaveBeenCalled()
   })
 
@@ -50,7 +48,6 @@ describe('metamask onboarding', () => {
           <ConnectMetaMask back={backSpy} next={nextSpy} />
         </Tree>
       )
-      await flushPromises()
     })
 
     expect(mockFetchDefaultWallet).toHaveBeenCalled()

@@ -5,7 +5,6 @@ import { CoinType } from '@glif/filecoin-address'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 import Create from './Create'
-import { flushPromises } from '../../test-utils'
 
 describe('Create Account', () => {
   test('it calls the callback with the right network and index', () => {
@@ -46,7 +45,7 @@ describe('Create Account', () => {
         </ThemeProvider>
       )
       fireEvent.click(screen.getByText('Normal address'))
-      await flushPromises()
+      jest.runAllTimers()
       fireEvent.click(screen.getByText('Create'))
     })
 

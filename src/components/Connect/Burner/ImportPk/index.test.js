@@ -6,7 +6,6 @@ import {
   fireEvent
 } from '@testing-library/react'
 import composeMockAppTree from '../../../../test-utils/composeMockAppTree'
-import { flushPromises } from '../../../../test-utils'
 
 import { ImportPk } from '.'
 import { TESTNET_PATH_CODE } from '../../../../constants'
@@ -40,8 +39,6 @@ describe('Import private key configuration', () => {
         </Tree>
       )
 
-      await flushPromises()
-
       // Get HTML elements
       const pk = getByRole(result.container, 'textbox')
       const connect = getByText(result.container, 'Connect')
@@ -54,15 +51,13 @@ describe('Import private key configuration', () => {
       fireEvent.change(pk, {
         target: { value: '+UXJi0663hCExYMxiib9J+wKyFWiii51jnG7WXkeAw0=' }
       })
-      pk.blur()
-      await flushPromises()
+      jest.runAllTimers()
 
       // Connect should now be enabled
       expect(connect).toBeEnabled()
 
       // Click Connect
       fireEvent.click(connect)
-      await flushPromises()
     })
 
     expect(nextSpy).toHaveBeenCalled()

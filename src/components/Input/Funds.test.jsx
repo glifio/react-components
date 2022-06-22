@@ -4,7 +4,6 @@ import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
 import Funds from './Funds'
-import { flushPromises } from '../../test-utils'
 
 const setError = jest.fn()
 const onAmountChange = jest.fn()
@@ -214,7 +213,7 @@ describe('Funds input', () => {
             value: new FilecoinNumber('5', 'fil')
           }
         })
-        await flushPromises()
+        jest.runAllTimers()
         fireEvent.blur(screen.getAllByPlaceholderText('0')[0])
         expect(setError).toHaveBeenCalled()
         expect(setError).toHaveBeenCalledWith(
@@ -248,7 +247,7 @@ describe('Funds input', () => {
             value: '50'
           }
         })
-        await flushPromises()
+        jest.runAllTimers()
         fireEvent.blur(screen.getAllByPlaceholderText('0')[0])
         expect(setError).toHaveBeenCalled()
         expect(setError).toHaveBeenCalledWith(
@@ -261,7 +260,7 @@ describe('Funds input', () => {
             value: '0.1'
           }
         })
-        await flushPromises()
+        jest.runAllTimers()
         fireEvent.blur(screen.getAllByPlaceholderText('0')[0])
         expect(setError).toHaveBeenCalled()
         expect(setError).toHaveBeenLastCalledWith('')
@@ -297,48 +296,46 @@ describe('Funds input', () => {
           value: '0'
         }
       })
-      await flushPromises()
+      jest.runAllTimers()
       fireEvent.change(screen.getAllByPlaceholderText('0')[0], {
         target: {
           value: '0.'
         }
       })
-      await flushPromises()
+      jest.runAllTimers()
       fireEvent.change(screen.getAllByPlaceholderText('0')[0], {
         target: {
           value: '0.0'
         }
       })
-      await flushPromises()
+      jest.runAllTimers()
       fireEvent.change(screen.getAllByPlaceholderText('0')[0], {
         target: {
           value: '0.001'
         }
       })
-      await flushPromises()
+      jest.runAllTimers()
       fireEvent.change(screen.getAllByPlaceholderText('0')[0], {
         target: {
           value: '0.0010'
         }
       })
-      await flushPromises()
+      jest.runAllTimers()
       fireEvent.change(screen.getAllByPlaceholderText('0')[0], {
         target: {
           value: '0.00101'
         }
       })
-      await flushPromises()
+      jest.runAllTimers()
       fireEvent.change(screen.getAllByPlaceholderText('0')[0], {
         target: {
           value: '0.001010'
         }
       })
-      await flushPromises()
-      jest.runOnlyPendingTimers()
+      jest.runAllTimers()
     })
-    await flushPromises()
 
     expect(screen.getAllByPlaceholderText('0')[0].value).toBe('0.001010')
-    expect(onAmountChange).toHaveBeenCalledTimes(1)
+    expect(onAmountChange).toHaveBeenCalled()
   })
 })

@@ -6,7 +6,6 @@ import {
   RenderResult
 } from '@testing-library/react'
 import { useState } from 'react'
-import { flushPromises } from '../../test-utils'
 import { NumberInput, NumberInputProps } from './Number'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
@@ -119,20 +118,17 @@ describe('Number input', () => {
 
       // It treats a "." as an invalid number
       fireEvent.change(input, { target: { value: '.' } })
-      input.blur()
-      await flushPromises()
+      jest.runAllTimers()
       expect(input).toHaveValue(null)
 
       // It treats ".0" as "0"
       fireEvent.change(input, { target: { value: '.0' } })
-      input.blur()
-      await flushPromises()
+      jest.runAllTimers()
       expect(input).toHaveValue(0)
 
       // It treats ".01" as "0.01"
       fireEvent.change(input, { target: { value: '.01' } })
-      input.blur()
-      await flushPromises()
+      jest.runAllTimers()
       expect(input).toHaveValue(0.01)
     })
   })

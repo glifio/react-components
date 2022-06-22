@@ -6,7 +6,6 @@ import {
   fireEvent
 } from '@testing-library/react'
 import composeMockAppTree from '../../../../test-utils/composeMockAppTree'
-import { flushPromises } from '../../../../test-utils'
 
 import { ImportSeed } from '.'
 import { TESTNET_PATH_CODE } from '../../../../constants'
@@ -40,8 +39,6 @@ describe('Import seed phrase configuration', () => {
         </Tree>
       )
 
-      await flushPromises()
-
       // Get HTML elements
       const seed = getByRole(result.container, 'textbox')
       const connect = getByText(result.container, 'Connect')
@@ -57,15 +54,13 @@ describe('Import seed phrase configuration', () => {
             'slender spread awkward chicken noise useful thank dentist tip bronze ritual explain version spot collect whisper glow peanut bus local country album punch frown'
         }
       })
-      seed.blur()
-      await flushPromises()
+      jest.runAllTimers()
 
       // Connect should now be enabled
       expect(connect).toBeEnabled()
 
       // Click Connect
       fireEvent.click(connect)
-      await flushPromises()
     })
 
     expect(nextSpy).toHaveBeenCalled()

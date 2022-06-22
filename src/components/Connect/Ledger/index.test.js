@@ -4,7 +4,6 @@ import { initialLedgerState } from '../../../services/WalletProvider/ledgerUtils
 import composeMockAppTree from '../../../test-utils/composeMockAppTree'
 import { mockFetchDefaultWallet } from '../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import { Ledger } from '.'
-import { flushPromises } from '../../../test-utils'
 import { TESTNET_PATH_CODE } from '../../../constants'
 import createPath from '../../../utils/createPath'
 
@@ -191,7 +190,6 @@ describe('Ledger configuration', () => {
 
     await act(async () => {
       fireEvent.click(screen.getByText('Connect'))
-      await flushPromises()
     })
 
     expect(mockFetchDefaultWallet).toHaveBeenCalled()
@@ -212,7 +210,6 @@ describe('Ledger configuration', () => {
 
     await act(async () => {
       fireEvent.click(screen.getByText('Connect'))
-      await flushPromises()
     })
     expect(nextSpy).toHaveBeenCalled()
   })

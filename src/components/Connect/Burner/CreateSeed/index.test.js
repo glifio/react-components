@@ -1,6 +1,5 @@
 import { render, screen, act, fireEvent } from '@testing-library/react'
 import composeMockAppTree from '../../../../test-utils/composeMockAppTree'
-import { flushPromises } from '../../../../test-utils'
 
 import { CreateSeed } from '.'
 import { TESTNET_PATH_CODE } from '../../../../constants'
@@ -72,7 +71,6 @@ describe('Create seed phrase configuration', () => {
 
     await act(async () => {
       fireEvent.click(screen.getByText('Next'))
-      await flushPromises()
     })
     expect(container.firstChild).toMatchSnapshot()
     expect(mockFetchDefaultWallet).toHaveBeenCalled()

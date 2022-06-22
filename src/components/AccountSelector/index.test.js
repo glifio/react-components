@@ -7,7 +7,6 @@ import HelperText from './HelperText'
 import ThemeProvider from '../ThemeProvider'
 import theme from '../theme'
 import composeMockAppTree from '../../test-utils/composeMockAppTree'
-import { flushPromises } from '../../test-utils'
 
 jest.mock('../../services/WalletProvider')
 
@@ -80,7 +79,6 @@ describe('AccountSelector', () => {
         { wrapper: Tree }
       )
     })
-    await flushPromises()
 
     expect(getWalletProviderState().wallets.length).toBe(5)
     getWalletProviderState().wallets.forEach((w, i) => {
