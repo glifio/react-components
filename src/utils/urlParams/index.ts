@@ -5,8 +5,16 @@ const appendQueryParam = (
   key: string,
   value: string | number
 ): void => {
-  const valueStr = typeof value === 'number' ? value.toString() : value
-  params.append(key, valueStr)
+  switch (typeof value) {
+    case 'number':
+      // Convert numbers to strings, ignore NaN
+      if (!isNaN(value)) params.append(key, value.toString())
+      return
+    case 'string':
+      // Ignore empty strings
+      if (value) params.append(key, value.toString())
+      return
+  }
 }
 
 export const appendQueryParams = (

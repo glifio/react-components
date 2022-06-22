@@ -95,6 +95,23 @@ describe('navigate', () => {
     )
   })
 
+  test('it ignores invalid query params', () => {
+    navigate(router, {
+      pageUrl: PAGE.HOME,
+      params: {
+        test: NaN,
+        test2: 'abc',
+        test3: '',
+        // @ts-ignore
+        test4: null,
+        // @ts-ignore
+        test5: undefined
+      }
+    })
+    expect(router.push).toHaveBeenCalledTimes(1)
+    expect(router.push).toHaveBeenCalledWith(`${PAGE.HOME}?test2=abc`)
+  })
+
   test('it handles retaining params, overwriting params and adding all new types at the same time', () => {
     navigate(routerWithQuery2, {
       pageUrl: PAGE.HOME,
