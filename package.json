@@ -86,7 +86,7 @@
     "@glif/filecoin-wallet-provider": "^2.0.0-beta.15",
     "@glif/logger": "^2.0.0-alpha.16",
     "@ipld/dag-cbor": "^7.0.2",
-    "@zondax/filecoin-signing-tools": "^0.20.1",
+    "@zondax/filecoin-signing-tools": "^1.0.0",
     "axios": "^0.27.2",
     "base32-decode": "^1.0.0",
     "bignumber.js": "^9.0.1",
