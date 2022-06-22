@@ -81,7 +81,7 @@ export const SmartLinkPropTypes = {
   download: PropTypes.string,
   className: PropTypes.string,
   params: PropTypes.objectOf(
-    PropTypes.oneOf([
+    PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
       PropTypes.number,
