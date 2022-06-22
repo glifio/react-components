@@ -23,7 +23,7 @@ export function SmartLink({
 
   const isInternalLink = useMemo<boolean>(
     // href can be undefined for a download button
-    () => (!href ? false : absoluteUrlRegex.test(href)),
+    () => (!href ? false : !absoluteUrlRegex.test(href)),
     [href]
   )
 
