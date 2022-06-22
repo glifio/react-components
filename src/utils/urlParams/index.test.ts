@@ -1,100 +1,37 @@
-import { generateRouteWithRequiredUrlParams } from '.'
+import { NextRouter } from 'next/router'
+import { navigate } from '.'
 
 enum PAGE {
   LANDING = '/',
   HOME = '/home'
 }
 
-describe('generateRouteWithRequiredUrlParams', () => {
-  test('it does not change the required params when generating navigation urls', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 't' },
-      pageUrl: PAGE.HOME
-    })
+const router = {
+  push: jest.fn()
+} as unknown as NextRouter
 
-    expect(route.includes(PAGE.HOME)).toBe(true)
-    expect(route.includes('?network=t')).toBe(true)
+const routerWithQuery = {
+  query: { foo: 'bar' },
+  push: jest.fn()
+} as unknown as NextRouter
+
+describe('navigate', () => {
+
+  test('it navigates to the URL', () => {
+    navigate(router, { pageUrl: PAGE.HOME })
+    expect(router.push).toHaveBeenCalledTimes(1)
+    expect(router.push).toHaveBeenCalledWith(PAGE.HOME)
   })
 
-  test('it allows for adding new query params', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 't' },
-      pageUrl: PAGE.HOME,
-      newQueryParams: { test: 'value' }
-    })
-
-    expect(route.includes(PAGE.HOME)).toBe(true)
-    expect(route.includes('network=t')).toBe(true)
-    expect(route.includes('test=value')).toBe(true)
-
-    const route2 = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 'f' },
-      pageUrl: PAGE.HOME,
-      newQueryParams: { test: 'value' }
-    })
-
-    expect(route2.includes(PAGE.HOME)).toBe(true)
-    expect(route2.includes('network=f')).toBe(true)
-    expect(route2.includes('test=value')).toBe(true)
+  test('expect existing query params to be discarded by default', () => {
+    navigate(routerWithQuery, { pageUrl: PAGE.HOME })
+    expect(routerWithQuery.push).toHaveBeenCalledTimes(1)
+    expect(routerWithQuery.push).toHaveBeenCalledWith(PAGE.HOME)
   })
 
-  test('it allows for adding computed paths', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 't' },
-      pageUrl: PAGE.HOME
-    })
-
-    expect(route.includes(PAGE.HOME)).toBe(true)
-    expect(route.includes('network=t')).toBe(true)
-
-    const route2 = generateRouteWithRequiredUrlParams({
-      existingQParams: {},
-      pageUrl: PAGE.HOME
-    })
-
-    expect(route2.includes(PAGE.HOME)).toBe(true)
-    expect(route2.includes('?')).toBe(false)
-  })
-
-  test('it deletes not required q params with the flag', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 't', param2: 'kobe' },
-      pageUrl: PAGE.HOME,
-      newQueryParams: {
-        test: 'value',
-        test2: 'thingy'
-      },
-      maintainQueryParams: false
-    })
-
-    expect(route.includes(PAGE.HOME)).toBe(true)
-    expect(route.includes('network=t')).toBe(false)
-    expect(route.includes('param2=kobe')).toBe(false)
-    expect(route.includes('test=value')).toBe(true)
-    expect(route.includes('test2=thingy')).toBe(true)
-  })
-
-  test('it works for the most complex cases', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      existingQParams: { network: 't', param2: 'kobe' },
-      pageUrl: PAGE.HOME,
-      maintainQueryParams: true,
-      newQueryParams: {
-        test: 'value',
-        test2: 'thingy'
-      }
-    })
-
-    expect(route.includes(PAGE.HOME)).toBe(true)
-    expect(route.includes('network=t')).toBe(true)
-    expect(route.includes('param2=kobe')).toBe(true)
-  })
-
-  test('it does not prepend a query question mark if no params are present', () => {
-    const route = generateRouteWithRequiredUrlParams({
-      pageUrl: PAGE.LANDING,
-      existingQParams: {}
-    })
-    expect(route).toBe('/')
+  test('expect existing query params to be retained if specified', () => {
+    navigate(routerWithQuery, { pageUrl: PAGE.HOME, retainParams: true })
+    expect(routerWithQuery.push).toHaveBeenCalledTimes(1)
+    expect(routerWithQuery.push).toHaveBeenCalledWith(`${PAGE.HOME}?foo=bar`)
   })
 })
