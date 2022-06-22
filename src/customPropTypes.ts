@@ -84,17 +84,10 @@ const createFilecoinNumberPropType =
       if (isRequired) {
         return new Error(`Missing prop "${propName}" in "${componentName}"`)
       }
-    } else {
-      // instanceof prop checking is broken in nextjs on server side render cycles
-      const isFilecoinNumber =
-        BigNumber.isBigNumber(prop) &&
-        'toFil' in prop &&
-        'toAttoFil' in prop &&
-        'toPicoFil' in prop
-      if (!isFilecoinNumber)
-        return new Error(
-          `Invalid prop "${propName}" supplied to "${componentName}"`
-        )
+    } else if (!FilecoinNumber.isFilecoinNumber(prop)) {
+      return new Error(
+        `Invalid prop "${propName}" supplied to "${componentName}"`
+      )
     }
   }
 
