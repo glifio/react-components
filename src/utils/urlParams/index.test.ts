@@ -1,5 +1,11 @@
 import { NextRouter } from 'next/router'
-import { navigate } from '.'
+import {
+  getNumberArrayParam,
+  getNumberParam,
+  getStringArrayParam,
+  getStringParam,
+  navigate
+} from '.'
 
 enum PAGE {
   LANDING = '/',
@@ -19,6 +25,55 @@ const routerWithQuery2 = {
   query: { foo: 'bar', glif: 'ftw' },
   push: jest.fn()
 } as unknown as NextRouter
+
+const routerWithQuery3 = {
+  query: {
+    test1: ['a', 'b', 'c'],
+    test2: ['1', '2', '3'],
+    test3: 'xyz',
+    test4: '789'
+  },
+  push: jest.fn()
+} as unknown as NextRouter
+
+describe('getParam', () => {
+  test('getStringParam', () => {
+    expect(getStringParam(routerWithQuery3, 'test1')).toBe('a')
+    expect(getStringParam(routerWithQuery3, 'test2')).toBe('1')
+    expect(getStringParam(routerWithQuery3, 'test3')).toBe('xyz')
+    expect(getStringParam(routerWithQuery3, 'test4')).toBe('789')
+  })
+  test('getNumberParam', () => {
+    expect(getNumberParam(routerWithQuery3, 'test1')).toBe(NaN)
+    expect(getNumberParam(routerWithQuery3, 'test2')).toBe(1)
+    expect(getNumberParam(routerWithQuery3, 'test3')).toBe(NaN)
+    expect(getNumberParam(routerWithQuery3, 'test4')).toBe(789)
+  })
+  test('getStringArrayParam', () => {
+    expect(getStringArrayParam(routerWithQuery3, 'test1')).toEqual([
+      'a',
+      'b',
+      'c'
+    ])
+    expect(getStringArrayParam(routerWithQuery3, 'test2')).toEqual([
+      '1',
+      '2',
+      '3'
+    ])
+    expect(getStringArrayParam(routerWithQuery3, 'test3')).toEqual(['xyz'])
+    expect(getStringArrayParam(routerWithQuery3, 'test4')).toEqual(['789'])
+  })
+  test('getNumberArrayParam', () => {
+    expect(getNumberArrayParam(routerWithQuery3, 'test1')).toEqual([
+      NaN,
+      NaN,
+      NaN
+    ])
+    expect(getNumberArrayParam(routerWithQuery3, 'test2')).toEqual([1, 2, 3])
+    expect(getNumberArrayParam(routerWithQuery3, 'test3')).toEqual([NaN])
+    expect(getNumberArrayParam(routerWithQuery3, 'test4')).toEqual([789])
+  })
+})
 
 describe('navigate', () => {
   test('it navigates to the URL', () => {
