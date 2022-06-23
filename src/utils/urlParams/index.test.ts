@@ -99,7 +99,7 @@ describe('navigate', () => {
     navigate(router, {
       pageUrl: PAGE.HOME,
       params: {
-        test: NaN,
+        test1: NaN,
         test2: 'abc',
         test3: '',
         // @ts-ignore
@@ -119,14 +119,14 @@ describe('navigate', () => {
         foo: 'baz',
         test1: ['a', 'b', 'c'],
         test2: [1, 2, 3],
-        test4: 'xyz',
-        test5: 789
+        test3: 'xyz',
+        test4: 789
       },
       retainParams: true
     })
     expect(routerWithQuery2.push).toHaveBeenCalledTimes(1)
     expect(routerWithQuery2.push).toHaveBeenCalledWith(
-      `${PAGE.HOME}?glif=ftw&foo=baz&test1=a&test1=b&test1=c&test2=1&test2=2&test2=3&test4=xyz&test5=789`
+      `${PAGE.HOME}?glif=ftw&foo=baz&test1=a&test1=b&test1=c&test2=1&test2=2&test2=3&test3=xyz&test4=789`
     )
   })
 })
