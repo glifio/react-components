@@ -45,7 +45,8 @@ export const TransactionForm = ({
   setTxFee,
   onComplete,
   walletProviderOpts,
-  pendingMsgContext
+  pendingMsgContext,
+  pushPending
 }: TransactionFormProps) => {
   const router = useRouter()
   const wallet = useWallet()
@@ -119,9 +120,11 @@ export const TransactionForm = ({
       )
       setTxState(TxState.MPoolPushing)
       const msgCid = await provider.sendMessage(signedMessage)
-      pushPendingMessage(
-        newMessage.toPendingMessage(msgCid['/']) as MessagePending
-      )
+      if (pushPending) {
+        pushPendingMessage(
+          newMessage.toPendingMessage(msgCid['/']) as MessagePending
+        )
+      }
       onComplete(msgCid['/'], newMessage)
     } catch (e: any) {
       logger.error(e)
@@ -213,6 +216,8 @@ export type TransactionFormProps = {
   // used for testing with a stubbed context value
   walletProviderOpts?: WalletProviderOpts
   pendingMsgContext?: Context<PendingMsgContextType>
+  // set to false in Safe/Create bc the pending exec transaction hangs forever
+  pushPending?: boolean
 }
 
 TransactionForm.propTypes = {
@@ -235,5 +240,10 @@ TransactionForm.propTypes = {
   setTxFee: PropTypes.func.isRequired,
   onComplete: PropTypes.func.isRequired,
   walletProviderOpts: PropTypes.object,
-  pendingMsgContext: PropTypes.object
+  pendingMsgContext: PropTypes.object,
+  pushPending: PropTypes.bool
+}
+
+TransactionForm.defaultProps = {
+  pushPending: true
 }
