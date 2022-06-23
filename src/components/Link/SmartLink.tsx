@@ -64,8 +64,8 @@ export function SmartLink({
 
 export interface SmartLinkProps {
   children: ReactNode
-  href?: string
-  download?: string
+  href: string
+  download?: boolean | string
   className?: string
   params?: Record<string, string | string[] | number | number[]>
   retainParams?: boolean
@@ -77,8 +77,8 @@ export const SmartLinkPropTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
-  href: PropTypes.string,
-  download: PropTypes.string,
+  href: PropTypes.string.isRequired,
+  download: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   className: PropTypes.string,
   params: PropTypes.objectOf(
     PropTypes.oneOfType([
