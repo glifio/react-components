@@ -40,7 +40,7 @@ export function SmartLink({
     return updatedHref
   }, [query, isInternalUrl, href, params, retainParams])
 
-  return isInternalUrl ? (
+  return isInternalUrl && !download ? (
     <Link href={hrefWithParams}>
       <a className={className} onClick={onClick}>
         {children}
@@ -48,7 +48,7 @@ export function SmartLink({
     </Link>
   ) : (
     <a
-      target='_blank'
+      target={download ? '_self' : '_blank'}
       rel='noreferrer noopener'
       href={hrefWithParams}
       download={download}
