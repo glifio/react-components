@@ -32,18 +32,21 @@ const routerWithQuery3 = {
 
 describe('getParam', () => {
   test('getQueryParam.string', () => {
+    expect(getQueryParam.string(routerWithQuery3, 'test0')).toBe('')
     expect(getQueryParam.string(routerWithQuery3, 'test1')).toBe('a')
     expect(getQueryParam.string(routerWithQuery3, 'test2')).toBe('1')
     expect(getQueryParam.string(routerWithQuery3, 'test3')).toBe('xyz')
     expect(getQueryParam.string(routerWithQuery3, 'test4')).toBe('789')
   })
   test('getQueryParam.number', () => {
+    expect(getQueryParam.number(routerWithQuery3, 'test0')).toBe(NaN)
     expect(getQueryParam.number(routerWithQuery3, 'test1')).toBe(NaN)
     expect(getQueryParam.number(routerWithQuery3, 'test2')).toBe(1)
     expect(getQueryParam.number(routerWithQuery3, 'test3')).toBe(NaN)
     expect(getQueryParam.number(routerWithQuery3, 'test4')).toBe(789)
   })
   test('getQueryParam.stringArray', () => {
+    expect(getQueryParam.stringArray(routerWithQuery3, 'test0')).toEqual([])
     expect(getQueryParam.stringArray(routerWithQuery3, 'test1')).toEqual([
       'a',
       'b',
@@ -62,6 +65,7 @@ describe('getParam', () => {
     ])
   })
   test('getQueryParam.numberArray', () => {
+    expect(getQueryParam.numberArray(routerWithQuery3, 'test0')).toEqual([])
     expect(getQueryParam.numberArray(routerWithQuery3, 'test1')).toEqual([
       NaN,
       NaN,
