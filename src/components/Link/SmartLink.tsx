@@ -22,9 +22,13 @@ export function SmartLink({
   const router = useRouter()
   const query = router?.query
 
-  const isInternalUrl = useMemo<boolean>(
-    () => !isAbsoluteUrlRegex.test(href) && !isMailOrTelUrlRegex.test(href),
+  const isMailToOrTelUrl = useMemo<boolean>(
+    () => isMailOrTelUrlRegex.test(href),
     [href]
+  )
+  const isInternalUrl = useMemo<boolean>(
+    () => !isAbsoluteUrlRegex.test(href) && !isMailToOrTelUrl,
+    [href, isMailToOrTelUrl]
   )
 
   const hrefWithParams = useMemo<string>(() => {
@@ -48,7 +52,7 @@ export function SmartLink({
     </Link>
   ) : (
     <a
-      target={download ? '_self' : '_blank'}
+      target={download || isMailToOrTelUrl ? '_self' : '_blank'}
       rel='noreferrer noopener'
       href={hrefWithParams}
       download={download}
