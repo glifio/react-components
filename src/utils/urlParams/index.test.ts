@@ -1,11 +1,5 @@
 import { NextRouter } from 'next/router'
-import {
-  getNumberArrayParam,
-  getNumberParam,
-  getStringArrayParam,
-  getStringParam,
-  navigate
-} from '.'
+import { getQueryParam, navigate } from '.'
 
 enum PAGE {
   LANDING = '/',
@@ -37,41 +31,47 @@ const routerWithQuery3 = {
 } as unknown as NextRouter
 
 describe('getParam', () => {
-  test('getStringParam', () => {
-    expect(getStringParam(routerWithQuery3, 'test1')).toBe('a')
-    expect(getStringParam(routerWithQuery3, 'test2')).toBe('1')
-    expect(getStringParam(routerWithQuery3, 'test3')).toBe('xyz')
-    expect(getStringParam(routerWithQuery3, 'test4')).toBe('789')
+  test('getQueryParam.string', () => {
+    expect(getQueryParam.string(routerWithQuery3, 'test1')).toBe('a')
+    expect(getQueryParam.string(routerWithQuery3, 'test2')).toBe('1')
+    expect(getQueryParam.string(routerWithQuery3, 'test3')).toBe('xyz')
+    expect(getQueryParam.string(routerWithQuery3, 'test4')).toBe('789')
   })
-  test('getNumberParam', () => {
-    expect(getNumberParam(routerWithQuery3, 'test1')).toBe(NaN)
-    expect(getNumberParam(routerWithQuery3, 'test2')).toBe(1)
-    expect(getNumberParam(routerWithQuery3, 'test3')).toBe(NaN)
-    expect(getNumberParam(routerWithQuery3, 'test4')).toBe(789)
+  test('getQueryParam.number', () => {
+    expect(getQueryParam.number(routerWithQuery3, 'test1')).toBe(NaN)
+    expect(getQueryParam.number(routerWithQuery3, 'test2')).toBe(1)
+    expect(getQueryParam.number(routerWithQuery3, 'test3')).toBe(NaN)
+    expect(getQueryParam.number(routerWithQuery3, 'test4')).toBe(789)
   })
-  test('getStringArrayParam', () => {
-    expect(getStringArrayParam(routerWithQuery3, 'test1')).toEqual([
+  test('getQueryParam.stringArray', () => {
+    expect(getQueryParam.stringArray(routerWithQuery3, 'test1')).toEqual([
       'a',
       'b',
       'c'
     ])
-    expect(getStringArrayParam(routerWithQuery3, 'test2')).toEqual([
+    expect(getQueryParam.stringArray(routerWithQuery3, 'test2')).toEqual([
       '1',
       '2',
       '3'
     ])
-    expect(getStringArrayParam(routerWithQuery3, 'test3')).toEqual(['xyz'])
-    expect(getStringArrayParam(routerWithQuery3, 'test4')).toEqual(['789'])
+    expect(getQueryParam.stringArray(routerWithQuery3, 'test3')).toEqual([
+      'xyz'
+    ])
+    expect(getQueryParam.stringArray(routerWithQuery3, 'test4')).toEqual([
+      '789'
+    ])
   })
-  test('getNumberArrayParam', () => {
-    expect(getNumberArrayParam(routerWithQuery3, 'test1')).toEqual([
+  test('getQueryParam.numberArray', () => {
+    expect(getQueryParam.numberArray(routerWithQuery3, 'test1')).toEqual([
       NaN,
       NaN,
       NaN
     ])
-    expect(getNumberArrayParam(routerWithQuery3, 'test2')).toEqual([1, 2, 3])
-    expect(getNumberArrayParam(routerWithQuery3, 'test3')).toEqual([NaN])
-    expect(getNumberArrayParam(routerWithQuery3, 'test4')).toEqual([789])
+    expect(getQueryParam.numberArray(routerWithQuery3, 'test2')).toEqual([
+      1, 2, 3
+    ])
+    expect(getQueryParam.numberArray(routerWithQuery3, 'test3')).toEqual([NaN])
+    expect(getQueryParam.numberArray(routerWithQuery3, 'test4')).toEqual([789])
   })
 })
 
