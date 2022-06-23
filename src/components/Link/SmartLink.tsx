@@ -5,7 +5,8 @@ import Link from 'next/link'
 
 import { appendQueryParams } from '../../utils'
 
-const absoluteUrlRegex = new RegExp('^(?:[a-z]+:)?//', 'i')
+const isAbsoluteUrlRegex = new RegExp('^(?:[a-z]+:)?//', 'i')
+const isMailOrTelUrlRegex = new RegExp('^(mailto|tel):.*', 'i')
 
 // uses next/link for internal page routing
 // uses <a> tag for external page routing
@@ -21,28 +22,29 @@ export function SmartLink({
   const router = useRouter()
   const query = router?.query
 
-  const isInternalLink = useMemo<boolean>(
-    // href can be undefined for a download button
-    () => (!href ? false : !absoluteUrlRegex.test(href)),
+  const isMailToOrTelUrl = useMemo<boolean>(
+    () => isMailOrTelUrlRegex.test(href),
     [href]
+  )
+  const isInternalUrl = useMemo<boolean>(
+    () => !isAbsoluteUrlRegex.test(href) && !isMailToOrTelUrl,
+    [href, isMailToOrTelUrl]
   )
 
   const hrefWithParams = useMemo<string>(() => {
-    // Ignore params when href is empty or undefined
-    if (!href) return href
     let updatedHref = href
 
     // Add existing query params if retained
-    if (query && isInternalLink && retainParams)
+    if (query && isInternalUrl && retainParams)
       updatedHref = appendQueryParams(updatedHref, query)
 
     // Add new query params if passed
     if (params) updatedHref = appendQueryParams(updatedHref, params)
 
     return updatedHref
-  }, [query, isInternalLink, href, params, retainParams])
+  }, [query, isInternalUrl, href, params, retainParams])
 
-  return isInternalLink ? (
+  return isInternalUrl && !download ? (
     <Link href={hrefWithParams}>
       <a className={className} onClick={onClick}>
         {children}
@@ -50,7 +52,7 @@ export function SmartLink({
     </Link>
   ) : (
     <a
-      target='_blank'
+      target={download || isMailToOrTelUrl ? '_self' : '_blank'}
       rel='noreferrer noopener'
       href={hrefWithParams}
       download={download}
@@ -64,8 +66,8 @@ export function SmartLink({
 
 export interface SmartLinkProps {
   children: ReactNode
-  href?: string
-  download?: string
+  href: string
+  download?: boolean | string
   className?: string
   params?: Record<string, string | string[] | number | number[]>
   retainParams?: boolean
@@ -77,8 +79,8 @@ export const SmartLinkPropTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
-  href: PropTypes.string,
-  download: PropTypes.string,
+  href: PropTypes.string.isRequired,
+  download: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   className: PropTypes.string,
   params: PropTypes.objectOf(
     PropTypes.oneOfType([
