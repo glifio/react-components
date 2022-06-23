@@ -75,3 +75,23 @@ exports[`SmartLink it renders internal links correctly 1`] = `
   Click me
 </a>
 `;
+
+exports[`SmartLink it renders mailto links correctly 1`] = `
+<a
+  href="mailto:squad@glif.io"
+  rel="noreferrer noopener"
+  target="_self"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it renders tel links correctly 1`] = `
+<a
+  href="tel:+4733378901"
+  rel="noreferrer noopener"
+  target="_self"
+>
+  Click me
+</a>
+`;
