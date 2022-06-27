@@ -13,6 +13,7 @@ const EPOCH_TO_CLOCK_TIME = 30
 export const useUnformattedDateTime = (
   message: (MessageConfirmedRow | MessagePendingRow) & {
     block?: Pick<Block, 'Timestamp'>
+    height?: number | string
   },
   time: number
 ) => {
