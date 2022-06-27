@@ -20,7 +20,7 @@ export const useUnformattedDateTime = (
 
   useChainHeadSubscription({
     variables: {},
-    skip: !message,
+    skip: !message || !!message?.block?.Timestamp,
     shouldResubscribe: !age,
     onSubscriptionData: ({ subscriptionData }) => {
       if (!subscriptionData.loading && !subscriptionData.error && !!message) {
