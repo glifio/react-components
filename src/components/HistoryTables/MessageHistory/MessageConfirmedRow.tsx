@@ -72,7 +72,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
 
 type MessageHistoryRowProps = {
   message: MessageConfirmedRow
-  cidHref: (cid: string, height?: string) => string
+  cidHref: (cid: string, height?: number) => string
   inspectingAddress: string
   chainHeadSub: SubscriptionResult<ChainHeadSubscription, any>
 }

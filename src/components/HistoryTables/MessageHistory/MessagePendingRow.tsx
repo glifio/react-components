@@ -71,7 +71,7 @@ export default function PendingMessageHistoryRow(
 
 type PendingMessageHistoryRowProps = {
   message: MessagePendingRow
-  cidHref: (cid: string, height?: string) => string
+  cidHref: (cid: string, height?: number) => string
   inspectingAddress: string
 }
 
