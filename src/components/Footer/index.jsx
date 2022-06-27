@@ -98,22 +98,22 @@ export default function Footer() {
 
           <Ul>
             <Li>
-              <SmartLink href={`${process.env.NEXT_PUBLIC_WALLET_URL}`}>
+              <SmartLink href={process.env.NEXT_PUBLIC_WALLET_URL}>
                 Wallet
               </SmartLink>
             </Li>
             <Li>
-              <SmartLink href={`${process.env.NEXT_PUBLIC_SAFE_URL}`}>
+              <SmartLink href={process.env.NEXT_PUBLIC_SAFE_URL}>
                 Safe
               </SmartLink>
             </Li>
             <Li>
-              <SmartLink href={`${process.env.NEXT_PUBLIC_EXPLORER_URL}`}>
+              <SmartLink href={process.env.NEXT_PUBLIC_EXPLORER_URL}>
                 Explorer
               </SmartLink>
             </Li>
             <Li>
-              <SmartLink href={`${process.env.NEXT_PUBLIC_VERIFIER_URL}`}>
+              <SmartLink href={process.env.NEXT_PUBLIC_VERIFIER_URL}>
                 Verifier
               </SmartLink>
             </Li>

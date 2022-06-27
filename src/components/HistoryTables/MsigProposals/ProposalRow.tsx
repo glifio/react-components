@@ -75,7 +75,6 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
 }
 
 type ProposalHistoryRowProps = {
-  key: any
   proposal: MsigTransaction
   idHref: (id: number) => string
   inspectingAddress?: string

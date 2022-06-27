@@ -76,7 +76,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 type MessageHistoryTableProps = {
   offset: number
   address: string
-  cidHref: (cid: string, height?: string) => string
+  cidHref: (cid: string, height?: number) => string
 }
 
 MessageHistoryTable.propTypes = {

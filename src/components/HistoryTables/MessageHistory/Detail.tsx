@@ -65,7 +65,7 @@ export default function MessageDetail(props: MessageDetailProps) {
   const confirmationCount = useMemo(
     () =>
       chainHeadSubscription.data?.chainHead.height && !!message?.height
-        ? chainHeadSubscription.data.chainHead.height - message.height
+        ? chainHeadSubscription.data.chainHead.height - Number(message.height)
         : 0,
     [message?.height, chainHeadSubscription.data?.chainHead.height]
   )
