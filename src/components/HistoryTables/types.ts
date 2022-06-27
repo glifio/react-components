@@ -15,7 +15,7 @@ export type MessageConfirmedRow = Pick<
 
 export type MessagePendingRow = Pick<
   MessagePending,
-  'cid' | 'method' | 'from' | 'to' | 'value'
+  'cid' | 'method' | 'height' | 'from' | 'to' | 'value'
 >
 
 export const BLOCK_PROP_TYPE = PropTypes.shape({
@@ -41,6 +41,7 @@ export const MESSAGE_PENDING_ROW_PROP_TYPE = PropTypes.shape({
   cid: PropTypes.string.isRequired,
   // TODO tighten once the server is returning the same types
   method: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  height: PropTypes.string.isRequired,
   block: BLOCK_PROP_TYPE.isRequired,
   from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
