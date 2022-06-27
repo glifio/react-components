@@ -11,7 +11,7 @@ dayjs.extend(relativeTime.default)
 const EPOCH_TO_CLOCK_TIME = 30
 
 export const useUnformattedDateTime = (
-  message: MessageConfirmedRow | MessagePendingRow & { block?: Block },
+  message: (MessageConfirmedRow | MessagePendingRow) & { block?: Block },
   time: number
 ) => {
   const [age, setAge] = useState<dayjs.Dayjs | null>(null)
