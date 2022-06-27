@@ -1,5 +1,5 @@
 import { NextRouter } from 'next/router'
-import { navigate } from '.'
+import { getQueryParam, navigate } from '.'
 
 enum PAGE {
   LANDING = '/',
@@ -19,6 +19,65 @@ const routerWithQuery2 = {
   query: { foo: 'bar', glif: 'ftw' },
   push: jest.fn()
 } as unknown as NextRouter
+
+const routerWithQuery3 = {
+  query: {
+    test1: ['a', 'b', 'c'],
+    test2: ['1', '2', '3'],
+    test3: 'xyz',
+    test4: '789'
+  },
+  push: jest.fn()
+} as unknown as NextRouter
+
+describe('getParam', () => {
+  test('getQueryParam.string', () => {
+    expect(getQueryParam.string(routerWithQuery3, 'test0')).toBe('')
+    expect(getQueryParam.string(routerWithQuery3, 'test1')).toBe('a')
+    expect(getQueryParam.string(routerWithQuery3, 'test2')).toBe('1')
+    expect(getQueryParam.string(routerWithQuery3, 'test3')).toBe('xyz')
+    expect(getQueryParam.string(routerWithQuery3, 'test4')).toBe('789')
+  })
+  test('getQueryParam.number', () => {
+    expect(getQueryParam.number(routerWithQuery3, 'test0')).toBe(NaN)
+    expect(getQueryParam.number(routerWithQuery3, 'test1')).toBe(NaN)
+    expect(getQueryParam.number(routerWithQuery3, 'test2')).toBe(1)
+    expect(getQueryParam.number(routerWithQuery3, 'test3')).toBe(NaN)
+    expect(getQueryParam.number(routerWithQuery3, 'test4')).toBe(789)
+  })
+  test('getQueryParam.stringArray', () => {
+    expect(getQueryParam.stringArray(routerWithQuery3, 'test0')).toEqual([])
+    expect(getQueryParam.stringArray(routerWithQuery3, 'test1')).toEqual([
+      'a',
+      'b',
+      'c'
+    ])
+    expect(getQueryParam.stringArray(routerWithQuery3, 'test2')).toEqual([
+      '1',
+      '2',
+      '3'
+    ])
+    expect(getQueryParam.stringArray(routerWithQuery3, 'test3')).toEqual([
+      'xyz'
+    ])
+    expect(getQueryParam.stringArray(routerWithQuery3, 'test4')).toEqual([
+      '789'
+    ])
+  })
+  test('getQueryParam.numberArray', () => {
+    expect(getQueryParam.numberArray(routerWithQuery3, 'test0')).toEqual([])
+    expect(getQueryParam.numberArray(routerWithQuery3, 'test1')).toEqual([
+      NaN,
+      NaN,
+      NaN
+    ])
+    expect(getQueryParam.numberArray(routerWithQuery3, 'test2')).toEqual([
+      1, 2, 3
+    ])
+    expect(getQueryParam.numberArray(routerWithQuery3, 'test3')).toEqual([NaN])
+    expect(getQueryParam.numberArray(routerWithQuery3, 'test4')).toEqual([789])
+  })
+})
 
 describe('navigate', () => {
   test('it navigates to the URL', () => {
@@ -99,7 +158,7 @@ describe('navigate', () => {
     navigate(router, {
       pageUrl: PAGE.HOME,
       params: {
-        test: NaN,
+        test1: NaN,
         test2: 'abc',
         test3: '',
         // @ts-ignore
@@ -119,14 +178,14 @@ describe('navigate', () => {
         foo: 'baz',
         test1: ['a', 'b', 'c'],
         test2: [1, 2, 3],
-        test4: 'xyz',
-        test5: 789
+        test3: 'xyz',
+        test4: 789
       },
       retainParams: true
     })
     expect(routerWithQuery2.push).toHaveBeenCalledTimes(1)
     expect(routerWithQuery2.push).toHaveBeenCalledWith(
-      `${PAGE.HOME}?glif=ftw&foo=baz&test1=a&test1=b&test1=c&test2=1&test2=2&test2=3&test4=xyz&test5=789`
+      `${PAGE.HOME}?glif=ftw&foo=baz&test1=a&test1=b&test1=c&test2=1&test2=2&test2=3&test3=xyz&test4=789`
     )
   })
 })

@@ -1,5 +1,32 @@
 import { NextRouter } from 'next/router'
 
+export const getQueryParam = {
+  string: (router: NextRouter, key: string): string => {
+    const param = router?.query?.[key]
+    if (!param) return ''
+    if (Array.isArray(param)) return param[0]
+    return param
+  },
+  number: (router: NextRouter, key: string): number => {
+    const param = router?.query?.[key]
+    if (!param) return NaN
+    if (Array.isArray(param)) return Number(param[0])
+    return Number(param)
+  },
+  stringArray: (router: NextRouter, key: string): Array<string> => {
+    const param = router?.query?.[key]
+    if (!param) return []
+    if (Array.isArray(param)) return param
+    return [param]
+  },
+  numberArray: (router: NextRouter, key: string): Array<number> => {
+    const param = router?.query?.[key]
+    if (!param) return []
+    if (Array.isArray(param)) return param.map(p => Number(p))
+    return [Number(param)]
+  }
+}
+
 const appendQueryParam = (
   params: URLSearchParams,
   key: string,
