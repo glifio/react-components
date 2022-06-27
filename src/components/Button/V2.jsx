@@ -158,4 +158,7 @@ ButtonV2Link.propTypes = {
   ...buttonPropTypes,
   ...SmartLinkPropTypes
 }
-ButtonV2Link.defaultProps = buttonDefaultProps
+ButtonV2Link.defaultProps = {
+  ...buttonDefaultProps,
+  ...SmartLink.defaultProps
+}
