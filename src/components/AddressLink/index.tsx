@@ -5,7 +5,6 @@ import truncateAddress from '../../utils/truncateAddress'
 import { SmartLink } from '../Link/SmartLink'
 import { Label } from '../Typography'
 import { CopyText } from '../Copy'
-import Box from '../Box'
 
 const Link = styled(SmartLink)`
   color: ${props => props.color};
@@ -15,6 +14,17 @@ const Link = styled(SmartLink)`
     text-decoration: underline;
   }
 `
+
+const AddressWrap = styled.div`
+  display: flex;
+  flexdirection: row;
+  grid-gap: 0.25em;
+  line-height: ${props => props.hideCopy && '1.5'};
+`
+
+const explorerUrl =
+  process.env.NEXT_PUBLIC_EXPLORER_URL ||
+  'https://explorer-calibration.glif.link'
 
 export const AddressLink = ({
   id,
@@ -26,33 +36,27 @@ export const AddressLink = ({
   hideCopy,
   hideCopyText
 }: AddressLinkProps) => {
-  const truncated = useMemo(
-    () => (address ? truncateAddress(address) : ''),
-    [address]
-  )
-  const explorerUrl =
-    process.env.NEXT_PUBLIC_EXPLORER_URL ||
-    'https://explorer-calibration.glif.link'
-  const linkText = truncated && id ? `(${id})` : id || truncated
-  const linkHref = `${explorerUrl}/actor/?address=${id || address}`
+  // prioritize robust > id, use id if no robust exists
+  const linkText = useMemo(() => {
+    if (address) return truncateAddress(address)
+    else if (id) return id
+
+    return ''
+  }, [address, id])
+
+  const linkHref = `${explorerUrl}/actor/?address=${address || id}`
   const onClick = useCallback(
     (e: MouseEvent) => stopPropagation && e.stopPropagation(),
     [stopPropagation]
   )
   return (
-    <Box>
+    <div>
       {label && (
         <Label color='core.darkgray' fontSize={1}>
           {label}
         </Label>
       )}
-      <Box
-        display='flex'
-        flexDirection='row'
-        gridGap='0.25em'
-        lineHeight={hideCopy ? null : '1.5'}
-      >
-        {truncated && id && <span>{truncated}</span>}
+      <AddressWrap hideCopy={hideCopy}>
         {disableLink ? (
           <span>{linkText}</span>
         ) : (
@@ -60,11 +64,11 @@ export const AddressLink = ({
             {linkText}
           </Link>
         )}
-        {!hideCopy && address && (
+        {!hideCopy && !!linkText && (
           <CopyText text={address} hideCopyText={hideCopyText} color={color} />
         )}
-      </Box>
-    </Box>
+      </AddressWrap>
+    </div>
   )
 }
 

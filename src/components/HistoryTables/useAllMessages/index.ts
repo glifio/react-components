@@ -3,14 +3,14 @@ import { BigNumber } from '@glif/filecoin-number'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
-  MessageConfirmed,
   useMpoolUpdateSubscription,
   usePendingMessagesQuery,
   ChainHeadSubscription,
   useChainHeadSubscription,
   useMessageQuery,
   usePendingMessageQuery,
-  useMessagesQuery
+  useMessagesQuery,
+  Message
 } from '../../../generated/graphql'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import { uniqueifyMsgs } from '../../../utils/uniqueifyMsgs'
@@ -207,13 +207,13 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   }
 }
 
-export const useMessage = (cid: string, height?: number) => {
+export const useMessage = (cid: string) => {
   const {
     data: msgData,
     loading: msgLoading,
     error: _msgErr
   } = useMessageQuery({
-    variables: { cid, height },
+    variables: { cid },
     pollInterval: 30000
   })
 
@@ -322,14 +322,14 @@ export const useMessage = (cid: string, height?: number) => {
 
   const error = useMemo(() => msgErr || pendingMsgErr, [msgErr, pendingMsgErr])
 
-  const message = useMemo<MessageConfirmed | MessagePending | null>(() => {
+  const message = useMemo<Message | MessagePending | null>(() => {
     const ready = !error && !loading
     if (ready && pendingFound) {
-      return msgData?.message as MessageConfirmed
+      return msgData?.message as Message
     } else if (ready && pendingMsg) {
       return pendingMsg
     } else if (ready && msgData?.message) {
-      return msgData.message as MessageConfirmed
+      return msgData.message as Message
     } else return null
   }, [msgData, loading, error, pendingMsg, pendingFound])
 
@@ -340,13 +340,10 @@ export const useMessage = (cid: string, height?: number) => {
   // if true, the message will not have its gas execution information attached to it
   const messageConfirmedInChainHead = useMemo(() => {
     if (pending) return false
-    const msg = message as MessageConfirmed
-    const bnBaseFeeBurn = new BigNumber(msg?.baseFeeBurn)
-    const bnGasBurned = new BigNumber(msg?.gasBurned)
+    const msg = message as Message
+    const totalCost = new BigNumber(msg?.gasCost?.totalCost)
 
-    return (
-      !!msg && !bnBaseFeeBurn.isGreaterThan(0) && !bnGasBurned.isGreaterThan(0)
-    )
+    return !!msg && !totalCost
   }, [message, pending])
 
   return {

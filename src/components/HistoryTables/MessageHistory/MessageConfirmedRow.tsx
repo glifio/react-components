@@ -32,7 +32,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   return (
     <TR>
       <TD>
-        <SmartLink href={cidHref(message.cid, message.height)}>
+        <SmartLink href={cidHref(message.cid)}>
           {truncateAddress(message.cid)}
         </SmartLink>
       </TD>

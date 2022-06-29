@@ -7,7 +7,7 @@ import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import { logger } from '../../../logger'
 
 type MessageForMethodNameType =
-  | Pick<MessageConfirmedRow, 'actorName' | 'to' | 'cid' | 'method'>
+  | Pick<MessageConfirmedRow, 'to' | 'cid' | 'method'>
   | (MessagePendingRow & { actorName: string })
 
 export const useMethodName = (
@@ -16,14 +16,10 @@ export const useMethodName = (
   const actor = useActorQuery({
     variables: {
       address: convertAddrToPrefix(message?.to.robust || message?.to.id)
-    },
-    // this means the message came from low confidence query
-    // so we have to look up the actor ourselves
-    skip: !message?.cid || !!(message?.cid && message?.actorName)
+    }
   })
 
   const actorName = useMemo<string>(() => {
-    if (message?.actorName) return message.actorName
     if (!message?.cid || actor.loading || actor.error || !actor.data) return ''
     try {
       return decodeActorCID(actor.data?.actor.Code)
@@ -31,7 +27,7 @@ export const useMethodName = (
       logger.error(e)
       return 'unknown'
     }
-  }, [message?.actorName, actor, message?.cid])
+  }, [actor, message?.cid])
 
   const methodName = useMemo(() => {
     if (actorName) return getMethodName(actorName, Number(message.method))

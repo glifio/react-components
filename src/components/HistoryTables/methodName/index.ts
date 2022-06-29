@@ -17,7 +17,9 @@ export const getMethodName = (
 ): string => {
   let methodName = ''
 
-  if (actorCode.includes('multisig')) {
+  if (methodNum === 0) {
+    methodName = 'send'
+  } else if (actorCode.includes('multisig')) {
     methodName = msigActorCodes[methodNum]
   } else if (actorCode.includes('account')) {
     methodName = accountActorCodes[methodNum]
@@ -39,8 +41,6 @@ export const getMethodName = (
     methodName = storageMarketActorCodes[methodNum]
   } else if (actorCode.includes('system')) {
     methodName = 'internal'
-  } else if (methodNum === 0) {
-    methodName = 'send'
   } else {
     methodName = methodNum.toString()
   }
