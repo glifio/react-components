@@ -1,4 +1,5 @@
 import { decode } from '@ipld/dag-cbor'
+import { fromString } from 'uint8arrays'
 import address from '@glif/filecoin-address'
 
 const bytesToAddress = (payload): string => {
@@ -13,7 +14,7 @@ export type ExecReturn = {
 
 export const getAddrFromReceipt = (base64Return: string): ExecReturn => {
   const [cborBytesID, cborBytesRobust] = decode(
-    Buffer.from(base64Return, 'base64')
+    fromString(base64Return, 'base64')
   )
   return {
     robust: bytesToAddress(cborBytesRobust),

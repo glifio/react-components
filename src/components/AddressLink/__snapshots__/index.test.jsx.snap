@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Receive it renders correctly 1`] = `
-.c1 {
+.c0 {
   color: #666666;
   font-size: 1rem;
   font-weight: 400;
@@ -10,26 +10,7 @@ exports[`Receive it renders correctly 1`] = `
   margin: 0;
 }
 
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-.c2 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  line-height: 1.5;
-  grid-gap: 0.25em;
-}
-
-.c4 {
+.c3 {
   min-width: 0;
   box-sizing: border-box;
   color: var(--purple-medium);
@@ -43,12 +24,12 @@ exports[`Receive it renders correctly 1`] = `
   align-items: center;
 }
 
-.c7 {
+.c6 {
   width: 24;
   height: 24;
 }
 
-.c6 {
+.c5 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -73,34 +54,43 @@ exports[`Receive it renders correctly 1`] = `
   outline: none;
 }
 
-.c9 {
+.c8 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c5:hover .c8 {
+.c4:hover .c7 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c3 {
+.c2 {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c3:hover {
+.c2:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-<div
-  class="c0"
->
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flexdirection: row;
+  -ms-flexdirection: row;
+  flexdirection: row;
+  grid-gap: 0.25em;
+}
+
+<div>
   <h4
-    class="c1"
+    class="c0"
     color="core.darkgray"
     font-family="RT-Alias-Grotesk"
     font-size="1"
@@ -109,11 +99,10 @@ exports[`Receive it renders correctly 1`] = `
     Safe Address
   </h4>
   <div
-    class="c2"
-    display="flex"
+    class="c1"
   >
     <a
-      class="c3"
+      class="c2"
       href="https://explorer-calibration.glif.link/actor/?address=t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy"
       rel="noreferrer noopener"
       target="_blank"
@@ -121,18 +110,18 @@ exports[`Receive it renders correctly 1`] = `
       t137sj ... 2vizpy
     </a>
     <div
-      class="c4"
+      class="c3"
       color="var(--purple-medium)"
       display="flex"
     >
       <button
-        class="c5 c6"
+        class="c4 c5"
         display="flex"
         role="button"
         type="button"
       >
         <svg
-          class="c7 c8 c9"
+          class="c6 c7 c8"
           fill="none"
           height="24"
           viewBox="0 0 24 24"
