@@ -51,12 +51,10 @@ export default function MessageDetail(props: MessageDetailProps) {
     [message?.value]
   )
   const totalCost = useMemo(() => {
-    if (!message) return ''
     const cost = (message as Message)?.gasCost?.totalCost
-    if (!cost) return ''
-    return `${makeFriendlyBalance(
-      new FilecoinNumber((message as Message)?.gasCost?.totalCost, 'attofil')
-    )} FIL`
+    return cost
+      ? `${makeFriendlyBalance(new FilecoinNumber(cost, 'attofil'))} FIL`
+      : ''
   }, [message])
 
   const gasPercentage = useMemo(
