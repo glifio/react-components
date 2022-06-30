@@ -64,14 +64,14 @@ export default function MessageDetail(props: MessageDetailProps) {
   const gasBurned = useMemo<string>(() => {
     if (!message || pending) return ''
     const baseFeeBurn = new FilecoinNumber(
-      (message as Message)?.gasCost?.baseFeeBurn,
+      (message as Message)?.gasCost?.baseFeeBurn || '0',
       'attofil'
     )
     const overEstimationBurn = new FilecoinNumber(
-      (message as Message)?.gasCost?.overEstimationBurn,
+      (message as Message)?.gasCost?.overEstimationBurn || '0',
       'attofil'
     )
-    return formatNumber(baseFeeBurn.plus(overEstimationBurn).toString())
+    return formatNumber(baseFeeBurn.plus(overEstimationBurn).toAttoFil())
   }, [message, pending])
 
   const unformattedTime = useUnformattedDateTime(message, time)

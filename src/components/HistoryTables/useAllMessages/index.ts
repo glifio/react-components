@@ -343,7 +343,7 @@ export const useMessage = (cid: string) => {
     const msg = message as Message
     const totalCost = new BigNumber(msg?.gasCost?.totalCost)
 
-    return !!msg && !totalCost
+    return !!msg && totalCost.isZero()
   }, [message, pending])
 
   return {
