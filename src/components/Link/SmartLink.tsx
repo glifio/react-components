@@ -1,4 +1,4 @@
-import { useMemo, ReactNode } from 'react'
+import { useMemo, ReactNode, MouseEvent } from 'react'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
@@ -71,7 +71,7 @@ export interface SmartLinkProps {
   className?: string
   params?: Record<string, string | string[] | number | number[]>
   retainParams?: boolean
-  onClick?: () => void
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
 }
 
 export const SmartLinkPropTypes = {

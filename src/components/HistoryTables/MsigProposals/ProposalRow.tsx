@@ -52,7 +52,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
       </TD>
       <TD>
         <AddressLink
-          id={proposal.approved[0].robust ? '' : proposal.approved[0].id}
+          id={proposal.approved[0].id}
           address={proposal.approved[0].robust}
           disableLink={proposerIsInspecting}
           hideCopy

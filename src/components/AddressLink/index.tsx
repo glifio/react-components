@@ -1,25 +1,30 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useMemo, useCallback } from 'react'
+import { useMemo, useCallback, MouseEvent } from 'react'
 import truncateAddress from '../../utils/truncateAddress'
 import { SmartLink } from '../Link/SmartLink'
-import { Label } from '../Typography'
 import { CopyText } from '../Copy'
 
-const Link = styled(SmartLink)`
-  color: ${props => props.color};
-  text-decoration: none;
-  &:hover {
-    color: ${props => props.color};
-    text-decoration: underline;
+const AddressLinkEl = styled.div`
+  h4 {
+    margin: 0;
+    color: var(--gray-dark);
   }
-`
 
-const AddressWrap = styled.div`
-  display: flex;
-  flexdirection: row;
-  grid-gap: 0.25em;
-  line-height: ${props => props.hideCopy && '1.5'};
+  .address {
+    display: flex;
+    grid-gap: 0.25em;
+    line-height: 1.5;
+
+    a {
+      color: ${props => props.color};
+      text-decoration: none;
+      &:hover {
+        color: ${props => props.color};
+        text-decoration: underline;
+      }
+    }
+  }
 `
 
 const explorerUrl =
@@ -37,38 +42,36 @@ export const AddressLink = ({
   hideCopyText
 }: AddressLinkProps) => {
   // prioritize robust > id, use id if no robust exists
-  const linkText = useMemo(() => {
-    if (address) return truncateAddress(address)
-    else if (id) return id
-
-    return ''
-  }, [address, id])
-
+  const linkText = useMemo(
+    () => (address ? truncateAddress(address) : id || ''),
+    [address, id]
+  )
   const linkHref = `${explorerUrl}/actor/?address=${address || id}`
   const onClick = useCallback(
-    (e: MouseEvent) => stopPropagation && e.stopPropagation(),
+    (e: MouseEvent<HTMLAnchorElement>) =>
+      stopPropagation && e.stopPropagation(),
     [stopPropagation]
   )
   return (
-    <div>
-      {label && (
-        <Label color='core.darkgray' fontSize={1}>
-          {label}
-        </Label>
-      )}
-      <AddressWrap hideCopy={hideCopy}>
+    <AddressLinkEl color={color}>
+      {label && <h4>{label}</h4>}
+      <div className='address'>
         {disableLink ? (
           <span>{linkText}</span>
         ) : (
-          <Link color={color} href={linkHref} onClick={onClick}>
+          <SmartLink href={linkHref} onClick={onClick}>
             {linkText}
-          </Link>
+          </SmartLink>
         )}
-        {!hideCopy && !!linkText && (
-          <CopyText text={address} hideCopyText={hideCopyText} color={color} />
+        {!hideCopy && (address || id) && (
+          <CopyText
+            text={address || id}
+            hideCopyText={hideCopyText}
+            color={color}
+          />
         )}
-      </AddressWrap>
-    </div>
+      </div>
+    </AddressLinkEl>
   )
 }
 

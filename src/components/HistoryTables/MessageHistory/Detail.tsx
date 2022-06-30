@@ -46,24 +46,22 @@ export default function MessageDetail(props: MessageDetailProps) {
     skip: pending
   })
 
-  const value = useMemo(
+  const value = useMemo<string>(
     () => (message?.value ? attoFilToFil(message.value) : ''),
     [message?.value]
   )
-  const totalCost = useMemo(() => {
-    if (!message) return ''
+  const totalCost = useMemo<string>(() => {
     const cost = (message as Message)?.gasCost?.totalCost
-    if (!cost) return ''
-    return `${makeFriendlyBalance(
-      new FilecoinNumber((message as Message)?.gasCost?.totalCost, 'attofil')
-    )} FIL`
+    return cost
+      ? `${makeFriendlyBalance(new FilecoinNumber(cost, 'attofil'))} FIL`
+      : ''
   }, [message])
 
-  const gasPercentage = useMemo(
+  const gasPercentage = useMemo<string>(
     () => (message ? getGasPercentage(message, pending) : ''),
     [message, pending]
   )
-  const gasBurned = useMemo(() => {
+  const gasBurned = useMemo<string>(() => {
     if (!message || pending) return ''
     const baseFeeBurn = new FilecoinNumber(
       (message as Message)?.gasCost?.baseFeeBurn,
@@ -78,7 +76,7 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   const unformattedTime = useUnformattedDateTime(message, time)
 
-  const confirmationCount = useMemo(
+  const confirmationCount = useMemo<number>(
     () =>
       chainHeadSubscription.data?.chainHead.height && !!message?.height
         ? chainHeadSubscription.data.chainHead.height - Number(message.height)
@@ -88,14 +86,14 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   const { methodName, actorName } = useMethodName(message)
 
-  const execReturn: ExecReturn | null = useMemo(() => {
-    if (!message) return null
-    // if this is an init message to the exec actor...
-    if (isAddrEqual(message.to, 'f01') && Number(message.method) === 2) {
-      return getAddrFromReceipt((message as Message)?.receipt?.return)
-    }
-    return null
-  }, [message])
+  const execReturn = useMemo<ExecReturn | null>(
+    () =>
+      // if this is an init message to the exec actor...
+      isAddrEqual(message?.to, 'f01') && Number(message?.method) === 2
+        ? getAddrFromReceipt((message as Message)?.receipt?.return)
+        : null,
+    [message]
+  )
 
   return (
     <>
