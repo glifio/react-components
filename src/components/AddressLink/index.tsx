@@ -21,9 +21,8 @@ const Link = styled(SmartLink)`
 
 const AddressWrap = styled.div`
   display: flex;
-  flexdirection: row;
   grid-gap: 0.25em;
-  line-height: ${props => props.hideCopy && '1.5'};
+  line-height: 1.5;
 `
 
 const explorerUrl =
@@ -56,7 +55,7 @@ export const AddressLink = ({
   return (
     <div>
       {label && <Label>{label}</Label>}
-      <AddressWrap hideCopy={hideCopy}>
+      <AddressWrap>
         {disableLink ? (
           <span>{linkText}</span>
         ) : (
