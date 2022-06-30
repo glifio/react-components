@@ -3,8 +3,12 @@ import PropTypes from 'prop-types'
 import { useMemo, useCallback } from 'react'
 import truncateAddress from '../../utils/truncateAddress'
 import { SmartLink } from '../Link/SmartLink'
-import { Label } from '../Typography'
 import { CopyText } from '../Copy'
+
+const Label = styled.h4`
+  margin: 0;
+  color: var(--gray-dark);
+`
 
 const Link = styled(SmartLink)`
   color: ${props => props.color};
@@ -51,11 +55,7 @@ export const AddressLink = ({
   )
   return (
     <div>
-      {label && (
-        <Label color='core.darkgray' fontSize={1}>
-          {label}
-        </Label>
-      )}
+      {label && <Label>{label}</Label>}
       <AddressWrap hideCopy={hideCopy}>
         {disableLink ? (
           <span>{linkText}</span>
