@@ -64,8 +64,12 @@ export const AddressLink = ({
             {linkText}
           </Link>
         )}
-        {!hideCopy && !!linkText && (
-          <CopyText text={address} hideCopyText={hideCopyText} color={color} />
+        {!hideCopy && (address || id) && (
+          <CopyText
+            text={address || id}
+            hideCopyText={hideCopyText}
+            color={color}
+          />
         )}
       </AddressWrap>
     </div>
