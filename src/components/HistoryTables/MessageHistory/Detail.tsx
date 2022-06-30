@@ -50,12 +50,13 @@ export default function MessageDetail(props: MessageDetailProps) {
     () => (message?.value ? attoFilToFil(message.value) : ''),
     [message?.value]
   )
-  const totalCost = useMemo<string>(() => {
+  const transactionFee = useMemo<string>(() => {
+    if (pending) return 'Pending...'
     const cost = (message as Message)?.gasCost?.totalCost
     return cost
       ? `${makeFriendlyBalance(new FilecoinNumber(cost, 'attofil'))} FIL`
       : ''
-  }, [message])
+  }, [message, pending])
 
   const gasPercentage = useMemo<string>(
     () => (message ? getGasPercentage(message, pending) : ''),
@@ -172,9 +173,7 @@ export default function MessageDetail(props: MessageDetailProps) {
               </Line>
               <hr />
               <Line label='Value'>{value}</Line>
-              <Line label='Transaction Fee'>
-                {pending ? 'Pending' : totalCost}
-              </Line>
+              <Line label='Transaction Fee'>{transactionFee}</Line>
               {!loading && methodName && (
                 <Line label='Method'>
                   <Badge color='purple' text={methodName} />
