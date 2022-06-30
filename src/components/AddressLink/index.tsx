@@ -42,13 +42,10 @@ export const AddressLink = ({
   hideCopyText
 }: AddressLinkProps) => {
   // prioritize robust > id, use id if no robust exists
-  const linkText = useMemo(() => {
-    if (address) return truncateAddress(address)
-    else if (id) return id
-
-    return ''
-  }, [address, id])
-
+  const linkText = useMemo(
+    () => (address ? truncateAddress(address) : id || ''),
+    [address, id]
+  )
   const linkHref = `${explorerUrl}/actor/?address=${address || id}`
   const onClick = useCallback(
     (e: MouseEvent<HTMLAnchorElement>) =>
