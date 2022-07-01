@@ -1,18 +1,11 @@
 import PropTypes from 'prop-types'
 import { GRAPHQL_ADDRESS_PROP_TYPE } from '../../customPropTypes'
-import {
-  Block,
-  MessageConfirmed,
-  MessagePending
-} from '../../generated/graphql'
+import { Message, MessagePending } from '../../generated/graphql'
 
 export type MessageConfirmedRow = Pick<
-  MessageConfirmed,
-  'cid' | 'method' | 'actorName' | 'height' | 'from' | 'to' | 'value'
-> & {
-  block: Pick<Block, 'Cid' | 'Timestamp'>
-}
-
+  Message,
+  'cid' | 'method' | 'height' | 'from' | 'to' | 'value'
+>
 export type MessagePendingRow = Pick<
   MessagePending,
   'cid' | 'method' | 'from' | 'to' | 'value'
@@ -29,9 +22,7 @@ export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
   cid: PropTypes.string.isRequired,
   // TODO tighten once the server is returning the same types
   method: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  actorName: PropTypes.string,
   height: PropTypes.number.isRequired,
-  block: BLOCK_PROP_TYPE,
   from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   value: PropTypes.string.isRequired

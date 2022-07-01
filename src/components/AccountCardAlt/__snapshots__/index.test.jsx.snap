@@ -105,26 +105,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
   font-size: 1.5rem;
 }
 
-.c9 {
-  min-width: 0;
-  box-sizing: border-box;
-}
-
 .c10 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  line-height: 1.5;
-  grid-gap: 0.25em;
-}
-
-.c12 {
   min-width: 0;
   box-sizing: border-box;
   color: var(--purple-medium);
@@ -138,7 +119,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
   align-items: center;
 }
 
-.c18 {
+.c16 {
   min-width: 0;
   box-sizing: border-box;
   display: -webkit-box;
@@ -183,7 +164,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
   margin: 0;
 }
 
-.c19 {
+.c17 {
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.4;
@@ -192,7 +173,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
   margin-bottom: 0;
 }
 
-.c20 {
+.c18 {
   cursor: pointer;
   border: 1px solid #262626;
   background-color: transparent;
@@ -211,16 +192,16 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
   border-radius: 4px;
 }
 
-.c20:hover {
+.c18:hover {
   opacity: 0.8;
 }
 
-.c15 {
+.c13 {
   width: 24;
   height: 24;
 }
 
-.c14 {
+.c12 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -245,24 +226,38 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
   outline: none;
 }
 
-.c17 {
+.c15 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c13:hover .c16 {
+.c11:hover .c14 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c11 {
+.c9 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c9 .address {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
+}
+
+.c9 .address a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c11:hover {
+.c9 .address a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -328,13 +323,12 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
   >
     <div
       class="c9"
+      color="var(--purple-medium)"
     >
       <div
-        class="c10"
-        display="flex"
+        class="address"
       >
         <a
-          class="c11"
           href="https://explorer-calibration.glif.link/actor/?address=t0123456789"
           rel="noreferrer noopener"
           target="_blank"
@@ -342,18 +336,18 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
           t0123456789
         </a>
         <div
-          class="c12"
+          class="c10"
           color="var(--purple-medium)"
           display="flex"
         >
           <button
-            class="c13 c14"
+            class="c11 c12"
             display="flex"
             role="button"
             type="button"
           >
             <svg
-              class="c15 c16 c17"
+              class="c13 c14 c15"
               fill="none"
               height="24"
               viewBox="0 0 24 24"
@@ -381,7 +375,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
     </div>
   </div>
   <div
-    class="c18"
+    class="c16"
     display="flex"
   >
     <div
@@ -389,7 +383,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
       display="flex"
     >
       <p
-        class="c19"
+        class="c17"
         font-family="RT-Alias-Grotesk"
         font-size="3"
         font-weight="400"
@@ -407,7 +401,7 @@ exports[`AccountCardAlt renders created address at random index 1`] = `
       </h2>
     </div>
     <button
-      class="c20"
+      class="c18"
       font-size="3"
       height="6"
       type="button"
@@ -523,26 +517,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
   font-size: 1.5rem;
 }
 
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
-}
-
 .c11 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  line-height: 1.5;
-  grid-gap: 0.25em;
-}
-
-.c13 {
   min-width: 0;
   box-sizing: border-box;
   color: var(--purple-medium);
@@ -556,7 +531,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
   align-items: center;
 }
 
-.c19 {
+.c17 {
   min-width: 0;
   box-sizing: border-box;
   display: -webkit-box;
@@ -611,7 +586,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
   margin: 0;
 }
 
-.c20 {
+.c18 {
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.4;
@@ -620,7 +595,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
   margin-bottom: 0;
 }
 
-.c21 {
+.c19 {
   cursor: pointer;
   border: 1px solid #262626;
   background-color: transparent;
@@ -639,16 +614,16 @@ exports[`AccountCardAlt renders legacy address 1`] = `
   border-radius: 4px;
 }
 
-.c21:hover {
+.c19:hover {
   opacity: 0.8;
 }
 
-.c16 {
+.c14 {
   width: 24;
   height: 24;
 }
 
-.c15 {
+.c13 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -673,24 +648,38 @@ exports[`AccountCardAlt renders legacy address 1`] = `
   outline: none;
 }
 
-.c18 {
+.c16 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c14:hover .c17 {
+.c12:hover .c15 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c12 {
+.c10 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c10 .address {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
+}
+
+.c10 .address a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c12:hover {
+.c10 .address a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -767,13 +756,12 @@ exports[`AccountCardAlt renders legacy address 1`] = `
   >
     <div
       class="c10"
+      color="var(--purple-medium)"
     >
       <div
-        class="c11"
-        display="flex"
+        class="address"
       >
         <a
-          class="c12"
           href="https://explorer-calibration.glif.link/actor/?address=t0123456789"
           rel="noreferrer noopener"
           target="_blank"
@@ -781,18 +769,18 @@ exports[`AccountCardAlt renders legacy address 1`] = `
           t0123456789
         </a>
         <div
-          class="c13"
+          class="c11"
           color="var(--purple-medium)"
           display="flex"
         >
           <button
-            class="c14 c15"
+            class="c12 c13"
             display="flex"
             role="button"
             type="button"
           >
             <svg
-              class="c16 c17 c18"
+              class="c14 c15 c16"
               fill="none"
               height="24"
               viewBox="0 0 24 24"
@@ -820,7 +808,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
     </div>
   </div>
   <div
-    class="c19"
+    class="c17"
     display="flex"
   >
     <div
@@ -828,7 +816,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
       display="flex"
     >
       <p
-        class="c20"
+        class="c18"
         font-family="RT-Alias-Grotesk"
         font-size="3"
         font-weight="400"
@@ -846,7 +834,7 @@ exports[`AccountCardAlt renders legacy address 1`] = `
       </h2>
     </div>
     <button
-      class="c21"
+      class="c19"
       font-size="3"
       height="6"
       type="button"
@@ -962,26 +950,7 @@ exports[`AccountCardAlt renders the card 1`] = `
   font-size: 1.5rem;
 }
 
-.c8 {
-  min-width: 0;
-  box-sizing: border-box;
-}
-
 .c9 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  line-height: 1.5;
-  grid-gap: 0.25em;
-}
-
-.c11 {
   min-width: 0;
   box-sizing: border-box;
   color: var(--white);
@@ -995,7 +964,7 @@ exports[`AccountCardAlt renders the card 1`] = `
   align-items: center;
 }
 
-.c17 {
+.c15 {
   min-width: 0;
   box-sizing: border-box;
   display: -webkit-box;
@@ -1031,7 +1000,7 @@ exports[`AccountCardAlt renders the card 1`] = `
   margin-bottom: 0;
 }
 
-.c18 {
+.c16 {
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.4;
@@ -1040,7 +1009,7 @@ exports[`AccountCardAlt renders the card 1`] = `
   margin-bottom: 0;
 }
 
-.c19 {
+.c17 {
   cursor: pointer;
   border: 1px solid #E0D7FE;
   background-color: transparent;
@@ -1059,16 +1028,16 @@ exports[`AccountCardAlt renders the card 1`] = `
   border-radius: 4px;
 }
 
-.c19:hover {
+.c17:hover {
   opacity: 0.8;
 }
 
-.c14 {
+.c12 {
   width: 24;
   height: 24;
 }
 
-.c13 {
+.c11 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -1093,24 +1062,38 @@ exports[`AccountCardAlt renders the card 1`] = `
   outline: none;
 }
 
-.c16 {
+.c14 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c12:hover .c15 {
+.c10:hover .c13 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c10 {
+.c8 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c8 .address {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
+}
+
+.c8 .address a {
   color: var(--white);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c10:hover {
+.c8 .address a:hover {
   color: var(--white);
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -1166,13 +1149,12 @@ exports[`AccountCardAlt renders the card 1`] = `
   >
     <div
       class="c8"
+      color="var(--white)"
     >
       <div
-        class="c9"
-        display="flex"
+        class="address"
       >
         <a
-          class="c10"
           href="https://explorer-calibration.glif.link/actor/?address=t0123456789"
           rel="noreferrer noopener"
           target="_blank"
@@ -1180,18 +1162,18 @@ exports[`AccountCardAlt renders the card 1`] = `
           t0123456789
         </a>
         <div
-          class="c11"
+          class="c9"
           color="var(--white)"
           display="flex"
         >
           <button
-            class="c12 c13"
+            class="c10 c11"
             display="flex"
             role="button"
             type="button"
           >
             <svg
-              class="c14 c15 c16"
+              class="c12 c13 c14"
               fill="none"
               height="24"
               viewBox="0 0 24 24"
@@ -1219,7 +1201,7 @@ exports[`AccountCardAlt renders the card 1`] = `
     </div>
   </div>
   <div
-    class="c17"
+    class="c15"
     display="flex"
   >
     <div
@@ -1227,7 +1209,7 @@ exports[`AccountCardAlt renders the card 1`] = `
       display="flex"
     >
       <p
-        class="c18"
+        class="c16"
         font-family="RT-Alias-Grotesk"
         font-size="3"
         font-weight="400"
@@ -1245,7 +1227,7 @@ exports[`AccountCardAlt renders the card 1`] = `
       </h2>
     </div>
     <button
-      class="c19"
+      class="c17"
       font-size="3"
       height="6"
       type="button"
@@ -1361,26 +1343,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
   font-size: 1.5rem;
 }
 
-.c8 {
-  min-width: 0;
-  box-sizing: border-box;
-}
-
 .c9 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  line-height: 1.5;
-  grid-gap: 0.25em;
-}
-
-.c11 {
   min-width: 0;
   box-sizing: border-box;
   color: var(--purple-medium);
@@ -1394,7 +1357,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
   align-items: center;
 }
 
-.c17 {
+.c15 {
   min-width: 0;
   box-sizing: border-box;
   display: -webkit-box;
@@ -1430,7 +1393,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
   margin-bottom: 0;
 }
 
-.c18 {
+.c16 {
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.4;
@@ -1439,7 +1402,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
   margin-bottom: 0;
 }
 
-.c19 {
+.c17 {
   cursor: pointer;
   border: 1px solid #262626;
   background-color: transparent;
@@ -1458,16 +1421,16 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
   border-radius: 4px;
 }
 
-.c19:hover {
+.c17:hover {
   opacity: 0.8;
 }
 
-.c14 {
+.c12 {
   width: 24;
   height: 24;
 }
 
-.c13 {
+.c11 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -1492,24 +1455,38 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
   outline: none;
 }
 
-.c16 {
+.c14 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c12:hover .c15 {
+.c10:hover .c13 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c10 {
+.c8 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c8 .address {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
+}
+
+.c8 .address a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c10:hover {
+.c8 .address a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -1565,13 +1542,12 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
   >
     <div
       class="c8"
+      color="var(--purple-medium)"
     >
       <div
-        class="c9"
-        display="flex"
+        class="address"
       >
         <a
-          class="c10"
           href="https://explorer-calibration.glif.link/actor/?address=t0123456789"
           rel="noreferrer noopener"
           target="_blank"
@@ -1579,18 +1555,18 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
           t0123456789
         </a>
         <div
-          class="c11"
+          class="c9"
           color="var(--purple-medium)"
           display="flex"
         >
           <button
-            class="c12 c13"
+            class="c10 c11"
             display="flex"
             role="button"
             type="button"
           >
             <svg
-              class="c14 c15 c16"
+              class="c12 c13 c14"
               fill="none"
               height="24"
               viewBox="0 0 24 24"
@@ -1618,7 +1594,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
     </div>
   </div>
   <div
-    class="c17"
+    class="c15"
     display="flex"
   >
     <div
@@ -1626,7 +1602,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
       display="flex"
     >
       <p
-        class="c18"
+        class="c16"
         font-family="RT-Alias-Grotesk"
         font-size="3"
         font-weight="400"
@@ -1644,7 +1620,7 @@ exports[`AccountCardAlt renders the unselected card 1`] = `
       </h2>
     </div>
     <button
-      class="c19"
+      class="c17"
       font-size="3"
       height="6"
       type="button"

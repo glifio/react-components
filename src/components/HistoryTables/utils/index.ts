@@ -1,50 +1,18 @@
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
-import { MessageConfirmed, MessagePending } from '../../../generated/graphql'
-import makeFriendlyBalance from '../../../utils/makeFriendlyBalance'
+import { Message, MessagePending } from '../../../generated/graphql'
 
 export function attoFilToFil(amount: string | number | BigNumber): string {
   return new FilecoinNumber(amount, 'attofil').toFil() + ' FIL'
 }
 
-export function getTotalCost(
-  message:
-    | Pick<MessageConfirmed, 'baseFeeBurn' | 'overEstimationBurn' | 'minerTip'>
-    | MessagePending,
-  pending: boolean
-): string {
-  if (pending) return ''
-  message = message as MessageConfirmed
-  const bnBaseFeeBurn = new BigNumber(message.baseFeeBurn)
-  const bnOverEstimationBurn = new BigNumber(message.overEstimationBurn)
-  const bnMinerTip = new BigNumber(message.minerTip)
-  const totalCost = bnBaseFeeBurn.plus(bnOverEstimationBurn).plus(bnMinerTip)
-  return new FilecoinNumber(totalCost, 'attofil').toFil() + ' FIL'
-}
-
-export function getTotalCostShort(
-  message:
-    | Pick<MessageConfirmed, 'baseFeeBurn' | 'overEstimationBurn' | 'minerTip'>
-    | MessagePending,
-  pending: boolean = false
-): string {
-  if (pending) return ''
-  message = message as MessageConfirmed
-  const bnBaseFeeBurn = new BigNumber(message.baseFeeBurn)
-  const bnOverEstimationBurn = new BigNumber(message.overEstimationBurn)
-  const bnMinerTip = new BigNumber(message.minerTip)
-  const totalCost = bnBaseFeeBurn.plus(bnOverEstimationBurn).plus(bnMinerTip)
-  const totalFil = new FilecoinNumber(totalCost, 'attofil')
-  return makeFriendlyBalance(totalFil) + ' FIL'
-}
-
 export function getGasPercentage(
-  message: Pick<MessageConfirmed, 'gasLimit' | 'gasUsed'> | MessagePending,
+  message: Pick<Message, 'gasLimit' | 'gasCost'> | MessagePending,
   pending: boolean
 ): string {
   if (pending) return ''
-  message = message as MessageConfirmed
+  message = message as Message
   const gasLimit = new BigNumber(message.gasLimit)
-  const gasUsed = new BigNumber(message.gasUsed)
+  const gasUsed = new BigNumber(message.gasCost.gasUsed)
   return gasUsed.dividedBy(gasLimit).times(100).toFixed(1) + '%'
 }
 

@@ -42,7 +42,7 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
         message: {
           read(_, { args, toReference }) {
             return toReference({
-              __typename: 'MessageConfirmed',
+              __typename: 'Message',
               cid: args.cid
             })
           }
@@ -60,13 +60,8 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
         }
       }
     },
-    MessageConfirmed: {
-      keyFields: ['cid'],
-      fields: {
-        params: {
-          merge: parseParams
-        }
-      }
+    Address: {
+      keyFields: ['robust', 'id']
     },
     MessagePending: {
       keyFields: ['cid'],

@@ -29,10 +29,8 @@ export const useUnformattedDateTime = (
           (subscriptionData.data?.chainHead?.height as number) -
           Number(message.height)
 
-        // this should never happen
-        // but in case the chainhead sub lags behind a couple epochs
-        // this ensure we dont show any "in the future" transactions
-        if (epochsPast <= 0) {
+        // this message is _in_ chainHead currently or pending
+        if (Number(message.height) === 0) {
           epochsPast = 0
         }
 

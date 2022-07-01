@@ -1,20 +1,35 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useMemo, useCallback } from 'react'
+import { useMemo, useCallback, MouseEvent } from 'react'
 import truncateAddress from '../../utils/truncateAddress'
 import { SmartLink } from '../Link/SmartLink'
-import { Label } from '../Typography'
 import { CopyText } from '../Copy'
-import Box from '../Box'
 
-const Link = styled(SmartLink)`
-  color: ${props => props.color};
-  text-decoration: none;
-  &:hover {
-    color: ${props => props.color};
-    text-decoration: underline;
+const AddressLinkEl = styled.div`
+  h4 {
+    margin: 0;
+    color: var(--gray-dark);
+  }
+
+  .address {
+    display: flex;
+    grid-gap: 0.25em;
+    line-height: 1.5;
+
+    a {
+      color: ${props => props.color};
+      text-decoration: none;
+      &:hover {
+        color: ${props => props.color};
+        text-decoration: underline;
+      }
+    }
   }
 `
+
+const explorerUrl =
+  process.env.NEXT_PUBLIC_EXPLORER_URL ||
+  'https://explorer-calibration.glif.link'
 
 export const AddressLink = ({
   id,
@@ -26,45 +41,37 @@ export const AddressLink = ({
   hideCopy,
   hideCopyText
 }: AddressLinkProps) => {
-  const truncated = useMemo(
-    () => (address ? truncateAddress(address) : ''),
-    [address]
+  // prioritize robust > id, use id if no robust exists
+  const linkText = useMemo(
+    () => (address ? truncateAddress(address) : id || ''),
+    [address, id]
   )
-  const explorerUrl =
-    process.env.NEXT_PUBLIC_EXPLORER_URL ||
-    'https://explorer-calibration.glif.link'
-  const linkText = truncated && id ? `(${id})` : id || truncated
-  const linkHref = `${explorerUrl}/actor/?address=${id || address}`
+  const linkHref = `${explorerUrl}/actor/?address=${address || id}`
   const onClick = useCallback(
-    (e: MouseEvent) => stopPropagation && e.stopPropagation(),
+    (e: MouseEvent<HTMLAnchorElement>) =>
+      stopPropagation && e.stopPropagation(),
     [stopPropagation]
   )
   return (
-    <Box>
-      {label && (
-        <Label color='core.darkgray' fontSize={1}>
-          {label}
-        </Label>
-      )}
-      <Box
-        display='flex'
-        flexDirection='row'
-        gridGap='0.25em'
-        lineHeight={hideCopy ? null : '1.5'}
-      >
-        {truncated && id && <span>{truncated}</span>}
+    <AddressLinkEl color={color}>
+      {label && <h4>{label}</h4>}
+      <div className='address'>
         {disableLink ? (
           <span>{linkText}</span>
         ) : (
-          <Link color={color} href={linkHref} onClick={onClick}>
+          <SmartLink href={linkHref} onClick={onClick}>
             {linkText}
-          </Link>
+          </SmartLink>
         )}
-        {!hideCopy && address && (
-          <CopyText text={address} hideCopyText={hideCopyText} color={color} />
+        {!hideCopy && (address || id) && (
+          <CopyText
+            text={address || id}
+            hideCopyText={hideCopyText}
+            color={color}
+          />
         )}
-      </Box>
-    </Box>
+      </div>
+    </AddressLinkEl>
   )
 }
 

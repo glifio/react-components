@@ -3,10 +3,7 @@ import React, { useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import {
-  useChainHeadSubscription,
-  MessageConfirmed
-} from '../../../generated/graphql'
+import { useChainHeadSubscription, Message } from '../../../generated/graphql'
 import { IconClock } from '../../Icons'
 import { AddressLink } from '../../AddressLink'
 import { Badge } from '../generic'
@@ -17,16 +14,17 @@ import {
   Confirmations,
   Parameters
 } from '../detail'
-import {
-  attoFilToFil,
-  getTotalCost,
-  getGasPercentage,
-  formatNumber
-} from '../utils'
+import { attoFilToFil, getGasPercentage, formatNumber } from '../utils'
 import { useMessage } from '../useAllMessages'
 import { useUnformattedDateTime } from './useAge'
 import { useMethodName } from './useMethodName'
 import { Lines, Line, InfoBox, StandardBox } from '../../Layout'
+import { isAddrEqual, makeFriendlyBalance } from '../../../utils'
+import { FilecoinNumber } from '@glif/filecoin-number'
+import {
+  ExecReturn,
+  getAddrFromReceipt
+} from '../../../utils/getAddrFromReceipt'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -36,11 +34,11 @@ const SpanGray = styled.span`
 `
 
 export default function MessageDetail(props: MessageDetailProps) {
-  const { cid, height, speedUpHref, cancelHref, confirmations } = props
+  const { cid, speedUpHref, cancelHref, confirmations } = props
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending, messageConfirmedInChainHead } =
-    useMessage(cid, height)
+    useMessage(cid)
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -48,21 +46,38 @@ export default function MessageDetail(props: MessageDetailProps) {
     skip: pending
   })
 
-  const value = useMemo(
+  const value = useMemo<string>(
     () => (message?.value ? attoFilToFil(message.value) : ''),
     [message?.value]
   )
-  const totalCost = useMemo(
-    () => (message ? getTotalCost(message, pending) : ''),
-    [message, pending]
-  )
-  const gasPercentage = useMemo(
+  const transactionFee = useMemo<string>(() => {
+    if (pending) return 'Pending...'
+    const cost = (message as Message)?.gasCost?.totalCost
+    return cost
+      ? `${makeFriendlyBalance(new FilecoinNumber(cost, 'attofil'))} FIL`
+      : ''
+  }, [message, pending])
+
+  const gasPercentage = useMemo<string>(
     () => (message ? getGasPercentage(message, pending) : ''),
     [message, pending]
   )
+  const gasBurned = useMemo<string>(() => {
+    if (!message || pending) return ''
+    const baseFeeBurn = new FilecoinNumber(
+      (message as Message)?.gasCost?.baseFeeBurn || '0',
+      'attofil'
+    )
+    const overEstimationBurn = new FilecoinNumber(
+      (message as Message)?.gasCost?.overEstimationBurn || '0',
+      'attofil'
+    )
+    return formatNumber(baseFeeBurn.plus(overEstimationBurn).toAttoFil())
+  }, [message, pending])
+
   const unformattedTime = useUnformattedDateTime(message, time)
 
-  const confirmationCount = useMemo(
+  const confirmationCount = useMemo<number>(
     () =>
       chainHeadSubscription.data?.chainHead.height && !!message?.height
         ? chainHeadSubscription.data.chainHead.height - Number(message.height)
@@ -70,13 +85,15 @@ export default function MessageDetail(props: MessageDetailProps) {
     [message?.height, chainHeadSubscription.data?.chainHead.height]
   )
 
-  const { methodName, actorName } = useMethodName(
-    !!message
-      ? {
-          ...message,
-          actorName: 'actorName' in message ? message.actorName : ''
-        }
-      : null
+  const { methodName, actorName } = useMethodName(message)
+
+  const execReturn = useMemo<ExecReturn | null>(
+    () =>
+      // if this is an init message to the exec actor...
+      isAddrEqual(message?.to, 'f01') && Number(message?.method) === 2
+        ? getAddrFromReceipt((message as Message)?.receipt?.return)
+        : null,
+    [message]
   )
 
   return (
@@ -114,7 +131,7 @@ export default function MessageDetail(props: MessageDetailProps) {
               <Line label='CID'>{cid}</Line>
               <Line label='Status and Confirmations'>
                 <Status
-                  exitCode={(message as MessageConfirmed)?.exitCode}
+                  exitCode={(message as Message)?.receipt?.exitCode}
                   pending={pending}
                 />
                 {!pending && (
@@ -156,13 +173,23 @@ export default function MessageDetail(props: MessageDetailProps) {
               </Line>
               <hr />
               <Line label='Value'>{value}</Line>
-              <Line label='Transaction Fee'>
-                {pending ? 'Pending' : totalCost}
-              </Line>
+              <Line label='Transaction Fee'>{transactionFee}</Line>
               {!loading && methodName && (
                 <Line label='Method'>
                   <Badge color='purple' text={methodName} />
                 </Line>
+              )}
+              {!!execReturn && (
+                <>
+                  <hr />
+                  <Line label='New actor created: '>
+                    <AddressLink
+                      id={execReturn.id}
+                      address={execReturn.robust}
+                      hideCopyText={false}
+                    />
+                  </Line>
+                </>
               )}
               <hr />
               {seeMore ? (
@@ -184,7 +211,7 @@ export default function MessageDetail(props: MessageDetailProps) {
                       '?'
                     ) : (
                       <>
-                        {`${formatNumber((message as MessageConfirmed).gasUsed)}
+                        {`${formatNumber((message as Message)?.gasCost.gasUsed)}
                     attoFil`}
                         <span>({gasPercentage})</span>
                       </>
@@ -203,14 +230,11 @@ export default function MessageDetail(props: MessageDetailProps) {
                       <Line label=''>
                         <SpanGray>Base</SpanGray>
                         {formatNumber(
-                          (message as MessageConfirmed).baseFeeBurn
+                          (message as Message)?.gasCost?.baseFeeBurn
                         )}{' '}
                         attoFIL
                       </Line>
-                      <Line label='Gas Burnt'>
-                        {formatNumber((message as MessageConfirmed).gasBurned)}{' '}
-                        attoFIL
-                      </Line>
+                      <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
                     </>
                   )}
                   <hr />
@@ -231,7 +255,6 @@ export default function MessageDetail(props: MessageDetailProps) {
 
 type MessageDetailProps = {
   cid: string
-  height?: number
   speedUpHref?: string
   cancelHref?: string
   confirmations: number
@@ -239,7 +262,6 @@ type MessageDetailProps = {
 
 MessageDetail.propTypes = {
   cid: PropTypes.string.isRequired,
-  height: PropTypes.number,
   speedUpHref: PropTypes.string,
   cancelHref: PropTypes.string,
   confirmations: PropTypes.number

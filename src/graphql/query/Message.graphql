@@ -1,5 +1,5 @@
-query Message($cid: String!, $height: Int) {
-  message(cid: $cid, height: $height) {
+query Message($cid: String!) {
+  message(cid: $cid) {
     cid
     height
     from {
@@ -11,26 +11,24 @@ query Message($cid: String!, $height: Int) {
       robust
     }
     value
+    method
+    nonce
+    params
     gasFeeCap
     gasPremium
     gasLimit
-    actorName
-    method
-    exitCode
-    gasUsed
-    parentBaseFee
-    baseFeeBurn
-    overEstimationBurn
-    minerPenalty
-    minerTip
-    refund
-    gasRefund
-    nonce
-    gasBurned
-    block {
-      Cid
-      Timestamp
+    gasCost {
+      baseFeeBurn
+      overEstimationBurn
+      minerPenalty
+      minerTip
+      gasUsed
+      refund
+      totalCost
     }
-    params
+    receipt {
+      return
+      exitCode
+    }
   }
 }

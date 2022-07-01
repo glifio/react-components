@@ -44,7 +44,7 @@ export default function PendingMessageHistoryRow(
       <TD>(Pending)</TD>
       <TD>
         <AddressLink
-          id={message.from.robust ? '' : message.from.id}
+          id={message.from.id}
           address={message.from.robust}
           disableLink={fromAddressIsInspecting}
           hideCopy
@@ -58,7 +58,7 @@ export default function PendingMessageHistoryRow(
       </TD>
       <TD>
         <AddressLink
-          id={message.to.robust ? '' : message.to.id}
+          id={message.to.id}
           address={message.to.robust}
           disableLink={toAddressIsInspecting}
           hideCopy
