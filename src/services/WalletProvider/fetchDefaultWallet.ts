@@ -7,13 +7,16 @@ import createPath, { coinTypeCode } from '../../utils/createPath'
 import connectWithLedger from './connectLedger'
 import { WalletProviderAction } from './types'
 import { LoginOption } from '../../customPropTypes'
+import { AddressDocument, AddressQuery } from '../../generated/graphql'
+import { ApolloClient } from '@apollo/client'
 
 // a helper function for getting the default wallet associated with the wallet provider
 const fetchDefaultWallet = async (
   dispatch: Dispatch<WalletProviderAction>,
   loginOption: LoginOption,
   walletProvider: Filecoin,
-  coinType: CoinType
+  coinType: CoinType,
+  apolloClient: ApolloClient<object>
 ) => {
   dispatch(clearError())
   let provider = walletProvider
@@ -26,6 +29,13 @@ const fetchDefaultWallet = async (
   }
 
   const [defaultAddress] = await provider.wallet.getAccounts(0, 1, coinType)
+  const { data } = await apolloClient.query<AddressQuery>({
+    query: AddressDocument,
+    variables: {
+      address: defaultAddress
+    }
+  })
+
   const balance = await provider.getBalance(defaultAddress)
   let path = createPath(coinTypeCode(coinType), 0)
 
@@ -33,7 +43,9 @@ const fetchDefaultWallet = async (
   return {
     balance,
     address: defaultAddress,
-    path
+    path,
+    robust: defaultAddress,
+    id: data?.address?.id
   }
 }
 
