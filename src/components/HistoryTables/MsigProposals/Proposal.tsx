@@ -14,7 +14,8 @@ import {
   isAddrEqual,
   decodeActorCID,
   useStateReadStateQuery,
-  MsigState
+  MsigState,
+  isAddressSigner
 } from '../../../utils'
 import { Lines, Line } from '../../Layout'
 import LoadingScreen from '../../LoadingScreen'
@@ -81,14 +82,17 @@ export default function ProposalDetail(props: ProposalDetailProps) {
 
   const actionRequired = useMemo(() => {
     if (proposalFoundError) return false
-    if (!props.walletAddress) return false
+    if (!props.walletAddress?.robust && !props.walletAddress?.id) return false
     if (!!proposal && !stateLoading && !stateError) {
-      const walletAddressIsSigner = stateData.State.Signers.some(signer =>
-        isAddrEqual(signer, props.walletAddress)
+      const walletAddressIsSigner = isAddressSigner(
+        { id: props.walletAddress?.robust, robust: props.walletAddress?.id },
+        stateData.State.Signers
       )
-
-      const alreadyApproved = proposal.approved.some(approver =>
-        isAddrEqual(approver, props.walletAddress)
+      const alreadyApproved = proposal.approved.some(
+        approver =>
+          isAddrEqual(approver, props.walletAddress?.id) ||
+          // this will almost never return true because the approvers array is an array of IDs
+          isAddrEqual(approver, props.walletAddress?.robust)
       )
 
       return walletAddressIsSigner && !alreadyApproved
@@ -104,8 +108,15 @@ export default function ProposalDetail(props: ProposalDetailProps) {
   ])
 
   const isProposer = useMemo(() => {
-    if (!proposalFoundError && !!proposal && !!props.walletAddress) {
-      return isAddrEqual(proposal.approved[0], props.walletAddress)
+    if (
+      !proposalFoundError &&
+      !!proposal &&
+      !!(props.walletAddress?.id || props?.walletAddress?.robust)
+    ) {
+      return isAddrEqual(
+        { id: props.walletAddress?.id, robust: props.walletAddress?.id },
+        proposal.approved[0].id
+      )
     }
     return false
   }, [proposal, proposalFoundError, props.walletAddress])
@@ -225,7 +236,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
 type ProposalDetailProps = {
   id: number
   address: string
-  walletAddress?: string
+  walletAddress?: Address
   accept: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
   cancel: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
 }
