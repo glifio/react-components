@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { bool, func, number, string } from 'prop-types'
 import { CoinType } from '@glif/filecoin-address'
 import styled from 'styled-components'
+import { useApolloClient } from '@apollo/client'
 
 import AccountCardAlt from '../AccountCardAlt'
 import Box from '../Box'
@@ -20,6 +21,7 @@ import createPath, { coinTypeCode } from '../../utils/createPath'
 import convertAddrToPrefix from '../../utils/convertAddrToPrefix'
 import { COIN_TYPE_PROPTYPE } from '../../customPropTypes'
 import { logger } from '../../logger'
+import { AddressDocument, AddressQuery } from '../../generated/graphql'
 
 const WalletTiles = styled.div`
   display: grid;
@@ -59,6 +61,7 @@ const AccountSelector = ({
     walletError,
     lotusApiAddr
   } = useWalletProvider()
+  const apolloClient = useApolloClient()
 
   const [loadedFirstNWallets, setLoadedFirstNWallets] = useState(false)
 
@@ -79,9 +82,18 @@ const AccountSelector = ({
             await Promise.all(
               addresses.map(async (address, i) => {
                 const balance = await provider.getBalance(address)
+                const { data } = await apolloClient.query<AddressQuery>({
+                  query: AddressDocument,
+                  variables: {
+                    address
+                  }
+                })
+
                 const w: Wallet = {
                   balance,
-                  address,
+                  robust: convertAddrToPrefix(address),
+                  id: convertAddrToPrefix(data?.address?.id),
+                  address: convertAddrToPrefix(address),
                   path: createPath(
                     coinTypeCode(coinType),
                     Number(i) + Number(wallets.length)
@@ -120,7 +132,8 @@ const AccountSelector = ({
     wallets,
     walletList,
     coinType,
-    nWalletsToLoad
+    nWalletsToLoad,
+    apolloClient
   ])
 
   const errorMsg = useMemo(() => {
@@ -141,9 +154,18 @@ const AccountSelector = ({
           ct
         )
 
+        const { data } = await apolloClient.query<AddressQuery>({
+          query: AddressDocument,
+          variables: {
+            address
+          }
+        })
+
         const balance = await provider.getBalance(address)
         const w: Wallet = {
           balance,
+          robust: convertAddrToPrefix(address),
+          id: convertAddrToPrefix(data?.address?.id),
           address: convertAddrToPrefix(address),
           path: createPath(coinTypeCode(ct), index)
         }

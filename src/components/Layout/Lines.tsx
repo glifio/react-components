@@ -50,9 +50,12 @@ const LineEl = styled.div`
   }
 `
 
+const capitalFirstLetter = (word: string): string =>
+  word.slice(0, 1).toUpperCase() + word.slice(1).toLowerCase()
+
 export const Line = ({ label, depth, children }: LineProps) => (
   <LineEl depth={depth}>
-    <div>{label}</div>
+    <div>{capitalFirstLetter(label)}</div>
     <div>{children}</div>
   </LineEl>
 )

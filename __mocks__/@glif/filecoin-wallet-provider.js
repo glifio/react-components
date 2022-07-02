@@ -4,14 +4,16 @@ import { Message } from '@glif/filecoin-message'
 export * from '../../node_modules/@glif/filecoin-wallet-provider/dist/errors'
 export * from '../../node_modules/@glif/filecoin-wallet-provider/dist/providers/metamask-provider'
 
-const mockGetAccounts = jest.fn().mockImplementation((start = 0, end = 1) => {
-  const accounts = []
-  for (let i = start; i < end; i++) {
-    accounts.push(`t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb${i}uq`)
-  }
+export const mockGetAccounts = jest
+  .fn()
+  .mockImplementation((start = 0, end = 1) => {
+    const accounts = []
+    for (let i = start; i < end; i++) {
+      accounts.push(`t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb${i}uq`)
+    }
 
-  return Promise.resolve(accounts)
-})
+    return Promise.resolve(accounts)
+  })
 
 const mockGetBalance = jest
   .fn()

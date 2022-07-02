@@ -7,6 +7,7 @@ import {
   ReactNode,
   Context
 } from 'react'
+import { useApolloClient } from '@apollo/client'
 import PropTypes from 'prop-types'
 import Filecoin, {
   LedgerProvider,
@@ -84,6 +85,7 @@ const WalletProviderWrapper = ({
     reducerLogger<WalletProviderState, WalletProviderAction>(reducer),
     initialState
   )
+  const client = useApolloClient()
   return (
     <WalletProviderContext.Provider
       value={{
@@ -100,9 +102,10 @@ const WalletProviderWrapper = ({
               dispatch,
               state.loginOption,
               walletProvider,
-              coinType
+              coinType,
+              client
             ),
-          [dispatch, state.loginOption, state.walletProvider, coinType]
+          [dispatch, state.loginOption, state.walletProvider, coinType, client]
         ),
         setWalletError: useCallback(
           errorMessage => dispatch(setError(errorMessage)),

@@ -4,6 +4,8 @@ import { Wallet } from '../types'
 
 const noWallet: Wallet = {
   address: '',
+  id: '',
+  robust: '',
   balance: new FilecoinNumber('0', 'fil'),
   path: ''
 }

@@ -10,10 +10,13 @@ import {
   updateBalance
 } from '../../../src/services/WalletProvider/state'
 import { mockWalletProviderInstance } from '../../../__mocks__/@glif/filecoin-wallet-provider'
+import { WALLET_ADDRESS_3, WALLET_ID_3 } from '../constants'
 
 export const mockFetchDefaultWallet = jest.fn().mockImplementation(() => ({
   balance: new FilecoinNumber('1', 'fil'),
-  address: 't1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb2uq',
+  address: WALLET_ADDRESS_3,
+  robust: WALLET_ADDRESS_3,
+  id: WALLET_ID_3,
   path: createPath(TESTNET_PATH_CODE, 0)
 }))
 

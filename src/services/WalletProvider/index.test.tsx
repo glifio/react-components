@@ -3,16 +3,19 @@ import { CoinType } from '@glif/filecoin-address'
 
 import WalletProviderWrapper, { useWalletProvider } from '.'
 import { initialState } from './state'
+import { MockedProvider } from '@apollo/client/testing'
 
 describe('useWalletProvider', () => {
   test('it exposes the necessary methods to manipulate state', () => {
     const wrapper = ({ children }) => (
-      <WalletProviderWrapper
-        coinType={CoinType.TEST}
-        lotusApiAddr='https://calibrationnet.nodes.glif.io'
-      >
-        {children}
-      </WalletProviderWrapper>
+      <MockedProvider>
+        <WalletProviderWrapper
+          coinType={CoinType.TEST}
+          lotusApiAddr='https://calibrationnet.nodes.glif.io'
+        >
+          {children}
+        </WalletProviderWrapper>
+      </MockedProvider>
     )
     const { result } = renderHook(() => useWalletProvider(), { wrapper })
     expect(typeof result.current.dispatch).toBe('function')
@@ -25,12 +28,14 @@ describe('useWalletProvider', () => {
 
   test('it passes down the wallet provider state', () => {
     const wrapper = ({ children }) => (
-      <WalletProviderWrapper
-        coinType={CoinType.TEST}
-        lotusApiAddr='https://calibrationnet.nodes.glif.io'
-      >
-        {children}
-      </WalletProviderWrapper>
+      <MockedProvider>
+        <WalletProviderWrapper
+          coinType={CoinType.TEST}
+          lotusApiAddr='https://calibrationnet.nodes.glif.io'
+        >
+          {children}
+        </WalletProviderWrapper>
+      </MockedProvider>
     )
     const { result } = renderHook(() => useWalletProvider(), { wrapper })
     expect(JSON.stringify(result.current.state)).toEqual(
