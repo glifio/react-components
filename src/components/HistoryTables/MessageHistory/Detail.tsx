@@ -90,7 +90,9 @@ export default function MessageDetail(props: MessageDetailProps) {
   const execReturn = useMemo<ExecReturn | null>(
     () =>
       // if this is an init message to the exec actor...
-      isAddrEqual(message?.to, 'f01') && Number(message?.method) === 2
+      !!message?.to &&
+      isAddrEqual(message?.to, 'f01') &&
+      Number(message?.method) === 2
         ? getAddrFromReceipt((message as Message)?.receipt?.return)
         : null,
     [message]

@@ -34,5 +34,13 @@ describe('isAddrEqual', () => {
     expect(
       isAddrEqual({ id: WALLET_ID, robust: WALLET_ADDRESS }, WALLET_ADDRESS_2)
     ).toBe(false)
+
+    // @ts-ignore
+    expect(isAddrEqual(undefined, WALLET_ADDRESS_2)).toBe(false)
+
+    expect(
+      // @ts-ignore
+      isAddrEqual({ id: WALLET_ID, robust: WALLET_ADDRESS }, undefined)
+    ).toBe(false)
   })
 })
