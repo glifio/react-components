@@ -1,9 +1,19 @@
 import { Address } from '../../generated/graphql'
+import convertAddrToPrefix from '../convertAddrToPrefix'
 
-export const isAddrEqual = (address: Address, addressStr: string): boolean => {
-  const noNetworkAddr = addressStr.slice(1)
-  const noNetworkID = address?.id?.slice(1)
-  const noNetworkRobust = address?.robust?.slice(1)
+export const isAddrEqual = (
+  address: Address,
+  address2: Address | string
+): boolean => {
+  if (typeof address2 === 'string') {
+    return (
+      convertAddrToPrefix(address2) === convertAddrToPrefix(address.id) ||
+      convertAddrToPrefix(address2) === convertAddrToPrefix(address.robust)
+    )
+  }
 
-  return noNetworkAddr === noNetworkID || noNetworkAddr === noNetworkRobust
+  return (
+    convertAddrToPrefix(address2.id) === convertAddrToPrefix(address.id) ||
+    convertAddrToPrefix(address2.robust) === convertAddrToPrefix(address.robust)
+  )
 }
