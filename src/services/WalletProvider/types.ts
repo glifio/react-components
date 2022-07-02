@@ -28,7 +28,7 @@ export type Wallet = {
   path: string
   balance: FilecoinNumber
   robust: string
-  id?: string
+  id: string
   // will be deprecated but keeping for now
   address: string
 }
