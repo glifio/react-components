@@ -3,9 +3,12 @@ import { isAddrEqual } from '../../../utils'
 import Box from '../../Box'
 import ProposalRow from './ProposalRow'
 import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
-import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
+import {
+  ADDRESS_PROPTYPE,
+  GRAPHQL_ADDRESS_PROP_TYPE
+} from '../../../customPropTypes'
 import { TABLE, TableCaption } from '../table'
-import { useMsigPendingQuery } from '../../../generated/graphql'
+import { Address, useMsigPendingQuery } from '../../../generated/graphql'
 import { Title } from '../generic'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
@@ -55,13 +58,13 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
 type ProposalHistoryTableProps = {
   idHref: (id: number) => string
   address: string
-  walletAddr: string
+  walletAddr: Address
 }
 
 ProposalHistoryTable.propTypes = {
   idHref: PropTypes.func,
   address: ADDRESS_PROPTYPE.isRequired,
-  walletAddr: ADDRESS_PROPTYPE.isRequired
+  walletAddr: GRAPHQL_ADDRESS_PROP_TYPE.isRequired
 }
 
 ProposalHistoryTable.defaultProps = {
