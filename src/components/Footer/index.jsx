@@ -98,24 +98,16 @@ export default function Footer() {
 
           <Ul>
             <Li>
-              <SmartLink href={process.env.NEXT_PUBLIC_WALLET_URL}>
-                Wallet
-              </SmartLink>
+              <SmartLink href='https://wallet.glif.io'>Wallet</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={process.env.NEXT_PUBLIC_SAFE_URL}>
-                Safe
-              </SmartLink>
+              <SmartLink href='https://safe.glif.io'>Safe</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={process.env.NEXT_PUBLIC_EXPLORER_URL}>
-                Explorer
-              </SmartLink>
+              <SmartLink href='https://explorer.glif.io'>Explorer</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={process.env.NEXT_PUBLIC_VERIFIER_URL}>
-                Verifier
-              </SmartLink>
+              <SmartLink href='https://verify.glif.io'>Verifier</SmartLink>
             </Li>
           </Ul>
 
