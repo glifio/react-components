@@ -3,7 +3,12 @@ import React, { useState, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import { useChainHeadSubscription, Message } from '../../../generated/graphql'
+import {
+  useChainHeadSubscription,
+  Message,
+  useGasCostQuery,
+  useMessageReceiptQuery
+} from '../../../generated/graphql'
 import { IconClock } from '../../Icons'
 import { AddressLink } from '../../AddressLink'
 import { Badge } from '../generic'
@@ -39,6 +44,14 @@ export default function MessageDetail(props: MessageDetailProps) {
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending, messageConfirmedInChainHead } =
     useMessage(cid)
+
+  const { data: gas } = useGasCostQuery({ variables: { cid } })
+  console.log({ gas })
+
+  const { data: messageReceipt } = useMessageReceiptQuery({
+    variables: { cid }
+  })
+  console.log({ messageReceipt })
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -213,7 +226,7 @@ export default function MessageDetail(props: MessageDetailProps) {
                       '?'
                     ) : (
                       <>
-                        {`${formatNumber((message as Message)?.gasCost.gasUsed)}
+                        {`${formatNumber(gas?.gascost.gasUsed)}
                     attoFil`}
                         <span>({gasPercentage})</span>
                       </>

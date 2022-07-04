@@ -17,18 +17,5 @@ query Message($cid: String!) {
     gasFeeCap
     gasPremium
     gasLimit
-    gasCost {
-      baseFeeBurn
-      overEstimationBurn
-      minerPenalty
-      minerTip
-      gasUsed
-      refund
-      totalCost
-    }
-    receipt {
-      return
-      exitCode
-    }
   }
 }

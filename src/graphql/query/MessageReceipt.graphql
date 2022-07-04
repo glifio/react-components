@@ -1,0 +1,7 @@
+query MessageReceipt($cid: String!) {
+  receipt(cid: $cid) {
+    return
+    exitCode
+    gasUsed
+  }
+}
