@@ -380,13 +380,17 @@ export const MessageDetailBase = ({
   return (
     <>
       <Line label='CID'>{cid}</Line>
-      <Line label='Status and Confirmations'>
-        <Status exitCode={exitCode} pending={pending} />
-        {!pending && (
-          <Confirmations count={confirmationCount} total={confirmations} />
-        )}
+      {exitCode && (
+        <Line label='Status and Confirmations'>
+          <Status exitCode={exitCode} pending={pending} />
+          {!pending && (
+            <Confirmations count={confirmationCount} total={confirmations} />
+          )}
+        </Line>
+      )}
+      <Line label='Height'>
+        {Number(message.height) > 0 ? message.height : 'Pending'}
       </Line>
-      <Line label='Height'>{pending ? 'Pending' : message.height}</Line>
       <Line label='Timestamp'>
         {pending ? (
           'Pending'
