@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Message history it renders no message history correctly 1`] = `
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.c2 {
+  min-width: 100%;
+  border-bottom: 1px solid #94959880;
+  border-collapse: collapse;
+}
+
+.c4 {
+  height: 4.5rem;
+  border-top: 1px solid #94959880;
+}
+
+.c6 {
+  color: #949598;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: left;
+  white-space: nowrap;
+  padding-right: 3rem;
+}
+
+.c6:last-child {
+  padding-right: 0;
+}
+
+.c3 {
+  line-height: 1.5em;
+  text-align: left;
+  caption-side: bottom;
+  padding: 1em;
+  margin: 0.5em 0;
+  color: #949598;
+}
+
+.c3.error {
+  background: #FC6D6F;
+  color: #660000;
+  border-radius: 4px;
+}
+
+.c1 {
+  color: var(--purple-medium);
+}
+
+@media (max-width:1600px) {
+  table.narrow .c5 {
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width:1400px) {
+  table.narrow .c5 {
+    padding-right: 1rem;
+  }
+}
+
+<div>
+  <div
+    class="c0"
+  >
+    <h2
+      class="c1"
+    >
+      Transaction History
+    </h2>
+    <table
+      class="c2 narrow"
+    >
+      <caption
+        class="c3"
+      >
+        No records found for Transaction History
+      </caption>
+      <thead>
+        <tr
+          class="c4"
+        >
+          <th
+            class="c5 c6"
+          >
+            CID
+          </th>
+          <th
+            class="c5 c6"
+          >
+            Method
+          </th>
+          <th
+            class="c5 c6"
+          >
+            Height
+          </th>
+          <th
+            class="c5 c6"
+          >
+            Age
+          </th>
+          <th
+            class="c5 c6"
+          >
+            From
+          </th>
+          <th
+            class="c5 c6"
+          />
+          <th
+            class="c5 c6"
+          >
+            To
+          </th>
+          <th
+            class="c5 c6"
+          >
+            Value
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+  </div>
+</div>
+`;

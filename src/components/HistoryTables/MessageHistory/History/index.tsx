@@ -16,7 +16,6 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     pendingMsgs,
     loading,
     error,
-    chainHeadSub,
     fetchMore,
     fetchingMore,
     lastPage
@@ -53,7 +52,6 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
               message={message}
               cidHref={props.cidHref}
               inspectingAddress={props.address}
-              chainHeadSub={chainHeadSub}
             />
           ))}
         </tbody>
@@ -76,7 +74,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 type MessageHistoryTableProps = {
   offset: number
   address: string
-  cidHref: (cid: string, height?: number) => string
+  cidHref: (cid: string) => string
 }
 
 MessageHistoryTable.propTypes = {

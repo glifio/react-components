@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react'
-import { SubscriptionResult } from '@apollo/client'
 import PropTypes from 'prop-types'
 import { TR, TD } from '../../table'
 import { Badge } from '../../generic'
@@ -10,7 +9,6 @@ import {
   MESSAGE_CONFIRMED_ROW_PROP_TYPE
 } from '../../types'
 import { attoFilToFil } from '../../utils'
-import { ChainHeadSubscription } from '../../../../generated/graphql'
 import { useAge } from '../hooks/useAge'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
@@ -77,7 +75,6 @@ type MessageHistoryRowProps = {
   message: MessageConfirmedRow
   cidHref: (cid: string, height?: number) => string
   inspectingAddress: string
-  chainHeadSub: SubscriptionResult<ChainHeadSubscription, any>
 }
 
 MessageHistoryRow.propTypes = {

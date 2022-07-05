@@ -195,7 +195,6 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   }, [allMessagesError, pendingMsgsError])
 
   return {
-    chainHeadSub,
     messages: allMessages?.messages,
     pendingMsgs,
     fetchMore: onClickLoadMore,
