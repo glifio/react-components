@@ -269,7 +269,11 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
           }
 
           return (
-            <Line key={`${depth}-${key}`} label={key} depth={depth}>
+            <Line
+              key={`${depth}-${key}`}
+              label={key === 'params' ? 'Parameters' : key}
+              depth={depth}
+            >
               {value ?? '—'}
             </Line>
           )
