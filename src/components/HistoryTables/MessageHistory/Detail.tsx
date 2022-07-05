@@ -5,7 +5,6 @@ import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import {
   useChainHeadSubscription,
-  Message,
   useGasCostQuery,
   useMessageReceiptQuery
 } from '../../../generated/graphql'
@@ -42,16 +41,12 @@ export default function MessageDetail(props: MessageDetailProps) {
   const { cid, speedUpHref, cancelHref, confirmations } = props
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
-  const { message, error, loading, pending, messageConfirmedInChainHead } =
-    useMessage(cid)
+  const { message, error, loading, pending } = useMessage(cid)
 
-  const { data: gas } = useGasCostQuery({ variables: { cid } })
-  console.log({ gas })
-
-  const { data: messageReceipt } = useMessageReceiptQuery({
+  const { data: gasQuery } = useGasCostQuery({ variables: { cid } })
+  const { data: msgQuery } = useMessageReceiptQuery({
     variables: { cid }
   })
-  console.log({ messageReceipt })
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -64,29 +59,43 @@ export default function MessageDetail(props: MessageDetailProps) {
     [message?.value]
   )
   const transactionFee = useMemo<string>(() => {
-    if (pending) return 'Pending...'
-    const cost = (message as Message)?.gasCost?.totalCost
+    if (pending || !gasQuery?.gascost?.totalCost) return 'Pending...'
+    const cost = gasQuery?.gascost?.totalCost
     return cost
       ? `${makeFriendlyBalance(new FilecoinNumber(cost, 'attofil'))} FIL`
       : ''
-  }, [message, pending])
+  }, [gasQuery?.gascost?.totalCost, pending])
+
+  const gasUsed = useMemo(
+    () => gasQuery?.gascost?.gasUsed || '',
+    [gasQuery?.gascost]
+  )
 
   const gasPercentage = useMemo<string>(
-    () => (message ? getGasPercentage(message, pending) : ''),
-    [message, pending]
+    () =>
+      !gasUsed && !!message?.gasLimit
+        ? getGasPercentage(message?.gasLimit, gasUsed, pending)
+        : '',
+    [message?.gasLimit, gasUsed, pending]
   )
   const gasBurned = useMemo<string>(() => {
-    if (!message || pending) return ''
+    if (
+      !gasQuery?.gascost?.baseFeeBurn ||
+      !gasQuery?.gascost?.overEstimationBurn
+    ) {
+      return ''
+    }
+
     const baseFeeBurn = new FilecoinNumber(
-      (message as Message)?.gasCost?.baseFeeBurn || '0',
+      gasQuery?.gascost?.baseFeeBurn || '0',
       'attofil'
     )
     const overEstimationBurn = new FilecoinNumber(
-      (message as Message)?.gasCost?.overEstimationBurn || '0',
+      gasQuery?.gascost?.overEstimationBurn || '0',
       'attofil'
     )
     return formatNumber(baseFeeBurn.plus(overEstimationBurn).toAttoFil())
-  }, [message, pending])
+  }, [gasQuery?.gascost])
 
   const unformattedTime = useUnformattedDateTime(message, time)
 
@@ -103,13 +112,13 @@ export default function MessageDetail(props: MessageDetailProps) {
   const execReturn = useMemo<ExecReturn | null>(() => {
     if (!message) return null
     const toExec = isAddrEqual(message?.to, 'f01')
-    const receiptExists = !!(message as Message).receipt?.return
+    const receiptExists = !!msgQuery?.receipt?.return
     const initTx = Number(message?.method) === 2
     if (toExec && receiptExists && initTx) {
-      return getAddrFromReceipt((message as Message)?.receipt?.return)
+      return getAddrFromReceipt(msgQuery?.receipt?.return)
     }
     return null
-  }, [message])
+  }, [message, msgQuery?.receipt])
 
   return (
     <>
@@ -120,7 +129,7 @@ export default function MessageDetail(props: MessageDetailProps) {
         cancelHref={cancelHref}
       />
       <hr />
-      {messageConfirmedInChainHead ? (
+      {gasUsed ? (
         <InfoBox>
           Message {cid} has been included into the Filecoin Blockchain and will
           be shown here in 1-2 minutes.
@@ -146,7 +155,7 @@ export default function MessageDetail(props: MessageDetailProps) {
               <Line label='CID'>{cid}</Line>
               <Line label='Status and Confirmations'>
                 <Status
-                  exitCode={(message as Message)?.receipt?.exitCode}
+                  exitCode={msgQuery?.receipt?.exitCode}
                   pending={pending}
                 />
                 {!pending && (
@@ -222,11 +231,11 @@ export default function MessageDetail(props: MessageDetailProps) {
                   <Line label='Gas Limit & Usage by Txn'>
                     {formatNumber(message.gasLimit)}
                     <SpanGray>|</SpanGray>
-                    {pending ? (
+                    {!gasUsed ? (
                       '?'
                     ) : (
                       <>
-                        {`${formatNumber(gas?.gascost.gasUsed)}
+                        {`${formatNumber(gasUsed)}
                     attoFil`}
                         <span>({gasPercentage})</span>
                       </>
@@ -240,18 +249,11 @@ export default function MessageDetail(props: MessageDetailProps) {
                     <SpanGray>Fee Cap</SpanGray>
                     {formatNumber(message.gasFeeCap)} attoFIL
                   </Line>
-                  {!pending && (
-                    <>
-                      <Line label=''>
-                        <SpanGray>Base</SpanGray>
-                        {formatNumber(
-                          (message as Message)?.gasCost?.baseFeeBurn
-                        )}{' '}
-                        attoFIL
-                      </Line>
-                      <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
-                    </>
-                  )}
+                  <Line label=''>
+                    <SpanGray>Base</SpanGray>
+                    {formatNumber(gasQuery?.gascost?.baseFeeBurn)} attoFIL
+                  </Line>
+                  <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
                   <hr />
                   <Parameters
                     params={{ params: message.params }}
