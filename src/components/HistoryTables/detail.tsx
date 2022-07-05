@@ -244,6 +244,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
                     />
                   </Lines>
                 )
+              break
 
             case 'boolean':
               return (
