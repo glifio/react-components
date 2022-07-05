@@ -129,7 +129,7 @@ export default function MessageDetail(props: MessageDetailProps) {
         cancelHref={cancelHref}
       />
       <hr />
-      {gasUsed ? (
+      {!gasUsed ? (
         <InfoBox>
           Message {cid} has been included into the Filecoin Blockchain and will
           be shown here in 1-2 minutes.
