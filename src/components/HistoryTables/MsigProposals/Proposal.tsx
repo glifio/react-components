@@ -80,21 +80,18 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     return _msigTxsError
   }, [_msigTxsError, msigTxsLoading, proposal])
 
-  const actionRequired = useMemo(() => {
-    if (proposalFoundError) return false
-    if (!props.walletAddress?.robust && !props.walletAddress?.id) return false
-    if (!!proposal && !stateLoading && !stateError) {
-      const walletAddressIsSigner = isAddressSigner(
-        { id: props.walletAddress?.robust, robust: props.walletAddress?.id },
-        stateData.State.Signers
-      )
-      const alreadyApproved = isAddressSigner(
-        props.walletAddress,
-        proposal.approved
-      )
-      return walletAddressIsSigner && !alreadyApproved
-    }
-    return false
+  const actionRequired = useMemo<boolean>(() => {
+    if (!proposal || proposalFoundError || stateError || stateLoading)
+      return false
+    const walletAddressIsSigner = isAddressSigner(
+      props.walletAddress,
+      stateData.State.Signers
+    )
+    const alreadyApproved = isAddressSigner(
+      props.walletAddress,
+      proposal.approved
+    )
+    return walletAddressIsSigner && !alreadyApproved
   }, [
     proposal,
     proposalFoundError,
