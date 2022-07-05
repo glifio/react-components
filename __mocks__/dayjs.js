@@ -9,12 +9,15 @@ const unix = jest.fn().mockImplementation(() => {
   }
 })
 
+const fromNow = jest.fn().mockImplementation(() => '10 days')
+
 const extend = jest.fn()
 
 const dayjs = () => {
   return {
     unix,
-    extend
+    extend,
+    fromNow
   }
 }
 

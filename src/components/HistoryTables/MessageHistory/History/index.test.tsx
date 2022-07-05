@@ -6,8 +6,10 @@ import theme from '../../../theme'
 import MessageHistory from '.'
 import { WALLET_ADDRESS } from '../../../../test-utils/constants'
 
+jest.mock('dayjs')
+
 describe('Message history', () => {
-  test('it renders no message history correctly', async () => {
+  test('it renders no message history correctly with historical data missing warning', async () => {
     jest
       .spyOn(require('../hooks/useAllMessages'), 'useAllMessages')
       .mockImplementation(() => {
@@ -32,6 +34,7 @@ describe('Message history', () => {
               offset={0}
               address={WALLET_ADDRESS}
               cidHref={cid => `/message/?cid=${cid}`}
+              warnMissingData
             />
           </ThemeProvider>
         </MockedProvider>
@@ -40,6 +43,7 @@ describe('Message history', () => {
     })
 
     expect(screen.getByText(/No records found/))
+    expect(screen.getByText(/Limited Historical Data/))
     expect(container).toMatchSnapshot()
   })
 })

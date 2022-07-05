@@ -24,5 +24,6 @@ const Template = args => (
 
 export const Base = Template.bind({})
 Base.args = {
+  warnMissingData: true,
   address: 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza'
 }
