@@ -1,19 +1,7 @@
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
-import { Message, MessagePending } from '../../../generated/graphql'
 
 export function attoFilToFil(amount: string | number | BigNumber): string {
   return new FilecoinNumber(amount, 'attofil').toFil() + ' FIL'
-}
-
-export function getGasPercentage(
-  message: Pick<Message, 'gasLimit' | 'gasCost'> | MessagePending,
-  pending: boolean
-): string {
-  if (pending) return ''
-  message = message as Message
-  const gasLimit = new BigNumber(message.gasLimit)
-  const gasUsed = new BigNumber(message.gasCost.gasUsed)
-  return gasUsed.dividedBy(gasLimit).times(100).toFixed(1) + '%'
 }
 
 export function formatNumber(input: string | number | BigNumber): string {

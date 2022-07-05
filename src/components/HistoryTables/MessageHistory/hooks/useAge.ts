@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react'
 import dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 
-import { MessageConfirmedRow, MessagePendingRow } from '../types'
-import { Block, useChainHeadSubscription } from '../../../generated/graphql'
+import { MessageConfirmedRow, MessagePendingRow } from '../../types'
+import { Block, useChainHeadSubscription } from '../../../../generated/graphql'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)

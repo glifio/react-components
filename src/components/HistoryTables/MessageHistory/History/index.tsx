@@ -1,14 +1,18 @@
 import { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import Box from '../../Box'
+import Box from '../../../Box'
 import MessageConfirmedRow from './MessageConfirmedRow'
 import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
-import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
-import { ButtonV2 } from '../../Button/V2'
-import { TABLE, TableCaption } from '../table'
-import { useAllMessages } from '../useAllMessages'
-import { Title } from '../generic'
+import { ADDRESS_PROPTYPE } from '../../../../customPropTypes'
+import { ButtonV2 } from '../../../Button/V2'
+import { TABLE, TableCaption } from '../../table'
+import { useAllMessages } from '../hooks/useAllMessages'
+import { Title } from '../../generic'
+import { WarningBox } from '../../../Layout'
+import dayjs from 'dayjs'
+
+const FINISH_DATE = dayjs('july 15, 2022')
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   const {
@@ -16,7 +20,6 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     pendingMsgs,
     loading,
     error,
-    chainHeadSub,
     fetchMore,
     fetchingMore,
     lastPage
@@ -27,9 +30,21 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     [pendingMsgs, messages]
   )
 
+  const daysLeft = useMemo(() => FINISH_DATE.fromNow(true), [])
+
   return (
     <Box>
       <Title>Transaction History</Title>
+      {props.warnMissingData && (
+        <WarningBox>
+          <h3>Limited Historical Data</h3>
+          <p>
+            Some transactions are currently missing for the next {daysLeft}{' '}
+            while our servers finish syncing with Filecoin Mainnet.
+          </p>
+        </WarningBox>
+      )}
+      <br />
       <TABLE className='narrow'>
         <TableCaption
           name='Transaction History'
@@ -53,7 +68,6 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
               message={message}
               cidHref={props.cidHref}
               inspectingAddress={props.address}
-              chainHeadSub={chainHeadSub}
             />
           ))}
         </tbody>
@@ -76,13 +90,15 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 type MessageHistoryTableProps = {
   offset: number
   address: string
-  cidHref: (cid: string, height?: number) => string
+  warnMissingData?: boolean
+  cidHref: (cid: string) => string
 }
 
 MessageHistoryTable.propTypes = {
-  offset: PropTypes.number,
   address: ADDRESS_PROPTYPE.isRequired,
-  cidHref: PropTypes.func.isRequired
+  cidHref: PropTypes.func.isRequired,
+  offset: PropTypes.number,
+  warnMissingData: PropTypes.bool
 }
 
 MessageHistoryTable.defaultProps = {

@@ -1,7 +1,7 @@
 import { ApolloProvider } from '@apollo/client'
-import { client } from '../apolloClient'
-import theme from '../../theme'
-import ThemeProvider from '../../ThemeProvider'
+import { client } from '../../apolloClient'
+import theme from '../../../theme'
+import ThemeProvider from '../../../ThemeProvider'
 
 import MessageHistory from './index'
 
@@ -24,5 +24,6 @@ const Template = args => (
 
 export const Base = Template.bind({})
 Base.args = {
+  warnMissingData: true,
   address: 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza'
 }

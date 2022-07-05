@@ -1,5 +1,4 @@
 import { SubscriptionResult } from '@apollo/client'
-import { BigNumber } from '@glif/filecoin-number'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
@@ -11,10 +10,10 @@ import {
   usePendingMessageQuery,
   useMessagesQuery,
   Message
-} from '../../../generated/graphql'
-import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
-import { uniqueifyMsgs } from '../../../utils/uniqueifyMsgs'
-import { useSubmittedMessages } from '../PendingMsgContext'
+} from '../../../../generated/graphql'
+import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
+import { uniqueifyMsgs } from '../../../../utils/uniqueifyMsgs'
+import { useSubmittedMessages } from '../../PendingMsgContext'
 
 const DEFAULT_LIMIT = 10
 const WAIT_EPOCHS_BEFORE_REFRESH = 3
@@ -196,7 +195,6 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
   }, [allMessagesError, pendingMsgsError])
 
   return {
-    chainHeadSub,
     messages: allMessages?.messages,
     pendingMsgs,
     fetchMore: onClickLoadMore,
@@ -337,24 +335,11 @@ export const useMessage = (cid: string) => {
     () => !pendingFound && !!pendingMsg,
     [pendingFound, pendingMsg]
   )
-  // if true, the message will not have its gas execution information attached to it
-  const messageConfirmedInChainHead = useMemo(() => {
-    if (pending) return false
-    const msg = message as Message
-    const totalCost = new BigNumber(msg?.gasCost?.totalCost)
-
-    return (
-      !!msg &&
-      // handles undefined and 0 values for totalCost
-      (totalCost.isNaN() || totalCost.isZero() || Number(msg.height === 0))
-    )
-  }, [message, pending])
 
   return {
     message,
     loading,
     error,
-    pending,
-    messageConfirmedInChainHead
+    pending
   }
 }

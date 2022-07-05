@@ -112,6 +112,24 @@ export const MESSAGE_PROPTYPE = shape({
   params: oneOfType([string, arrayOf(string)])
 })
 
+export const GRAPHQL_MESSAGE_PROPTYPE = shape({
+  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  nonce: number.isRequired,
+  method: string.isRequired,
+  value: string.isRequired,
+  gasPremium: string.isRequired,
+  gasFeeCap: string.isRequired,
+  gasLimit: number.isRequired,
+  params: oneOfType([string, arrayOf(string)])
+})
+
+export const GRAPHQL_MESSAGE_RECEIPT_PROPTYPE = shape({
+  exitCode: number.isRequired,
+  return: string.isRequired,
+  gasUsed: number.isRequired
+})
+
 /**
  * Gas Params
  */
@@ -126,6 +144,16 @@ export const GAS_PARAMS_PROPTYPE = shape({
   gasFeeCap: FILECOIN_NUMBER_PROPTYPE.isRequired,
   gasPremium: FILECOIN_NUMBER_PROPTYPE.isRequired,
   gasLimit: FILECOIN_NUMBER_PROPTYPE.isRequired
+})
+
+export const GRAPHQL_GAS_COST_PROPTYPE = shape({
+  baseFeeBurn: string.isRequired,
+  minerPenalty: string.isRequired,
+  minerTip: string.isRequired,
+  overEstimationBurn: string.isRequired,
+  refund: string.isRequired,
+  totalCost: string.isRequired,
+  gasUsed: number.isRequired
 })
 
 /**

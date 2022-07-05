@@ -1,0 +1,11 @@
+query GasCost($cid: String!) {
+  gascost(cid: $cid) {
+    baseFeeBurn
+    overEstimationBurn
+    minerPenalty
+    minerTip
+    gasUsed
+    refund
+    totalCost
+  }
+}

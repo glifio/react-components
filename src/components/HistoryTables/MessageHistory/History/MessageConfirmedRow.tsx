@@ -1,17 +1,18 @@
 import React, { useMemo } from 'react'
-import { SubscriptionResult } from '@apollo/client'
 import PropTypes from 'prop-types'
-import { TR, TD } from '../table'
-import { Badge } from '../generic'
-import { SmartLink } from '../../Link/SmartLink'
-import { AddressLink } from '../../AddressLink'
-import { MessageConfirmedRow, MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../types'
-import { attoFilToFil } from '../utils'
-import { ChainHeadSubscription } from '../../../generated/graphql'
-import { useAge } from './useAge'
-import { useMethodName } from './useMethodName'
-import { isAddrEqual } from '../../../utils/isAddrEqual'
-import truncateAddress from '../../../utils/truncateAddress'
+import { TR, TD } from '../../table'
+import { Badge } from '../../generic'
+import { SmartLink } from '../../../Link/SmartLink'
+import { AddressLink } from '../../../AddressLink'
+import {
+  MessageConfirmedRow,
+  MESSAGE_CONFIRMED_ROW_PROP_TYPE
+} from '../../types'
+import { attoFilToFil } from '../../utils'
+import { useAge } from '../hooks/useAge'
+import { useMethodName } from '../hooks/useMethodName'
+import { isAddrEqual } from '../../../../utils/isAddrEqual'
+import truncateAddress from '../../../../utils/truncateAddress'
 
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const { message, cidHref, inspectingAddress } = props
@@ -74,7 +75,6 @@ type MessageHistoryRowProps = {
   message: MessageConfirmedRow
   cidHref: (cid: string, height?: number) => string
   inspectingAddress: string
-  chainHeadSub: SubscriptionResult<ChainHeadSubscription, any>
 }
 
 MessageHistoryRow.propTypes = {
