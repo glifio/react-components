@@ -10,10 +10,10 @@ import {
   usePendingMessageQuery,
   useMessagesQuery,
   Message
-} from '../../../generated/graphql'
-import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
-import { uniqueifyMsgs } from '../../../utils/uniqueifyMsgs'
-import { useSubmittedMessages } from '../PendingMsgContext'
+} from '../../../../generated/graphql'
+import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
+import { uniqueifyMsgs } from '../../../../utils/uniqueifyMsgs'
+import { useSubmittedMessages } from '../../PendingMsgContext'
 
 const DEFAULT_LIMIT = 10
 const WAIT_EPOCHS_BEFORE_REFRESH = 3

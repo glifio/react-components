@@ -15,8 +15,8 @@ import {
   MessageDetailBase,
   SeeMoreContent
 } from '../../detail'
-import { useMessage } from '../../useAllMessages'
-import { useMethodName } from '../useMethodName'
+import { useMessage } from '../hooks/useAllMessages'
+import { useMethodName } from '../hooks/useMethodName'
 import { Lines, Line, StandardBox } from '../../../Layout'
 import { isAddrEqual, makeFriendlyBalance } from '../../../../utils'
 import {

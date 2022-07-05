@@ -16,7 +16,7 @@ import {
 } from '../../../../generated/graphql'
 
 jest
-  .spyOn(require('../useMethodName'), 'useMethodName')
+  .spyOn(require('../hooks/useMethodName'), 'useMethodName')
   .mockImplementation(() => {
     return {
       methodName: 'send',
@@ -60,7 +60,7 @@ const expectElementDNE = (text: string) => {
 describe('Message detail view', () => {
   test('it renders the loading view correctly', () => {
     jest
-      .spyOn(require('../../useAllMessages'), 'useMessage')
+      .spyOn(require('../hooks/useAllMessages'), 'useMessage')
       .mockImplementation(() => {
         return {
           message: undefined,
@@ -98,7 +98,7 @@ describe('Message detail view', () => {
 
   test('it renders the not found state correctly', () => {
     jest
-      .spyOn(require('../../useAllMessages'), 'useMessage')
+      .spyOn(require('../hooks/useAllMessages'), 'useMessage')
       .mockImplementation(() => {
         return {
           message: undefined,
@@ -133,7 +133,7 @@ describe('Message detail view', () => {
 
   test('it renders the pending msg state correctly', async () => {
     jest
-      .spyOn(require('../../useAllMessages'), 'useMessage')
+      .spyOn(require('../hooks/useAllMessages'), 'useMessage')
       .mockImplementation(() => {
         return {
           message,
@@ -183,7 +183,7 @@ describe('Message detail view', () => {
 
   test('it renders the confirmed but not executed msg state correctly', async () => {
     jest
-      .spyOn(require('../../useAllMessages'), 'useMessage')
+      .spyOn(require('../hooks/useAllMessages'), 'useMessage')
       .mockImplementation(() => {
         return {
           message,
@@ -232,7 +232,7 @@ describe('Message detail view', () => {
 
   test('it renders the executed msg state correctly', async () => {
     jest
-      .spyOn(require('../../useAllMessages'), 'useMessage')
+      .spyOn(require('../hooks/useAllMessages'), 'useMessage')
       .mockImplementation(() => {
         return {
           message: { ...message, height: 100 },

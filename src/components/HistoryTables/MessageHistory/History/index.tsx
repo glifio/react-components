@@ -1,14 +1,14 @@
 import { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import Box from '../../Box'
+import Box from '../../../Box'
 import MessageConfirmedRow from './MessageConfirmedRow'
 import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
-import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
-import { ButtonV2 } from '../../Button/V2'
-import { TABLE, TableCaption } from '../table'
-import { useAllMessages } from '../useAllMessages'
-import { Title } from '../generic'
+import { ADDRESS_PROPTYPE } from '../../../../customPropTypes'
+import { ButtonV2 } from '../../../Button/V2'
+import { TABLE, TableCaption } from '../../table'
+import { useAllMessages } from '../hooks/useAllMessages'
+import { Title } from '../../generic'
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   const {

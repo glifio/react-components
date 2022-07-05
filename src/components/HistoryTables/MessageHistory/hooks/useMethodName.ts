@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
-import { useActorQuery } from '../../../generated/graphql'
-import { getMethodName } from '../methodName'
-import { decodeActorCID } from '../../../utils'
-import { MessageConfirmedRow, MessagePendingRow } from '../types'
-import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
-import { logger } from '../../../logger'
+import { useActorQuery } from '../../../../generated/graphql'
+import { getMethodName } from '../../methodName'
+import { decodeActorCID } from '../../../../utils'
+import { MessageConfirmedRow, MessagePendingRow } from '../../types'
+import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
+import { logger } from '../../../../logger'
 
 type MessageForMethodNameType =
   | Pick<MessageConfirmedRow, 'to' | 'cid' | 'method'>

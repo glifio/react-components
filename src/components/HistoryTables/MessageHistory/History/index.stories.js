@@ -1,7 +1,7 @@
 import { ApolloProvider } from '@apollo/client'
-import { client } from '../apolloClient'
-import theme from '../../theme'
-import ThemeProvider from '../../ThemeProvider'
+import { client } from '../../apolloClient'
+import theme from '../../../theme'
+import ThemeProvider from '../../../ThemeProvider'
 
 import MessageHistory from './index'
 
