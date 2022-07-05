@@ -162,7 +162,7 @@ describe('Message detail view', () => {
 
     await waitFor(() => {
       expect(screen.getByText(/Message Overview/)).toBeInTheDocument()
-      expect(screen.getByText(/Cid/)).toBeInTheDocument()
+      expect(screen.getByText(/CID/)).toBeInTheDocument()
       expect(screen.getByText(/Height/)).toBeInTheDocument()
       expect(screen.getByText(/Timestamp/)).toBeInTheDocument()
       expect(screen.getByText(/From/)).toBeInTheDocument()
@@ -213,7 +213,7 @@ describe('Message detail view', () => {
 
     await waitFor(() => {
       expect(screen.getByText(/Message Overview/)).toBeInTheDocument()
-      expect(screen.getByText(/Cid/)).toBeInTheDocument()
+      expect(screen.getByText(/CID/)).toBeInTheDocument()
       expect(screen.getByText(/Height/)).toBeInTheDocument()
       expect(screen.getByText(/Timestamp/)).toBeInTheDocument()
       expect(screen.getByText(/From/)).toBeInTheDocument()
@@ -312,18 +312,18 @@ describe('Message detail view', () => {
 
     await waitFor(() => {
       expect(screen.getByText(/Message Overview/)).toBeInTheDocument()
-      expect(screen.getByText(/Cid/)).toBeInTheDocument()
+      expect(screen.getByText(/CID/)).toBeInTheDocument()
       expect(screen.getByText(/Height/)).toBeInTheDocument()
       expect(screen.getByText(/Timestamp/)).toBeInTheDocument()
       expect(screen.getByText(/From/)).toBeInTheDocument()
       expect(screen.getByText(/To/)).toBeInTheDocument()
       expect(screen.getByText(/Value/)).toBeInTheDocument()
       expect(screen.getByText(/SEND/)).toBeInTheDocument()
-      expect(screen.getByText(/Gas limit & usage by txn/)).toBeInTheDocument()
-      expect(screen.getByText(/Gas fees/)).toBeInTheDocument()
+      expect(screen.getByText(/Gas Limit & Usage by Txn/)).toBeInTheDocument()
+      expect(screen.getByText(/Gas Fees/)).toBeInTheDocument()
       expect(screen.getByText(/Fee Cap/)).toBeInTheDocument()
       expect(screen.getByText(/Base/)).toBeInTheDocument()
-      expect(screen.getByText(/Gas burned/)).toBeInTheDocument()
+      expect(screen.getByText(/Gas Burned/)).toBeInTheDocument()
 
       expectElementDNE('Speed up')
       expectElementDNE('Cancel')

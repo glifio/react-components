@@ -199,6 +199,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   -ms-flex: 0 1 25%;
   flex: 0 1 25%;
   min-width: 200px;
+  text-transform: capitalize;
 }
 
 .c4 > div:last-child {
@@ -240,7 +241,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
       class="c4"
     >
       <div>
-        Cid
+        CID
       </div>
       <div>
         bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g
@@ -651,6 +652,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   -ms-flex: 0 1 25%;
   flex: 0 1 25%;
   min-width: 200px;
+  text-transform: capitalize;
 }
 
 .c4 > div:last-child {
@@ -696,7 +698,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       class="c4"
     >
       <div>
-        Cid
+        CID
       </div>
       <div>
         bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g
@@ -909,7 +911,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       class="c4"
     >
       <div>
-        Transaction fee
+        Transaction Fee
       </div>
       <div>
         &lt; 0.001 FIL
@@ -925,7 +927,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       class="c4"
     >
       <div>
-        Gas limit & usage by txn
+        Gas Limit & Usage by Txn
       </div>
       <div>
         1,000
@@ -947,7 +949,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       class="c4"
     >
       <div>
-        Gas fees
+        Gas Fees
       </div>
       <div>
         <span
@@ -991,7 +993,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       class="c4"
     >
       <div>
-        Gas burned
+        Gas Burned
       </div>
       <div>
         200
@@ -1003,7 +1005,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       class="c4"
     >
       <div>
-        Params
+        params
       </div>
       <div />
     </div>
@@ -1634,6 +1636,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   -ms-flex: 0 1 25%;
   flex: 0 1 25%;
   min-width: 200px;
+  text-transform: capitalize;
 }
 
 .c8 > div:last-child {
@@ -1727,7 +1730,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
       class="c8"
     >
       <div>
-        Cid
+        CID
       </div>
       <div>
         bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g
