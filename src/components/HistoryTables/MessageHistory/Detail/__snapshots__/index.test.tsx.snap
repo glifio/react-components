@@ -1005,7 +1005,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       class="c4"
     >
       <div>
-        params
+        Parameters
       </div>
       <div />
     </div>

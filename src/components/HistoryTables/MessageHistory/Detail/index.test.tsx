@@ -24,6 +24,10 @@ jest
     }
   })
 
+const speedUpBtnText = 'Speed up'
+const cancelBtnText = 'Cancel'
+const seeMoreBtnText = 'Click to see more ↓'
+const statusLabelText = 'Status and Confirmations'
 const cid = 'bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g'
 
 const message = {
@@ -45,16 +49,6 @@ const message = {
   value: '1000',
   version: '1',
   method: '0'
-}
-
-const expectElementDNE = (text: string) => {
-  try {
-    screen.getByText(text, { exact: false })
-  } catch (err) {
-    expect(
-      err.message.includes(`Unable to find an element with the text: ${text}.`)
-    ).toBeTruthy()
-  }
 }
 
 describe('Message detail view', () => {
@@ -90,9 +84,11 @@ describe('Message detail view', () => {
     expect(
       screen.getByText(`Searching for ${cid}... Give us a moment`)
     ).toBeInTheDocument()
-    // couldnt figure out a better way to assert the speed up and cancel buttons are not display in loading state, but this is not great if we ever change names of Cancel and Speed up ButtonV2Links
-    expectElementDNE('Speed up')
-    expectElementDNE('Cancel')
+
+    // The document should not contain
+    expect(screen.queryByText(speedUpBtnText)).toBeNull()
+    expect(screen.queryByText(cancelBtnText)).toBeNull()
+
     expect(container).toMatchSnapshot()
   })
 
@@ -126,8 +122,11 @@ describe('Message detail view', () => {
     })
 
     expect(screen.getByText(`Message ${cid} not found.`)).toBeInTheDocument()
-    expectElementDNE('Speed up')
-    expectElementDNE('Cancel')
+
+    // The document should not contain
+    expect(screen.queryByText(speedUpBtnText)).toBeNull()
+    expect(screen.queryByText(cancelBtnText)).toBeNull()
+
     expect(container).toMatchSnapshot()
   })
 
@@ -168,15 +167,17 @@ describe('Message detail view', () => {
       expect(screen.getByText(/From/)).toBeInTheDocument()
       expect(screen.getByText(/To/)).toBeInTheDocument()
       expect(screen.getByText(/Value/)).toBeInTheDocument()
-      //
       expect(screen.getByText(/SEND/)).toBeInTheDocument()
       expect(screen.getAllByText(/Pending/).length > 0).toBeTruthy()
-      // speed up and cancel buttons should display when pending
-      expect(screen.getByText(/Speed up/)).toBeInTheDocument()
-      expect(screen.getByText(/Cancel/)).toBeInTheDocument()
 
-      expectElementDNE('Status and Confirmations')
-      expectElementDNE('see more')
+      // speed up and cancel buttons should display when pending
+      expect(screen.getByText(speedUpBtnText)).toBeInTheDocument()
+      expect(screen.getByText(cancelBtnText)).toBeInTheDocument()
+
+      // The document should not contain
+      expect(screen.queryByText(statusLabelText)).toBeNull()
+      expect(screen.queryByText(seeMoreBtnText)).toBeNull()
+
       expect(container).toMatchSnapshot()
     })
   })
@@ -219,13 +220,14 @@ describe('Message detail view', () => {
       expect(screen.getByText(/From/)).toBeInTheDocument()
       expect(screen.getByText(/To/)).toBeInTheDocument()
       expect(screen.getByText(/Value/)).toBeInTheDocument()
-      //
       expect(screen.getByText(/SEND/)).toBeInTheDocument()
 
-      expectElementDNE('Status and Confirmations')
-      expectElementDNE('see more')
-      expectElementDNE('Speed up')
-      expectElementDNE('Cancel')
+      // The document should not contain
+      expect(screen.queryByText(statusLabelText)).toBeNull()
+      expect(screen.queryByText(seeMoreBtnText)).toBeNull()
+      expect(screen.queryByText(speedUpBtnText)).toBeNull()
+      expect(screen.queryByText(cancelBtnText)).toBeNull()
+
       expect(container).toMatchSnapshot()
     })
   })
@@ -303,11 +305,11 @@ describe('Message detail view', () => {
 
     // once the gas and receipt information load, this should get enabled
     await waitFor(() => {
-      expect(screen.getByText(/see more/))
+      expect(screen.getByText(seeMoreBtnText))
     })
 
     act(() => {
-      fireEvent.click(screen.getByText(/see more/))
+      fireEvent.click(screen.getByText(seeMoreBtnText))
     })
 
     await waitFor(() => {
@@ -325,8 +327,10 @@ describe('Message detail view', () => {
       expect(screen.getByText(/Base/)).toBeInTheDocument()
       expect(screen.getByText(/Gas Burned/)).toBeInTheDocument()
 
-      expectElementDNE('Speed up')
-      expectElementDNE('Cancel')
+      // The document should not contain
+      expect(screen.queryByText(speedUpBtnText)).toBeNull()
+      expect(screen.queryByText(cancelBtnText)).toBeNull()
+
       expect(container).toMatchSnapshot()
     })
   })

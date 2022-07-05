@@ -112,7 +112,7 @@ export const MESSAGE_PROPTYPE = shape({
   params: oneOfType([string, arrayOf(string)])
 })
 
-export const MESSAGE_QUERY_PROPTYPE = shape({
+export const GRAPHQL_MESSAGE_PROPTYPE = shape({
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   nonce: number.isRequired,
@@ -124,7 +124,7 @@ export const MESSAGE_QUERY_PROPTYPE = shape({
   params: oneOfType([string, arrayOf(string)])
 })
 
-export const MESSAGE_RECEIPT_PROPTYPE = shape({
+export const GRAPHQL_MESSAGE_RECEIPT_PROPTYPE = shape({
   exitCode: number.isRequired,
   return: string.isRequired,
   gasUsed: number.isRequired
@@ -146,7 +146,7 @@ export const GAS_PARAMS_PROPTYPE = shape({
   gasLimit: FILECOIN_NUMBER_PROPTYPE.isRequired
 })
 
-export const GAS_COST_QUERY_PROPTYPE = shape({
+export const GRAPHQL_GAS_COST_PROPTYPE = shape({
   baseFeeBurn: string.isRequired,
   minerPenalty: string.isRequired,
   minerTip: string.isRequired,

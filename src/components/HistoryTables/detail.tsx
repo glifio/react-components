@@ -27,8 +27,8 @@ import { useUnformattedDateTime } from './MessageHistory/hooks/useAge'
 import { AddressLink } from '../AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
 import {
-  GAS_COST_QUERY_PROPTYPE,
-  MESSAGE_QUERY_PROPTYPE
+  GRAPHQL_GAS_COST_PROPTYPE,
+  GRAPHQL_MESSAGE_PROPTYPE
 } from '../../customPropTypes'
 
 /**
@@ -258,6 +258,7 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
                     />
                   </Lines>
                 )
+              break
 
             case 'boolean':
               return (
@@ -268,7 +269,11 @@ export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
           }
 
           return (
-            <Line key={`${depth}-${key}`} label={key} depth={depth}>
+            <Line
+              key={`${depth}-${key}`}
+              label={key === 'params' ? 'Parameters' : key}
+              depth={depth}
+            >
               {value ?? '—'}
             </Line>
           )
@@ -443,7 +448,7 @@ type MessageDetailBaseProps = {
 
 MessageDetailBase.propTypes = {
   cid: PropTypes.string.isRequired,
-  message: MESSAGE_QUERY_PROPTYPE.isRequired,
+  message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   time: PropTypes.number.isRequired,
   pending: PropTypes.bool,
   confirmations: PropTypes.number,
@@ -523,8 +528,8 @@ type SeeMoreContentProps = {
 }
 
 SeeMoreContent.propTypes = {
-  message: MESSAGE_QUERY_PROPTYPE.isRequired,
+  message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   gasUsed: PropTypes.number.isRequired,
-  gasCost: GAS_COST_QUERY_PROPTYPE.isRequired,
+  gasCost: GRAPHQL_GAS_COST_PROPTYPE.isRequired,
   actorName: PropTypes.string.isRequired
 }
