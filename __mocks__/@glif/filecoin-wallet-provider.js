@@ -7,11 +7,12 @@ export * from '../../node_modules/@glif/filecoin-wallet-provider/dist/providers/
 export const mockGetAccounts = jest
   .fn()
   .mockImplementation((start = 0, end = 1) => {
+    if (end > 10)
+      throw new Error('Cannot generate a valid account address with an index of 10 or higher')
     const accounts = []
     for (let i = start; i < end; i++) {
       accounts.push(`t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb${i}uq`)
     }
-
     return Promise.resolve(accounts)
   })
 
