@@ -88,13 +88,10 @@ export default function ProposalDetail(props: ProposalDetailProps) {
         { id: props.walletAddress?.robust, robust: props.walletAddress?.id },
         stateData.State.Signers
       )
-      const alreadyApproved = proposal.approved.some(
-        approver =>
-          isAddrEqual(approver, props.walletAddress?.id) ||
-          // this will almost never return true because the approvers array is an array of IDs
-          isAddrEqual(approver, props.walletAddress?.robust)
+      const alreadyApproved = isAddressSigner(
+        props.walletAddress,
+        proposal.approved
       )
-
       return walletAddressIsSigner && !alreadyApproved
     }
     return false
@@ -107,19 +104,10 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     stateError
   ])
 
-  const isProposer = useMemo(() => {
-    if (
-      !proposalFoundError &&
-      !!proposal &&
-      !!(props.walletAddress?.id || props?.walletAddress?.robust)
-    ) {
-      return isAddrEqual(
-        { id: props.walletAddress?.id, robust: props.walletAddress?.id },
-        proposal.approved[0].id
-      )
-    }
-    return false
-  }, [proposal, proposalFoundError, props.walletAddress])
+  const isProposer = useMemo<boolean>(
+    () => isAddrEqual(props.walletAddress, proposal?.approved?.[0]),
+    [props.walletAddress, proposal]
+  )
 
   const loading = useMemo(
     () => actorLoading || msigTxsLoading || stateLoading,
