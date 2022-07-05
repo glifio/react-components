@@ -1,9 +1,9 @@
 import { ApolloProvider } from '@apollo/client'
-import { client } from '../apolloClient'
-import theme from '../../theme'
-import ThemeProvider from '../../ThemeProvider'
+import { client } from '../../apolloClient'
+import theme from '../../../theme'
+import ThemeProvider from '../../../ThemeProvider'
 
-import MessageDetail from './Detail'
+import MessageDetail from '.'
 
 export default {
   title: 'MessageHistory/MessageDetail',
@@ -29,5 +29,5 @@ const Template = args => (
 
 export const Detail = Template.bind({})
 Detail.args = {
-  cid: 'bafy2bzacedpjvtlzpds7jz5sr43hkpuclgkj743zwg2vgpwmqk5sc3tgzgbmi'
+  cid: 'bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g'
 }

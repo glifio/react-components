@@ -4,17 +4,6 @@ export function attoFilToFil(amount: string | number | BigNumber): string {
   return new FilecoinNumber(amount, 'attofil').toFil() + ' FIL'
 }
 
-export function getGasPercentage(
-  gasLimitStr: number | string,
-  gasCostStr: number | string,
-  pending: boolean
-): string {
-  if (pending) return ''
-  const gasLimit = new FilecoinNumber(gasLimitStr, 'attofil')
-  const gasUsed = new FilecoinNumber(gasCostStr, 'attofil')
-  return gasUsed.dividedBy(gasLimit).times(100).toFixed(1) + '%'
-}
-
 export function formatNumber(input: string | number | BigNumber): string {
   const bigNr = input instanceof BigNumber ? input : new BigNumber(input)
   return bigNr.toFormat()

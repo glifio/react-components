@@ -2,7 +2,13 @@ import React, { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { MsigTransaction } from '../../generated/graphql'
+import {
+  GasCost,
+  Message,
+  MessagePending,
+  MsigTransaction,
+  useChainHeadSubscription
+} from '../../generated/graphql'
 import Box from '../Box'
 import { ButtonV2, ButtonV2Link } from '../Button/V2'
 import { Title, Badge } from './generic'
@@ -11,11 +17,19 @@ import {
   IconCancel,
   IconCheck,
   IconPending,
-  IconFail
+  IconFail,
+  IconClock
 } from '../Icons'
 import { Lines, Line, AddressLine } from '../Layout'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
+import { useUnformattedDateTime } from './MessageHistory/useAge'
+import { AddressLink } from '../AddressLink'
+import { attoFilToFil, formatNumber } from './utils'
+import {
+  GAS_COST_QUERY_PROPTYPE,
+  MESSAGE_QUERY_PROPTYPE
+} from '../../customPropTypes'
 
 /**
  * Head
@@ -336,4 +350,177 @@ type ConfirmationsProps = {
 Confirmations.propTypes = {
   count: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired
+}
+
+export const MessageDetailBase = ({
+  message,
+  pending,
+  exitCode,
+  cid,
+  methodName,
+  confirmations,
+  time
+}: MessageDetailBaseProps) => {
+  const unformattedTime = useUnformattedDateTime(message, time)
+
+  const chainHeadSubscription = useChainHeadSubscription({
+    variables: {},
+    shouldResubscribe: true,
+    skip: pending
+  })
+
+  const confirmationCount = useMemo<number>(
+    () =>
+      chainHeadSubscription.data?.chainHead.height && !!message?.height
+        ? chainHeadSubscription.data.chainHead.height - Number(message.height)
+        : 0,
+    [message?.height, chainHeadSubscription.data?.chainHead.height]
+  )
+
+  return (
+    <>
+      <Line label='CID'>{cid}</Line>
+      <Line label='Status and Confirmations'>
+        <Status exitCode={exitCode} pending={pending} />
+        {!pending && (
+          <Confirmations count={confirmationCount} total={confirmations} />
+        )}
+      </Line>
+      <Line label='Height'>{pending ? 'Pending' : message.height}</Line>
+      <Line label='Timestamp'>
+        {pending ? (
+          'Pending'
+        ) : (
+          <>
+            <IconClock width='1.125em' />
+            {unformattedTime
+              ? `${unformattedTime?.from(
+                  time
+                )} (${unformattedTime?.toString()})`
+              : ''}
+          </>
+        )}
+      </Line>
+      <hr />
+      <Line label='From'>
+        <AddressLink
+          id={message.from.id}
+          address={message.from.robust}
+          hideCopyText={false}
+        />
+      </Line>
+      <Line label='To'>
+        <AddressLink
+          id={message.to.id}
+          address={message.to.robust}
+          hideCopyText={false}
+        />
+      </Line>
+      <hr />
+      <Line label='Value'>{attoFilToFil(message.value)}</Line>
+      {methodName && (
+        <Line label='Method'>
+          <Badge color='purple' text={methodName} />
+        </Line>
+      )}
+    </>
+  )
+}
+
+type MessageDetailBaseProps = {
+  cid: string
+  message: Message | MessagePending
+  methodName: string
+  time: number
+  confirmations?: number
+  pending?: boolean
+  exitCode?: number
+}
+
+MessageDetailBase.propTypes = {
+  cid: PropTypes.string.isRequired,
+  message: MESSAGE_QUERY_PROPTYPE.isRequired,
+  time: PropTypes.number.isRequired,
+  pending: PropTypes.bool,
+  confirmations: PropTypes.number,
+  methodName: PropTypes.string,
+  exitCode: PropTypes.number
+}
+
+const SpanGray = styled.span`
+  color: var(--gray-medium);
+`
+
+export const SeeMoreContent = ({
+  message,
+  gasUsed,
+  gasCost,
+  actorName
+}: SeeMoreContentProps) => {
+  const gasPercentage = useMemo<string>(() => {
+    const gasLimit = new FilecoinNumber(message.gasLimit, 'attofil')
+
+    return (
+      new FilecoinNumber(gasUsed, 'attofil')
+        .dividedBy(gasLimit)
+        .times(100)
+        .toFixed(1) + '%'
+    )
+  }, [message?.gasLimit, gasUsed])
+
+  const gasBurned = useMemo<string>(() => {
+    const baseFeeBurn = new FilecoinNumber(
+      gasCost.baseFeeBurn || '0',
+      'attofil'
+    )
+    const overEstimationBurn = new FilecoinNumber(
+      gasCost.overEstimationBurn || '0',
+      'attofil'
+    )
+    return formatNumber(baseFeeBurn.plus(overEstimationBurn).toAttoFil())
+  }, [gasCost])
+
+  return (
+    <>
+      <Line label='Gas Limit & Usage by Txn'>
+        {formatNumber(message.gasLimit)}
+        <SpanGray>|</SpanGray>
+        {formatNumber(gasUsed)} attoFil
+        <span>({gasPercentage})</span>
+      </Line>
+      <Line label='Gas Fees'>
+        <SpanGray>Premium</SpanGray>
+        {formatNumber(message.gasPremium)} attoFIL
+      </Line>
+      <Line label=''>
+        <SpanGray>Fee Cap</SpanGray>
+        {formatNumber(message.gasFeeCap)} attoFIL
+      </Line>
+      <Line label=''>
+        <SpanGray>Base</SpanGray>
+        {formatNumber(gasCost.baseFeeBurn)} attoFIL
+      </Line>
+      <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
+      <hr />
+      <Parameters
+        params={{ params: message.params }}
+        actorName={actorName}
+        depth={0}
+      />
+    </>
+  )
+}
+
+type SeeMoreContentProps = {
+  message: Message
+  gasUsed: number
+  gasCost: GasCost
+  actorName: string
+}
+
+SeeMoreContent.propTypes = {
+  message: MESSAGE_QUERY_PROPTYPE.isRequired,
+  gasUsed: PropTypes.number.isRequired,
+  gasCost: GAS_COST_QUERY_PROPTYPE.isRequired,
+  actorName: PropTypes.string.isRequired
 }
