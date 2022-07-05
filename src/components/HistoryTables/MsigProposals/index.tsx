@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { isAddrEqual } from '../../../utils'
+import { isAddressSigner } from '../../../utils'
 import Box from '../../Box'
 import ProposalRow from './ProposalRow'
 import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
@@ -43,9 +43,7 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
                   idHref={props.idHref}
                   inspectingAddress={props.address}
                   actionRequired={
-                    !proposal.approved.some(address =>
-                      isAddrEqual(address, props.walletAddr)
-                    )
+                    !isAddressSigner(props.walletAddr, proposal.approved)
                   }
                 />
               ))}

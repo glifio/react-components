@@ -7,15 +7,14 @@ export const isAddrEqual = (
 ): boolean => {
   if (!address || !address2) return false
 
-  if (typeof address2 === 'string') {
-    return (
-      convertAddrToPrefix(address2) === convertAddrToPrefix(address.id) ||
-      convertAddrToPrefix(address2) === convertAddrToPrefix(address.robust)
-    )
-  }
-
-  return (
-    convertAddrToPrefix(address2.id) === convertAddrToPrefix(address.id) ||
-    convertAddrToPrefix(address2.robust) === convertAddrToPrefix(address.robust)
+  const id1 = convertAddrToPrefix(address.id)
+  const robust1 = convertAddrToPrefix(address.robust)
+  const id2 = convertAddrToPrefix(
+    typeof address2 === 'string' ? address2 : address2.id
   )
+  const robust2 = convertAddrToPrefix(
+    typeof address2 === 'string' ? address2 : address2.robust
+  )
+
+  return (!!id1 && id1 === id2) || (!!robust1 && robust1 === robust2)
 }

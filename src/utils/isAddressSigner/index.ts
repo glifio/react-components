@@ -4,8 +4,4 @@ import { isAddrEqual } from '../isAddrEqual'
 export const isAddressSigner = (
   address: Address,
   signers: Address[]
-): boolean =>
-  signers.some(
-    signer =>
-      isAddrEqual(signer, address?.robust) || isAddrEqual(signer, address?.id)
-  )
+): boolean => signers.some(signer => isAddrEqual(signer, address))
