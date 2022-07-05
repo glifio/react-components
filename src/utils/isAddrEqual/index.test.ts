@@ -15,6 +15,15 @@ describe('isAddrEqual', () => {
       )
     ).toBe(true)
     expect(
+      isAddrEqual({ id: WALLET_ID, robust: '' }, { id: WALLET_ID, robust: '' })
+    ).toBe(true)
+    expect(
+      isAddrEqual(
+        { id: '', robust: WALLET_ADDRESS },
+        { id: '', robust: WALLET_ADDRESS }
+      )
+    ).toBe(true)
+    expect(
       isAddrEqual({ id: WALLET_ID, robust: WALLET_ADDRESS }, WALLET_ID)
     ).toBe(true)
     expect(
@@ -28,6 +37,21 @@ describe('isAddrEqual', () => {
         { id: WALLET_ID_2, robust: WALLET_ADDRESS_2 }
       )
     ).toBe(false)
+    expect(
+      isAddrEqual(
+        { id: WALLET_ID, robust: '' },
+        { id: WALLET_ID_2, robust: '' }
+      )
+    ).toBe(false)
+    expect(
+      isAddrEqual(
+        { id: '', robust: WALLET_ADDRESS },
+        { id: '', robust: WALLET_ADDRESS_2 }
+      )
+    ).toBe(false)
+    expect(isAddrEqual({ id: '', robust: '' }, '')).toBe(false)
+    expect(isAddrEqual({ id: WALLET_ID, robust: '' }, '')).toBe(false)
+    expect(isAddrEqual({ id: '', robust: WALLET_ADDRESS }, '')).toBe(false)
     expect(
       isAddrEqual({ id: WALLET_ID, robust: WALLET_ADDRESS }, WALLET_ID_2)
     ).toBe(false)
