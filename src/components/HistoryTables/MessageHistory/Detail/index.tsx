@@ -62,7 +62,7 @@ export default function MessageDetail(props: MessageDetailProps) {
     const cost = gasQuery?.gascost?.totalCost
     return cost
       ? `${makeFriendlyBalance(new FilecoinNumber(cost, 'attofil'))} FIL`
-      : ''
+      : 'Calculating...'
   }, [gasQuery?.gascost?.totalCost, pending])
 
   const gasUsed = useMemo(
