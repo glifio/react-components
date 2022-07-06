@@ -83,13 +83,12 @@ export default function MessageDetail(props: MessageDetailProps) {
   }, [message, msgRcptQuery?.receipt])
 
   const messageState = useMemo<MessageState>(() => {
+    if (error) return MessageState.Error
+    if (loading) return MessageState.Loading
     if (pending) return MessageState.Pending
-    else if (loading) return MessageState.Loading
-    else if (!message && !pending && !error) return MessageState.NotFound
-    else if (!message && !pending && !!error) return MessageState.Error
-    else if (!!message && !gasUsed) return MessageState.Confirmed
-    else if (!!message && !!gasUsed) return MessageState.Executed
-    else return MessageState.Loading
+    if (!message) return MessageState.NotFound
+    if (!gasUsed) return MessageState.Confirmed
+    return MessageState.Executed
   }, [pending, message, error, gasUsed, loading])
 
   // Log errors
