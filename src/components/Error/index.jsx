@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import Box from '../Box'
 import Button from '../Button'
 import Glyph from '../Glyph'
-import OnboardCard from '../Card/OnboardCard'
 import { SmartLink } from '../Link/SmartLink'
 import { GLIF_DISCORD, GLIF_TWITTER } from '../../constants'
 
@@ -15,7 +14,16 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
   }
   return (
     <div>
-      <OnboardCard
+      <Box
+        display='inline-block'
+        width='100%'
+        maxWidth={13}
+        minHeight={10}
+        p={3}
+        border={1}
+        borderRadius={2}
+        borderWidth={1}
+        overflow='hidden'
         bg='card.error.background'
         color='card.error.foreground'
         borderColor='card.error.background'
@@ -38,7 +46,7 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
           Get help in <SmartLink href={GLIF_DISCORD}>Discord</SmartLink> or hit
           us up on <SmartLink href={GLIF_TWITTER}>Twitter</SmartLink>
         </Box>
-      </OnboardCard>
+      </Box>
       <Box mt={5} textAlign='center'>
         <Button variant='secondary' title='Back' onClick={sendHomeCB} />
       </Box>

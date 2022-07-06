@@ -1,25 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ButtonClose BigTitle story renders 1`] = `
-.c0 {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: RT-Alias-Medium;
-  margin: 0;
-}
-
-<h1
-  class="c0"
-  font-family="RT-Alias-Medium"
-  font-size="6"
-  font-weight="700"
->
-  Hello world
-</h1>
-`;
-
-exports[`ButtonClose Label story renders 1`] = `
+exports[`Typography Label story renders 1`] = `
 .c0 {
   font-size: 1.125rem;
   font-weight: 400;
@@ -38,7 +19,7 @@ exports[`ButtonClose Label story renders 1`] = `
 </h4>
 `;
 
-exports[`ButtonClose Num story renders 1`] = `
+exports[`Typography Num story renders 1`] = `
 <h2
   class=""
 >
@@ -46,7 +27,7 @@ exports[`ButtonClose Num story renders 1`] = `
 </h2>
 `;
 
-exports[`ButtonClose Text story renders 1`] = `
+exports[`Typography Text story renders 1`] = `
 .c0 {
   font-size: 1.125rem;
   font-weight: 400;
@@ -64,7 +45,7 @@ exports[`ButtonClose Text story renders 1`] = `
 </p>
 `;
 
-exports[`ButtonClose Title story renders 1`] = `
+exports[`Typography Title story renders 1`] = `
 .c0 {
   font-size: 1.5rem;
   font-weight: 400;

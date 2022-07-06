@@ -158,30 +158,6 @@ exports[`Icons  renders IconLedger 1`] = `
 </svg>
 `;
 
-exports[`Icons  renders IconMessageStatus 1`] = `
-.c0 {
-  width: 24px;
-  height: 24px;
-}
-
-<svg
-  class="c0"
-  fill="none"
-  height="24px"
-  viewBox="0 0 24 24"
-  width="24px"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <rect
-    fill="#1AD08F"
-    height="12"
-    width="12"
-    x="4"
-    y="8"
-  />
-</svg>
-`;
-
 exports[`Icons  renders IconPending 1`] = `
 .c0 {
   width: 24px;

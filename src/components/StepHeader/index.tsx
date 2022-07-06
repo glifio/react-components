@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import Stepper from '../Stepper'
 import Loading from '../LoaderGlyph'
 import Glyph from '../Glyph'
-import ErrorGlyph from '../Glyph/ErrorGlyph'
 import { Title } from '../Typography'
 import Box from '../Box'
 
@@ -48,7 +47,13 @@ const StepHeader = ({
     <Menu>
       <Box display='flex' flexDirection='row' alignItems='center'>
         <MenuItem>
-          {error && <ErrorGlyph />}
+          {error && (
+            <Glyph
+              acronym='Er'
+              backgroundColor='status.fail.background'
+              color='status.fail.foreground'
+            />
+          )}
           {loading && !error && <Loading />}
           {!loading && !error && glyphAcronym && (
             <Glyph Icon={Icon} acronym={glyphAcronym} />
