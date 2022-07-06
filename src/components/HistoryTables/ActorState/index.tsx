@@ -13,13 +13,9 @@ import { Title } from '../generic'
 import { DetailCaption } from '../detail'
 import { logger } from '../../../logger'
 
-function State({ state }: { state: unknown }) {
-  return (
-    <>
-      <pre>{JSON.stringify(state, null, 2)}</pre>
-    </>
-  )
-}
+const State = ({ state }: { state: unknown }) => (
+  <pre>{JSON.stringify(state, null, 2)}</pre>
+)
 
 export function ActorState({ address }: { address: string }) {
   const {
@@ -34,7 +30,7 @@ export function ActorState({ address }: { address: string }) {
 
   const {
     data: addressData,
-    error: adddressError,
+    error: addressError,
     loading: addressLoading
   } = useAddressQuery({ variables: { address: convertAddrToPrefix(address) } })
 
@@ -55,8 +51,8 @@ export function ActorState({ address }: { address: string }) {
   }, [actorStateLoading, addressLoading])
 
   const error = useMemo(() => {
-    return actorStateError || adddressError
-  }, [actorStateError, adddressError])
+    return actorStateError || addressError
+  }, [actorStateError, addressError])
 
   return (
     <div>
