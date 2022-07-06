@@ -1,5 +1,5 @@
 /* GLIF */
-export const GLIF_EMAIL = 'squad@glif.io'
+export const GLIF_EMAIL = 'squad@infinitescroll.org'
 export const GLIF_CODE = 'https://github.com/glifio'
 export const GLIF_NODES =
   'https://lotus.filecoin.io/docs/developers/hosted-lotus/'
