@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react'
 import { func, node } from 'prop-types'
-import useWallet from '../WalletProvider/useWallet'
+import { useWallet } from '../WalletProvider/useWallet'
 
 export function RequireWallet({
   children,

@@ -5,7 +5,7 @@ import { SINGLE_KEY } from '../../constants'
 
 const useWalletMock = jest.spyOn(
   require('../WalletProvider/useWallet'),
-  'default'
+  'useWallet'
 )
 const defaultWallet = {
   address: 't1jdlfl73voaiblrvn2yfivvn5ifucwwv5f26nfza',

@@ -7,7 +7,7 @@ import {
 } from 'react'
 import PropTypes from 'prop-types'
 import { MessagePending } from '../../../generated/graphql'
-import useWallet from '../../../services/WalletProvider/useWallet'
+import { useWallet } from '../../../services/WalletProvider/useWallet'
 
 export type PendingMsgContextType = {
   messages: MessagePending[]
