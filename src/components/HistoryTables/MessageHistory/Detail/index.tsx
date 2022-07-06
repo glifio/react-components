@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
@@ -24,6 +24,7 @@ import {
   getAddrFromReceipt
 } from '../../../../utils/getAddrFromReceipt'
 import LoaderGlyph from '../../../LoaderGlyph'
+import { logger } from '../../../../logger'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -47,21 +48,21 @@ export default function MessageDetail(props: MessageDetailProps) {
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(cid)
 
-  const { data: gasQuery } = useGasCostQuery({
+  const { data: gasQuery, error: gasStateError } = useGasCostQuery({
     variables: { cid },
     pollInterval: 10000
   })
-  const { data: msgRcptQuery } = useMessageReceiptQuery({
+  const { data: msgRcptQuery, error: msgRcptError } = useMessageReceiptQuery({
     variables: { cid },
     pollInterval: 10000
   })
 
   const transactionFee = useMemo<string>(() => {
-    if (pending || !gasQuery?.gascost?.totalCost) return 'Pending...'
+    if (pending) return 'Pending...'
     const cost = gasQuery?.gascost?.totalCost
     return cost
       ? `${makeFriendlyBalance(new FilecoinNumber(cost, 'attofil'))} FIL`
-      : ''
+      : 'Calculating...'
   }, [gasQuery?.gascost?.totalCost, pending])
 
   const gasUsed = useMemo(
@@ -73,24 +74,27 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   const execReturn = useMemo<ExecReturn | null>(() => {
     if (!message) return null
-    const toExec = isAddrEqual(message?.to, 'f01')
-    const receiptExists = !!msgRcptQuery?.receipt?.return
-    const initTx = Number(message?.method) === 2
-    if (toExec && receiptExists && initTx) {
-      return getAddrFromReceipt(msgRcptQuery?.receipt?.return)
-    }
-    return null
+    const isToExec = isAddrEqual(message?.to, 'f01')
+    const isInitTx = Number(message?.method) === 2
+    const receiptReturn = msgRcptQuery?.receipt?.return
+    return isToExec && isInitTx && receiptReturn
+      ? getAddrFromReceipt(receiptReturn)
+      : null
   }, [message, msgRcptQuery?.receipt])
 
   const messageState = useMemo<MessageState>(() => {
+    if (error) return MessageState.Error
+    if (loading) return MessageState.Loading
     if (pending) return MessageState.Pending
-    else if (loading) return MessageState.Loading
-    else if (!message && !pending && !error) return MessageState.NotFound
-    else if (!message && !pending && !!error) return MessageState.Error
-    else if (!!message && !gasUsed) return MessageState.Confirmed
-    else if (!!message && !!gasUsed) return MessageState.Executed
-    else return MessageState.Loading
+    if (!message) return MessageState.NotFound
+    if (!gasUsed) return MessageState.Confirmed
+    return MessageState.Executed
   }, [pending, message, error, gasUsed, loading])
+
+  // Log errors
+  useEffect(() => error && logger.error(error), [error])
+  useEffect(() => gasStateError && logger.error(gasStateError), [gasStateError])
+  useEffect(() => msgRcptError && logger.error(msgRcptError), [msgRcptError])
 
   return (
     <>
