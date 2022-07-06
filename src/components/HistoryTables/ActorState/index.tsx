@@ -13,8 +13,9 @@ import { Title } from '../generic'
 import { DetailCaption } from '../detail'
 import { logger } from '../../../logger'
 
-const State = ({ state }: { state: unknown }) =>
+const State = ({ state }: { state: unknown }) => (
   <pre>{JSON.stringify(state, null, 2)}</pre>
+)
 
 export function ActorState({ address }: { address: string }) {
   const {
