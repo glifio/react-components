@@ -34,7 +34,7 @@ export function ActorState({ address }: { address: string }) {
 
   const {
     data: addressData,
-    error: adddressError,
+    error: addressError,
     loading: addressLoading
   } = useAddressQuery({ variables: { address: convertAddrToPrefix(address) } })
 
@@ -55,8 +55,8 @@ export function ActorState({ address }: { address: string }) {
   }, [actorStateLoading, addressLoading])
 
   const error = useMemo(() => {
-    return actorStateError || adddressError
-  }, [actorStateError, adddressError])
+    return actorStateError || addressError
+  }, [actorStateError, addressError])
 
   return (
     <div>
