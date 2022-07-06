@@ -1,6 +1,6 @@
 {
   "name": "@glif/react-components",
-  "version": "2.0.0-alpha.134",
+  "version": "2.0.0-alpha.135",
   "description": "Shared react components for @glif projects",
   "main": "dist/index.js",
   "repository": {
