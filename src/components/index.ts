@@ -48,7 +48,6 @@ export { default as Footer } from './Footer'
 export * from './Link'
 export * from './Link/SmartLink'
 export * from './Icons'
-export * from './IconButtons'
 export * from './MnemonicWord'
 
 export * from './Layout'

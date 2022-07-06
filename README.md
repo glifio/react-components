@@ -60,7 +60,6 @@ export { default as ErrorView } from './Error'
 export { default as Tooltip } from './Tooltip'
 export * from './Link'
 export * from './Icons'
-export * from './IconButtons'
 export * from './MnemonicWord'
 
 export * from './Layout'
