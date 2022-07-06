@@ -26,7 +26,7 @@ const rotate = keyframes`
 100% { transform: rotate(360deg);}
 `
 const IconBasePending = styled(IconBase)`
-animation: ${rotate} 4s infinite;
+  animation: ${rotate} 4s infinite;
 `
 
 export const IconGitHub = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
@@ -437,6 +437,7 @@ const AppIconHeaderFooterSvg = styled.svg`
         left: 30px;
         top: 30px;
       `}
+  }
 `
 
 export const AppIconHeaderFooter = ({ iconStyle, footer }) => {
