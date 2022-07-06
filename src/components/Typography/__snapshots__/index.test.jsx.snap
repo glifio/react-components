@@ -82,3 +82,67 @@ exports[`ButtonClose Title story renders 1`] = `
   Hello world
 </h2>
 `;
+
+exports[`Typography Label story renders 1`] = `
+.c0 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+<h4
+  class="c0"
+  font-family="RT-Alias-Grotesk"
+  font-size="2"
+  font-weight="400"
+>
+  Hello world
+</h4>
+`;
+
+exports[`Typography Num story renders 1`] = `
+<h2
+  class=""
+>
+  Hello world
+</h2>
+`;
+
+exports[`Typography Text story renders 1`] = `
+.c0 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: RT-Alias-Grotesk;
+}
+
+<p
+  class="c0"
+  font-family="RT-Alias-Grotesk"
+  font-size="2"
+  font-weight="400"
+>
+  Hello world
+</p>
+`;
+
+exports[`Typography Title story renders 1`] = `
+.c0 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.2;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+}
+
+<h2
+  class="c0"
+  font-family="RT-Alias-Grotesk"
+  font-size="4"
+  font-weight="400"
+>
+  Hello world
+</h2>
+`;
