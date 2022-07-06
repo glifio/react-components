@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useMemo, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { SmartLink } from '../Link/SmartLink'
@@ -41,16 +41,32 @@ const PhishingBannerContainer = styled.div`
 
 export default function PhishingBanner({ href }) {
   const [closed, setClosed] = useState(false)
-  useEffect(() => {
-    if (!href.includes('glif.io')) {
-      logger.error('PHISHING DETECTED')
-    }
-  }, [href])
+  const glifDomain = 'glif.io'
+  const hrefDomain = useMemo(
+    () => new URL(href).hostname.split('.').slice(-2).join('.'),
+    [href]
+  )
+  const isPhishing = useMemo(
+    () => hrefDomain !== glifDomain,
+    [hrefDomain, glifDomain]
+  )
+
+  useEffect(
+    () => isPhishing && logger.error(`PHISHING DETECTED BY ${href}`),
+    [isPhishing, href]
+  )
+
   return (
     <>
       {!closed && (
         <PhishingBannerContainer>
-          {href.includes('glif.io') && (
+          {isPhishing ? (
+            <p>
+              WARNING: Possible phishing detected! This website is not on the{' '}
+              <SmartLink href={`https://${glifDomain}`}>{glifDomain}</SmartLink>{' '}
+              domain.
+            </p>
+          ) : (
             <p>
               For your protection, please check your browser&apos;s URL bar that
               you&apos;re visiting&nbsp;
