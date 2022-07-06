@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { QueryHookOptions } from '@apollo/client'
+import { QueryHookOptions, useApolloClient } from '@apollo/client'
 import type { CID } from '@glif/filecoin-wallet-provider'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
-import { Address, useAddressLazyQuery } from '../../generated/graphql'
+
+import { Address, AddressDocument, AddressQuery } from '../../generated/graphql'
 import { decodeActorCID } from '..'
 
 const lCli = new LotusRPCEngine({
@@ -48,7 +49,7 @@ export const useStateReadStateQuery = <T = any>(
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
   const [fetchedFor, setFetchedFor] = useState<string>('')
-  const [getAddress] = useAddressLazyQuery()
+  const apolloClient = useApolloClient()
 
   useEffect(() => {
     const fetchState = async () => {
@@ -62,26 +63,15 @@ export const useStateReadStateQuery = <T = any>(
         if (res && decodeActorCID(res.Code).includes('multisig')) {
           res.State = res.State as MsigState<string>
           const signers = await Promise.all(
-            res.State.Signers.map(async (signer: string) => {
-              const {
-                error: addressLookupErr,
-                loading: addressLookupLoading,
-                data
-              } = await getAddress({
+            res.State.Signers.map(async (id: string) => {
+              const { data } = await apolloClient.query<AddressQuery>({
+                query: AddressDocument,
                 variables: {
-                  address: signer
+                  address: id
                 }
               })
 
-              if (
-                !addressLookupErr &&
-                !addressLookupLoading &&
-                !!data?.address
-              ) {
-                return data.address
-              }
-
-              return { id: signer, robust: '' } as Address
+              return { id, robust: data?.address?.robust || '' } as Address
             })
           )
 
@@ -128,7 +118,7 @@ export const useStateReadStateQuery = <T = any>(
     actorState,
     fetchedFor,
     setFetchedFor,
-    getAddress
+    apolloClient
   ])
 
   return { data: actorState, error, loading }
