@@ -11,7 +11,6 @@ import {
   IconApproximatelyEquals,
   IconViewAccountAddress,
   IconCopyAccountAddress,
-  IconMessageStatus,
   IconLedger,
   IconViewAddress
 } from './index.stories'
@@ -60,12 +59,6 @@ describe('Icons', () => {
   test(' renders IconCopyAccountAddress', () => {
     const { container } = render(
       <IconCopyAccountAddress {...IconCopyAccountAddress.args} />
-    )
-    expect(container.firstChild).toMatchSnapshot()
-  })
-  test(' renders IconMessageStatus', () => {
-    const { container } = render(
-      <IconMessageStatus {...IconMessageStatus.args} />
     )
     expect(container.firstChild).toMatchSnapshot()
   })

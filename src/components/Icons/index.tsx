@@ -333,37 +333,6 @@ export const IconCopyAccountAddress = forwardRef((props, ref) => (
   </IconBase>
 ))
 
-export const IconMessageStatus = forwardRef<
-  HTMLOrSVGElement,
-  { status: string } & any
->((props, ref) => (
-  <IconBase
-    width='24px'
-    height='24px'
-    viewBox='0 0 24 24'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'
-    ref={ref}
-    {...props}
-  >
-    <rect
-      x='4'
-      y='8'
-      width='12'
-      height='12'
-      fill={
-        props.status === 'confirmed'
-          ? theme.colors.status.success.background
-          : theme.colors.status.pending.background
-      }
-    />
-  </IconBase>
-))
-
-IconMessageStatus.propTypes = {
-  status: oneOf(['confirmed', 'pending']).isRequired
-}
-
 export const IconLedger = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
   <IconBase
     width='40px'

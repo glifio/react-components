@@ -1,4 +1,5 @@
 import {
+  IconGitHub as IconGitHubComp,
   IconGlif as IconGlifComp,
   IconSuccess as IconSuccessComp,
   IconFail as IconFailComp,
@@ -9,13 +10,18 @@ import {
   IconApproximatelyEquals as IconApproximatelyEqualsComp,
   IconViewAccountAddress as IconViewAccountAddressComp,
   IconCopyAccountAddress as IconCopyAccountAddressComp,
-  IconMessageStatus as IconMessageStatusComp,
   IconLedger as IconLedgerComp,
   IconViewAddress as IconViewAddressComp,
   IconEdit as IconEditComp,
   AppIconHeaderFooter as AppIconHeaderFooterComp,
   IconMetaMaskFlask as IconMetaMaskComp,
-  IconSearch as IconSearchComp
+  IconSpeedUp as IconSpeedUpComp,
+  IconCancel as IconCancelComp,
+  IconCheck as IconCheckComp,
+  IconClock as IconClockComp,
+  IconSearch as IconSearchComp,
+  IconWarn as IconWarnComp,
+  IconError as IconErrorComp
 } from '.'
 
 export default {
@@ -28,71 +34,48 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-// const Template = (args) => <IconsSample {...args} />
+export const IconGitHub = args => <IconGitHubComp {...args} />
 
 export const IconGlif = args => <IconGlifComp {...args} />
-IconGlif.args = {}
 
 export const IconSuccess = args => <IconSuccessComp {...args} />
-IconSuccess.args = {}
 
 export const IconFail = args => <IconFailComp {...args} />
-IconFail.args = {}
 
 export const IconPending = args => <IconPendingComp {...args} />
-IconPending.args = {}
 
 export const IconSend = args => <IconSendComp {...args} />
-IconSend.args = {}
 
 export const IconReceive = args => <IconReceiveComp {...args} />
-IconReceive.args = {}
 
 export const IconClose = args => <IconCloseComp {...args} />
-IconClose.args = {}
 
-export const IconApproximatelyEquals = args => (
-  <IconApproximatelyEqualsComp {...args} />
-)
-IconApproximatelyEquals.args = {}
+export const IconApproximatelyEquals = args => <IconApproximatelyEqualsComp {...args} />
 
-export const IconViewAccountAddress = args => (
-  <IconViewAccountAddressComp {...args} />
-)
-IconViewAccountAddress.args = {}
+export const IconViewAccountAddress = args => <IconViewAccountAddressComp {...args} />
 
-export const IconCopyAccountAddress = args => (
-  <IconCopyAccountAddressComp {...args} />
-)
-IconCopyAccountAddress.args = {}
-
-export const IconMessageStatus = args => <IconMessageStatusComp {...args} />
-IconMessageStatus.args = {
-  status: 'confirmed'
-}
-IconMessageStatus.argTypes = {
-  status: {
-    control: {
-      type: 'inline-radio',
-      options: ['confirmed', 'pending']
-    }
-  }
-}
+export const IconCopyAccountAddress = args => <IconCopyAccountAddressComp {...args} />
 
 export const IconLedger = args => <IconLedgerComp {...args} />
-IconLedger.args = {}
 
 export const IconViewAddress = args => <IconViewAddressComp {...args} />
-IconViewAddress.args = {}
 
 export const IconEdit = args => <IconEditComp {...args} />
-IconEdit.args = {
-  fill: 'yellow',
-  stroke: 'blue'
-}
 
 export const AppIconHeaderFooter = args => <AppIconHeaderFooterComp {...args} />
 
 export const IconMetaMask = args => <IconMetaMaskComp {...args} />
 
+export const IconSpeedUp = args => <IconSpeedUpComp {...args} />
+
+export const IconCancel = args => <IconCancelComp {...args} />
+
+export const IconCheck = args => <IconCheckComp {...args} />
+
+export const IconClock = args => <IconClockComp {...args} />
+
 export const IconSearch = args => <IconSearchComp {...args} />
+
+export const IconWarn = args => <IconWarnComp {...args} />
+
+export const IconError = args => <IconErrorComp {...args} />
