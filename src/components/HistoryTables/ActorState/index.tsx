@@ -13,13 +13,8 @@ import { Title } from '../generic'
 import { DetailCaption } from '../detail'
 import { logger } from '../../../logger'
 
-function State({ state }: { state: unknown }) {
-  return (
-    <>
-      <pre>{JSON.stringify(state, null, 2)}</pre>
-    </>
-  )
-}
+const State = ({ state }: { state: unknown }) =>
+  <pre>{JSON.stringify(state, null, 2)}</pre>
 
 export function ActorState({ address }: { address: string }) {
   const {
