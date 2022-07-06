@@ -93,8 +93,8 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   // Log errors
   useEffect(() => error && logger.error(error), [error])
-  useEffect(() => gasStateError && logger.error(error), [gasStateError])
-  useEffect(() => msgRcptError && logger.error(error), [msgRcptError])
+  useEffect(() => gasStateError && logger.error(gasStateError), [gasStateError])
+  useEffect(() => msgRcptError && logger.error(msgRcptError), [msgRcptError])
 
   return (
     <>
