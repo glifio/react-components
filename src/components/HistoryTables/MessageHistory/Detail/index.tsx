@@ -47,9 +47,13 @@ export default function MessageDetail(props: MessageDetailProps) {
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(cid)
 
-  const { data: gasQuery } = useGasCostQuery({ variables: { cid } })
+  const { data: gasQuery } = useGasCostQuery({
+    variables: { cid },
+    pollInterval: 10000
+  })
   const { data: msgRcptQuery } = useMessageReceiptQuery({
-    variables: { cid }
+    variables: { cid },
+    pollInterval: 10000
   })
 
   const transactionFee = useMemo<string>(() => {

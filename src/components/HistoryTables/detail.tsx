@@ -385,7 +385,7 @@ export const MessageDetailBase = ({
   return (
     <>
       <Line label='CID'>{cid}</Line>
-      {exitCode && (
+      {Number(exitCode) >= 0 && (
         <Line label='Status and Confirmations'>
           <Status exitCode={exitCode} pending={pending} />
           {!pending && (
