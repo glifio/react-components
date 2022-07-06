@@ -3,7 +3,6 @@ export * from './theme'
 export { default as ThemeProvider } from './ThemeProvider'
 
 export { default as Card } from './Card'
-export { default as OnboardCard } from './Card/OnboardCard'
 export { default as AccountCard } from './AccountCard'
 export { default as AccountCardAlt } from './AccountCardAlt'
 export { default as AccountError } from './AccountCard/Error'
