@@ -50,11 +50,17 @@ export const IconReceive = args => <IconReceiveComp {...args} />
 
 export const IconClose = args => <IconCloseComp {...args} />
 
-export const IconApproximatelyEquals = args => <IconApproximatelyEqualsComp {...args} />
+export const IconApproximatelyEquals = args => (
+  <IconApproximatelyEqualsComp {...args} />
+)
 
-export const IconViewAccountAddress = args => <IconViewAccountAddressComp {...args} />
+export const IconViewAccountAddress = args => (
+  <IconViewAccountAddressComp {...args} />
+)
 
-export const IconCopyAccountAddress = args => <IconCopyAccountAddressComp {...args} />
+export const IconCopyAccountAddress = args => (
+  <IconCopyAccountAddressComp {...args} />
+)
 
 export const IconLedger = args => <IconLedgerComp {...args} />
 

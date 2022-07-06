@@ -47,11 +47,13 @@ const StepHeader = ({
     <Menu>
       <Box display='flex' flexDirection='row' alignItems='center'>
         <MenuItem>
-          {error && <Glyph
-            acronym='Er'
-            backgroundColor='status.fail.background'
-            color='status.fail.foreground'
-          />}
+          {error && (
+            <Glyph
+              acronym='Er'
+              backgroundColor='status.fail.background'
+              color='status.fail.foreground'
+            />
+          )}
           {loading && !error && <Loading />}
           {!loading && !error && glyphAcronym && (
             <Glyph Icon={Icon} acronym={glyphAcronym} />
