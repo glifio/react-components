@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
@@ -24,6 +24,7 @@ import {
   getAddrFromReceipt
 } from '../../../../utils/getAddrFromReceipt'
 import LoaderGlyph from '../../../LoaderGlyph'
+import { logger } from '../../../../logger'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -47,11 +48,11 @@ export default function MessageDetail(props: MessageDetailProps) {
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(cid)
 
-  const { data: gasQuery } = useGasCostQuery({
+  const { data: gasQuery, error: gasStateError } = useGasCostQuery({
     variables: { cid },
     pollInterval: 10000
   })
-  const { data: msgRcptQuery } = useMessageReceiptQuery({
+  const { data: msgRcptQuery, error: msgRcptError } = useMessageReceiptQuery({
     variables: { cid },
     pollInterval: 10000
   })
@@ -91,6 +92,11 @@ export default function MessageDetail(props: MessageDetailProps) {
     else if (!!message && !!gasUsed) return MessageState.Executed
     else return MessageState.Loading
   }, [pending, message, error, gasUsed, loading])
+
+  // Log errors
+  useEffect(() => error && logger.error(error), [error])
+  useEffect(() => gasStateError && logger.error(error), [gasStateError])
+  useEffect(() => msgRcptError && logger.error(error), [msgRcptError])
 
   return (
     <>
