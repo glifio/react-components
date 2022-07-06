@@ -58,7 +58,7 @@ export default function MessageDetail(props: MessageDetailProps) {
   })
 
   const transactionFee = useMemo<string>(() => {
-    if (pending || !gasQuery?.gascost?.totalCost) return 'Pending...'
+    if (pending) return 'Pending...'
     const cost = gasQuery?.gascost?.totalCost
     return cost
       ? `${makeFriendlyBalance(new FilecoinNumber(cost, 'attofil'))} FIL`
