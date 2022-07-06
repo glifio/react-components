@@ -74,13 +74,12 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   const execReturn = useMemo<ExecReturn | null>(() => {
     if (!message) return null
-    const toExec = isAddrEqual(message?.to, 'f01')
-    const receiptExists = !!msgRcptQuery?.receipt?.return
-    const initTx = Number(message?.method) === 2
-    if (toExec && receiptExists && initTx) {
-      return getAddrFromReceipt(msgRcptQuery?.receipt?.return)
-    }
-    return null
+    const isToExec = isAddrEqual(message?.to, 'f01')
+    const isInitTx = Number(message?.method) === 2
+    const receiptReturn = msgRcptQuery?.receipt?.return
+    return isToExec && isInitTx && receiptReturn
+      ? getAddrFromReceipt(receiptReturn)
+      : null
   }, [message, msgRcptQuery?.receipt])
 
   const messageState = useMemo<MessageState>(() => {
