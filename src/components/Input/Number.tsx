@@ -2,11 +2,16 @@ import { forwardRef, useMemo } from 'react'
 import { func, string, bool } from 'prop-types'
 import styled from 'styled-components'
 import BaseInput from './BaseInput'
-import InputWrapper from './InputWrapper'
 import Box from '../Box'
 import { Label } from '../Typography'
 
 import { inputBackgroundColor } from './inputBackgroundColors'
+
+const InputWrapper = styled.div`
+  display: inline-block;
+  width: 100%;
+  border-radius: 4px;
+`
 
 export const DenomTag = styled(Box).attrs(props => ({
   display: 'flex',
