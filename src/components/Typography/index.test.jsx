@@ -1,17 +1,9 @@
 import { render } from '@testing-library/react'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import { BigTitle, Title, Text, Label, Num } from './index.stories'
+import { Title, Text, Label, Num } from './index.stories'
 
-describe('ButtonClose', () => {
-  test('BigTitle story renders', () => {
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <BigTitle {...BigTitle.args} />
-      </ThemeProvider>
-    )
-    expect(container.firstChild).toMatchSnapshot()
-  })
+describe('Typography', () => {
   test('Title story renders', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>

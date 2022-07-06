@@ -10,24 +10,6 @@ type TypographyProps = {
   [x: string]: any
 }
 
-const H1Base = styled.h1`
-  ${color}
-  ${typography}
-  ${layout}
-  ${space}
-`
-
-export const BigTitle = forwardRef<HTMLHeadingElement, TypographyProps>(
-  ({ children, ...props }, ref) => (
-    <H1Base ref={ref} {...theme.textStyles.bigTitle} {...props}>
-      {children}
-    </H1Base>
-  )
-)
-
-BigTitle.propTypes = { children: node }
-BigTitle.defaultProps = { children: <></> }
-
 const H2Base = styled.h2`
   ${color}
   ${typography}

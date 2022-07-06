@@ -2,7 +2,6 @@ import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
 import {
-  BigTitle as BigTitleComp,
   Title as TitleComp,
   Text as TextComp,
   Label as LabelComp,
@@ -20,13 +19,6 @@ export default {
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
-
-export const BigTitle = args => <BigTitleComp {...args} />
-BigTitle.args = {
-  children: <>Hello world</>
-}
-BigTitle.component = BigTitleComp
-BigTitle.title = 'Typography/BigTitle'
 
 export const Title = args => <TitleComp {...args} />
 Title.args = {

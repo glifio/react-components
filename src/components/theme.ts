@@ -201,13 +201,6 @@ const theme = {
       lineHeight: 'title',
       fontFamily: 'RT-Alias-Grotesk'
     },
-    bigTitle: {
-      fontSize: 6,
-      fontWeight: 700,
-      margin: 0,
-      lineHeight: 'solid',
-      fontFamily: 'RT-Alias-Medium'
-    },
     title: {
       fontSize: 4,
       fontWeight: 400,
