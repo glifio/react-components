@@ -26,7 +26,7 @@ const rotate = keyframes`
 100% { transform: rotate(360deg);}
 `
 const IconBasePending = styled(IconBase)`
-animation ${rotate} 4s infinite;
+animation: ${rotate} 4s infinite;
 `
 
 export const IconGitHub = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
