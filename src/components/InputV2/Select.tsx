@@ -51,14 +51,12 @@ export const Select = ({
   onEnter,
   setIsValid
 }: SelectProps) => {
-  // Make sure value is always a valid option or
-  // an empty string when there is a placeholder
-  useEffect(() => {
-    if (!options.includes(value)) {
-      const defaultValue = placeholder ? '' : options[0]
-      if (value !== defaultValue) onChange(defaultValue)
-    }
-  }, [value, placeholder, options, onChange])
+  // Automatically select the first option if value
+  // is not set and there is no placeholder text
+  useEffect(
+    () => !value && !placeholder && options[0] && onChange(options[0]),
+    [value, placeholder, options, onChange]
+  )
 
   // Communicate validity to parent component
   useEffect(
