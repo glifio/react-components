@@ -62,8 +62,8 @@ export const Select = ({
 
   // Communicate validity to parent component
   useEffect(
-    () => setIsValid(!required || !!value),
-    [value, required, setIsValid]
+    () => setIsValid(value ? options.includes(value) : !required),
+    [value, options, required, setIsValid]
   )
 
   return (
