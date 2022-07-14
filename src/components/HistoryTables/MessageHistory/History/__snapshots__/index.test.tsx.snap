@@ -130,13 +130,16 @@ exports[`Message history it renders no message history correctly with historical
         />
       </svg>
       <h3>
-        Limited Historical Data
+        Sync in Progress
       </h3>
       <p>
-        Some transactions are currently missing for the next 
-        10 days
-         
-        while our servers finish syncing with Filecoin Mainnet.
+        Our servers are syncing transactions from Filecoin Mainnet. We're currently 
+        99
+        % synced.
+      </p>
+      <p>
+        We expect to be done 
+        in 10 days
       </p>
     </div>
     <br />

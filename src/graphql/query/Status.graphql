@@ -1,0 +1,6 @@
+query Status {
+  status {
+    height
+    estimate
+  }
+}

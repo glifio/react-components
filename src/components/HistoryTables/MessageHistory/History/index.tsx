@@ -9,10 +9,7 @@ import { ButtonV2 } from '../../../Button/V2'
 import { TABLE, TableCaption } from '../../table'
 import { useAllMessages } from '../hooks/useAllMessages'
 import { Title } from '../../generic'
-import { WarningBox } from '../../../Layout'
-import dayjs from 'dayjs'
-
-const FINISH_DATE = dayjs('july 15, 2022')
+import { SyncStatus } from '../../../SyncStatus'
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   const {
@@ -30,20 +27,10 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     [pendingMsgs, messages]
   )
 
-  const daysLeft = useMemo(() => FINISH_DATE.fromNow(true), [])
-
   return (
     <Box>
       <Title>Transaction History</Title>
-      {props.warnMissingData && (
-        <WarningBox>
-          <h3>Limited Historical Data</h3>
-          <p>
-            Some transactions are currently missing for the next {daysLeft}{' '}
-            while our servers finish syncing with Filecoin Mainnet.
-          </p>
-        </WarningBox>
-      )}
+      {props.warnMissingData && <SyncStatus />}
       <br />
       <TABLE className='narrow'>
         <TableCaption

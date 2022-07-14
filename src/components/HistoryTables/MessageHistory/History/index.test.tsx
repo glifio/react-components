@@ -8,6 +8,46 @@ import { WALLET_ADDRESS } from '../../../../test-utils/constants'
 
 jest.mock('dayjs')
 
+// mocks for the SyncStatus component
+jest
+  .spyOn(require('../../../../generated/graphql'), 'useStatusQuery')
+  .mockImplementation(() => {
+    return {
+      data: {
+        status: {
+          height: 1000,
+          estimate: 10000
+        }
+      }
+    }
+  })
+
+jest
+  .spyOn(require('../../../../generated/graphql'), 'useChainHeadSubscription')
+  // @ts-ignore
+  .mockImplementation(({ onSubscriptionData }) => {
+    onSubscriptionData({
+      subscriptionData: {
+        loading: false,
+        error: false,
+        data: {
+          chainHead: {
+            height: 100000
+          }
+        }
+      }
+    })
+
+    return {
+      data: {
+        status: {
+          height: 1000,
+          estimate: 10000
+        }
+      }
+    }
+  })
+
 describe('Message history', () => {
   test('it renders no message history correctly with historical data missing warning', async () => {
     jest
@@ -43,7 +83,7 @@ describe('Message history', () => {
     })
 
     expect(screen.getByText(/No records found/))
-    expect(screen.getByText(/Limited Historical Data/))
+    expect(screen.getByText(/Sync in Progress/))
     expect(container).toMatchSnapshot()
   })
 })
