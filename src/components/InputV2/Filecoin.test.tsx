@@ -111,6 +111,34 @@ describe('Filecoin input', () => {
     expect(result.container.firstChild).toMatchSnapshot()
   })
 
+  test('it renders the value too high state correctly with decimals', async () => {
+    let result: RenderResult | null = null
+    let input: HTMLElement | null = null
+    await act(async () => {
+      result = render(
+        <ThemeProvider theme={theme}>
+          <ControlledInput
+            label={labelText}
+            info={infoText}
+            denom='fil'
+            max={new FilecoinNumber('8.83201918441200172', 'fil')}
+            setIsValid={setIsValid}
+            autoFocus={true}
+          />
+        </ThemeProvider>
+      )
+      // Make sure the error is shown
+      input = getByRole(result.container, 'spinbutton')
+      fireEvent.change(input, { target: { value: '8.832019' } })
+      input.blur()
+    })
+    expect(input).toHaveValue(8.832019)
+    expect(input).toHaveClass('error')
+    expect(setIsValid).toHaveBeenCalledTimes(2)
+    expect(setIsValid).toHaveBeenLastCalledWith(false)
+    expect(result.container.firstChild).toMatchSnapshot()
+  })
+
   test('it renders the value too low state correctly', async () => {
     let result: RenderResult | null = null
     let input: HTMLElement | null = null
