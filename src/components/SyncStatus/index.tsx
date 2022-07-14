@@ -1,4 +1,3 @@
-import { BigNumber } from '@glif/filecoin-number'
 import { useMemo, useState } from 'react'
 import dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
@@ -24,16 +23,18 @@ export const SyncStatus = () => {
         !subscriptionData.error &&
         chainHead === 0
       ) {
-        setChainHead(subscriptionData.data?.chainHead?.height as number)
+        setChainHead(subscriptionData.data?.chainHead?.height)
       }
     }
   })
 
   const syncPercentage = useMemo(() => {
     if (data?.status?.height > 0 && chainHead > 0) {
-      return new BigNumber((chainHead - data?.status?.height) / chainHead)
-        .multipliedBy(100)
-        .toFixed(0)
+      const percentage = Math.round(
+        ((chainHead - data.status.height) / chainHead) * 100
+      )
+      const withBounds = Math.min(100, Math.max(0, percentage))
+      return withBounds
     }
     return 0
   }, [data?.status?.height, chainHead])
