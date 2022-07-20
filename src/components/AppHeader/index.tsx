@@ -67,7 +67,6 @@ const NavButton = styled(ButtonV2)`
 export function AppHeader(props: AppHeaderProps) {
   const router = useRouter()
   const {
-    back,
     logout,
     connection,
     appTitle,
@@ -93,11 +92,6 @@ export function AppHeader(props: AppHeaderProps) {
         {connection}
       </NavLeft>
       <NavRight>
-        {back && (
-          <NavButton onClick={back === true ? router.back : back}>
-            Back
-          </NavButton>
-        )}
         {appHeaderLinks &&
           appHeaderLinks.map((link, index) => (
             <NavLinkRound
@@ -115,7 +109,6 @@ export function AppHeader(props: AppHeaderProps) {
 }
 
 export interface AppHeaderProps {
-  back?: boolean | (() => void)
   logout?: () => void
   connection?: JSX.Element
   appTitle?: string
@@ -129,7 +122,6 @@ export interface AppHeaderProps {
 }
 
 export const AppHeaderPropTypes = {
-  back: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   logout: PropTypes.func,
   connection: PropTypes.node,
   appTitle: PropTypes.string,
