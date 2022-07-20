@@ -1,4 +1,4 @@
-import { TR, TH } from '../table'
+import { TR, TH } from '../../Table'
 
 export function ProposalRowColumnTitles() {
   return (

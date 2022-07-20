@@ -1,5 +1,5 @@
 import { bool } from 'prop-types'
-import { TR, TH } from '../../table'
+import { TR, TH } from '../../../Table'
 
 export function MessageRowColumnTitles({
   displayIncoming

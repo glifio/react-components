@@ -7,7 +7,7 @@ import {
   ADDRESS_PROPTYPE,
   GRAPHQL_ADDRESS_PROP_TYPE
 } from '../../../customPropTypes'
-import { TABLE, TableCaption } from '../table'
+import { TABLE, TableCaption } from '../../Table'
 import { Address, useMsigPendingQuery } from '../../../generated/graphql'
 import { Title } from '../generic'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
