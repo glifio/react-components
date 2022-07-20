@@ -1,9 +1,9 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import { AddressLink } from './index'
+import { AddressLink } from './AddressLink'
 
 export default {
-  title: 'AddressLink/AddressLink',
+  title: 'LabeledText/AddressLink',
   component: AddressLink,
   decorators: [
     Story => (
