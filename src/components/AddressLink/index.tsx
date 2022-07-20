@@ -39,13 +39,18 @@ export const AddressLink = ({
   disableLink,
   stopPropagation,
   hideCopy,
-  hideCopyText
+  hideCopyText,
+  shouldTruncate
 }: AddressLinkProps) => {
   // prioritize robust > id, use id if no robust exists
-  const linkText = useMemo(
-    () => (address ? truncateAddress(address) : id || ''),
-    [address, id]
-  )
+  const linkText = useMemo(() => {
+    if (address) {
+      return shouldTruncate ? truncateAddress(address) : address
+    } else if (id) {
+      return id
+    }
+    return ''
+  }, [address, id, shouldTruncate])
   const linkHref = `${explorerUrl}/actor/?address=${address || id}`
   const onClick = useCallback(
     (e: MouseEvent<HTMLAnchorElement>) =>
@@ -84,6 +89,7 @@ export interface AddressLinkProps {
   stopPropagation: boolean
   hideCopy: boolean
   hideCopyText: boolean
+  shouldTruncate?: boolean
 }
 
 AddressLink.propTypes = {
@@ -94,7 +100,8 @@ AddressLink.propTypes = {
   disableLink: PropTypes.bool,
   stopPropagation: PropTypes.bool,
   hideCopy: PropTypes.bool,
-  hideCopyText: PropTypes.bool
+  hideCopyText: PropTypes.bool,
+  shouldTruncate: PropTypes.bool
 }
 
 AddressLink.defaultProps = {
@@ -102,5 +109,6 @@ AddressLink.defaultProps = {
   disableLink: false,
   stopPropagation: true,
   hideCopy: false,
-  hideCopyText: true
+  hideCopyText: true,
+  shouldTruncate: true
 }

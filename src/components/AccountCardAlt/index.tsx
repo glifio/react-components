@@ -9,15 +9,9 @@ import Glyph from '../Glyph'
 import Card from '../Card'
 import { Text, Title } from '../Typography'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
-import { MAINNET_JSON_RPC_ENDPOINT } from '../../constants'
 import Button from '../Button'
 import AccountTitle from './AccountTitle'
 import { AddressLink } from '../AddressLink'
-
-const calcGlyphAcronym = (index, nDefaultWallets) => {
-  if (index < nDefaultWallets) return index.toString()
-  return 'Cr'
-}
 
 // allows you to optionally pass a balance for future wallet upgrades
 // if you dont pass a balance, it will poll for you
@@ -29,14 +23,13 @@ const AccountCardAlt = ({
   onClick,
   legacy,
   jsonRpcEndpoint,
-  path,
-  nDefaultWallets
-}) => {
+  path
+}: AccountCardProps) => {
   const { data, error: balanceFetchingError } = useSWR(
     !balance ? [address] : null,
     async walletAddress => {
       const lCli = new LotusRPCEngine({
-        apiAddress: jsonRpcEndpoint || MAINNET_JSON_RPC_ENDPOINT
+        apiAddress: jsonRpcEndpoint
       })
 
       const bal = await lCli.request('WalletBalance', walletAddress)
@@ -64,14 +57,9 @@ const AccountCardAlt = ({
         <Glyph
           mr={3}
           color={selected ? 'card.account.color' : 'colors.core.black'}
-          acronym={calcGlyphAcronym(index, nDefaultWallets)}
+          acronym={index.toString()}
         />
-        <AccountTitle
-          index={index}
-          legacy={legacy}
-          path={path}
-          nDefaultWallets={nDefaultWallets}
-        />
+        <AccountTitle index={index} legacy={legacy} path={path} />
       </Box>
       <Box display='flex' justifyContent='center' fontSize={4}>
         <AddressLink
@@ -111,22 +99,31 @@ const AccountCardAlt = ({
   )
 }
 
+type AccountCardProps = {
+  address: string
+  index: number
+  path: string
+  onClick: () => void
+  jsonRpcEndpoint: string
+  balance?: string
+  selected?: boolean
+  legacy?: boolean
+}
+
 AccountCardAlt.propTypes = {
   address: ADDRESS_PROPTYPE.isRequired,
   index: number.isRequired,
   path: string.isRequired,
-  balance: string,
+  jsonRpcEndpoint: string.isRequired,
   onClick: func.isRequired,
+  balance: string,
   selected: bool,
-  jsonRpcEndpoint: string,
-  legacy: bool,
-  nDefaultWallets: number
+  legacy: bool
 }
 
 AccountCardAlt.defaultProps = {
   selected: false,
-  legacy: false,
-  nDefaultWallets: 5
+  legacy: false
 }
 
 export default AccountCardAlt

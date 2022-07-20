@@ -11,6 +11,7 @@ import CoinTypeSwitcherGlyph from '../NetworkSwitcherGlyphV2'
 import { StyledATag } from '../Link'
 import Input from '../Input'
 import { COIN_TYPE_PROPTYPE } from '../../customPropTypes'
+import { InputV2 } from '../InputV2'
 
 const LoadingCard = () => (
   <Card
@@ -49,7 +50,9 @@ const Create = ({
   const [accountIndex, setAccountIndex] = useState<number>(
     Number(nextAccountIndex)
   )
+  const [isValid, setIsValid] = useState<boolean>(false)
   const [accountIndexErr, setAccountIndexErr] = useState<string>('')
+
   const [coinType, setCoinType] = useState<CoinType>(defaultCoinType)
   if (loading) return <LoadingCard />
   if (errorMsg)
@@ -80,40 +83,12 @@ const Create = ({
     >
       <Title my={2}>Create new account</Title>
 
-      <Box>
-        <Box
-          display='flex'
-          flexDirection='row'
-          alignItems='center'
-          justifyContent='center'
-        >
-          <Label width='50%'>Account index</Label>
-          <Input.RawNumberInput
-            width='50%'
-            borderRadius={2}
-            onFocus={() => setAccountIndexErr('')}
-            value={accountIndex}
-            onChange={(e: SyntheticEvent) => {
-              setAccountIndexErr('')
-              const target = e.target as HTMLInputElement
-              const num = Number(target.value)
-              if (!isNaN(num)) setAccountIndex(num)
-              else setAccountIndexErr('Account index must be a number')
-            }}
-          />
-        </Box>
-        {accountIndexErr && (
-          <Text
-            p={0}
-            m={0}
-            fontSize='15px'
-            textAlign='right'
-            color='status.fail.background'
-          >
-            {accountIndexErr}
-          </Text>
-        )}
-      </Box>
+      <InputV2.Number
+        value={accountIndex}
+        onChange={setAccountIndex}
+        setIsValid={setIsValid}
+        autoFocus={true}
+      />
       <Box>
         <CoinTypeSwitcherGlyph
           onNetworkSwitch={(ct: CoinType) => setCoinType(ct)}

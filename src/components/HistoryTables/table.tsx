@@ -68,7 +68,7 @@ export const TD = styled.td`
   }
 `
 
-const CAPTION = styled.caption`
+export const CAPTION = styled.caption`
   line-height: 1.5em;
   text-align: left;
   caption-side: bottom;
