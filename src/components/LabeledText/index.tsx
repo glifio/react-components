@@ -11,11 +11,7 @@ const LabeledTextEl = styled.div`
   }
 `
 
-export const LabeledText = ({
-  label,
-  text,
-  children
-}: LabeledTextProps) => (
+export const LabeledText = ({ label, text, children }: LabeledTextProps) => (
   <LabeledTextEl>
     {label && <h4>{label}</h4>}
     {text && <p>{text}</p>}
