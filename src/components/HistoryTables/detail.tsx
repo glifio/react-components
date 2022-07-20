@@ -24,7 +24,7 @@ import { Lines, Line, AddressLine } from '../Layout'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
 import { useUnformattedDateTime } from './MessageHistory/hooks/useAge'
-import { AddressLink } from '../AddressLink'
+import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
 import {
   GRAPHQL_GAS_COST_PROPTYPE,

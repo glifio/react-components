@@ -5,7 +5,7 @@ import { space } from '../theme'
 import { ButtonV2 } from '../Button/V2'
 import { SmartLink } from '../Link/SmartLink'
 import { AppIconHeaderFooter } from '../Icons'
-import { AddressLink, AddressLinkProps } from '../AddressLink'
+import { AddressLink, AddressLinkProps } from '../LabeledText/AddressLink'
 import AppIconWrapper from './AppIconWrapper'
 
 const Header = styled.header`

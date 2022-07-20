@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { AddressLink } from '../AddressLink'
+import { AddressLink } from '../LabeledText/AddressLink'
 import { Address } from '../../generated/graphql'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
 import { space } from '../theme'

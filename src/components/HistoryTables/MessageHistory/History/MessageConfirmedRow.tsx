@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { TR, TD } from '../../table'
 import { Badge } from '../../generic'
 import { SmartLink } from '../../../Link/SmartLink'
-import { AddressLink } from '../../../AddressLink'
+import { AddressLink } from '../../../LabeledText/AddressLink'
 import {
   MessageConfirmedRow,
   MESSAGE_CONFIRMED_ROW_PROP_TYPE
