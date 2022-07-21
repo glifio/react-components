@@ -4,84 +4,19 @@ import { CoinType } from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { useApolloClient } from '@apollo/client'
-import styled from 'styled-components'
 
 import LoadingScreen from '../LoadingScreen'
-import { space } from '../theme'
 import { useWalletProvider, Wallet } from '../../services/WalletProvider'
 import { useWallet } from '../../services/WalletProvider/useWallet'
-import { TESTNET_PATH_CODE } from '../../constants'
-import { TABLE, TR, TH, TD } from '../HistoryTables/table'
 
 import createPath, { coinTypeCode } from '../../utils/createPath'
 import convertAddrToPrefix from '../../utils/convertAddrToPrefix'
 import { COIN_TYPE_PROPTYPE } from '../../customPropTypes'
 import { logger } from '../../logger'
 import { AddressDocument, AddressQuery } from '../../generated/graphql'
-import { Title } from '../HistoryTables/generic'
-import { makeFriendlyBalance, truncateAddress } from '../../utils'
-import { AddressLink } from '../AddressLink'
-import _LoaderGlyph from '../LoaderGlyph'
-import { ButtonV2 } from '../Button/V2'
 import { StandardBox } from '../Layout'
-import { Toggle } from '../InputV2/Toggle'
-
-const LoaderGlyph = styled(_LoaderGlyph)`
-  margin-left: ${space()};
-`
-
-const CreateWalletContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: ${space()};
-`
-
-export const idxFromPath = (path: string): string => {
-  return path.split('/')[5]
-}
-
-export const Row = styled(TR)`
-  margin-left: ${space()};
-  &:hover {
-    cursor: pointer;
-
-    background-color: var(--purple-light);
-
-    -webkit-transition: background-color 100ms linear;
-    -moz-transition: background-color 100ms linear;
-    -o-transition: background-color 100ms linear;
-    -ms-transition: background-color 100ms linear;
-    transition: background-color 100ms linear;
-  }
-`
-
-const WalletRow = ({
-  w,
-  selectAccount,
-  index
-}: {
-  w: Wallet
-  selectAccount: (i: number) => void
-  index: number
-}) => {
-  return (
-    <Row key={w.robust} onClick={() => selectAccount(index)}>
-      <TD></TD>
-      <TD>{idxFromPath(w.path)}</TD>
-      <TD>Account {idxFromPath(w.path)}</TD>
-      <TD>
-        <AddressLink
-          address={convertAddrToPrefix(w.robust)}
-          shouldTruncate={false}
-        />
-      </TD>
-      <TD>{makeFriendlyBalance(w.balance, 6, true)}</TD>
-      <TD>{convertAddrToPrefix(w.id) || '-'}</TD>
-      <TD>{w.path}</TD>
-    </Row>
-  )
-}
+import { WalletsTable } from './table'
+import { CreateWallet } from './Create2'
 
 const AccountSelector = ({
   onSelectAccount,
@@ -89,9 +24,7 @@ const AccountSelector = ({
   helperText,
   title,
   coinType,
-  nWalletsToLoad,
-  test,
-  isProd
+  nWalletsToLoad
 }: {
   onSelectAccount: () => void
   showSelectedAccount: boolean
@@ -102,7 +35,6 @@ const AccountSelector = ({
   test: boolean
   isProd: boolean
 }) => {
-  const wallet = useWallet()
   const [loadingWallets, setLoadingWallets] = useState(false)
   const [loadingPage, setLoadingPage] = useState(true)
   const [uncaughtError, setUncaughtError] = useState('')
@@ -207,7 +139,7 @@ const AccountSelector = ({
     return ''
   }, [uncaughtError, walletError])
 
-  const fetchNextAccount = async (index: number, ct: CoinType) => {
+  const fetchNextWallet = async (index: number, ct: CoinType) => {
     setLoadingWallets(true)
     try {
       const provider = await getProvider()
@@ -263,56 +195,16 @@ const AccountSelector = ({
         <p>{helperText}</p>
       </StandardBox>
       <br />
-      <TABLE className='narrow'>
-        <thead>
-          <TR>
-            <TH></TH>
-            <TH>#</TH>
-            <TH>Name</TH>
-            <TH>Address</TH>
-            <TH>Balance</TH>
-            <TH>Id</TH>
-            <TH>Path</TH>
-          </TR>
-        </thead>
-        <tbody>
-          {wallets.map((w, i) => (
-            <WalletRow
-              key={w.address}
-              w={w}
-              selectAccount={selectAccount}
-              index={i}
-            />
-          ))}
-          {loadingWallets && (
-            <TR>
-              <TD></TD>
-              <TD>
-                <LoaderGlyph />
-              </TD>
-              <TD>Loading...</TD>
-              <TD></TD>
-              <TD></TD>
-              <TD></TD>
-            </TR>
-          )}
-        </tbody>
-      </TABLE>
+      <WalletsTable
+        wallets={wallets}
+        loadingWallets={loadingWallets}
+        selectAccount={selectAccount}
+      />
       {!loadingWallets && (
-        <CreateWalletContainer>
-          <ButtonV2
-            large
-            onClick={() =>
-              fetchNextAccount(
-                wallets.length,
-                process.env.NEXT_PUBLIC_COIN_TYPE as CoinType
-              )
-            }
-          >
-            Next account
-          </ButtonV2>
-          <Toggle label='Expert Mode' checked={true} onChange={() => {}} />
-        </CreateWalletContainer>
+        <CreateWallet
+          fetchNextWallet={fetchNextWallet}
+          walletIdx={wallets.length}
+        />
       )}
     </div>
   )
