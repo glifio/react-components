@@ -87,7 +87,7 @@ export const Search = Template.bind({})
 Search.args = {
   appIcon: <AppIconHeaderFooter iconStyle='dark' />,
   appUrl: 'https://glif.io',
-  customHeaderComps: <SearchAddressMessage />,
+  customHeaderComps: <SearchAddressMessage hideErrorMessage />,
   appHeaderLinks: [
     {
       title: 'Wallet',
