@@ -47,7 +47,7 @@ export const SearchBar = ({
           disabled={disabled}
           placeholder={placeholder}
           value={value}
-          onChange={e => setValue(e.target.value)}
+          onChange={e => setValue(e.target.value.trim())}
           onFocus={onFocus}
           onBlur={onBlur}
         />
