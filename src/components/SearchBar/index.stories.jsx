@@ -19,11 +19,11 @@ const Template = args => <SearchBar {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  placeholder: 'Enter an address or message CID'
+  placeholder: 'Enter a search term'
 }
 
 export const Large = Template.bind({})
 Large.args = {
   large: true,
-  placeholder: 'Enter an address or message CID'
+  placeholder: 'Enter a search term'
 }
