@@ -44,6 +44,7 @@ export const SearchBar = ({
   autoComplete,
   placeholder,
   inputError,
+  hideErrorMessage,
   onInput,
   onSearch
 }: SearchBarProps) => {
@@ -89,7 +90,9 @@ export const SearchBar = ({
           value='Search'
         />
       </form>
-      {showError && <span className={'error'}>{inputError}</span>}
+      {showError && !hideErrorMessage && (
+        <span className={'error'}>{inputError}</span>
+      )}
     </SearchBarEl>
   )
 }
@@ -101,6 +104,7 @@ export interface SearchBarProps {
   autoComplete?: 'on' | 'off'
   placeholder?: string
   inputError?: string
+  hideErrorMessage?: boolean
   onInput?: (value: string) => void
   onSearch?: (value: string) => void
 }
@@ -112,6 +116,7 @@ SearchBar.propTypes = {
   autoComplete: PropTypes.oneOf(['on', 'off']),
   placeholder: PropTypes.string,
   inputError: PropTypes.string,
+  hideErrorMessage: PropTypes.bool,
   onInput: PropTypes.func,
   onSearch: PropTypes.func
 }
@@ -123,6 +128,7 @@ SearchBar.defaultProps = {
   autoComplete: 'on',
   placeholder: '',
   inputError: '',
+  hideErrorMessage: false,
   onInput: () => {},
   onSearch: () => {}
 }
