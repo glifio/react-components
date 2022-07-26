@@ -27,8 +27,8 @@ export const SearchBar = ({
   const [hasFocus, setHasFocus] = useState<boolean>(false)
   const hasError = useMemo<boolean>(() => !!inputError, [inputError])
   const showError = useMemo<boolean>(
-    () => !hasFocus && hasError,
-    [hasFocus, hasError]
+    () => value && !hasFocus && hasError,
+    [value, hasFocus, hasError]
   )
 
   return (
