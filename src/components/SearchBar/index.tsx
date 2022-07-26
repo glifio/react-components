@@ -7,8 +7,13 @@ const SearchBarEl = styled.div`
   form {
     display: flex;
     gap: ${space()};
+    width: 100%;
+  }
+  input[type='search'] {
+    flex: 1 0 auto;
   }
   input[type='submit'] {
+    flex: 0 1 auto;
     border-radius: 4px;
   }
 `
