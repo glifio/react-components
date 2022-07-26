@@ -83,7 +83,7 @@ export function AppTile({
               height: '100%',
               color: '#fff',
               zIndex: '2',
-              padding: space(),
+              padding: 'var(--space-m)',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',

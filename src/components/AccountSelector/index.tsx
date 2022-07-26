@@ -189,7 +189,7 @@ const AccountSelector = ({
         display='block'
         border='none'
         width='100%'
-        mb={space()}
+        mb='var(--space-m)'
         backgroundColor='blue.muted700'
       >
         <Box display='flex' alignItems='center'>
