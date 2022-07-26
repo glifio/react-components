@@ -15,7 +15,7 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <SearchBar {...args} />
+const Template = args => <SearchAddressMessage {...args} />
 
 export const Base = Template.bind({})
 Base.args = {}
