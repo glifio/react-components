@@ -8,7 +8,7 @@ const SearchBarEl = styled.div`
     display: flex;
     gap: ${space()};
   }
-  input[type=submit] {
+  input[type='submit'] {
     border-radius: 4px;
   }
 `
