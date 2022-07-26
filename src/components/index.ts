@@ -50,6 +50,8 @@ export * from './Icons'
 export * from './MnemonicWord'
 
 export * from './Layout'
+export * from './SearchBar'
+export * from './SearchBar/SearchAddressMessage'
 export * from './Transaction'
 export * from './Typography'
 export * from './Table'
