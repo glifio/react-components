@@ -30,10 +30,10 @@ export const SearchBar = ({
 }: SearchBarProps) => {
   const [value, setValue] = useState<string>('')
   const [hasFocus, setHasFocus] = useState<boolean>(false)
-  const hasError = useMemo<boolean>(() => !!inputError, [inputError])
+  
   const showError = useMemo<boolean>(
-    () => value && !hasFocus && hasError,
-    [value, hasFocus, hasError]
+    () => value && !hasFocus && !!inputError,
+    [value, hasFocus, inputError]
   )
 
   return (
@@ -65,7 +65,7 @@ export const SearchBar = ({
         />
         <input
           className={large ? 'large' : ''}
-          disabled={hasError}
+          disabled={!value || !!inputError}
           type='submit'
           value='Search'
         />
