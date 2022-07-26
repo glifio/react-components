@@ -19,7 +19,6 @@ export const SearchBar = ({
   name,
   autoFocus,
   autoComplete,
-  disabled,
   placeholder,
   onSearch,
   onFocus,
@@ -44,7 +43,6 @@ export const SearchBar = ({
           type='search'
           autoFocus={autoFocus}
           autoComplete={autoComplete}
-          disabled={disabled}
           placeholder={placeholder}
           value={value}
           onChange={e => setValue(e.target.value.trim())}
@@ -54,7 +52,6 @@ export const SearchBar = ({
         <input
           className={large ? 'large' : ''}
           type='submit'
-          disabled={disabled}
           value='Search'
         />
       </form>
@@ -68,7 +65,6 @@ export interface SearchBarProps {
   name?: string
   autoFocus?: boolean
   autoComplete?: 'on' | 'off'
-  disabled?: boolean
   placeholder?: string
   onSearch?: (value: string) => void
   onFocus?: () => void
@@ -81,7 +77,6 @@ SearchBar.propTypes = {
   name: PropTypes.string,
   autoFocus: PropTypes.bool,
   autoComplete: PropTypes.oneOf(['on', 'off']),
-  disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   onSearch: PropTypes.func,
   onFocus: PropTypes.func,
@@ -94,7 +89,6 @@ SearchBar.defaultProps = {
   name: '',
   autoFocus: true,
   autoComplete: 'on',
-  disabled: false,
   placeholder: '',
   onSearch: () => {},
   onFocus: () => {},
