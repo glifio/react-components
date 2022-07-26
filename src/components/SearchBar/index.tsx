@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { space } from '../theme'
 
 const SearchBarEl = styled.div`
@@ -24,19 +24,22 @@ export const SearchBar = ({
   onSearch
 }: SearchBarProps) => {
   const [value, setValue] = useState<string>('')
+  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const hasError = useMemo<boolean>(() => !!inputError, [])
+  const showError = useMemo<boolean>(() => !hasFocus && hasError, [])
 
   return (
     <SearchBarEl>
       <form
         onSubmit={async e => {
           e.preventDefault()
-          onSearch(value.trim())
+          onSearch(value)
         }}
       >
         <input
           className={[
             ...(large ? ['large'] : []),
-            ...(error ? ['error'] : [])
+            ...(showError ? ['error'] : [])
           ].join(' ')}
           name={name}
           type='search'
@@ -44,12 +47,17 @@ export const SearchBar = ({
           autoComplete={autoComplete}
           placeholder={placeholder}
           value={value}
-          onChange={e => setValue(e.target.value.trim())}
-          onFocus={onFocus}
-          onBlur={onBlur}
+          onChange={e => {
+            const input = e.target.value.trim()
+            onInput(input)
+            setValue(input)
+          }}
+          onFocus={() => setHasFocus(true)}
+          onBlur={() => setHasFocus(false)}
         />
         <input
           className={large ? 'large' : ''}
+          disabled={hasError}
           type='submit'
           value='Search'
         />
