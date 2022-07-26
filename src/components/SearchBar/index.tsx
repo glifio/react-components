@@ -21,7 +21,9 @@ export const SearchBar = ({
   autoComplete,
   disabled,
   placeholder,
-  onSearch
+  onSearch,
+  onFocus,
+  onBlur
 }: SearchBarProps) => {
   const [value, setValue] = useState<string>('')
 
@@ -46,6 +48,8 @@ export const SearchBar = ({
           placeholder={placeholder}
           value={value}
           onChange={e => setValue(e.target.value)}
+          onFocus={onFocus}
+          onBlur={onBlur}
         />
         <input
           className={large ? 'large' : ''}
@@ -67,6 +71,8 @@ export interface SearchBarProps {
   disabled?: boolean
   placeholder?: string
   onSearch?: (value: string) => void
+  onFocus?: () => void
+  onBlur?: () => void
 }
 
 SearchBar.propTypes = {
@@ -77,7 +83,9 @@ SearchBar.propTypes = {
   autoComplete: PropTypes.oneOf(['on', 'off']),
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
-  onSearch: PropTypes.func
+  onSearch: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func
 }
 
 SearchBar.defaultProps = {
@@ -88,5 +96,7 @@ SearchBar.defaultProps = {
   autoComplete: 'on',
   disabled: false,
   placeholder: '',
-  onSearch: () => {}
+  onSearch: () => {},
+  onFocus: () => {},
+  onBlur: () => {}
 }
