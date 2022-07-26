@@ -6,7 +6,7 @@ exports[`Toggle input it renders the off state correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -119,7 +119,7 @@ exports[`Toggle input it renders the on state correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;

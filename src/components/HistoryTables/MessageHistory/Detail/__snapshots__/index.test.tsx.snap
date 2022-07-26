@@ -1,6 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Message detail view it renders the confirmed but not executed msg state correctly 1`] = `
+.c6 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c6 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
 .c0 {
   min-width: 0;
   box-sizing: border-box;
@@ -31,7 +41,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   grid-gap: 1rem;
 }
 
-.c7 {
+.c8 {
   min-width: 0;
   box-sizing: border-box;
   color: var(--purple-medium);
@@ -45,7 +55,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   align-items: center;
 }
 
-.c15 {
+.c16 {
   min-width: 0;
   box-sizing: border-box;
   border-radius: 1em;
@@ -72,12 +82,12 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   height: 20px;
 }
 
-.c10 {
+.c11 {
   width: 24;
   height: 24;
 }
 
-.c9 {
+.c10 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -102,18 +112,18 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   outline: none;
 }
 
-.c12 {
+.c13 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c8:hover .c11 {
+.c9:hover .c12 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c14 {
+.c15 {
   -webkit-transition: 0.18s ease-in;
   transition: 0.18s ease-in;
   opacity: 0;
@@ -125,16 +135,11 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   margin-left: 4px;
 }
 
-.c8:hover .c13 {
+.c9:hover .c14 {
   opacity: 1;
 }
 
-.c6 h4 {
-  margin: 0;
-  color: var(--gray-dark);
-}
-
-.c6 .address {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -143,13 +148,13 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   line-height: 1.5;
 }
 
-.c6 .address a {
+.c7 a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c6 .address a:hover {
+.c7 a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -167,7 +172,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c3 > p,
@@ -293,10 +298,11 @@ exports[`Message detail view it renders the confirmed but not executed msg state
       <div>
         <div
           class="c6"
-          color="var(--purple-medium)"
         >
+          
           <div
-            class="address"
+            class="c7"
+            color="var(--purple-medium)"
           >
             <a
               href="https://explorer-calibration.glif.link/actor/?address=t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
@@ -306,18 +312,18 @@ exports[`Message detail view it renders the confirmed but not executed msg state
               t1z225 ... 6z6wgi
             </a>
             <div
-              class="c7"
+              class="c8"
               color="var(--purple-medium)"
               display="flex"
             >
               <button
-                class="c8 c9"
+                class="c9 c10"
                 display="flex"
                 role="button"
                 type="button"
               >
                 <svg
-                  class="c10 c11 c12"
+                  class="c11 c12 c13"
                   fill="none"
                   height="24"
                   viewBox="0 0 24 24"
@@ -340,7 +346,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
                   />
                 </svg>
                 <span
-                  class="c13 c14"
+                  class="c14 c15"
                   color="var(--purple-medium)"
                 >
                   Copy
@@ -360,10 +366,11 @@ exports[`Message detail view it renders the confirmed but not executed msg state
       <div>
         <div
           class="c6"
-          color="var(--purple-medium)"
         >
+          
           <div
-            class="address"
+            class="c7"
+            color="var(--purple-medium)"
           >
             <a
               href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
@@ -373,18 +380,18 @@ exports[`Message detail view it renders the confirmed but not executed msg state
               t1nq5k ... btuo3a
             </a>
             <div
-              class="c7"
+              class="c8"
               color="var(--purple-medium)"
               display="flex"
             >
               <button
-                class="c8 c9"
+                class="c9 c10"
                 display="flex"
                 role="button"
                 type="button"
               >
                 <svg
-                  class="c10 c11 c12"
+                  class="c11 c12 c13"
                   fill="none"
                   height="24"
                   viewBox="0 0 24 24"
@@ -407,7 +414,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
                   />
                 </svg>
                 <span
-                  class="c13 c14"
+                  class="c14 c15"
                   color="var(--purple-medium)"
                 >
                   Copy
@@ -437,7 +444,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
       </div>
       <div>
         <div
-          class="c15"
+          class="c16"
           color="purple.medium"
           display="inline-flex"
           height="2em"
@@ -454,6 +461,16 @@ exports[`Message detail view it renders the confirmed but not executed msg state
 `;
 
 exports[`Message detail view it renders the executed msg state correctly 1`] = `
+.c9 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c9 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
 .c0 {
   min-width: 0;
   box-sizing: border-box;
@@ -484,7 +501,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   grid-gap: 1rem;
 }
 
-.c10 {
+.c11 {
   min-width: 0;
   box-sizing: border-box;
   color: var(--purple-medium);
@@ -498,7 +515,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   align-items: center;
 }
 
-.c18 {
+.c19 {
   min-width: 0;
   box-sizing: border-box;
   border-radius: 1em;
@@ -569,7 +586,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   height: 20px;
 }
 
-.c13 {
+.c14 {
   width: 24;
   height: 24;
 }
@@ -579,7 +596,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   height: 22px;
 }
 
-.c12 {
+.c13 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -604,18 +621,18 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   outline: none;
 }
 
-.c15 {
+.c16 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c11:hover .c14 {
+.c12:hover .c15 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c17 {
+.c18 {
   -webkit-transition: 0.18s ease-in;
   transition: 0.18s ease-in;
   opacity: 0;
@@ -627,16 +644,11 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   margin-left: 4px;
 }
 
-.c11:hover .c16 {
+.c12:hover .c17 {
   opacity: 1;
 }
 
-.c9 h4 {
-  margin: 0;
-  color: var(--gray-dark);
-}
-
-.c9 .address {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -645,13 +657,13 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   line-height: 1.5;
 }
 
-.c9 .address a {
+.c10 a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c9 .address a:hover {
+.c10 a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -669,7 +681,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c3 > p,
@@ -721,7 +733,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   word-break: break-word;
 }
 
-.c19 {
+.c20 {
   color: var(--gray-medium);
 }
 
@@ -846,10 +858,11 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       <div>
         <div
           class="c9"
-          color="var(--purple-medium)"
         >
+          
           <div
-            class="address"
+            class="c10"
+            color="var(--purple-medium)"
           >
             <a
               href="https://explorer-calibration.glif.link/actor/?address=t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
@@ -859,18 +872,18 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
               t1z225 ... 6z6wgi
             </a>
             <div
-              class="c10"
+              class="c11"
               color="var(--purple-medium)"
               display="flex"
             >
               <button
-                class="c11 c12"
+                class="c12 c13"
                 display="flex"
                 role="button"
                 type="button"
               >
                 <svg
-                  class="c13 c14 c15"
+                  class="c14 c15 c16"
                   fill="none"
                   height="24"
                   viewBox="0 0 24 24"
@@ -893,7 +906,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
                   />
                 </svg>
                 <span
-                  class="c16 c17"
+                  class="c17 c18"
                   color="var(--purple-medium)"
                 >
                   Copy
@@ -913,10 +926,11 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       <div>
         <div
           class="c9"
-          color="var(--purple-medium)"
         >
+          
           <div
-            class="address"
+            class="c10"
+            color="var(--purple-medium)"
           >
             <a
               href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
@@ -926,18 +940,18 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
               t1nq5k ... btuo3a
             </a>
             <div
-              class="c10"
+              class="c11"
               color="var(--purple-medium)"
               display="flex"
             >
               <button
-                class="c11 c12"
+                class="c12 c13"
                 display="flex"
                 role="button"
                 type="button"
               >
                 <svg
-                  class="c13 c14 c15"
+                  class="c14 c15 c16"
                   fill="none"
                   height="24"
                   viewBox="0 0 24 24"
@@ -960,7 +974,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
                   />
                 </svg>
                 <span
-                  class="c16 c17"
+                  class="c17 c18"
                   color="var(--purple-medium)"
                 >
                   Copy
@@ -990,7 +1004,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       </div>
       <div>
         <div
-          class="c18"
+          class="c19"
           color="purple.medium"
           display="inline-flex"
           height="2em"
@@ -1027,7 +1041,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       <div>
         1,000
         <span
-          class="c19"
+          class="c20"
         >
           |
         </span>
@@ -1048,7 +1062,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       </div>
       <div>
         <span
-          class="c19"
+          class="c20"
         >
           Premium
         </span>
@@ -1062,7 +1076,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       <div />
       <div>
         <span
-          class="c19"
+          class="c20"
         >
           Fee Cap
         </span>
@@ -1076,7 +1090,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       <div />
       <div>
         <span
-          class="c19"
+          class="c20"
         >
           Base
         </span>
@@ -1191,7 +1205,7 @@ exports[`Message detail view it renders the loading view correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c3 > p,
@@ -1345,7 +1359,7 @@ exports[`Message detail view it renders the not found state correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c3 > p,
@@ -1392,6 +1406,16 @@ exports[`Message detail view it renders the not found state correctly 1`] = `
 `;
 
 exports[`Message detail view it renders the pending msg state correctly 1`] = `
+.c9 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c9 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
 .c0 {
   min-width: 0;
   box-sizing: border-box;
@@ -1422,7 +1446,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   grid-gap: 1rem;
 }
 
-.c10 {
+.c11 {
   min-width: 0;
   box-sizing: border-box;
   color: var(--purple-medium);
@@ -1436,7 +1460,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   align-items: center;
 }
 
-.c18 {
+.c19 {
   min-width: 0;
   box-sizing: border-box;
   border-radius: 1em;
@@ -1468,12 +1492,12 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   height: 28px;
 }
 
-.c13 {
+.c14 {
   width: 24;
   height: 24;
 }
 
-.c12 {
+.c13 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -1498,18 +1522,18 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   outline: none;
 }
 
-.c15 {
+.c16 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c11:hover .c14 {
+.c12:hover .c15 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c17 {
+.c18 {
   -webkit-transition: 0.18s ease-in;
   transition: 0.18s ease-in;
   opacity: 0;
@@ -1521,16 +1545,11 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   margin-left: 4px;
 }
 
-.c11:hover .c16 {
+.c12:hover .c17 {
   opacity: 1;
 }
 
-.c9 h4 {
-  margin: 0;
-  color: var(--gray-dark);
-}
-
-.c9 .address {
+.c10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1539,13 +1558,13 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   line-height: 1.5;
 }
 
-.c9 .address a {
+.c10 a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c9 .address a:hover {
+.c10 a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -1699,7 +1718,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c7 > p,
@@ -1861,10 +1880,11 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
       <div>
         <div
           class="c9"
-          color="var(--purple-medium)"
         >
+          
           <div
-            class="address"
+            class="c10"
+            color="var(--purple-medium)"
           >
             <a
               href="https://explorer-calibration.glif.link/actor/?address=t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
@@ -1874,18 +1894,18 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
               t1z225 ... 6z6wgi
             </a>
             <div
-              class="c10"
+              class="c11"
               color="var(--purple-medium)"
               display="flex"
             >
               <button
-                class="c11 c12"
+                class="c12 c13"
                 display="flex"
                 role="button"
                 type="button"
               >
                 <svg
-                  class="c13 c14 c15"
+                  class="c14 c15 c16"
                   fill="none"
                   height="24"
                   viewBox="0 0 24 24"
@@ -1908,7 +1928,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
                   />
                 </svg>
                 <span
-                  class="c16 c17"
+                  class="c17 c18"
                   color="var(--purple-medium)"
                 >
                   Copy
@@ -1928,10 +1948,11 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
       <div>
         <div
           class="c9"
-          color="var(--purple-medium)"
         >
+          
           <div
-            class="address"
+            class="c10"
+            color="var(--purple-medium)"
           >
             <a
               href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
@@ -1941,18 +1962,18 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
               t1nq5k ... btuo3a
             </a>
             <div
-              class="c10"
+              class="c11"
               color="var(--purple-medium)"
               display="flex"
             >
               <button
-                class="c11 c12"
+                class="c12 c13"
                 display="flex"
                 role="button"
                 type="button"
               >
                 <svg
-                  class="c13 c14 c15"
+                  class="c14 c15 c16"
                   fill="none"
                   height="24"
                   viewBox="0 0 24 24"
@@ -1975,7 +1996,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
                   />
                 </svg>
                 <span
-                  class="c16 c17"
+                  class="c17 c18"
                   color="var(--purple-medium)"
                 >
                   Copy
@@ -2005,7 +2026,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
       </div>
       <div>
         <div
-          class="c18"
+          class="c19"
           color="purple.medium"
           display="inline-flex"
           height="2em"

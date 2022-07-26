@@ -15,7 +15,7 @@ exports[`AppHeader renders the box 1`] = `
   -webkit-box-align: flex-end;
   -ms-flex-align: flex-end;
   align-items: flex-end;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c0 {
@@ -23,8 +23,8 @@ exports[`AppHeader renders the box 1`] = `
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 10px 0;
-  margin: -10px 0;
+  padding: var(--space-m) 0;
+  margin: var(--space-nm) 0;
   background-color: var(--white-broken);
   display: -webkit-box;
   display: -webkit-flex;
@@ -37,9 +37,9 @@ exports[`AppHeader renders the box 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-column-gap: 20px;
-  column-gap: 20px;
-  row-gap: 10px;
+  -webkit-column-gap: var(--space-l);
+  column-gap: var(--space-l);
+  row-gap: var(--space-m);
 }
 
 .c1 {
@@ -54,11 +54,11 @@ exports[`AppHeader renders the box 1`] = `
   -webkit-box-align: flex-end;
   -ms-flex-align: flex-end;
   align-items: flex-end;
-  gap: 20px;
+  gap: var(--space-l);
 }
 
 .c5 {
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c2 {
