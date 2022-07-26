@@ -1,12 +1,21 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { useMemo, useState } from 'react'
-import { space } from '../theme'
 
 const SearchBarEl = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+
+  ${props =>
+    props.large &&
+    css`
+      gap: var(--space-m);
+    `}
+
   form {
     display: flex;
-    gap: ${space()};
+    gap: var(--space-m);
     width: 100%;
   }
   input[type='search'] {
@@ -19,6 +28,12 @@ const SearchBarEl = styled.div`
   span.error {
     color: var(--red-medium);
     font-size: 0.875rem;
+
+    ${props =>
+      props.large &&
+      css`
+        font-size: 1rem;
+      `}
   }
 `
 
@@ -34,14 +49,14 @@ export const SearchBar = ({
 }: SearchBarProps) => {
   const [value, setValue] = useState<string>('')
   const [hasFocus, setHasFocus] = useState<boolean>(false)
-  
+
   const showError = useMemo<boolean>(
     () => value && !hasFocus && !!inputError,
     [value, hasFocus, inputError]
   )
 
   return (
-    <SearchBarEl>
+    <SearchBarEl large={large}>
       <form
         onSubmit={async e => {
           e.preventDefault()
@@ -74,11 +89,7 @@ export const SearchBar = ({
           value='Search'
         />
       </form>
-      {showError && (
-        <span className='error'>
-          {inputError}
-        </span>
-      )}
+      {showError && <span className={'error'}>{inputError}</span>}
     </SearchBarEl>
   )
 }
