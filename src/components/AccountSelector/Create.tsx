@@ -1,150 +1,155 @@
 import { CoinType } from '@glif/filecoin-address'
-import React, { SyntheticEvent, useState } from 'react'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
-import Box from '../Box'
-import Button from '../Button'
-import { Label, Title, Text } from '../Typography'
-import Card from '../Card'
-import AccountError from '../AccountCard/Error'
-import Loading from '../LoaderGlyph'
-import CoinTypeSwitcherGlyph from '../NetworkSwitcherGlyphV2'
-import { StyledATag } from '../Link'
-import Input from '../Input'
-import { COIN_TYPE_PROPTYPE } from '../../customPropTypes'
+import styled from 'styled-components'
+import { createPath } from '../../utils'
+import { coinTypeCode } from '../../utils/createPath'
+import { ButtonV2 } from '../Button/V2'
 import { InputV2 } from '../InputV2'
+import { Toggle } from '../InputV2/Toggle'
+import { ShadowBox } from '../Layout'
+import { space } from '../theme'
 
-const LoadingCard = () => (
-  <Card
-    display='flex'
-    flexWrap='wrap'
-    alignContent='flex-start'
-    width='100%'
-    height={11}
-    bg='core.transparent'
-    borderColor='core.primary'
-    color='core.primary'
-    opacity='1'
-  >
-    <Box display='flex' flexDirection='row'>
-      <Loading />
-      <Text ml={2} lineHeight='.5'>
-        Loading
-      </Text>
-    </Box>
-  </Card>
-)
+const CreateWalletContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: ${space()};
 
-const Create = ({
-  onClick,
-  loading,
-  nextAccountIndex,
-  errorMsg,
-  defaultCoinType
-}: {
-  onClick: (_index: number, _coinType: CoinType) => void
-  loading: boolean
-  nextAccountIndex: number
-  errorMsg?: string
-  defaultCoinType: CoinType
-}) => {
-  const [accountIndex, setAccountIndex] = useState<number>(
-    Number(nextAccountIndex)
+  align-items: center;
+
+  > * {
+    width: fit-content;
+  }
+
+  > label {
+    margin-top: ${space()};
+  }
+
+  > button {
+    width: 38.2%;
+    min-width: fit-content;
+  }
+`
+
+const FormWrapper = styled(ShadowBox)`
+  margin-top: ${space()};
+`
+
+const Path = styled.p`
+  color: var(--gray-medium);
+  padding-top: ${space()};
+`
+
+/**
+ * TODO The label child overflow is a hack to get the UI to look right
+ * but what really needs to happen is unit-wrapper class should have:
+ * `width: fit-content`
+ *
+ * cant figure out how to get there, and this works pretty well..
+ */
+const Form = styled.form`
+  > * {
+    margin: ${space()};
+  }
+
+  > label {
+    overflow: hidden;
+  }
+`
+
+enum CoinTypeOption {
+  MAINNET = 'Mainnet',
+  LEGACY = 'Legacy'
+}
+
+const coinTypeToCoinTypeOption = (ct: CoinType) => {
+  if (ct === CoinType.TEST) {
+    return CoinTypeOption.LEGACY
+  }
+  return CoinTypeOption.MAINNET
+}
+
+const coinTypeOptionToCoinType = (cto: CoinTypeOption) => {
+  if (cto === CoinTypeOption.LEGACY) {
+    return CoinType.TEST
+  }
+  return CoinType.MAIN
+}
+
+export function CreateWallet({
+  fetchNextWallet,
+  walletIdx: defaultWalletIdx
+}: CreateWalletProps) {
+  const [expertMode, setExpertMode] = useState(false)
+  const [coinTypeOpt, setCoinTypeOpt] = useState<CoinTypeOption>(
+    coinTypeToCoinTypeOption(process.env.NEXT_PUBLIC_COIN_TYPE as CoinType)
   )
-  const [isValid, setIsValid] = useState<boolean>(false)
-  const [accountIndexErr, setAccountIndexErr] = useState<string>('')
+  const [walletIndex, setWalletIndex] = useState(defaultWalletIdx)
 
-  const [coinType, setCoinType] = useState<CoinType>(defaultCoinType)
-  if (loading) return <LoadingCard />
-  if (errorMsg)
-    return (
-      <AccountError
-        onTryAgain={() => {
-          setCoinType(CoinType.MAIN)
-          onClick(accountIndex, coinType)
-        }}
-        errorMsg={errorMsg}
-        m={2}
-      />
-    )
+  const path = isNaN(walletIndex)
+    ? ''
+    : createPath(
+        coinTypeCode(coinTypeOptionToCoinType(coinTypeOpt)),
+        walletIndex
+      )
 
   return (
-    <Card
-      display='flex'
-      flexDirection='column'
-      justifyContent='space-between'
-      width='100%'
-      height={11}
-      border={1}
-      borderRadius={2}
-      px={3}
-      py={3}
-      bg='hsla(0, 0%, 90%, 0)'
-      color='colors.core.black'
-    >
-      <Title my={2}>Create new account</Title>
-
-      <InputV2.Number
-        value={accountIndex}
-        onChange={setAccountIndex}
-        setIsValid={setIsValid}
-        autoFocus={true}
-      />
-      <Box>
-        <CoinTypeSwitcherGlyph
-          onNetworkSwitch={(ct: CoinType) => setCoinType(ct)}
-          network={coinType}
-        />
-        {coinType === 't' ? (
-          <Text p={0} m={0} mt={1} fontSize='15px' textAlign='left'>
-            {'*Not recommended'}
-          </Text>
-        ) : (
-          <>
-            {/* Hack to get around margin limitations here... */}
-            <Box height={1} />
-            <StyledATag
-              href='https://reading.supply/@glif/not-seeing-the-right-address-when-accessing-the-glif-wallet-NE1FhV'
-              color='core.primary'
-              p={0}
-              m={0}
-              fontSize='15px'
-              ml={1}
-            >
-              Legacy address?
-            </StyledATag>
-          </>
-        )}
-      </Box>
-      <Box
-        width='100%'
-        display='flex'
-        flexDirection='row'
-        justifyContent='flex-end'
+    <CreateWalletContainer>
+      <ButtonV2
+        large
+        onClick={() =>
+          fetchNextWallet(
+            defaultWalletIdx,
+            process.env.NEXT_PUBLIC_COIN_TYPE as CoinType
+          )
+        }
+        disabled={expertMode}
       >
-        <Button
-          title='Create'
-          onClick={() => {
-            onClick(accountIndex, coinType)
-            setCoinType(CoinType.MAIN)
-            setAccountIndex(nextAccountIndex + 1)
-          }}
-          variant='secondary'
-        />
-      </Box>
-    </Card>
+        Next account
+      </ButtonV2>
+      <Toggle
+        label='Expert Mode'
+        checked={expertMode}
+        onChange={setExpertMode}
+      />
+      {expertMode && (
+        <FormWrapper>
+          <h3>Create wallet</h3>
+          <Form
+            onSubmit={() =>
+              fetchNextWallet(
+                walletIndex,
+                coinTypeOptionToCoinType(coinTypeOpt)
+              )
+            }
+          >
+            <InputV2.Select
+              label='Coin type'
+              options={[CoinTypeOption.MAINNET, CoinTypeOption.LEGACY]}
+              value={coinTypeOpt}
+              onChange={v => setCoinTypeOpt(v as CoinTypeOption)}
+            />
+            <InputV2.Number
+              label='Wallet index'
+              value={walletIndex}
+              onChange={setWalletIndex}
+            />
+            <Path>{path}</Path>
+            <ButtonV2 type='submit'>Add wallet</ButtonV2>
+          </Form>
+        </FormWrapper>
+      )}
+    </CreateWalletContainer>
   )
 }
 
-Create.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
-  nextAccountIndex: PropTypes.number.isRequired,
-  errorMsg: PropTypes.string,
-  defaultCoinType: COIN_TYPE_PROPTYPE
+type CreateWalletProps = {
+  fetchNextWallet: (index: number, ct: CoinType) => void
+  walletIdx: number
 }
 
-Create.defaultProps = {
-  errorMsg: ''
+CreateWallet.propTypes = {
+  fetchNextWallet: PropTypes.func.isRequired,
+  walletIdx: PropTypes.number.isRequired
 }
-
-export default Create

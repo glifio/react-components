@@ -15,8 +15,9 @@ import { logger } from '../../logger'
 import { AddressDocument, AddressQuery } from '../../generated/graphql'
 import { ErrorBox, StandardBox } from '../Layout'
 import { WalletsTable } from './table'
-import { CreateWallet } from './Create2'
+import { CreateWallet } from './Create'
 import { useWallet } from '../../services'
+import { loadNextWallet } from './loadNextWallet'
 
 const AccountSelector = ({
   onSelectAccount,
@@ -47,6 +48,7 @@ const AccountSelector = ({
     walletError,
     lotusApiAddr
   } = useWalletProvider()
+
   const wallet = useWallet()
   const apolloClient = useApolloClient()
 
@@ -62,57 +64,39 @@ const AccountSelector = ({
     [lotusApiAddr]
   )
 
+  const getAddress = useCallback(
+    async address =>
+      apolloClient.query<AddressQuery>({
+        query: AddressDocument,
+        variables: {
+          address
+        }
+      }),
+    [apolloClient]
+  )
+
   const [loadedFirstWallet, setLoadedFirstWallet] = useState(false)
 
   // automatically generate the wallets that have a balance. Minimum 3, max 10
   useEffect(() => {
-    const loadNextWallet = async (index, provider) => {
-      const [address] = await provider.wallet.getAccounts(
-        index,
-        index + 1,
-        coinType
-      )
-
-      const [balance, { data }] = await Promise.all([
-        getBalance(address),
-        apolloClient.query<AddressQuery>({
-          query: AddressDocument,
-          variables: {
-            address
-          }
-        })
-      ])
-
-      const w: Wallet = {
-        balance,
-        robust: convertAddrToPrefix(address),
-        id: convertAddrToPrefix(data?.address?.id),
-        address: convertAddrToPrefix(address),
-        path: createPath(coinTypeCode(coinType), index)
-      }
-
-      walletList([w])
-      // if this is the first time we got a wallet balance, show the ui
-      if (index === 0) {
-        setLoadedFirstWallet(true)
-        setLoadingPage(false)
-      }
-
-      // if this account has a balance and we've loaded less than 10 wallets, load the next wallet
-      if ((balance.isGreaterThan(0) && index < 10) || index < 3) {
-        await loadNextWallet(index + 1, provider)
-      }
-    }
-
     if (!loadedFirstWallet) {
       setLoadingPage(false)
       setLoadingWallets(true)
       setLoadedFirstWallet(true)
       getProvider()
-        .then(provider => loadNextWallet(wallets.length, provider))
-        .then(() => {
-          setLoadingWallets(false)
-        })
+        .then(provider =>
+          loadNextWallet(
+            wallets.length,
+            provider,
+            coinType,
+            getBalance,
+            getAddress,
+            setLoadedFirstWallet,
+            setLoadingPage,
+            setLoadingWallets,
+            walletList
+          )
+        )
         .catch(err => {
           logger.error(
             err instanceof Error ? err.message : 'Error loading wallet',
@@ -131,7 +115,8 @@ const AccountSelector = ({
     coinType,
     nWalletsToLoad,
     apolloClient,
-    getBalance
+    getBalance,
+    getAddress
   ])
 
   const errorMsg = useMemo(() => {
