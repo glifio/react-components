@@ -65,6 +65,12 @@ App.args = {
       address: 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza'
     }
   ],
+  labeledTexts: [
+    {
+      label: 'Balance',
+      text: '100 FIL'
+    }
+  ],
   appHeaderLinks: [
     {
       title: 'Assets',

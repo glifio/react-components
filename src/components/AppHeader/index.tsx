@@ -5,6 +5,7 @@ import { space } from '../theme'
 import { ButtonV2 } from '../Button/V2'
 import { SmartLink } from '../Link/SmartLink'
 import { AppIconHeaderFooter } from '../Icons'
+import { LabeledText, LabeledTextProps } from '../LabeledText'
 import { AddressLink, AddressLinkProps } from '../LabeledText/AddressLink'
 import AppIconWrapper from './AppIconWrapper'
 
@@ -73,6 +74,7 @@ export function AppHeader(props: AppHeaderProps) {
     appIcon,
     appUrl,
     addressLinks,
+    labeledTexts,
     appHeaderLinks
   } = props
   return (
@@ -88,6 +90,9 @@ export function AppHeader(props: AppHeaderProps) {
           ))}
         {addressLinks?.map((addressLink, index) => (
           <AddressLink key={index} {...addressLink} />
+        ))}
+        {labeledTexts?.map((labeledText, index) => (
+          <LabeledText key={index} {...labeledText} />
         ))}
         {connection}
       </NavLeft>
@@ -115,6 +120,7 @@ export interface AppHeaderProps {
   appIcon?: JSX.Element
   appUrl?: string
   addressLinks?: Array<AddressLinkProps>
+  labeledTexts?: Array<LabeledTextProps>
   appHeaderLinks?: Array<{
     title: string
     url: string
@@ -128,6 +134,7 @@ export const AppHeaderPropTypes = {
   appIcon: PropTypes.node,
   appUrl: PropTypes.string,
   addressLinks: PropTypes.arrayOf(PropTypes.shape(AddressLink.propTypes)),
+  labeledTexts: PropTypes.arrayOf(PropTypes.shape(LabeledText.propTypes)),
   appHeaderLinks: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
