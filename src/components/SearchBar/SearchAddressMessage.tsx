@@ -18,7 +18,7 @@ export const SearchAddressMessage = ({
     setInputError(
       validateAddressString(value) || validateCID(value)
         ? ''
-        : 'Invalid search term'
+        : 'Invalid address or message CID'
     )
   }, [])
 
