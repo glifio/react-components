@@ -20,9 +20,8 @@ export const SearchBar = ({
   autoFocus,
   autoComplete,
   placeholder,
-  onSearch,
-  onFocus,
-  onBlur
+  onInput,
+  onSearch
 }: SearchBarProps) => {
   const [value, setValue] = useState<string>('')
 
@@ -66,9 +65,8 @@ export interface SearchBarProps {
   autoFocus?: boolean
   autoComplete?: 'on' | 'off'
   placeholder?: string
+  onInput?: (value: string) => void
   onSearch?: (value: string) => void
-  onFocus?: () => void
-  onBlur?: () => void
 }
 
 SearchBar.propTypes = {
@@ -78,9 +76,8 @@ SearchBar.propTypes = {
   autoFocus: PropTypes.bool,
   autoComplete: PropTypes.oneOf(['on', 'off']),
   placeholder: PropTypes.string,
-  onSearch: PropTypes.func,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func
+  onInput: PropTypes.func,
+  onSearch: PropTypes.func
 }
 
 SearchBar.defaultProps = {
@@ -90,7 +87,6 @@ SearchBar.defaultProps = {
   autoFocus: true,
   autoComplete: 'on',
   placeholder: '',
-  onSearch: () => {},
-  onFocus: () => {},
-  onBlur: () => {}
+  onInput: () => {},
+  onSearch: () => {}
 }
