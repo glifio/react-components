@@ -2,6 +2,7 @@ import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { AppHeader } from './index'
 import { AppIconHeaderFooter, SafeIconHeaderFooter } from '../Icons'
+import { SearchAddressMessage } from '../SearchBar/SearchAddressMessage'
 import { NetworkConnection } from '../NetworkConnection'
 
 export default {
@@ -78,6 +79,31 @@ App.args = {
     {
       title: 'Admin',
       url: 'https://safe.glif.io/admin'
+    }
+  ]
+}
+
+export const Search = Template.bind({})
+Search.args = {
+  appIcon: <AppIconHeaderFooter iconStyle='dark' />,
+  appUrl: 'https://glif.io',
+  customHeaderComps: <SearchAddressMessage />,
+  appHeaderLinks: [
+    {
+      title: 'Wallet',
+      url: 'https://wallet-calibration.glif.link'
+    },
+    {
+      title: 'Safe',
+      url: 'https://safe-calibration.glif.link'
+    },
+    {
+      title: 'Blog',
+      url: 'https://blog.glif.io/'
+    },
+    {
+      title: 'Discord',
+      url: 'https://discord.gg/B9ju5Eu4Rq'
     }
   ]
 }
