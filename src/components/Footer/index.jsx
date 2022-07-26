@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { SmartLink } from '../Link/SmartLink'
-import { devices, space } from '../theme'
+import { devices } from '../theme'
 import { AppIconHeaderFooter } from '../Icons'
 import {
   GLIF_EMAIL,

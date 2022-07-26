@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
-import { devices, fontSize, space } from '../theme'
+import { devices, fontSize } from '../theme'
 
 const transitionIn = keyframes`
 from {
@@ -70,10 +70,10 @@ export const AppTitleHeader = styled.header`
   ${props => props.soon && 'opacity: 0.3'}
 
   @media (max-width: ${devices.phone}) {
-    padding: ${space('default', 'phone')};
+    padding: var(--space-m);
   }
   @media (min-width: ${devices.phone}) {
-    padding: ${space('large')};
+    padding: var(--space-l);
   }
 `
 
@@ -154,7 +154,7 @@ export const AppTitleDescription = styled.div`
     width: 100%;
     white-space: normal;
     font-size: ${fontSize('small', 'phone')};
-    padding: 15px 5px 0 ${space('default', 'phone')};
+    padding: 15px 5px 0 var(--space-m);
   }
   @media (min-width: ${devices.tablet}) {
     position: absolute;
@@ -163,7 +163,7 @@ export const AppTitleDescription = styled.div`
     width: 100%;
     height: 100%;
     color: #fff;
-    padding: ${space('large')};
+    padding: var(--space-l);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

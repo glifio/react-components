@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { devices, space } from '../theme'
+import { devices } from '../theme'
 
 const Wrapper = styled.div`
   display: flex;

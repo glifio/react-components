@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import { space } from '../theme'
 import { ButtonV2 } from '../Button/V2'
 import { SmartLink } from '../Link/SmartLink'
 import { AppIconHeaderFooter } from '../Icons'
@@ -14,13 +13,13 @@ const Header = styled.header`
   top: 0;
   z-index: 100;
   padding: var(--space-m) 0;
-  margin: -var(--space-m) 0;
+  margin: var(--space-nm) 0;
   background-color: var(--white-broken);
 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  column-gap: ${space('large')};
+  column-gap: var(--space-l);
   row-gap: var(--space-m);
 `
 
@@ -28,7 +27,7 @@ const NavLeft = styled.nav`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  gap: ${space('large')};
+  gap: var(--space-l);
 `
 
 const NavRight = styled(NavLeft)`

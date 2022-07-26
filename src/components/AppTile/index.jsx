@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { AppTileWrapper } from './AppTileWrapper'
-import { space, fontSize } from '../theme'
+import { fontSize } from '../theme'
 
 import {
   AppTitleContent,

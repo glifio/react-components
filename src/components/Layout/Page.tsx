@@ -6,7 +6,7 @@ import PhishingBanner from '../PhishingBanner'
 import { AppHeader, AppHeaderProps, AppHeaderPropTypes } from '../AppHeader'
 import Footer from '../Footer'
 
-import { devices, space } from '../theme'
+import { devices } from '../theme'
 
 const PageOuter = styled.div`
   display: flex;

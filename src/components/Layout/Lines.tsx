@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { Address } from '../../generated/graphql'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
-import { space } from '../theme'
 
 /**
  * Lines

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { space } from '../theme'
 
 export const FullWidthButtons = styled.div`
   display: flex;

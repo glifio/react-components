@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { space } from '../theme'
 
 export const Label = styled.label`
   display: flex;

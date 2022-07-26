@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
-import { space } from '../theme'
 
 const BaseLabel = styled(Label)`
   .button-wrapper {

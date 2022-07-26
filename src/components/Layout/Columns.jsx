@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { devices, fontSize, space } from '../theme'
+import { devices, fontSize } from '../theme'
 
 export const OneColumn = styled.div`
   position: relative;
