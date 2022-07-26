@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { TABLE, TR, TH, TD } from '../HistoryTables/table'
+import { TABLE, TR, TH, TD } from '../Table'
 import { AddressLink } from '../AddressLink'
 import { space } from '../theme'
 import { Wallet } from '../../services/WalletProvider'
