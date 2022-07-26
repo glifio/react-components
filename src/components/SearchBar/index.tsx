@@ -16,6 +16,10 @@ const SearchBarEl = styled.div`
     flex: 0 1 auto;
     border-radius: 4px;
   }
+  span.error {
+    color: var(--red-medium);
+    font-size: 0.875rem;
+  }
 `
 
 export const SearchBar = ({
@@ -70,6 +74,11 @@ export const SearchBar = ({
           value='Search'
         />
       </form>
+      {showError && (
+        <span className='error'>
+          {inputError}
+        </span>
+      )}
     </SearchBarEl>
   )
 }
