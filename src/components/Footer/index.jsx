@@ -36,7 +36,7 @@ const FooterContent = styled.div`
     max-width: 670px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: ${space()};
+    gap: var(--space-m);
     margin: 0 auto;
   }
 `

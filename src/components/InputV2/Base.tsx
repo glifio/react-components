@@ -8,7 +8,7 @@ const BaseLabel = styled(Label)`
   .button-wrapper {
     display: flex;
     align-items: center;
-    gap: ${space()};
+    gap: var(--space-m);
 
     > *:first-child {
       flex: 1 0 auto;

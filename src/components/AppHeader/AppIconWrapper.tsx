@@ -5,7 +5,7 @@ import { devices, space } from '../theme'
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-end;
-  gap: ${space()};
+  gap: var(--space-m);
 `
 
 const Title = styled.h1`

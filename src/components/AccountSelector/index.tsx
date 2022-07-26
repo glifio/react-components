@@ -25,7 +25,7 @@ import { AddressDocument, AddressQuery } from '../../generated/graphql'
 
 const WalletTiles = styled.div`
   display: grid;
-  gap: ${space()};
+  gap: var(--space-m);
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 `
 

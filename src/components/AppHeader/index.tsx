@@ -13,15 +13,15 @@ const Header = styled.header`
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: ${space()} 0;
-  margin: -${space()} 0;
+  padding: var(--space-m) 0;
+  margin: -var(--space-m) 0;
   background-color: var(--white-broken);
 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   column-gap: ${space('large')};
-  row-gap: ${space()};
+  row-gap: var(--space-m);
 `
 
 const NavLeft = styled.nav`
@@ -32,7 +32,7 @@ const NavLeft = styled.nav`
 `
 
 const NavRight = styled(NavLeft)`
-  gap: ${space()};
+  gap: var(--space-m);
 `
 
 const NavLinkSimple = styled(SmartLink)`

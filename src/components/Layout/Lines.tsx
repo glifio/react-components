@@ -12,7 +12,7 @@ import { space } from '../theme'
 export const Lines = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${space()};
+  gap: var(--space-m);
 
   > p,
   > hr {

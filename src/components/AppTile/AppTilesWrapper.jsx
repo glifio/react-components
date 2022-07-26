@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { devices, space } from '../theme'
 
 export const AppTilesWrapper = styled.div`
-  gap: ${space()};
+  gap: var(--space-m);
 
   @media (max-width: ${devices.tablet}) {
     margin-top: calc(${space('large', 'phone')} * 2);

@@ -21,7 +21,7 @@ export const OneColumn = styled.div`
 export const TwoColumns = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${space()};
+  gap: var(--space-m);
 
   @media (min-width: ${devices.tablet}) {
     display: grid;

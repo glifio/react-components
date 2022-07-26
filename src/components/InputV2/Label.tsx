@@ -3,7 +3,7 @@ import { space } from '../theme'
 
 export const Label = styled.label`
   display: flex;
-  gap: ${space()};
+  gap: var(--space-m);
   text-align: left;
 
   ${props =>
