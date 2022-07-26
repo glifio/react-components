@@ -74,6 +74,7 @@ export function AppHeader(props: AppHeaderProps) {
     appUrl,
     addressLinks,
     labeledTexts,
+    customHeaderComps,
     appHeaderLinks
   } = props
   return (
@@ -93,6 +94,7 @@ export function AppHeader(props: AppHeaderProps) {
         {labeledTexts?.map((labeledText, index) => (
           <LabeledText key={index} {...labeledText} />
         ))}
+        {customHeaderComps}
         {connection}
       </NavLeft>
       <NavRight>
@@ -120,6 +122,7 @@ export interface AppHeaderProps {
   appUrl?: string
   addressLinks?: Array<AddressLinkProps>
   labeledTexts?: Array<LabeledTextProps>
+  customHeaderComps?: React.ReactNode
   appHeaderLinks?: Array<{
     title: string
     url: string
@@ -134,6 +137,10 @@ export const AppHeaderPropTypes = {
   appUrl: PropTypes.string,
   addressLinks: PropTypes.arrayOf(PropTypes.shape(AddressLink.propTypes)),
   labeledTexts: PropTypes.arrayOf(PropTypes.shape(LabeledText.propTypes)),
+  customHeaderComps: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   appHeaderLinks: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
