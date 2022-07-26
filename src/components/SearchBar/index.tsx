@@ -15,11 +15,11 @@ const SearchBarEl = styled.div`
 
 export const SearchBar = ({
   large,
-  error,
   name,
   autoFocus,
   autoComplete,
   placeholder,
+  inputError,
   onInput,
   onSearch
 }: SearchBarProps) => {
@@ -60,33 +60,33 @@ export const SearchBar = ({
 
 export interface SearchBarProps {
   large?: boolean
-  error?: string
   name?: string
   autoFocus?: boolean
   autoComplete?: 'on' | 'off'
   placeholder?: string
+  inputError?: string
   onInput?: (value: string) => void
   onSearch?: (value: string) => void
 }
 
 SearchBar.propTypes = {
   large: PropTypes.bool,
-  error: PropTypes.string,
   name: PropTypes.string,
   autoFocus: PropTypes.bool,
   autoComplete: PropTypes.oneOf(['on', 'off']),
   placeholder: PropTypes.string,
+  inputError: PropTypes.string,
   onInput: PropTypes.func,
   onSearch: PropTypes.func
 }
 
 SearchBar.defaultProps = {
   large: false,
-  error: '',
   name: '',
   autoFocus: true,
   autoComplete: 'on',
   placeholder: '',
+  inputError: '',
   onInput: () => {},
   onSearch: () => {}
 }
