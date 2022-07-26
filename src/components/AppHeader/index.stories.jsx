@@ -1,6 +1,5 @@
-import theme, { space } from '../theme'
+import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import Box from '../Box'
 import { AppHeader } from './index'
 import { AppIconHeaderFooter, SafeIconHeaderFooter } from '../Icons'
 import { NetworkConnection } from '../NetworkConnection'
@@ -11,9 +10,7 @@ export default {
   decorators: [
     Story => (
       <ThemeProvider theme={theme}>
-        <Box display='flex' flexDirection='column' gridGap={space()}>
-          {Story()}
-        </Box>
+        {Story()}
       </ThemeProvider>
     )
   ],
