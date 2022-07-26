@@ -1,7 +1,7 @@
 import { validateAddressString } from '@glif/filecoin-address'
 import PropTypes from 'prop-types'
 import { useCallback, useState } from 'react'
-import { SearchBar, SearchBarProps } from '.'
+import { SearchBar } from '.'
 import { validateCID } from '../../utils'
 
 /**
@@ -12,41 +12,34 @@ export const SearchAddressMessage = ({
   onSearchAddress,
   onSearchMessage
 }: SearchAddressMessageProps) => {
-  const [error, setError] = useState<string>('')
-  const [hasFocus, setHasFocus] = useState<boolean>(false)
+  const [inputError, setInputError] = useState<string>('')
 
-  const onSearch = useCallback((value: string) => {
-    setError('')
-    if (validateAddressString(value)) {
-      onSearchAddress(value)
-      return
-    }
-    if (validateCID(value)) {
-      onSearchMessage(value)
-      return
-    }
-    setError('Invalid search term')
+  const onInput = useCallback((value: string) => {
+    setInputError(
+      validateAddressString(value) || validateCID(value)
+        ? ''
+        : 'Invalid search term'
+    )
   }, [])
 
-  const onFocus = () => {
-    setHasFocus(true)
-  }
-
-  const onBlur = () => {
-    setHasFocus(false)
-  }
+  const onSearch = useCallback(
+    (value: string) => {
+      if (validateAddressString(value)) return onSearchAddress(value)
+      if (validateCID(value)) return onSearchMessage(value)
+    },
+    [onSearchAddress, onSearchMessage]
+  )
 
   return (
     <SearchBar
       large={large}
-      error={!hasFocus ? error : ''}
       name='search-address-message'
       autoFocus={true}
       autoComplete='on'
       placeholder={'Enter an address or message CID'}
+      inputError={inputError}
+      onInput={onInput}
       onSearch={onSearch}
-      onFocus={onFocus}
-      onBlur={onBlur}
     />
   )
 }
@@ -63,7 +56,7 @@ SearchAddressMessage.propTypes = {
   onSearchMessage: PropTypes.func
 }
 
- SearchAddressMessage.defaultProps = {
+SearchAddressMessage.defaultProps = {
   large: false,
   onSearchAddress: () => {},
   onSearchMessage: () => {}
