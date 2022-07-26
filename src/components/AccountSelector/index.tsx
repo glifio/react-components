@@ -7,16 +7,16 @@ import { useApolloClient } from '@apollo/client'
 
 import LoadingScreen from '../LoadingScreen'
 import { useWalletProvider, Wallet } from '../../services/WalletProvider'
-import { useWallet } from '../../services/WalletProvider/useWallet'
 
 import createPath, { coinTypeCode } from '../../utils/createPath'
 import convertAddrToPrefix from '../../utils/convertAddrToPrefix'
 import { COIN_TYPE_PROPTYPE } from '../../customPropTypes'
 import { logger } from '../../logger'
 import { AddressDocument, AddressQuery } from '../../generated/graphql'
-import { StandardBox } from '../Layout'
+import { ErrorBox, StandardBox } from '../Layout'
 import { WalletsTable } from './table'
 import { CreateWallet } from './Create2'
+import { useWallet } from '../../services'
 
 const AccountSelector = ({
   onSelectAccount,
@@ -47,6 +47,7 @@ const AccountSelector = ({
     walletError,
     lotusApiAddr
   } = useWalletProvider()
+  const wallet = useWallet()
   const apolloClient = useApolloClient()
 
   const getBalance = useCallback(
@@ -98,8 +99,8 @@ const AccountSelector = ({
       }
 
       // if this account has a balance and we've loaded less than 10 wallets, load the next wallet
-      if (balance.isGreaterThan(0) && index < 10) {
-        // await loadNextWallet(index + 1, provider)
+      if ((balance.isGreaterThan(0) && index < 10) || index < 3) {
+        await loadNextWallet(index + 1, provider)
       }
     }
 
@@ -190,15 +191,24 @@ const AccountSelector = ({
 
   return (
     <div>
-      <StandardBox>
-        <h2>{title}</h2>
-        <p>{helperText}</p>
-      </StandardBox>
+      {errorMsg ? (
+        <ErrorBox>
+          <h2>Error</h2>
+          <p>{errorMsg}</p>
+        </ErrorBox>
+      ) : (
+        <StandardBox>
+          <h2>{title}</h2>
+          <p>{helperText}</p>
+        </StandardBox>
+      )}
       <br />
       <WalletsTable
         wallets={wallets}
         loadingWallets={loadingWallets}
         selectAccount={selectAccount}
+        showSelectedWallet={showSelectedAccount}
+        selectedWalletPath={wallet.path}
       />
       {!loadingWallets && (
         <CreateWallet
@@ -208,58 +218,6 @@ const AccountSelector = ({
       )}
     </div>
   )
-  {
-    /* <Card
-        display='block'
-        border='none'
-        width='100%'
-        mb={space()}
-        backgroundColor='blue.muted700'
-      >
-        <Box display='flex' alignItems='center'>
-          <Glyph
-            acronym='Ac'
-            bg='core.primary'
-            borderColor='core.primary'
-            color='core.white'
-          />
-          <Title ml={2} color='core.primary'>
-            {title}
-          </Title>
-        </Box>
-        <Box mt={5}>
-          <HelperText text={helperText} />
-        </Box>
-      </Card>
-      <WalletTiles>
-        {wallets.map((w, i) => (
-          <AccountCardAlt
-            key={w.address}
-            onClick={() => {
-              switchWallet(i)
-              onSelectAccount()
-            }}
-            address={w.address}
-            index={Number(w.path.split('/')[5])}
-            selected={showSelectedAccount && w.address === wallet.address}
-            legacy={isProd && w.path.split('/')[2] === `${TESTNET_PATH_CODE}'`}
-            path={w.path}
-            // This is a hack to make testing the UI easier
-            // its hard to mock SWR + balance fetcher in the AccountCardAlt
-            // so we pass a manual balance to not rely on SWR for testing
-            balance={test ? '1' : null}
-            jsonRpcEndpoint={lotusApiAddr}
-          />
-        ))}
-        <Create
-          errorMsg={errorMsg}
-          nextAccountIndex={wallets.length}
-          onClick={fetchNextAccount}
-          loading={loadingWallets}
-          defaultCoinType={coinType}
-        />
-      </WalletTiles> */
-  }
 }
 
 AccountSelector.propTypes = {

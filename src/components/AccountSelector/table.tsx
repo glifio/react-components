@@ -31,18 +31,48 @@ export const idxFromPath = (path: string): string => {
   return path.split('/')[5]
 }
 
+const StatusOuter = styled.div`
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--purple-medium);
+  border-radius: 50%;
+`
+
+const StatusInner = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  background: var(--purple-medium);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+`
+
 const WalletRow = ({
   w,
   selectAccount,
-  index
-}: {
-  w: Wallet
-  selectAccount: (i: number) => void
-  index: number
-}) => {
+  index,
+  isSelected,
+  showSelectedWallet
+}: WalletRowProps) => {
   return (
     <Row key={w.robust} onClick={() => selectAccount(index)}>
       <TD></TD>
+      {showSelectedWallet ? (
+        isSelected ? (
+          <TD>
+            <StatusOuter>
+              <StatusInner />
+            </StatusOuter>
+          </TD>
+        ) : (
+          <TD></TD>
+        )
+      ) : (
+        <></>
+      )}
       <TD>{idxFromPath(w.path)}</TD>
       <TD>Account {idxFromPath(w.path)}</TD>
       <TD>
@@ -58,15 +88,34 @@ const WalletRow = ({
   )
 }
 
+type WalletRowProps = {
+  w: Wallet
+  selectAccount: (i: number) => void
+  index: number
+  isSelected: boolean
+  showSelectedWallet: boolean
+}
+
+WalletRow.propTypes = {
+  w: WALLET_PROPTYPE.isRequired,
+  selectAccount: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+  showSelectedWallet: PropTypes.bool.isRequired
+}
+
 export const WalletsTable = ({
   wallets,
   selectAccount,
-  loadingWallets
+  loadingWallets,
+  showSelectedWallet,
+  selectedWalletPath
 }: WalletsTableProps) => {
   return (
     <TABLE className='narrow'>
       <thead>
         <TR>
+          {showSelectedWallet && <TH></TH>}
           <TH></TH>
           <TH>#</TH>
           <TH>Name</TH>
@@ -83,6 +132,11 @@ export const WalletsTable = ({
             w={w}
             selectAccount={selectAccount}
             index={i}
+            isSelected={
+              Number(idxFromPath(w.path)) ===
+              Number(idxFromPath(selectedWalletPath))
+            }
+            showSelectedWallet={showSelectedWallet}
           />
         ))}
         {loadingWallets && (
@@ -104,12 +158,16 @@ export const WalletsTable = ({
 
 type WalletsTableProps = {
   wallets: Wallet[]
-  loadingWallets: boolean
   selectAccount: (index: number) => void
+  loadingWallets: boolean
+  showSelectedWallet: boolean
+  selectedWalletPath: string
 }
 
 WalletsTable.propTypes = {
   wallets: PropTypes.arrayOf(WALLET_PROPTYPE).isRequired,
+  selectedWalletPath: PropTypes.string.isRequired,
+  selectAccount: PropTypes.func.isRequired,
   loadingWallets: PropTypes.bool.isRequired,
-  selectAccount: PropTypes.func.isRequired
+  showSelectedWallet: PropTypes.bool.isRequired
 }
