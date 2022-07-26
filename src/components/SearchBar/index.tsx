@@ -25,8 +25,11 @@ export const SearchBar = ({
 }: SearchBarProps) => {
   const [value, setValue] = useState<string>('')
   const [hasFocus, setHasFocus] = useState<boolean>(false)
-  const hasError = useMemo<boolean>(() => !!inputError, [])
-  const showError = useMemo<boolean>(() => !hasFocus && hasError, [])
+  const hasError = useMemo<boolean>(() => !!inputError, [inputError])
+  const showError = useMemo<boolean>(
+    () => !hasFocus && hasError,
+    [hasFocus, hasError]
+  )
 
   return (
     <SearchBarEl>
