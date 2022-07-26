@@ -7,13 +7,7 @@ import { NetworkConnection } from '../NetworkConnection'
 export default {
   title: 'AppHeader/AppHeader',
   component: AppHeader,
-  decorators: [
-    Story => (
-      <ThemeProvider theme={theme}>
-        {Story()}
-      </ThemeProvider>
-    )
-  ],
+  decorators: [Story => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
