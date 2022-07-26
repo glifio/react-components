@@ -72,6 +72,8 @@ exports[`Create seed phrase configuration it sends the user to wallet view, with
 >
   <span
     class="c1"
+    height="3"
+    width="3"
   >
     <span
       class="c2"

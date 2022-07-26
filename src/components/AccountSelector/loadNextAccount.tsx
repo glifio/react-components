@@ -8,7 +8,7 @@ import { Wallet } from '../../services'
 import { convertAddrToPrefix, createPath } from '../../utils'
 import { coinTypeCode } from '../../utils/createPath'
 
-export const loadNextWallet = async (
+export const loadNextAccount = async (
   index: number,
   provider: Filecoin,
   coinType: CoinType,
@@ -46,7 +46,7 @@ export const loadNextWallet = async (
 
   // if this account has a balance and we've loaded less than 10 wallets, load the next wallet
   if ((balance.isGreaterThan(0) && index < 10) || index < 3) {
-    await loadNextWallet(
+    await loadNextAccount(
       index + 1,
       provider,
       coinType,

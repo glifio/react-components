@@ -14,10 +14,10 @@ import { COIN_TYPE_PROPTYPE } from '../../customPropTypes'
 import { logger } from '../../logger'
 import { AddressDocument, AddressQuery } from '../../generated/graphql'
 import { ErrorBox, StandardBox } from '../Layout'
-import { WalletsTable } from './table'
-import { CreateWallet } from './Create'
+import { AccountsTable } from './table'
+import { CreateAccount } from './Create'
 import { useWallet } from '../../services'
-import { loadNextWallet } from './loadNextWallet'
+import { loadNextAccount } from './loadNextAccount'
 
 const AccountSelector = ({
   onSelectAccount,
@@ -26,16 +26,7 @@ const AccountSelector = ({
   title,
   coinType,
   nWalletsToLoad
-}: {
-  onSelectAccount: () => void
-  showSelectedAccount: boolean
-  helperText: string
-  title: string
-  coinType: CoinType
-  nWalletsToLoad: number
-  test: boolean
-  isProd: boolean
-}) => {
+}: AccountSelectorProps) => {
   const [loadingWallets, setLoadingWallets] = useState(false)
   const [loadingPage, setLoadingPage] = useState(true)
   const [uncaughtError, setUncaughtError] = useState('')
@@ -85,7 +76,7 @@ const AccountSelector = ({
       setLoadedFirstWallet(true)
       getProvider()
         .then(provider =>
-          loadNextWallet(
+          loadNextAccount(
             wallets.length,
             provider,
             coinType,
@@ -125,7 +116,7 @@ const AccountSelector = ({
     return ''
   }, [uncaughtError, walletError])
 
-  const fetchNextWallet = async (index: number, ct: CoinType) => {
+  const fetchNextAccount = async (index: number, ct: CoinType) => {
     setLoadingWallets(true)
     try {
       const provider = await getProvider()
@@ -188,7 +179,7 @@ const AccountSelector = ({
         </StandardBox>
       )}
       <br />
-      <WalletsTable
+      <AccountsTable
         wallets={wallets}
         loadingWallets={loadingWallets}
         selectAccount={selectAccount}
@@ -196,13 +187,24 @@ const AccountSelector = ({
         selectedWalletPath={wallet.path}
       />
       {!loadingWallets && (
-        <CreateWallet
-          fetchNextWallet={fetchNextWallet}
-          walletIdx={wallets.length}
+        <CreateAccount
+          fetchNextAccount={fetchNextAccount}
+          accountIdx={wallets.length}
         />
       )}
     </div>
   )
+}
+
+type AccountSelectorProps = {
+  onSelectAccount: () => void
+  showSelectedAccount: boolean
+  helperText: string
+  title: string
+  coinType: CoinType
+  nWalletsToLoad: number
+  test: boolean
+  isProd: boolean
 }
 
 AccountSelector.propTypes = {

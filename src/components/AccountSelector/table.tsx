@@ -63,7 +63,7 @@ const WalletRow = ({
       {showSelectedWallet ? (
         isSelected ? (
           <TD>
-            <StatusOuter>
+            <StatusOuter data-testid='selected-account'>
               <StatusInner />
             </StatusOuter>
           </TD>
@@ -104,13 +104,13 @@ WalletRow.propTypes = {
   showSelectedWallet: PropTypes.bool.isRequired
 }
 
-export const WalletsTable = ({
+export const AccountsTable = ({
   wallets,
   selectAccount,
   loadingWallets,
   showSelectedWallet,
   selectedWalletPath
-}: WalletsTableProps) => {
+}: AccountsTableProps) => {
   return (
     <TABLE className='narrow'>
       <thead>
@@ -156,7 +156,7 @@ export const WalletsTable = ({
   )
 }
 
-type WalletsTableProps = {
+type AccountsTableProps = {
   wallets: Wallet[]
   selectAccount: (index: number) => void
   loadingWallets: boolean
@@ -164,7 +164,7 @@ type WalletsTableProps = {
   selectedWalletPath: string
 }
 
-WalletsTable.propTypes = {
+AccountsTable.propTypes = {
   wallets: PropTypes.arrayOf(WALLET_PROPTYPE).isRequired,
   selectedWalletPath: PropTypes.string.isRequired,
   selectAccount: PropTypes.func.isRequired,

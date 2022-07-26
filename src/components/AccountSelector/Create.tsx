@@ -10,7 +10,7 @@ import { Toggle } from '../InputV2/Toggle'
 import { ShadowBox } from '../Layout'
 import { space } from '../theme'
 
-const CreateWalletContainer = styled.div`
+const CreateAccountContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -20,15 +20,15 @@ const CreateWalletContainer = styled.div`
 
   > * {
     width: fit-content;
-  }
 
-  > label {
-    margin-top: ${space()};
-  }
+    label {
+      margin-top: ${space()};
+    }
 
-  > button {
-    width: 38.2%;
-    min-width: fit-content;
+    button {
+      width: 38.2%;
+      min-width: fit-content;
+    }
   }
 `
 
@@ -51,10 +51,10 @@ const Path = styled.p`
 const Form = styled.form`
   > * {
     margin: ${space()};
-  }
 
-  > label {
-    overflow: hidden;
+    label {
+      overflow: hidden;
+    }
   }
 `
 
@@ -77,30 +77,30 @@ const coinTypeOptionToCoinType = (cto: CoinTypeOption) => {
   return CoinType.MAIN
 }
 
-export function CreateWallet({
-  fetchNextWallet,
-  walletIdx: defaultWalletIdx
-}: CreateWalletProps) {
+export function CreateAccount({
+  fetchNextAccount,
+  accountIdx: defaultAccountIdx
+}: CreateAccountProps) {
   const [expertMode, setExpertMode] = useState(false)
   const [coinTypeOpt, setCoinTypeOpt] = useState<CoinTypeOption>(
     coinTypeToCoinTypeOption(process.env.NEXT_PUBLIC_COIN_TYPE as CoinType)
   )
-  const [walletIndex, setWalletIndex] = useState(defaultWalletIdx)
+  const [accountIndex, setAccountIndex] = useState(defaultAccountIdx)
 
-  const path = isNaN(walletIndex)
+  const path = isNaN(accountIndex)
     ? ''
     : createPath(
         coinTypeCode(coinTypeOptionToCoinType(coinTypeOpt)),
-        walletIndex
+        accountIndex
       )
 
   return (
-    <CreateWalletContainer>
+    <CreateAccountContainer>
       <ButtonV2
         large
         onClick={() =>
-          fetchNextWallet(
-            defaultWalletIdx,
+          fetchNextAccount(
+            defaultAccountIdx,
             process.env.NEXT_PUBLIC_COIN_TYPE as CoinType
           )
         }
@@ -115,14 +115,15 @@ export function CreateWallet({
       />
       {expertMode && (
         <FormWrapper>
-          <h3>Create wallet</h3>
+          <h3>Create account</h3>
           <Form
-            onSubmit={() =>
-              fetchNextWallet(
-                walletIndex,
+            onSubmit={e => {
+              e.preventDefault()
+              return fetchNextAccount(
+                accountIndex,
                 coinTypeOptionToCoinType(coinTypeOpt)
               )
-            }
+            }}
           >
             <InputV2.Select
               label='Coin type'
@@ -131,25 +132,25 @@ export function CreateWallet({
               onChange={v => setCoinTypeOpt(v as CoinTypeOption)}
             />
             <InputV2.Number
-              label='Wallet index'
-              value={walletIndex}
-              onChange={setWalletIndex}
+              label='Account index'
+              value={accountIndex}
+              onChange={setAccountIndex}
             />
             <Path>{path}</Path>
-            <ButtonV2 type='submit'>Add wallet</ButtonV2>
+            <ButtonV2 type='submit'>Add account</ButtonV2>
           </Form>
         </FormWrapper>
       )}
-    </CreateWalletContainer>
+    </CreateAccountContainer>
   )
 }
 
-type CreateWalletProps = {
-  fetchNextWallet: (index: number, ct: CoinType) => void
-  walletIdx: number
+type CreateAccountProps = {
+  fetchNextAccount: (index: number, ct: CoinType) => void
+  accountIdx: number
 }
 
-CreateWallet.propTypes = {
-  fetchNextWallet: PropTypes.func.isRequired,
-  walletIdx: PropTypes.number.isRequired
+CreateAccount.propTypes = {
+  fetchNextAccount: PropTypes.func.isRequired,
+  accountIdx: PropTypes.number.isRequired
 }
