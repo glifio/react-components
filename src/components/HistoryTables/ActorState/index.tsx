@@ -8,8 +8,7 @@ import {
   MsigState
 } from '../../../utils'
 import Box from '../../Box'
-import { Lines, Line } from '../../Layout'
-import { Title } from '../generic'
+import { Lines, Line, PageTitle } from '../../Layout'
 import { DetailCaption } from '../detail'
 import { logger } from '../../../logger'
 
@@ -56,7 +55,7 @@ export function ActorState({ address }: { address: string }) {
 
   return (
     <div>
-      <Title>Overview</Title>
+      <PageTitle>Overview</PageTitle>
       <hr />
       <DetailCaption
         name='Actor Overview'

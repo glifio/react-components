@@ -3,11 +3,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Box from '../Box'
 
-export const Title = styled.h2`
-  margin-top: 0;
-  color: var(--purple-medium);
-`
-
 export const Badge = ({ color, text, uppercase, icon }: BadgeProps) => (
   <Box
     display='inline-flex'
