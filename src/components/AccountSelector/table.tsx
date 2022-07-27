@@ -13,17 +13,6 @@ const LoaderGlyph = styled(_LoaderGlyph)`
 
 export const Row = styled.tr`
   margin-left: ${space()};
-  &:hover {
-    cursor: pointer;
-
-    background-color: var(--blue-gray);
-
-    -webkit-transition: background-color 100ms linear;
-    -moz-transition: background-color 100ms linear;
-    -o-transition: background-color 100ms linear;
-    -ms-transition: background-color 100ms linear;
-    transition: background-color 100ms linear;
-  }
 `
 
 export const idxFromPath = (path: string): string => {
@@ -57,7 +46,7 @@ const WalletRow = ({
   showSelectedWallet
 }: WalletRowProps) => {
   return (
-    <Row key={w.robust} onClick={() => selectAccount(index)}>
+    <Row className='selectable' key={w.robust} onClick={() => selectAccount(index)}>
       <td></td>
       {showSelectedWallet ? (
         isSelected ? (

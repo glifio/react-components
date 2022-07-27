@@ -27,11 +27,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
 
   return (
     <tr
-      css={`
-        &:hover {
-          cursor: pointer;
-        }
-      `}
+      className='selectable'
       onClick={() => {
         if (props?.idHref(proposal.id).charAt(0) === '/') {
           router.push(idHref(proposal.id))
