@@ -6,7 +6,6 @@ import { SmartLink } from '../Link/SmartLink'
 import { AppIconHeaderFooter } from '../Icons'
 import { LabeledText, LabeledTextProps } from '../LabeledText'
 import { AddressLink, AddressLinkProps } from '../LabeledText/AddressLink'
-import AppIconWrapper from './AppIconWrapper'
 
 const Header = styled.header`
   position: sticky;
@@ -69,7 +68,6 @@ export function AppHeader(props: AppHeaderProps) {
   const {
     logout,
     connection,
-    appTitle,
     appIcon,
     appUrl,
     addressLinks,
@@ -82,11 +80,9 @@ export function AppHeader(props: AppHeaderProps) {
       <NavLeft>
         {appIcon &&
           (appUrl ? (
-            <NavLinkSimple href={appUrl}>
-              <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
-            </NavLinkSimple>
+            <NavLinkSimple href={appUrl}>{appIcon}</NavLinkSimple>
           ) : (
-            <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
+            appIcon
           ))}
         {addressLinks?.map((addressLink, index) => (
           <AddressLink key={index} {...addressLink} />
@@ -117,7 +113,6 @@ export function AppHeader(props: AppHeaderProps) {
 export interface AppHeaderProps {
   logout?: () => void
   connection?: JSX.Element
-  appTitle?: string
   appIcon?: JSX.Element
   appUrl?: string
   addressLinks?: Array<AddressLinkProps>
@@ -132,7 +127,6 @@ export interface AppHeaderProps {
 export const AppHeaderPropTypes = {
   logout: PropTypes.func,
   connection: PropTypes.node,
-  appTitle: PropTypes.string,
   appIcon: PropTypes.node,
   appUrl: PropTypes.string,
   addressLinks: PropTypes.arrayOf(PropTypes.shape(AddressLink.propTypes)),
