@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { TR, TD } from '../../../Table'
-import { Badge } from '../../generic'
+import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../Link/SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import {

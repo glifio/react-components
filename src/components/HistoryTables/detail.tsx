@@ -11,7 +11,6 @@ import {
 } from '../../generated/graphql'
 import Box from '../Box'
 import { ButtonV2, ButtonV2Link } from '../Button/V2'
-import { Badge } from './generic'
 import {
   IconSpeedUp,
   IconCancel,
@@ -20,7 +19,7 @@ import {
   IconFail,
   IconClock
 } from '../Icons'
-import { Lines, Line, AddressLine, PageTitle } from '../Layout'
+import { Badge, Lines, Line, AddressLine, PageTitle } from '../Layout'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
 import { useUnformattedDateTime } from './MessageHistory/hooks/useAge'
