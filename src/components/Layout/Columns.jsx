@@ -5,6 +5,10 @@ export const OneColumn = styled.div`
   position: relative;
   padding: 3rem 1.5rem;
 
+  &:not(:last-child) {
+    padding-bottom: 0;
+  }
+
   @media (min-width: ${devices.tablet}) {
     padding: 3rem;
   }
