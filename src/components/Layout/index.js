@@ -1,3 +1,4 @@
+export * from './Badge'
 export * from './Boxes'
 export * from './Buttons'
 export * from './Columns'
