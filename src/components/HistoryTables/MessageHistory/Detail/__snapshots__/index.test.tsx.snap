@@ -55,28 +55,6 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   align-items: center;
 }
 
-.c16 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-radius: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  background-color: #E0D7FE;
-  color: #5E26FF;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  height: 2em;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  line-height: 2em;
-  text-align: center;
-  grid-gap: 0.75em;
-}
-
 .c5 {
   width: 1.125em;
   height: 20px;
@@ -160,8 +138,24 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   text-decoration: underline;
 }
 
-.c1 {
+.c16 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-m);
+  padding: 0 1em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 1em;
+  text-align: center;
+  white-space: nowrap;
   color: var(--purple-medium);
+  background-color: var(--purple-light);
 }
 
 .c3 {
@@ -222,6 +216,11 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   align-items: center;
   gap: 0.75em;
   word-break: break-word;
+}
+
+.c1 {
+  margin-top: 0;
+  color: var(--purple-medium);
 }
 
 <div>
@@ -445,10 +444,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
       <div>
         <div
           class="c16"
-          color="purple.medium"
-          display="inline-flex"
-          height="2em"
-          style="white-space: nowrap;"
+          color="purple"
         >
           <span>
             SEND
@@ -513,72 +509,6 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.c19 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-radius: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  background-color: #E0D7FE;
-  color: #5E26FF;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  height: 2em;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  line-height: 2em;
-  text-align: center;
-  grid-gap: 0.75em;
-}
-
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-radius: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  background-color: #D2F5ED;
-  color: #007B39;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  height: 2em;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  line-height: 2em;
-  text-align: center;
-  grid-gap: 0.75em;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-radius: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  background-color: #FFDC99;
-  color: #C59900;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  height: 2em;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  line-height: 2em;
-  text-align: center;
-  grid-gap: 0.75em;
 }
 
 .c8 {
@@ -669,8 +599,64 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   text-decoration: underline;
 }
 
-.c1 {
+.c19 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-m);
+  padding: 0 1em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 1em;
+  text-align: center;
+  white-space: nowrap;
   color: var(--purple-medium);
+  background-color: var(--purple-light);
+}
+
+.c5 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-m);
+  padding: 0 1em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 1em;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--green-medium);
+  background-color: var(--green-light);
+}
+
+.c7 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-m);
+  padding: 0 1em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 1em;
+  text-align: center;
+  white-space: nowrap;
+  color: var(--yellow-dark);
+  background-color: var(--yellow-light);
 }
 
 .c3 {
@@ -733,6 +719,11 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   word-break: break-word;
 }
 
+.c1 {
+  margin-top: 0;
+  color: var(--purple-medium);
+}
+
 .c20 {
   color: var(--gray-medium);
 }
@@ -774,10 +765,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       <div>
         <div
           class="c5"
-          color="green.medium"
-          display="inline-flex"
-          height="2em"
-          style="white-space: nowrap;"
+          color="green"
         >
           <svg
             class="c6"
@@ -801,10 +789,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
         </div>
         <div
           class="c7"
-          color="yellow.medium"
-          display="inline-flex"
-          height="2em"
-          style="white-space: nowrap;"
+          color="yellow"
         >
           <span>
             0 / 50 Confirmations
@@ -1005,10 +990,7 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       <div>
         <div
           class="c19"
-          color="purple.medium"
-          display="inline-flex"
-          height="2em"
-          style="white-space: nowrap;"
+          color="purple"
         >
           <span>
             SEND
@@ -1153,10 +1135,6 @@ exports[`Message detail view it renders the loading view correctly 1`] = `
   grid-gap: 1rem;
 }
 
-.c1 {
-  color: var(--purple-medium);
-}
-
 .c4 {
   padding: 1.5em;
   border-radius: 8px;
@@ -1215,6 +1193,11 @@ exports[`Message detail view it renders the loading view correctly 1`] = `
 
 .c3 > p[role='button'] {
   margin: 0;
+}
+
+.c1 {
+  margin-top: 0;
+  color: var(--purple-medium);
 }
 
 .c6 {
@@ -1307,10 +1290,6 @@ exports[`Message detail view it renders the not found state correctly 1`] = `
   grid-gap: 1rem;
 }
 
-.c1 {
-  color: var(--purple-medium);
-}
-
 .c4 {
   padding: 1.5em;
   border-radius: 8px;
@@ -1369,6 +1348,11 @@ exports[`Message detail view it renders the not found state correctly 1`] = `
 
 .c3 > p[role='button'] {
   margin: 0;
+}
+
+.c1 {
+  margin-top: 0;
+  color: var(--purple-medium);
 }
 
 <div>
@@ -1458,28 +1442,6 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.c19 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-radius: 1em;
-  padding-left: 1em;
-  padding-right: 1em;
-  background-color: #E0D7FE;
-  color: #5E26FF;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  height: 2em;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  line-height: 2em;
-  text-align: center;
-  grid-gap: 0.75em;
 }
 
 .c4 {
@@ -1706,8 +1668,24 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   stroke: var(--red-medium);
 }
 
-.c1 {
+.c19 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-m);
+  padding: 0 1em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 1em;
+  text-align: center;
+  white-space: nowrap;
   color: var(--purple-medium);
+  background-color: var(--purple-light);
 }
 
 .c7 {
@@ -1768,6 +1746,11 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   align-items: center;
   gap: 0.75em;
   word-break: break-word;
+}
+
+.c1 {
+  margin-top: 0;
+  color: var(--purple-medium);
 }
 
 <div>
@@ -2027,10 +2010,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
       <div>
         <div
           class="c19"
-          color="purple.medium"
-          display="inline-flex"
-          height="2em"
-          style="white-space: nowrap;"
+          color="purple"
         >
           <span>
             SEND

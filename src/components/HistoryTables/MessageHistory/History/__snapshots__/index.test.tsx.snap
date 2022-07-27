@@ -45,10 +45,6 @@ exports[`Message history it renders no message history correctly with historical
   border-radius: 4px;
 }
 
-.c1 {
-  color: var(--purple-medium);
-}
-
 .c2 {
   padding: 1.5em;
   border-radius: 8px;
@@ -88,6 +84,11 @@ exports[`Message history it renders no message history correctly with historical
 
 .c3 hr {
   border-color: var(--yellow-dark);
+}
+
+.c1 {
+  margin-top: 0;
+  color: var(--purple-medium);
 }
 
 @media (max-width:1600px) {
