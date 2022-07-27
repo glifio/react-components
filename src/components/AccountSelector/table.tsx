@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { TABLE, TR, TH, TD } from '../Table'
 import { AddressLink } from '../AddressLink'
 import { space } from '../theme'
 import { Wallet } from '../../services/WalletProvider'
@@ -12,12 +11,12 @@ const LoaderGlyph = styled(_LoaderGlyph)`
   margin-left: ${space()};
 `
 
-export const Row = styled(TR)`
+export const Row = styled.tr`
   margin-left: ${space()};
   &:hover {
     cursor: pointer;
 
-    background-color: var(--purple-light);
+    background-color: var(--blue-gray);
 
     -webkit-transition: background-color 100ms linear;
     -moz-transition: background-color 100ms linear;
@@ -59,31 +58,31 @@ const WalletRow = ({
 }: WalletRowProps) => {
   return (
     <Row key={w.robust} onClick={() => selectAccount(index)}>
-      <TD></TD>
+      <td></td>
       {showSelectedWallet ? (
         isSelected ? (
-          <TD>
+          <td>
             <StatusOuter data-testid='selected-account'>
               <StatusInner />
             </StatusOuter>
-          </TD>
+          </td>
         ) : (
-          <TD></TD>
+          <td></td>
         )
       ) : (
         <></>
       )}
-      <TD>{idxFromPath(w.path)}</TD>
-      <TD>Account {idxFromPath(w.path)}</TD>
-      <TD>
+      <td>{idxFromPath(w.path)}</td>
+      <td>Account {idxFromPath(w.path)}</td>
+      <td>
         <AddressLink
           address={convertAddrToPrefix(w.robust)}
           shouldTruncate={false}
         />
-      </TD>
-      <TD>{makeFriendlyBalance(w.balance, 6, true)}</TD>
-      <TD>{convertAddrToPrefix(w.id) || '-'}</TD>
-      <TD>{w.path}</TD>
+      </td>
+      <td>{makeFriendlyBalance(w.balance, 6, true)}</td>
+      <td>{convertAddrToPrefix(w.id) || '-'}</td>
+      <td>{w.path}</td>
     </Row>
   )
 }
@@ -112,18 +111,18 @@ export const AccountsTable = ({
   selectedWalletPath
 }: AccountsTableProps) => {
   return (
-    <TABLE className='narrow'>
+    <table>
       <thead>
-        <TR>
-          {showSelectedWallet && <TH></TH>}
-          <TH></TH>
-          <TH>#</TH>
-          <TH>Name</TH>
-          <TH>Address</TH>
-          <TH>Balance</TH>
-          <TH>Id</TH>
-          <TH>Path</TH>
-        </TR>
+        <tr>
+          {showSelectedWallet && <th></th>}
+          <th></th>
+          <th>#</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Balance</th>
+          <th>Id</th>
+          <th>Path</th>
+        </tr>
       </thead>
       <tbody>
         {wallets.map((w, i) => (
@@ -140,19 +139,19 @@ export const AccountsTable = ({
           />
         ))}
         {loadingWallets && (
-          <TR>
-            <TD></TD>
-            <TD>
+          <tr>
+            <td></td>
+            <td>
               <LoaderGlyph />
-            </TD>
-            <TD>Loading...</TD>
-            <TD></TD>
-            <TD></TD>
-            <TD></TD>
-          </TR>
+            </td>
+            <td>Loading...</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
         )}
       </tbody>
-    </TABLE>
+    </table>
   )
 }
 

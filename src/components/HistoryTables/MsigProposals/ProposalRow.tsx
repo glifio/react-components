@@ -5,7 +5,6 @@ import { useMemo } from 'react'
 import { useRouter } from 'next/router'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { Badge } from '../generic'
-import { TR, TD } from '../../Table'
 import { AddressLink } from '../../AddressLink'
 import { SmartLink } from '../../Link/SmartLink'
 import { MsigTransaction } from '../../../generated/graphql'
@@ -27,7 +26,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
   )
 
   return (
-    <TR
+    <tr
       css={`
         &:hover {
           cursor: pointer;
@@ -41,36 +40,36 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
         }
       }}
     >
-      <TD>
+      <td>
         <SmartLink href={idHref(proposal.id)}>{proposal.id}</SmartLink>
-      </TD>
-      <TD>
+      </td>
+      <td>
         <Badge
           color='purple'
           text={getMethodName('/multisig', proposal.method)}
         />
-      </TD>
-      <TD>
+      </td>
+      <td>
         <AddressLink
           id={proposal.approved[0].id}
           address={proposal.approved[0].robust}
           disableLink={proposerIsInspecting}
           hideCopy
         />
-      </TD>
-      <TD>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</TD>
-      <TD>{proposal.approved?.length}</TD>
+      </td>
+      <td>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</td>
+      <td>{proposal.approved?.length}</td>
       {actionRequired && (
-        <TD
+        <td
           css={`
             color: ${({ theme }: { theme: typeof appTheme }) =>
               theme.colors.core.primary};
           `}
         >
           Action required
-        </TD>
+        </td>
       )}
-    </TR>
+    </tr>
   )
 }
 

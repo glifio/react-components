@@ -7,7 +7,7 @@ import {
   ADDRESS_PROPTYPE,
   GRAPHQL_ADDRESS_PROP_TYPE
 } from '../../../customPropTypes'
-import { TABLE, TableCaption } from '../../Table'
+import { TableCaption } from '../../Table'
 import { Address, useMsigPendingQuery } from '../../../generated/graphql'
 import { Title } from '../generic'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
@@ -24,7 +24,7 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
   return (
     <Box>
       <Title>Safe Proposals</Title>
-      <TABLE>
+      <table>
         <TableCaption
           name='Safe Proposals'
           loading={loading}
@@ -48,7 +48,7 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
                 />
               ))}
         </tbody>
-      </TABLE>
+      </table>
     </Box>
   )
 }

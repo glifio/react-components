@@ -6,7 +6,7 @@ import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../../customPropTypes'
 import { ButtonV2 } from '../../../Button/V2'
-import { TABLE, TableCaption } from '../../../Table'
+import { TableCaption } from '../../../Table'
 import { useAllMessages } from '../hooks/useAllMessages'
 import { Title } from '../../generic'
 import { SyncStatus } from '../../../SyncStatus'
@@ -32,7 +32,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
       <Title>Transaction History</Title>
       {props.warnMissingData && <SyncStatus />}
       <br />
-      <TABLE className='narrow'>
+      <table>
         <TableCaption
           name='Transaction History'
           loading={isEmpty && loading}
@@ -58,7 +58,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
             />
           ))}
         </tbody>
-      </TABLE>
+      </table>
       {!isEmpty && !lastPage && (
         <Box pt='4.5rem' textAlign='center'>
           <ButtonV2

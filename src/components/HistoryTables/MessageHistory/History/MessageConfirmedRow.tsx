@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { TR, TD } from '../../../Table'
 import { Badge } from '../../generic'
 import { SmartLink } from '../../../Link/SmartLink'
 import { AddressLink } from '../../../AddressLink'
@@ -31,43 +30,43 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const age = useAge(message, time)
 
   return (
-    <TR>
-      <TD>
+    <tr>
+      <td>
         <SmartLink href={cidHref(message.cid)}>
           {truncateAddress(message.cid)}
         </SmartLink>
-      </TD>
-      <TD>
+      </td>
+      <td>
         <Badge color='purple' text={methodName} />
-      </TD>
-      <TD>{message.height}</TD>
-      <TD>{age}</TD>
-      <TD>
+      </td>
+      <td>{message.height}</td>
+      <td>{age}</td>
+      <td>
         <AddressLink
           id={message.from.id}
           address={message.from.robust}
           disableLink={fromAddressIsInspecting}
           hideCopy
         />
-      </TD>
+      </td>
       {props.inspectingAddress && (
-        <TD>
+        <td>
           <Badge
             color={toAddressIsInspecting ? 'green' : 'yellow'}
             text={toAddressIsInspecting ? 'IN' : 'OUT'}
           />
-        </TD>
+        </td>
       )}
-      <TD>
+      <td>
         <AddressLink
           id={message.to.id}
           address={message.to.robust}
           disableLink={toAddressIsInspecting}
           hideCopy
         />
-      </TD>
-      <TD>{value}</TD>
-    </TR>
+      </td>
+      <td>{value}</td>
+    </tr>
   )
 }
 
