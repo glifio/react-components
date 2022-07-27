@@ -1,5 +1,5 @@
 import { CoinType } from '@glif/filecoin-address'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { createPath } from '../../utils'
@@ -9,26 +9,26 @@ import { InputV2 } from '../InputV2'
 import { Toggle } from '../InputV2/Toggle'
 import { ShadowBox } from '../Layout'
 import { space } from '../theme'
+import { LoginOption, LOGIN_OPTION_PROPTYPE } from '../../customPropTypes'
 
 const CreateAccountContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin-top: ${space()};
-
   align-items: center;
 
   > * {
     width: fit-content;
 
-    label {
-      margin-top: ${space()};
-    }
-
     button {
       width: 38.2%;
       min-width: fit-content;
     }
+  }
+
+  > label {
+    margin-top: ${space()};
   }
 `
 
@@ -58,6 +58,18 @@ const Form = styled.form`
   }
 `
 
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > p {
+    color: var(--red-medium);
+    margin-top: ${space()};
+    margin-bottom: 0;
+  }
+`
+
 enum CoinTypeOption {
   MAINNET = 'Mainnet',
   LEGACY = 'Legacy'
@@ -79,6 +91,9 @@ const coinTypeOptionToCoinType = (cto: CoinTypeOption) => {
 
 export function CreateAccount({
   fetchNextAccount,
+  keyDerive,
+  loginOption,
+  setError,
   accountIdx: defaultAccountIdx
 }: CreateAccountProps) {
   const [expertMode, setExpertMode] = useState(false)
@@ -93,6 +108,26 @@ export function CreateAccount({
         coinTypeCode(coinTypeOptionToCoinType(coinTypeOpt)),
         accountIndex
       )
+
+  const showExport =
+    loginOption === LoginOption.CREATE_MNEMONIC ||
+    loginOption === LoginOption.IMPORT_MNEMONIC ||
+    loginOption === LoginOption.IMPORT_SINGLE_KEY
+
+  const exportPrivateKey = async () => {
+    try {
+      const blob = new Blob([await keyDerive(path)], {
+        type: 'text'
+      })
+      const link = document.createElement('a')
+      link.href = window.URL.createObjectURL(blob)
+      link.download = `delete_me.txt`
+      link.click()
+      link.remove()
+    } catch (err) {
+      setError(err?.message || JSON.stringify(err))
+    }
+  }
 
   return (
     <CreateAccountContainer>
@@ -137,7 +172,16 @@ export function CreateAccount({
               onChange={setAccountIndex}
             />
             <Path>{path}</Path>
-            <ButtonV2 type='submit'>Add account</ButtonV2>
+            <ButtonContainer>
+              <ButtonV2 green type='submit'>
+                Add account
+              </ButtonV2>
+              {showExport && (
+                <p role='button' onClick={exportPrivateKey}>
+                  Export private key
+                </p>
+              )}
+            </ButtonContainer>
           </Form>
         </FormWrapper>
       )}
@@ -146,11 +190,16 @@ export function CreateAccount({
 }
 
 type CreateAccountProps = {
-  fetchNextAccount: (index: number, ct: CoinType) => void
   accountIdx: number
+  loginOption: LoginOption
+  keyDerive: (path: string) => Promise<string>
+  setError: Dispatch<SetStateAction<string>>
+  fetchNextAccount: (index: number, ct: CoinType) => void
 }
 
 CreateAccount.propTypes = {
-  fetchNextAccount: PropTypes.func.isRequired,
-  accountIdx: PropTypes.number.isRequired
+  accountIdx: PropTypes.number.isRequired,
+  loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
+  keyDerive: PropTypes.func.isRequired,
+  fetchNextAccount: PropTypes.func.isRequired
 }

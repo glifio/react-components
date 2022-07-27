@@ -162,15 +162,15 @@ exports[`Create new account it creates a new account at the wallet index by defa
   width: fit-content;
 }
 
-.c0 > * label {
-  margin-top: 10px;
-}
-
 .c0 > * button {
   width: 38.2%;
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;
   min-width: fit-content;
+}
+
+.c0 > label {
+  margin-top: 10px;
 }
 
 <div

@@ -37,7 +37,8 @@ const AccountSelector = ({
     getProvider,
     wallets,
     walletError,
-    lotusApiAddr
+    lotusApiAddr,
+    loginOption
   } = useWalletProvider()
 
   const wallet = useWallet()
@@ -64,6 +65,18 @@ const AccountSelector = ({
         }
       }),
     [apolloClient]
+  )
+
+  const keyDerive = useCallback(
+    async (path: string) => {
+      try {
+        const provider = await getProvider()
+        return provider.wallet.keyDerive(path)
+      } catch (err) {
+        setUncaughtError(err?.message || JSON.stringify(err))
+      }
+    },
+    [getProvider]
   )
 
   const [loadedFirstWallet, setLoadedFirstWallet] = useState(false)
@@ -189,6 +202,9 @@ const AccountSelector = ({
       {!loadingWallets && (
         <CreateAccount
           fetchNextAccount={fetchNextAccount}
+          keyDerive={keyDerive}
+          loginOption={loginOption}
+          setError={setUncaughtError}
           accountIdx={wallets.length}
         />
       )}

@@ -365,15 +365,15 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   width: fit-content;
 }
 
-.c18 > * label {
-  margin-top: 10px;
-}
-
 .c18 > * button {
   width: 38.2%;
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;
   min-width: fit-content;
+}
+
+.c18 > label {
+  margin-top: 10px;
 }
 
 @media (max-width:1600px) {

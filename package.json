@@ -90,7 +90,7 @@
     "@glif/filecoin-message": "^2.0.0-beta.16",
     "@glif/filecoin-number": "^2.0.0-beta.16",
     "@glif/filecoin-rpc-client": "^2.0.0-beta.8",
-    "@glif/filecoin-wallet-provider": "^2.0.0-beta.17",
+    "@glif/filecoin-wallet-provider": "^2.0.0-beta.18",
     "@glif/logger": "^2.0.0-beta.7",
     "@ipld/dag-cbor": "^7.0.2",
     "@ledgerhq/hw-transport": "^6.27.1",
