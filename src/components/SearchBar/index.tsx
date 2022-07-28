@@ -50,6 +50,7 @@ export const SearchBar = ({
   placeholder,
   inputError,
   hideErrorMessage,
+  trimInput,
   onInput,
   onSearch
 }: SearchBarProps) => {
@@ -81,7 +82,7 @@ export const SearchBar = ({
           placeholder={placeholder}
           value={value}
           onChange={e => {
-            const input = e.target.value.trim()
+            const input = trimInput ? e.target.value.trim() : e.target.value
             onInput(input)
             setValue(input)
           }}
@@ -111,6 +112,7 @@ export interface SearchBarProps {
   placeholder?: string
   inputError?: string
   hideErrorMessage?: boolean
+  trimInput?: boolean
   onInput?: (value: string) => void
   onSearch?: (value: string) => void
 }
@@ -124,6 +126,7 @@ SearchBar.propTypes = {
   placeholder: PropTypes.string,
   inputError: PropTypes.string,
   hideErrorMessage: PropTypes.bool,
+  trimInput: PropTypes.bool,
   onInput: PropTypes.func,
   onSearch: PropTypes.func
 }
@@ -137,6 +140,7 @@ SearchBar.defaultProps = {
   placeholder: '',
   inputError: '',
   hideErrorMessage: false,
+  trimInput: false,
   onInput: () => {},
   onSearch: () => {}
 }
