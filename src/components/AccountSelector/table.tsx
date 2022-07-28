@@ -45,7 +45,11 @@ const WalletRow = ({
   showSelectedWallet
 }: WalletRowProps) => {
   return (
-    <Row className='selectable' key={w.robust} onClick={() => selectAccount(index)}>
+    <Row
+      className='selectable'
+      key={w.robust}
+      onClick={() => selectAccount(index)}
+    >
       <td></td>
       {showSelectedWallet ? (
         isSelected ? (
