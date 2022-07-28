@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AccountSelector it displays the accounts in a table view and option to load next account 1`] = `
-.c12 {
+.c13 {
   min-width: 0;
   box-sizing: border-box;
   color: var(--purple-medium);
@@ -15,7 +15,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   align-items: center;
 }
 
-.c15 {
+.c16 {
   width: 24;
   height: 24;
 }
@@ -60,7 +60,17 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   border-color: var(--gray-medium);
 }
 
-.c14 {
+.c11 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c11 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.c15 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -85,23 +95,18 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   outline: none;
 }
 
-.c17 {
+.c18 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c13:hover .c16 {
+.c14:hover .c17 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c11 h4 {
-  margin: 0;
-  color: var(--gray-dark);
-}
-
-.c11 .address {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -110,19 +115,19 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   line-height: 1.5;
 }
 
-.c11 .address a {
+.c12 a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c11 .address a:hover {
+.c12 a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c19 {
+.c20 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -149,26 +154,26 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   font-size: 1.25em;
 }
 
-.c19 svg path {
+.c20 svg path {
   stroke: var(--black);
 }
 
-.c19:hover {
+.c20:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c19:hover svg path {
+.c20:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c19:active {
+.c20:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c19:active svg path {
+.c20:active svg path {
   stroke: var(--white) !important;
 }
 
@@ -219,7 +224,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
 }
 
 .c6 {
-  margin-left: 10px;
+  margin-left: var(--space-m);
 }
 
 .c6:hover {
@@ -254,12 +259,12 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   transform: translate(-50%,-50%);
 }
 
-.c20 {
+.c21 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -271,7 +276,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   justify-content: space-between;
 }
 
-.c20 > *:first-child {
+.c21 > *:first-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -281,26 +286,26 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   flex-direction: column;
 }
 
-.c20 > *:last-child:not(.toggle-wrapper) {
+.c21 > *:last-child:not(.toggle-wrapper) {
   -webkit-flex: 0 0 50%;
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
 }
 
-.c20 span.info,
-.c20 span.error {
+.c21 span.info,
+.c21 span.error {
   font-size: 0.875rem;
 }
 
-.c20 span.error {
+.c21 span.error {
   color: var(--red-medium);
 }
 
-.c21 .toggle-wrapper {
+.c22 .toggle-wrapper {
   position: relative;
 }
 
-.c21 input {
+.c22 input {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -309,7 +314,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   opacity: 0;
 }
 
-.c21 .toggle {
+.c22 .toggle {
   display: inline-block;
   position: relative;
   width: 2.25em;
@@ -319,7 +324,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--blue-medium);
 }
 
-.c21 .toggle::after {
+.c22 .toggle::after {
   content: '';
   position: absolute;
   top: 0;
@@ -330,17 +335,17 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--white);
 }
 
-.c21 input:checked ~ .toggle {
+.c22 input:checked ~ .toggle {
   border-color: var(--blue-dark);
   background-color: var(--blue-dark);
 }
 
-.c21 input:checked ~ .toggle::after {
+.c22 input:checked ~ .toggle::after {
   left: auto;
   right: 0;
 }
 
-.c18 {
+.c19 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -352,28 +357,28 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  margin-top: 10px;
+  margin-top: var(--space-m);
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
 }
 
-.c18 > * {
+.c19 > * {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }
 
-.c18 > * button {
+.c19 > * button {
   width: 38.2%;
   min-width: -webkit-fit-content;
   min-width: -moz-fit-content;
   min-width: fit-content;
 }
 
-.c18 > label {
-  margin-top: 10px;
+.c19 > label {
+  margin-top: var(--space-m);
 }
 
 @media (max-width:1600px) {
@@ -491,10 +496,11 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
           >
             <div
               class="c11"
-              color="var(--purple-medium)"
             >
+              
               <div
-                class="address"
+                class="c12"
+                color="var(--purple-medium)"
               >
                 <a
                   href="https://explorer-calibration.glif.link/actor/?address=t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
@@ -504,18 +510,18 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi
                 </a>
                 <div
-                  class="c12"
+                  class="c13"
                   color="var(--purple-medium)"
                   display="flex"
                 >
                   <button
-                    class="c13 c14"
+                    class="c14 c15"
                     display="flex"
                     role="button"
                     type="button"
                   >
                     <svg
-                      class="c15 c16 c17"
+                      class="c16 c17 c18"
                       fill="none"
                       height="24"
                       viewBox="0 0 24 24"
@@ -583,10 +589,11 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
           >
             <div
               class="c11"
-              color="var(--purple-medium)"
             >
+              
               <div
-                class="address"
+                class="c12"
+                color="var(--purple-medium)"
               >
                 <a
                   href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
@@ -596,18 +603,18 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a
                 </a>
                 <div
-                  class="c12"
+                  class="c13"
                   color="var(--purple-medium)"
                   display="flex"
                 >
                   <button
-                    class="c13 c14"
+                    class="c14 c15"
                     display="flex"
                     role="button"
                     type="button"
                   >
                     <svg
-                      class="c15 c16 c17"
+                      class="c16 c17 c18"
                       fill="none"
                       height="24"
                       viewBox="0 0 24 24"
@@ -675,10 +682,11 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
           >
             <div
               class="c11"
-              color="var(--purple-medium)"
             >
+              
               <div
-                class="address"
+                class="c12"
+                color="var(--purple-medium)"
               >
                 <a
                   href="https://explorer-calibration.glif.link/actor/?address=t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb2uq"
@@ -688,18 +696,18 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb2uq
                 </a>
                 <div
-                  class="c12"
+                  class="c13"
                   color="var(--purple-medium)"
                   display="flex"
                 >
                   <button
-                    class="c13 c14"
+                    class="c14 c15"
                     display="flex"
                     role="button"
                     type="button"
                   >
                     <svg
-                      class="c15 c16 c17"
+                      class="c16 c17 c18"
                       fill="none"
                       height="24"
                       viewBox="0 0 24 24"
@@ -745,15 +753,15 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
       </tbody>
     </table>
     <div
-      class="c18"
+      class="c19"
     >
       <button
-        class="c19"
+        class="c20"
       >
         Next account
       </button>
       <label
-        class="c20 c21"
+        class="c21 c22"
       >
         <div>
           <span>
@@ -862,7 +870,7 @@ exports[`AccountSelector it displays the loading screen first 1`] = `
 `;
 
 exports[`AccountSelector it displays the selected account when showSelectedACcount is passed 1`] = `
-.c12 {
+.c13 {
   min-width: 0;
   box-sizing: border-box;
   color: var(--purple-medium);
@@ -876,7 +884,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   align-items: center;
 }
 
-.c18 {
+.c19 {
   display: inline-block;
   height: 48px;
   width: 48px;
@@ -884,7 +892,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   background-color: var(--purple-medium);
 }
 
-.c20 {
+.c21 {
   display: inline-block;
   height: 24px;
   width: 24px;
@@ -897,7 +905,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   animation-iteration-count: infinite;
 }
 
-.c15 {
+.c16 {
   width: 24;
   height: 24;
 }
@@ -942,7 +950,17 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   border-color: var(--gray-medium);
 }
 
-.c14 {
+.c11 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c11 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.c15 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -967,23 +985,18 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   outline: none;
 }
 
-.c17 {
+.c18 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c13:hover .c16 {
+.c14:hover .c17 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c11 h4 {
-  margin: 0;
-  color: var(--gray-dark);
-}
-
-.c11 .address {
+.c12 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -992,13 +1005,13 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   line-height: 1.5;
 }
 
-.c11 .address a {
+.c12 a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c11 .address a:hover {
+.c12 a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -1050,12 +1063,12 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   text-decoration: underline;
 }
 
-.c19 {
-  margin-left: 10px;
+.c20 {
+  margin-left: var(--space-m);
 }
 
 .c6 {
-  margin-left: 10px;
+  margin-left: var(--space-m);
 }
 
 .c6:hover {
@@ -1205,10 +1218,11 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
           >
             <div
               class="c11"
-              color="var(--purple-medium)"
             >
+              
               <div
-                class="address"
+                class="c12"
+                color="var(--purple-medium)"
               >
                 <a
                   href="https://explorer-calibration.glif.link/actor/?address=t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
@@ -1218,18 +1232,18 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi
                 </a>
                 <div
-                  class="c12"
+                  class="c13"
                   color="var(--purple-medium)"
                   display="flex"
                 >
                   <button
-                    class="c13 c14"
+                    class="c14 c15"
                     display="flex"
                     role="button"
                     type="button"
                   >
                     <svg
-                      class="c15 c16 c17"
+                      class="c16 c17 c18"
                       fill="none"
                       height="24"
                       viewBox="0 0 24 24"
@@ -1297,10 +1311,11 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
           >
             <div
               class="c11"
-              color="var(--purple-medium)"
             >
+              
               <div
-                class="address"
+                class="c12"
+                color="var(--purple-medium)"
               >
                 <a
                   href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
@@ -1310,18 +1325,18 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a
                 </a>
                 <div
-                  class="c12"
+                  class="c13"
                   color="var(--purple-medium)"
                   display="flex"
                 >
                   <button
-                    class="c13 c14"
+                    class="c14 c15"
                     display="flex"
                     role="button"
                     type="button"
                   >
                     <svg
-                      class="c15 c16 c17"
+                      class="c16 c17 c18"
                       fill="none"
                       height="24"
                       viewBox="0 0 24 24"
@@ -1389,10 +1404,11 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
           >
             <div
               class="c11"
-              color="var(--purple-medium)"
             >
+              
               <div
-                class="address"
+                class="c12"
+                color="var(--purple-medium)"
               >
                 <a
                   href="https://explorer-calibration.glif.link/actor/?address=t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb2uq"
@@ -1402,18 +1418,18 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb2uq
                 </a>
                 <div
-                  class="c12"
+                  class="c13"
                   color="var(--purple-medium)"
                   display="flex"
                 >
                   <button
-                    class="c13 c14"
+                    class="c14 c15"
                     display="flex"
                     role="button"
                     type="button"
                   >
                     <svg
-                      class="c15 c16 c17"
+                      class="c16 c17 c18"
                       fill="none"
                       height="24"
                       viewBox="0 0 24 24"
@@ -1466,10 +1482,10 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
             class="c7 c8"
           >
             <span
-              class="c18 c19"
+              class="c19 c20"
             >
               <span
-                class="c20"
+                class="c21"
               />
             </span>
           </td>
