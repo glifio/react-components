@@ -2,27 +2,21 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useMemo, useCallback, MouseEvent } from 'react'
 import truncateAddress from '../../utils/truncateAddress'
+import { LabeledText } from '.'
 import { SmartLink } from '../Link/SmartLink'
 import { CopyText } from '../Copy'
 
 const AddressLinkEl = styled.div`
-  h4 {
-    margin: 0;
-    color: var(--gray-dark);
-  }
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
 
-  .address {
-    display: flex;
-    grid-gap: 0.25em;
-    line-height: 1.5;
-
-    a {
+  a {
+    color: ${props => props.color};
+    text-decoration: none;
+    &:hover {
       color: ${props => props.color};
-      text-decoration: none;
-      &:hover {
-        color: ${props => props.color};
-        text-decoration: underline;
-      }
+      text-decoration: underline;
     }
   }
 `
@@ -53,12 +47,9 @@ export const AddressLink = ({
     [stopPropagation]
   )
   return (
-    <AddressLinkEl color={color}>
-      {label && <h4>{label}</h4>}
-      <div className='address'>
-        {disableLink ? (
-          <span>{linkText}</span>
-        ) : (
+    <LabeledText label={label} text={disableLink ? linkText : ''}>
+      <AddressLinkEl color={color}>
+        {!disableLink && (
           <SmartLink href={linkHref} onClick={onClick}>
             {linkText}
           </SmartLink>
@@ -70,8 +61,8 @@ export const AddressLink = ({
             color={color}
           />
         )}
-      </div>
-    </AddressLinkEl>
+      </AddressLinkEl>
+    </LabeledText>
   )
 }
 

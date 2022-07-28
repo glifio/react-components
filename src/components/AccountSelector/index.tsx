@@ -10,7 +10,6 @@ import Card from '../Card'
 import Glyph from '../Glyph'
 import { Title } from '../Typography'
 import LoadingScreen from '../LoadingScreen'
-import { space } from '../theme'
 import { useWalletProvider, Wallet } from '../../services/WalletProvider'
 import { useWallet } from '../../services/WalletProvider/useWallet'
 import HelperText from './HelperText'
@@ -25,7 +24,7 @@ import { AddressDocument, AddressQuery } from '../../generated/graphql'
 
 const WalletTiles = styled.div`
   display: grid;
-  gap: ${space()};
+  gap: var(--space-m);
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 `
 
@@ -189,7 +188,7 @@ const AccountSelector = ({
         display='block'
         border='none'
         width='100%'
-        mb={space()}
+        mb='var(--space-m)'
         backgroundColor='blue.muted700'
       >
         <Box display='flex' alignItems='center'>

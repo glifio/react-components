@@ -1,9 +1,8 @@
 import styled, { css } from 'styled-components'
-import { space } from '../theme'
 
 export const Label = styled.label`
   display: flex;
-  gap: ${space()};
+  gap: var(--space-m);
   text-align: left;
 
   ${props =>

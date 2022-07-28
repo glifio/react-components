@@ -11,7 +11,6 @@ import {
 } from '../../generated/graphql'
 import Box from '../Box'
 import { ButtonV2, ButtonV2Link } from '../Button/V2'
-import { Title, Badge } from './generic'
 import {
   IconSpeedUp,
   IconCancel,
@@ -20,11 +19,11 @@ import {
   IconFail,
   IconClock
 } from '../Icons'
-import { Lines, Line, AddressLine } from '../Layout'
+import { Badge, Lines, Line, AddressLine, PageTitle } from '../Layout'
 import { PROPOSAL_ROW_PROP_TYPE } from './types'
 import { getMethodName } from './methodName'
 import { useUnformattedDateTime } from './MessageHistory/hooks/useAge'
-import { AddressLink } from '../AddressLink'
+import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
 import {
   GRAPHQL_GAS_COST_PROPTYPE,
@@ -49,7 +48,7 @@ export const Head = ({
     gridGap='1em'
     my='1em'
   >
-    <Title>{title}</Title>
+    <PageTitle>{title}</PageTitle>
     <Box display='flex' gridGap='1rem'>
       {pending && (
         <>
@@ -106,7 +105,7 @@ export const ProposalHead = ({
     gridGap='1em'
     my='1em'
   >
-    <Title>{title}</Title>
+    <PageTitle>{title}</PageTitle>
     <Box display='flex' gridGap='1rem'>
       {actionRequired && (
         <ButtonV2

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { Label } from './Label'
-import { AddressLink } from '../AddressLink'
+import { AddressLink } from '../LabeledText/AddressLink'
 
 const InfoLabel = styled(Label)`
   .info-wrapper {

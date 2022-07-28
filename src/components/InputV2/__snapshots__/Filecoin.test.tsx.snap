@@ -6,7 +6,7 @@ exports[`Filecoin input it renders attofil correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -52,7 +52,7 @@ exports[`Filecoin input it renders attofil correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper > *:first-child {
@@ -147,7 +147,7 @@ exports[`Filecoin input it renders fil correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -193,7 +193,7 @@ exports[`Filecoin input it renders fil correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper > *:first-child {
@@ -288,7 +288,7 @@ exports[`Filecoin input it renders picofil correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -334,7 +334,7 @@ exports[`Filecoin input it renders picofil correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper > *:first-child {
@@ -429,7 +429,7 @@ exports[`Filecoin input it renders the disabled state correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   text-align: left;
   pointer-events: none;
   -webkit-align-items: center;
@@ -476,7 +476,7 @@ exports[`Filecoin input it renders the disabled state correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper > *:first-child {
@@ -574,7 +574,7 @@ exports[`Filecoin input it renders the value too high state correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -620,7 +620,7 @@ exports[`Filecoin input it renders the value too high state correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper > *:first-child {
@@ -720,7 +720,7 @@ exports[`Filecoin input it renders the value too low state correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   text-align: left;
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -766,7 +766,7 @@ exports[`Filecoin input it renders the value too low state correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper > *:first-child {

@@ -9,7 +9,7 @@ import {
 } from '../../../customPropTypes'
 import { TABLE, TableCaption } from '../../Table'
 import { Address, useMsigPendingQuery } from '../../../generated/graphql'
-import { Title } from '../generic'
+import { PageTitle } from '../../Layout'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
@@ -23,7 +23,7 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
 
   return (
     <Box>
-      <Title>Safe Proposals</Title>
+      <PageTitle>Safe Proposals</PageTitle>
       <TABLE>
         <TableCaption
           name='Safe Proposals'

@@ -1,9 +1,13 @@
 import styled from 'styled-components'
-import { devices, fontSize, space } from '../theme'
+import { devices, fontSize } from '../theme'
 
 export const OneColumn = styled.div`
   position: relative;
   padding: 3rem 1.5rem;
+
+  &:not(:last-child) {
+    padding-bottom: 0;
+  }
 
   @media (min-width: ${devices.tablet}) {
     padding: 3rem;
@@ -21,7 +25,7 @@ export const OneColumn = styled.div`
 export const TwoColumns = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${space()};
+  gap: var(--space-m);
 
   @media (min-width: ${devices.tablet}) {
     display: grid;

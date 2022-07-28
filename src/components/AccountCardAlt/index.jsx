@@ -12,7 +12,7 @@ import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
 import { MAINNET_JSON_RPC_ENDPOINT } from '../../constants'
 import Button from '../Button'
 import AccountTitle from './AccountTitle'
-import { AddressLink } from '../AddressLink'
+import { AddressLink } from '../LabeledText/AddressLink'
 
 const calcGlyphAcronym = (index, nDefaultWallets) => {
   if (index < nDefaultWallets) return index.toString()
