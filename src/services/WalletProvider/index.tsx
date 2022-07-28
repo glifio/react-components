@@ -55,7 +55,7 @@ export type WalletProviderContextType = {
 
 export const WalletProviderContext = createContext<WalletProviderContextType>({
   state: { ...initialState },
-  lotusApiAddr: 'https://calibration.node.glif.io',
+  lotusApiAddr: 'https://api.calibration.node.glif.io',
   dispatch: null,
   fetchDefaultWallet: null,
   getProvider: null,
