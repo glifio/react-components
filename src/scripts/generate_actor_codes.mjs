@@ -77,7 +77,7 @@ const generateActorCIDs = async apiAddress => {
 async function main() {
   const supportedNetworkRPCs = [
     'https://api.node.glif.io',
-    'https://calibration.node.glif.io'
+    'https://api.calibration.node.glif.io'
   ]
 
   console.log(
