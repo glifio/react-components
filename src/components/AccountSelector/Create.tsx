@@ -8,14 +8,13 @@ import { ButtonV2 } from '../Button/V2'
 import { InputV2 } from '../InputV2'
 import { Toggle } from '../InputV2/Toggle'
 import { ShadowBox } from '../Layout'
-import { space } from '../theme'
 import { LoginOption, LOGIN_OPTION_PROPTYPE } from '../../customPropTypes'
 
 const CreateAccountContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: ${space()};
+  margin-top: var(--space-m);
   align-items: center;
 
   > * {
@@ -28,17 +27,17 @@ const CreateAccountContainer = styled.div`
   }
 
   > label {
-    margin-top: ${space()};
+    margin-top: var(--space-m);
   }
 `
 
 const FormWrapper = styled(ShadowBox)`
-  margin-top: ${space()};
+  margin-top: var(--space-m);
 `
 
 const Path = styled.p`
   color: var(--gray-medium);
-  padding-top: ${space()};
+  padding-top: var(--space-m);
 `
 
 /**
@@ -50,7 +49,7 @@ const Path = styled.p`
  */
 const Form = styled.form`
   > * {
-    margin: ${space()};
+    margin: var(--space-m);
 
     label {
       overflow: hidden;
@@ -65,7 +64,7 @@ const ButtonContainer = styled.div`
 
   > p {
     color: var(--red-medium);
-    margin-top: ${space()};
+    margin-top: var(--space-m);
     margin-bottom: 0;
   }
 `

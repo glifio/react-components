@@ -1,18 +1,17 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { AddressLink } from '../AddressLink'
-import { space } from '../theme'
+import { AddressLink } from '../LabeledText/AddressLink'
 import { Wallet } from '../../services/WalletProvider'
 import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
 import _LoaderGlyph from '../LoaderGlyph'
 import { WALLET_PROPTYPE } from '../../customPropTypes'
 
 const LoaderGlyph = styled(_LoaderGlyph)`
-  margin-left: ${space()};
+  margin-left: var(--space-m);
 `
 
 export const Row = styled.tr`
-  margin-left: ${space()};
+  margin-left: var(--space-m);
 `
 
 export const idxFromPath = (path: string): string => {
