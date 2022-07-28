@@ -45,7 +45,7 @@ export const loadNextAccount = async (
   }
 
   // if this account has a balance and we've loaded less than 10 wallets, load the next wallet
-  if ((balance.isGreaterThan(0) && index < 10) || index < 3) {
+  if ((balance.isGreaterThan(0) && index < 10) || index < 2) {
     await loadNextAccount(
       index + 1,
       provider,
