@@ -300,7 +300,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  margin-top: var(--space-m);
+  margin-top: var(--space-l);
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;

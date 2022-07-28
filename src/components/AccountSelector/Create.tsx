@@ -14,7 +14,7 @@ const CreateAccountContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-top: var(--space-m);
+  margin-top: var(--space-l);
   align-items: center;
 
   > * {
@@ -32,7 +32,7 @@ const CreateAccountContainer = styled.div`
 `
 
 const FormWrapper = styled(ShadowBox)`
-  margin-top: var(--space-m);
+  margin-top: var(--space-xl);
 `
 
 const Path = styled.p`
@@ -50,10 +50,10 @@ const Path = styled.p`
 const Form = styled.form`
   > * {
     margin: var(--space-m);
+  }
 
-    label {
-      overflow: hidden;
-    }
+  > label {
+    overflow: hidden;
   }
 `
 
