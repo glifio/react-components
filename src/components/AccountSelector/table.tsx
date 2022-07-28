@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { TABLE, TR, TH, TD } from '../Table'
-import { AddressLink } from '../AddressLink'
+import { AddressLink } from '../LabeledText/AddressLink'
 import { space } from '../theme'
 import { Wallet } from '../../services/WalletProvider'
 import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
