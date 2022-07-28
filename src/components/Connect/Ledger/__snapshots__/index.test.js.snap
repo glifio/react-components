@@ -52,7 +52,7 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   margin: 1.5em 0;
 }
 
@@ -71,7 +71,7 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
   width: 100%;
   max-width: 35em;
 }
@@ -84,7 +84,7 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c6 {
@@ -321,7 +321,7 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   margin: 1.5em 0;
 }
 
@@ -340,7 +340,7 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
   width: 100%;
   max-width: 35em;
 }
@@ -353,7 +353,7 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c6 {
@@ -581,7 +581,7 @@ exports[`Ledger configuration it renders correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   margin: 1.5em 0;
 }
 
@@ -600,7 +600,7 @@ exports[`Ledger configuration it renders correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
   width: 100%;
   max-width: 35em;
 }
@@ -613,7 +613,7 @@ exports[`Ledger configuration it renders correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c5 {
@@ -822,7 +822,7 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   margin: 1.5em 0;
 }
 
@@ -841,7 +841,7 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
   width: 100%;
   max-width: 35em;
 }
@@ -854,7 +854,7 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c6 {
@@ -1091,7 +1091,7 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   margin: 1.5em 0;
 }
 
@@ -1110,7 +1110,7 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
   width: 100%;
   max-width: 35em;
 }
@@ -1123,7 +1123,7 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c6 {
@@ -1363,7 +1363,7 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   margin: 1.5em 0;
 }
 
@@ -1382,7 +1382,7 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
   width: 100%;
   max-width: 35em;
 }
@@ -1395,7 +1395,7 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c6 {
@@ -1632,7 +1632,7 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   margin: 1.5em 0;
 }
 
@@ -1651,7 +1651,7 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
   width: 100%;
   max-width: 35em;
 }
@@ -1664,7 +1664,7 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c6 {

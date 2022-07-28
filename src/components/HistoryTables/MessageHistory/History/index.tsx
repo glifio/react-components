@@ -8,7 +8,7 @@ import { ADDRESS_PROPTYPE } from '../../../../customPropTypes'
 import { ButtonV2 } from '../../../Button/V2'
 import { TableCaption } from '../../../Table'
 import { useAllMessages } from '../hooks/useAllMessages'
-import { Title } from '../../generic'
+import { PageTitle } from '../../../Layout'
 import { SyncStatus } from '../../../SyncStatus'
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
@@ -29,7 +29,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 
   return (
     <Box>
-      <Title>Transaction History</Title>
+      <PageTitle>Transaction History</PageTitle>
       {props.warnMissingData && <SyncStatus />}
       <br />
       <table>

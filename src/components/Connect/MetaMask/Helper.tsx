@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { ButtonV2 } from '../../Button/V2'
-import { space } from '../../theme'
 import { SmartLink } from '../../Link/SmartLink'
 import {
   MetaMaskState,
@@ -40,10 +39,10 @@ export const HelperText: FC<
           </SmartLink>{' '}
           to get started
         </p>
-        <ButtonV2 mt={space('large')} onClick={() => window.location.reload()}>
+        <ButtonV2 mt='var(--space-l)' onClick={() => window.location.reload()}>
           Try again
         </ButtonV2>
-        <ButtonV2 mt={space('large')} onClick={back}>
+        <ButtonV2 mt='var(--space-l)' onClick={back}>
           Back
         </ButtonV2>
       </>
@@ -53,10 +52,10 @@ export const HelperText: FC<
       <>
         <h2>MetaMask locked!</h2>
         <p>Please unlock MetaMask to get started</p>
-        <ButtonV2 mt={space('large')} onClick={onRetry}>
+        <ButtonV2 mt='var(--space-l)' onClick={onRetry}>
           Try again
         </ButtonV2>
-        <ButtonV2 mt={space('large')} onClick={back}>
+        <ButtonV2 mt='var(--space-l)' onClick={back}>
           Back
         </ButtonV2>
       </>
@@ -72,10 +71,10 @@ export const HelperText: FC<
           </SmartLink>{' '}
           to get started
         </p>
-        <ButtonV2 mt={space('large')} onClick={onRetry}>
+        <ButtonV2 mt='var(--space-l)' onClick={onRetry}>
           Try again
         </ButtonV2>
-        <ButtonV2 mt={space('large')} onClick={back}>
+        <ButtonV2 mt='var(--space-l)' onClick={back}>
           Back
         </ButtonV2>
       </>
@@ -85,10 +84,10 @@ export const HelperText: FC<
     return (
       <>
         <h2>FILSnap not detected!</h2>
-        <ButtonV2 large mt={space('large')} onClick={connectFILSnap}>
+        <ButtonV2 large mt='var(--space-l)' onClick={connectFILSnap}>
           Connect FILSnap
         </ButtonV2>
-        <ButtonV2 mt={space('large')} onClick={back}>
+        <ButtonV2 mt='var(--space-l)' onClick={back}>
           Back
         </ButtonV2>
       </>
@@ -98,10 +97,10 @@ export const HelperText: FC<
       <>
         <h2>FILSnap disabled!</h2>
         <p>Please enable FILSnap in your MetaMask settings to continue.</p>
-        <ButtonV2 mt={space('large')} onClick={onRetry}>
+        <ButtonV2 mt='var(--space-l)' onClick={onRetry}>
           Try again
         </ButtonV2>
-        <ButtonV2 mt={space('large')} onClick={back}>
+        <ButtonV2 mt='var(--space-l)' onClick={back}>
           Back
         </ButtonV2>
       </>

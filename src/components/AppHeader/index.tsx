@@ -1,37 +1,38 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import { space } from '../theme'
 import { ButtonV2 } from '../Button/V2'
 import { SmartLink } from '../Link/SmartLink'
 import { AppIconHeaderFooter } from '../Icons'
-import { AddressLink, AddressLinkProps } from '../AddressLink'
-import AppIconWrapper from './AppIconWrapper'
+import { LabeledText, LabeledTextProps } from '../LabeledText'
+import { AddressLink, AddressLinkProps } from '../LabeledText/AddressLink'
 
 const Header = styled.header`
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: ${space()} 0;
-  margin: -${space()} 0;
+  padding: var(--space-m) 0;
+  margin: var(--space-nm) 0;
   background-color: var(--white-broken);
 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  column-gap: ${space('large')};
-  row-gap: ${space()};
+  column-gap: var(--space-l);
+  row-gap: var(--space-m);
 `
 
 const NavLeft = styled.nav`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: flex-end;
-  gap: ${space('large')};
+  gap: var(--space-l);
+  flex-grow: 1;
 `
 
 const NavRight = styled(NavLeft)`
-  gap: ${space()};
+  gap: var(--space-m);
+  flex-grow: 0;
 `
 
 const NavLinkSimple = styled(SmartLink)`
@@ -67,13 +68,13 @@ const NavButton = styled(ButtonV2)`
 export function AppHeader(props: AppHeaderProps) {
   const router = useRouter()
   const {
-    back,
     logout,
     connection,
-    appTitle,
     appIcon,
     appUrl,
     addressLinks,
+    labeledTexts,
+    customHeaderComps,
     appHeaderLinks
   } = props
   return (
@@ -81,23 +82,20 @@ export function AppHeader(props: AppHeaderProps) {
       <NavLeft>
         {appIcon &&
           (appUrl ? (
-            <NavLinkSimple href={appUrl}>
-              <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
-            </NavLinkSimple>
+            <NavLinkSimple href={appUrl}>{appIcon}</NavLinkSimple>
           ) : (
-            <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
+            appIcon
           ))}
         {addressLinks?.map((addressLink, index) => (
           <AddressLink key={index} {...addressLink} />
         ))}
+        {labeledTexts?.map((labeledText, index) => (
+          <LabeledText key={index} {...labeledText} />
+        ))}
+        {customHeaderComps}
         {connection}
       </NavLeft>
       <NavRight>
-        {back && (
-          <NavButton onClick={back === true ? router.back : back}>
-            Back
-          </NavButton>
-        )}
         {appHeaderLinks &&
           appHeaderLinks.map((link, index) => (
             <NavLinkRound
@@ -115,13 +113,13 @@ export function AppHeader(props: AppHeaderProps) {
 }
 
 export interface AppHeaderProps {
-  back?: boolean | (() => void)
   logout?: () => void
   connection?: JSX.Element
-  appTitle?: string
   appIcon?: JSX.Element
   appUrl?: string
   addressLinks?: Array<AddressLinkProps>
+  labeledTexts?: Array<LabeledTextProps>
+  customHeaderComps?: React.ReactNode
   appHeaderLinks?: Array<{
     title: string
     url: string
@@ -129,13 +127,16 @@ export interface AppHeaderProps {
 }
 
 export const AppHeaderPropTypes = {
-  back: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   logout: PropTypes.func,
   connection: PropTypes.node,
-  appTitle: PropTypes.string,
   appIcon: PropTypes.node,
   appUrl: PropTypes.string,
   addressLinks: PropTypes.arrayOf(PropTypes.shape(AddressLink.propTypes)),
+  labeledTexts: PropTypes.arrayOf(PropTypes.shape(LabeledText.propTypes)),
+  customHeaderComps: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   appHeaderLinks: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,

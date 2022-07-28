@@ -131,7 +131,7 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   text-align: left;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
@@ -160,7 +160,7 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c4 .button-wrapper > *:first-child {
@@ -249,7 +249,7 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   margin: 1.5em 0;
 }
 
@@ -268,7 +268,7 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
   width: 100%;
   max-width: 35em;
 }
@@ -281,7 +281,7 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 <div
@@ -526,7 +526,7 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: var(--space-m);
   margin: 1.5em 0;
 }
 
@@ -545,7 +545,7 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
   width: 100%;
   max-width: 35em;
 }
@@ -558,7 +558,7 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c4 {

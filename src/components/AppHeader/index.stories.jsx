@@ -1,22 +1,14 @@
-import theme, { space } from '../theme'
+import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import Box from '../Box'
 import { AppHeader } from './index'
 import { AppIconHeaderFooter, SafeIconHeaderFooter } from '../Icons'
+import { SearchAddressMessage } from '../SearchBar/SearchAddressMessage'
 import { NetworkConnection } from '../NetworkConnection'
 
 export default {
   title: 'AppHeader/AppHeader',
   component: AppHeader,
-  decorators: [
-    Story => (
-      <ThemeProvider theme={theme}>
-        <Box display='flex' flexDirection='column' gridGap={space()}>
-          {Story()}
-        </Box>
-      </ThemeProvider>
-    )
-  ],
+  decorators: [Story => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
@@ -65,6 +57,12 @@ App.args = {
       address: 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza'
     }
   ],
+  labeledTexts: [
+    {
+      label: 'Balance',
+      text: '100 FIL'
+    }
+  ],
   appHeaderLinks: [
     {
       title: 'Assets',
@@ -81,6 +79,31 @@ App.args = {
     {
       title: 'Admin',
       url: 'https://safe.glif.io/admin'
+    }
+  ]
+}
+
+export const Search = Template.bind({})
+Search.args = {
+  appIcon: <AppIconHeaderFooter iconStyle='dark' />,
+  appUrl: 'https://glif.io',
+  customHeaderComps: <SearchAddressMessage hideErrorMessage />,
+  appHeaderLinks: [
+    {
+      title: 'Wallet',
+      url: 'https://wallet-calibration.glif.link'
+    },
+    {
+      title: 'Safe',
+      url: 'https://safe-calibration.glif.link'
+    },
+    {
+      title: 'Blog',
+      url: 'https://blog.glif.io/'
+    },
+    {
+      title: 'Discord',
+      url: 'https://discord.gg/B9ju5Eu4Rq'
     }
   ]
 }
