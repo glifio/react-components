@@ -33,6 +33,7 @@ export const SearchAddressMessage = ({
 
   return (
     <SearchBar
+      flexBasis='40em'
       large={large}
       name='search-address-message'
       autoFocus={true}
@@ -40,6 +41,7 @@ export const SearchAddressMessage = ({
       placeholder={'Enter an address or message CID'}
       hideErrorMessage={hideErrorMessage}
       inputError={inputError}
+      trimInput={true}
       onInput={onInput}
       onSearch={onSearch}
     />
