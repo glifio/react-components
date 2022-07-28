@@ -1,13 +1,13 @@
 import { render } from '@testing-library/react'
+import LoadingScreen from '.'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import { Base } from './index.stories'
 
 describe('LoadingScreen', () => {
   test('renders the story', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>
-        <Base {...Base.args} />
+        <LoadingScreen />
       </ThemeProvider>
     )
     expect(container.firstChild).toMatchSnapshot()

@@ -1,32 +1,23 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { bool, func, number, string } from 'prop-types'
 import { CoinType } from '@glif/filecoin-address'
-import styled from 'styled-components'
+import { FilecoinNumber } from '@glif/filecoin-number'
+import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { useApolloClient } from '@apollo/client'
 
-import AccountCardAlt from '../AccountCardAlt'
-import Box from '../Box'
-import Card from '../Card'
-import Glyph from '../Glyph'
-import { Title } from '../Typography'
 import LoadingScreen from '../LoadingScreen'
 import { useWalletProvider, Wallet } from '../../services/WalletProvider'
-import { useWallet } from '../../services/WalletProvider/useWallet'
-import HelperText from './HelperText'
-import Create from './Create'
-import { TESTNET_PATH_CODE } from '../../constants'
 
 import createPath, { coinTypeCode } from '../../utils/createPath'
 import convertAddrToPrefix from '../../utils/convertAddrToPrefix'
 import { COIN_TYPE_PROPTYPE } from '../../customPropTypes'
 import { logger } from '../../logger'
 import { AddressDocument, AddressQuery } from '../../generated/graphql'
-
-const WalletTiles = styled.div`
-  display: grid;
-  gap: var(--space-m);
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-`
+import { ErrorBox, StandardBox } from '../Layout'
+import { AccountsTable } from './table'
+import { CreateAccount } from './Create'
+import { useWallet } from '../../services'
+import { loadNextAccount } from './loadNextAccount'
 
 const AccountSelector = ({
   onSelectAccount,
@@ -34,21 +25,9 @@ const AccountSelector = ({
   helperText,
   title,
   coinType,
-  nWalletsToLoad,
-  test,
-  isProd
-}: {
-  onSelectAccount: () => void
-  showSelectedAccount: boolean
-  helperText: string
-  title: string
-  coinType: CoinType
-  nWalletsToLoad: number
-  test: boolean
-  isProd: boolean
-}) => {
-  const wallet = useWallet()
-  const [loadingAccounts, setLoadingAccounts] = useState(false)
+  nWalletsToLoad
+}: AccountSelectorProps) => {
+  const [loadingWallets, setLoadingWallets] = useState(false)
   const [loadingPage, setLoadingPage] = useState(true)
   const [uncaughtError, setUncaughtError] = useState('')
   const {
@@ -58,81 +37,90 @@ const AccountSelector = ({
     getProvider,
     wallets,
     walletError,
-    lotusApiAddr
+    lotusApiAddr,
+    loginOption
   } = useWalletProvider()
+
+  const wallet = useWallet()
   const apolloClient = useApolloClient()
 
-  const [loadedFirstNWallets, setLoadedFirstNWallets] = useState(false)
+  const getBalance = useCallback(
+    async (address: string) => {
+      const lCli = new LotusRPCEngine({
+        apiAddress: lotusApiAddr
+      })
 
-  // automatically generate the first 5 wallets for the user to select from to avoid confusion for non tech folks
+      const bal = await lCli.request('WalletBalance', address)
+      return new FilecoinNumber(bal, 'attofil')
+    },
+    [lotusApiAddr]
+  )
+
+  const getAddress = useCallback(
+    async address =>
+      apolloClient.query<AddressQuery>({
+        query: AddressDocument,
+        variables: {
+          address
+        }
+      }),
+    [apolloClient]
+  )
+
+  const keyDerive = useCallback(
+    async (path: string) => {
+      try {
+        const provider = await getProvider()
+        return provider.wallet.keyDerive(path)
+      } catch (err) {
+        setUncaughtError(err?.message || JSON.stringify(err))
+      }
+    },
+    [getProvider]
+  )
+
+  const [loadedFirstWallet, setLoadedFirstWallet] = useState(false)
+
+  // automatically generate the wallets that have a balance. Minimum 3, max 10
   useEffect(() => {
-    const loadFirstNWallets = async () => {
-      if (wallets.length < nWalletsToLoad) {
-        try {
-          const provider = await getProvider()
-
-          if (provider) {
-            const addresses = await provider.wallet.getAccounts(
-              wallets.length,
-              nWalletsToLoad,
-              coinType
-            )
-
-            await Promise.all(
-              addresses.map(async (address, i) => {
-                const balance = await provider.getBalance(address)
-                const { data } = await apolloClient.query<AddressQuery>({
-                  query: AddressDocument,
-                  variables: {
-                    address
-                  }
-                })
-
-                const w: Wallet = {
-                  balance,
-                  robust: convertAddrToPrefix(address),
-                  id: convertAddrToPrefix(data?.address?.id),
-                  address: convertAddrToPrefix(address),
-                  path: createPath(
-                    coinTypeCode(coinType),
-                    Number(i) + Number(wallets.length)
-                  )
-                }
-
-                walletList([w])
-              })
-            )
-            setLoadingPage(false)
-          }
-        } catch (err) {
+    if (!loadedFirstWallet) {
+      setLoadingPage(false)
+      setLoadingWallets(true)
+      setLoadedFirstWallet(true)
+      getProvider()
+        .then(provider =>
+          loadNextAccount(
+            wallets.length,
+            provider,
+            coinType,
+            getBalance,
+            getAddress,
+            setLoadedFirstWallet,
+            setLoadingPage,
+            setLoadingWallets,
+            walletList
+          )
+        )
+        .catch(err => {
           logger.error(
-            err instanceof Error
-              ? err.message
-              : 'Error loading first N Wallets',
+            err instanceof Error ? err.message : 'Error loading wallet',
             'AccountSelector'
           )
           setUncaughtError(err.message)
           setLoadingPage(false)
-        }
-      } else {
-        setLoadedFirstNWallets(true)
-        setLoadingPage(false)
-      }
-    }
-
-    if (!loadedFirstNWallets) {
-      setLoadedFirstNWallets(true)
-      loadFirstNWallets()
+        })
     }
   }, [
     getProvider,
     walletProvider,
-    loadedFirstNWallets,
+    loadedFirstWallet,
     wallets,
     walletList,
     coinType,
     nWalletsToLoad,
-    apolloClient
+    apolloClient,
+    getBalance,
+    getAddress
   ])
 
   const errorMsg = useMemo(() => {
@@ -142,7 +130,7 @@ const AccountSelector = ({
   }, [uncaughtError, walletError])
 
   const fetchNextAccount = async (index: number, ct: CoinType) => {
-    setLoadingAccounts(true)
+    setLoadingWallets(true)
     try {
       const provider = await getProvider()
 
@@ -177,66 +165,62 @@ const AccountSelector = ({
       )
       setUncaughtError(err.message)
     }
-    setLoadingAccounts(false)
+    setLoadingWallets(false)
   }
+
+  const selectAccount = useCallback(
+    (i: number) => {
+      switchWallet(i)
+      onSelectAccount()
+    },
+    [onSelectAccount, switchWallet]
+  )
 
   if (loadingPage) return <LoadingScreen height='100vh' />
 
   return (
-    <>
-      <Card
-        display='block'
-        border='none'
-        width='100%'
-        mb='var(--space-m)'
-        backgroundColor='blue.muted700'
-      >
-        <Box display='flex' alignItems='center'>
-          <Glyph
-            acronym='Ac'
-            bg='core.primary'
-            borderColor='core.primary'
-            color='core.white'
-          />
-          <Title ml={2} color='core.primary'>
-            {title}
-          </Title>
-        </Box>
-        <Box mt={5}>
-          <HelperText text={helperText} />
-        </Box>
-      </Card>
-      <WalletTiles>
-        {wallets.map((w, i) => (
-          <AccountCardAlt
-            key={w.address}
-            onClick={() => {
-              switchWallet(i)
-              onSelectAccount()
-            }}
-            address={w.address}
-            index={Number(w.path.split('/')[5])}
-            selected={showSelectedAccount && w.address === wallet.address}
-            legacy={isProd && w.path.split('/')[2] === `${TESTNET_PATH_CODE}'`}
-            path={w.path}
-            // This is a hack to make testing the UI easier
-            // its hard to mock SWR + balance fetcher in the AccountCardAlt
-            // so we pass a manual balance to not rely on SWR for testing
-            balance={test ? '1' : null}
-            jsonRpcEndpoint={lotusApiAddr}
-            nDefaultWallets={nWalletsToLoad}
-          />
-        ))}
-        <Create
-          errorMsg={errorMsg}
-          nextAccountIndex={wallets.length}
-          onClick={fetchNextAccount}
-          loading={loadingAccounts}
-          defaultCoinType={coinType}
+    <div>
+      {errorMsg ? (
+        <ErrorBox>
+          <h2>Error</h2>
+          <p>{errorMsg}</p>
+        </ErrorBox>
+      ) : (
+        <StandardBox>
+          <h2>{title}</h2>
+          <p>{helperText}</p>
+        </StandardBox>
+      )}
+      <br />
+      <AccountsTable
+        wallets={wallets}
+        loadingWallets={loadingWallets}
+        selectAccount={selectAccount}
+        showSelectedWallet={showSelectedAccount}
+        selectedWalletPath={wallet.path}
+      />
+      {!loadingWallets && (
+        <CreateAccount
+          fetchNextAccount={fetchNextAccount}
+          keyDerive={keyDerive}
+          loginOption={loginOption}
+          setError={setUncaughtError}
+          accountIdx={wallets.length}
         />
-      </WalletTiles>
-    </>
+      )}
+    </div>
   )
+}
+
+type AccountSelectorProps = {
+  onSelectAccount: () => void
+  showSelectedAccount: boolean
+  helperText: string
+  title: string
+  coinType: CoinType
+  nWalletsToLoad: number
+  test: boolean
+  isProd: boolean
 }
 
 AccountSelector.propTypes = {

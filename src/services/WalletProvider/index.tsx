@@ -75,15 +75,12 @@ export const WalletProviderContext = createContext<WalletProviderContextType>({
 const WalletProviderWrapper = ({
   children,
   lotusApiAddr,
-  coinType
-}: {
-  children: ReactNode
-  lotusApiAddr: string
-  coinType: CoinType
-}) => {
+  coinType,
+  initialState: walletProviderInitialState
+}: WalletProviderPropTypes) => {
   const [state, dispatch] = useReducer(
     reducerLogger<WalletProviderState, WalletProviderAction>(reducer),
-    initialState
+    walletProviderInitialState
   )
   const client = useApolloClient()
   return (
@@ -204,8 +201,19 @@ const WalletProviderWrapper = ({
   )
 }
 
+type WalletProviderPropTypes = {
+  children: ReactNode
+  lotusApiAddr: string
+  coinType: CoinType
+  initialState?: WalletProviderState
+}
+
 WalletProviderWrapper.propTypes = {
   children: PropTypes.node.isRequired
+}
+
+WalletProviderWrapper.defaultProps = {
+  initialState
 }
 
 export type WalletProviderOpts = {

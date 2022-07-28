@@ -6,8 +6,10 @@ import { mockWalletProviderInstance } from '../../../__mocks__/@glif/filecoin-wa
 import {
   WALLET_ADDRESS,
   WALLET_ADDRESS_2,
+  WALLET_ADDRESS_3,
   WALLET_ID,
-  WALLET_ID_2
+  WALLET_ID_2,
+  WALLET_ID_3
 } from '../constants'
 import { WalletProviderState } from '../../../src/services/WalletProvider/types'
 
@@ -18,6 +20,7 @@ export const composeWalletProviderState = (
     | 'postOnboard'
     | 'postOnboardLowBal'
     | 'postOnboardWithError'
+    | 'multiAccount'
     | 'selectedOtherWallet'
 ) => {
   switch (preset) {
@@ -73,6 +76,37 @@ export const composeWalletProviderState = (
         selectedWalletIdx: 0,
         loginOption: IMPORT_SINGLE_KEY,
         error: 'ERROR'
+      })
+    }
+    case 'multiAccount': {
+      return Object.freeze({
+        ...initialWalletProviderState,
+        walletProvider: mockWalletProviderInstance,
+        wallets: [
+          {
+            address: WALLET_ADDRESS,
+            robust: WALLET_ADDRESS,
+            id: WALLET_ID,
+            balance: new FilecoinNumber('1', 'fil'),
+            path: createPath(1, 0)
+          },
+          {
+            address: WALLET_ADDRESS_2,
+            robust: WALLET_ADDRESS_2,
+            id: WALLET_ID_2,
+            balance: new FilecoinNumber('5', 'fil'),
+            path: createPath(1, 1)
+          },
+          {
+            address: WALLET_ADDRESS_3,
+            robust: WALLET_ADDRESS_3,
+            id: WALLET_ID_3,
+            balance: new FilecoinNumber('0', 'fil'),
+            path: createPath(1, 2)
+          }
+        ],
+        selectedWalletIdx: 0,
+        loginOption: IMPORT_MNEMONIC
       })
     }
     case 'selectedOtherWallet': {

@@ -245,6 +245,13 @@ export const MNEMONIC_PROPTYPE: Requireable<any> = Object.assign(
   { isRequired: createMnemonicPropType(true) }
 )
 
+export const WALLET_PROPTYPE = shape({
+  path: string,
+  balance: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  robust: ADDRESS_PROPTYPE.isRequired,
+  id: ADDRESS_PROPTYPE.isRequired,
+  address: ADDRESS_PROPTYPE.isRequired
+})
 /* Actor types */
 
 export type SystemActorState = {

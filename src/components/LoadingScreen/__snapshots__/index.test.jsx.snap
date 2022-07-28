@@ -64,6 +64,8 @@ exports[`LoadingScreen renders the story 1`] = `
 >
   <span
     class="c1"
+    height="3"
+    width="3"
   >
     <span
       class="c2"

@@ -1,5 +1,4 @@
 import { bool } from 'prop-types'
-import { TR, TH } from '../../../Table'
 
 export function MessageRowColumnTitles({
   displayIncoming
@@ -8,16 +7,16 @@ export function MessageRowColumnTitles({
 }) {
   return (
     <thead>
-      <TR>
-        <TH>CID</TH>
-        <TH>Method</TH>
-        <TH>Height</TH>
-        <TH>Age</TH>
-        <TH>From</TH>
-        {displayIncoming && <TH></TH>}
-        <TH>To</TH>
-        <TH>Value</TH>
-      </TR>
+      <tr>
+        <th>CID</th>
+        <th>Method</th>
+        <th>Height</th>
+        <th>Age</th>
+        <th>From</th>
+        {displayIncoming && <th></th>}
+        <th>To</th>
+        <th>Value</th>
+      </tr>
     </thead>
   )
 }

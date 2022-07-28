@@ -1,0 +1,1199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountSelector it displays the accounts in a table view and option to load next account 1`] = `
+.c7 {
+  min-width: 0;
+  box-sizing: border-box;
+  color: var(--purple-medium);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c10 {
+  width: 24;
+  height: 24;
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  background-color: var(--blue-gray);
+}
+
+.c1 hr {
+  border-color: var(--gray-medium);
+}
+
+.c5 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c5 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.c9 {
+  height: auto;
+  cursor: pointer;
+  opacity: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  outline: none;
+}
+
+.c12 {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+}
+
+.c8:hover .c11 {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
+}
+
+.c6 a {
+  color: var(--purple-medium);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c6 a:hover {
+  color: var(--purple-medium);
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c14 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+}
+
+.c14 svg path {
+  stroke: var(--black);
+}
+
+.c14:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c14:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c14:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c14:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c2 {
+  margin-left: var(--space-m);
+}
+
+.c3 {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--purple-medium);
+  border-radius: 50%;
+}
+
+.c4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  background: var(--purple-medium);
+  border-radius: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.c15 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--space-m);
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c15 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c15 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+
+.c15 span.info,
+.c15 span.error {
+  font-size: 0.875rem;
+}
+
+.c15 span.error {
+  color: var(--red-medium);
+}
+
+.c16 .toggle-wrapper {
+  position: relative;
+}
+
+.c16 input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.c16 .toggle {
+  display: inline-block;
+  position: relative;
+  width: 2.25em;
+  height: 1.5em;
+  border-radius: 0.75em;
+  border: 2px solid var(--blue-medium);
+  background-color: var(--blue-medium);
+}
+
+.c16 .toggle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(1.5em - 4px);
+  height: calc(1.5em - 4px);
+  border-radius: 50%;
+  background-color: var(--white);
+}
+
+.c16 input:checked ~ .toggle {
+  border-color: var(--blue-dark);
+  background-color: var(--blue-dark);
+}
+
+.c16 input:checked ~ .toggle::after {
+  left: auto;
+  right: 0;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  margin-top: var(--space-l);
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c13 > * {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.c13 > * button {
+  width: 38.2%;
+  min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+
+.c13 > label {
+  margin-top: var(--space-m);
+}
+
+<div>
+  <div>
+    <div
+      class="c0 c1"
+    >
+      <h2>
+        Select Account
+      </h2>
+      <p />
+    </div>
+    <br />
+    <table>
+      <thead>
+        <tr>
+          <th />
+          <th />
+          <th>
+            #
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Address
+          </th>
+          <th>
+            Balance
+          </th>
+          <th>
+            Id
+          </th>
+          <th>
+            Path
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="c2 selectable"
+        >
+          <td />
+          <td>
+            <div
+              class="c3"
+              data-testid="selected-account"
+            >
+              <div
+                class="c4"
+              />
+            </div>
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            Account 
+            0
+          </td>
+          <td>
+            <div
+              class="c5"
+            >
+              
+              <div
+                class="c6"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi
+                </a>
+                <div
+                  class="c7"
+                  color="var(--purple-medium)"
+                  display="flex"
+                >
+                  <button
+                    class="c8 c9"
+                    display="flex"
+                    role="button"
+                    type="button"
+                  >
+                    <svg
+                      class="c10 c11 c12"
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        fill="#1A0066"
+                        height="12"
+                        width="12"
+                        x="8"
+                        y="4"
+                      />
+                      <rect
+                        fill="#E0D7FE"
+                        height="12"
+                        width="12"
+                        x="4"
+                        y="8"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            1
+          </td>
+          <td>
+            t0101
+          </td>
+          <td>
+            m/44'/1'/0'/0/0
+          </td>
+        </tr>
+        <tr
+          class="c2 selectable"
+        >
+          <td />
+          <td />
+          <td>
+            1
+          </td>
+          <td>
+            Account 
+            1
+          </td>
+          <td>
+            <div
+              class="c5"
+            >
+              
+              <div
+                class="c6"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a
+                </a>
+                <div
+                  class="c7"
+                  color="var(--purple-medium)"
+                  display="flex"
+                >
+                  <button
+                    class="c8 c9"
+                    display="flex"
+                    role="button"
+                    type="button"
+                  >
+                    <svg
+                      class="c10 c11 c12"
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        fill="#1A0066"
+                        height="12"
+                        width="12"
+                        x="8"
+                        y="4"
+                      />
+                      <rect
+                        fill="#E0D7FE"
+                        height="12"
+                        width="12"
+                        x="4"
+                        y="8"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            5
+          </td>
+          <td>
+            t0102
+          </td>
+          <td>
+            m/44'/1'/0'/0/1
+          </td>
+        </tr>
+        <tr
+          class="c2 selectable"
+        >
+          <td />
+          <td />
+          <td>
+            2
+          </td>
+          <td>
+            Account 
+            2
+          </td>
+          <td>
+            <div
+              class="c5"
+            >
+              
+              <div
+                class="c6"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb2uq"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb2uq
+                </a>
+                <div
+                  class="c7"
+                  color="var(--purple-medium)"
+                  display="flex"
+                >
+                  <button
+                    class="c8 c9"
+                    display="flex"
+                    role="button"
+                    type="button"
+                  >
+                    <svg
+                      class="c10 c11 c12"
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        fill="#1A0066"
+                        height="12"
+                        width="12"
+                        x="8"
+                        y="4"
+                      />
+                      <rect
+                        fill="#E0D7FE"
+                        height="12"
+                        width="12"
+                        x="4"
+                        y="8"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            t0103
+          </td>
+          <td>
+            m/44'/1'/0'/0/2
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div
+      class="c13"
+    >
+      <button
+        class="c14"
+      >
+        Next account
+      </button>
+      <label
+        class="c15 c16"
+      >
+        <div>
+          <span>
+            Expert Mode
+          </span>
+          
+        </div>
+        <div
+          class="toggle-wrapper"
+        >
+          <input
+            type="checkbox"
+          />
+          <span
+            class="toggle"
+          />
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AccountSelector it displays the loading screen first 1`] = `
+.c0 {
+  min-width: 0;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c1 {
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+  text-align: left;
+  background-color: var(--purple-medium);
+}
+
+.c2 {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  background-color: var(--purple-dark);
+  -webkit-animation-name: bvGDKI;
+  animation-name: bvGDKI;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.c3 {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1;
+  font-family: RT-Alias-Grotesk;
+  margin: 0;
+  margin-top: 16px;
+}
+
+<div>
+  <div
+    class="c0"
+    display="flex"
+    height="100vh"
+    width="100%"
+  >
+    <span
+      class="c1"
+      height="3"
+      width="3"
+    >
+      <span
+        class="c2"
+      />
+    </span>
+    <h4
+      class="c3"
+      font-family="RT-Alias-Grotesk"
+      font-size="2"
+      font-weight="400"
+    >
+      Loading...
+    </h4>
+  </div>
+</div>
+`;
+
+exports[`AccountSelector it displays the selected account when showSelectedACcount is passed 1`] = `
+.c7 {
+  min-width: 0;
+  box-sizing: border-box;
+  color: var(--purple-medium);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c13 {
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+  text-align: left;
+  background-color: var(--purple-medium);
+}
+
+.c15 {
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  background-color: var(--purple-dark);
+  -webkit-animation-name: bvGDKI;
+  animation-name: bvGDKI;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.c10 {
+  width: 24;
+  height: 24;
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  background-color: var(--blue-gray);
+}
+
+.c1 hr {
+  border-color: var(--gray-medium);
+}
+
+.c5 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c5 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.c9 {
+  height: auto;
+  cursor: pointer;
+  opacity: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  outline: none;
+}
+
+.c12 {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+}
+
+.c8:hover .c11 {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+}
+
+.c6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
+}
+
+.c6 a {
+  color: var(--purple-medium);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c6 a:hover {
+  color: var(--purple-medium);
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c14 {
+  margin-left: var(--space-m);
+}
+
+.c2 {
+  margin-left: var(--space-m);
+}
+
+.c3 {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--purple-medium);
+  border-radius: 50%;
+}
+
+.c4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  background: var(--purple-medium);
+  border-radius: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+<div>
+  <div>
+    <div
+      class="c0 c1"
+    >
+      <h2>
+        Select Account
+      </h2>
+      <p />
+    </div>
+    <br />
+    <table>
+      <thead>
+        <tr>
+          <th />
+          <th />
+          <th>
+            #
+          </th>
+          <th>
+            Name
+          </th>
+          <th>
+            Address
+          </th>
+          <th>
+            Balance
+          </th>
+          <th>
+            Id
+          </th>
+          <th>
+            Path
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="c2 selectable"
+        >
+          <td />
+          <td>
+            <div
+              class="c3"
+              data-testid="selected-account"
+            >
+              <div
+                class="c4"
+              />
+            </div>
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            Account 
+            0
+          </td>
+          <td>
+            <div
+              class="c5"
+            >
+              
+              <div
+                class="c6"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi
+                </a>
+                <div
+                  class="c7"
+                  color="var(--purple-medium)"
+                  display="flex"
+                >
+                  <button
+                    class="c8 c9"
+                    display="flex"
+                    role="button"
+                    type="button"
+                  >
+                    <svg
+                      class="c10 c11 c12"
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        fill="#1A0066"
+                        height="12"
+                        width="12"
+                        x="8"
+                        y="4"
+                      />
+                      <rect
+                        fill="#E0D7FE"
+                        height="12"
+                        width="12"
+                        x="4"
+                        y="8"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            1
+          </td>
+          <td>
+            t0101
+          </td>
+          <td>
+            m/44'/1'/0'/0/0
+          </td>
+        </tr>
+        <tr
+          class="c2 selectable"
+        >
+          <td />
+          <td />
+          <td>
+            1
+          </td>
+          <td>
+            Account 
+            1
+          </td>
+          <td>
+            <div
+              class="c5"
+            >
+              
+              <div
+                class="c6"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a
+                </a>
+                <div
+                  class="c7"
+                  color="var(--purple-medium)"
+                  display="flex"
+                >
+                  <button
+                    class="c8 c9"
+                    display="flex"
+                    role="button"
+                    type="button"
+                  >
+                    <svg
+                      class="c10 c11 c12"
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        fill="#1A0066"
+                        height="12"
+                        width="12"
+                        x="8"
+                        y="4"
+                      />
+                      <rect
+                        fill="#E0D7FE"
+                        height="12"
+                        width="12"
+                        x="4"
+                        y="8"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            5
+          </td>
+          <td>
+            t0102
+          </td>
+          <td>
+            m/44'/1'/0'/0/1
+          </td>
+        </tr>
+        <tr
+          class="c2 selectable"
+        >
+          <td />
+          <td />
+          <td>
+            2
+          </td>
+          <td>
+            Account 
+            2
+          </td>
+          <td>
+            <div
+              class="c5"
+            >
+              
+              <div
+                class="c6"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb2uq"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1mbk7q6gm4rjlndfqw6f2vkfgqotres3fgicb2uq
+                </a>
+                <div
+                  class="c7"
+                  color="var(--purple-medium)"
+                  display="flex"
+                >
+                  <button
+                    class="c8 c9"
+                    display="flex"
+                    role="button"
+                    type="button"
+                  >
+                    <svg
+                      class="c10 c11 c12"
+                      fill="none"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect
+                        fill="#1A0066"
+                        height="12"
+                        width="12"
+                        x="8"
+                        y="4"
+                      />
+                      <rect
+                        fill="#E0D7FE"
+                        height="12"
+                        width="12"
+                        x="4"
+                        y="8"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+          <td>
+            0
+          </td>
+          <td>
+            t0103
+          </td>
+          <td>
+            m/44'/1'/0'/0/2
+          </td>
+        </tr>
+        <tr>
+          <td />
+          <td>
+            <span
+              class="c13 c14"
+            >
+              <span
+                class="c15"
+              />
+            </span>
+          </td>
+          <td>
+            Loading...
+          </td>
+          <td />
+          <td />
+          <td />
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
