@@ -59,7 +59,7 @@ export function ActorState({ address }: { address: string }) {
       <hr />
       <DetailCaption
         name='Actor Overview'
-        captian='Locating this actor on the blockchain...'
+        caption='Locating this actor on the blockchain...'
         loading={loading}
         error={error}
       />

@@ -166,7 +166,7 @@ const CAPTION = styled.div`
 
 export const DetailCaption = ({
   name,
-  captian,
+  caption,
   loading,
   error
 }: DetailCaptionProps) => {
@@ -174,20 +174,20 @@ export const DetailCaption = ({
     return (
       <CAPTION className='error'>{`${name} failed to load: ${error.message}`}</CAPTION>
     )
-  if (loading) return <CAPTION>{captian}</CAPTION>
+  if (loading) return <CAPTION>{caption}</CAPTION>
   return <></>
 }
 
 type DetailCaptionProps = {
   name: string
-  captian: string
+  caption: string
   loading: boolean
   error: Error
 }
 
 DetailCaption.propTypes = {
   name: PropTypes.string.isRequired,
-  captian: PropTypes.string.isRequired,
+  caption: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.object
 }
