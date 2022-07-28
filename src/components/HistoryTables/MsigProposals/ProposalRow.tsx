@@ -56,13 +56,8 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
       <td>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</td>
       <td>{proposal.approved?.length}</td>
       {actionRequired && (
-        <td
-          css={`
-            color: ${({ theme }: { theme: typeof appTheme }) =>
-              theme.colors.core.primary};
-          `}
-        >
-          Action required
+        <td>
+          <SmartLink href={idHref(proposal.id)}>Action required</SmartLink>
         </td>
       )}
     </tr>
