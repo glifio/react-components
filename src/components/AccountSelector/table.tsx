@@ -2,18 +2,17 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { TABLE, TR, TH, TD } from '../Table'
 import { AddressLink } from '../LabeledText/AddressLink'
-import { space } from '../theme'
 import { Wallet } from '../../services/WalletProvider'
 import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
 import _LoaderGlyph from '../LoaderGlyph'
 import { WALLET_PROPTYPE } from '../../customPropTypes'
 
 const LoaderGlyph = styled(_LoaderGlyph)`
-  margin-left: ${space()};
+  margin-left: var(--space-m);
 `
 
 export const Row = styled(TR)`
-  margin-left: ${space()};
+  margin-left: var(--space-m);
   &:hover {
     cursor: pointer;
 
