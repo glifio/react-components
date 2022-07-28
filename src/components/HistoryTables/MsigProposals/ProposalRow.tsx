@@ -11,7 +11,6 @@ import { MsigTransaction } from '../../../generated/graphql'
 import { isAddrEqual } from '../../../utils/isAddrEqual'
 import { PROPOSAL_ROW_PROP_TYPE } from '../types'
 import { getMethodName } from '../methodName'
-import appTheme from '../../theme'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
