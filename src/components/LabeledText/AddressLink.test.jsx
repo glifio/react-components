@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import { AddressLink } from './index'
+import { AddressLink } from './AddressLink'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 

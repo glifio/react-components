@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { AppTileWrapper } from './AppTileWrapper'
-import { space, fontSize } from '../theme'
+import { fontSize } from '../theme'
 
 import {
   AppTitleContent,
@@ -83,7 +83,7 @@ export function AppTile({
               height: '100%',
               color: '#fff',
               zIndex: '2',
-              padding: space(),
+              padding: 'var(--space-m)',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',

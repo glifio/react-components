@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import { AddressLink } from '../../AddressLink'
+import { AddressLink } from '../../LabeledText/AddressLink'
 import { ProposalHead, Parameters } from '../detail'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import {

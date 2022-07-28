@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { SmartLink } from '../Link/SmartLink'
-import { devices, space } from '../theme'
+import { devices } from '../theme'
 import { AppIconHeaderFooter } from '../Icons'
 import {
   GLIF_EMAIL,
@@ -36,7 +36,7 @@ const FooterContent = styled.div`
     max-width: 670px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: ${space()};
+    gap: var(--space-m);
     margin: 0 auto;
   }
 `

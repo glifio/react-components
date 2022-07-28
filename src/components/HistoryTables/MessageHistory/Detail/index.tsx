@@ -8,7 +8,7 @@ import {
   useGasCostQuery,
   useMessageReceiptQuery
 } from '../../../../generated/graphql'
-import { AddressLink } from '../../../AddressLink'
+import { AddressLink } from '../../../LabeledText/AddressLink'
 import {
   Head,
   DetailCaption,
