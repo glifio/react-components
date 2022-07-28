@@ -7,7 +7,7 @@ import { validateCID } from './validateCID'
 const lotusRPC = new LotusRPCEngine({
   apiAddress:
     process.env.NEXT_PUBLIC_LOTUS_NODE_JSONRPC ||
-    'https://calibration.node.glif.io'
+    'https://api.calibration.node.glif.io'
 })
 
 interface UseGetMessageResult {

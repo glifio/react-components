@@ -14,7 +14,7 @@ import { LoginOption } from '../../customPropTypes'
 import { createPath } from '../../utils'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
-const LOTUS_API_ADDR = 'https://calibration.node.glif.io'
+const LOTUS_API_ADDR = 'https://api.calibration.node.glif.io'
 
 const SEED =
   'soda wage derive hard share hybrid drum company link size crush track inherit entire filter promote resource vocal cycle kind day intact palace mad'
@@ -48,7 +48,7 @@ export default {
         <WalletProviderWrapper
           initialState={initialState}
           coinType={CoinType.TEST}
-          lotusApiAddr='https://calibration.node.glif.io'
+          lotusApiAddr='https://api.calibration.node.glif.io'
         >
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
