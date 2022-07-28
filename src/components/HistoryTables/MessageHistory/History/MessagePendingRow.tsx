@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { Badge } from '../../../Layout'
-import { TR, TD } from '../../../Table'
 import { SmartLink } from '../../../Link/SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { MessagePendingRow, MESSAGE_PENDING_ROW_PROP_TYPE } from '../../types'
@@ -29,43 +28,43 @@ export default function PendingMessageHistoryRow(
   )
   const { methodName } = useMethodName({ ...message, actorName: '' })
   return (
-    <TR>
-      <TD>
+    <tr>
+      <td>
         <SmartLink href={cidHref(message.cid)}>
           {truncateAddress(message.cid)}
         </SmartLink>
-      </TD>
+      </td>
       {props.inspectingAddress && (
-        <TD>
+        <td>
           <Badge color='purple' text={methodName} />
-        </TD>
+        </td>
       )}
-      <TD>(Pending)</TD>
-      <TD>(Pending)</TD>
-      <TD>
+      <td>(Pending)</td>
+      <td>(Pending)</td>
+      <td>
         <AddressLink
           id={message.from.id}
           address={message.from.robust}
           disableLink={fromAddressIsInspecting}
           hideCopy
         />
-      </TD>
-      <TD>
+      </td>
+      <td>
         <Badge
           color={toAddressIsInspecting ? 'green' : 'yellow'}
           text={toAddressIsInspecting ? 'IN' : 'OUT'}
         />
-      </TD>
-      <TD>
+      </td>
+      <td>
         <AddressLink
           id={message.to.id}
           address={message.to.robust}
           disableLink={toAddressIsInspecting}
           hideCopy
         />
-      </TD>
-      <TD>{new FilecoinNumber(message.value, 'attofil').toFil()} FIL</TD>
-    </TR>
+      </td>
+      <td>{new FilecoinNumber(message.value, 'attofil').toFil()} FIL</td>
+    </tr>
   )
 }
 
