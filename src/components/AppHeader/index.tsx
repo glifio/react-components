@@ -24,13 +24,15 @@ const Header = styled.header`
 
 const NavLeft = styled.nav`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: flex-end;
   gap: var(--space-l);
+  flex-grow: 1;
 `
 
 const NavRight = styled(NavLeft)`
   gap: var(--space-m);
+  flex-grow: 0;
 `
 
 const NavLinkSimple = styled(SmartLink)`
