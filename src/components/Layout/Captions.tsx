@@ -2,6 +2,32 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { LoadingIcon } from '../Loading/LoadingIcon'
 
+export const Caption = ({
+  name,
+  loading,
+  empty,
+  error
+}: CaptionProps) => {
+  if (error) return <ErrorCaption name={name} error={error} />
+  if (loading) return <LoadingCaption />
+  if (empty) return <EmptyCaption name={name} />
+  return <></>
+}
+
+type CaptionProps = {
+  name?: string
+  loading?: boolean
+  empty?: boolean
+  error?: Error | string
+}
+
+Caption.propTypes = {
+  name: PropTypes.string,
+  loading: PropTypes.bool,
+  empty: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.instanceOf(Error), PropTypes.string])
+}
+
 /*
  * EmptyCaption
  */
