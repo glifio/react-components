@@ -2,12 +2,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { LoadingIcon } from '../Loading/LoadingIcon'
 
-export const Caption = ({
-  name,
-  loading,
-  empty,
-  error
-}: CaptionProps) => {
+export const Caption = ({ name, loading, empty, error }: CaptionProps) => {
   if (error) return <ErrorCaption name={name} error={error} />
   if (loading) return <LoadingCaption />
   if (empty) return <EmptyCaption name={name} />
@@ -33,9 +28,7 @@ Caption.propTypes = {
  */
 
 export const EmptyCaption = ({ name }: EmptyCaptionProps) => (
-  <caption>
-    No records found {name && `for ${name}`}
-  </caption>
+  <caption>No records found {name && `for ${name}`}</caption>
 )
 
 interface EmptyCaptionProps {

@@ -49,7 +49,7 @@ const StatusIconEl = styled.div`
           }
         `
     }
-  }}  
+  }}
 `
 
 export const StatusIcon = ({ color, margin }: StatusIconProps) => (

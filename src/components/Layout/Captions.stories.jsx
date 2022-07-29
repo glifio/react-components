@@ -3,18 +3,20 @@ import { Caption } from './Captions'
 export default {
   title: 'Layout/Caption',
   component: Caption,
-  decorators: [Story => (
-    <table>
-      {Story()}
-      <tbody>
-        <tr>
-          <th>Column 1</th>
-          <th>Column 2</th>
-          <th>Column 3</th>
-        </tr>
-      </tbody>
-    </table>
-  )]
+  decorators: [
+    Story => (
+      <table>
+        {Story()}
+        <tbody>
+          <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+          </tr>
+        </tbody>
+      </table>
+    )
+  ]
 }
 
 const Template = args => <Caption {...args} />
