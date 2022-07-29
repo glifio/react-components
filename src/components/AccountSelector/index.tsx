@@ -5,7 +5,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { useApolloClient } from '@apollo/client'
 
-import LoadingScreen from '../LoadingScreen'
+import { LoadingScreen } from '../LoadingScreen'
 import { useWalletProvider, Wallet } from '../../services/WalletProvider'
 
 import createPath, { coinTypeCode } from '../../utils/createPath'
@@ -174,7 +174,7 @@ const AccountSelector = ({
     [onSelectAccount, switchWallet]
   )
 
-  if (loadingPage) return <LoadingScreen height='100vh' />
+  if (loadingPage) return <LoadingScreen />
 
   return (
     <div>

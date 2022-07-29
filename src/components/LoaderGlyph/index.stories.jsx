@@ -1,7 +1,7 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-import LoaderGlyph from './index'
+import { LoaderGlyph } from './index'
 
 export default {
   title: 'LoaderGlyph/LoaderGlyph',

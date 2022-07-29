@@ -18,7 +18,7 @@ import {
   isAddressSigner
 } from '../../../utils'
 import { Lines, Line } from '../../Layout'
-import LoadingScreen from '../../LoadingScreen'
+import { LoadingScreen } from '../../LoadingScreen'
 import ErrorView from '../../Error'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import { logger } from '../../../logger'
@@ -131,7 +131,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     stateData?.State.NumApprovalsThreshold
   ])
 
-  if (loading) return <LoadingScreen marginTop='10rem' />
+  if (loading) return <LoadingScreen />
   if (error)
     return (
       <ErrorView

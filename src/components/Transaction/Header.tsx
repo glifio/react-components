@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { ErrorBox, WarningBox } from '../Layout'
 import { StandardBox } from '../Layout'
 import { TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
-import LoaderGlyph from '../LoaderGlyph'
+import { LoaderGlyph } from '../LoaderGlyph'
 import {
   TransactionConfirm,
   TransactionConfirmProps,

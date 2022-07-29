@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react'
-import LoadingScreen from '.'
+import { LoadingScreen } from '.'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 

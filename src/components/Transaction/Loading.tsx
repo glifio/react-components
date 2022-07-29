@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { StandardBox } from '../Layout'
-import LoaderGlyph from '../LoaderGlyph'
+import { LoaderGlyph } from '../LoaderGlyph'
 
 export const TransactionLoading = ({
   description

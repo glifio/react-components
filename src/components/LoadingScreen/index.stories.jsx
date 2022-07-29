@@ -1,7 +1,7 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-import LoadingScreen from './index'
+import { LoadingScreen } from './index'
 
 export default {
   title: 'LoadingScreen/LoadingScreen',

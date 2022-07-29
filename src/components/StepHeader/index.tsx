@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 
 import Stepper from '../Stepper'
-import Loading from '../LoaderGlyph'
+import { LoaderGlyph } from '../LoaderGlyph'
 import Glyph from '../Glyph'
 import { Title } from '../Typography'
 import Box from '../Box'
@@ -54,7 +54,7 @@ const StepHeader = ({
               color='status.fail.foreground'
             />
           )}
-          {loading && !error && <Loading />}
+          {loading && !error && <LoaderGlyph />}
           {!loading && !error && glyphAcronym && (
             <Glyph Icon={Icon} acronym={glyphAcronym} />
           )}

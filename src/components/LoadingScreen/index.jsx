@@ -1,23 +1,21 @@
-import Box from '../Box'
-import Loading from '../LoaderGlyph'
-import { Label } from '../Typography'
+import styled from 'styled-components'
+import { LoaderGlyph } from '../LoaderGlyph'
 
-const LoadingScreen = props => (
-  <Box
-    position='absolute'
-    top='0'
-    left='0'
-    width='100%'
-    height='100%'
-    display='flex'
-    flexDirection='column'
-    alignItems='center'
-    justifyContent='center'
-    {...props}
-  >
-    <Loading width={3} height={3} />
-    <Label mt={3}>Loading...</Label>
-  </Box>
+const LoadingScreenEl = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+export const LoadingScreen = props => (
+  <LoadingScreenEl>
+    <LoaderGlyph />
+    <p>Loading...</p>
+  </LoadingScreenEl>
 )
-
-export default LoadingScreen

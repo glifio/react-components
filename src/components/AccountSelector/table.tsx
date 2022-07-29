@@ -3,12 +3,8 @@ import PropTypes from 'prop-types'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { Wallet } from '../../services/WalletProvider'
 import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
-import _LoaderGlyph from '../LoaderGlyph'
+import { LoaderGlyph } from '../LoaderGlyph'
 import { WALLET_PROPTYPE } from '../../customPropTypes'
-
-const LoaderGlyph = styled(_LoaderGlyph)`
-  margin-left: var(--space-m);
-`
 
 export const Row = styled.tr`
   margin-left: var(--space-m);
