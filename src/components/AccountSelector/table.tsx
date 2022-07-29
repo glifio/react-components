@@ -4,79 +4,49 @@ import { AddressLink } from '../LabeledText/AddressLink'
 import { Wallet } from '../../services/WalletProvider'
 import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
 import { LoadingIcon } from '../Loading/LoadingIcon'
+import { StatusIcon } from '../Layout'
 import { WALLET_PROPTYPE } from '../../customPropTypes'
-
-export const Row = styled.tr`
-  margin-left: var(--space-m);
-`
 
 export const idxFromPath = (path: string): string => {
   return path.split('/')[5]
 }
 
-const StatusOuter = styled.div`
-  position: relative;
-  width: 18px;
-  height: 18px;
-  border: 1px solid var(--purple-medium);
-  border-radius: 50%;
-`
-
-const StatusInner = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 11px;
-  height: 11px;
-  background: var(--purple-medium);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-`
-
 const WalletRow = ({
-  w,
+  wallet,
   selectAccount,
   index,
   isSelected,
   showSelectedWallet
 }: WalletRowProps) => {
   return (
-    <Row
+    <tr
       className='selectable'
-      key={w.robust}
+      key={wallet.robust}
       onClick={() => selectAccount(index)}
     >
       <td></td>
-      {showSelectedWallet ? (
-        isSelected ? (
-          <td>
-            <StatusOuter data-testid='selected-account'>
-              <StatusInner />
-            </StatusOuter>
-          </td>
-        ) : (
-          <td></td>
-        )
-      ) : (
-        <></>
+      {showSelectedWallet && (
+        <td>
+          {isSelected && <StatusIcon color='purple' data-testid='selected-account' />}
+        </td>
       )}
-      <td>{idxFromPath(w.path)}</td>
-      <td>Account {idxFromPath(w.path)}</td>
+      <td>{idxFromPath(wallet.path)}</td>
+      <td>Account {idxFromPath(wallet.path)}</td>
       <td>
         <AddressLink
-          address={convertAddrToPrefix(w.robust)}
+          address={convertAddrToPrefix(wallet.robust)}
           shouldTruncate={false}
         />
       </td>
-      <td>{makeFriendlyBalance(w.balance, 6, true)}</td>
-      <td>{convertAddrToPrefix(w.id) || '-'}</td>
-      <td>{w.path}</td>
-    </Row>
+      <td>{makeFriendlyBalance(wallet.balance, 6, true)}</td>
+      <td>{convertAddrToPrefix(wallet.id) || '-'}</td>
+      <td>{wallet.path}</td>
+    </tr>
   )
 }
 
 type WalletRowProps = {
-  w: Wallet
+  wallet: Wallet
   selectAccount: (i: number) => void
   index: number
   isSelected: boolean
@@ -84,7 +54,7 @@ type WalletRowProps = {
 }
 
 WalletRow.propTypes = {
-  w: WALLET_PROPTYPE.isRequired,
+  wallet: WALLET_PROPTYPE.isRequired,
   selectAccount: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
   isSelected: PropTypes.bool.isRequired,
@@ -116,7 +86,7 @@ export const AccountsTable = ({
         {wallets.map((w, i) => (
           <WalletRow
             key={w.address}
-            w={w}
+            wallet={w}
             selectAccount={selectAccount}
             index={i}
             isSelected={
