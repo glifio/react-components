@@ -18,11 +18,14 @@ const WalletRow = ({
 }: WalletRowProps) => {
   return (
     <tr className='selectable' onClick={() => selectAccount(index)}>
-      {showSelectedWallet && (
-        <td>
-          {isSelected && <StatusIcon color='purple' margin='4px 0 0 1em' />}
-        </td>
-      )}
+      {showSelectedWallet &&
+        (isSelected ? (
+          <td data-testid='selected-account'>
+            <StatusIcon color='purple' margin='4px 0 0 1em' />
+          </td>
+        ) : (
+          <td></td>
+        ))}
       <td>{idxFromPath(wallet.path)}</td>
       <td>Account {idxFromPath(wallet.path)}</td>
       <td>
