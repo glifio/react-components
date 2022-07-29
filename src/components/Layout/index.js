@@ -1,6 +1,7 @@
 export * from './Badge'
 export * from './Boxes'
 export * from './Buttons'
+export * from './Captions'
 export * from './Columns'
 export * from './Dialogs'
 export * from './LandingPage'
