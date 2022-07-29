@@ -7,33 +7,8 @@ import { coinTypeCode } from '../../utils/createPath'
 import { ButtonV2 } from '../Button/V2'
 import { InputV2 } from '../InputV2'
 import { Toggle } from '../InputV2/Toggle'
-import { ShadowBox } from '../Layout'
+import { SlimDialog, ShadowBox, ButtonRowSpaced } from '../Layout'
 import { LoginOption, LOGIN_OPTION_PROPTYPE } from '../../customPropTypes'
-
-const CreateAccountContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: var(--space-l);
-  align-items: center;
-
-  > * {
-    width: fit-content;
-
-    button {
-      width: 38.2%;
-      min-width: fit-content;
-    }
-  }
-
-  > label {
-    margin-top: var(--space-m);
-  }
-`
-
-const FormWrapper = styled(ShadowBox)`
-  margin-top: var(--space-xl);
-`
 
 const Path = styled.p`
   color: var(--gray-medium);
@@ -129,62 +104,66 @@ export function CreateAccount({
   }
 
   return (
-    <CreateAccountContainer>
-      <ButtonV2
-        large
-        onClick={() =>
-          fetchNextAccount(
-            defaultAccountIdx,
-            process.env.NEXT_PUBLIC_COIN_TYPE as CoinType
-          )
-        }
-        disabled={expertMode}
-      >
-        Next account
-      </ButtonV2>
-      <Toggle
-        label='Expert Mode'
-        checked={expertMode}
-        onChange={setExpertMode}
-      />
+    <>
+      <ButtonRowSpaced>
+        <Toggle
+          label='Expert Mode'
+          checked={expertMode}
+          onChange={setExpertMode}
+        />
+        <ButtonV2
+          large
+          onClick={() =>
+            fetchNextAccount(
+              defaultAccountIdx,
+              process.env.NEXT_PUBLIC_COIN_TYPE as CoinType
+            )
+          }
+          disabled={expertMode}
+        >
+          Next account
+        </ButtonV2>
+      </ButtonRowSpaced>
       {expertMode && (
-        <FormWrapper>
-          <h3>Create account</h3>
-          <Form
-            onSubmit={e => {
-              e.preventDefault()
-              return fetchNextAccount(
-                accountIndex,
-                coinTypeOptionToCoinType(coinTypeOpt)
-              )
-            }}
-          >
-            <InputV2.Select
-              label='Coin type'
-              options={[CoinTypeOption.MAINNET, CoinTypeOption.LEGACY]}
-              value={coinTypeOpt}
-              onChange={v => setCoinTypeOpt(v as CoinTypeOption)}
-            />
-            <InputV2.Number
-              label='Account index'
-              value={accountIndex}
-              onChange={setAccountIndex}
-            />
-            <Path>{path}</Path>
-            <ButtonContainer>
-              <ButtonV2 green type='submit'>
-                Add account
-              </ButtonV2>
-              {showExport && (
-                <p role='button' onClick={exportPrivateKey}>
-                  Export private key
-                </p>
-              )}
-            </ButtonContainer>
-          </Form>
-        </FormWrapper>
+        <SlimDialog>
+          <ShadowBox>
+            <h3>Create account</h3>
+            <Form
+              onSubmit={e => {
+                e.preventDefault()
+                fetchNextAccount(
+                  accountIndex,
+                  coinTypeOptionToCoinType(coinTypeOpt)
+                )
+              }}
+            >
+              <InputV2.Select
+                label='Coin type'
+                options={[CoinTypeOption.MAINNET, CoinTypeOption.LEGACY]}
+                value={coinTypeOpt}
+                onChange={v => setCoinTypeOpt(v as CoinTypeOption)}
+              />
+              <InputV2.Number
+                label='Account index'
+                value={accountIndex}
+                onChange={setAccountIndex}
+              />
+              <Path>{path}</Path>
+              <ButtonContainer>
+                <ButtonV2 green type='submit'>
+                  Add account
+                </ButtonV2>
+                {showExport && (
+                  <p role='button' onClick={exportPrivateKey}>
+                    Export private key
+                  </p>
+                )}
+              </ButtonContainer>
+            </Form>
+          </ShadowBox>
+        </SlimDialog>
       )}
-    </CreateAccountContainer>
+    </>
   )
 }
 
