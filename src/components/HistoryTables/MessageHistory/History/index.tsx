@@ -6,9 +6,8 @@ import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../../customPropTypes'
 import { ButtonV2 } from '../../../Button/V2'
-import { TableCaption } from '../../../Table'
 import { useAllMessages } from '../hooks/useAllMessages'
-import { PageTitle } from '../../../Layout'
+import { Caption, PageTitle } from '../../../Layout'
 import { SyncStatus } from '../../../SyncStatus'
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
@@ -33,7 +32,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
       {props.warnMissingData && <SyncStatus />}
       <br />
       <table>
-        <TableCaption
+        <Caption
           name='Transaction History'
           loading={isEmpty && loading}
           error={error}
