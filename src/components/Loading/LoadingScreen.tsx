@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { LoaderGlyph } from '../LoaderGlyph'
+import { LoadingIcon } from './LoadingIcon'
 
 const LoadingScreenEl = styled.div`
   position: fixed;
@@ -13,9 +13,9 @@ const LoadingScreenEl = styled.div`
   justify-content: center;
 `
 
-export const LoadingScreen = props => (
+export const LoadingScreen = () => (
   <LoadingScreenEl>
-    <LoaderGlyph />
+    <LoadingIcon />
     <p>Loading...</p>
   </LoadingScreenEl>
 )
