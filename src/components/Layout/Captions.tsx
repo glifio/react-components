@@ -3,6 +3,24 @@ import PropTypes from 'prop-types'
 import { LoadingIcon } from '../Loading/LoadingIcon'
 
 /*
+ * EmptyCaption
+ */
+
+export const EmptyCaption = ({ name }: EmptyCaptionProps) => (
+  <caption>
+    No records found {name && `for ${name}`}
+  </caption>
+)
+
+interface EmptyCaptionProps {
+  name?: string
+}
+
+EmptyCaption.propTypes = {
+  name: PropTypes.string
+}
+
+/*
  * ErrorCaption
  */
 
