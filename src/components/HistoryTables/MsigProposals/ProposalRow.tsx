@@ -35,6 +35,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
         }
       }}
     >
+      <td></td>
       <td>
         <SmartLink href={idHref(proposal.id)}>{proposal.id}</SmartLink>
       </td>
