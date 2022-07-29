@@ -3,6 +3,22 @@ import PropTypes from 'prop-types'
 import { LoadingIcon } from '../Loading/LoadingIcon'
 
 /*
+ * ErrorCaption
+ */
+
+export const ErrorCaption = ({ name, error }: ErrorCaptionProps) => (
+  <caption className='error'>
+    {name ? `${name} failed to load: ` : 'Failed to load: '}
+    {error instanceof Error ? error.message : error}
+  </caption>
+)
+
+interface ErrorCaptionProps {
+  name?: string
+  error: Error | string
+}
+
+/*
  * LoadingCaption
  */
 
