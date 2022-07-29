@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Create new account it creates a new account at the wallet index by default 1`] = `
-.c1 {
+.c4 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -28,26 +28,26 @@ exports[`Create new account it creates a new account at the wallet index by defa
   font-size: 1.25em;
 }
 
-.c1 svg path {
+.c4 svg path {
   stroke: var(--black);
 }
 
-.c1:hover {
+.c4:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c1:hover svg path {
+.c4:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c1:active {
+.c4:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c1:active svg path {
+.c4:active svg path {
   stroke: var(--white) !important;
 }
 
@@ -142,45 +142,20 @@ exports[`Create new account it creates a new account at the wallet index by defa
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin-top: var(--space-l);
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  gap: var(--space-m);
+  margin: 1.5em 0;
 }
 
-.c0 > * {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c0 > * button {
-  width: 38.2%;
-  min-width: -webkit-fit-content;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
-}
-
-.c0 > label {
-  margin-top: var(--space-m);
+.c1 {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 <div
-  class="c0"
+  class="c0 c1"
 >
-  <button
-    class="c1"
-  >
-    Next account
-  </button>
   <label
     class="c2 c3"
   >
@@ -201,5 +176,10 @@ exports[`Create new account it creates a new account at the wallet index by defa
       />
     </div>
   </label>
+  <button
+    class="c4"
+  >
+    Next account
+  </button>
 </div>
 `;

@@ -46,6 +46,22 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   border-color: var(--gray-medium);
 }
 
+.c11 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--space-m);
+  margin: 1.5em 0;
+}
+
+.c12 {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
 .c3 h4 {
   margin: 0;
   color: var(--gray-dark);
@@ -127,7 +143,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   text-decoration: underline;
 }
 
-.c12 {
+.c15 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -154,26 +170,26 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   font-size: 1.25em;
 }
 
-.c12 svg path {
+.c15 svg path {
   stroke: var(--black);
 }
 
-.c12:hover {
+.c15:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c12:hover svg path {
+.c15:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c12:active {
+.c15:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c12:active svg path {
+.c15:active svg path {
   stroke: var(--white) !important;
 }
 
@@ -291,42 +307,6 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
 .c14 input:checked ~ .toggle::after {
   left: auto;
   right: 0;
-}
-
-.c11 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin-top: var(--space-l);
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c11 > * {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-
-.c11 > * button {
-  width: 38.2%;
-  min-width: -webkit-fit-content;
-  min-width: -moz-fit-content;
-  min-width: fit-content;
-}
-
-.c11 > label {
-  margin-top: var(--space-m);
 }
 
 <div>
@@ -603,13 +583,8 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
       </tbody>
     </table>
     <div
-      class="c11"
+      class="c11 c12"
     >
-      <button
-        class="c12"
-      >
-        Next account
-      </button>
       <label
         class="c13 c14"
       >
@@ -630,6 +605,11 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
           />
         </div>
       </label>
+      <button
+        class="c15"
+      >
+        Next account
+      </button>
     </div>
   </div>
 </div>
