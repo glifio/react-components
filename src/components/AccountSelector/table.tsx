@@ -1,10 +1,8 @@
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { Wallet } from '../../services/WalletProvider'
 import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
-import { LoadingIcon } from '../Loading/LoadingIcon'
-import { StatusIcon } from '../Layout'
+import { LoadingCaption, StatusIcon } from '../Layout'
 import { WALLET_PROPTYPE } from '../../customPropTypes'
 
 export const idxFromPath = (path: string): string => {
@@ -21,13 +19,11 @@ const WalletRow = ({
   return (
     <tr
       className='selectable'
-      key={wallet.robust}
       onClick={() => selectAccount(index)}
     >
-      <td></td>
       {showSelectedWallet && (
         <td>
-          {isSelected && <StatusIcon color='purple' data-testid='selected-account' />}
+          {isSelected && <StatusIcon color='purple' />}
         </td>
       )}
       <td>{idxFromPath(wallet.path)}</td>
@@ -70,10 +66,10 @@ export const AccountsTable = ({
 }: AccountsTableProps) => {
   return (
     <table>
+      {loadingWallets && <LoadingCaption />}
       <thead>
         <tr>
           {showSelectedWallet && <th></th>}
-          <th></th>
           <th>#</th>
           <th>Name</th>
           <th>Address</th>
@@ -96,18 +92,6 @@ export const AccountsTable = ({
             showSelectedWallet={showSelectedWallet}
           />
         ))}
-        {loadingWallets && (
-          <tr>
-            <td></td>
-            <td>
-              <LoadingIcon />
-            </td>
-            <td>Loading...</td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        )}
       </tbody>
     </table>
   )
@@ -123,8 +107,8 @@ type AccountsTableProps = {
 
 AccountsTable.propTypes = {
   wallets: PropTypes.arrayOf(WALLET_PROPTYPE).isRequired,
-  selectedWalletPath: PropTypes.string.isRequired,
   selectAccount: PropTypes.func.isRequired,
   loadingWallets: PropTypes.bool.isRequired,
-  showSelectedWallet: PropTypes.bool.isRequired
+  showSelectedWallet: PropTypes.bool.isRequired,
+  selectedWalletPath: PropTypes.string.isRequired
 }
