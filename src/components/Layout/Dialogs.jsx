@@ -17,7 +17,3 @@ export const Dialog = styled.div`
 export const WideDialog = styled(Dialog)`
   max-width: 50em;
 `
-
-export const SlimDialog = styled(Dialog)`
-  max-width: 20em;
-`
