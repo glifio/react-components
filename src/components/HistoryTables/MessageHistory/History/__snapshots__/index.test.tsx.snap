@@ -1,50 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Message history it renders no message history correctly with historical data missing warning 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-}
-
+exports[`Message history it renders messages 1`] = `
 .c2 {
-  padding: 1.5em;
-  border-radius: 8px;
-  overflow: hidden;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-m);
+  padding: 0 1em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 1em;
   text-align: center;
-  word-break: break-word;
+  white-space: nowrap;
+  color: var(--purple-medium);
+  background-color: var(--purple-light);
 }
 
-.c2 > *:first-child {
-  margin-top: 0;
-}
-
-.c2 > *:last-child {
-  margin-bottom: 0;
-}
-
-.c2 > svg:first-child {
-  display: block;
-  margin: 0 auto 1em;
-}
-
-.c2 > h2:first-child {
-  margin: 0;
-}
-
-.c2 header:first-child {
-  margin: -1.5em -1.5em 1.5em -1.5em;
-  padding: 1.5em;
-  background-color: var(--purple-medium);
-  color: var(--white);
-}
-
-.c3 {
-  background-color: var(--yellow-light);
+.c5 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-m);
+  padding: 0 1em;
+  height: 2em;
+  line-height: 2em;
+  border-radius: 1em;
+  text-align: center;
+  white-space: nowrap;
   color: var(--yellow-dark);
+  background-color: var(--yellow-light);
 }
 
-.c3 hr {
-  border-color: var(--yellow-dark);
+.c3 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c3 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
+}
+
+.c4 a {
+  color: var(--purple-medium);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c4 a:hover {
+  color: var(--purple-medium);
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
 }
 
 .c1 {
@@ -52,46 +77,541 @@ exports[`Message history it renders no message history correctly with historical
   color: var(--purple-medium);
 }
 
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 > h2 {
+  margin-bottom: var(--space-s);
+}
+
+.c0 > * {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 > * p {
+  color: var(--yellow-dark);
+  margin-left: var(--space-m);
+}
+
 <div>
-  <div
-    class="c0"
-  >
-    <h2
-      class="c1"
+  <div>
+    <span
+      class="c0"
     >
-      Transaction History
-    </h2>
-    <div
-      class="c2 c3"
-    >
-      <svg
-        fill="none"
-        height="20px"
-        viewBox="0 0 22 20"
-        width="22px"
-        xmlns="http://www.w3.org/2000/svg"
+      <h2
+        class="c1"
       >
-        <path
-          d="M11 7.74982V9.99986M11 14.4999H11.0112M3.24282 19H18.7572C20.4815 19 21.5586 17.1246 20.6965 15.6249L12.9393 2.12474C12.0771 0.625088 9.92286 0.625088 9.0607 2.12474L1.30352 15.6249C0.441363 17.1246 1.5185 19 3.24282 19Z"
-          stroke="var(--yellow-dark)"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-        />
-      </svg>
-      <h3>
-        Sync in Progress
-      </h3>
-      <p>
-        Our servers are syncing transactions from Filecoin Mainnet. We're currently 
-        99
-        % synced.
-      </p>
-      <p>
-        We expect to be done 
-        in 10 days
-      </p>
-    </div>
+        Transaction History
+      </h2>
+      <div>
+        <svg
+          fill="none"
+          height="20px"
+          viewBox="0 0 22 20"
+          width="22px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11 7.74982V9.99986M11 14.4999H11.0112M3.24282 19H18.7572C20.4815 19 21.5586 17.1246 20.6965 15.6249L12.9393 2.12474C12.0771 0.625088 9.92286 0.625088 9.0607 2.12474L1.30352 15.6249C0.441363 17.1246 1.5185 19 3.24282 19Z"
+            stroke="var(--yellow-dark)"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+        <p>
+          Syncing data from Mainnet
+        </p>
+      </div>
+    </span>
+    <br />
+    <table>
+      <thead>
+        <tr>
+          <th>
+            CID
+          </th>
+          <th>
+            Method
+          </th>
+          <th>
+            Height
+          </th>
+          <th>
+            Age
+          </th>
+          <th>
+            From
+          </th>
+          <th />
+          <th>
+            To
+          </th>
+          <th>
+            Value
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a
+              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk0qmchbhjx7q747jghal3l4g"
+            >
+              bafy2b ... al3l4g
+            </a>
+          </td>
+          <td>
+            <div
+              class="c2"
+              color="purple"
+            >
+              <span>
+                ...
+              </span>
+            </div>
+          </td>
+          <td>
+            1020
+          </td>
+          <td>
+            ...
+          </td>
+          <td>
+            <div
+              class="c3"
+            >
+              <p>
+                t1z225 ... 6z6wgi
+              </p>
+              <div
+                class="c4"
+                color="var(--purple-medium)"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="c5"
+              color="yellow"
+            >
+              <span>
+                OUT
+              </span>
+            </div>
+          </td>
+          <td>
+            <div
+              class="c3"
+            >
+              
+              <div
+                class="c4"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1nq5k ... btuo3a
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            0.000000000000001 FIL
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a
+              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk1qmchbhjx7q747jghal3l4g"
+            >
+              bafy2b ... al3l4g
+            </a>
+          </td>
+          <td>
+            <div
+              class="c2"
+              color="purple"
+            >
+              <span>
+                ...
+              </span>
+            </div>
+          </td>
+          <td>
+            1020
+          </td>
+          <td>
+            ...
+          </td>
+          <td>
+            <div
+              class="c3"
+            >
+              <p>
+                t1z225 ... 6z6wgi
+              </p>
+              <div
+                class="c4"
+                color="var(--purple-medium)"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="c5"
+              color="yellow"
+            >
+              <span>
+                OUT
+              </span>
+            </div>
+          </td>
+          <td>
+            <div
+              class="c3"
+            >
+              
+              <div
+                class="c4"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1nq5k ... btuo3a
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            0.000000000000001 FIL
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a
+              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk2qmchbhjx7q747jghal3l4g"
+            >
+              bafy2b ... al3l4g
+            </a>
+          </td>
+          <td>
+            <div
+              class="c2"
+              color="purple"
+            >
+              <span>
+                ...
+              </span>
+            </div>
+          </td>
+          <td>
+            1020
+          </td>
+          <td>
+            ...
+          </td>
+          <td>
+            <div
+              class="c3"
+            >
+              <p>
+                t1z225 ... 6z6wgi
+              </p>
+              <div
+                class="c4"
+                color="var(--purple-medium)"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="c5"
+              color="yellow"
+            >
+              <span>
+                OUT
+              </span>
+            </div>
+          </td>
+          <td>
+            <div
+              class="c3"
+            >
+              
+              <div
+                class="c4"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1nq5k ... btuo3a
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            0.000000000000001 FIL
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a
+              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk3qmchbhjx7q747jghal3l4g"
+            >
+              bafy2b ... al3l4g
+            </a>
+          </td>
+          <td>
+            <div
+              class="c2"
+              color="purple"
+            >
+              <span>
+                ...
+              </span>
+            </div>
+          </td>
+          <td>
+            1020
+          </td>
+          <td>
+            ...
+          </td>
+          <td>
+            <div
+              class="c3"
+            >
+              <p>
+                t1z225 ... 6z6wgi
+              </p>
+              <div
+                class="c4"
+                color="var(--purple-medium)"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="c5"
+              color="yellow"
+            >
+              <span>
+                OUT
+              </span>
+            </div>
+          </td>
+          <td>
+            <div
+              class="c3"
+            >
+              
+              <div
+                class="c4"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1nq5k ... btuo3a
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            0.000000000000001 FIL
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <a
+              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
+            >
+              bafy2b ... al3l4g
+            </a>
+          </td>
+          <td>
+            <div
+              class="c2"
+              color="purple"
+            >
+              <span>
+                ...
+              </span>
+            </div>
+          </td>
+          <td>
+            1020
+          </td>
+          <td>
+            ...
+          </td>
+          <td>
+            <div
+              class="c3"
+            >
+              <p>
+                t1z225 ... 6z6wgi
+              </p>
+              <div
+                class="c4"
+                color="var(--purple-medium)"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="c5"
+              color="yellow"
+            >
+              <span>
+                OUT
+              </span>
+            </div>
+          </td>
+          <td>
+            <div
+              class="c3"
+            >
+              
+              <div
+                class="c4"
+                color="var(--purple-medium)"
+              >
+                <a
+                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  t1nq5k ... btuo3a
+                </a>
+              </div>
+            </div>
+          </td>
+          <td>
+            0.000000000000001 FIL
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Message history it renders no message history correctly with historical data missing warning 1`] = `
+.c1 {
+  margin-top: 0;
+  color: var(--purple-medium);
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 > h2 {
+  margin-bottom: var(--space-s);
+}
+
+.c0 > * {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c0 > * p {
+  color: var(--yellow-dark);
+  margin-left: var(--space-m);
+}
+
+<div>
+  <div>
+    <span
+      class="c0"
+    >
+      <h2
+        class="c1"
+      >
+        Transaction History
+      </h2>
+      <div>
+        <svg
+          fill="none"
+          height="20px"
+          viewBox="0 0 22 20"
+          width="22px"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M11 7.74982V9.99986M11 14.4999H11.0112M3.24282 19H18.7572C20.4815 19 21.5586 17.1246 20.6965 15.6249L12.9393 2.12474C12.0771 0.625088 9.92286 0.625088 9.0607 2.12474L1.30352 15.6249C0.441363 17.1246 1.5185 19 3.24282 19Z"
+            stroke="var(--yellow-dark)"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+          />
+        </svg>
+        <p>
+          Syncing data from Mainnet
+        </p>
+      </div>
+    </span>
     <br />
     <table>
       <caption>

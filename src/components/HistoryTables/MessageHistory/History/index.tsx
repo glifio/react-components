@@ -1,14 +1,36 @@
 import { useMemo } from 'react'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import Box from '../../../Box'
 import MessageConfirmedRow from './MessageConfirmedRow'
 import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../../customPropTypes'
 import { ButtonV2 } from '../../../Button/V2'
 import { useAllMessages } from '../hooks/useAllMessages'
-import { Caption, PageTitle } from '../../../Layout'
-import { SyncStatus } from '../../../SyncStatus'
+import { ButtonRowCenter, Caption, PageTitle } from '../../../Layout'
+import { IconWarn } from '../../../Icons'
+
+const TitleWrapper = styled.span`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  > h2 {
+    margin-bottom: var(--space-s);
+  }
+
+  > * {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    p {
+      color: var(--yellow-dark);
+      margin-left: var(--space-m);
+    }
+  }
+`
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   const {
@@ -27,9 +49,16 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   )
 
   return (
-    <Box>
-      <PageTitle>Transaction History</PageTitle>
-      {props.warnMissingData && <SyncStatus />}
+    <div>
+      <TitleWrapper>
+        <PageTitle>Transaction History</PageTitle>
+        {props.warnMissingData && (
+          <div>
+            <IconWarn />
+            <p>Syncing data from Mainnet</p>
+          </div>
+        )}
+      </TitleWrapper>
       <br />
       <table>
         <Caption
@@ -59,7 +88,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
         </tbody>
       </table>
       {!isEmpty && !lastPage && (
-        <Box pt='4.5rem' textAlign='center'>
+        <ButtonRowCenter>
           <ButtonV2
             onClick={fetchMore}
             px='18rem'
@@ -67,9 +96,9 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
           >
             {loading || fetchingMore ? 'Loading...' : 'Load more'}
           </ButtonV2>
-        </Box>
+        </ButtonRowCenter>
       )}
-    </Box>
+    </div>
   )
 }
 
