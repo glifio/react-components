@@ -34,7 +34,7 @@ const BadgeEl = styled.div`
   }}
 `
 
-export const Badge = ({ color, text, uppercase, icon }: BadgeProps) => (
+export const Badge = ({ text, color, uppercase, icon }: BadgeProps) => (
   <BadgeEl color={color}>
     {icon}
     <span>{uppercase ? text.toUpperCase() : text}</span>
@@ -42,15 +42,15 @@ export const Badge = ({ color, text, uppercase, icon }: BadgeProps) => (
 )
 
 type BadgeProps = {
-  color: 'purple' | 'green' | 'yellow' | 'red' | 'blue' | 'gray'
   text: string
+  color?: 'purple' | 'green' | 'yellow' | 'red' | 'blue' | 'gray'
   uppercase?: boolean
   icon?: JSX.Element
 }
 
 Badge.propTypes = {
-  color: PropTypes.oneOf(['purple', 'green', 'yellow', 'red', 'blue', 'gray']),
   text: PropTypes.string.isRequired,
+  color: PropTypes.oneOf(['purple', 'green', 'yellow', 'red', 'blue', 'gray']),
   uppercase: PropTypes.bool,
   icon: PropTypes.node
 }
