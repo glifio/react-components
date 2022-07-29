@@ -23,7 +23,7 @@ const WalletRow = ({
     >
       {showSelectedWallet && (
         <td>
-          {isSelected && <StatusIcon color='purple' />}
+          {isSelected && <StatusIcon color='purple' margin='4px 0 0 1em' />}
         </td>
       )}
       <td>{idxFromPath(wallet.path)}</td>

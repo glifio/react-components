@@ -10,6 +10,10 @@ const StatusIconEl = styled.div`
   border-style: solid;
   border-radius: 50%;
 
+  ${props => css`
+    margin: ${props.margin};
+  `}
+
   &:after {
     position: absolute;
     display: block;
@@ -48,18 +52,21 @@ const StatusIconEl = styled.div`
   }}  
 `
 
-export const StatusIcon = ({ color }: StatusIconProps) => (
-  <StatusIconEl color={color} />
+export const StatusIcon = ({ color, margin }: StatusIconProps) => (
+  <StatusIconEl color={color} margin={margin} />
 )
 
 type StatusIconProps = {
-  color: 'purple' | 'green' | 'yellow' | 'red' | 'blue' | 'gray'
+  color?: 'purple' | 'green' | 'yellow' | 'red' | 'blue' | 'gray'
+  margin?: string
 }
 
 StatusIcon.propTypes = {
-  color: PropTypes.oneOf(['purple', 'green', 'yellow', 'red', 'blue', 'gray'])
+  color: PropTypes.oneOf(['purple', 'green', 'yellow', 'red', 'blue', 'gray']),
+  margin: PropTypes.string
 }
 
 StatusIcon.defaultProps = {
-  color: 'gray'
+  color: 'gray',
+  margin: '0'
 }
