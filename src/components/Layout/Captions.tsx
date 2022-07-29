@@ -18,6 +18,11 @@ interface ErrorCaptionProps {
   error: Error | string
 }
 
+ErrorCaption.propTypes = {
+  name: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.instanceOf(Error), PropTypes.string])
+}
+
 /*
  * LoadingCaption
  */
