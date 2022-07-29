@@ -9,12 +9,12 @@ const LoaderGlyphParent = styled.span`
 `
 
 const LoaderGlyphAnimation = keyframes`
- 20% { transform:translate(0px, 0px )}
- 40% { transform:translate(24px, 0px )}
- 60% { transform:translate(24px, 24px )}
- 80% { transform:translate(0px, 24px )}
- 100% { transform:translate(0px, 0px )}
- `
+  20% { transform: translate(0, 0) }
+  40% { transform: translate(100%, 0) }
+  60% { transform: translate(100%, 100%) }
+  80% { transform: translate(0, 100%) }
+  100% { transform: translate(0, 0) }
+`
 
 const LoaderGlyphChild = styled.span`
   display: inline-block;
