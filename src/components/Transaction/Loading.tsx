@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import { StandardBox } from '../Layout'
-import { LoaderGlyph } from '../LoaderGlyph'
+import { LoadingIcon } from '../Loading/LoadingIcon'
 
 export const TransactionLoading = ({
   description
 }: TransactionLoadingProps) => {
   return (
     <StandardBox>
-      <LoaderGlyph />
+      <LoadingIcon />
       <p>{description}</p>
     </StandardBox>
   )

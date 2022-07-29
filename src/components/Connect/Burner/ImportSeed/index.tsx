@@ -6,7 +6,7 @@ import { createWalletProvider, useWalletProvider } from '../../../../services'
 import { ButtonV2 } from '../../../Button/V2'
 import { InputV2 } from '../../../InputV2'
 import { Dialog, ShadowBox, ButtonRowSpaced, ErrorBox } from '../../../Layout'
-import { LoaderGlyph } from '../../../LoaderGlyph'
+import { LoadingIcon } from '../../../Loading/LoadingIcon'
 import { Loading } from '../../Loading'
 
 export const ImportSeed = ({ back, next }: ImportSeedProps) => {
@@ -48,7 +48,7 @@ export const ImportSeed = ({ back, next }: ImportSeedProps) => {
           <hr />
           {loading ? (
             <Loading>
-              <LoaderGlyph />
+              <LoadingIcon />
               <p>Loading...</p>
             </Loading>
           ) : (

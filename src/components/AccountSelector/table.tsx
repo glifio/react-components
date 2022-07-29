@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { Wallet } from '../../services/WalletProvider'
 import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
-import { LoaderGlyph } from '../LoaderGlyph'
+import { LoadingIcon } from '../Loading/LoadingIcon'
 import { WALLET_PROPTYPE } from '../../customPropTypes'
 
 export const Row = styled.tr`
@@ -130,7 +130,7 @@ export const AccountsTable = ({
           <tr>
             <td></td>
             <td>
-              <LoaderGlyph />
+              <LoadingIcon />
             </td>
             <td>Loading...</td>
             <td></td>
