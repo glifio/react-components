@@ -95,7 +95,8 @@ exports[`Message history it renders no message history correctly with historical
     <br />
     <table>
       <caption>
-        No records found for Transaction History
+        No records found 
+        for Transaction History
       </caption>
       <thead>
         <tr>

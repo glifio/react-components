@@ -5,6 +5,7 @@ export const Dialog = styled.div`
   flex-direction: column;
   gap: var(--space-m);
   width: 100%;
+  margin: 0 auto;
   max-width: 35em;
 
   form {

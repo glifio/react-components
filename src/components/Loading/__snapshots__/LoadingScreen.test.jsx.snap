@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Create seed phrase configuration it sends the user to wallet view, with a wallet in state upon successful config 1`] = `
+exports[`LoadingScreen renders correctly 1`] = `
 .c1 {
   position: relative;
   display: inline-block;
@@ -48,14 +48,6 @@ exports[`Create seed phrase configuration it sends the user to wallet view, with
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-
-@media screen and (min-width:40em) {
-
-}
-
-@media screen and (min-width:40em) {
-
 }
 
 <div

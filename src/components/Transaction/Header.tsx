@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { ErrorBox, WarningBox } from '../Layout'
 import { StandardBox } from '../Layout'
 import { TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
-import LoaderGlyph from '../LoaderGlyph'
+import { LoadingIcon } from '../Loading/LoadingIcon'
 import {
   TransactionConfirm,
   TransactionConfirmProps,
@@ -45,7 +45,7 @@ export const TransactionHeader = ({
       </p>
       {(txState === TxState.LoadingMessage ||
         txState === TxState.LoadingTxDetails ||
-        txState === TxState.MPoolPushing) && <LoaderGlyph />}
+        txState === TxState.MPoolPushing) && <LoadingIcon />}
     </StandardBox>
     {warning &&
       (txState === TxState.FillingTxFee ||

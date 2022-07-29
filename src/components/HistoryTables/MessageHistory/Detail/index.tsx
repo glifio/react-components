@@ -23,7 +23,7 @@ import {
   ExecReturn,
   getAddrFromReceipt
 } from '../../../../utils/getAddrFromReceipt'
-import LoaderGlyph from '../../../LoaderGlyph'
+import { LoadingIcon } from '../../../Loading/LoadingIcon'
 import { logger } from '../../../../logger'
 
 // add RelativeTime plugin to Day.js
@@ -124,7 +124,7 @@ export default function MessageDetail(props: MessageDetailProps) {
         )}
         {messageState === MessageState.Loading && (
           <StandardBox>
-            <LoaderGlyph />
+            <LoadingIcon />
             <p>Searching for {cid}... Give us a moment</p>
           </StandardBox>
         )}

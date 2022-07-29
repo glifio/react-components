@@ -1,32 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoaderGlyph renders the story 1`] = `
+exports[`LoadingIcon renders correctly 1`] = `
 .c0 {
+  position: relative;
   display: inline-block;
-  height: 48px;
-  width: 48px;
-  text-align: left;
   background-color: var(--purple-medium);
+  width: 3em;
+  height: 3em;
+  margin: 0;
 }
 
-.c1 {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
+.c0:after {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 0;
+  left: 0;
   background-color: var(--purple-dark);
-  -webkit-animation-name: bvGDKI;
-  animation-name: bvGDKI;
+  -webkit-animation-name: gxoozo;
+  animation-name: gxoozo;
   -webkit-animation-duration: 2s;
   animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+  width: calc(3em * 0.5);
+  height: calc(3em * 0.5);
 }
 
 <span
   class="c0"
->
-  <span
-    class="c1"
-  />
-</span>
+/>
 `;

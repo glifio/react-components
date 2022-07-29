@@ -1,73 +1,19 @@
 import { CoinType } from '@glif/filecoin-address'
 import { Dispatch, SetStateAction, useState } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { createPath } from '../../utils'
 import { coinTypeCode } from '../../utils/createPath'
 import { ButtonV2 } from '../Button/V2'
 import { InputV2 } from '../InputV2'
 import { Toggle } from '../InputV2/Toggle'
-import { ShadowBox } from '../Layout'
+import {
+  Lines,
+  Dialog,
+  ShadowBox,
+  ButtonRowCenter,
+  ButtonRowSpaced
+} from '../Layout'
 import { LoginOption, LOGIN_OPTION_PROPTYPE } from '../../customPropTypes'
-
-const CreateAccountContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: var(--space-l);
-  align-items: center;
-
-  > * {
-    width: fit-content;
-
-    button {
-      width: 38.2%;
-      min-width: fit-content;
-    }
-  }
-
-  > label {
-    margin-top: var(--space-m);
-  }
-`
-
-const FormWrapper = styled(ShadowBox)`
-  margin-top: var(--space-xl);
-`
-
-const Path = styled.p`
-  color: var(--gray-medium);
-  padding-top: var(--space-m);
-`
-
-/**
- * TODO The label child overflow is a hack to get the UI to look right
- * but what really needs to happen is unit-wrapper class should have:
- * `width: fit-content`
- *
- * cant figure out how to get there, and this works pretty well..
- */
-const Form = styled.form`
-  > * {
-    margin: var(--space-m);
-  }
-
-  > label {
-    overflow: hidden;
-  }
-`
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  > p {
-    color: var(--red-medium);
-    margin-top: var(--space-m);
-    margin-bottom: 0;
-  }
-`
 
 enum CoinTypeOption {
   MAINNET = 'Mainnet',
@@ -129,62 +75,76 @@ export function CreateAccount({
   }
 
   return (
-    <CreateAccountContainer>
-      <ButtonV2
-        large
-        onClick={() =>
-          fetchNextAccount(
-            defaultAccountIdx,
-            process.env.NEXT_PUBLIC_COIN_TYPE as CoinType
-          )
-        }
-        disabled={expertMode}
-      >
-        Next account
-      </ButtonV2>
-      <Toggle
-        label='Expert Mode'
-        checked={expertMode}
-        onChange={setExpertMode}
-      />
+    <>
+      <ButtonRowSpaced>
+        <Toggle
+          label='Expert Mode'
+          checked={expertMode}
+          onChange={setExpertMode}
+        />
+        <ButtonV2
+          large
+          onClick={() =>
+            fetchNextAccount(
+              defaultAccountIdx,
+              process.env.NEXT_PUBLIC_COIN_TYPE as CoinType
+            )
+          }
+          disabled={expertMode}
+        >
+          Next account
+        </ButtonV2>
+      </ButtonRowSpaced>
       {expertMode && (
-        <FormWrapper>
-          <h3>Create account</h3>
-          <Form
+        <Dialog>
+          <form
             onSubmit={e => {
               e.preventDefault()
-              return fetchNextAccount(
+              fetchNextAccount(
                 accountIndex,
                 coinTypeOptionToCoinType(coinTypeOpt)
               )
             }}
           >
-            <InputV2.Select
-              label='Coin type'
-              options={[CoinTypeOption.MAINNET, CoinTypeOption.LEGACY]}
-              value={coinTypeOpt}
-              onChange={v => setCoinTypeOpt(v as CoinTypeOption)}
-            />
-            <InputV2.Number
-              label='Account index'
-              value={accountIndex}
-              onChange={setAccountIndex}
-            />
-            <Path>{path}</Path>
-            <ButtonContainer>
-              <ButtonV2 green type='submit'>
-                Add account
-              </ButtonV2>
-              {showExport && (
-                <p role='button' onClick={exportPrivateKey}>
-                  Export private key
-                </p>
+            <ShadowBox>
+              <h3>Create account</h3>
+              <hr />
+              <Lines>
+                <InputV2.Select
+                  label='Coin type'
+                  options={[CoinTypeOption.MAINNET, CoinTypeOption.LEGACY]}
+                  value={coinTypeOpt}
+                  onChange={v => setCoinTypeOpt(v as CoinTypeOption)}
+                />
+                <InputV2.Number
+                  label='Account index'
+                  value={accountIndex}
+                  onChange={setAccountIndex}
+                />
+                <InputV2.Info label='Path' value={path} />
+              </Lines>
+              <hr />
+              {showExport ? (
+                <ButtonRowSpaced>
+                  <ButtonV2 gray onClick={exportPrivateKey}>
+                    Export private key
+                  </ButtonV2>
+                  <ButtonV2 green type='submit'>
+                    Add account
+                  </ButtonV2>
+                </ButtonRowSpaced>
+              ) : (
+                <ButtonRowCenter>
+                  <ButtonV2 green type='submit'>
+                    Add account
+                  </ButtonV2>
+                </ButtonRowCenter>
               )}
-            </ButtonContainer>
-          </Form>
-        </FormWrapper>
+            </ShadowBox>
+          </form>
+        </Dialog>
       )}
-    </CreateAccountContainer>
+    </>
   )
 }
 
