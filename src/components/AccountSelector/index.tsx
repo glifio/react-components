@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
-import { bool, func, number, string } from 'prop-types'
+import { bool, func, string } from 'prop-types'
 import { CoinType } from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
@@ -24,8 +24,7 @@ const AccountSelector = ({
   showSelectedAccount,
   helperText,
   title,
-  coinType,
-  nWalletsToLoad
+  coinType
 }: AccountSelectorProps) => {
   const [loadingWallets, setLoadingWallets] = useState(false)
   const [loadingPage, setLoadingPage] = useState(true)
@@ -117,7 +116,6 @@ const AccountSelector = ({
     wallets,
     walletList,
     coinType,
-    nWalletsToLoad,
     apolloClient,
     getBalance,
     getAddress
@@ -218,9 +216,6 @@ type AccountSelectorProps = {
   helperText: string
   title: string
   coinType: CoinType
-  nWalletsToLoad: number
-  test: boolean
-  isProd: boolean
 }
 
 AccountSelector.propTypes = {
@@ -228,17 +223,11 @@ AccountSelector.propTypes = {
   showSelectedAccount: bool,
   helperText: string.isRequired,
   title: string.isRequired,
-  test: bool,
-  coinType: COIN_TYPE_PROPTYPE,
-  nWalletsToLoad: number,
-  isProd: bool
+  coinType: COIN_TYPE_PROPTYPE
 }
 
 AccountSelector.defaultProps = {
-  showSelectedAccount: true,
-  test: false,
-  nWalletsToLoad: 5,
-  isProd: false
+  showSelectedAccount: true
 }
 
 export default AccountSelector
