@@ -2,14 +2,7 @@ import { LoadingIcon } from './LoadingIcon'
 
 export default {
   title: 'Loading/LoadingIcon',
-  component: LoadingIcon,
-  decorators: [
-    Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {Story()}
-      </div>
-    )
-  ]
+  component: LoadingIcon
 }
 
 const Template = args => <LoadingIcon {...args} />
