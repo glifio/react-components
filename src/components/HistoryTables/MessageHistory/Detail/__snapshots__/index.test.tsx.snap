@@ -1175,6 +1175,32 @@ exports[`Message detail view it renders the loading view correctly 1`] = `
   border-color: var(--gray-medium);
 }
 
+.c6 {
+  position: relative;
+  display: inline-block;
+  background-color: var(--purple-medium);
+  width: 3em;
+  height: 3em;
+  margin: 0;
+}
+
+.c6:after {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 0;
+  left: 0;
+  background-color: var(--purple-dark);
+  -webkit-animation-name: gxoozo;
+  animation-name: gxoozo;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  width: calc(3em * 0.5);
+  height: calc(3em * 0.5);
+}
+
 .c3 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1200,27 +1226,6 @@ exports[`Message detail view it renders the loading view correctly 1`] = `
   color: var(--purple-medium);
 }
 
-.c6 {
-  display: inline-block;
-  height: 48px;
-  width: 48px;
-  text-align: left;
-  background-color: var(--purple-medium);
-}
-
-.c7 {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-  background-color: var(--purple-dark);
-  -webkit-animation-name: bvGDKI;
-  animation-name: bvGDKI;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-}
-
 <div>
   <div
     class="c0"
@@ -1244,11 +1249,7 @@ exports[`Message detail view it renders the loading view correctly 1`] = `
     >
       <span
         class="c6"
-      >
-        <span
-          class="c7"
-        />
-      </span>
+      />
       <p>
         Searching for 
         bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g
