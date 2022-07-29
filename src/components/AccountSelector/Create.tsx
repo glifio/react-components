@@ -6,7 +6,13 @@ import { coinTypeCode } from '../../utils/createPath'
 import { ButtonV2 } from '../Button/V2'
 import { InputV2 } from '../InputV2'
 import { Toggle } from '../InputV2/Toggle'
-import { ShadowBox, ButtonRowSpaced, Lines, Dialog } from '../Layout'
+import {
+  Lines,
+  Dialog,
+  ShadowBox,
+  ButtonRowCenter,
+  ButtonRowSpaced
+} from '../Layout'
 import { LoginOption, LOGIN_OPTION_PROPTYPE } from '../../customPropTypes'
 
 enum CoinTypeOption {
@@ -91,18 +97,18 @@ export function CreateAccount({
       </ButtonRowSpaced>
       {expertMode && (
         <Dialog>
-          <ShadowBox>
-            <h3>Create account</h3>
-            <hr />
-            <form
-              onSubmit={e => {
-                e.preventDefault()
-                fetchNextAccount(
-                  accountIndex,
-                  coinTypeOptionToCoinType(coinTypeOpt)
-                )
-              }}
-            >
+          <form
+            onSubmit={e => {
+              e.preventDefault()
+              fetchNextAccount(
+                accountIndex,
+                coinTypeOptionToCoinType(coinTypeOpt)
+              )
+            }}
+          >
+            <ShadowBox>
+              <h3>Create account</h3>
+              <hr />
               <Lines>
                 <InputV2.Select
                   label='Coin type'
@@ -116,19 +122,26 @@ export function CreateAccount({
                   onChange={setAccountIndex}
                 />
                 <InputV2.Info label='Path' value={path} />
+              </Lines>
+              <hr />
+              {showExport ? (
                 <ButtonRowSpaced>
-                  {showExport && (
-                    <ButtonV2 gray onClick={exportPrivateKey}>
-                      Export private key
-                    </ButtonV2>
-                  )}
+                  <ButtonV2 gray onClick={exportPrivateKey}>
+                    Export private key
+                  </ButtonV2>
                   <ButtonV2 green type='submit'>
                     Add account
                   </ButtonV2>
                 </ButtonRowSpaced>
-              </Lines>
-            </form>
-          </ShadowBox>
+              ) : (
+                <ButtonRowCenter>
+                  <ButtonV2 green type='submit'>
+                    Add account
+                  </ButtonV2>
+                </ButtonRowCenter>
+              )}
+            </ShadowBox>
+          </form>
         </Dialog>
       )}
     </>
