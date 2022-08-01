@@ -15,11 +15,7 @@ export const SearchAddress = ({
   const [inputError, setInputError] = useState<string>('')
 
   const onInput = useCallback((value: string) => {
-    setInputError(
-      validateAddressString(value)
-        ? ''
-        : 'Invalid address'
-    )
+    setInputError(validateAddressString(value) ? '' : 'Invalid address')
   }, [])
 
   return (
