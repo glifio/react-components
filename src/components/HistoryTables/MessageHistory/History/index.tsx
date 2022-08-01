@@ -34,10 +34,12 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     <div>
       <PageTitle
         sideContent={
-          props.warnMissingData && [
-            <IconWarn />,
-            <MissingDataWarning>Syncing data from Mainnet</MissingDataWarning>
-          ]
+          props.warnMissingData && (
+            <>
+              <IconWarn />
+              <MissingDataWarning>Syncing data from Mainnet</MissingDataWarning>
+            </>
+          )
         }
       >
         Transaction History
