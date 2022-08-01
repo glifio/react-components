@@ -55,7 +55,7 @@ export function ActorState({ address }: { address: string }) {
 
   return (
     <div>
-      <PageTitle>Overview</PageTitle>
+      <PageTitle>Actor Overview</PageTitle>
       <hr />
       <DetailCaption
         name='Actor Overview'
