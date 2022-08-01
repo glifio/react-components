@@ -22,3 +22,6 @@ Base.args = {}
 
 export const Large = Template.bind({})
 Large.args = { large: true }
+
+export const Check = Template.bind({})
+Check.args = { buttonText: 'Check' }
