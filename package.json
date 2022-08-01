@@ -85,7 +85,7 @@
     "@apollo/client": "^3.6.9",
     "@chainsafe/filsnap-adapter": "^2.1.1",
     "@chainsafe/filsnap-types": "^2.1.2",
-    "@glif/base-css": "^0.0.30",
+    "@glif/base-css": "^0.0.31",
     "@glif/filecoin-address": "^2.0.0-beta.16",
     "@glif/filecoin-message": "^2.0.0-beta.16",
     "@glif/filecoin-number": "^2.0.0-beta.16",
