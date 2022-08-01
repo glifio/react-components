@@ -10,26 +10,8 @@ import { useAllMessages } from '../hooks/useAllMessages'
 import { ButtonRowCenter, Caption, PageTitle } from '../../../Layout'
 import { IconWarn } from '../../../Icons'
 
-const TitleWrapper = styled.span`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-
-  > h2 {
-    margin-bottom: var(--space-s);
-  }
-
-  > * {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    p {
-      color: var(--yellow-dark);
-      margin-left: var(--space-m);
-    }
-  }
+const MissingDataWarning = styled.span`
+  color: var(--yellow-dark);
 `
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
@@ -50,16 +32,16 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 
   return (
     <div>
-      <TitleWrapper>
-        <PageTitle>Transaction History</PageTitle>
-        {props.warnMissingData && (
-          <div>
-            <IconWarn />
-            <p>Syncing data from Mainnet</p>
-          </div>
-        )}
-      </TitleWrapper>
-      <br />
+      <PageTitle
+        sideContent={
+          props.warnMissingData && [
+            <IconWarn />,
+            <MissingDataWarning>Syncing data from Mainnet</MissingDataWarning>
+          ]
+        }
+      >
+        Transaction History
+      </PageTitle>
       <table>
         <Caption
           name='Transaction History'
