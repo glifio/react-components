@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Message history it renders messages 1`] = `
-.c2 {
+.c3 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -21,7 +21,7 @@ exports[`Message history it renders messages 1`] = `
   background-color: var(--purple-light);
 }
 
-.c5 {
+.c6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -41,17 +41,17 @@ exports[`Message history it renders messages 1`] = `
   background-color: var(--yellow-light);
 }
 
-.c3 h4 {
+.c4 h4 {
   margin: 0;
   color: var(--gray-dark);
 }
 
-.c3 p {
+.c4 p {
   margin: 0;
   line-height: 1.5;
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -60,21 +60,16 @@ exports[`Message history it renders messages 1`] = `
   line-height: 1.5;
 }
 
-.c4 a {
+.c5 a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c4 a:hover {
+.c5 a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
-}
-
-.c1 {
-  margin-top: 0;
-  color: var(--purple-medium);
 }
 
 .c0 {
@@ -82,45 +77,44 @@ exports[`Message history it renders messages 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  gap: var(--space-l);
+  margin: 1em 0;
+  font-size: var(--font-size-xl);
 }
 
-.c0 > h2 {
-  margin-bottom: var(--space-s);
-}
-
-.c0 > * {
+.c0 .side-bar {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  gap: var(--space-m);
+  font-size: 1rem;
 }
 
-.c0 > * p {
+.c1 {
+  margin: 0;
+  color: var(--purple-medium);
+}
+
+.c2 {
   color: var(--yellow-dark);
-  margin-left: var(--space-m);
 }
 
 <div>
   <div>
-    <span
+    <div
       class="c0"
     >
       <h2
@@ -128,7 +122,9 @@ exports[`Message history it renders messages 1`] = `
       >
         Transaction History
       </h2>
-      <div>
+      <div
+        class="side-bar"
+      >
         <svg
           fill="none"
           height="20px"
@@ -144,12 +140,13 @@ exports[`Message history it renders messages 1`] = `
             stroke-width="2"
           />
         </svg>
-        <p>
+        <span
+          class="c2"
+        >
           Syncing data from Mainnet
-        </p>
+        </span>
       </div>
-    </span>
-    <br />
+    </div>
     <table>
       <thead>
         <tr>
@@ -188,7 +185,7 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c2"
+              class="c3"
               color="purple"
             >
               <span>
@@ -204,20 +201,20 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <p>
                 t1z225 ... 6z6wgi
               </p>
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               />
             </div>
           </td>
           <td>
             <div
-              class="c5"
+              class="c6"
               color="yellow"
             >
               <span>
@@ -227,11 +224,11 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <a
@@ -258,7 +255,7 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c2"
+              class="c3"
               color="purple"
             >
               <span>
@@ -274,20 +271,20 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <p>
                 t1z225 ... 6z6wgi
               </p>
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               />
             </div>
           </td>
           <td>
             <div
-              class="c5"
+              class="c6"
               color="yellow"
             >
               <span>
@@ -297,11 +294,11 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <a
@@ -328,7 +325,7 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c2"
+              class="c3"
               color="purple"
             >
               <span>
@@ -344,20 +341,20 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <p>
                 t1z225 ... 6z6wgi
               </p>
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               />
             </div>
           </td>
           <td>
             <div
-              class="c5"
+              class="c6"
               color="yellow"
             >
               <span>
@@ -367,11 +364,11 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <a
@@ -398,7 +395,7 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c2"
+              class="c3"
               color="purple"
             >
               <span>
@@ -414,20 +411,20 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <p>
                 t1z225 ... 6z6wgi
               </p>
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               />
             </div>
           </td>
           <td>
             <div
-              class="c5"
+              class="c6"
               color="yellow"
             >
               <span>
@@ -437,11 +434,11 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <a
@@ -468,7 +465,7 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c2"
+              class="c3"
               color="purple"
             >
               <span>
@@ -484,20 +481,20 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <p>
                 t1z225 ... 6z6wgi
               </p>
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               />
             </div>
           </td>
           <td>
             <div
-              class="c5"
+              class="c6"
               color="yellow"
             >
               <span>
@@ -507,11 +504,11 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <a
@@ -535,55 +532,49 @@ exports[`Message history it renders messages 1`] = `
 `;
 
 exports[`Message history it renders no message history correctly with historical data missing warning 1`] = `
-.c1 {
-  margin-top: 0;
-  color: var(--purple-medium);
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  gap: var(--space-l);
+  margin: 1em 0;
+  font-size: var(--font-size-xl);
 }
 
-.c0 > h2 {
-  margin-bottom: var(--space-s);
-}
-
-.c0 > * {
+.c0 .side-bar {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  gap: var(--space-m);
+  font-size: 1rem;
 }
 
-.c0 > * p {
+.c1 {
+  margin: 0;
+  color: var(--purple-medium);
+}
+
+.c2 {
   color: var(--yellow-dark);
-  margin-left: var(--space-m);
 }
 
 <div>
   <div>
-    <span
+    <div
       class="c0"
     >
       <h2
@@ -591,7 +582,9 @@ exports[`Message history it renders no message history correctly with historical
       >
         Transaction History
       </h2>
-      <div>
+      <div
+        class="side-bar"
+      >
         <svg
           fill="none"
           height="20px"
@@ -607,12 +600,13 @@ exports[`Message history it renders no message history correctly with historical
             stroke-width="2"
           />
         </svg>
-        <p>
+        <span
+          class="c2"
+        >
           Syncing data from Mainnet
-        </p>
+        </span>
       </div>
-    </span>
-    <br />
+    </div>
     <table>
       <caption>
         No records found 
