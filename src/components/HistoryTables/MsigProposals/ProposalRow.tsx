@@ -15,9 +15,13 @@ import { getMethodName } from '../methodName'
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
-export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
-  const { proposal, idHref, inspectingAddress, actionRequired } = props
-
+export default function ProposalHistoryRow({
+  proposal,
+  idHref,
+  inspectingAddress,
+  proposalActionRequired,
+  anyProposalActionRequired
+}: ProposalHistoryRowProps) {
   const router = useRouter()
   const proposerIsInspecting = useMemo(
     () => isAddrEqual(proposal.approved[0], inspectingAddress),
@@ -28,7 +32,7 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
     <tr
       className='selectable'
       onClick={() => {
-        if (props?.idHref(proposal.id).charAt(0) === '/') {
+        if (idHref(proposal.id).charAt(0) === '/') {
           router.push(idHref(proposal.id))
         } else {
           window.open(idHref(proposal.id), '_blank')
@@ -54,9 +58,11 @@ export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
       </td>
       <td>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</td>
       <td>{proposal.approved?.length}</td>
-      {actionRequired && (
+      {anyProposalActionRequired && (
         <td>
-          <SmartLink href={idHref(proposal.id)}>Action required</SmartLink>
+          {proposalActionRequired && (
+            <SmartLink href={idHref(proposal.id)}>Action required</SmartLink>
+          )}
         </td>
       )}
     </tr>
@@ -67,14 +73,16 @@ type ProposalHistoryRowProps = {
   proposal: MsigTransaction
   idHref: (id: number) => string
   inspectingAddress?: string
-  actionRequired?: boolean
+  proposalActionRequired?: boolean
+  anyProposalActionRequired?: boolean
 }
 
 ProposalHistoryRow.propTypes = {
   proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
   idHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string,
-  actionRequired: PropTypes.bool
+  proposalActionRequired: PropTypes.bool,
+  anyProposalActionRequired: PropTypes.bool
 }
 
 ProposalHistoryRow.defaultProps = {
