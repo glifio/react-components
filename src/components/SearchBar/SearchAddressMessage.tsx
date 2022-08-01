@@ -9,6 +9,7 @@ import { validateCID } from '../../utils'
  */
 export const SearchAddressMessage = ({
   large,
+  buttonText,
   hideErrorMessage,
   onSearchAddress,
   onSearchMessage
@@ -39,6 +40,7 @@ export const SearchAddressMessage = ({
       autoFocus={true}
       autoComplete='on'
       placeholder={'Enter an address or message CID'}
+      buttonText={buttonText}
       hideErrorMessage={hideErrorMessage}
       inputError={inputError}
       trimInput={true}
@@ -50,6 +52,7 @@ export const SearchAddressMessage = ({
 
 export type SearchAddressMessageProps = {
   large?: boolean
+  buttonText?: string
   hideErrorMessage?: boolean
   onSearchAddress?: (address: string) => void
   onSearchMessage?: (cid: string) => void
@@ -57,14 +60,13 @@ export type SearchAddressMessageProps = {
 
 SearchAddressMessage.propTypes = {
   large: PropTypes.bool,
+  buttonText: PropTypes.string,
   hideErrorMessage: PropTypes.bool,
   onSearchAddress: PropTypes.func,
   onSearchMessage: PropTypes.func
 }
 
 SearchAddressMessage.defaultProps = {
-  large: false,
-  hideErrorMessage: false,
   onSearchAddress: () => {},
   onSearchMessage: () => {}
 }
