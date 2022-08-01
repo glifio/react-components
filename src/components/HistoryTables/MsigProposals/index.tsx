@@ -1,7 +1,5 @@
 import { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { isAddressSigner } from '../../../utils'
-import Box from '../../Box'
 import ProposalRow from './ProposalRow'
 import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
 import {
@@ -17,13 +15,15 @@ import { Caption, PageTitle } from '../../Layout'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 
 export default function ProposalHistoryTable({
+  msigAddress,
+  walletAddress,
   idHref,
-  address,
-  walletAddr
+  approve,
+  cancel
 }: ProposalHistoryTableProps) {
   const { data, loading, error } = useMsigPendingQuery({
     variables: {
-      address: convertAddrToPrefix(address)
+      address: convertAddrToPrefix(msigAddress)
     },
     pollInterval: 10000,
     fetchPolicy: 'cache-and-network'
@@ -37,16 +37,8 @@ export default function ProposalHistoryTable({
     [data?.msigPending]
   )
 
-  const anyProposalActionRequired = useMemo<boolean>(
-    () =>
-      proposals.some(
-        proposal => !isAddressSigner(walletAddr, proposal.approved)
-      ),
-    [proposals, walletAddr]
-  )
-
   return (
-    <Box>
+    <>
       <PageTitle>Safe Proposals</PageTitle>
       <table>
         <Caption
@@ -55,41 +47,36 @@ export default function ProposalHistoryTable({
           error={error}
           empty={!data?.msigPending.length}
         />
-        <ProposalRowColumnTitles
-          anyProposalActionRequired={anyProposalActionRequired}
-        />
+        <ProposalRowColumnTitles />
         <tbody>
           {proposals.map(proposal => (
             <ProposalRow
               key={proposal.id}
               proposal={proposal}
+              walletAddress={walletAddress}
               idHref={idHref}
-              inspectingAddress={address}
-              proposalActionRequired={
-                !isAddressSigner(walletAddr, proposal.approved)
-              }
-              anyProposalActionRequired={anyProposalActionRequired}
+              approve={approve}
+              cancel={cancel}
             />
           ))}
         </tbody>
       </table>
-    </Box>
+    </>
   )
 }
 
 type ProposalHistoryTableProps = {
+  msigAddress: string
+  walletAddress: Address
   idHref: (id: number) => string
-  address: string
-  walletAddr: Address
+  approve: (proposal: MsigTransaction) => void
+  cancel: (proposal: MsigTransaction) => void
 }
 
 ProposalHistoryTable.propTypes = {
-  idHref: PropTypes.func,
-  address: ADDRESS_PROPTYPE.isRequired,
-  walletAddr: GRAPHQL_ADDRESS_PROP_TYPE.isRequired
-}
-
-ProposalHistoryTable.defaultProps = {
-  // TODO
-  idHref: (id: number) => `/#/detail/${id}`
+  msigAddress: ADDRESS_PROPTYPE.isRequired,
+  walletAddress: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  idHref: PropTypes.func.isRequired,
+  approve: PropTypes.func.isRequired,
+  cancel: PropTypes.func.isRequired
 }

@@ -1,8 +1,4 @@
-import PropTypes from 'prop-types'
-
-export const ProposalRowColumnTitles = ({
-  anyProposalActionRequired
-}: ProposalRowColumnTitlesProps) => (
+export const ProposalRowColumnTitles = () => (
   <thead>
     <tr>
       <th>ID</th>
@@ -10,15 +6,7 @@ export const ProposalRowColumnTitles = ({
       <th>Proposer</th>
       <th>Value</th>
       <th># Approvals</th>
-      {anyProposalActionRequired && <th />}
+      <th>Action</th>
     </tr>
   </thead>
 )
-
-interface ProposalRowColumnTitlesProps {
-  anyProposalActionRequired?: boolean
-}
-
-ProposalRowColumnTitles.propTypes = {
-  anyProposalActionRequired: PropTypes.bool
-}
