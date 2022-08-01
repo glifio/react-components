@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 import { AddressLink } from '../../LabeledText/AddressLink'
-import { ProposalHead, Parameters } from '../detail'
+import { Parameters } from '../detail'
 import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
 import {
   Address,
@@ -17,11 +17,13 @@ import {
   MsigState,
   isAddressSigner
 } from '../../../utils'
-import { Lines, Line } from '../../Layout'
+import { Lines, Line, PageTitle } from '../../Layout'
 import { LoadingScreen } from '../../Loading/LoadingScreen'
 import ErrorView from '../../Error'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import { logger } from '../../../logger'
+import { ButtonV2 } from '../../Button/V2'
+import { IconCheck, IconFail } from '../../Icons'
 
 export default function ProposalDetail(props: ProposalDetailProps) {
   const router = useRouter()
@@ -145,15 +147,32 @@ export default function ProposalDetail(props: ProposalDetailProps) {
 
   return (
     <div>
-      <ProposalHead
-        title='Proposal Overview'
-        accept={props.accept}
-        cancel={props.cancel}
-        proposal={proposal}
-        actionRequired={actionRequired}
-        approvalsUntilExecution={approvalsUntilExecution}
-        isProposer={isProposer}
-      />
+      <PageTitle
+        sideContent={
+          <>
+            {actionRequired && (
+              <ButtonV2
+                green
+                onClick={() => props.accept(proposal, approvalsUntilExecution)}
+              >
+                <IconCheck width='1.75rem' />
+                Approve
+              </ButtonV2>
+            )}
+            {isProposer && (
+              <ButtonV2
+                red
+                onClick={() => props.cancel(proposal, approvalsUntilExecution)}
+              >
+                <IconFail width='1.25rem' />
+                Cancel
+              </ButtonV2>
+            )}
+          </>
+        }
+      >
+        Proposal Overview
+      </PageTitle>
       <hr />
       <Lines>
         <Line label='Proposal ID'>{props.id}</Line>
