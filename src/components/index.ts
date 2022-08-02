@@ -2,7 +2,6 @@ export { default as theme } from './theme'
 export * from './theme'
 export { default as ThemeProvider } from './ThemeProvider'
 
-export { default as Card } from './Card'
 export { default as AccountCard } from './AccountCard'
 export { default as AccountError } from './AccountCard/Error'
 export * from './AppTile'
