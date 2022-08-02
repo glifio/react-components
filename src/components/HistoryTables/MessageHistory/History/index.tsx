@@ -75,7 +75,6 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
         <ButtonRowCenter>
           <ButtonV2
             onClick={fetchMore}
-            px='18rem'
             disabled={loading || fetchingMore}
           >
             {loading || fetchingMore ? 'Loading...' : 'Load more'}
