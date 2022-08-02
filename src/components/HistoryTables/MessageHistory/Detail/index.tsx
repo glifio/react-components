@@ -9,22 +9,19 @@ import {
   useMessageReceiptQuery
 } from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
-import {
-  Head,
-  DetailCaption,
-  MessageDetailBase,
-  SeeMoreContent
-} from '../../detail'
+import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
 import { useMessage } from '../hooks/useAllMessages'
 import { useMethodName } from '../hooks/useMethodName'
-import { Lines, Line, StandardBox } from '../../../Layout'
+import { Lines, Line, StandardBox, PageTitle } from '../../../Layout'
 import { isAddrEqual, makeFriendlyBalance } from '../../../../utils'
 import {
   ExecReturn,
   getAddrFromReceipt
 } from '../../../../utils/getAddrFromReceipt'
-import LoaderGlyph from '../../../LoaderGlyph'
+import { LoadingIcon } from '../../../Loading/LoadingIcon'
 import { logger } from '../../../../logger'
+import { ButtonV2Link } from '../../../Button/V2'
+import { IconCancel, IconSpeedUp } from '../../../Icons'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -98,12 +95,29 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   return (
     <>
-      <Head
-        title='Message Overview'
-        pending={pending}
-        speedUpHref={speedUpHref}
-        cancelHref={cancelHref}
-      />
+      <PageTitle
+        sideContent={
+          pending && (
+            <>
+              {speedUpHref && !process.env.NEXT_PUBLIC_IS_PROD && (
+                <ButtonV2Link green href={speedUpHref} retainParams>
+                  <IconSpeedUp width='1.25rem' />
+                  Speed up
+                </ButtonV2Link>
+              )}
+              {cancelHref && !process.env.NEXT_PUBLIC_IS_PROD && (
+                <ButtonV2Link red href={cancelHref} retainParams>
+                  <IconCancel width='0.8rem' />
+                  Cancel
+                </ButtonV2Link>
+              )}
+            </>
+          )
+        }
+      >
+        Message Overview
+      </PageTitle>
+      <hr />
       <Lines>
         {messageState === MessageState.Error && (
           <DetailCaption
@@ -124,7 +138,7 @@ export default function MessageDetail(props: MessageDetailProps) {
         )}
         {messageState === MessageState.Loading && (
           <StandardBox>
-            <LoaderGlyph />
+            <LoadingIcon />
             <p>Searching for {cid}... Give us a moment</p>
           </StandardBox>
         )}

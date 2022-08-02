@@ -1,86 +1,49 @@
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { Wallet } from '../../services/WalletProvider'
 import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
-import _LoaderGlyph from '../LoaderGlyph'
+import { LoadingCaption, StatusIcon } from '../Layout'
 import { WALLET_PROPTYPE } from '../../customPropTypes'
-
-const LoaderGlyph = styled(_LoaderGlyph)`
-  margin-left: var(--space-m);
-`
-
-export const Row = styled.tr`
-  margin-left: var(--space-m);
-`
 
 export const idxFromPath = (path: string): string => {
   return path.split('/')[5]
 }
 
-const StatusOuter = styled.div`
-  position: relative;
-  width: 18px;
-  height: 18px;
-  border: 1px solid var(--purple-medium);
-  border-radius: 50%;
-`
-
-const StatusInner = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 11px;
-  height: 11px;
-  background: var(--purple-medium);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-`
-
 const WalletRow = ({
-  w,
+  wallet,
   selectAccount,
   index,
   isSelected,
   showSelectedWallet
 }: WalletRowProps) => {
   return (
-    <Row
-      className='selectable'
-      key={w.robust}
-      onClick={() => selectAccount(index)}
-    >
-      <td></td>
-      {showSelectedWallet ? (
-        isSelected ? (
-          <td>
-            <StatusOuter data-testid='selected-account'>
-              <StatusInner />
-            </StatusOuter>
+    <tr className='selectable' onClick={() => selectAccount(index)}>
+      {showSelectedWallet &&
+        (isSelected ? (
+          <td data-testid='selected-account'>
+            <StatusIcon color='purple' margin='4px 0 0 1em' />
           </td>
         ) : (
           <td></td>
-        )
-      ) : (
-        <></>
-      )}
-      <td>{idxFromPath(w.path)}</td>
-      <td>Account {idxFromPath(w.path)}</td>
+        ))}
+      <td>{idxFromPath(wallet.path)}</td>
+      <td>Account {idxFromPath(wallet.path)}</td>
       <td>
         <AddressLink
-          address={convertAddrToPrefix(w.robust)}
+          address={convertAddrToPrefix(wallet.robust)}
           shouldTruncate={false}
+          hideCopyText={false}
         />
       </td>
-      <td>{makeFriendlyBalance(w.balance, 6, true)}</td>
-      <td>{convertAddrToPrefix(w.id) || '-'}</td>
-      <td>{w.path}</td>
-    </Row>
+      <td>{makeFriendlyBalance(wallet.balance, 6, true)}</td>
+      <td>{convertAddrToPrefix(wallet.id) || '-'}</td>
+      <td>{wallet.path}</td>
+    </tr>
   )
 }
 
 type WalletRowProps = {
-  w: Wallet
+  wallet: Wallet
   selectAccount: (i: number) => void
   index: number
   isSelected: boolean
@@ -88,7 +51,7 @@ type WalletRowProps = {
 }
 
 WalletRow.propTypes = {
-  w: WALLET_PROPTYPE.isRequired,
+  wallet: WALLET_PROPTYPE.isRequired,
   selectAccount: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
   isSelected: PropTypes.bool.isRequired,
@@ -104,10 +67,10 @@ export const AccountsTable = ({
 }: AccountsTableProps) => {
   return (
     <table>
+      {loadingWallets && <LoadingCaption />}
       <thead>
         <tr>
           {showSelectedWallet && <th></th>}
-          <th></th>
           <th>#</th>
           <th>Name</th>
           <th>Address</th>
@@ -120,7 +83,7 @@ export const AccountsTable = ({
         {wallets.map((w, i) => (
           <WalletRow
             key={w.address}
-            w={w}
+            wallet={w}
             selectAccount={selectAccount}
             index={i}
             isSelected={
@@ -130,18 +93,6 @@ export const AccountsTable = ({
             showSelectedWallet={showSelectedWallet}
           />
         ))}
-        {loadingWallets && (
-          <tr>
-            <td></td>
-            <td>
-              <LoaderGlyph />
-            </td>
-            <td>Loading...</td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        )}
       </tbody>
     </table>
   )
@@ -157,8 +108,8 @@ type AccountsTableProps = {
 
 AccountsTable.propTypes = {
   wallets: PropTypes.arrayOf(WALLET_PROPTYPE).isRequired,
-  selectedWalletPath: PropTypes.string.isRequired,
   selectAccount: PropTypes.func.isRequired,
   loadingWallets: PropTypes.bool.isRequired,
-  showSelectedWallet: PropTypes.bool.isRequired
+  showSelectedWallet: PropTypes.bool.isRequired,
+  selectedWalletPath: PropTypes.string.isRequired
 }

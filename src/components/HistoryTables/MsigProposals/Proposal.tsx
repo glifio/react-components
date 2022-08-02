@@ -2,8 +2,11 @@ import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 import { AddressLink } from '../../LabeledText/AddressLink'
-import { ProposalHead, Parameters } from '../detail'
-import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
+import { Parameters } from '../detail'
+import {
+  ADDRESS_PROPTYPE,
+  GRAPHQL_ADDRESS_PROP_TYPE
+} from '../../../customPropTypes'
 import {
   Address,
   MsigTransaction,
@@ -17,13 +20,21 @@ import {
   MsigState,
   isAddressSigner
 } from '../../../utils'
-import { Lines, Line } from '../../Layout'
-import LoadingScreen from '../../LoadingScreen'
+import { Lines, Line, PageTitle } from '../../Layout'
+import { LoadingScreen } from '../../Loading/LoadingScreen'
 import ErrorView from '../../Error'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import { logger } from '../../../logger'
+import { ButtonV2 } from '../../Button/V2'
+import { IconCheck, IconFail } from '../../Icons'
 
-export default function ProposalDetail(props: ProposalDetailProps) {
+export default function ProposalDetail({
+  id,
+  msigAddress,
+  walletAddress,
+  approve,
+  cancel
+}: ProposalDetailProps) {
   const router = useRouter()
   let {
     data: msigTxsData,
@@ -31,17 +42,17 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     error: _msigTxsError
   } = useMsigPendingQuery({
     variables: {
-      address: convertAddrToPrefix(props.address)
+      address: convertAddrToPrefix(msigAddress)
     },
     pollInterval: 0
   })
 
   const proposal = useMemo(() => {
     if (!msigTxsLoading && !_msigTxsError) {
-      return msigTxsData?.msigPending.find(p => p.id === props.id)
+      return msigTxsData?.msigPending.find(p => p.id === id)
     }
     return null
-  }, [msigTxsData, msigTxsLoading, _msigTxsError, props.id])
+  }, [msigTxsData, msigTxsLoading, _msigTxsError, id])
 
   const [seeMore, setSeeMore] = useState(false)
 
@@ -50,7 +61,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     loading: actorLoading,
     error: actorError
   } = useActorQuery({
-    variables: { address: convertAddrToPrefix(props.address) }
+    variables: { address: convertAddrToPrefix(msigAddress) }
   })
 
   const loadMsigState = useMemo<boolean>(() => {
@@ -69,7 +80,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     loading: stateLoading,
     error: stateError
   } = useStateReadStateQuery<MsigState>({
-    variables: { address: convertAddrToPrefix(props.address) },
+    variables: { address: convertAddrToPrefix(msigAddress) },
     skip: !loadMsigState
   })
 
@@ -84,26 +95,23 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     if (!proposal || proposalFoundError || stateError || stateLoading)
       return false
     const walletAddressIsSigner = isAddressSigner(
-      props.walletAddress,
+      walletAddress,
       stateData.State.Signers
     )
-    const alreadyApproved = isAddressSigner(
-      props.walletAddress,
-      proposal.approved
-    )
+    const alreadyApproved = isAddressSigner(walletAddress, proposal.approved)
     return walletAddressIsSigner && !alreadyApproved
   }, [
     proposal,
     proposalFoundError,
-    props.walletAddress,
+    walletAddress,
     stateData?.State.Signers,
     stateLoading,
     stateError
   ])
 
   const isProposer = useMemo<boolean>(
-    () => isAddrEqual(props.walletAddress, proposal?.approved?.[0]),
-    [props.walletAddress, proposal]
+    () => isAddrEqual(walletAddress, proposal?.approved?.[0]),
+    [walletAddress, proposal]
   )
 
   const loading = useMemo(
@@ -131,7 +139,7 @@ export default function ProposalDetail(props: ProposalDetailProps) {
     stateData?.State.NumApprovalsThreshold
   ])
 
-  if (loading) return <LoadingScreen marginTop='10rem' />
+  if (loading) return <LoadingScreen />
   if (error)
     return (
       <ErrorView
@@ -145,18 +153,29 @@ export default function ProposalDetail(props: ProposalDetailProps) {
 
   return (
     <div>
-      <ProposalHead
-        title='Proposal Overview'
-        accept={props.accept}
-        cancel={props.cancel}
-        proposal={proposal}
-        actionRequired={actionRequired}
-        approvalsUntilExecution={approvalsUntilExecution}
-        isProposer={isProposer}
-      />
+      <PageTitle
+        sideContent={
+          <>
+            {actionRequired && (
+              <ButtonV2 green onClick={() => approve(proposal)}>
+                <IconCheck width='1.75rem' />
+                Approve
+              </ButtonV2>
+            )}
+            {isProposer && (
+              <ButtonV2 red onClick={() => cancel(proposal)}>
+                <IconFail width='1.25rem' />
+                Cancel
+              </ButtonV2>
+            )}
+          </>
+        }
+      >
+        Proposal Overview
+      </PageTitle>
       <hr />
       <Lines>
-        <Line label='Proposal ID'>{props.id}</Line>
+        <Line label='Proposal ID'>{id}</Line>
         <Line label='Proposer'>
           {proposal?.approved[0] && (
             <AddressLink
@@ -220,16 +239,16 @@ export default function ProposalDetail(props: ProposalDetailProps) {
 
 type ProposalDetailProps = {
   id: number
-  address: string
-  walletAddress?: Address
-  accept: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
-  cancel: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
+  msigAddress: string
+  walletAddress: Address
+  approve: (proposal: MsigTransaction) => void
+  cancel: (proposal: MsigTransaction) => void
 }
 
 ProposalDetail.propTypes = {
   id: PropTypes.number.isRequired,
-  address: ADDRESS_PROPTYPE.isRequired,
-  walletAddress: ADDRESS_PROPTYPE,
-  accept: PropTypes.func.isRequired,
+  msigAddress: ADDRESS_PROPTYPE.isRequired,
+  walletAddress: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  approve: PropTypes.func.isRequired,
   cancel: PropTypes.func.isRequired
 }

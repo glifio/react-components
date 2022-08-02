@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Filecoin, { HDWalletProvider } from '@glif/filecoin-wallet-provider'
 import { generateMnemonic } from '@zondax/filecoin-signing-tools/js'
 import StepHeader from '../../../StepHeader'
-import LoadingScreen from '../../../LoadingScreen'
+import { LoadingScreen } from '../../../Loading/LoadingScreen'
 
 import {
   useWalletProvider,

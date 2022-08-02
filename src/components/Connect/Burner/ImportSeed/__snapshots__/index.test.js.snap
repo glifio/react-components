@@ -270,6 +270,7 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
   flex-direction: column;
   gap: var(--space-m);
   width: 100%;
+  margin: 0 auto;
   max-width: 35em;
 }
 
@@ -351,7 +352,7 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
 `;
 
 exports[`Import seed phrase configuration it sends the user to wallet view, with a wallet in state upon successful config 1`] = `
-.c9 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -385,48 +386,48 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   background: transparent;
 }
 
-.c9 svg path {
+.c8 svg path {
   stroke: var(--black);
 }
 
-.c9:hover {
+.c8:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c9:hover svg path {
+.c8:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c9:active {
+.c8:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c9:active svg path {
+.c8:active svg path {
   stroke: var(--white) !important;
 }
 
-.c9 svg path {
+.c8 svg path {
   stroke: var(--white);
 }
 
-.c9:hover {
+.c8:hover {
   color: var(--green-medium);
   border-color: var(--green-medium);
   background: var(--white);
 }
 
-.c9:hover svg path {
+.c8:hover svg path {
   stroke: var(--green-medium);
 }
 
-.c9 svg path {
+.c8 svg path {
   stroke: var(--gray-medium);
 }
 
-.c8 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -457,30 +458,30 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   background: transparent;
 }
 
-.c8 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c8:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c8:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c8:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c8:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
 }
 
-.c8 svg path {
+.c7 svg path {
   stroke: var(--gray-medium);
 }
 
@@ -521,7 +522,7 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   box-shadow: 0 0 0.5em var(--gray-light);
 }
 
-.c6 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -530,11 +531,37 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   margin: 1.5em 0;
 }
 
-.c7 {
+.c6 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.c4 {
+  position: relative;
+  display: inline-block;
+  background-color: var(--purple-medium);
+  width: 3em;
+  height: 3em;
+  margin: 0;
+}
+
+.c4:after {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 0;
+  left: 0;
+  background-color: var(--purple-dark);
+  -webkit-animation-name: gxoozo;
+  animation-name: gxoozo;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  width: calc(3em * 0.5);
+  height: calc(3em * 0.5);
 }
 
 .c0 {
@@ -547,6 +574,7 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   flex-direction: column;
   gap: var(--space-m);
   width: 100%;
+  margin: 0 auto;
   max-width: 35em;
 }
 
@@ -559,27 +587,6 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   -ms-flex-direction: column;
   flex-direction: column;
   gap: var(--space-m);
-}
-
-.c4 {
-  display: inline-block;
-  height: 48px;
-  width: 48px;
-  text-align: left;
-  background-color: var(--purple-medium);
-}
-
-.c5 {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-  background-color: var(--purple-dark);
-  -webkit-animation-name: bvGDKI;
-  animation-name: bvGDKI;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
 }
 
 .c3 {
@@ -620,28 +627,24 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
       >
         <span
           class="c4"
-        >
-          <span
-            class="c5"
-          />
-        </span>
+        />
         <p>
           Loading...
         </p>
       </div>
     </div>
     <div
-      class="c6 c7"
+      class="c5 c6"
     >
       <button
-        class="c8"
+        class="c7"
         disabled=""
         type="button"
       >
         Back
       </button>
       <button
-        class="c9"
+        class="c8"
         disabled=""
         type="submit"
       >

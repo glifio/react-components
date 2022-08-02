@@ -6,21 +6,10 @@ import {
   GasCost,
   Message,
   MessagePending,
-  MsigTransaction,
   useChainHeadSubscription
 } from '../../generated/graphql'
-import Box from '../Box'
-import { ButtonV2, ButtonV2Link } from '../Button/V2'
-import {
-  IconSpeedUp,
-  IconCancel,
-  IconCheck,
-  IconPending,
-  IconFail,
-  IconClock
-} from '../Icons'
-import { Badge, Lines, Line, AddressLine, PageTitle } from '../Layout'
-import { PROPOSAL_ROW_PROP_TYPE } from './types'
+import { IconCheck, IconPending, IconClock } from '../Icons'
+import { Badge, Lines, Line, AddressLine } from '../Layout'
 import { getMethodName } from './methodName'
 import { useUnformattedDateTime } from './MessageHistory/hooks/useAge'
 import { AddressLink } from '../LabeledText/AddressLink'
@@ -29,126 +18,6 @@ import {
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
 } from '../../customPropTypes'
-
-/**
- * Head
- * Top row of the detail page, displaying
- * the title and Speed up / Cancel buttons
- */
-export const Head = ({
-  title,
-  pending,
-  speedUpHref,
-  cancelHref
-}: HeadProps) => (
-  <Box
-    display='flex'
-    alignItems='center'
-    justifyContent='space-between'
-    gridGap='1em'
-    my='1em'
-  >
-    <PageTitle>{title}</PageTitle>
-    <Box display='flex' gridGap='1rem'>
-      {pending && (
-        <>
-          {speedUpHref && !process.env.NEXT_PUBLIC_IS_PROD && (
-            <ButtonV2Link green href={speedUpHref} retainParams>
-              <IconSpeedUp width='1.25rem' />
-              Speed up
-            </ButtonV2Link>
-          )}
-
-          {cancelHref && !process.env.NEXT_PUBLIC_IS_PROD && (
-            <ButtonV2Link red href={cancelHref} retainParams>
-              <IconCancel width='0.8rem' />
-              Cancel
-            </ButtonV2Link>
-          )}
-        </>
-      )}
-    </Box>
-  </Box>
-)
-
-type HeadProps = {
-  title: string
-  pending: boolean
-  speedUpHref?: string
-  cancelHref?: string
-}
-
-Head.propTypes = {
-  title: PropTypes.string.isRequired,
-  pending: PropTypes.bool.isRequired,
-  speedUpHref: PropTypes.string,
-  cancelHref: PropTypes.string
-}
-
-Head.defaultProps = {
-  pending: false
-}
-
-export const ProposalHead = ({
-  title,
-  proposal,
-  accept,
-  cancel,
-  actionRequired,
-  approvalsUntilExecution,
-  isProposer
-}: ProposalHeadProps) => (
-  <Box
-    display='flex'
-    alignItems='center'
-    justifyContent='space-between'
-    gridGap='1em'
-    my='1em'
-  >
-    <PageTitle>{title}</PageTitle>
-    <Box display='flex' gridGap='1rem'>
-      {actionRequired && (
-        <ButtonV2
-          green
-          onClick={() => accept(proposal, approvalsUntilExecution)}
-        >
-          <IconCheck width='1.75rem' />
-          Approve
-        </ButtonV2>
-      )}
-      {isProposer && (
-        <ButtonV2 red onClick={() => cancel(proposal, approvalsUntilExecution)}>
-          <IconFail width='1.25rem' />
-          Cancel
-        </ButtonV2>
-      )}
-    </Box>
-  </Box>
-)
-
-type ProposalHeadProps = {
-  title: string
-  actionRequired: boolean
-  isProposer: boolean
-  proposal: MsigTransaction
-  approvalsUntilExecution: number
-  accept?: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
-  cancel?: (proposal: MsigTransaction, approvalsUntilExecution: number) => void
-}
-
-ProposalHead.propTypes = {
-  title: PropTypes.string.isRequired,
-  actionRequired: PropTypes.bool.isRequired,
-  isProposer: PropTypes.bool.isRequired,
-  proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
-  approvalsUntilExecution: PropTypes.number.isRequired,
-  accept: PropTypes.func,
-  cancel: PropTypes.func
-}
-
-ProposalHead.defaultProps = {
-  actionRequired: false
-}
 
 const CAPTION = styled.div`
   line-height: 1.5em;

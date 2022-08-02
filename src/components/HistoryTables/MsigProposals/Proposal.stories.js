@@ -18,17 +18,13 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => (
-  <Proposal speedUp={() => {}} cancel={() => {}} {...args} />
-)
+const Template = args => <Proposal {...args} />
 
 export const Detail = Template.bind({})
 Detail.args = {
-  cid: 'bafy2bzaceazsl4l2cimnmu3u7yiond4ffjav7lecfg5qedjj6loeqdpclk4hg',
-  walletAddress: 't029519',
   id: 8,
-  address: 't2i43oi6rnf2s6rp544rcegfbcdp5l62cayz2btmy',
-  accept: console.log,
-  reject: console.log,
-  cidHref: () => ''
+  msigAddress: 't2i43oi6rnf2s6rp544rcegfbcdp5l62cayz2btmy',
+  walletAddress: 't029519',
+  approve: console.log,
+  cancel: console.log
 }

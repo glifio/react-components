@@ -9,7 +9,7 @@ import { ButtonRowSpaced, Dialog, ShadowBox } from '../../Layout'
 import { LoginOption } from '../../../customPropTypes'
 import { ButtonV2 } from '../../Button/V2'
 import { Loading } from '../Loading'
-import LoaderGlyph from '../../LoaderGlyph'
+import { LoadingIcon } from '../../Loading/LoadingIcon'
 
 export const Ledger = ({ next, back }: LedgerProps) => {
   const { connectLedger, dispatch, ledger, fetchDefaultWallet, walletList } =
@@ -45,7 +45,7 @@ export const Ledger = ({ next, back }: LedgerProps) => {
         <hr />
         {loading ? (
           <Loading>
-            <LoaderGlyph />
+            <LoadingIcon />
             <p>Loading...</p>
           </Loading>
         ) : (
