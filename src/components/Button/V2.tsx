@@ -164,7 +164,6 @@ export const ButtonV2 = ({
   onClick,
   ...props
 }: ButtonV2Props) => {
-
   const onClickProxy = useCallback(
     (e: MouseEvent<HTMLAnchorElement>) => {
       stopPropagation && e.stopPropagation()
