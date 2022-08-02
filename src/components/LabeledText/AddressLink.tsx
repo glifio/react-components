@@ -55,7 +55,6 @@ export const AddressLink = ({
             text={address || id}
             hideCopyText={hideCopyText}
             color={color}
-            stopPropagation={true}
           />
         )}
       </AddressLinkEl>
