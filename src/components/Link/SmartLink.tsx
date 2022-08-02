@@ -96,5 +96,9 @@ export const SmartLinkPropTypes = {
 
 SmartLink.propTypes = SmartLinkPropTypes
 SmartLink.defaultProps = {
+  // "href" needs a default value even though the prop
+  // is required, because in some cases an environment
+  // variable is passed which can resolve to "undefined"
+  // See: https://github.com/vercel/next.js/issues/16107
   href: ''
 }
