@@ -32,6 +32,7 @@ const WalletRow = ({
         <AddressLink
           address={convertAddrToPrefix(wallet.robust)}
           shouldTruncate={false}
+          hideCopyText={false}
         />
       </td>
       <td>{makeFriendlyBalance(wallet.balance, 6, true)}</td>

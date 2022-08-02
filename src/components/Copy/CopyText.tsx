@@ -40,7 +40,12 @@ export const LabelCopy = styled.span`
   ${space}
 `
 
-export const CopyText = ({ text, hideCopyText, ...props }) => {
+export const CopyText = ({
+  text,
+  hideCopyText,
+  stopPropagation,
+  ...props
+}: CopyTextProps) => {
   const [copied, setCopied] = useState(false)
   return (
     <Box display='flex' alignItems='center' {...props}>
@@ -50,7 +55,8 @@ export const CopyText = ({ text, hideCopyText, ...props }) => {
         ml={2}
         type='button'
         role='button'
-        onClick={() => {
+        onClick={e => {
+          stopPropagation && e.stopPropagation()
           setCopied(true)
           copyToClipboard(text)
         }}
@@ -66,13 +72,23 @@ export const CopyText = ({ text, hideCopyText, ...props }) => {
   )
 }
 
+type CopyTextProps = {
+  text: string
+  color?: string
+  hideCopyText?: boolean
+  stopPropagation?: boolean
+  [x: string]: any
+}
+
 CopyText.propTypes = {
   text: string.isRequired,
+  color: string,
   hideCopyText: bool,
-  color: string
+  stopPropagation: bool
 }
 
 CopyText.defaultProps = {
   color: 'core.secondary',
-  hideCopyText: false
+  hideCopyText: false,
+  stopPropagation: false
 }

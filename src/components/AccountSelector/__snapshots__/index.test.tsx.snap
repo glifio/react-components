@@ -46,7 +46,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   border-color: var(--gray-medium);
 }
 
-.c11 {
+.c13 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -55,7 +55,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   margin: 1.5em 0;
 }
 
-.c12 {
+.c14 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -122,6 +122,22 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   transform: scale(1.25);
 }
 
+.c12 {
+  -webkit-transition: 0.18s ease-in;
+  transition: 0.18s ease-in;
+  opacity: 0;
+  text-align: left;
+  color: var(--purple-medium);
+  margin-top: 0;
+  margin-left: 4px;
+  margin-top: 0;
+  margin-left: 4px;
+}
+
+.c6:hover .c11 {
+  opacity: 1;
+}
+
 .c4 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -143,7 +159,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   text-decoration: underline;
 }
 
-.c15 {
+.c17 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -170,26 +186,26 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   font-size: 1.25em;
 }
 
-.c15 svg path {
+.c17 svg path {
   stroke: var(--black);
 }
 
-.c15:hover {
+.c17:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c15:hover svg path {
+.c17:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c15:active {
+.c17:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c15:active svg path {
+.c17:active svg path {
   stroke: var(--white) !important;
 }
 
@@ -223,7 +239,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--purple-medium);
 }
 
-.c13 {
+.c15 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -240,7 +256,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   justify-content: space-between;
 }
 
-.c13 > *:first-child {
+.c15 > *:first-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -250,26 +266,26 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   flex-direction: column;
 }
 
-.c13 > *:last-child:not(.toggle-wrapper) {
+.c15 > *:last-child:not(.toggle-wrapper) {
   -webkit-flex: 0 0 50%;
   -ms-flex: 0 0 50%;
   flex: 0 0 50%;
 }
 
-.c13 span.info,
-.c13 span.error {
+.c15 span.info,
+.c15 span.error {
   font-size: 0.875rem;
 }
 
-.c13 span.error {
+.c15 span.error {
   color: var(--red-medium);
 }
 
-.c14 .toggle-wrapper {
+.c16 .toggle-wrapper {
   position: relative;
 }
 
-.c14 input {
+.c16 input {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -278,7 +294,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   opacity: 0;
 }
 
-.c14 .toggle {
+.c16 .toggle {
   display: inline-block;
   position: relative;
   width: 2.25em;
@@ -288,7 +304,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--blue-medium);
 }
 
-.c14 .toggle::after {
+.c16 .toggle::after {
   content: '';
   position: absolute;
   top: 0;
@@ -299,12 +315,12 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--white);
 }
 
-.c14 input:checked ~ .toggle {
+.c16 input:checked ~ .toggle {
   border-color: var(--blue-dark);
   background-color: var(--blue-dark);
 }
 
-.c14 input:checked ~ .toggle::after {
+.c16 input:checked ~ .toggle::after {
   left: auto;
   right: 0;
 }
@@ -413,6 +429,12 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                         y="8"
                       />
                     </svg>
+                    <span
+                      class="c11 c12"
+                      color="var(--purple-medium)"
+                    >
+                      Copy
+                    </span>
                   </button>
                 </div>
               </div>
@@ -489,6 +511,12 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                         y="8"
                       />
                     </svg>
+                    <span
+                      class="c11 c12"
+                      color="var(--purple-medium)"
+                    >
+                      Copy
+                    </span>
                   </button>
                 </div>
               </div>
@@ -565,6 +593,12 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                         y="8"
                       />
                     </svg>
+                    <span
+                      class="c11 c12"
+                      color="var(--purple-medium)"
+                    >
+                      Copy
+                    </span>
                   </button>
                 </div>
               </div>
@@ -583,10 +617,10 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
       </tbody>
     </table>
     <div
-      class="c11 c12"
+      class="c13 c14"
     >
       <label
-        class="c13 c14"
+        class="c15 c16"
       >
         <div>
           <span>
@@ -606,7 +640,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
         </div>
       </label>
       <button
-        class="c15"
+        class="c17"
       >
         Next account
       </button>
@@ -827,6 +861,22 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   transform: scale(1.25);
 }
 
+.c14 {
+  -webkit-transition: 0.18s ease-in;
+  transition: 0.18s ease-in;
+  opacity: 0;
+  text-align: left;
+  color: var(--purple-medium);
+  margin-top: 0;
+  margin-left: 4px;
+  margin-top: 0;
+  margin-left: 4px;
+}
+
+.c8:hover .c13 {
+  opacity: 1;
+}
+
 .c6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -994,6 +1044,12 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                         y="8"
                       />
                     </svg>
+                    <span
+                      class="c13 c14"
+                      color="var(--purple-medium)"
+                    >
+                      Copy
+                    </span>
                   </button>
                 </div>
               </div>
@@ -1070,6 +1126,12 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                         y="8"
                       />
                     </svg>
+                    <span
+                      class="c13 c14"
+                      color="var(--purple-medium)"
+                    >
+                      Copy
+                    </span>
                   </button>
                 </div>
               </div>
@@ -1146,6 +1208,12 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                         y="8"
                       />
                     </svg>
+                    <span
+                      class="c13 c14"
+                      color="var(--purple-medium)"
+                    >
+                      Copy
+                    </span>
                   </button>
                 </div>
               </div>
