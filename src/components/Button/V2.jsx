@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { layout, space } from 'styled-system'
 import PropTypes from 'prop-types'
 
 import { SmartLink, SmartLinkPropTypes } from '../Link/SmartLink'
@@ -115,9 +114,6 @@ const buttonStyle = css`
         }
       `}
     `}
-
-  ${layout}
-  ${space}
 `
 
 const buttonPropTypes = {
