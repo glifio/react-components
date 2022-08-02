@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { AppHeader } from './index'
@@ -83,11 +84,19 @@ App.args = {
   ]
 }
 
+const SearchBarWrapper = styled.div`
+  flex-basis: 40em;
+`
+
 export const Search = Template.bind({})
 Search.args = {
   appIcon: <AppIconHeaderFooter iconStyle='dark' />,
   appUrl: 'https://glif.io',
-  customHeaderComps: <SearchAddressMessage hideErrorMessage />,
+  customHeaderComps: (
+    <SearchBarWrapper>
+      <SearchAddressMessage hideErrorMessage />
+    </SearchBarWrapper>
+  ),
   appHeaderLinks: [
     {
       title: 'Wallet',

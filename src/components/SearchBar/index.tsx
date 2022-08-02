@@ -7,10 +7,6 @@ const SearchBarEl = styled.div`
   flex-direction: column;
   gap: var(--space-s);
 
-  ${props => css`
-    flex-basis: ${props.flexBasis};
-  `}
-
   ${props =>
     props.large &&
     css`
@@ -42,7 +38,6 @@ const SearchBarEl = styled.div`
 `
 
 export const SearchBar = ({
-  flexBasis,
   large,
   name,
   autoFocus,
@@ -64,7 +59,7 @@ export const SearchBar = ({
   )
 
   return (
-    <SearchBarEl flexBasis={flexBasis} large={large}>
+    <SearchBarEl large={large}>
       <form
         onSubmit={async e => {
           e.preventDefault()
@@ -105,7 +100,6 @@ export const SearchBar = ({
 }
 
 export interface SearchBarProps {
-  flexBasis?: string
   large?: boolean
   name?: string
   autoFocus?: boolean
@@ -120,7 +114,6 @@ export interface SearchBarProps {
 }
 
 SearchBar.propTypes = {
-  flexBasis: PropTypes.string,
   large: PropTypes.bool,
   name: PropTypes.string,
   autoFocus: PropTypes.bool,
@@ -135,7 +128,6 @@ SearchBar.propTypes = {
 }
 
 SearchBar.defaultProps = {
-  flexBasis: 'auto',
   large: false,
   name: '',
   autoFocus: true,

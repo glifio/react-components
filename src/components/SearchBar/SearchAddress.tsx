@@ -20,7 +20,6 @@ export const SearchAddress = ({
 
   return (
     <SearchBar
-      flexBasis='40em'
       large={large}
       name='search-address-message'
       autoFocus={true}
