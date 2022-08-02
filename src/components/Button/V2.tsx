@@ -1,3 +1,4 @@
+import { MouseEvent, ReactNode, useCallback } from 'react'
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
@@ -116,30 +117,69 @@ const buttonStyle = css`
     `}
 `
 
+interface ButtonV2Props {
+  children: ReactNode
+  large?: boolean
+  white?: boolean
+  green?: boolean
+  red?: boolean
+  gray?: boolean
+  type?: string
+  disabled?: boolean
+  stopPropagation?: boolean
+  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
+}
+
 const buttonPropTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired,
   large: PropTypes.bool,
   white: PropTypes.bool,
   green: PropTypes.bool,
   red: PropTypes.bool,
   gray: PropTypes.bool,
-  disabled: PropTypes.bool
+  type: PropTypes.string,
+  disabled: PropTypes.bool,
+  stopPropagation: PropTypes.bool,
+  onClick: PropTypes.func
 }
 
 const buttonDefaultProps = {
-  large: false,
-  white: false,
-  green: false,
-  red: false,
-  gray: false,
-  disabled: false
+  stopPropagation: true,
+  onClick: () => {}
 }
 
 /*
  * ButtonV2
  */
-export const ButtonV2 = styled.button`
+const ButtonV2El = styled.button`
   ${buttonStyle}
 `
+
+export const ButtonV2 = ({
+  children,
+  stopPropagation,
+  onClick,
+  ...props
+}: ButtonV2Props) => {
+
+  const onClickProxy = useCallback(
+    (e: MouseEvent<HTMLAnchorElement>) => {
+      stopPropagation && e.stopPropagation()
+      onClick(e)
+    },
+    [stopPropagation, onClick]
+  )
+
+  return (
+    <ButtonV2El onClick={onClickProxy} {...props}>
+      {children}
+    </ButtonV2El>
+  )
+}
+
 ButtonV2.propTypes = buttonPropTypes
 ButtonV2.defaultProps = buttonDefaultProps
 
