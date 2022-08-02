@@ -113,5 +113,6 @@ SmartLink.defaultProps = {
   // variable is passed which can resolve to "undefined"
   // See: https://github.com/vercel/next.js/issues/16107
   href: '',
-  stopPropagation: true
+  stopPropagation: true,
+  onClick: () => {}
 }
