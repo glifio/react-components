@@ -1,4 +1,4 @@
-import { useMemo, ReactNode, MouseEvent } from 'react'
+import { useMemo, ReactNode, MouseEvent, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
@@ -10,15 +10,16 @@ const isMailOrTelUrlRegex = new RegExp('^(mailto|tel):.*', 'i')
 
 // uses next/link for internal page routing
 // uses <a> tag for external page routing
-export function SmartLink({
+export const SmartLink = ({
   children,
   href,
   download,
   className,
+  stopPropagation,
   params,
   retainParams,
   onClick
-}: SmartLinkProps) {
+}: SmartLinkProps) => {
   const router = useRouter()
   const query = router?.query
 
@@ -26,6 +27,7 @@ export function SmartLink({
     () => isMailOrTelUrlRegex.test(href),
     [href]
   )
+
   const isInternalUrl = useMemo<boolean>(
     () => !isAbsoluteUrlRegex.test(href) && !isMailToOrTelUrl,
     [href, isMailToOrTelUrl]
@@ -44,9 +46,17 @@ export function SmartLink({
     return updatedHref
   }, [query, isInternalUrl, href, params, retainParams])
 
+  const onClickProxy = useCallback(
+    (e: MouseEvent<HTMLAnchorElement>) => {
+      stopPropagation && e.stopPropagation()
+      onClick(e)
+    },
+    [stopPropagation, onClick]
+  )
+
   return isInternalUrl && !download ? (
     <Link href={hrefWithParams}>
-      <a className={className} onClick={onClick}>
+      <a className={className} onClick={onClickProxy}>
         {children}
       </a>
     </Link>
@@ -57,7 +67,7 @@ export function SmartLink({
       href={hrefWithParams}
       download={download}
       className={className}
-      onClick={onClick}
+      onClick={onClickProxy}
     >
       {children}
     </a>
@@ -69,6 +79,7 @@ export interface SmartLinkProps {
   href: string
   download?: boolean | string
   className?: string
+  stopPropagation?: boolean
   params?: Record<string, string | string[] | number | number[]>
   retainParams?: boolean
   onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
@@ -82,6 +93,7 @@ export const SmartLinkPropTypes = {
   href: PropTypes.string.isRequired,
   download: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   className: PropTypes.string,
+  stopPropagation: PropTypes.bool,
   params: PropTypes.objectOf(
     PropTypes.oneOfType([
       PropTypes.string,
@@ -100,5 +112,6 @@ SmartLink.defaultProps = {
   // is required, because in some cases an environment
   // variable is passed which can resolve to "undefined"
   // See: https://github.com/vercel/next.js/issues/16107
-  href: ''
+  href: '',
+  stopPropagation: true
 }
