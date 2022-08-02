@@ -49,6 +49,7 @@ export * from './MnemonicWord'
 
 export * from './Layout'
 export * from './SearchBar'
+export * from './SearchBar/SearchAddress'
 export * from './SearchBar/SearchAddressMessage'
 export * from './Transaction'
 export * from './Typography'

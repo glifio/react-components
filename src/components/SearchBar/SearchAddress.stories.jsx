@@ -1,10 +1,10 @@
-import { SearchAddressMessage } from './SearchAddressMessage'
+import { SearchAddress } from './SearchAddress'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
 export default {
-  title: 'SearchBar/SearchAddressMessage',
-  component: SearchAddressMessage,
+  title: 'SearchBar/SearchAddress',
+  component: SearchAddress,
   decorators: [
     Story => (
       <div style={{ maxWidth: '35em', margin: '0 auto' }}>
@@ -15,7 +15,7 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <SearchAddressMessage {...args} />
+const Template = args => <SearchAddress {...args} />
 
 export const Base = Template.bind({})
 Base.args = {}

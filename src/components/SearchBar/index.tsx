@@ -48,6 +48,7 @@ export const SearchBar = ({
   autoFocus,
   autoComplete,
   placeholder,
+  buttonText,
   inputError,
   hideErrorMessage,
   trimInput,
@@ -93,7 +94,7 @@ export const SearchBar = ({
           className={large ? 'large' : ''}
           disabled={!value || !!inputError}
           type='submit'
-          value='Search'
+          value={buttonText}
         />
       </form>
       {showError && !hideErrorMessage && (
@@ -110,6 +111,7 @@ export interface SearchBarProps {
   autoFocus?: boolean
   autoComplete?: 'on' | 'off'
   placeholder?: string
+  buttonText?: string
   inputError?: string
   hideErrorMessage?: boolean
   trimInput?: boolean
@@ -124,6 +126,7 @@ SearchBar.propTypes = {
   autoFocus: PropTypes.bool,
   autoComplete: PropTypes.oneOf(['on', 'off']),
   placeholder: PropTypes.string,
+  buttonText: PropTypes.string,
   inputError: PropTypes.string,
   hideErrorMessage: PropTypes.bool,
   trimInput: PropTypes.bool,
@@ -138,6 +141,7 @@ SearchBar.defaultProps = {
   autoFocus: true,
   autoComplete: 'on',
   placeholder: '',
+  buttonText: 'Search',
   inputError: '',
   hideErrorMessage: false,
   trimInput: false,

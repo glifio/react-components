@@ -1,14 +1,18 @@
 import { useMemo } from 'react'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import Box from '../../../Box'
 import MessageConfirmedRow from './MessageConfirmedRow'
 import MessagePendingRow from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../../customPropTypes'
 import { ButtonV2 } from '../../../Button/V2'
 import { useAllMessages } from '../hooks/useAllMessages'
-import { Caption, PageTitle } from '../../../Layout'
-import { SyncStatus } from '../../../SyncStatus'
+import { ButtonRowCenter, Caption, PageTitle } from '../../../Layout'
+import { IconWarn } from '../../../Icons'
+
+const MissingDataWarning = styled.span`
+  color: var(--yellow-dark);
+`
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   const {
@@ -27,10 +31,19 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
   )
 
   return (
-    <Box>
-      <PageTitle>Transaction History</PageTitle>
-      {props.warnMissingData && <SyncStatus />}
-      <br />
+    <div>
+      <PageTitle
+        sideContent={
+          props.warnMissingData && (
+            <>
+              <IconWarn />
+              <MissingDataWarning>Syncing data from Mainnet</MissingDataWarning>
+            </>
+          )
+        }
+      >
+        Transaction History
+      </PageTitle>
       <table>
         <Caption
           name='Transaction History'
@@ -59,7 +72,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
         </tbody>
       </table>
       {!isEmpty && !lastPage && (
-        <Box pt='4.5rem' textAlign='center'>
+        <ButtonRowCenter>
           <ButtonV2
             onClick={fetchMore}
             px='18rem'
@@ -67,9 +80,9 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
           >
             {loading || fetchingMore ? 'Loading...' : 'Load more'}
           </ButtonV2>
-        </Box>
+        </ButtonRowCenter>
       )}
-    </Box>
+    </div>
   )
 }
 
