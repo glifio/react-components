@@ -73,11 +73,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
       </table>
       {!isEmpty && !lastPage && (
         <ButtonRowCenter>
-          <ButtonV2
-            onClick={fetchMore}
-            px='18rem'
-            disabled={loading || fetchingMore}
-          >
+          <ButtonV2 onClick={fetchMore} disabled={loading || fetchingMore}>
             {loading || fetchingMore ? 'Loading...' : 'Load more'}
           </ButtonV2>
         </ButtonRowCenter>

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { ButtonV2 } from '../../Button/V2'
 import { SmartLink } from '../../Link/SmartLink'
+import { ButtonRowCenter } from '../../Layout'
 import {
   MetaMaskState,
   METAMASK_STATE_PROPTYPES
@@ -39,12 +40,14 @@ export const HelperText: FC<
           </SmartLink>{' '}
           to get started
         </p>
-        <ButtonV2 mt='var(--space-l)' onClick={() => window.location.reload()}>
-          Try again
-        </ButtonV2>
-        <ButtonV2 mt='var(--space-l)' onClick={back}>
-          Back
-        </ButtonV2>
+        <ButtonRowCenter>
+          <ButtonV2 large onClick={back}>
+            Back
+          </ButtonV2>
+          <ButtonV2 large onClick={() => window.location.reload()}>
+            Try again
+          </ButtonV2>
+        </ButtonRowCenter>
       </>
     )
   if (!extUnlocked)
@@ -52,12 +55,14 @@ export const HelperText: FC<
       <>
         <h2>MetaMask locked!</h2>
         <p>Please unlock MetaMask to get started</p>
-        <ButtonV2 mt='var(--space-l)' onClick={onRetry}>
-          Try again
-        </ButtonV2>
-        <ButtonV2 mt='var(--space-l)' onClick={back}>
-          Back
-        </ButtonV2>
+        <ButtonRowCenter>
+          <ButtonV2 large onClick={back}>
+            Back
+          </ButtonV2>
+          <ButtonV2 large onClick={onRetry}>
+            Try again
+          </ButtonV2>
+        </ButtonRowCenter>
       </>
     )
   if (!extSupportsSnap)
@@ -71,12 +76,14 @@ export const HelperText: FC<
           </SmartLink>{' '}
           to get started
         </p>
-        <ButtonV2 mt='var(--space-l)' onClick={onRetry}>
-          Try again
-        </ButtonV2>
-        <ButtonV2 mt='var(--space-l)' onClick={back}>
-          Back
-        </ButtonV2>
+        <ButtonRowCenter>
+          <ButtonV2 large onClick={back}>
+            Back
+          </ButtonV2>
+          <ButtonV2 large onClick={onRetry}>
+            Try again
+          </ButtonV2>
+        </ButtonRowCenter>
       </>
     )
 
@@ -84,12 +91,14 @@ export const HelperText: FC<
     return (
       <>
         <h2>FILSnap not detected!</h2>
-        <ButtonV2 large mt='var(--space-l)' onClick={connectFILSnap}>
-          Connect FILSnap
-        </ButtonV2>
-        <ButtonV2 mt='var(--space-l)' onClick={back}>
-          Back
-        </ButtonV2>
+        <ButtonRowCenter>
+          <ButtonV2 large onClick={back}>
+            Back
+          </ButtonV2>
+          <ButtonV2 large onClick={connectFILSnap}>
+            Connect FILSnap
+          </ButtonV2>
+        </ButtonRowCenter>
       </>
     )
   if (!snapEnabled)
@@ -97,12 +106,14 @@ export const HelperText: FC<
       <>
         <h2>FILSnap disabled!</h2>
         <p>Please enable FILSnap in your MetaMask settings to continue.</p>
-        <ButtonV2 mt='var(--space-l)' onClick={onRetry}>
-          Try again
-        </ButtonV2>
-        <ButtonV2 mt='var(--space-l)' onClick={back}>
-          Back
-        </ButtonV2>
+        <ButtonRowCenter>
+          <ButtonV2 large onClick={back}>
+            Back
+          </ButtonV2>
+          <ButtonV2 large onClick={onRetry}>
+            Try again
+          </ButtonV2>
+        </ButtonRowCenter>
       </>
     )
   return <Connecting />

@@ -90,5 +90,5 @@ CopyText.propTypes = {
 CopyText.defaultProps = {
   color: 'core.secondary',
   hideCopyText: false,
-  stopPropagation: false
+  stopPropagation: true
 }

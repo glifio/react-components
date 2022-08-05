@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useMemo, useCallback, MouseEvent } from 'react'
+import { useMemo } from 'react'
+
 import truncateAddress from '../../utils/truncateAddress'
 import { LabeledText } from '.'
 import { SmartLink } from '../Link/SmartLink'
@@ -31,7 +32,6 @@ export const AddressLink = ({
   label,
   color,
   disableLink,
-  stopPropagation,
   hideCopy,
   hideCopyText,
   shouldTruncate
@@ -46,25 +46,15 @@ export const AddressLink = ({
     return ''
   }, [address, id, shouldTruncate])
   const linkHref = `${explorerUrl}/actor/?address=${address || id}`
-  const onClick = useCallback(
-    (e: MouseEvent<HTMLAnchorElement>) =>
-      stopPropagation && e.stopPropagation(),
-    [stopPropagation]
-  )
   return (
     <LabeledText label={label} text={disableLink ? linkText : ''}>
       <AddressLinkEl color={color}>
-        {!disableLink && (
-          <SmartLink href={linkHref} onClick={onClick}>
-            {linkText}
-          </SmartLink>
-        )}
+        {!disableLink && <SmartLink href={linkHref}>{linkText}</SmartLink>}
         {!hideCopy && (address || id) && (
           <CopyText
             text={address || id}
             hideCopyText={hideCopyText}
             color={color}
-            stopPropagation={true}
           />
         )}
       </AddressLinkEl>
@@ -78,7 +68,6 @@ export interface AddressLinkProps {
   label?: string
   color?: string
   disableLink: boolean
-  stopPropagation: boolean
   hideCopy: boolean
   hideCopyText: boolean
   shouldTruncate?: boolean
@@ -90,7 +79,6 @@ AddressLink.propTypes = {
   label: PropTypes.string,
   color: PropTypes.string,
   disableLink: PropTypes.bool,
-  stopPropagation: PropTypes.bool,
   hideCopy: PropTypes.bool,
   hideCopyText: PropTypes.bool,
   shouldTruncate: PropTypes.bool
@@ -99,7 +87,6 @@ AddressLink.propTypes = {
 AddressLink.defaultProps = {
   color: 'var(--purple-medium)',
   disableLink: false,
-  stopPropagation: true,
   hideCopy: false,
   hideCopyText: true,
   shouldTruncate: true
