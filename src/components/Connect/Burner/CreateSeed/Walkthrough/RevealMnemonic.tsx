@@ -1,61 +1,19 @@
-import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import {
-  space,
-  layout,
-  borderRadius,
-  flexbox,
-  color,
-  border
-} from 'styled-system'
+import { useEffect, useState } from 'react'
 import { bool } from 'prop-types'
-import Box from '../../../../Box'
-import Button from '../../../../Button'
 import {
   DisplayWord as Word,
   MnemonicWordContainer
 } from '../../../../MnemonicWord'
-import { Text } from '../../../../Typography'
+import { ButtonRow } from '../../../../Layout'
+import { ButtonV2, ButtonV2Link } from '../../../../Button/V2'
 import { MNEMONIC_PROPTYPE } from '../../../../../customPropTypes'
 import copyToClipboard from '../../../../../utils/copyToClipboard'
 
-const applyStyles = (styleProperty, props, disabledColor) => {
-  if (props.disabled) return disabledColor
-  if (props[styleProperty]) return props[styleProperty]
-  if (props.variant)
-    return props.theme.colors.buttons[props.variant][styleProperty]
-  return props.theme.colors.buttons.primary[styleProperty]
-}
-
-const DownloadButton = styled.a.attrs(() => ({
-  display: 'flex',
-  alignItems: 'center',
-  height: 6,
-  px: 3,
-  py: 2,
-  fontSize: 3,
-  border: 1,
-  borderRadius: 2,
-  role: 'button'
-}))`
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  background-color: ${props =>
-    applyStyles('background', props, props.theme.colors.status.inactive)};
-  border-color: ${props =>
-    applyStyles('borderColor', props, props.theme.colors.status.inactive)};
-  color: ${props => applyStyles('color', props, '')};
-  font-size: ${props => props.theme.fontSizes[2]};
-  transition: 0.18s ease-in-out;
-  text-decoration: none;
-  &:hover {
-    opacity: ${props => (props.disabled ? '1' : '0.8')};
-  }
-  ${borderRadius}
-  ${space}
-  ${layout}
-  ${flexbox}
-  ${border}
-  ${color}
+const Title = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const Reveal = ({ mnemonic, valid }) => {
@@ -71,44 +29,29 @@ const Reveal = ({ mnemonic, valid }) => {
 
   return (
     <>
-      <Box
-        display='flex'
-        flexDirection='row'
-        flexWrap='wrap'
-        flexGrow='99'
-        alignItems='center'
-        justifyContent={['center', 'space-between']}
-        my={3}
-        minHeight={7}
-      >
+      <Title>
         {valid ? (
-          <Text>
+          <h3>
             Success! Please click &apos;Next&apos; to access your wallet.
-          </Text>
+          </h3>
         ) : (
-          <Text>Write down your seed phrase somewhere safe.</Text>
+          <h3>Write down your seed phrase somewhere safe.</h3>
         )}
 
-        <Box display='flex' mt={[2, 0]}>
-          <Button
+        <ButtonRow>
+          <ButtonV2
             onClick={() => {
               copyToClipboard(mnemonic)
               setCopied(true)
             }}
-            variant='secondary'
-            title={copied ? 'Copied' : 'Copy'}
-            mx={2}
-          />
-          <DownloadButton
-            height='max-content'
-            variant='secondary'
-            download='dontlookhere.txt'
-            href={objectUrl}
           >
+            {copied ? 'Copied' : 'Copy'}
+          </ButtonV2>
+          <ButtonV2Link download='dontlookhere.txt' href={objectUrl}>
             Download
-          </DownloadButton>
-        </Box>
-      </Box>
+          </ButtonV2Link>
+        </ButtonRow>
+      </Title>
 
       <MnemonicWordContainer>
         {mnemonic.split(' ').map((word, i) => (
