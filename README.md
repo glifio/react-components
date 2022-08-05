@@ -38,7 +38,7 @@ export { default as theme } from './theme'
 export { default as ThemeProvider } from './ThemeProvider'
 
 export * from './AccountCard'
-export { default as AccountError } from './AccountCard/Error'
+export * from './AccountCard/Error'
 export * from './BalanceCard'
 export { default as Address } from './Address'
 export * from './Copy'

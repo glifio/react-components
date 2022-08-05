@@ -38,7 +38,7 @@ const AccountErrorBox = styled(StandardBox)`
   }
 `
 
-const AccountError = ({ errorMsg, onTryAgain }) => (
+export const AccountError = ({ errorMsg, onTryAgain }) => (
   <AccountErrorBox>
     <div>
       <h3>Error</h3>
@@ -57,5 +57,3 @@ AccountError.propTypes = {
 AccountError.defaultProps = {
   errorMsg: ''
 }
-
-export default AccountError

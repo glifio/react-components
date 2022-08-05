@@ -3,7 +3,7 @@ export * from './theme'
 export { default as ThemeProvider } from './ThemeProvider'
 
 export * from './AccountCard'
-export { default as AccountError } from './AccountCard/Error'
+export * from './AccountCard/Error'
 export * from './AppTile'
 export * from './AppTile/AppTilesWrapper'
 export * from './AppHeader'
