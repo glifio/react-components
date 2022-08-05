@@ -3,9 +3,7 @@ import ThemeProvider from '../ThemeProvider'
 
 import {
   Title as TitleComp,
-  Text as TextComp,
-  Label as LabelComp,
-  Num as NumComp
+  Text as TextComp
 } from './index'
 
 export default {
@@ -33,17 +31,3 @@ Text.args = {
 }
 Text.component = TextComp
 Text.title = 'Typography/Text'
-
-export const Label = args => <LabelComp {...args} />
-Label.args = {
-  children: <>Hello world</>
-}
-Label.component = LabelComp
-Label.title = 'Typography/Label'
-
-export const Num = args => <NumComp {...args} />
-Num.args = {
-  children: <>Hello world</>
-}
-Num.component = NumComp
-Num.title = 'Typography/Num'
