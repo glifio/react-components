@@ -37,7 +37,7 @@ WIP.  In the meantime:
 export { default as theme } from './theme'
 export { default as ThemeProvider } from './ThemeProvider'
 
-export { default as AccountCard } from './AccountCard'
+export * from './AccountCard'
 export { default as AccountError } from './AccountCard/Error'
 export { default as BalanceCard } from './BalanceCard'
 export { default as ApproximationToggleBtn } from './BalanceCard/ApproximationToggleBtn'

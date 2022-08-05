@@ -42,7 +42,7 @@ const AccountBox = styled(PrimaryBox)`
   }
 `
 
-const AccountCard = ({
+export const AccountCard = ({
   address,
   onAccountSwitch,
   onShowOnLedger,
@@ -115,5 +115,3 @@ AccountCard.defaultProps = {
   onShowOnLedger: () => {},
   ledgerBusy: false
 }
-
-export default AccountCard
