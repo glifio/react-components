@@ -4,7 +4,7 @@ import ThemeProvider from '../ThemeProvider'
 import { ErrorView } from '.'
 
 export default {
-  title: 'Error/ErrorView',
+  title: 'ErrorView/ErrorView',
   component: ErrorView,
   decorators: [
     Story => (
