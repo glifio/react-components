@@ -31,9 +31,7 @@ const Reveal = ({ mnemonic, valid }) => {
     <>
       <Title>
         {valid ? (
-          <h3>
-            Success! Please click &apos;Next&apos; to access your wallet.
-          </h3>
+          <h3>Success! Please click &apos;Next&apos; to access your wallet.</h3>
         ) : (
           <h3>Write down your seed phrase somewhere safe.</h3>
         )}

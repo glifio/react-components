@@ -20,10 +20,12 @@ const AccountBox = styled(PrimaryBox)`
 
   h3 {
     margin-top: 0;
+    text-align: left;
   }
 
   h4 {
     color: var(--purple-light);
+    text-align: left;
   }
 
   .buttons {
@@ -58,6 +60,7 @@ export const AccountCard = ({
           label='Your Address'
           address={address}
           color='var(--white)'
+          hideCopyText={false}
         />
       </div>
       <div className='buttons'>

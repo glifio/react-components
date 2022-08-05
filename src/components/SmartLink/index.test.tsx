@@ -1,5 +1,5 @@
 import { render, act, getByRole, RenderResult } from '@testing-library/react'
-import { SmartLink } from './SmartLink'
+import { SmartLink } from '.'
 
 const linkText = 'Click me'
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')

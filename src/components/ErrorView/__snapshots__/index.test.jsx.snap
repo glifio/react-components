@@ -1,123 +1,165 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Error renders the error 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
-  border-width: 1px;
-  border-color: #FC6D6F;
-  padding: 16px;
-  background-color: #FC6D6F;
-  color: #660000;
-  display: inline-block;
-  width: 100%;
-  max-width: 560px;
-  min-height: 240px;
-  overflow: hidden;
-}
-
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-top: 1px solid;
-  border-color: #660000;
-  margin-top: 1.5em;
-  padding-top: 1em;
-}
-
-.c4 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 32px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   text-align: center;
-}
-
-.c5 {
+  white-space: nowrap;
   cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
   border-width: 1px;
-  border-radius: 4px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
 }
 
-.c5:hover {
-  opacity: 0.8;
+.c4 svg path {
+  stroke: var(--black);
+}
+
+.c4:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c4:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c4:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c4:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c1 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
+  margin: 0;
+}
+
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
 }
 
 .c2 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
+  background-color: var(--red-light);
+  color: var(--red-dark);
 }
 
-<div>
+.c2 hr {
+  border-color: var(--red-dark);
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--space-m);
+  margin: 1.5em 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+  width: 100%;
+  margin: 0 auto;
+  max-width: 35em;
+}
+
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+<div
+  class="c0"
+>
   <div
-    class="c0"
-    color="card.error.foreground"
-    display="inline-block"
-    overflow="hidden"
-    style="word-break: break-word;"
-    width="100%"
+    class="c1 c2"
   >
-    <div
-      class="c1"
-      color="status.fail.foreground"
-      display="flex"
-      size="6"
+    <svg
+      fill="none"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <h3
-        class="c2"
-      >
-        Er
-      </h3>
-    </div>
+      <circle
+        cx="12"
+        cy="12"
+        r="11"
+        stroke="var(--red-dark)"
+        stroke-width="2"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M7.29489 15.2921C6.90442 15.6826 6.90442 16.3157 7.29489 16.7062C7.68535 17.0966 8.31842 17.0966 8.70888 16.7062L11.9994 13.4155L15.2916 16.7079C15.6821 17.0984 16.3151 17.0984 16.7056 16.7079C17.0961 16.3174 17.0961 15.6843 16.7056 15.2938L13.4134 12.0014L16.7076 8.70694C17.0981 8.31645 17.0981 7.68335 16.7076 7.29286C16.3172 6.90238 15.6841 6.90238 15.2937 7.29286L11.9994 10.5873L8.70684 7.29462C8.31638 6.90413 7.68331 6.90413 7.29285 7.29462C6.90238 7.68511 6.90238 8.31821 7.29285 8.7087L10.5854 12.0014L7.29489 15.2921Z"
+        fill="var(--red-dark)"
+        fill-rule="evenodd"
+      />
+    </svg>
     <h2>
       Ledger only supports Chrome
     </h2>
-    <p
-      style="font-size: 1.125rem;"
-    >
+    <hr />
+    <p>
       Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option
     </p>
-    <p
-      style="font-size: 1.125rem;"
-    >
+    <p>
       <a
         href="https://www.google.com/chrome"
         rel="noreferrer noopener"
@@ -126,9 +168,8 @@ exports[`Error renders the error 1`] = `
         Install Google Chrome.
       </a>
     </p>
-    <div
-      class="c3"
-    >
+    <hr />
+    <p>
       Get help in 
       <a
         href="https://discord.gg/B9ju5Eu4Rq"
@@ -145,16 +186,13 @@ exports[`Error renders the error 1`] = `
       >
         Twitter
       </a>
-    </div>
+    </p>
   </div>
   <div
-    class="c4"
+    class="c3"
   >
     <button
-      class="c5"
-      font-size="3"
-      height="6"
-      type="button"
+      class="c4"
     >
       Back
     </button>
@@ -163,123 +201,165 @@ exports[`Error renders the error 1`] = `
 `;
 
 exports[`Error renders the story 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
-  border-width: 1px;
-  border-color: #FC6D6F;
-  padding: 16px;
-  background-color: #FC6D6F;
-  color: #660000;
-  display: inline-block;
-  width: 100%;
-  max-width: 560px;
-  min-height: 240px;
-  overflow: hidden;
-}
-
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  color: #660000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c4 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-top: 1px solid;
-  border-color: #660000;
-  margin-top: 1.5em;
-  padding-top: 1em;
-}
-
-.c4 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 32px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   text-align: center;
-}
-
-.c5 {
+  white-space: nowrap;
   cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
   border-width: 1px;
-  border-radius: 4px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
 }
 
-.c5:hover {
-  opacity: 0.8;
+.c4 svg path {
+  stroke: var(--black);
+}
+
+.c4:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c4:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c4:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c4:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c1 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
+  margin: 0;
+}
+
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
 }
 
 .c2 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
+  background-color: var(--red-light);
+  color: var(--red-dark);
 }
 
-<div>
+.c2 hr {
+  border-color: var(--red-dark);
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--space-m);
+  margin: 1.5em 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+  width: 100%;
+  margin: 0 auto;
+  max-width: 35em;
+}
+
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+<div
+  class="c0"
+>
   <div
-    class="c0"
-    color="card.error.foreground"
-    display="inline-block"
-    overflow="hidden"
-    style="word-break: break-word;"
-    width="100%"
+    class="c1 c2"
   >
-    <div
-      class="c1"
-      color="status.fail.foreground"
-      display="flex"
-      size="6"
+    <svg
+      fill="none"
+      height="24px"
+      viewBox="0 0 24 24"
+      width="24px"
+      xmlns="http://www.w3.org/2000/svg"
     >
-      <h3
-        class="c2"
-      >
-        Er
-      </h3>
-    </div>
+      <circle
+        cx="12"
+        cy="12"
+        r="11"
+        stroke="var(--red-dark)"
+        stroke-width="2"
+      />
+      <path
+        clip-rule="evenodd"
+        d="M7.29489 15.2921C6.90442 15.6826 6.90442 16.3157 7.29489 16.7062C7.68535 17.0966 8.31842 17.0966 8.70888 16.7062L11.9994 13.4155L15.2916 16.7079C15.6821 17.0984 16.3151 17.0984 16.7056 16.7079C17.0961 16.3174 17.0961 15.6843 16.7056 15.2938L13.4134 12.0014L16.7076 8.70694C17.0981 8.31645 17.0981 7.68335 16.7076 7.29286C16.3172 6.90238 15.6841 6.90238 15.2937 7.29286L11.9994 10.5873L8.70684 7.29462C8.31638 6.90413 7.68331 6.90413 7.29285 7.29462C6.90238 7.68511 6.90238 8.31821 7.29285 8.7087L10.5854 12.0014L7.29489 15.2921Z"
+        fill="var(--red-dark)"
+        fill-rule="evenodd"
+      />
+    </svg>
     <h2>
       Ledger only supports Chrome
     </h2>
-    <p
-      style="font-size: 1.125rem;"
-    >
+    <hr />
+    <p>
       Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option
     </p>
-    <p
-      style="font-size: 1.125rem;"
-    >
+    <p>
       <a
         href="https://www.google.com/chrome"
         rel="noreferrer noopener"
@@ -288,9 +368,8 @@ exports[`Error renders the story 1`] = `
         Install Google Chrome.
       </a>
     </p>
-    <div
-      class="c3"
-    >
+    <hr />
+    <p>
       Get help in 
       <a
         href="https://discord.gg/B9ju5Eu4Rq"
@@ -307,16 +386,13 @@ exports[`Error renders the story 1`] = `
       >
         Twitter
       </a>
-    </div>
+    </p>
   </div>
   <div
-    class="c4"
+    class="c3"
   >
     <button
-      class="c5"
-      font-size="3"
-      height="6"
-      type="button"
+      class="c4"
     >
       Back
     </button>

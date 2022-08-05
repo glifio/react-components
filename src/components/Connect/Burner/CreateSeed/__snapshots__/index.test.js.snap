@@ -50,14 +50,6 @@ exports[`Create seed phrase configuration it sends the user to wallet view, with
   justify-content: center;
 }
 
-@media screen and (min-width:40em) {
-
-}
-
-@media screen and (min-width:40em) {
-
-}
-
 <div
   class="c0"
 >

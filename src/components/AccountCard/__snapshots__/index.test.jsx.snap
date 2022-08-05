@@ -1,87 +1,121 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AccountCard renders the card 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 8px;
-  background-color: #5E26FF;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 300px;
-  height: 300px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  box-shadow: 0 0.7px 2.2px -8px rgba(0,0,0,0.18),0 1.7px 5.4px rgba(0,0,0,0.129),0 3.1px 10.1px rgba(0,0,0,0.107),0 5.6px 18.1px rgba(0,0,0,0.09),0 10.4px 33.8px rgba(0,0,0,0.073),0 25px 81px rgba(0,0,0,0.051);
-}
-
-.c0 color {
-  light: #E0D7FE;
-  medium: #5E26FF;
-  deep: #290a85;
-}
-
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #E0D7FE;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c2 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  margin-right: 16px;
-  color: #E0D7FE;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c14 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.c14 svg path {
+  stroke: var(--black);
+}
+
+.c14:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c14:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c14:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c14:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c14 svg path {
+  stroke: var(--white);
+}
+
+.c8 {
+  width: 24;
+  height: 24;
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 hr {
+  border-color: var(--white);
+}
+
+.c3 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c3 p {
+  margin: 0;
+  line-height: 1.5;
 }
 
 .c5 {
   min-width: 0;
   box-sizing: border-box;
-  color: #E0D7FE;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #E0D7FE;
+  color: var(--white);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -92,115 +126,7 @@ exports[`AccountCard renders the card 1`] = `
   align-items: center;
 }
 
-.c16 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c3 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c17 {
-  cursor: pointer;
-  border: 1px solid #E0D7FE;
-  background-color: transparent;
-  border-color: #E0D7FE;
-  color: #E0D7FE;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  padding: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c17:hover {
-  opacity: 0.8;
-}
-
-.c18 {
-  cursor: pointer;
-  border: 1px solid #E0D7FE;
-  background-color: transparent;
-  border-color: #E0D7FE;
-  color: #E0D7FE;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c18:hover {
-  opacity: 0.8;
-}
-
-.c8 {
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  overflow: hidden;
-  margin: 0;
-}
-
-.c4 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
-.c6 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c11 {
-  width: 24;
-  height: 24;
-}
-
-.c10 {
+.c7 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -225,242 +151,320 @@ exports[`AccountCard renders the card 1`] = `
   outline: none;
 }
 
-.c13 {
+.c10 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c9:hover .c12 {
+.c6:hover .c9 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c15 {
+.c12 {
   -webkit-transition: 0.18s ease-in;
   transition: 0.18s ease-in;
   opacity: 0;
   text-align: left;
-  color: #E0D7FE;
+  color: var(--white);
   margin-top: 0;
   margin-left: 4px;
   margin-top: 0;
   margin-left: 4px;
 }
 
-.c9:hover .c14 {
+.c6:hover .c11 {
   opacity: 1;
 }
 
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
+}
+
+.c4 a {
+  color: var(--white);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c4 a:hover {
+  color: var(--white);
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.c13 > p,
+.c13 > hr {
+  margin: 0.5em 0;
+}
+
+.c13 > p[role='button'] {
+  margin: 0;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 18em;
+  height: 18em;
+}
+
+.c2 h3 {
+  margin-top: 0;
+  text-align: left;
+}
+
+.c2 h4 {
+  color: var(--purple-light);
+  text-align: left;
+}
+
+.c2 .buttons button:hover {
+  color: var(--purple-medium);
+  border-color: var(--white);
+  background-color: var(--white);
+}
+
+.c2 .buttons button:active {
+  color: var(--purple-medium) !important;
+  border-color: var(--purple-light) !important;
+  background-color: var(--purple-light) !important;
+}
+
 <div
-  class="c0"
-  color="purple"
-  display="flex"
-  height="300px"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    color="card.account.color"
-    display="flex"
-  >
-    <div
-      class="c2"
-      color="card.account.color"
-      display="flex"
-      size="6"
-    >
-      <h3
-        class="c3"
-      >
-        Ac
-      </h3>
-    </div>
-    <p
-      class="c4"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
+  <div>
+    <h3>
       Account
-    </p>
-  </div>
-  <div
-    class="c5"
-    color="card.account.color"
-  >
-    <p
-      class="c6"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Your Address
-    </p>
+    </h3>
+    <hr />
     <div
-      class="c7"
-      color="core.secondary"
-      display="flex"
+      class="c3"
     >
-      <h2
-        class="c8"
-        font-family="RT-Alias-Grotesk"
-        font-size="3"
-        font-weight="1"
-        overflow="hidden"
-      >
-        t0123456789
-      </h2>
+      <h4>
+        Your Address
+      </h4>
+      
       <div
-        class="c7"
-        color="core.secondary"
-        display="flex"
+        class="c4"
+        color="var(--white)"
       >
-        <button
-          class="c9 c10"
-          display="flex"
-          role="button"
-          type="button"
+        <a
+          href="https://explorer-calibration.glif.link/actor/?address=t0123456789"
+          rel="noreferrer noopener"
+          target="_blank"
         >
-          <svg
-            class="c11 c12 c13"
-            fill="none"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+          t0123456789
+        </a>
+        <div
+          class="c5"
+          color="var(--white)"
+          display="flex"
+        >
+          <button
+            class="c6 c7"
+            display="flex"
+            role="button"
+            type="button"
           >
-            <rect
-              fill="#1A0066"
-              height="12"
-              width="12"
-              x="8"
-              y="4"
-            />
-            <rect
-              fill="#E0D7FE"
-              height="12"
-              width="12"
-              x="4"
-              y="8"
-            />
-          </svg>
-          <span
-            class="c14 c15"
-            color="core.secondary"
-          >
-            Copy
-          </span>
-        </button>
+            <svg
+              class="c8 c9 c10"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                fill="#1A0066"
+                height="12"
+                width="12"
+                x="8"
+                y="4"
+              />
+              <rect
+                fill="#E0D7FE"
+                height="12"
+                width="12"
+                x="4"
+                y="8"
+              />
+            </svg>
+            <span
+              class="c11 c12"
+              color="var(--white)"
+            >
+              Copy
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
   <div
-    class="c16"
-    display="flex"
+    class="buttons"
   >
-    <button
-      class="c17"
-      font-size="3"
-      height="max-content"
-      type="button"
+    <div
+      class="c13"
     >
-      Show on Device
-    </button>
-    <button
-      class="c18"
-      font-size="3"
-      height="max-content"
-      type="button"
-    >
-      Switch
-    </button>
+      <button
+        class="c14"
+      >
+        Show on Device
+      </button>
+      <button
+        class="c14"
+      >
+        Switch
+      </button>
+    </div>
   </div>
 </div>
 `;
 
 exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 8px;
-  background-color: #5E26FF;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 300px;
-  height: 300px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  box-shadow: 0 0.7px 2.2px -8px rgba(0,0,0,0.18),0 1.7px 5.4px rgba(0,0,0,0.129),0 3.1px 10.1px rgba(0,0,0,0.107),0 5.6px 18.1px rgba(0,0,0,0.09),0 10.4px 33.8px rgba(0,0,0,0.073),0 25px 81px rgba(0,0,0,0.051);
-}
-
-.c0 color {
-  light: #E0D7FE;
-  medium: #5E26FF;
-  deep: #290a85;
-}
-
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #E0D7FE;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c2 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  margin-right: 16px;
-  color: #E0D7FE;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c14 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.c14 svg path {
+  stroke: var(--black);
+}
+
+.c14:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c14:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c14:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c14:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c14 svg path {
+  stroke: var(--white);
+}
+
+.c8 {
+  width: 24;
+  height: 24;
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 hr {
+  border-color: var(--white);
+}
+
+.c3 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c3 p {
+  margin: 0;
+  line-height: 1.5;
 }
 
 .c5 {
   min-width: 0;
   box-sizing: border-box;
-  color: #E0D7FE;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #E0D7FE;
+  color: var(--white);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -471,84 +475,7 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   align-items: center;
 }
 
-.c16 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c3 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c17 {
-  cursor: pointer;
-  border: 1px solid #E0D7FE;
-  background-color: transparent;
-  border-color: #E0D7FE;
-  color: #E0D7FE;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c17:hover {
-  opacity: 0.8;
-}
-
-.c8 {
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  overflow: hidden;
-  margin: 0;
-}
-
-.c4 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
-.c6 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c11 {
-  width: 24;
-  height: 24;
-}
-
-.c10 {
+.c7 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -573,234 +500,315 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   outline: none;
 }
 
-.c13 {
+.c10 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c9:hover .c12 {
+.c6:hover .c9 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c15 {
+.c12 {
   -webkit-transition: 0.18s ease-in;
   transition: 0.18s ease-in;
   opacity: 0;
   text-align: left;
-  color: #E0D7FE;
+  color: var(--white);
   margin-top: 0;
   margin-left: 4px;
   margin-top: 0;
   margin-left: 4px;
 }
 
-.c9:hover .c14 {
+.c6:hover .c11 {
   opacity: 1;
 }
 
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
+}
+
+.c4 a {
+  color: var(--white);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c4 a:hover {
+  color: var(--white);
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.c13 > p,
+.c13 > hr {
+  margin: 0.5em 0;
+}
+
+.c13 > p[role='button'] {
+  margin: 0;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 18em;
+  height: 18em;
+}
+
+.c2 h3 {
+  margin-top: 0;
+  text-align: left;
+}
+
+.c2 h4 {
+  color: var(--purple-light);
+  text-align: left;
+}
+
+.c2 .buttons button:hover {
+  color: var(--purple-medium);
+  border-color: var(--white);
+  background-color: var(--white);
+}
+
+.c2 .buttons button:active {
+  color: var(--purple-medium) !important;
+  border-color: var(--purple-light) !important;
+  background-color: var(--purple-light) !important;
+}
+
 <div
-  class="c0"
-  color="purple"
-  display="flex"
-  height="300px"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    color="card.account.color"
-    display="flex"
-  >
-    <div
-      class="c2"
-      color="card.account.color"
-      display="flex"
-      size="6"
-    >
-      <h3
-        class="c3"
-      >
-        Ac
-      </h3>
-    </div>
-    <p
-      class="c4"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
+  <div>
+    <h3>
       Account
-    </p>
-  </div>
-  <div
-    class="c5"
-    color="card.account.color"
-  >
-    <p
-      class="c6"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Your Address
-    </p>
+    </h3>
+    <hr />
     <div
-      class="c7"
-      color="core.secondary"
-      display="flex"
+      class="c3"
     >
-      <h2
-        class="c8"
-        font-family="RT-Alias-Grotesk"
-        font-size="3"
-        font-weight="1"
-        overflow="hidden"
-      >
-        t0123456789
-      </h2>
+      <h4>
+        Your Address
+      </h4>
+      
       <div
-        class="c7"
-        color="core.secondary"
-        display="flex"
+        class="c4"
+        color="var(--white)"
       >
-        <button
-          class="c9 c10"
-          display="flex"
-          role="button"
-          type="button"
+        <a
+          href="https://explorer-calibration.glif.link/actor/?address=t0123456789"
+          rel="noreferrer noopener"
+          target="_blank"
         >
-          <svg
-            class="c11 c12 c13"
-            fill="none"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+          t0123456789
+        </a>
+        <div
+          class="c5"
+          color="var(--white)"
+          display="flex"
+        >
+          <button
+            class="c6 c7"
+            display="flex"
+            role="button"
+            type="button"
           >
-            <rect
-              fill="#1A0066"
-              height="12"
-              width="12"
-              x="8"
-              y="4"
-            />
-            <rect
-              fill="#E0D7FE"
-              height="12"
-              width="12"
-              x="4"
-              y="8"
-            />
-          </svg>
-          <span
-            class="c14 c15"
-            color="core.secondary"
-          >
-            Copy
-          </span>
-        </button>
+            <svg
+              class="c8 c9 c10"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                fill="#1A0066"
+                height="12"
+                width="12"
+                x="8"
+                y="4"
+              />
+              <rect
+                fill="#E0D7FE"
+                height="12"
+                width="12"
+                x="4"
+                y="8"
+              />
+            </svg>
+            <span
+              class="c11 c12"
+              color="var(--white)"
+            >
+              Copy
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
   <div
-    class="c16"
-    display="flex"
+    class="buttons"
   >
-    <button
-      class="c17"
-      font-size="3"
-      height="max-content"
-      type="button"
+    <div
+      class="c13"
     >
-      Switch
-    </button>
+      <button
+        class="c14"
+      >
+        Switch
+      </button>
+    </div>
   </div>
 </div>
 `;
 
 exports[`AccountCard renders the story 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 8px;
-  background-color: #5E26FF;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 300px;
-  height: 300px;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  box-shadow: 0 0.7px 2.2px -8px rgba(0,0,0,0.18),0 1.7px 5.4px rgba(0,0,0,0.129),0 3.1px 10.1px rgba(0,0,0,0.107),0 5.6px 18.1px rgba(0,0,0,0.09),0 10.4px 33.8px rgba(0,0,0,0.073),0 25px 81px rgba(0,0,0,0.051);
-}
-
-.c0 color {
-  light: #E0D7FE;
-  medium: #5E26FF;
-  deep: #290a85;
-}
-
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #E0D7FE;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c2 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  margin-right: 16px;
-  color: #E0D7FE;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+.c14 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--white);
+}
+
+.c14 svg path {
+  stroke: var(--black);
+}
+
+.c14:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c14:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c14:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c14:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c14 svg path {
+  stroke: var(--white);
+}
+
+.c8 {
+  width: 24;
+  height: 24;
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 hr {
+  border-color: var(--white);
+}
+
+.c3 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c3 p {
+  margin: 0;
+  line-height: 1.5;
 }
 
 .c5 {
   min-width: 0;
   box-sizing: border-box;
-  color: #E0D7FE;
-}
-
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: #E0D7FE;
+  color: var(--white);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -811,115 +819,7 @@ exports[`AccountCard renders the story 1`] = `
   align-items: center;
 }
 
-.c16 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c3 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c17 {
-  cursor: pointer;
-  border: 1px solid #E0D7FE;
-  background-color: transparent;
-  border-color: #E0D7FE;
-  color: #E0D7FE;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-bottom: 8px;
-  padding: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c17:hover {
-  opacity: 0.8;
-}
-
-.c18 {
-  cursor: pointer;
-  border: 1px solid #E0D7FE;
-  background-color: transparent;
-  border-color: #E0D7FE;
-  color: #E0D7FE;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: -webkit-max-content;
-  height: -moz-max-content;
-  height: max-content;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
-}
-
-.c18:hover {
-  opacity: 0.8;
-}
-
-.c8 {
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  overflow: hidden;
-  margin: 0;
-}
-
-.c4 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
-.c6 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c11 {
-  width: 24;
-  height: 24;
-}
-
-.c10 {
+.c7 {
   height: auto;
   cursor: pointer;
   opacity: 1;
@@ -944,156 +844,200 @@ exports[`AccountCard renders the story 1`] = `
   outline: none;
 }
 
-.c13 {
+.c10 {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
 }
 
-.c9:hover .c12 {
+.c6:hover .c9 {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c15 {
+.c12 {
   -webkit-transition: 0.18s ease-in;
   transition: 0.18s ease-in;
   opacity: 0;
   text-align: left;
-  color: #E0D7FE;
+  color: var(--white);
   margin-top: 0;
   margin-left: 4px;
   margin-top: 0;
   margin-left: 4px;
 }
 
-.c9:hover .c14 {
+.c6:hover .c11 {
   opacity: 1;
 }
 
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  grid-gap: 0.25em;
+  line-height: 1.5;
+}
+
+.c4 a {
+  color: var(--white);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c4 a:hover {
+  color: var(--white);
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c13 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.c13 > p,
+.c13 > hr {
+  margin: 0.5em 0;
+}
+
+.c13 > p[role='button'] {
+  margin: 0;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  width: 18em;
+  height: 18em;
+}
+
+.c2 h3 {
+  margin-top: 0;
+  text-align: left;
+}
+
+.c2 h4 {
+  color: var(--purple-light);
+  text-align: left;
+}
+
+.c2 .buttons button:hover {
+  color: var(--purple-medium);
+  border-color: var(--white);
+  background-color: var(--white);
+}
+
+.c2 .buttons button:active {
+  color: var(--purple-medium) !important;
+  border-color: var(--purple-light) !important;
+  background-color: var(--purple-light) !important;
+}
+
 <div
-  class="c0"
-  color="purple"
-  display="flex"
-  height="300px"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    color="card.account.color"
-    display="flex"
-  >
-    <div
-      class="c2"
-      color="card.account.color"
-      display="flex"
-      size="6"
-    >
-      <h3
-        class="c3"
-      >
-        Ac
-      </h3>
-    </div>
-    <p
-      class="c4"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
+  <div>
+    <h3>
       Account
-    </p>
-  </div>
-  <div
-    class="c5"
-    color="card.account.color"
-  >
-    <p
-      class="c6"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Your Address
-    </p>
+    </h3>
+    <hr />
     <div
-      class="c7"
-      color="core.secondary"
-      display="flex"
+      class="c3"
     >
-      <h2
-        class="c8"
-        font-family="RT-Alias-Grotesk"
-        font-size="3"
-        font-weight="1"
-        overflow="hidden"
-      >
-        t0123456789
-      </h2>
+      <h4>
+        Your Address
+      </h4>
+      
       <div
-        class="c7"
-        color="core.secondary"
-        display="flex"
+        class="c4"
+        color="var(--white)"
       >
-        <button
-          class="c9 c10"
-          display="flex"
-          role="button"
-          type="button"
+        <a
+          href="https://explorer-calibration.glif.link/actor/?address=t0123456789"
+          rel="noreferrer noopener"
+          target="_blank"
         >
-          <svg
-            class="c11 c12 c13"
-            fill="none"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+          t0123456789
+        </a>
+        <div
+          class="c5"
+          color="var(--white)"
+          display="flex"
+        >
+          <button
+            class="c6 c7"
+            display="flex"
+            role="button"
+            type="button"
           >
-            <rect
-              fill="#1A0066"
-              height="12"
-              width="12"
-              x="8"
-              y="4"
-            />
-            <rect
-              fill="#E0D7FE"
-              height="12"
-              width="12"
-              x="4"
-              y="8"
-            />
-          </svg>
-          <span
-            class="c14 c15"
-            color="core.secondary"
-          >
-            Copy
-          </span>
-        </button>
+            <svg
+              class="c8 c9 c10"
+              fill="none"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                fill="#1A0066"
+                height="12"
+                width="12"
+                x="8"
+                y="4"
+              />
+              <rect
+                fill="#E0D7FE"
+                height="12"
+                width="12"
+                x="4"
+                y="8"
+              />
+            </svg>
+            <span
+              class="c11 c12"
+              color="var(--white)"
+            >
+              Copy
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>
   <div
-    class="c16"
-    display="flex"
+    class="buttons"
   >
-    <button
-      class="c17"
-      font-size="3"
-      height="max-content"
-      type="button"
+    <div
+      class="c13"
     >
-      Show on Device
-    </button>
-    <button
-      class="c18"
-      font-size="3"
-      height="max-content"
-      type="button"
-    >
-      Switch
-    </button>
+      <button
+        class="c14"
+      >
+        Show on Device
+      </button>
+      <button
+        class="c14"
+      >
+        Switch
+      </button>
+    </div>
   </div>
 </div>
 `;

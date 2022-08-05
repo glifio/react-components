@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StyledATag storybook example renders 1`] = `
+exports[`Tooltip storybook example renders 1`] = `
 .c2 {
   width: 2em;
   height: 2em;
