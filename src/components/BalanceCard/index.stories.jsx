@@ -2,7 +2,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-import BalanceCard from '.'
+import { BalanceCard } from '.'
 
 export default {
   title: 'BalanceCard/BalanceCard',
