@@ -19,7 +19,7 @@ const BalanceBox = styled(OutlineBox)`
     justify-content: space-between;
     font-size: var(--font-size-l);
     margin-bottom: 1em;
-    
+
     h3 {
       margin: 0;
     }
@@ -35,7 +35,7 @@ const BalanceBox = styled(OutlineBox)`
         &.active {
           color: var(--black);
         }
-        
+
         &:hover {
           cursor: pointer;
           text-decoration: underline;

@@ -1,10 +1,7 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-import {
-  Title as TitleComp,
-  Text as TextComp
-} from './index'
+import { Title as TitleComp, Text as TextComp } from './index'
 
 export default {
   title: 'Typography/Typography',
