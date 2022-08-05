@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types'
 import Box from '../Box'
-import Button from '../Button'
 import Glyph from '../Glyph'
+import { ButtonV2 } from '../Button/V2'
+import { ButtonRow } from '../Layout'
 import { SmartLink } from '../SmartLink'
 import { GLIF_DISCORD, GLIF_TWITTER } from '../../constants'
 
@@ -47,9 +48,11 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
           us up on <SmartLink href={GLIF_TWITTER}>Twitter</SmartLink>
         </Box>
       </Box>
-      <Box mt={5} textAlign='center'>
-        <Button variant='secondary' title='Back' onClick={sendHomeCB} />
-      </Box>
+      <ButtonRow>
+        <ButtonV2 onClick={sendHomeCB}>
+          Back
+        </ButtonV2>
+      </ButtonRow>
     </div>
   )
 }
