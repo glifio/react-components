@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import Box from '../Box'
 import Button from '../Button'
 import Glyph from '../Glyph'
-import { SmartLink } from '../Link/SmartLink'
+import { SmartLink } from '../SmartLink'
 import { GLIF_DISCORD, GLIF_TWITTER } from '../../constants'
 
 const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {

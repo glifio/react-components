@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { ButtonV2 } from '../../Button/V2'
-import { SmartLink } from '../../Link/SmartLink'
+import { SmartLink } from '../../SmartLink'
 import { ButtonRowCenter } from '../../Layout'
 import {
   MetaMaskState,

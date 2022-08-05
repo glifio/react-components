@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { SmartLink } from '../Link/SmartLink'
+import { SmartLink } from '../SmartLink'
 import { devices } from '../theme'
 import { AppIconHeaderFooter } from '../Icons'
 import {

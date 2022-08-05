@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { SmartLink } from '../Link/SmartLink'
+import { SmartLink } from '../SmartLink'
 import { baseColors } from '../theme'
 import { logger } from '../../logger'
 

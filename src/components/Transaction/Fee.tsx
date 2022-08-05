@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
-import { SmartLink } from '../Link/SmartLink'
+import { SmartLink } from '../SmartLink'
 import { Toggle } from '../InputV2/Toggle'
 import { ButtonInput } from '../InputV2/Button'
 import { FilecoinInput } from '../InputV2/Filecoin'
