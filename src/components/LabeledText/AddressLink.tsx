@@ -9,6 +9,7 @@ import { CopyText } from '../Copy'
 
 const AddressLinkEl = styled.div`
   display: flex;
+  justify-content: center;
   grid-gap: 0.25em;
   line-height: 1.5;
 
