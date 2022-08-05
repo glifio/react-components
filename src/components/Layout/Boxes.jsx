@@ -62,6 +62,17 @@ export const StandardBox = styled(BoxBase)`
 `
 
 /**
+ * Primary Box
+ */
+export const PrimaryBox = styled(BoxBase)`
+  background-color: var(--purple-medium);
+  color: var(--white);
+  hr {
+    border-color: var(--white);
+  }
+`
+
+/**
  * Shadow Box
  */
 export const ShadowBox = styled(BoxBase)`
