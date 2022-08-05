@@ -22,7 +22,7 @@ import {
 } from '../../../utils'
 import { Lines, Line, PageTitle } from '../../Layout'
 import { LoadingScreen } from '../../Loading/LoadingScreen'
-import ErrorView from '../../Error'
+import { ErrorView } from '../../Error'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import { logger } from '../../../logger'
 import { ButtonV2 } from '../../Button/V2'

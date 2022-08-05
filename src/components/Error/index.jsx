@@ -1,12 +1,10 @@
 import PropTypes from 'prop-types'
-import Box from '../Box'
-import Glyph from '../Glyph'
 import { ButtonV2 } from '../Button/V2'
-import { ButtonRow } from '../Layout'
+import { ButtonRow, Dialog, ErrorBox } from '../Layout'
 import { SmartLink } from '../SmartLink'
 import { GLIF_DISCORD, GLIF_TWITTER } from '../../constants'
 
-const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
+export const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
   let sendHomeCB = sendHome
   if (!sendHome) {
     sendHomeCB = () => {
@@ -14,46 +12,28 @@ const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
     }
   }
   return (
-    <div>
-      <Box
-        display='inline-block'
-        width='100%'
-        maxWidth={13}
-        minHeight={10}
-        p={3}
-        border={1}
-        borderRadius={2}
-        borderWidth={1}
-        overflow='hidden'
-        bg='card.error.background'
-        color='card.error.foreground'
-        borderColor='card.error.background'
-        style={{ wordBreak: 'break-word' }}
-      >
-        <Glyph color='status.fail.foreground' acronym='Er' />
+    <Dialog>
+      <ErrorBox>
         <h2>{title}</h2>
-        <p style={{ fontSize: '1.125rem' }}>{description}</p>
+        <hr />
+        <p>{description}</p>
         {linkhref && linkDisplay && (
-          <p style={{ fontSize: '1.125rem' }}>
+          <p>
             <SmartLink href={linkhref}>{linkDisplay}</SmartLink>
           </p>
         )}
-        <Box
-          mt='1.5em'
-          pt='1em'
-          borderTop='1px solid'
-          borderColor='card.error.foreground'
-        >
+        <hr />
+        <p>
           Get help in <SmartLink href={GLIF_DISCORD}>Discord</SmartLink> or hit
           us up on <SmartLink href={GLIF_TWITTER}>Twitter</SmartLink>
-        </Box>
-      </Box>
+        </p>
+      </ErrorBox>
       <ButtonRow>
         <ButtonV2 onClick={sendHomeCB}>
           Back
         </ButtonV2>
       </ButtonRow>
-    </div>
+    </Dialog>
   )
 }
 
@@ -64,5 +44,3 @@ ErrorView.propTypes = {
   linkDisplay: PropTypes.string,
   sendHome: PropTypes.func
 }
-
-export default ErrorView

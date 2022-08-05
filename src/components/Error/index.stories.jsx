@@ -1,7 +1,7 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-import ErrorView from './index'
+import { ErrorView } from '.'
 
 export default {
   title: 'Error/ErrorView',

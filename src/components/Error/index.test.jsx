@@ -1,7 +1,7 @@
 import { render, act, fireEvent } from '@testing-library/react'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import ErrorView from '.'
+import { ErrorView } from '.'
 import { Base } from './index.stories'
 
 describe('Error', () => {
