@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { func, bool } from 'prop-types'
 import Box from '../Box'
-import Button from '../Button'
+import { ButtonV2 } from '../Button/V2'
 import { Num, Label } from '../Typography'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
@@ -58,15 +58,9 @@ const BalanceCard = ({ balance, onSend, disableButtons, ...props }) => {
             </Num>
           )} */}
       </Box>
-      <Box display='flex' justifyContent='space-between'>
-        <Button
-          variant='primary'
-          title='Send'
-          disabled={disableButtons}
-          onClick={onSend}
-          flexGrow='1'
-        />
-      </Box>
+      <ButtonV2 disabled={disableButtons} onClick={onSend}>
+        Send
+      </ButtonV2>
     </Box>
   )
 }
