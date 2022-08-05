@@ -4,7 +4,13 @@ import { ButtonRow, Dialog, ErrorBox } from '../Layout'
 import { SmartLink } from '../SmartLink'
 import { GLIF_DISCORD, GLIF_TWITTER } from '../../constants'
 
-export const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome }) => {
+export const ErrorView = ({
+  description,
+  linkhref,
+  linkDisplay,
+  title,
+  sendHome
+}) => {
   let sendHomeCB = sendHome
   if (!sendHome) {
     sendHomeCB = () => {
@@ -29,9 +35,7 @@ export const ErrorView = ({ description, linkhref, linkDisplay, title, sendHome 
         </p>
       </ErrorBox>
       <ButtonRow>
-        <ButtonV2 onClick={sendHomeCB}>
-          Back
-        </ButtonV2>
+        <ButtonV2 onClick={sendHomeCB}>Back</ButtonV2>
       </ButtonRow>
     </Dialog>
   )
