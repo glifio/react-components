@@ -1,6 +1,6 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { fireEvent, render, act } from '@testing-library/react'
-import BalanceCard from '.'
+import { BalanceCard } from '.'
 import noop from '../../utils/noop'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'

@@ -1,10 +1,11 @@
-import Button from './index'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
+import { ErrorView } from '.'
+
 export default {
-  title: 'Button/Button',
-  component: Button,
+  title: 'ErrorView/ErrorView',
+  component: ErrorView,
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -15,9 +16,13 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <Button {...args} />
+const Template = args => <ErrorView {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  title: 'Next'
+  title: 'Ledger only supports Chrome',
+  description:
+    'Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option',
+  linkDisplay: 'Install Google Chrome.',
+  linkhref: 'https://www.google.com/chrome'
 }

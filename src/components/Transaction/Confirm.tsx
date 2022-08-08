@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import { InfoBox } from '../Layout'
-import { SmartLink } from '../Link/SmartLink'
+import { SmartLink } from '../SmartLink'
 import {
   LoginOption,
   LOGIN_OPTION_PROPTYPE,

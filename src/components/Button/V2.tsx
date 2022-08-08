@@ -2,7 +2,7 @@ import { MouseEvent, ReactNode, useCallback } from 'react'
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
-import { SmartLink, SmartLinkPropTypes } from '../Link/SmartLink'
+import { SmartLink, SmartLinkPropTypes } from '../SmartLink'
 
 const buttonStyle = css`
   display: inline-flex;

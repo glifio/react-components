@@ -1,6 +1,6 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import { SmartLink } from './SmartLink'
+import { SmartLink } from '.'
 
 export default {
   title: 'Link/SmartLink',

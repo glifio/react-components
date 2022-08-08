@@ -1,10 +1,9 @@
+import styled from 'styled-components'
 import { string, func, bool, oneOf } from 'prop-types'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
-import Box from '../Box'
-import Glyph from '../Glyph'
-import Button from '../Button'
-import { CopyAddress } from '../Copy'
-import { Text } from '../Typography'
+import { ButtonV2 } from '../Button/V2'
+import { PrimaryBox, Lines } from '../Layout'
+import { AddressLink } from '../LabeledText/AddressLink'
 import {
   LEDGER,
   CREATE_MNEMONIC,
@@ -12,68 +11,73 @@ import {
   IMPORT_SINGLE_KEY
 } from '../../constants'
 
-const AccountCard = ({
+const AccountBox = styled(PrimaryBox)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18em;
+  height: 18em;
+
+  h3 {
+    margin-top: 0;
+    text-align: left;
+  }
+
+  h4 {
+    color: var(--purple-light);
+    text-align: left;
+  }
+
+  .buttons {
+    button {
+      &:hover {
+        color: var(--purple-medium);
+        border-color: var(--white);
+        background-color: var(--white);
+      }
+      &:active {
+        color: var(--purple-medium) !important;
+        border-color: var(--purple-light) !important;
+        background-color: var(--purple-light) !important;
+      }
+    }
+  }
+`
+
+export const AccountCard = ({
   address,
   onAccountSwitch,
   onShowOnLedger,
   ledgerBusy,
-  walletType,
-  ...props
+  walletType
 }) => {
   return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      justifyContent='space-between'
-      width='300px'
-      height='300px'
-      borderRadius={3}
-      p={3}
-      color='card.account.color'
-      bg='card.account.background'
-      boxShadow={1}
-      {...props}
-    >
-      <Box
-        display='flex'
-        alignItems='center'
-        justifyContent='flex-start'
-        color='card.account.color'
-      >
-        <Glyph mr={3} color='card.account.color' acronym='Ac' />
-        <Text>Account</Text>
-      </Box>
-      <Box color='card.account.color'>
-        <Text m={0}>Your Address</Text>
-        <CopyAddress address={address} />
-      </Box>
-      <Box display='flex' flexDirection='column'>
-        {walletType === LEDGER && (
-          <Button
-            variant='tertiary'
-            title={ledgerBusy ? 'Check Device' : 'Show on Device'}
-            onClick={onShowOnLedger}
-            height='max-content'
-            flexGrow='1'
-            mb={2}
-            p={2}
-            py={2}
-            disabled={ledgerBusy}
-          />
-        )}
-        {walletType !== IMPORT_SINGLE_KEY && (
-          <Button
-            variant='tertiary'
-            title='Switch'
-            onClick={onAccountSwitch}
-            height='max-content'
-            flexGrow='1'
-            p={2}
-            py={2}
-          />
-        )}
-      </Box>
-    </Box>
+    <AccountBox>
+      <div>
+        <h3>Account</h3>
+        <hr />
+        <AddressLink
+          label='Your Address'
+          address={address}
+          color='var(--white)'
+          hideCopyText={false}
+        />
+      </div>
+      <div className='buttons'>
+        <Lines>
+          {walletType === LEDGER && (
+            <ButtonV2 white onClick={onShowOnLedger} disabled={ledgerBusy}>
+              {ledgerBusy ? 'Check Device' : 'Show on Device'}
+            </ButtonV2>
+          )}
+          {walletType !== IMPORT_SINGLE_KEY && (
+            <ButtonV2 white onClick={onAccountSwitch}>
+              Switch
+            </ButtonV2>
+          )}
+        </Lines>
+      </div>
+    </AccountBox>
   )
 }
 
@@ -114,5 +118,3 @@ AccountCard.defaultProps = {
   onShowOnLedger: () => {},
   ledgerBusy: false
 }
-
-export default AccountCard

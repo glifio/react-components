@@ -1,7 +1,7 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-import AccountError from './Error'
+import { AccountError } from './Error'
 
 export default {
   title: 'AccountCard/AccountError',

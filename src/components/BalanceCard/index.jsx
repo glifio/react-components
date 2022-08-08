@@ -1,73 +1,90 @@
+import styled from 'styled-components'
 import { useState } from 'react'
 import { func, bool } from 'prop-types'
-import Box from '../Box'
-import Button from '../Button'
-import { Num, Label } from '../Typography'
+import { ButtonV2 } from '../Button/V2'
+import { OutlineBox } from '../Layout'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
-import ApproximationToggleBtn from './ApproximationToggleBtn'
 
-const BalanceCard = ({ balance, onSend, disableButtons, ...props }) => {
+const BalanceBox = styled(OutlineBox)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18em;
+  height: 18em;
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--font-size-l);
+    margin-bottom: 1em;
+
+    h3 {
+      margin: 0;
+    }
+
+    .toggle {
+      display: flex;
+      gap: var(--space-m);
+      font-size: 1rem;
+
+      span {
+        color: var(--gray-dark);
+
+        &.active {
+          color: var(--black);
+        }
+
+        &:hover {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  hr {
+    margin: 0;
+  }
+
+  .balance {
+    font-size: var(--font-size-xxl);
+    font-weight: 700;
+  }
+`
+
+export const BalanceCard = ({ balance, onSend, disableButtons }) => {
   const [preciseMode, setPreciseMode] = useState(false)
   return (
-    <Box
-      display='flex'
-      flexDirection='column'
-      justifyContent='space-between'
-      width='300px'
-      minHeight='300px'
-      border={1}
-      borderRadius={3}
-      p={3}
-      bg='card.balance.background'
-      {...props}
-    >
-      <Box display='flex' flexDirection='row' justifyContent='space-between'>
-        <Label>Balance</Label>
-        <Box display='flex' flexDirection='row' justifyContent='space-between'>
-          <ApproximationToggleBtn
-            clicked={!preciseMode}
-            onClick={() => setPreciseMode(false)}
-          >
-            Approx.
-          </ApproximationToggleBtn>
-          <Box width={2} />
-          <ApproximationToggleBtn
-            clicked={preciseMode}
-            onClick={() => setPreciseMode(true)}
-          >
-            Exact
-          </ApproximationToggleBtn>
-        </Box>
-      </Box>
-      <Box overflow='hidden' py={4}>
-        <Num css='word-wrap: break-word;' size='xl' color='card.balance.color'>
-          {makeFriendlyBalance(balance, 3, !preciseMode)} FIL
-        </Num>
-        {/* {!converter && !converterError ? (
-            <Num size='l' color='core.darkgray'>
-              Loading USD
-            </Num>
-          ) : (
-            <Num size='l' color='core.darkgray'>
-              {!converterError &&
-                `${makeFriendlyBalance(
-                  converter.fromFIL(balance.toFil()),
-                  2
-                )} USD`}
-            </Num>
-          )} */}
-      </Box>
-      <Box display='flex' justifyContent='space-between'>
-        <Button
-          variant='primary'
-          title='Send'
-          disabled={disableButtons}
-          onClick={onSend}
-          flexGrow='1'
-        />
-      </Box>
-    </Box>
+    <BalanceBox>
+      <div>
+        <div className='title'>
+          <h3>Balance</h3>
+          <div className='toggle'>
+            <span
+              className={preciseMode ? '' : 'active'}
+              onClick={() => setPreciseMode(false)}
+            >
+              Approx.
+            </span>
+            <span
+              className={preciseMode ? 'active' : ''}
+              onClick={() => setPreciseMode(true)}
+            >
+              Exact
+            </span>
+          </div>
+        </div>
+        <hr />
+      </div>
+      <p className='balance'>
+        {makeFriendlyBalance(balance, 3, !preciseMode)} FIL
+      </p>
+      <ButtonV2 green disabled={disableButtons} onClick={onSend}>
+        Send
+      </ButtonV2>
+    </BalanceBox>
   )
 }
 
@@ -89,5 +106,3 @@ BalanceCard.propTypes = {
 BalanceCard.defaultProps = {
   disableButtons: false
 }
-
-export default BalanceCard
