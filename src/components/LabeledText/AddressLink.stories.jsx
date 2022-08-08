@@ -35,6 +35,12 @@ HideCopy.args = {
   hideCopy: true
 }
 
+export const NewTabIcon = Template.bind({})
+NewTabIcon.args = {
+  address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy',
+  useNewTabIcon: true
+}
+
 export const AddressOnly = Template.bind({})
 AddressOnly.args = {
   address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy'

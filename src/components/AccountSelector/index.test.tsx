@@ -71,7 +71,6 @@ describe('AccountSelector', () => {
         <MockedProvider mocks={apolloMocks}>
           <Tree>
             <AccountSelector
-              test
               title=''
               helperText=''
               coinType={CoinType.TEST}
@@ -92,7 +91,6 @@ describe('AccountSelector', () => {
         <MockedProvider mocks={apolloMocks}>
           <Tree>
             <AccountSelector
-              test
               title='Select Account'
               helperText=''
               coinType={CoinType.TEST}
@@ -104,9 +102,15 @@ describe('AccountSelector', () => {
 
       await waitFor(() => {
         expect(screen.getByText(/Select Account/)).toBeInTheDocument()
-        addrs.forEach(({ robust, id }) => {
+        addrs.forEach(({ robust, id }, i) => {
           expect(screen.getByText(robust)).toBeInTheDocument()
           expect(screen.getByText(id)).toBeInTheDocument()
+          const role = screen.getAllByRole('link')[i]
+          expect(
+            role
+              .getAttribute('href')
+              ?.includes(`/actor/?address=${robust || id}`)
+          )
         })
 
         expect(screen.getByText(/Next account/)).toBeInTheDocument()
@@ -123,7 +127,6 @@ describe('AccountSelector', () => {
         <MockedProvider mocks={apolloMocks}>
           <Tree>
             <AccountSelector
-              test
               title='Select Account'
               helperText=''
               coinType={CoinType.TEST}

@@ -6,18 +6,30 @@ import truncateAddress from '../../utils/truncateAddress'
 import { LabeledText } from '.'
 import { SmartLink } from '../SmartLink'
 import { CopyText } from '../Copy'
+import { IconNewTab } from '../Icons'
 
 const AddressLinkEl = styled.div`
   display: flex;
   grid-gap: 0.25em;
   line-height: 1.5;
 
-  a {
+  > a {
     color: ${props => props.color};
     text-decoration: none;
+
     &:hover {
       color: ${props => props.color};
       text-decoration: underline;
+    }
+
+    svg {
+      transition: 0.24s ease-in-out;
+      vertical-align: middle;
+
+      &:hover {
+        transform: scale(1.25);
+        fill: var(--purple-medium);
+      }
     }
   }
 `
@@ -34,7 +46,8 @@ export const AddressLink = ({
   disableLink,
   hideCopy,
   hideCopyText,
-  shouldTruncate
+  shouldTruncate,
+  useNewTabIcon
 }: AddressLinkProps) => {
   // prioritize robust > id, use id if no robust exists
   const linkText = useMemo(() => {
@@ -47,9 +60,18 @@ export const AddressLink = ({
   }, [address, id, shouldTruncate])
   const linkHref = `${explorerUrl}/actor/?address=${address || id}`
   return (
-    <LabeledText label={label} text={disableLink ? linkText : ''}>
+    <LabeledText label={label}>
       <AddressLinkEl color={color}>
-        {!disableLink && <SmartLink href={linkHref}>{linkText}</SmartLink>}
+        {disableLink || useNewTabIcon ? (
+          <span>{linkText}</span>
+        ) : (
+          <SmartLink href={linkHref}>{linkText}</SmartLink>
+        )}
+        {useNewTabIcon && (
+          <SmartLink href={linkHref}>
+            <IconNewTab />
+          </SmartLink>
+        )}
         {!hideCopy && (address || id) && (
           <CopyText
             text={address || id}
@@ -71,6 +93,7 @@ export interface AddressLinkProps {
   hideCopy: boolean
   hideCopyText: boolean
   shouldTruncate?: boolean
+  useNewTabIcon?: boolean
 }
 
 AddressLink.propTypes = {
@@ -81,7 +104,8 @@ AddressLink.propTypes = {
   disableLink: PropTypes.bool,
   hideCopy: PropTypes.bool,
   hideCopyText: PropTypes.bool,
-  shouldTruncate: PropTypes.bool
+  shouldTruncate: PropTypes.bool,
+  useNewTabIcon: PropTypes.bool
 }
 
 AddressLink.defaultProps = {
@@ -89,5 +113,6 @@ AddressLink.defaultProps = {
   disableLink: false,
   hideCopy: false,
   hideCopyText: true,
-  shouldTruncate: true
+  shouldTruncate: true,
+  useNewTabIcon: false
 }

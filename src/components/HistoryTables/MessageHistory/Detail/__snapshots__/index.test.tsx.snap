@@ -96,16 +96,29 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   line-height: 1.5;
 }
 
-.c6 a {
+.c6 > a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c6 a:hover {
+.c6 > a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c6 > a svg {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+  vertical-align: middle;
+}
+
+.c6 > a svg:hover {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+  fill: var(--purple-medium);
 }
 
 .c15 {
@@ -295,7 +308,6 @@ exports[`Message detail view it renders the confirmed but not executed msg state
         <div
           class="c5"
         >
-          
           <div
             class="c6"
             color="var(--purple-medium)"
@@ -363,7 +375,6 @@ exports[`Message detail view it renders the confirmed but not executed msg state
         <div
           class="c5"
         >
-          
           <div
             class="c6"
             color="var(--purple-medium)"
@@ -554,16 +565,29 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   line-height: 1.5;
 }
 
-.c9 a {
+.c9 > a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c9 a:hover {
+.c9 > a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c9 > a svg {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+  vertical-align: middle;
+}
+
+.c9 > a svg:hover {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+  fill: var(--purple-medium);
 }
 
 .c18 {
@@ -838,7 +862,6 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
         <div
           class="c8"
         >
-          
           <div
             class="c9"
             color="var(--purple-medium)"
@@ -906,7 +929,6 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
         <div
           class="c8"
         >
-          
           <div
             class="c9"
             color="var(--purple-medium)"
@@ -1479,16 +1501,29 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   line-height: 1.5;
 }
 
-.c9 a {
+.c9 > a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c9 a:hover {
+.c9 > a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c9 > a svg {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+  vertical-align: middle;
+}
+
+.c9 > a svg:hover {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+  fill: var(--purple-medium);
 }
 
 .c18 {
@@ -1853,7 +1888,6 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
         <div
           class="c8"
         >
-          
           <div
             class="c9"
             color="var(--purple-medium)"
@@ -1921,7 +1955,6 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
         <div
           class="c8"
         >
-          
           <div
             class="c9"
             color="var(--purple-medium)"

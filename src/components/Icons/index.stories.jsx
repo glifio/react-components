@@ -21,7 +21,8 @@ import {
   IconClock as IconClockComp,
   IconSearch as IconSearchComp,
   IconWarn as IconWarnComp,
-  IconError as IconErrorComp
+  IconError as IconErrorComp,
+  IconNewTab as IconNewTabComp
 } from '.'
 
 export default {
@@ -85,3 +86,5 @@ export const IconSearch = args => <IconSearchComp {...args} />
 export const IconWarn = args => <IconWarnComp {...args} />
 
 export const IconError = args => <IconErrorComp {...args} />
+
+export const IconNewTab = args => <IconNewTabComp {...args} />

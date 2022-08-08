@@ -33,6 +33,7 @@ const WalletRow = ({
           address={convertAddrToPrefix(wallet.robust)}
           shouldTruncate={false}
           hideCopyText={false}
+          useNewTabIcon
         />
       </td>
       <td>{makeFriendlyBalance(wallet.balance, 6, true)}</td>
