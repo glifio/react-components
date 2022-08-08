@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 
 import truncateAddress from '../../utils/truncateAddress'
 import { LabeledText } from '.'
-import { SmartLink } from '../Link/SmartLink'
+import { SmartLink } from '../SmartLink'
 import { CopyText } from '../Copy'
 import { IconNewTab } from '../Icons'
 

@@ -1,7 +1,7 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-import AccountCard from './index'
+import { AccountCard } from '.'
 
 export default {
   title: 'AccountCard/AccountCard',

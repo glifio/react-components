@@ -3,7 +3,7 @@ import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { Base } from './index.stories'
 
-describe('StyledATag', () => {
+describe('Tooltip', () => {
   test('storybook example renders', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>

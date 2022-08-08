@@ -3,7 +3,7 @@
 import { render, screen, act, fireEvent } from '@testing-library/react'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import AccountCard from '.'
+import { AccountCard } from '.'
 jest.mock('../../utils/copyToClipboard')
 import copyToClipboard from '../../utils/copyToClipboard'
 import { Base } from './index.stories'
