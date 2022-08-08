@@ -187,16 +187,29 @@ exports[`AccountCard renders the card 1`] = `
   line-height: 1.5;
 }
 
-.c4 a {
+.c4 > a {
   color: var(--white);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c4 a:hover {
+.c4 > a:hover {
   color: var(--white);
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c4 > a svg {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+  vertical-align: middle;
+}
+
+.c4 > a svg:hover {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+  fill: var(--purple-medium);
 }
 
 .c13 {
@@ -271,7 +284,6 @@ exports[`AccountCard renders the card 1`] = `
       <h4>
         Your Address
       </h4>
-      
       <div
         class="c4"
         color="var(--white)"
@@ -536,16 +548,29 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   line-height: 1.5;
 }
 
-.c4 a {
+.c4 > a {
   color: var(--white);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c4 a:hover {
+.c4 > a:hover {
   color: var(--white);
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c4 > a svg {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+  vertical-align: middle;
+}
+
+.c4 > a svg:hover {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+  fill: var(--purple-medium);
 }
 
 .c13 {
@@ -620,7 +645,6 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
       <h4>
         Your Address
       </h4>
-      
       <div
         class="c4"
         color="var(--white)"
@@ -880,16 +904,29 @@ exports[`AccountCard renders the story 1`] = `
   line-height: 1.5;
 }
 
-.c4 a {
+.c4 > a {
   color: var(--white);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c4 a:hover {
+.c4 > a:hover {
   color: var(--white);
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c4 > a svg {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+  vertical-align: middle;
+}
+
+.c4 > a svg:hover {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+  fill: var(--purple-medium);
 }
 
 .c13 {
@@ -964,7 +1001,6 @@ exports[`AccountCard renders the story 1`] = `
       <h4>
         Your Address
       </h4>
-      
       <div
         class="c4"
         color="var(--white)"
