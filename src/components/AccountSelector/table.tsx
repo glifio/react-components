@@ -1,35 +1,13 @@
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import { AddressLink } from '../LabeledText/AddressLink'
 import { Wallet } from '../../services/WalletProvider'
 import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
 import { LoadingCaption, StatusIcon } from '../Layout'
 import { WALLET_PROPTYPE } from '../../customPropTypes'
-import { CopyText } from '../Copy'
-import { IconNewTab } from '../Icons'
 
 export const idxFromPath = (path: string): string => {
   return path.split('/')[5]
 }
-
-const AddressEle = styled.div`
-  display: flex;
-  grid-gap: 0.3em;
-  line-height: 1.5;
-  align-items: center;
-`
-
-const IconNewTabWrapper = styled.a`
-  line-height: 1;
-
-  > svg {
-    transition: 0.24s ease-in-out;
-
-    &:hover {
-      transform: scale(1.25);
-      fill: var(--purple-medium);
-    }
-  }
-`
 
 const WalletRow = ({
   wallet,
@@ -51,26 +29,12 @@ const WalletRow = ({
       <td>{idxFromPath(wallet.path)}</td>
       <td>Account {idxFromPath(wallet.path)}</td>
       <td>
-        <AddressEle>
-          {convertAddrToPrefix(wallet.robust)}
-          <IconNewTabWrapper
-            target='_blank'
-            rel='noopener noreferrer'
-            href={`${
-              process.env.NEXT_PUBLIC_EXPLORER_URL
-            }/actor/?address=${convertAddrToPrefix(
-              wallet.robust || wallet.id
-            )}`}
-          >
-            <IconNewTab />
-          </IconNewTabWrapper>
-          <CopyText
-            text={wallet.robust || wallet.id}
-            hideCopyText={false}
-            color='var(--purple-medium)'
-            stopPropagation
-          />
-        </AddressEle>
+        <AddressLink
+          address={convertAddrToPrefix(wallet.robust)}
+          shouldTruncate={false}
+          hideCopyText={false}
+          useNewTabIcon
+        />
       </td>
       <td>{makeFriendlyBalance(wallet.balance, 6, true)}</td>
       <td>{convertAddrToPrefix(wallet.id) || '-'}</td>
