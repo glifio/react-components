@@ -75,16 +75,29 @@ exports[`Receive it renders correctly 1`] = `
   line-height: 1.5;
 }
 
-.c1 a {
+.c1 > a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c1 a:hover {
+.c1 > a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c1 > a svg {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+  vertical-align: middle;
+}
+
+.c1 > a svg:hover {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+  fill: var(--purple-medium);
 }
 
 <div
@@ -93,7 +106,6 @@ exports[`Receive it renders correctly 1`] = `
   <h4>
     Safe Address
   </h4>
-  
   <div
     class="c1"
     color="var(--purple-medium)"

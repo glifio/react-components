@@ -60,16 +60,29 @@ exports[`Message history it renders messages 1`] = `
   line-height: 1.5;
 }
 
-.c5 a {
+.c5 > a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c5 a:hover {
+.c5 > a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
+}
+
+.c5 > a svg {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+  vertical-align: middle;
+}
+
+.c5 > a svg:hover {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+  fill: var(--purple-medium);
 }
 
 .c0 {
@@ -203,13 +216,14 @@ exports[`Message history it renders messages 1`] = `
             <div
               class="c4"
             >
-              <p>
-                t1z225 ... 6z6wgi
-              </p>
               <div
                 class="c5"
                 color="var(--purple-medium)"
-              />
+              >
+                <span>
+                  t1z225 ... 6z6wgi
+                </span>
+              </div>
             </div>
           </td>
           <td>
@@ -226,7 +240,6 @@ exports[`Message history it renders messages 1`] = `
             <div
               class="c4"
             >
-              
               <div
                 class="c5"
                 color="var(--purple-medium)"
@@ -273,13 +286,14 @@ exports[`Message history it renders messages 1`] = `
             <div
               class="c4"
             >
-              <p>
-                t1z225 ... 6z6wgi
-              </p>
               <div
                 class="c5"
                 color="var(--purple-medium)"
-              />
+              >
+                <span>
+                  t1z225 ... 6z6wgi
+                </span>
+              </div>
             </div>
           </td>
           <td>
@@ -296,7 +310,6 @@ exports[`Message history it renders messages 1`] = `
             <div
               class="c4"
             >
-              
               <div
                 class="c5"
                 color="var(--purple-medium)"
@@ -343,13 +356,14 @@ exports[`Message history it renders messages 1`] = `
             <div
               class="c4"
             >
-              <p>
-                t1z225 ... 6z6wgi
-              </p>
               <div
                 class="c5"
                 color="var(--purple-medium)"
-              />
+              >
+                <span>
+                  t1z225 ... 6z6wgi
+                </span>
+              </div>
             </div>
           </td>
           <td>
@@ -366,7 +380,6 @@ exports[`Message history it renders messages 1`] = `
             <div
               class="c4"
             >
-              
               <div
                 class="c5"
                 color="var(--purple-medium)"
@@ -413,13 +426,14 @@ exports[`Message history it renders messages 1`] = `
             <div
               class="c4"
             >
-              <p>
-                t1z225 ... 6z6wgi
-              </p>
               <div
                 class="c5"
                 color="var(--purple-medium)"
-              />
+              >
+                <span>
+                  t1z225 ... 6z6wgi
+                </span>
+              </div>
             </div>
           </td>
           <td>
@@ -436,7 +450,6 @@ exports[`Message history it renders messages 1`] = `
             <div
               class="c4"
             >
-              
               <div
                 class="c5"
                 color="var(--purple-medium)"
@@ -483,13 +496,14 @@ exports[`Message history it renders messages 1`] = `
             <div
               class="c4"
             >
-              <p>
-                t1z225 ... 6z6wgi
-              </p>
               <div
                 class="c5"
                 color="var(--purple-medium)"
-              />
+              >
+                <span>
+                  t1z225 ... 6z6wgi
+                </span>
+              </div>
             </div>
           </td>
           <td>
@@ -506,7 +520,6 @@ exports[`Message history it renders messages 1`] = `
             <div
               class="c4"
             >
-              
               <div
                 class="c5"
                 color="var(--purple-medium)"
