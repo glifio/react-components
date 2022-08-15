@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { useMemo, useState } from 'react'
+import { Colors } from '../theme'
 
 const SearchBarEl = styled.div`
   display: flex;
@@ -26,7 +27,7 @@ const SearchBarEl = styled.div`
     border-radius: 4px;
   }
   span.error {
-    color: var(--red-medium);
+    color: ${Colors.RED_MEDIUM};
     font-size: 0.875rem;
 
     ${props =>

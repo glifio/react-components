@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { Colors } from '../theme'
 
 const LabeledTextEl = styled.div`
   h4 {
     margin: 0;
-    color: var(--gray-dark);
+    color: ${Colors.GRAY_DARK};
   }
   p {
     margin: 0;

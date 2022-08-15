@@ -7,6 +7,7 @@ import { LabeledText } from '.'
 import { SmartLink } from '../SmartLink'
 import { CopyText } from '../Copy'
 import { IconNewTab } from '../Icons'
+import { Colors } from '../theme'
 
 const AddressLinkEl = styled.div`
   display: flex;
@@ -28,7 +29,7 @@ const AddressLinkEl = styled.div`
 
       &:hover {
         transform: scale(1.25);
-        fill: var(--purple-medium);
+        fill: ${Colors.PURPLE_MEDIUM};
       }
     }
   }
@@ -109,7 +110,7 @@ AddressLink.propTypes = {
 }
 
 AddressLink.defaultProps = {
-  color: 'var(--purple-medium)',
+  color: '${Colors.PURPLE_MEDIUM}',
   disableLink: false,
   hideCopy: false,
   hideCopyText: true,

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { devices, fontSize } from '../theme'
+import { Colors, devices, fontSize } from '../theme'
 
 export const OneColumn = styled.div`
   position: relative;
@@ -44,7 +44,7 @@ export const OneColumnLargeText = styled(OneColumn)`
 
   &.primary {
     color: white;
-    background-color: var(--purple-medium);
+    background-color: ${Colors.PURPLE_MEDIUM};
     border-radius: 8px;
 
     a:hover {

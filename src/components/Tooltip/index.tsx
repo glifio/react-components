@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { Colors } from '../theme'
 
 const Icon = styled.button`
   width: 2em;
@@ -7,8 +8,8 @@ const Icon = styled.button`
   padding: 0;
   line-height: 2em;
   border-radius: 1em;
-  border: 1px solid var(--black);
-  color: var(--black);
+  border: 1px solid ${Colors.BLACK};
+  color: ${Colors.BLACK};
   background: transparent;
   text-align: center;
   cursor: pointer;
@@ -23,8 +24,8 @@ const Content = styled.div`
   max-width: 20em;
   transform: translateX(-50%);
   padding: 0.5em 0.75em;
-  color: var(--black);
-  background-color: var(--white);
+  color: ${Colors.BLACK};
+  background-color: ${Colors.WHITE};
   border-radius: ${props => props.theme.radii[2]};
   box-shadow: ${props => props.theme.shadows[2]};
   z-index: ${props => props.theme.zIndices[1]};
@@ -35,8 +36,8 @@ const Wrapper = styled.div`
 
   &:hover {
     ${Icon} {
-      color: var(--purple-medium);
-      border-color: var(--purple-medium);
+      color: ${Colors.PURPLE_MEDIUM};
+      border-color: ${Colors.PURPLE_MEDIUM};
     }
     ${Content} {
       display: block;
