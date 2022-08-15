@@ -44,20 +44,16 @@ const NavLinkSimple = styled(SmartLink)`
   }
 `
 
-const NavLinkRound = styled(NavLinkSimple)`
+const NavLink = styled(NavLinkSimple)`
   padding: 0.5em 0.75em;
-  border: 1px solid black;
-  border-radius: 2em;
 
   &:hover,
   &.active {
     color: var(--purple-medium);
-    border-color: var(--purple-medium);
   }
 
   &:active {
     color: white;
-    background: var(--purple-medium);
   }
 `
 
@@ -98,13 +94,13 @@ export function AppHeader(props: AppHeaderProps) {
       <NavRight>
         {appHeaderLinks &&
           appHeaderLinks.map((link, index) => (
-            <NavLinkRound
+            <NavLink
               key={index}
               href={link.url}
               className={link.url === router?.pathname ? 'active' : ''}
             >
               {link.title}
-            </NavLinkRound>
+            </NavLink>
           ))}
         {logout && <NavButton onClick={logout}>Logout</NavButton>}
       </NavRight>

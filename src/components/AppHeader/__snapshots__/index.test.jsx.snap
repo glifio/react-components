@@ -69,19 +69,15 @@ exports[`AppHeader renders the box 1`] = `
 
 .c5 {
   padding: 0.5em 0.75em;
-  border: 1px solid black;
-  border-radius: 2em;
 }
 
 .c5:hover,
 .c5.active {
   color: var(--purple-medium);
-  border-color: var(--purple-medium);
 }
 
 .c5:active {
   color: white;
-  background: var(--purple-medium);
 }
 
 @media (min-width:480px) {
