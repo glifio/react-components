@@ -73,11 +73,7 @@ export function AppHeader(props: AppHeaderProps) {
     <Header>
       <NavLeft>
         {appIcon &&
-          (appUrl ? (
-            <SmartLink href={appUrl}>{appIcon}</SmartLink>
-          ) : (
-            appIcon
-          ))}
+          (appUrl ? <SmartLink href={appUrl}>{appIcon}</SmartLink> : appIcon)}
         {addressLinks?.map((addressLink, index) => (
           <AddressLink key={index} {...addressLink} />
         ))}
