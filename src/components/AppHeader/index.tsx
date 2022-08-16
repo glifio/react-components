@@ -1,7 +1,6 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import { ButtonV2 } from '../Button/V2'
 import { SmartLink } from '../SmartLink'
 import { AppIconHeaderFooter } from '../Icons'
 import { LabeledText, LabeledTextProps } from '../LabeledText'
@@ -31,34 +30,31 @@ const NavLeft = styled.nav`
 `
 
 const NavRight = styled(NavLeft)`
-  gap: var(--space-m);
+  gap: 0;
   flex-grow: 0;
+  align-items: stretch;
 `
 
-const NavLinkSimple = styled(SmartLink)`
-  color: black;
+const navItemStyle = css`
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--space-m);
+  transition: color 0.1s ease-out;
   text-decoration: none;
-
-  &:hover {
-    color: black;
-  }
-`
-
-const NavLink = styled(NavLinkSimple)`
-  padding: 0.5em 0.75em;
+  cursor: pointer;
 
   &:hover,
   &.active {
     color: var(--purple-medium);
   }
-
-  &:active {
-    color: white;
-  }
 `
 
-const NavButton = styled(ButtonV2)`
-  border-radius: 2em;
+const NavLink = styled(SmartLink)`
+  ${navItemStyle}
+`
+
+const NavButton = styled.span`
+  ${navItemStyle}
 `
 
 export function AppHeader(props: AppHeaderProps) {
@@ -77,11 +73,7 @@ export function AppHeader(props: AppHeaderProps) {
     <Header>
       <NavLeft>
         {appIcon &&
-          (appUrl ? (
-            <NavLinkSimple href={appUrl}>{appIcon}</NavLinkSimple>
-          ) : (
-            appIcon
-          ))}
+          (appUrl ? <SmartLink href={appUrl}>{appIcon}</SmartLink> : appIcon)}
         {addressLinks?.map((addressLink, index) => (
           <AddressLink key={index} {...addressLink} />
         ))}
