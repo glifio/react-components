@@ -110,7 +110,7 @@ AddressLink.propTypes = {
 }
 
 AddressLink.defaultProps = {
-  color: '${Colors.PURPLE_MEDIUM}',
+  color: Colors.PURPLE_MEDIUM,
   disableLink: false,
   hideCopy: false,
   hideCopyText: true,
