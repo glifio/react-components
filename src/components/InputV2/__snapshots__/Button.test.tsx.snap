@@ -29,9 +29,9 @@ exports[`Button input it renders correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 72%;
+  -ms-flex: 0 0 72%;
+  flex: 0 0 72%;
 }
 
 .c0 span.info,
@@ -167,9 +167,9 @@ exports[`Button input it renders the disabled state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 72%;
+  -ms-flex: 0 0 72%;
+  flex: 0 0 72%;
 }
 
 .c0 span.info,
@@ -307,9 +307,9 @@ exports[`Button input it renders the green state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 72%;
+  -ms-flex: 0 0 72%;
+  flex: 0 0 72%;
 }
 
 .c0 span.info,
@@ -444,9 +444,9 @@ exports[`Button input it renders the red state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 72%;
+  -ms-flex: 0 0 72%;
+  flex: 0 0 72%;
 }
 
 .c0 span.info,
@@ -581,9 +581,9 @@ exports[`Button input it renders the submit button correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 72%;
+  -ms-flex: 0 0 72%;
+  flex: 0 0 72%;
 }
 
 .c0 span.info,
