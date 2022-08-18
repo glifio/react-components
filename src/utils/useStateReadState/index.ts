@@ -5,12 +5,7 @@ import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
 import { Address, AddressDocument, AddressQuery } from '../../generated/graphql'
 import { decodeActorCID } from '..'
-
-const lCli = new LotusRPCEngine({
-  apiAddress:
-    process.env.NEXT_PUBLIC_LOTUS_NODE_JSONRPC ||
-    'https://api.calibration.node.glif.io'
-})
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 export type LotusRPCActorState<T> = {
   Balance: string
@@ -43,12 +38,17 @@ export const useStateReadStateQuery = <T = any>(
     }
   >
 ): { data: LotusRPCActorState<T>; error: Error; loading: boolean } => {
+  const { lotusApiUrl: apiAddress } = useEnvironment()
   const [actorState, setActorState] = useState<LotusRPCActorState<T> | null>(
     null
   )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
   const [fetchedFor, setFetchedFor] = useState<string>('')
+  const lCli = new LotusRPCEngine({
+    apiAddress
+  })
+
   const apolloClient = useApolloClient()
 
   useEffect(() => {

@@ -5,13 +5,14 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import useSWR, { SWRConfiguration } from 'swr'
 
 import { useWalletProvider } from '../WalletProvider'
-import { logger } from '../../logger'
+import { useLogger } from '../EnvironmentProvider'
 
 export const useBalancePoller = (
   swrOptions: SWRConfiguration = { refreshInterval: 10000 }
 ) => {
   const { selectedWalletIdx, updateBalance, lotusApiAddr } = useWalletProvider()
   const wallet = useWallet()
+  const logger = useLogger()
   const fetcher = useCallback(
     async (address: string, prevBalance: FilecoinNumber, walletIdx: number) => {
       try {
@@ -34,7 +35,7 @@ export const useBalancePoller = (
         )
       }
     },
-    [updateBalance, lotusApiAddr]
+    [updateBalance, lotusApiAddr, logger]
   )
 
   const { data } = useSWR(

@@ -11,13 +11,13 @@ import { useWalletProvider, Wallet } from '../../services/WalletProvider'
 import createPath, { coinTypeCode } from '../../utils/createPath'
 import convertAddrToPrefix from '../../utils/convertAddrToPrefix'
 import { COIN_TYPE_PROPTYPE } from '../../customPropTypes'
-import { logger } from '../../logger'
 import { AddressDocument, AddressQuery } from '../../generated/graphql'
 import { ErrorBox, StandardBox } from '../Layout'
 import { AccountsTable } from './table'
 import { CreateAccount } from './Create'
 import { useWallet } from '../../services'
 import { loadNextAccount } from './loadNextAccount'
+import { useLogger } from '../../services/EnvironmentProvider'
 
 const AccountSelector = ({
   onSelectAccount,
@@ -26,6 +26,8 @@ const AccountSelector = ({
   title,
   coinType
 }: AccountSelectorProps) => {
+  const logger = useLogger()
+
   const [loadingWallets, setLoadingWallets] = useState(false)
   const [loadingPage, setLoadingPage] = useState(true)
   const [uncaughtError, setUncaughtError] = useState('')
@@ -118,7 +120,8 @@ const AccountSelector = ({
     coinType,
     apolloClient,
     getBalance,
-    getAddress
+    getAddress,
+    logger
   ])
 
   const errorMsg = useMemo(() => {
@@ -149,9 +152,9 @@ const AccountSelector = ({
         const balance = await provider.getBalance(address)
         const w: Wallet = {
           balance,
-          robust: convertAddrToPrefix(address),
-          id: convertAddrToPrefix(data?.address?.id),
-          address: convertAddrToPrefix(address),
+          robust: convertAddrToPrefix(address, coinType),
+          id: convertAddrToPrefix(data?.address?.id, coinType),
+          address: convertAddrToPrefix(address, coinType),
           path: createPath(coinTypeCode(ct), index)
         }
         walletList([w])

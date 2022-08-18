@@ -26,7 +26,7 @@ import {
   useWalletProvider,
   WalletProviderOpts
 } from '../../services'
-import { logger } from '../../logger'
+import { useLogger } from '../../services/EnvironmentProvider'
 
 export const TransactionForm = ({
   children,
@@ -50,6 +50,7 @@ export const TransactionForm = ({
 }: TransactionFormProps) => {
   const router = useRouter()
   const wallet = useWallet()
+  const logger = useLogger()
   const { pushPendingMessage } = useSubmittedMessages(pendingMsgContext)
   const { loginOption, walletError, walletProvider, getProvider } =
     useWalletProvider(walletProviderOpts)

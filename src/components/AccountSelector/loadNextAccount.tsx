@@ -32,9 +32,9 @@ export const loadNextAccount = async (
 
   const w: Wallet = {
     balance,
-    robust: convertAddrToPrefix(address),
-    id: convertAddrToPrefix(data?.address?.id),
-    address: convertAddrToPrefix(address),
+    robust: convertAddrToPrefix(address, coinType),
+    id: convertAddrToPrefix(data?.address?.id, coinType),
+    address: convertAddrToPrefix(address, coinType),
     path: createPath(coinTypeCode(coinType), index)
   }
   walletList([w])

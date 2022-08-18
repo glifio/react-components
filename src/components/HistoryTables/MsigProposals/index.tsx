@@ -13,6 +13,7 @@ import {
 } from '../../../generated/graphql'
 import { Caption, PageTitle } from '../../Layout'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
+import { useEnvironment } from '../../../services/EnvironmentProvider'
 
 export default function ProposalHistoryTable({
   msigAddress,
@@ -21,9 +22,10 @@ export default function ProposalHistoryTable({
   approve,
   cancel
 }: ProposalHistoryTableProps) {
+  const { coinType } = useEnvironment()
   const { data, loading, error } = useMsigPendingQuery({
     variables: {
-      address: convertAddrToPrefix(msigAddress)
+      address: convertAddrToPrefix(msigAddress, coinType)
     },
     pollInterval: 10000,
     fetchPolicy: 'cache-and-network'

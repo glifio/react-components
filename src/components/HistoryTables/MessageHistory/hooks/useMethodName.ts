@@ -4,7 +4,10 @@ import { getMethodName } from '../../methodName'
 import { decodeActorCID } from '../../../../utils'
 import { MessageConfirmedRow, MessagePendingRow } from '../../types'
 import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
-import { logger } from '../../../../logger'
+import {
+  useEnvironment,
+  useLogger
+} from '../../../../services/EnvironmentProvider'
 
 type MessageForMethodNameType =
   | Pick<MessageConfirmedRow, 'to' | 'cid' | 'method'>
@@ -13,9 +16,14 @@ type MessageForMethodNameType =
 export const useMethodName = (
   message: MessageForMethodNameType
 ): { methodName: string; actorName: string } => {
+  const { coinType } = useEnvironment()
+  const logger = useLogger()
   const actor = useActorQuery({
     variables: {
-      address: convertAddrToPrefix(message?.to.robust || message?.to.id)
+      address: convertAddrToPrefix(
+        message?.to.robust || message?.to.id,
+        coinType
+      )
     }
   })
 
@@ -27,7 +35,7 @@ export const useMethodName = (
       logger.error(e)
       return 'unknown'
     }
-  }, [actor, message?.cid])
+  }, [actor, message?.cid, logger])
 
   const methodName = useMemo(() => {
     if (actorName) return getMethodName(actorName, Number(message.method))

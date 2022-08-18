@@ -24,9 +24,12 @@ import { Lines, Line, PageTitle } from '../../Layout'
 import { LoadingScreen } from '../../Loading/LoadingScreen'
 import { ErrorView } from '../../ErrorView'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
-import { logger } from '../../../logger'
 import { ButtonV2 } from '../../Button/V2'
 import { IconCheck, IconFail } from '../../Icons'
+import {
+  useEnvironment,
+  useLogger
+} from '../../../services/EnvironmentProvider'
 
 export default function ProposalDetail({
   id,
@@ -36,13 +39,15 @@ export default function ProposalDetail({
   cancel
 }: ProposalDetailProps) {
   const router = useRouter()
+  const { coinType } = useEnvironment()
+  const logger = useLogger()
   let {
     data: msigTxsData,
     loading: msigTxsLoading,
     error: _msigTxsError
   } = useMsigPendingQuery({
     variables: {
-      address: convertAddrToPrefix(msigAddress)
+      address: convertAddrToPrefix(msigAddress, coinType)
     },
     pollInterval: 0
   })
@@ -61,7 +66,7 @@ export default function ProposalDetail({
     loading: actorLoading,
     error: actorError
   } = useActorQuery({
-    variables: { address: convertAddrToPrefix(msigAddress) }
+    variables: { address: convertAddrToPrefix(msigAddress, coinType) }
   })
 
   const loadMsigState = useMemo<boolean>(() => {
@@ -73,14 +78,14 @@ export default function ProposalDetail({
       logger.error(e)
       return false
     }
-  }, [actorData])
+  }, [actorData, logger])
 
   const {
     data: stateData,
     loading: stateLoading,
     error: stateError
   } = useStateReadStateQuery<MsigState>({
-    variables: { address: convertAddrToPrefix(msigAddress) },
+    variables: { address: convertAddrToPrefix(msigAddress, coinType) },
     skip: !loadMsigState
   })
 

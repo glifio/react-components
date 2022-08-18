@@ -14,6 +14,7 @@ import {
   ButtonRowSpaced
 } from '../Layout'
 import { LoginOption, LOGIN_OPTION_PROPTYPE } from '../../customPropTypes'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 enum CoinTypeOption {
   MAINNET = 'Mainnet',
@@ -41,9 +42,10 @@ export function CreateAccount({
   setError,
   accountIdx: defaultAccountIdx
 }: CreateAccountProps) {
+  const { coinType } = useEnvironment()
   const [expertMode, setExpertMode] = useState(false)
   const [coinTypeOpt, setCoinTypeOpt] = useState<CoinTypeOption>(
-    coinTypeToCoinTypeOption(process.env.NEXT_PUBLIC_COIN_TYPE as CoinType)
+    coinTypeToCoinTypeOption(coinType)
   )
   const [accountIndex, setAccountIndex] = useState(defaultAccountIdx)
 
@@ -84,12 +86,7 @@ export function CreateAccount({
         />
         <ButtonV2
           large
-          onClick={() =>
-            fetchNextAccount(
-              defaultAccountIdx,
-              process.env.NEXT_PUBLIC_COIN_TYPE as CoinType
-            )
-          }
+          onClick={() => fetchNextAccount(defaultAccountIdx, coinType)}
           disabled={expertMode}
         >
           Next account

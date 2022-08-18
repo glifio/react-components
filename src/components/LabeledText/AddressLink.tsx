@@ -7,6 +7,7 @@ import { LabeledText } from '.'
 import { SmartLink } from '../SmartLink'
 import { CopyText } from '../Copy'
 import { IconNewTab } from '../Icons'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 const AddressLinkEl = styled.div`
   display: flex;
@@ -34,10 +35,6 @@ const AddressLinkEl = styled.div`
   }
 `
 
-const explorerUrl =
-  process.env.NEXT_PUBLIC_EXPLORER_URL ||
-  'https://explorer-calibration.glif.link'
-
 export const AddressLink = ({
   id,
   address,
@@ -49,6 +46,7 @@ export const AddressLink = ({
   shouldTruncate,
   useNewTabIcon
 }: AddressLinkProps) => {
+  const { explorerUrl } = useEnvironment()
   // prioritize robust > id, use id if no robust exists
   const linkText = useMemo(() => {
     if (address) {

@@ -19,9 +19,12 @@ import {
   getAddrFromReceipt
 } from '../../../../utils/getAddrFromReceipt'
 import { LoadingIcon } from '../../../Loading/LoadingIcon'
-import { logger } from '../../../../logger'
 import { ButtonV2Link } from '../../../Button/V2'
 import { IconCancel, IconSpeedUp } from '../../../Icons'
+import {
+  useEnvironment,
+  useLogger
+} from '../../../../services/EnvironmentProvider'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -44,6 +47,8 @@ export default function MessageDetail(props: MessageDetailProps) {
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(cid)
+  const { isProd } = useEnvironment()
+  const logger = useLogger()
 
   const { data: gasQuery, error: gasStateError } = useGasCostQuery({
     variables: { cid },
@@ -69,15 +74,17 @@ export default function MessageDetail(props: MessageDetailProps) {
 
   const { methodName, actorName } = useMethodName(message)
 
+  const { coinType } = useEnvironment()
+
   const execReturn = useMemo<ExecReturn | null>(() => {
     if (!message) return null
     const isToExec = isAddrEqual(message?.to, 'f01')
     const isInitTx = Number(message?.method) === 2
     const receiptReturn = msgRcptQuery?.receipt?.return
     return isToExec && isInitTx && receiptReturn
-      ? getAddrFromReceipt(receiptReturn)
+      ? getAddrFromReceipt(receiptReturn, coinType)
       : null
-  }, [message, msgRcptQuery?.receipt])
+  }, [message, msgRcptQuery?.receipt, coinType])
 
   const messageState = useMemo<MessageState>(() => {
     if (error) return MessageState.Error
@@ -89,9 +96,15 @@ export default function MessageDetail(props: MessageDetailProps) {
   }, [pending, message, error, gasUsed, loading])
 
   // Log errors
-  useEffect(() => error && logger.error(error), [error])
-  useEffect(() => gasStateError && logger.error(gasStateError), [gasStateError])
-  useEffect(() => msgRcptError && logger.error(msgRcptError), [msgRcptError])
+  useEffect(() => error && logger.error(error), [error, logger])
+  useEffect(
+    () => gasStateError && logger.error(gasStateError),
+    [gasStateError, logger]
+  )
+  useEffect(
+    () => msgRcptError && logger.error(msgRcptError),
+    [msgRcptError, logger]
+  )
 
   return (
     <>
@@ -99,13 +112,13 @@ export default function MessageDetail(props: MessageDetailProps) {
         sideContent={
           pending && (
             <>
-              {speedUpHref && !process.env.NEXT_PUBLIC_IS_PROD && (
+              {speedUpHref && !isProd && (
                 <ButtonV2Link green href={speedUpHref} retainParams>
                   <IconSpeedUp width='1.25rem' />
                   Speed up
                 </ButtonV2Link>
               )}
-              {cancelHref && !process.env.NEXT_PUBLIC_IS_PROD && (
+              {cancelHref && !isProd && (
                 <ButtonV2Link red href={cancelHref} retainParams>
                   <IconCancel width='0.8rem' />
                   Cancel

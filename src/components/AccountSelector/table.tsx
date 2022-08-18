@@ -1,15 +1,18 @@
+import { CoinType } from '@glif/filecoin-address'
 import PropTypes from 'prop-types'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { Wallet } from '../../services/WalletProvider'
 import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
 import { LoadingCaption, StatusIcon } from '../Layout'
-import { WALLET_PROPTYPE } from '../../customPropTypes'
+import { COIN_TYPE_PROPTYPE, WALLET_PROPTYPE } from '../../customPropTypes'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 export const idxFromPath = (path: string): string => {
   return path.split('/')[5]
 }
 
 const WalletRow = ({
+  coinType,
   wallet,
   selectAccount,
   index,
@@ -30,20 +33,21 @@ const WalletRow = ({
       <td>Account {idxFromPath(wallet.path)}</td>
       <td>
         <AddressLink
-          address={convertAddrToPrefix(wallet.robust)}
+          address={convertAddrToPrefix(wallet.robust, coinType)}
           shouldTruncate={false}
           hideCopyText={false}
           useNewTabIcon
         />
       </td>
       <td>{makeFriendlyBalance(wallet.balance, 6, true)}</td>
-      <td>{convertAddrToPrefix(wallet.id) || '-'}</td>
+      <td>{convertAddrToPrefix(wallet.id, coinType) || '-'}</td>
       <td>{wallet.path}</td>
     </tr>
   )
 }
 
 type WalletRowProps = {
+  coinType: CoinType
   wallet: Wallet
   selectAccount: (i: number) => void
   index: number
@@ -52,6 +56,7 @@ type WalletRowProps = {
 }
 
 WalletRow.propTypes = {
+  coinType: COIN_TYPE_PROPTYPE.isRequired,
   wallet: WALLET_PROPTYPE.isRequired,
   selectAccount: PropTypes.func.isRequired,
   index: PropTypes.number.isRequired,
@@ -66,6 +71,7 @@ export const AccountsTable = ({
   showSelectedWallet,
   selectedWalletPath
 }: AccountsTableProps) => {
+  const { coinType } = useEnvironment()
   return (
     <table>
       {loadingWallets && <LoadingCaption />}
@@ -91,6 +97,7 @@ export const AccountsTable = ({
               Number(idxFromPath(w.path)) ===
               Number(idxFromPath(selectedWalletPath))
             }
+            coinType={coinType}
             showSelectedWallet={showSelectedWallet}
           />
         ))}

@@ -10,20 +10,25 @@ import {
 import Box from '../../Box'
 import { Lines, Line, PageTitle } from '../../Layout'
 import { DetailCaption } from '../detail'
-import { logger } from '../../../logger'
+import {
+  useEnvironment,
+  useLogger
+} from '../../../services/EnvironmentProvider'
 
 const State = ({ state }: { state: unknown }) => (
   <pre>{JSON.stringify(state, null, 2)}</pre>
 )
 
 export function ActorState({ address }: { address: string }) {
+  const { coinType } = useEnvironment()
+  const logger = useLogger()
   const {
     data: actorStateData,
     error: actorStateError,
     loading: actorStateLoading
   } = useStateReadStateQuery<unknown>({
     variables: {
-      address: convertAddrToPrefix(address)
+      address: convertAddrToPrefix(address, coinType)
     }
   })
 
@@ -31,7 +36,9 @@ export function ActorState({ address }: { address: string }) {
     data: addressData,
     error: addressError,
     loading: addressLoading
-  } = useAddressQuery({ variables: { address: convertAddrToPrefix(address) } })
+  } = useAddressQuery({
+    variables: { address: convertAddrToPrefix(address, coinType) }
+  })
 
   const [viewActorState, setViewActorState] = useState(false)
 
@@ -43,7 +50,7 @@ export function ActorState({ address }: { address: string }) {
       logger.error(e)
       return 'unknown'
     }
-  }, [actorStateData?.Code])
+  }, [actorStateData?.Code, logger])
 
   const loading = useMemo(() => {
     return actorStateLoading || addressLoading

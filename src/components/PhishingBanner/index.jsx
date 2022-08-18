@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { SmartLink } from '../SmartLink'
 import { baseColors } from '../theme'
-import { logger } from '../../logger'
+import { useLogger } from '../../services/EnvironmentProvider'
 
 const PhishingBannerContainer = styled.div`
   display: flex;
@@ -41,6 +41,7 @@ const PhishingBannerContainer = styled.div`
 
 export default function PhishingBanner({ href }) {
   const [closed, setClosed] = useState(false)
+  const logger = useLogger()
   const glifDomain = 'glif.io'
   const hrefDomain = useMemo(
     () => new URL(href).hostname.split('.').slice(-2).join('.'),
@@ -53,7 +54,7 @@ export default function PhishingBanner({ href }) {
 
   useEffect(
     () => isPhishing && logger.error(`PHISHING DETECTED BY ${href}`),
-    [isPhishing, href]
+    [isPhishing, href, logger]
   )
 
   return (

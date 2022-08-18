@@ -17,7 +17,7 @@ const parseParams = (_: any, incoming: any) => {
     return null
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e)
-    Logger.error(`Failed to parse MessageConfirmed.params: ${msg}`)
+    // Logger.error(`Failed to parse MessageConfirmed.params: ${msg}`)
     return null
   }
 }

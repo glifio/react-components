@@ -1,8 +1,9 @@
 import { CoinType } from '@glif/filecoin-address'
 
-export default function convertAddrToPrefix(address: string) {
+export default function convertAddrToPrefix(
+  address: string,
+  coinType: CoinType
+) {
   if (!address) return ''
-  return `${process.env.NEXT_PUBLIC_COIN_TYPE || CoinType.TEST}${address.slice(
-    1
-  )}`
+  return `${coinType}${address.slice(1)}`
 }
