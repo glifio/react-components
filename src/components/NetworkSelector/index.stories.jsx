@@ -1,11 +1,11 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-import { NetworkConnection } from './index'
+import { NetworkSelector } from './index'
 
 export default {
-  title: 'NetworkConnection/NetworkConnection',
-  component: NetworkConnection,
+  title: 'NetworkSelector/NetworkSelector',
+  component: NetworkSelector,
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -16,7 +16,7 @@ export default {
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
-const Template = args => <NetworkConnection {...args} />
+const Template = args => <NetworkSelector {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
