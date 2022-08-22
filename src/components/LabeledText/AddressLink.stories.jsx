@@ -17,8 +17,8 @@ export default {
 
 const Template = args => <AddressLink {...args} />
 
-export const Labelled = Template.bind({})
-Labelled.args = {
+export const Base = Template.bind({})
+Base.args = {
   label: 'Safe Address',
   address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy'
 }
