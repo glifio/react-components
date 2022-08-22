@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useMemo } from 'react'
+import { useEnvironment } from '../../services'
 
 import truncateAddress from '../../utils/truncateAddress'
 import {
@@ -7,10 +8,6 @@ import {
   LabeledLinkProps,
   LabeledLinkPropTypes
 } from './LabeledLink'
-
-const explorerUrl =
-  process.env.NEXT_PUBLIC_EXPLORER_URL ||
-  'https://explorer-calibration.glif.link'
 
 export const CidLink = ({
   cid,
@@ -22,6 +19,7 @@ export const CidLink = ({
   shouldTruncate,
   useNewTabIcon
 }: CidLinkProps) => {
+  const { explorerUrl } = useEnvironment()
   const linkText = useMemo(
     () => (shouldTruncate ? truncateAddress(cid) : cid),
     [cid, shouldTruncate]

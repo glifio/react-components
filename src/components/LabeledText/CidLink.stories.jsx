@@ -2,6 +2,7 @@ import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { CidLink } from './CidLink'
 import { Colors } from '../theme'
+import { Environment } from '../../services'
 
 export default {
   title: 'LabeledText/CidLink',
@@ -9,7 +10,9 @@ export default {
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+        <Environment>
+          <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+        </Environment>
       </div>
     )
   ],
