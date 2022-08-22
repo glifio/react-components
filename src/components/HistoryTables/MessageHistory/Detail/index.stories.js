@@ -4,7 +4,7 @@ import theme from '../../../theme'
 import ThemeProvider from '../../../ThemeProvider'
 
 import MessageDetail from '.'
-import { Environment } from '../../../../services/EnvironmentProvider'
+import { Environment, Network } from '../../../../services/EnvironmentProvider'
 
 export default {
   title: 'MessageHistory/MessageDetail',

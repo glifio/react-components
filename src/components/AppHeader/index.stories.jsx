@@ -5,11 +5,18 @@ import { AppHeader } from './index'
 import { AppIconHeaderFooter, SafeIconHeaderFooter } from '../Icons'
 import { SearchAddressMessage } from '../SearchBar/SearchAddressMessage'
 import { NetworkSelector } from '../NetworkSelector'
+import { Environment } from '../../services/EnvironmentProvider'
 
 export default {
   title: 'AppHeader/AppHeader',
   component: AppHeader,
-  decorators: [Story => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>],
+  decorators: [
+    Story => (
+      <Environment>
+        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+      </Environment>
+    )
+  ],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
