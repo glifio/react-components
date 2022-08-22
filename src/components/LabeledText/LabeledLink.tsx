@@ -76,7 +76,7 @@ export interface LabeledLinkProps {
   useNewTabIcon?: boolean
 }
 
-LabeledLink.propTypes = {
+export const LabeledLinkPropTypes = {
   label: PropTypes.string,
   color: PropTypes.string,
   href: PropTypes.string.isRequired,
@@ -88,6 +88,7 @@ LabeledLink.propTypes = {
   useNewTabIcon: PropTypes.bool
 }
 
+LabeledLink.propTypes = LabeledLinkPropTypes
 LabeledLink.defaultProps = {
   color: 'var(--purple-medium)',
   disableLink: false,
