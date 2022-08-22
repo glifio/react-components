@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { Colors } from '../theme'
 
 export const Label = styled.label`
   display: flex;
@@ -42,6 +43,6 @@ export const Label = styled.label`
   }
 
   span.error {
-    color: var(--red-medium);
+    color: ${Colors.RED_MEDIUM};
   }
 `

@@ -12,9 +12,8 @@ const explorerUrl =
   process.env.NEXT_PUBLIC_EXPLORER_URL ||
   'https://explorer-calibration.glif.link'
 
-export const AddressLink = ({
-  id,
-  address,
+export const CidLink = ({
+  cid,
   label,
   color,
   disableLink,
@@ -22,21 +21,19 @@ export const AddressLink = ({
   hideCopyText,
   shouldTruncate,
   useNewTabIcon
-}: AddressLinkProps) => {
-  // prioritize robust > id, use id if no robust exists
-  const linkText = useMemo(() => {
-    if (address) return shouldTruncate ? truncateAddress(address) : address
-    return id || ''
-  }, [address, id, shouldTruncate])
-  const copyText = address || id
-  const href = `${explorerUrl}/actor/?address=${copyText}`
+}: CidLinkProps) => {
+  const linkText = useMemo(
+    () => (shouldTruncate ? truncateAddress(cid) : cid),
+    [cid, shouldTruncate]
+  )
+  const href = `${explorerUrl}/message/?cid=${cid}`
   return (
     <LabeledLink
       label={label}
       color={color}
       href={href}
       linkText={linkText}
-      copyText={copyText}
+      copyText={cid}
       disableLink={disableLink}
       hideCopy={hideCopy}
       hideCopyText={hideCopyText}
@@ -45,22 +42,19 @@ export const AddressLink = ({
   )
 }
 
-export type AddressLinkProps = {
-  id?: string
-  address?: string
+export type CidLinkProps = {
+  cid?: string
   shouldTruncate?: boolean
 } & Omit<LabeledLinkProps, 'href' | 'linkText' | 'copyText'>
 
-const { href, linkText, copyText, ...addressLinkPropTypes } =
-  LabeledLinkPropTypes
+const { href, linkText, copyText, ...cidLinkPropTypes } = LabeledLinkPropTypes
 
-AddressLink.propTypes = {
-  id: PropTypes.string,
-  address: PropTypes.string,
+CidLink.propTypes = {
+  cid: PropTypes.string,
   shouldTruncate: PropTypes.bool,
-  ...addressLinkPropTypes
+  ...cidLinkPropTypes
 }
 
-AddressLink.defaultProps = {
+CidLink.defaultProps = {
   shouldTruncate: true
 }
