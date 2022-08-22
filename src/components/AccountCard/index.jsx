@@ -10,6 +10,7 @@ import {
   IMPORT_MNEMONIC,
   IMPORT_SINGLE_KEY
 } from '../../constants'
+import { Colors } from '../theme'
 
 const AccountBox = styled(PrimaryBox)`
   display: flex;
@@ -24,21 +25,21 @@ const AccountBox = styled(PrimaryBox)`
   }
 
   h4 {
-    color: var(--purple-light);
+    color: ${Colors.PURPLE_LIGHT};
     text-align: left;
   }
 
   .buttons {
     button {
       &:hover {
-        color: var(--purple-medium);
-        border-color: var(--white);
-        background-color: var(--white);
+        color: ${Colors.PURPLE_MEDIUM};
+        border-color: ${Colors.WHITE};
+        background-color: ${Colors.WHITE};
       }
       &:active {
-        color: var(--purple-medium) !important;
-        border-color: var(--purple-light) !important;
-        background-color: var(--purple-light) !important;
+        color: ${Colors.PURPLE_MEDIUM} !important;
+        border-color: ${Colors.PURPLE_LIGHT} !important;
+        background-color: ${Colors.PURPLE_LIGHT} !important;
       }
     }
   }
@@ -59,7 +60,7 @@ export const AccountCard = ({
         <AddressLink
           label='Your Address'
           address={address}
-          color='var(--white)'
+          color={Colors.WHITE}
           hideCopyText={false}
         />
       </div>

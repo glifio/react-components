@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { string, func } from 'prop-types'
 import { ButtonV2 } from '../Button/V2'
 import { StandardBox } from '../Layout'
+import { Colors } from '../theme'
 
 const AccountErrorBox = styled(StandardBox)`
   display: flex;
@@ -9,31 +10,31 @@ const AccountErrorBox = styled(StandardBox)`
   justify-content: space-between;
   width: 18em;
   height: 18em;
-  background-color: var(--red-light);
-  color: var(--red-dark);
+  background-color: ${Colors.RED_LIGHT};
+  color: ${Colors.RED_DARK};
 
   h3 {
     margin-top: 0;
   }
 
   hr {
-    border-color: var(--red-dark);
+    border-color: ${Colors.RED_DARK};
   }
 
   button {
-    color: var(--red-dark);
-    border-color: var(--red-dark);
+    color: ${Colors.RED_DARK};
+    border-color: ${Colors.RED_DARK};
 
     &:hover {
-      color: var(--white);
-      border-color: var(--white);
-      background-color: var(--red-light);
+      color: ${Colors.WHITE};
+      border-color: ${Colors.WHITE};
+      background-color: ${Colors.RED_LIGHT};
     }
 
     &:active {
-      color: var(--red-light) !important;
-      border-color: var(--white) !important;
-      background-color: var(--white) !important;
+      color: ${Colors.RED_LIGHT} !important;
+      border-color: ${Colors.WHITE} !important;
+      background-color: ${Colors.WHITE} !important;
     }
   }
 `
