@@ -56,7 +56,7 @@ export const LabeledLink = ({
             <IconNewTab />
           </SmartLink>
         )}
-        {!hideCopy && (
+        {!hideCopy && copyText && (
           <CopyText text={copyText} hideCopyText={hideCopyText} color={color} />
         )}
       </LabeledLinkEl>
