@@ -38,7 +38,7 @@ export const useStateReadStateQuery = <T = any>(
     }
   >
 ): { data: LotusRPCActorState<T>; error: Error; loading: boolean } => {
-  const { lotusApiUrl: apiAddress } = useEnvironment()
+  const { lotusApiUrl: apiAddress, networkName } = useEnvironment()
   const [actorState, setActorState] = useState<LotusRPCActorState<T> | null>(
     null
   )
@@ -60,7 +60,7 @@ export const useStateReadStateQuery = <T = any>(
           null
         )
 
-        if (res && decodeActorCID(res.Code).includes('multisig')) {
+        if (res && decodeActorCID(res.Code, networkName).includes('multisig')) {
           res.State = res.State as MsigState<string>
           const signers = await Promise.all(
             res.State.Signers.map(async (id: string) => {
@@ -119,7 +119,8 @@ export const useStateReadStateQuery = <T = any>(
     fetchedFor,
     setFetchedFor,
     apolloClient,
-    apiAddress
+    apiAddress,
+    networkName
   ])
 
   return { data: actorState, error, loading }

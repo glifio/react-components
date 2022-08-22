@@ -39,7 +39,7 @@ export default function ProposalDetail({
   cancel
 }: ProposalDetailProps) {
   const router = useRouter()
-  const { coinType } = useEnvironment()
+  const { coinType, networkName } = useEnvironment()
   const logger = useLogger()
   let {
     data: msigTxsData,
@@ -72,13 +72,14 @@ export default function ProposalDetail({
   const loadMsigState = useMemo<boolean>(() => {
     try {
       return (
-        !!actorData && decodeActorCID(actorData.actor.Code).includes('multisig')
+        !!actorData &&
+        decodeActorCID(actorData.actor.Code, networkName).includes('multisig')
       )
     } catch (e) {
       logger.error(e)
       return false
     }
-  }, [actorData, logger])
+  }, [actorData, networkName, logger])
 
   const {
     data: stateData,

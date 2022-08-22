@@ -1,4 +1,3 @@
-import { Network } from '@glif/filecoin-address'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { decode } from '@ipld/dag-cbor'
 import { mkdir, writeFile } from 'node:fs/promises'
@@ -22,8 +21,11 @@ const inverse = obj => {
 
 const mirror = codes => {
   return {
-    [Network.MAIN]: inverse(codes[Network.MAIN]),
-    [Network.TEST]: inverse(codes[Network.TEST])
+    // NOTE - THESE MUST MATCH THE EXPORTED ENUM NETWORK IN ENVIRONMENT PROVIDER
+    // for now, we have to hardcode these until this script is written in ts
+    mainnet: inverse(codes['mainnet']),
+    calibration: inverse(codes['calibration']),
+    wallaby: inverse(codes['wallaby'])
   }
 }
 
@@ -84,10 +86,12 @@ async function main() {
     'Fetching actor codes for the following networks: ',
     supportedNetworkRPCs.join(' ')
   )
-  const [f, t] = await Promise.all(supportedNetworkRPCs.map(generateActorCIDs))
+  const [mainnet, calibration] = await Promise.all(
+    supportedNetworkRPCs.map(generateActorCIDs)
+  )
 
   // f and t are network codes, f mainnet, t testnet
-  const json = { t, f }
+  const json = { mainnet, calibration, wallaby: {} }
 
   console.log('Fetched actor codes: ', JSON.stringify(json, null, 2))
 

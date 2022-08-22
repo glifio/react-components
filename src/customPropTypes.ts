@@ -8,15 +8,12 @@ import {
   Requireable
 } from 'prop-types'
 import { validateMnemonic } from 'bip39'
-import {
-  validateAddressString,
-  CoinType,
-  Network
-} from '@glif/filecoin-address'
+import { validateAddressString, CoinType } from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import BigNumber from 'bignumber.js'
 import type { CID as IPLDNode } from '@glif/filecoin-wallet-provider'
 import { CID } from 'multiformats/cid'
+import { Network } from './services/EnvironmentProvider'
 
 /**
  * ADDRESS_PROPTYPE

@@ -20,7 +20,7 @@ const State = ({ state }: { state: unknown }) => (
 )
 
 export function ActorState({ address }: { address: string }) {
-  const { coinType } = useEnvironment()
+  const { coinType, networkName } = useEnvironment()
   const logger = useLogger()
   const {
     data: actorStateData,
@@ -45,12 +45,12 @@ export function ActorState({ address }: { address: string }) {
   const actorType = useMemo<string>(() => {
     if (!actorStateData?.Code) return ''
     try {
-      return decodeActorCID(actorStateData?.Code)
+      return decodeActorCID(actorStateData?.Code, networkName)
     } catch (e) {
       logger.error(e)
       return 'unknown'
     }
-  }, [actorStateData?.Code, logger])
+  }, [actorStateData?.Code, networkName, logger])
 
   const loading = useMemo(() => {
     return actorStateLoading || addressLoading

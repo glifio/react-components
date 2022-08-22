@@ -16,7 +16,7 @@ type MessageForMethodNameType =
 export const useMethodName = (
   message: MessageForMethodNameType
 ): { methodName: string; actorName: string } => {
-  const { coinType } = useEnvironment()
+  const { coinType, networkName } = useEnvironment()
   const logger = useLogger()
   const actor = useActorQuery({
     variables: {
@@ -30,12 +30,12 @@ export const useMethodName = (
   const actorName = useMemo<string>(() => {
     if (!message?.cid || actor.loading || actor.error || !actor.data) return ''
     try {
-      return decodeActorCID(actor.data?.actor.Code)
+      return decodeActorCID(actor.data?.actor.Code, networkName)
     } catch (e) {
       logger.error(e)
       return 'unknown'
     }
-  }, [actor, message?.cid, logger])
+  }, [actor, networkName, message?.cid, logger])
 
   const methodName = useMemo(() => {
     if (actorName) return getMethodName(actorName, Number(message.method))
