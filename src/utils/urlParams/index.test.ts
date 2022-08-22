@@ -1,5 +1,5 @@
 import { NextRouter } from 'next/router'
-import { getQueryParam, navigate } from '.'
+import { getQueryParam, navigate, removeQueryParam } from '.'
 
 enum PAGE {
   LANDING = '/',
@@ -76,6 +76,18 @@ describe('getParam', () => {
     ])
     expect(getQueryParam.numberArray(routerWithQuery3, 'test3')).toEqual([NaN])
     expect(getQueryParam.numberArray(routerWithQuery3, 'test4')).toEqual([789])
+  })
+})
+
+describe('removeQueryParam', () => {
+  test('it removes a query param', () => {
+    const URL = 'https://wallet.glif.io/?network=wallaby'
+    expect(removeQueryParam(URL, 'network')).toBe('https://wallet.glif.io/')
+  })
+
+  test('it leaves the URL alone when the query param to remove does not exist', () => {
+    const URL = 'https://wallet.glif.io/'
+    expect(removeQueryParam(URL, 'network')).toBe(URL)
   })
 })
 

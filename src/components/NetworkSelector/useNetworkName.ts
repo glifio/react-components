@@ -6,8 +6,7 @@ const fetcher = async (lotusApiAddr: string) => {
     apiAddress: lotusApiAddr
   })
   const network = (await lCli.request('StateNetworkName')) as string
-  if (network)
-    return network.slice(0, 1).toUpperCase() + network.slice(1).toLowerCase()
+  if (network) return network
 
   throw new Error('Not connected to a network')
 }

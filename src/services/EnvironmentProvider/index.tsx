@@ -1,11 +1,13 @@
 import { CoinType } from '@glif/filecoin-address'
 import { Logger, LogLevel } from '@glif/logger'
+import { useRouter } from 'next/router'
 import { createContext, useContext, ReactNode, useState, useMemo } from 'react'
+import { appendQueryParams, getQueryParam, removeQueryParam } from '../../utils'
 
 export enum Network {
-  MAINNET = 'MAINNET',
-  CALIBRATION = 'CALIBRATION',
-  WALLABY = 'WALLABY'
+  MAINNET = 'mainnet',
+  CALIBRATION = 'calibration',
+  WALLABY = 'wallaby'
 }
 
 export type NetworkInfo = {
@@ -88,9 +90,18 @@ export const Environment = ({
   children,
   ...initialEnvironment
 }: EnvironmentPropTypes) => {
+  const router = useRouter()
   const [environment, setEnvironment] = useState(initialEnvironment)
   const setNetwork = (network: NetworkInfo) => {
     setEnvironment({ ...environment, ...network })
+    const url =
+      network.networkName === Network.MAINNET
+        ? removeQueryParam(router.asPath, 'network')
+        : appendQueryParams(router.asPath, {
+            network: network.networkName
+          })
+
+    router.push(url)
   }
 
   const logger = useMemo(
@@ -123,6 +134,26 @@ export const Environment = ({
   )
 }
 
+// This wrapper is used by the apps, which decorates the Environment from the URL bar
+export const EnvironmentProvider = ({
+  children,
+  ...initialEnvironment
+}: Omit<
+  EnvironmentPropTypes,
+  'nodeStatusApiKey' | 'graphUrl' | 'lotusApiUrl' | 'coinType' | 'networkName'
+>) => {
+  const router = useRouter()
+  let network = getQueryParam.string(router, 'network') as Network
+  if (!network) network = Network.MAINNET
+
+  const env: Omit<EnvironmentPropTypes, 'children'> = {
+    ...initialEnvironment,
+    ...networks[network]
+  }
+
+  return <Environment {...env}>{children}</Environment>
+}
+
 export const useEnvironment = (): Environment => {
   return useContext(EnvironmentContext)
 }
@@ -133,4 +164,4 @@ export const useLogger = (): Logger => {
 
 export type EnvironmentPropTypes = {
   children: ReactNode
-} & Partial<Environment>
+} & Omit<Partial<Environment>, 'logger'>

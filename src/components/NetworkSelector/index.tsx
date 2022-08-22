@@ -23,6 +23,10 @@ const SelectedNetworkWrapper = styled.div`
   gap: var(--space-s);
   cursor: pointer;
   align-self: center;
+
+  > span {
+    text-transform: capitalize;
+  }
 `
 
 const NetworkOption = styled.li.attrs(({ onClick }) => ({
@@ -108,7 +112,7 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
     if (
       networkNameLoading &&
       // keeps things from flashing when swr revalidates after first load
-      networkNameInState !== networkNameFromNode.toUpperCase()
+      !networkNameFromNode.toLowerCase().includes(networkNameInState)
     )
       return true
     return false
@@ -157,12 +161,12 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
       {dropdownVisibility !== 'hidden' && (
         <NetworkOptionsWrapper visibility={dropdownVisibility}>
           {Object.keys(networks)
-            .filter(n => !networkNameInState.toUpperCase().includes(n))
+            .filter(n => !networkNameInState.toLowerCase().includes(n))
             .map((n, i) => (
               <div key={n}>
                 {i > 0 && <hr />}
                 <NetworkOption onClick={() => setNetwork(networks[n])} key={n}>
-                  {n.toLowerCase()}
+                  {n}
                 </NetworkOption>
               </div>
             ))}

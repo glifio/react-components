@@ -70,6 +70,19 @@ export const appendQueryParams = (
   return updatedParams ? `${path}?${updatedParams}` : path
 }
 
+export const removeQueryParam = (url: string, key: string): string => {
+  // Get parameter string from input URL
+  const [path, paramString] = url.split('?')
+
+  // Create parameters object
+  const paramObject = new URLSearchParams(paramString)
+  paramObject.delete(key)
+
+  // Return URL with updated parameters
+  const updatedParams = paramObject.toString()
+  return updatedParams ? `${path}?${updatedParams}` : path
+}
+
 interface NavigateOptions {
   pageUrl: string
   params?: Record<string, string | string[] | number | number[]>
