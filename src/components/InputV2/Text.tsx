@@ -42,3 +42,43 @@ export const SearchInput = (props: TextInputProps) => (
   <RequireableInput type='search' {...props} />
 )
 SearchInput.propTypes = textInputPropTypes
+
+/**
+ * DateInput
+ */
+export const DateInput = (props: TextInputProps) => (
+  <RequireableInput type='date' {...props} />
+)
+DateInput.propTypes = textInputPropTypes
+
+/**
+ * DateTimeInput
+ */
+export const DateTimeInput = (props: TextInputProps) => (
+  <RequireableInput type='datetime-local' {...props} />
+)
+DateTimeInput.propTypes = textInputPropTypes
+
+/**
+ * MonthInput
+ */
+export const MonthInput = (props: TextInputProps) => (
+  <RequireableInput type='month' {...props} />
+)
+MonthInput.propTypes = textInputPropTypes
+
+/**
+ * WeekInput
+ */
+export const WeekInput = (props: TextInputProps) => (
+  <RequireableInput type='week' {...props} />
+)
+WeekInput.propTypes = textInputPropTypes
+
+/**
+ * TimeInput
+ */
+export const TimeInput = (props: TextInputProps) => (
+  <RequireableInput type='time' {...props} />
+)
+TimeInput.propTypes = textInputPropTypes
