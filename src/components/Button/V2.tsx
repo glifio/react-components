@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { SmartLink, SmartLinkPropTypes } from '../SmartLink'
+import { Colors } from '../theme'
 
 const buttonStyle = css`
   display: inline-flex;
@@ -13,31 +14,31 @@ const buttonStyle = css`
   cursor: pointer;
   gap: 0.75rem;
   padding: 0.5em 0.75em;
-  color: var(--black);
+  color: ${Colors.BLACK};
   border-width: 1px;
   border-style: solid;
   border-radius: 8px;
-  border-color: var(--black);
+  border-color: ${Colors.BLACK};
   background: transparent;
 
   svg path {
-    stroke: var(--black);
+    stroke: ${Colors.BLACK};
   }
 
   &:hover {
-    color: var(--purple-medium);
-    border-color: var(--purple-medium);
+    color: ${Colors.PURPLE_MEDIUM};
+    border-color: ${Colors.PURPLE_MEDIUM};
     svg path {
-      stroke: var(--purple-medium);
+      stroke: ${Colors.PURPLE_MEDIUM};
     }
   }
 
   &:active {
-    color: var(--white) !important;
-    border-color: var(--purple-medium) !important;
-    background: var(--purple-medium) !important;
+    color: ${Colors.WHITE} !important;
+    border-color: ${Colors.PURPLE_MEDIUM} !important;
+    background: ${Colors.PURPLE_MEDIUM} !important;
     svg path {
-      stroke: var(--white) !important;
+      stroke: ${Colors.WHITE} !important;
     }
   }
 
@@ -50,56 +51,56 @@ const buttonStyle = css`
 
       ${props.white &&
       css`
-        color: var(--white);
-        border-color: var(--white);
+        color: ${Colors.WHITE};
+        border-color: ${Colors.WHITE};
         svg path {
-          stroke: var(--white);
+          stroke: ${Colors.WHITE};
         }
       `}
 
       ${props.gray &&
       css`
-        color: var(--gray-dark);
-        border-color: var(--gray-dark);
+        color: ${Colors.GRAY_DARK};
+        border-color: ${Colors.GRAY_DARK};
         svg path {
-          stroke: var(--gray-dark);
+          stroke: ${Colors.GRAY_DARK};
         }
       `}
 
       ${props.green &&
       css`
-        color: var(--white);
-        border-color: var(--green-medium);
-        background: var(--green-medium);
+        color: ${Colors.WHITE};
+        border-color: ${Colors.GREEN_MEDIUM};
+        background: ${Colors.GREEN_MEDIUM};
         svg path {
-          stroke: var(--white);
+          stroke: ${Colors.WHITE};
         }
 
         &:hover {
-          color: var(--green-medium);
-          border-color: var(--green-medium);
-          background: var(--white);
+          color: ${Colors.GREEN_MEDIUM};
+          border-color: ${Colors.GREEN_MEDIUM};
+          background: ${Colors.WHITE};
           svg path {
-            stroke: var(--green-medium);
+            stroke: ${Colors.GREEN_MEDIUM};
           }
         }
       `}
 
       ${props.red &&
       css`
-        color: var(--white);
-        border-color: var(--red-medium);
-        background: var(--red-medium);
+        color: ${Colors.WHITE};
+        border-color: ${Colors.RED_MEDIUM};
+        background: ${Colors.RED_MEDIUM};
         svg path {
-          stroke: var(--white);
+          stroke: ${Colors.WHITE};
         }
 
         &:hover {
-          color: var(--red-medium);
-          border-color: var(--red-medium);
-          background: var(--white);
+          color: ${Colors.RED_MEDIUM};
+          border-color: ${Colors.RED_MEDIUM};
+          background: ${Colors.WHITE};
           svg path {
-            stroke: var(--red-medium);
+            stroke: ${Colors.RED_MEDIUM};
           }
         }
       `}
@@ -107,11 +108,11 @@ const buttonStyle = css`
       ${props.disabled &&
       css`
         pointer-events: none;
-        color: var(--gray-medium);
-        border-color: var(--gray-medium);
+        color: ${Colors.GRAY_MEDIUM};
+        border-color: ${Colors.GRAY_MEDIUM};
         background: transparent;
         svg path {
-          stroke: var(--gray-medium);
+          stroke: ${Colors.GRAY_MEDIUM};
         }
       `}
     `}

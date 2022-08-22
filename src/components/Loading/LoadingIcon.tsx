@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components'
 import PropTypes from 'prop-types'
+import { Colors } from '../theme'
 
 const LoadingIconAnimation = keyframes`
   20% { transform: translate(0, 0) }
@@ -12,7 +13,7 @@ const LoadingIconAnimation = keyframes`
 const LoadingIconEl = styled.span`
   position: relative;
   display: inline-block;
-  background-color: var(--purple-medium);
+  background-color: ${Colors.PURPLE_MEDIUM};
 
   ${props => css`
     width: ${props.size};
@@ -26,7 +27,7 @@ const LoadingIconEl = styled.span`
     content: '';
     top: 0;
     left: 0;
-    background-color: var(--purple-dark);
+    background-color: ${Colors.PURPLE_DARK};
     animation-name: ${LoadingIconAnimation};
     animation-duration: 2s;
     animation-iteration-count: infinite;

@@ -5,6 +5,7 @@ import { SmartLink } from '../SmartLink'
 import { AppIconHeaderFooter } from '../Icons'
 import { LabeledText, LabeledTextProps } from '../LabeledText'
 import { AddressLink, AddressLinkProps } from '../LabeledText/AddressLink'
+import { Colors } from '../theme'
 
 const Header = styled.header`
   position: sticky;
@@ -12,7 +13,7 @@ const Header = styled.header`
   z-index: 100;
   padding: var(--space-m) 0;
   margin: var(--space-nm) 0;
-  background-color: var(--white-broken);
+  background-color: ${Colors.WHITE_BROKEN};
 
   display: flex;
   flex-wrap: wrap;
@@ -45,7 +46,7 @@ const navItemStyle = css`
 
   &:hover,
   &.active {
-    color: var(--purple-medium);
+    color: ${Colors.PURPLE_MEDIUM};
   }
 `
 

@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Colors } from '../theme'
 
 /*
  * Apply the margin and font size from a standard h2 element to the page
@@ -27,7 +28,7 @@ const PageTitleWrapper = styled.div`
  */
 const PageTitleH2 = styled.h2`
   margin: 0;
-  color: var(--purple-medium);
+  color: ${Colors.PURPLE_MEDIUM};
 `
 
 /*

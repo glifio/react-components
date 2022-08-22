@@ -1,39 +1,13 @@
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useMemo } from 'react'
+import { useEnvironment } from '../../services'
 
 import truncateAddress from '../../utils/truncateAddress'
-import { LabeledText } from '.'
-import { SmartLink } from '../SmartLink'
-import { CopyText } from '../Copy'
-import { IconNewTab } from '../Icons'
-import { useEnvironment } from '../../services/EnvironmentProvider'
-
-const AddressLinkEl = styled.div`
-  display: flex;
-  grid-gap: 0.25em;
-  line-height: 1.5;
-
-  > a {
-    color: ${props => props.color};
-    text-decoration: none;
-
-    &:hover {
-      color: ${props => props.color};
-      text-decoration: underline;
-    }
-
-    svg {
-      transition: 0.24s ease-in-out;
-      vertical-align: middle;
-
-      &:hover {
-        transform: scale(1.25);
-        fill: var(--purple-medium);
-      }
-    }
-  }
-`
+import {
+  LabeledLink,
+  LabeledLinkProps,
+  LabeledLinkPropTypes
+} from './LabeledLink'
 
 export const AddressLink = ({
   id,
@@ -49,68 +23,42 @@ export const AddressLink = ({
   const { explorerUrl } = useEnvironment()
   // prioritize robust > id, use id if no robust exists
   const linkText = useMemo(() => {
-    if (address) {
-      return shouldTruncate ? truncateAddress(address) : address
-    } else if (id) {
-      return id
-    }
-    return ''
+    if (address) return shouldTruncate ? truncateAddress(address) : address
+    return id || ''
   }, [address, id, shouldTruncate])
-  const linkHref = `${explorerUrl}/actor/?address=${address || id}`
+  const copyText = address || id
+  const href = `${explorerUrl}/actor/?address=${copyText}`
   return (
-    <LabeledText label={label}>
-      <AddressLinkEl color={color}>
-        {disableLink || useNewTabIcon ? (
-          <span>{linkText}</span>
-        ) : (
-          <SmartLink href={linkHref}>{linkText}</SmartLink>
-        )}
-        {useNewTabIcon && (
-          <SmartLink href={linkHref}>
-            <IconNewTab />
-          </SmartLink>
-        )}
-        {!hideCopy && (address || id) && (
-          <CopyText
-            text={address || id}
-            hideCopyText={hideCopyText}
-            color={color}
-          />
-        )}
-      </AddressLinkEl>
-    </LabeledText>
+    <LabeledLink
+      label={label}
+      color={color}
+      href={href}
+      linkText={linkText}
+      copyText={copyText}
+      disableLink={disableLink}
+      hideCopy={hideCopy}
+      hideCopyText={hideCopyText}
+      useNewTabIcon={useNewTabIcon}
+    />
   )
 }
 
-export interface AddressLinkProps {
+export type AddressLinkProps = {
   id?: string
   address?: string
-  label?: string
-  color?: string
-  disableLink: boolean
-  hideCopy: boolean
-  hideCopyText: boolean
   shouldTruncate?: boolean
-  useNewTabIcon?: boolean
-}
+} & Omit<LabeledLinkProps, 'href' | 'linkText' | 'copyText'>
+
+const { href, linkText, copyText, ...addressLinkPropTypes } =
+  LabeledLinkPropTypes
 
 AddressLink.propTypes = {
   id: PropTypes.string,
   address: PropTypes.string,
-  label: PropTypes.string,
-  color: PropTypes.string,
-  disableLink: PropTypes.bool,
-  hideCopy: PropTypes.bool,
-  hideCopyText: PropTypes.bool,
   shouldTruncate: PropTypes.bool,
-  useNewTabIcon: PropTypes.bool
+  ...addressLinkPropTypes
 }
 
 AddressLink.defaultProps = {
-  color: 'var(--purple-medium)',
-  disableLink: false,
-  hideCopy: false,
-  hideCopyText: true,
-  shouldTruncate: true,
-  useNewTabIcon: false
+  shouldTruncate: true
 }
