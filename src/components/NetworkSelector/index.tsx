@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNetworkStatus } from './useNetworkStatus'
 import { StatusIcon } from '../Layout'
 import { networks, useEnvironment } from '../../services/EnvironmentProvider'
+import { Colors } from '../theme'
 
 export * from './useNetworkName'
 
@@ -41,17 +42,17 @@ const NetworkOption = styled.li.attrs(({ onClick }) => ({
   text-transform: capitalize;
 
   &:hover {
-    color: var(--purple-medium);
+    color: ${Colors.PURPLE_MEDIUM};
   }
   &:focus {
-    color: var(--purple-medium);
+    color: ${Colors.PURPLE_MEDIUM};
   }
 `
 
 const NetworkOptionsWrapper = styled.ul`
   visibility: ${({ visibility }) => visibility};
-  background-color: var(--white);
-  box-shadow: 0 0 0.5em var(--gray-light);
+  background-color: ${Colors.WHITE};
+  box-shadow: 0 0 0.5em ${Colors.GRAY_LIGHT};
   border-radius: 10px;
   height: fit-content;
   display: flex;
