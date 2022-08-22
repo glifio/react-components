@@ -9,9 +9,10 @@ import { ButtonV2 } from '../../../Button/V2'
 import { useAllMessages } from '../hooks/useAllMessages'
 import { ButtonRowCenter, Caption, PageTitle } from '../../../Layout'
 import { IconWarn } from '../../../Icons'
+import { Colors } from '../../../theme'
 
 const MissingDataWarning = styled.span`
-  color: var(--yellow-dark);
+  color: ${Colors.YELLOW_DARK};
 `
 
 export default function MessageHistoryTable(props: MessageHistoryTableProps) {

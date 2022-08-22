@@ -1,6 +1,7 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { CidLink } from './CidLink'
+import { Colors } from '../theme'
 
 export default {
   title: 'LabeledText/CidLink',
@@ -26,7 +27,7 @@ Base.args = {
 export const Black = Template.bind({})
 Black.args = {
   cid: 'bafy2bzacebgtugc5fzoyyit3cis4emhuapnbq43lttiubvh6ubn5mt7o7eja6',
-  color: 'var(--black)'
+  color: Colors.BLACK
 }
 
 export const HideCopy = Template.bind({})

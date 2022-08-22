@@ -1,6 +1,7 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { LabeledLink } from './LabeledLink'
+import { Colors } from '../theme'
 
 export default {
   title: 'LabeledText/LabeledLink',
@@ -28,7 +29,7 @@ Base.args = {
 export const Black = Template.bind({})
 Black.args = {
   label: 'Glif Safe',
-  color: 'var(--black)',
+  color: Colors.BLACK,
   href: 'https://safe.glif.link/',
   linkText: 'safe.glif.link',
   copyText: 'https://safe.glif.link/'

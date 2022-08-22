@@ -14,6 +14,7 @@ import { getMethodName } from './methodName'
 import { useUnformattedDateTime } from './MessageHistory/hooks/useAge'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
+import { Colors } from '../theme'
 import {
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
@@ -325,7 +326,7 @@ MessageDetailBase.propTypes = {
 }
 
 const SpanGray = styled.span`
-  color: var(--gray-medium);
+  color: ${Colors.GRAY_MEDIUM};
 `
 
 export const SeeMoreContent = ({

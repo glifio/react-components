@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { Label } from './Label'
 import truncateAddress from '../../utils/truncateAddress'
+import { Colors } from '../theme'
 
 const SelectLabel = styled(Label)`
   .select-wrapper {
@@ -20,14 +21,14 @@ const SelectLabel = styled(Label)`
       right: 1.2em;
       width: 0.6em;
       height: 0.6em;
-      border-right: 1.5px solid var(--black);
-      border-bottom: 1.5px solid var(--black);
+      border-right: 1.5px solid ${Colors.BLACK};
+      border-bottom: 1.5px solid ${Colors.BLACK};
       transform: translateY(-0.35em) rotate(45deg);
 
       ${props =>
         props.disabled &&
         css`
-          border-color: var(--gray-dark);
+          border-color: ${Colors.GRAY_DARK};
         `}
     }
   }
