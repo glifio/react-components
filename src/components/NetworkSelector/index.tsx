@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  min-width: 8em;
 `
 
 const SelectedNetworkWrapper = styled.div`
@@ -20,6 +21,7 @@ const SelectedNetworkWrapper = styled.div`
   align-items: center;
   gap: var(--space-s);
   cursor: pointer;
+  align-self: center;
 `
 
 const NetworkOption = styled.li.attrs(({ onClick }) => ({
@@ -52,14 +54,13 @@ const NetworkOptionsWrapper = styled.ul`
   justify-content: center;
   padding: 0;
 
-  > hr {
+  > div > hr {
     margin: 0;
-    width: 80%;
-    align-self: center;
   }
 `
 
-const getStatusColor = (success, error) => {
+const getStatusColor = (success, connecting, error) => {
+  if (connecting) return 'gray'
   if (success) return 'green'
   if (error) return 'red'
   return 'gray'
@@ -69,10 +70,19 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
   const [dropdownVisibility, setDropdownVisibility] = useState<
     'visible' | 'hidden'
   >('hidden')
-  const { setNetwork, lotusApiUrl, nodeStatusApiUrl, nodeStatusApiKey } =
-    useEnvironment()
+  const {
+    setNetwork,
+    lotusApiUrl,
+    nodeStatusApiUrl,
+    nodeStatusApiKey,
+    networkName: networkNameInState
+  } = useEnvironment()
   const [calledCallback, setCalledCallback] = useState(false)
-  const { networkName, error: networkNameErr } = useNetworkName(lotusApiUrl)
+  const {
+    networkName: networkNameFromNode,
+    error: networkNameErr,
+    loading: networkNameLoading
+  } = useNetworkName(lotusApiUrl)
   const { networkConnected, error: networkConnectedErr } = useNetworkStatus(
     nodeStatusApiUrl,
     nodeStatusApiKey
@@ -84,14 +94,15 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
   )
 
   const success = useMemo(
-    () => networkName && networkConnected,
-    [networkName, networkConnected]
+    () => networkNameFromNode && networkConnected,
+    [networkNameFromNode, networkConnected]
   )
 
   const connecting = useMemo(() => {
     if (!success && !error) return true
+    if (networkNameLoading) return true
     return false
-  }, [success, error])
+  }, [success, networkNameLoading, error])
 
   useEffect(() => {
     if (error && errorCallback && !calledCallback) {
@@ -109,8 +120,11 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
           )
         }}
       >
-        <StatusIcon color={getStatusColor(success, error)} />
-        <span>{connecting ? 'Loading network' : networkName}</span>
+        <StatusIcon color={getStatusColor(success, connecting, error)} />
+        {!error && (
+          <span>{connecting ? 'Loading network' : networkNameFromNode}</span>
+        )}
+        {error && <span>Error connecting</span>}
         {!connecting ? (
           dropdownVisibility === 'hidden' ? (
             <span>↓</span>
@@ -123,14 +137,14 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
       </SelectedNetworkWrapper>
       <NetworkOptionsWrapper visibility={dropdownVisibility}>
         {Object.keys(networks)
-          .filter(n => !networkName.toUpperCase().includes(n))
+          .filter(n => !networkNameInState.toUpperCase().includes(n))
           .map((n, i) => (
-            <>
+            <div key={n}>
               {i > 0 && <hr />}
               <NetworkOption onClick={() => setNetwork(networks[n])} key={n}>
                 {n.toLowerCase()}
               </NetworkOption>
-            </>
+            </div>
           ))}
       </NetworkOptionsWrapper>
     </Wrapper>

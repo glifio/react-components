@@ -1,3 +1,4 @@
+import { Environment } from '../../services/EnvironmentProvider'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
@@ -9,7 +10,9 @@ export default {
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+        <Environment>
+          <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+        </Environment>
       </div>
     )
   ],

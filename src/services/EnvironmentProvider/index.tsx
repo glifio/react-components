@@ -2,6 +2,19 @@ import { CoinType } from '@glif/filecoin-address'
 import { Logger, LogLevel } from '@glif/logger'
 import { createContext, useContext, ReactNode, useState, useMemo } from 'react'
 
+export enum Network {
+  MAINNET = 'MAINNET',
+  CALIBRATION = 'CALIBRATION',
+  WALLABY = 'WALLABY'
+}
+
+export type NetworkInfo = {
+  nodeStatusApiKey: string
+  graphUrl: string
+  lotusApiUrl: string
+  networkName: Network
+}
+
 export interface Environment {
   homeUrl: string
   blogUrl: string
@@ -15,7 +28,8 @@ export interface Environment {
   lotusApiUrl: string
   coinType: CoinType
   isProd: boolean
-  setNetwork: (network: Network) => void
+  networkName: Network
+  setNetwork: (network: NetworkInfo) => void
   logger: Logger
   sentryDsn?: string
   sentryEnv?: string
@@ -29,11 +43,12 @@ export const initialEnvironmentContext = {
   explorerUrl: 'https://explorer.glif.io',
   verifierUrl: 'https://verify.glif.io',
   nodeStatusApiUrl: 'https://api.uptimerobot.com/v2/getMonitors',
-  nodeStatusApiKey: '',
-  graphUrl: '',
-  lotusApiUrl: '',
+  nodeStatusApiKey: 'm786191525-b3192b91db66217a44f7d4be',
+  graphUrl: 'graph.glif.link/query',
+  lotusApiUrl: 'https://mainnet.glif.host',
+  networkName: Network.MAINNET,
   setNetwork: () => {},
-  coinType: CoinType.TEST,
+  coinType: CoinType.MAIN,
   isProd: false,
   sentryDsn: '',
   sentryEnv: '',
@@ -44,33 +59,24 @@ export const EnvironmentContext = createContext<Environment>(
   initialEnvironmentContext
 )
 
-export enum Network {
-  MAINNET = 'MAINNET',
-  CALIBRATION = 'CALIBRATION',
-  WALLABY = 'WALLABY'
-}
-
-export type NetworkInfo = {
-  nodeStatusApiKey: string
-  graphUrl: string
-  lotusApiUrl: string
-}
-
 export const networks: Record<Network, NetworkInfo> = {
   [Network.MAINNET]: {
     nodeStatusApiKey: 'm786191525-b3192b91db66217a44f7d4be',
     graphUrl: 'graph.glif.link/query',
-    lotusApiUrl: 'https://mainnet.glif.host'
+    lotusApiUrl: 'https://mainnet.glif.host',
+    networkName: Network.MAINNET
   },
   [Network.CALIBRATION]: {
     nodeStatusApiKey: 'm787669344-2a9b90eb03dbff3e503c93c7',
     graphUrl: 'graph-calibration.glif.link/query',
-    lotusApiUrl: 'https://api.calibration.node.glif.io/'
+    lotusApiUrl: 'https://api.calibration.node.glif.io/',
+    networkName: Network.CALIBRATION
   },
   [Network.WALLABY]: {
     nodeStatusApiKey: '',
     graphUrl: '',
-    lotusApiUrl: ''
+    lotusApiUrl: '',
+    networkName: Network.WALLABY
   }
 }
 
@@ -79,8 +85,8 @@ export const Environment = ({
   ...initialEnvironment
 }: EnvironmentPropTypes) => {
   const [environment, setEnvironment] = useState(initialEnvironment)
-  const setNetwork = (network: Network) => {
-    setEnvironment({ ...environment, ...networks[network] })
+  const setNetwork = (network: NetworkInfo) => {
+    setEnvironment({ ...environment, ...network })
   }
 
   const logger = useMemo(
@@ -100,7 +106,14 @@ export const Environment = ({
   )
 
   return (
-    <EnvironmentContext.Provider value={{ ...environment, setNetwork, logger }}>
+    <EnvironmentContext.Provider
+      value={{
+        ...initialEnvironmentContext,
+        ...environment,
+        setNetwork,
+        logger
+      }}
+    >
       {children}
     </EnvironmentContext.Provider>
   )
@@ -116,4 +129,4 @@ export const useLogger = (): Logger => {
 
 export type EnvironmentPropTypes = {
   children: ReactNode
-} & Environment
+} & Partial<Environment>
