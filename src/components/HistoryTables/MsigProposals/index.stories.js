@@ -4,15 +4,18 @@ import theme from '../../theme'
 import ThemeProvider from '../../ThemeProvider'
 
 import ProposalHistory from './index'
+import { Environment } from '../../../services/EnvironmentProvider'
 
 export default {
   title: 'ProposalHistory/Table',
   component: ProposalHistory,
   decorators: [
     Story => (
-      <ApolloProvider client={client}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </ApolloProvider>
+      <Environment>
+        <ApolloProvider client={client}>
+          <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+        </ApolloProvider>
+      </Environment>
     )
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }

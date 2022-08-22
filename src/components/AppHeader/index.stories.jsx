@@ -4,7 +4,7 @@ import ThemeProvider from '../ThemeProvider'
 import { AppHeader } from './index'
 import { AppIconHeaderFooter, SafeIconHeaderFooter } from '../Icons'
 import { SearchAddressMessage } from '../SearchBar/SearchAddressMessage'
-import { NetworkConnection } from '../NetworkConnection'
+import { NetworkSelector } from '../NetworkSelector'
 
 export default {
   title: 'AppHeader/AppHeader',
@@ -38,14 +38,7 @@ Base.args = {
 export const App = Template.bind({})
 App.args = {
   logout: () => {},
-  connection: (
-    <NetworkConnection
-      lotusApiAddr='https://api.calibration.node.glif.io'
-      apiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-      statusApiAddr='https://api.uptimerobot.com/v2/getMonitors'
-      errorCallback={() => {}}
-    />
-  ),
+  connection: <NetworkSelector errorCallback={() => {}} />,
   appIcon: <SafeIconHeaderFooter />,
   appUrl: 'https://safe.glif.io',
   addressLinks: [

@@ -13,6 +13,7 @@ export type NetworkInfo = {
   graphUrl: string
   lotusApiUrl: string
   networkName: Network
+  coinType: CoinType
 }
 
 export interface Environment {
@@ -64,19 +65,22 @@ export const networks: Record<Network, NetworkInfo> = {
     nodeStatusApiKey: 'm786191525-b3192b91db66217a44f7d4be',
     graphUrl: 'graph.glif.link/query',
     lotusApiUrl: 'https://mainnet.glif.host',
-    networkName: Network.MAINNET
+    networkName: Network.MAINNET,
+    coinType: CoinType.MAIN
   },
   [Network.CALIBRATION]: {
     nodeStatusApiKey: 'm787669344-2a9b90eb03dbff3e503c93c7',
     graphUrl: 'graph-calibration.glif.link/query',
     lotusApiUrl: 'https://api.calibration.node.glif.io/',
-    networkName: Network.CALIBRATION
+    networkName: Network.CALIBRATION,
+    coinType: CoinType.TEST
   },
   [Network.WALLABY]: {
     nodeStatusApiKey: '',
     graphUrl: '',
     lotusApiUrl: '',
-    networkName: Network.WALLABY
+    networkName: Network.WALLABY,
+    coinType: CoinType.TEST
   }
 }
 
