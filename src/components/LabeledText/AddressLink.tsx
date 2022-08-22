@@ -29,12 +29,12 @@ export const AddressLink = ({
     return id || ''
   }, [address, id, shouldTruncate])
   const copyText = address || id
-  const linkHref = `${explorerUrl}/actor/?address=${copyText}`
+  const href = `${explorerUrl}/actor/?address=${copyText}`
   return (
     <LabeledLink
       label={label}
       color={color}
-      href={linkHref}
+      href={href}
       linkText={linkText}
       copyText={copyText}
       disableLink={disableLink}
