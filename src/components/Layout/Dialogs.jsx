@@ -6,7 +6,7 @@ export const Dialog = styled.div`
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 
   form {
     display: flex;

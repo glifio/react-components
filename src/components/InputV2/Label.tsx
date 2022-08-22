@@ -32,7 +32,7 @@ export const Label = styled.label`
           }
 
           > *:last-child:not(.toggle-wrapper) {
-            flex: 0 0 72%;
+            flex: 0 0 65%;
           }
         `}
 
