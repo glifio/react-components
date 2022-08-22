@@ -10,22 +10,21 @@ import { useWalletProvider, Wallet } from '../../services/WalletProvider'
 
 import createPath, { coinTypeCode } from '../../utils/createPath'
 import convertAddrToPrefix from '../../utils/convertAddrToPrefix'
-import { COIN_TYPE_PROPTYPE } from '../../customPropTypes'
 import { AddressDocument, AddressQuery } from '../../generated/graphql'
 import { ErrorBox, StandardBox } from '../Layout'
 import { AccountsTable } from './table'
 import { CreateAccount } from './Create'
 import { useWallet } from '../../services'
 import { loadNextAccount } from './loadNextAccount'
-import { useLogger } from '../../services/EnvironmentProvider'
+import { useEnvironment, useLogger } from '../../services/EnvironmentProvider'
 
 const AccountSelector = ({
   onSelectAccount,
   showSelectedAccount,
   helperText,
-  title,
-  coinType
+  title
 }: AccountSelectorProps) => {
+  const { coinType } = useEnvironment()
   const logger = useLogger()
 
   const [loadingWallets, setLoadingWallets] = useState(false)
@@ -218,15 +217,13 @@ type AccountSelectorProps = {
   showSelectedAccount: boolean
   helperText: string
   title: string
-  coinType: CoinType
 }
 
 AccountSelector.propTypes = {
   onSelectAccount: func.isRequired,
   showSelectedAccount: bool,
   helperText: string.isRequired,
-  title: string.isRequired,
-  coinType: COIN_TYPE_PROPTYPE
+  title: string.isRequired
 }
 
 AccountSelector.defaultProps = {

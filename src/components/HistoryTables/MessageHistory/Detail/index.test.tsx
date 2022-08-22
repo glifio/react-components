@@ -1,3 +1,4 @@
+import { CoinType } from '@glif/filecoin-address'
 import React from 'react'
 import { render, act, screen, waitFor, fireEvent } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
@@ -14,6 +15,7 @@ import {
   GasCostDocument,
   MessageReceiptDocument
 } from '../../../../generated/graphql'
+import { Environment, Network } from '../../../../services/EnvironmentProvider'
 
 jest
   .spyOn(require('../hooks/useMethodName'), 'useMethodName')
@@ -68,15 +70,24 @@ describe('Message detail view', () => {
 
     act(() => {
       const res = render(
-        <MockedProvider>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-            />
-          </ThemeProvider>
-        </MockedProvider>
+        <Environment
+          coinType={CoinType.TEST}
+          networkName={Network.CALIBRATION}
+          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
+          graphUrl='graph-calibration.glif.link/query'
+          lotusApiUrl='https://api.calibration.node.glif.io/'
+          explorerUrl='https://explorer-calibration.glif.link'
+        >
+          <MockedProvider>
+            <ThemeProvider theme={theme}>
+              <MessageDetail
+                cid={cid}
+                speedUpHref='/speed-up'
+                cancelHref='/cancel'
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </Environment>
       )
       container = res.container
     })
@@ -108,15 +119,24 @@ describe('Message detail view', () => {
 
     act(() => {
       const res = render(
-        <MockedProvider>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-            />
-          </ThemeProvider>
-        </MockedProvider>
+        <Environment
+          coinType={CoinType.TEST}
+          networkName={Network.CALIBRATION}
+          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
+          graphUrl='graph-calibration.glif.link/query'
+          lotusApiUrl='https://api.calibration.node.glif.io/'
+          explorerUrl='https://explorer-calibration.glif.link'
+        >
+          <MockedProvider>
+            <ThemeProvider theme={theme}>
+              <MessageDetail
+                cid={cid}
+                speedUpHref='/speed-up'
+                cancelHref='/cancel'
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </Environment>
       )
       container = res.container
     })
@@ -146,15 +166,24 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <MockedProvider>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-            />
-          </ThemeProvider>
-        </MockedProvider>
+        <Environment
+          coinType={CoinType.TEST}
+          networkName={Network.CALIBRATION}
+          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
+          graphUrl='graph-calibration.glif.link/query'
+          lotusApiUrl='https://api.calibration.node.glif.io/'
+          explorerUrl='https://explorer-calibration.glif.link'
+        >
+          <MockedProvider>
+            <ThemeProvider theme={theme}>
+              <MessageDetail
+                cid={cid}
+                speedUpHref='/speed-up'
+                cancelHref='/cancel'
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </Environment>
       )
       container = res.container
     })
@@ -198,16 +227,25 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <MockedProvider>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-              confirmations={50}
-            />
-          </ThemeProvider>
-        </MockedProvider>
+        <Environment
+          coinType={CoinType.TEST}
+          networkName={Network.CALIBRATION}
+          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
+          graphUrl='graph-calibration.glif.link/query'
+          lotusApiUrl='https://api.calibration.node.glif.io/'
+          explorerUrl='https://explorer-calibration.glif.link'
+        >
+          <MockedProvider>
+            <ThemeProvider theme={theme}>
+              <MessageDetail
+                cid={cid}
+                speedUpHref='/speed-up'
+                cancelHref='/cancel'
+                confirmations={50}
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </Environment>
       )
       container = res.container
     })
@@ -248,57 +286,66 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <MockedProvider
-          mocks={[
-            {
-              request: {
-                query: GasCostDocument,
-                variables: {
-                  cid
-                }
-              },
-              result: {
-                data: {
-                  gascost: {
-                    gasUsed: 100,
-                    baseFeeBurn: '100',
-                    minerPenalty: '100',
-                    minerTip: '100',
-                    overEstimationBurn: '100',
-                    refund: '100',
-                    totalCost: '100'
-                  }
-                }
-              }
-            },
-            {
-              request: {
-                query: MessageReceiptDocument,
-                variables: {
-                  cid
-                }
-              },
-              result: {
-                data: {
-                  receipt: {
-                    exitCode: 0,
-                    return: '',
-                    gasUsed: 100
-                  }
-                }
-              }
-            }
-          ]}
+        <Environment
+          coinType={CoinType.TEST}
+          networkName={Network.CALIBRATION}
+          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
+          graphUrl='graph-calibration.glif.link/query'
+          lotusApiUrl='https://api.calibration.node.glif.io/'
+          explorerUrl='https://explorer-calibration.glif.link'
         >
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-              confirmations={50}
-            />
-          </ThemeProvider>
-        </MockedProvider>
+          <MockedProvider
+            mocks={[
+              {
+                request: {
+                  query: GasCostDocument,
+                  variables: {
+                    cid
+                  }
+                },
+                result: {
+                  data: {
+                    gascost: {
+                      gasUsed: 100,
+                      baseFeeBurn: '100',
+                      minerPenalty: '100',
+                      minerTip: '100',
+                      overEstimationBurn: '100',
+                      refund: '100',
+                      totalCost: '100'
+                    }
+                  }
+                }
+              },
+              {
+                request: {
+                  query: MessageReceiptDocument,
+                  variables: {
+                    cid
+                  }
+                },
+                result: {
+                  data: {
+                    receipt: {
+                      exitCode: 0,
+                      return: '',
+                      gasUsed: 100
+                    }
+                  }
+                }
+              }
+            ]}
+          >
+            <ThemeProvider theme={theme}>
+              <MessageDetail
+                cid={cid}
+                speedUpHref='/speed-up'
+                cancelHref='/cancel'
+                confirmations={50}
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </Environment>
       )
       container = res.container
     })

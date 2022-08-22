@@ -1,3 +1,4 @@
+import { CoinType } from '@glif/filecoin-address'
 import { ApolloProvider } from '@apollo/client'
 import { client } from '../apolloClient'
 import theme from '../../theme'
@@ -13,6 +14,7 @@ export default {
     Story => (
       <Environment
         networkName={Network.CALIBRATION}
+        coinType={CoinType.TEST}
         nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
         graphUrl='graph-calibration.glif.link/query'
         lotusApiUrl='https://api.calibration.node.glif.io/'

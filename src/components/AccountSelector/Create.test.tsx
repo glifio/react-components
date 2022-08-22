@@ -8,6 +8,7 @@ import theme from '../theme'
 import { createPath } from '../../utils'
 import { coinTypeCode } from '../../utils/createPath'
 import { LoginOption } from '../../customPropTypes'
+import { Environment, Network } from '../../services/EnvironmentProvider'
 
 const fetchNextAccountSpy = jest
   .fn()
@@ -25,15 +26,24 @@ describe('Create new account', () => {
   })
   test('it creates a new account at the wallet index by default', async () => {
     const { container } = render(
-      <ThemeProvider theme={theme}>
-        <CreateAccount
-          keyDerive={keyDeriveSpy}
-          loginOption={LoginOption.IMPORT_SINGLE_KEY}
-          setError={() => {}}
-          accountIdx={0}
-          fetchNextAccount={fetchNextAccountSpy}
-        />
-      </ThemeProvider>
+      <Environment
+        coinType={CoinType.TEST}
+        networkName={Network.CALIBRATION}
+        nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
+        graphUrl='graph-calibration.glif.link/query'
+        lotusApiUrl='https://api.calibration.node.glif.io/'
+        explorerUrl='https://explorer-calibration.glif.link'
+      >
+        <ThemeProvider theme={theme}>
+          <CreateAccount
+            keyDerive={keyDeriveSpy}
+            loginOption={LoginOption.IMPORT_SINGLE_KEY}
+            setError={() => {}}
+            accountIdx={0}
+            fetchNextAccount={fetchNextAccountSpy}
+          />
+        </ThemeProvider>
+      </Environment>
     )
     expect(screen.getByText('Next account')).toBeInTheDocument()
     expect(screen.getByText('Expert Mode')).toBeInTheDocument()
@@ -52,15 +62,24 @@ describe('Create new account', () => {
   test('it creates a new account at the specified index in expert mode', async () => {
     await act(async () => {
       render(
-        <ThemeProvider theme={theme}>
-          <CreateAccount
-            keyDerive={keyDeriveSpy}
-            loginOption={LoginOption.IMPORT_SINGLE_KEY}
-            setError={() => {}}
-            accountIdx={0}
-            fetchNextAccount={fetchNextAccountSpy}
-          />
-        </ThemeProvider>
+        <Environment
+          coinType={CoinType.TEST}
+          networkName={Network.CALIBRATION}
+          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
+          graphUrl='graph-calibration.glif.link/query'
+          lotusApiUrl='https://api.calibration.node.glif.io/'
+          explorerUrl='https://explorer-calibration.glif.link'
+        >
+          <ThemeProvider theme={theme}>
+            <CreateAccount
+              keyDerive={keyDeriveSpy}
+              loginOption={LoginOption.IMPORT_SINGLE_KEY}
+              setError={() => {}}
+              accountIdx={0}
+              fetchNextAccount={fetchNextAccountSpy}
+            />
+          </ThemeProvider>
+        </Environment>
       )
       expect(screen.getByText('Next account')).toBeInTheDocument()
       expect(screen.getByText('Expert Mode')).toBeInTheDocument()
@@ -93,17 +112,26 @@ describe('Create new account', () => {
   test('it exports a private key', async () => {
     await act(async () => {
       render(
-        <ThemeProvider theme={theme}>
-          <CreateAccount
-            keyDerive={keyDeriveSpy}
-            loginOption={LoginOption.IMPORT_SINGLE_KEY}
-            setError={err => {
-              console.log(err)
-            }}
-            accountIdx={0}
-            fetchNextAccount={fetchNextAccountSpy}
-          />
-        </ThemeProvider>
+        <Environment
+          coinType={CoinType.TEST}
+          networkName={Network.CALIBRATION}
+          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
+          graphUrl='graph-calibration.glif.link/query'
+          lotusApiUrl='https://api.calibration.node.glif.io/'
+          explorerUrl='https://explorer-calibration.glif.link'
+        >
+          <ThemeProvider theme={theme}>
+            <CreateAccount
+              keyDerive={keyDeriveSpy}
+              loginOption={LoginOption.IMPORT_SINGLE_KEY}
+              setError={err => {
+                console.log(err)
+              }}
+              accountIdx={0}
+              fetchNextAccount={fetchNextAccountSpy}
+            />
+          </ThemeProvider>
+        </Environment>
       )
       expect(screen.getByText('Next account')).toBeInTheDocument()
       expect(screen.getByText('Expert Mode')).toBeInTheDocument()

@@ -1,4 +1,5 @@
 import { ApolloProvider } from '@apollo/client'
+import { CoinType } from '@glif/filecoin-address'
 import { client } from '../../apolloClient'
 import theme from '../../../theme'
 import ThemeProvider from '../../../ThemeProvider'
@@ -12,6 +13,7 @@ export default {
   decorators: [
     Story => (
       <Environment
+        coinType={CoinType.TEST}
         networkName={Network.CALIBRATION}
         nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
         graphUrl='graph-calibration.glif.link/query'
