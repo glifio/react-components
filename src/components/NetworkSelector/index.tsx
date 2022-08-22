@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import { useNetworkName } from './useNetworkName'
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNetworkStatus } from './useNetworkStatus'
 import { StatusIcon } from '../Layout'
 import { networks, useEnvironment } from '../../services/EnvironmentProvider'
@@ -14,6 +14,7 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   min-width: 8em;
+  position: relative;
 `
 
 const SelectedNetworkWrapper = styled.div`
@@ -53,6 +54,10 @@ const NetworkOptionsWrapper = styled.ul`
   flex-direction: column;
   justify-content: center;
   padding: 0;
+
+  position: absolute;
+  top: var(--space-m);
+  width: 100%;
 
   > div > hr {
     margin: 0;
@@ -100,9 +105,20 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
 
   const connecting = useMemo(() => {
     if (!success && !error) return true
-    if (networkNameLoading) return true
+    if (
+      networkNameLoading &&
+      // keeps things from flashing when swr revalidates after first load
+      networkNameInState !== networkNameFromNode.toUpperCase()
+    )
+      return true
     return false
-  }, [success, networkNameLoading, error])
+  }, [
+    success,
+    networkNameLoading,
+    networkNameFromNode,
+    networkNameInState,
+    error
+  ])
 
   useEffect(() => {
     if (error && errorCallback && !calledCallback) {
@@ -111,10 +127,21 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
     }
   }, [calledCallback, setCalledCallback, error, errorCallback])
 
+  const closeDropdown = useCallback(
+    () => setDropdownVisibility('hidden'),
+    [setDropdownVisibility]
+  )
+
+  useEffect(() => {
+    document.addEventListener('click', closeDropdown)
+    return () => document.removeEventListener('click', closeDropdown)
+  }, [closeDropdown])
+
   return (
     <Wrapper>
       <SelectedNetworkWrapper
-        onClick={() => {
+        onClick={e => {
+          e.stopPropagation()
           setDropdownVisibility(
             dropdownVisibility === 'hidden' ? 'visible' : 'hidden'
           )
@@ -125,28 +152,22 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
           <span>{connecting ? 'Loading network' : networkNameFromNode}</span>
         )}
         {error && <span>Error connecting</span>}
-        {!connecting ? (
-          dropdownVisibility === 'hidden' ? (
-            <span>↓</span>
-          ) : (
-            <span>↑</span>
-          )
-        ) : (
-          <></>
-        )}
+        {dropdownVisibility === 'hidden' ? <span>↓</span> : <span>↑</span>}
       </SelectedNetworkWrapper>
-      <NetworkOptionsWrapper visibility={dropdownVisibility}>
-        {Object.keys(networks)
-          .filter(n => !networkNameInState.toUpperCase().includes(n))
-          .map((n, i) => (
-            <div key={n}>
-              {i > 0 && <hr />}
-              <NetworkOption onClick={() => setNetwork(networks[n])} key={n}>
-                {n.toLowerCase()}
-              </NetworkOption>
-            </div>
-          ))}
-      </NetworkOptionsWrapper>
+      {dropdownVisibility !== 'hidden' && (
+        <NetworkOptionsWrapper visibility={dropdownVisibility}>
+          {Object.keys(networks)
+            .filter(n => !networkNameInState.toUpperCase().includes(n))
+            .map((n, i) => (
+              <div key={n}>
+                {i > 0 && <hr />}
+                <NetworkOption onClick={() => setNetwork(networks[n])} key={n}>
+                  {n.toLowerCase()}
+                </NetworkOption>
+              </div>
+            ))}
+        </NetworkOptionsWrapper>
+      )}
     </Wrapper>
   )
 }
