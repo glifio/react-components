@@ -3,7 +3,7 @@ import PropTypes, { oneOf, string } from 'prop-types'
 import styled, { keyframes, css } from 'styled-components'
 import { space, color, layout, flexbox, border, position } from 'styled-system'
 
-import theme, { devices } from '../theme'
+import theme, { Colors, devices } from '../theme'
 
 const IconBase = styled.svg`
   ${position}
@@ -1061,7 +1061,7 @@ export const IconSearch = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
   </IconBase>
 ))
 
-export const IconWarn = () => (
+export const IconCaution = ({ stroke }: IconCautionProps) => (
   <svg
     width='22px'
     height='20px'
@@ -1071,7 +1071,7 @@ export const IconWarn = () => (
   >
     <path
       d='M11 7.74982V9.99986M11 14.4999H11.0112M3.24282 19H18.7572C20.4815 19 21.5586 17.1246 20.6965 15.6249L12.9393 2.12474C12.0771 0.625088 9.92286 0.625088 9.0607 2.12474L1.30352 15.6249C0.441363 17.1246 1.5185 19 3.24282 19Z'
-      stroke='var(--yellow-dark)'
+      stroke={stroke}
       strokeWidth='2'
       strokeLinecap='round'
       strokeLinejoin='round'
@@ -1079,23 +1079,21 @@ export const IconWarn = () => (
   </svg>
 )
 
-export const IconError = () => (
-  <svg
-    width='24px'
-    height='24px'
-    viewBox='0 0 24 24'
-    fill='none'
-    xmlns='http://www.w3.org/2000/svg'
-  >
-    <circle cx='12' cy='12' r='11' stroke='var(--red-dark)' strokeWidth='2' />
-    <path
-      d='M7.29489 15.2921C6.90442 15.6826 6.90442 16.3157 7.29489 16.7062C7.68535 17.0966 8.31842 17.0966 8.70888 16.7062L11.9994 13.4155L15.2916 16.7079C15.6821 17.0984 16.3151 17.0984 16.7056 16.7079C17.0961 16.3174 17.0961 15.6843 16.7056 15.2938L13.4134 12.0014L16.7076 8.70694C17.0981 8.31645 17.0981 7.68335 16.7076 7.29286C16.3172 6.90238 15.6841 6.90238 15.2937 7.29286L11.9994 10.5873L8.70684 7.29462C8.31638 6.90413 7.68331 6.90413 7.29285 7.29462C6.90238 7.68511 6.90238 8.31821 7.29285 8.7087L10.5854 12.0014L7.29489 15.2921Z'
-      fillRule='evenodd'
-      clipRule='evenodd'
-      fill='var(--red-dark)'
-    />
-  </svg>
-)
+type IconCautionProps = {
+  stroke?: Colors
+}
+
+IconCaution.propTypes = {
+  stroke: string
+}
+
+IconCaution.defaultProps = {
+  stroke: Colors.YELLOW_DARK
+}
+
+export const IconWarn = () => <IconCaution />
+
+export const IconError = () => <IconCaution stroke={Colors.RED_DARK} />
 
 export const IconNewTab = () => {
   return (

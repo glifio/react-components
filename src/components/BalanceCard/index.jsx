@@ -5,6 +5,7 @@ import { ButtonV2 } from '../Button/V2'
 import { OutlineBox } from '../Layout'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
+import { Colors } from '../theme'
 
 const BalanceBox = styled(OutlineBox)`
   display: flex;
@@ -30,10 +31,10 @@ const BalanceBox = styled(OutlineBox)`
       font-size: 1rem;
 
       span {
-        color: var(--gray-dark);
+        color: ${Colors.GRAY_DARK};
 
         &.active {
-          color: var(--black);
+          color: ${Colors.BLACK};
         }
 
         &:hover {
