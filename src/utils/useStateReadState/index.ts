@@ -45,15 +45,15 @@ export const useStateReadStateQuery = <T = any>(
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
   const [fetchedFor, setFetchedFor] = useState<string>('')
-  const lCli = new LotusRPCEngine({
-    apiAddress
-  })
 
   const apolloClient = useApolloClient()
 
   useEffect(() => {
     const fetchState = async () => {
       try {
+        const lCli = new LotusRPCEngine({
+          apiAddress
+        })
         const res = await lCli.request<LotusRPCActorState<any>>(
           'StateReadState',
           baseOptions.variables.address,
@@ -118,7 +118,8 @@ export const useStateReadStateQuery = <T = any>(
     actorState,
     fetchedFor,
     setFetchedFor,
-    apolloClient
+    apolloClient,
+    apiAddress
   ])
 
   return { data: actorState, error, loading }
