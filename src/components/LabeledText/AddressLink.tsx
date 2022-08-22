@@ -1,38 +1,8 @@
-import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useMemo } from 'react'
 
 import truncateAddress from '../../utils/truncateAddress'
-import { LabeledText } from '.'
-import { SmartLink } from '../SmartLink'
-import { CopyText } from '../Copy'
-import { IconNewTab } from '../Icons'
-
-const AddressLinkEl = styled.div`
-  display: flex;
-  grid-gap: 0.25em;
-  line-height: 1.5;
-
-  > a {
-    color: ${props => props.color};
-    text-decoration: none;
-
-    &:hover {
-      color: ${props => props.color};
-      text-decoration: underline;
-    }
-
-    svg {
-      transition: 0.24s ease-in-out;
-      vertical-align: middle;
-
-      &:hover {
-        transform: scale(1.25);
-        fill: var(--purple-medium);
-      }
-    }
-  }
-`
+import { LabeledLink } from './LabeledLink'
 
 const explorerUrl =
   process.env.NEXT_PUBLIC_EXPLORER_URL ||
@@ -51,36 +21,24 @@ export const AddressLink = ({
 }: AddressLinkProps) => {
   // prioritize robust > id, use id if no robust exists
   const linkText = useMemo(() => {
-    if (address) {
+    if (address)
       return shouldTruncate ? truncateAddress(address) : address
-    } else if (id) {
-      return id
-    }
-    return ''
+    return id || ''
   }, [address, id, shouldTruncate])
-  const linkHref = `${explorerUrl}/actor/?address=${address || id}`
+  const copyText = address || id
+  const linkHref = `${explorerUrl}/actor/?address=${copyText}`
   return (
-    <LabeledText label={label}>
-      <AddressLinkEl color={color}>
-        {disableLink || useNewTabIcon ? (
-          <span>{linkText}</span>
-        ) : (
-          <SmartLink href={linkHref}>{linkText}</SmartLink>
-        )}
-        {useNewTabIcon && (
-          <SmartLink href={linkHref}>
-            <IconNewTab />
-          </SmartLink>
-        )}
-        {!hideCopy && (address || id) && (
-          <CopyText
-            text={address || id}
-            hideCopyText={hideCopyText}
-            color={color}
-          />
-        )}
-      </AddressLinkEl>
-    </LabeledText>
+    <LabeledLink
+      label={label}
+      color={color}
+      href={linkHref}
+      linkText={linkText}
+      copyText={copyText}
+      disableLink={disableLink}
+      hideCopy={hideCopy}
+      hideCopyText={hideCopyText}
+      useNewTabIcon={useNewTabIcon}
+    />
   )
 }
 
