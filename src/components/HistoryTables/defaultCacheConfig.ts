@@ -15,6 +15,7 @@ const parseParams = (_: any, incoming: any) => {
     }
     return null
   } catch (e) {
+    console.error(e)
     return null
   }
 }

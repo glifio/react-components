@@ -18,7 +18,7 @@ export type NetworkInfo = {
   coinType: CoinType
 }
 
-export interface Environment {
+export interface EnvironmentContextType {
   homeUrl: string
   blogUrl: string
   walletUrl: string
@@ -33,7 +33,6 @@ export interface Environment {
   isProd: boolean
   networkName: Network
   setNetwork: (network: NetworkInfo) => void
-  logger: Logger
   sentryDsn?: string
   sentryEnv?: string
 }
@@ -54,11 +53,10 @@ export const initialEnvironmentContext = {
   coinType: CoinType.MAIN,
   isProd: false,
   sentryDsn: '',
-  sentryEnv: '',
-  logger: null
+  sentryEnv: ''
 }
 
-export const EnvironmentContext = createContext<Environment>(
+export const EnvironmentContext = createContext<EnvironmentContextType>(
   initialEnvironmentContext
 )
 
@@ -89,7 +87,7 @@ export const networks: Record<Network, NetworkInfo> = {
 export const Environment = ({
   children,
   ...initialEnvironment
-}: EnvironmentPropTypes) => {
+}: EnvironmentProps) => {
   const router = useRouter()
   const [environment, setEnvironment] = useState(initialEnvironment)
   const setNetwork = (network: NetworkInfo) => {
@@ -104,29 +102,12 @@ export const Environment = ({
     router.push(url)
   }
 
-  const logger = useMemo(
-    () =>
-      new Logger({
-        consoleEnabled: true,
-        consoleLevel: LogLevel.DEBUG,
-        sentryEnabled: environment.isProd,
-        sentryLevel: LogLevel.WARN,
-        sentryDsn: environment.sentryDsn || '',
-        sentryEnv: environment.sentryEnv || '',
-        sentryTraces: 0,
-        packageName: 'react-components',
-        packageVersion: '?.?.?'
-      }),
-    [environment.isProd, environment.sentryDsn, environment.sentryEnv]
-  )
-
   return (
     <EnvironmentContext.Provider
       value={{
         ...initialEnvironmentContext,
         ...environment,
-        setNetwork,
-        logger
+        setNetwork
       }}
     >
       {children}
@@ -139,14 +120,14 @@ export const EnvironmentProvider = ({
   children,
   ...initialEnvironment
 }: Omit<
-  EnvironmentPropTypes,
+  EnvironmentProps,
   'nodeStatusApiKey' | 'graphUrl' | 'lotusApiUrl' | 'coinType' | 'networkName'
 >) => {
   const router = useRouter()
   let network = getQueryParam.string(router, 'network') as Network
   if (!network) network = Network.MAINNET
 
-  const env: Omit<EnvironmentPropTypes, 'children'> = {
+  const env: Omit<EnvironmentProps, 'children'> = {
     ...initialEnvironment,
     ...networks[network]
   }
@@ -154,14 +135,29 @@ export const EnvironmentProvider = ({
   return <Environment {...env}>{children}</Environment>
 }
 
-export const useEnvironment = (): Environment => {
+export const useEnvironment = (): EnvironmentContextType => {
   return useContext(EnvironmentContext)
 }
 
 export const useLogger = (): Logger => {
-  return useContext(EnvironmentContext).logger
+  const { isProd, sentryDsn, sentryEnv } = useEnvironment()
+  return useMemo(
+    () =>
+      new Logger({
+        consoleEnabled: true,
+        consoleLevel: LogLevel.DEBUG,
+        sentryEnabled: isProd,
+        sentryLevel: LogLevel.WARN,
+        sentryDsn: sentryDsn || '',
+        sentryEnv: sentryEnv || '',
+        sentryTraces: 0,
+        packageName: 'react-components',
+        packageVersion: '?.?.?'
+      }),
+    [isProd, sentryDsn, sentryEnv]
+  )
 }
 
-export type EnvironmentPropTypes = {
+export type EnvironmentProps = {
   children: ReactNode
-} & Omit<Partial<Environment>, 'logger'>
+} & Partial<EnvironmentContextType>
