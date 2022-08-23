@@ -40,6 +40,10 @@ export const SmartLink = ({
     if (query && isInternalUrl && retainParams)
       updatedHref = appendQueryParams(updatedHref, query)
 
+    // Add network query params by default
+    if (query && query.network)
+      updatedHref = appendQueryParams(updatedHref, { network: query.network })
+
     // Add new query params if passed
     if (params) updatedHref = appendQueryParams(updatedHref, params)
 
