@@ -1,18 +1,16 @@
 import { ButtonInput } from './Button'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
+import { Dialog, ShadowBox } from '../Layout'
 
 export default {
   title: 'InputV2/Button',
   component: ButtonInput,
   decorators: [
     Story => (
-      <div style={{ maxWidth: '35em', margin: '0 auto' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
+      <Dialog>
+        <ShadowBox>{Story()}</ShadowBox>
+      </Dialog>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <ButtonInput {...args} />

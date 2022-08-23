@@ -29,9 +29,9 @@ exports[`Toggle input it renders the off state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,
@@ -142,9 +142,9 @@ exports[`Toggle input it renders the on state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,
