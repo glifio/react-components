@@ -271,7 +271,7 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {
@@ -575,7 +575,7 @@ exports[`Import seed phrase configuration it sends the user to wallet view, with
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {

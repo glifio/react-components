@@ -280,9 +280,9 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
 }
 
 .c15 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 72%;
-  -ms-flex: 0 0 72%;
-  flex: 0 0 72%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c15 span.info,

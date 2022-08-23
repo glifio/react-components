@@ -29,9 +29,9 @@ exports[`Filecoin input it renders attofil correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 72%;
-  -ms-flex: 0 0 72%;
-  flex: 0 0 72%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,
@@ -170,9 +170,9 @@ exports[`Filecoin input it renders fil correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 72%;
-  -ms-flex: 0 0 72%;
-  flex: 0 0 72%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,
@@ -311,9 +311,9 @@ exports[`Filecoin input it renders picofil correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 72%;
-  -ms-flex: 0 0 72%;
-  flex: 0 0 72%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,
@@ -453,9 +453,9 @@ exports[`Filecoin input it renders the disabled state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 72%;
-  -ms-flex: 0 0 72%;
-  flex: 0 0 72%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,
@@ -597,9 +597,9 @@ exports[`Filecoin input it renders the value too high state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 72%;
-  -ms-flex: 0 0 72%;
-  flex: 0 0 72%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,
@@ -743,9 +743,9 @@ exports[`Filecoin input it renders the value too low state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 72%;
-  -ms-flex: 0 0 72%;
-  flex: 0 0 72%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,

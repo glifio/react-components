@@ -79,9 +79,9 @@ exports[`Create new account it creates a new account at the wallet index by defa
 }
 
 .c2 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 72%;
-  -ms-flex: 0 0 72%;
-  flex: 0 0 72%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c2 span.info,

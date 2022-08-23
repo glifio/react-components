@@ -74,7 +74,7 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {
@@ -338,7 +338,7 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {
@@ -593,7 +593,7 @@ exports[`Ledger configuration it renders correctly 1`] = `
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {
@@ -835,7 +835,7 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {
@@ -1099,7 +1099,7 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {
@@ -1366,7 +1366,7 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {
@@ -1630,7 +1630,7 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {
