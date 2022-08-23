@@ -147,7 +147,12 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
           {Object.keys(networks)
             .filter(n => !networkNameInState.toLowerCase().includes(n))
             .map((n, i) => (
-              <NetworkOption onClick={() => setNetwork(networks[n])} role='button' tabIndex={i+1} key={n}>
+              <NetworkOption
+                onClick={() => setNetwork(networks[n])}
+                role='button'
+                tabIndex={i + 1}
+                key={n}
+              >
                 {n}
               </NetworkOption>
             ))}
