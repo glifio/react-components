@@ -28,6 +28,7 @@ const SelectedNetwork = styled.div`
 
 const NetworkOptions = styled.div`
   position: absolute;
+  overflow: hidden;
   top: calc(100% + var(--space-m));
   left: 50%;
   transform: translateX(-50%);
@@ -50,6 +51,12 @@ const NetworkOption = styled.div`
   &:hover,
   &:focus {
     color: ${Colors.PURPLE_MEDIUM};
+  }
+
+  &.selected {
+    pointer-events: none;
+    background-color: ${Colors.PURPLE_MEDIUM};
+    color: ${Colors.WHITE};
   }
 `
 
@@ -144,18 +151,17 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
       </SelectedNetwork>
       {showOptions && (
         <NetworkOptions>
-          {Object.keys(networks)
-            .filter(n => !networkNameInState.toLowerCase().includes(n))
-            .map((n, i) => (
-              <NetworkOption
-                onClick={() => setNetwork(networks[n])}
-                role='button'
-                tabIndex={i + 1}
-                key={n}
-              >
-                {n}
-              </NetworkOption>
-            ))}
+          {Object.keys(networks).map((n, i) => (
+            <NetworkOption
+              className={networkNameInState === n ? 'selected' : ''}
+              onClick={() => setNetwork(networks[n])}
+              role='button'
+              tabIndex={i + 1}
+              key={n}
+            >
+              {n}
+            </NetworkOption>
+          ))}
         </NetworkOptions>
       )}
     </NetworkSelectorEl>
