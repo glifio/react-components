@@ -105,7 +105,7 @@ export function navigate(
   if (query) {
     // Retain all query parameters or just the glifParams
     const retainedParams = retainParams ? query : pick(query, glifParams)
-    appendQueryParams(updatedUrl, retainedParams)
+    updatedUrl = appendQueryParams(updatedUrl, retainedParams)
   }
 
   // Add new query params if passed
