@@ -2,7 +2,7 @@ import { render } from '@testing-library/react'
 import { CidLink } from './CidLink'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
-import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
+import { TestEnvironment } from '../../test-utils/TestEnvironment'
 
 describe('Receive', () => {
   test('it renders correctly', () => {
