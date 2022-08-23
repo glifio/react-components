@@ -29,9 +29,9 @@ exports[`BigInt input it renders correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,
@@ -167,9 +167,9 @@ exports[`BigInt input it renders the disabled state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,
@@ -307,9 +307,9 @@ exports[`BigInt input it renders the value too high state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,
@@ -449,9 +449,9 @@ exports[`BigInt input it renders the value too low state correctly 1`] = `
 }
 
 .c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
 }
 
 .c0 span.info,

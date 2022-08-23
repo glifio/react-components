@@ -111,7 +111,7 @@ exports[`Error renders the error 1`] = `
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {
@@ -305,7 +305,7 @@ exports[`Error renders the story 1`] = `
   gap: var(--space-m);
   width: 100%;
   margin: 0 auto;
-  max-width: 35em;
+  max-width: 40em;
 }
 
 .c0 form {

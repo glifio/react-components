@@ -1,10 +1,8 @@
 import { useState } from 'react'
 import { ButtonV2 } from '../Button/V2'
-import { ButtonRowRight } from '../Layout/Buttons'
+import { Dialog, ButtonRowRight, ShadowBox } from '../Layout'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { FilecoinInput } from './Filecoin'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 
 const StoryComponent = ({ min, max, value: val, denom, ...props }) => {
   const hasMin = !!min || typeof min === 'number'
@@ -16,35 +14,29 @@ const StoryComponent = ({ min, max, value: val, denom, ...props }) => {
   const [value, setValue] = useState(defaultValue)
   const [isValid, setIsValid] = useState(false)
   return (
-    <div>
-      <FilecoinInput
-        min={hasMin ? new FilecoinNumber(min, denom || 'fil') : null}
-        max={hasMax ? new FilecoinNumber(max, denom || 'fil') : null}
-        value={value}
-        denom={denom}
-        onChange={setValue}
-        setIsValid={setIsValid}
-        autoFocus={true}
-        {...props}
-      />
+    <Dialog>
+      <ShadowBox>
+        <FilecoinInput
+          min={hasMin ? new FilecoinNumber(min, denom || 'fil') : null}
+          max={hasMax ? new FilecoinNumber(max, denom || 'fil') : null}
+          value={value}
+          denom={denom}
+          onChange={setValue}
+          setIsValid={setIsValid}
+          autoFocus={true}
+          {...props}
+        />
+      </ShadowBox>
       <ButtonRowRight>
         <ButtonV2 disabled={!isValid}>Send</ButtonV2>
       </ButtonRowRight>
-    </div>
+    </Dialog>
   )
 }
 
 export default {
   title: 'InputV2/Filecoin',
-  component: StoryComponent,
-  decorators: [
-    Story => (
-      <div style={{ maxWidth: '35em', margin: '0 auto' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
-    )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: StoryComponent
 }
 
 const Template = args => <StoryComponent {...args} />
@@ -62,13 +54,13 @@ PreFilled.args = {
 
 export const Positive = Template.bind({})
 Positive.args = {
-  label: 'Enter a positive amount in FIL',
+  label: 'Enter a positive amount',
   min: 0
 }
 
 export const Negative = Template.bind({})
 Negative.args = {
-  label: 'Enter a negative amount in FIL',
+  label: 'Enter a negative amount',
   max: 0
 }
 
@@ -83,7 +75,7 @@ MinMax.args = {
 export const AttoFIL = Template.bind({})
 AttoFIL.args = {
   label: 'Enter an amount in attoFIL',
-  info: 'Must be between -500 and 500 attoFIL',
+  info: 'Must be between -500 and 500',
   denom: 'attofil',
   min: -500,
   max: 500
@@ -92,7 +84,7 @@ AttoFIL.args = {
 export const PicoFIL = Template.bind({})
 PicoFIL.args = {
   label: 'Enter an amount in picoFIL',
-  info: 'Must be between -1000 and 1000 picoFIL',
+  info: 'Must be between -500 and 500',
   denom: 'picofil',
   min: -1000,
   max: 1000
