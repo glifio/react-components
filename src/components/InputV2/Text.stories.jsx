@@ -1,13 +1,5 @@
 import { useState } from 'react'
-import {
-  TextInput,
-  PasswordInput,
-  DateInput,
-  DateTimeInput,
-  MonthInput,
-  WeekInput,
-  TimeInput
-} from './Text'
+import { TextInput, PasswordInput } from './Text'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
@@ -41,36 +33,6 @@ export const Password = Template.bind({})
 Password.args = {
   Comp: PasswordInput,
   label: 'Enter your password'
-}
-
-export const Date = Template.bind({})
-Date.args = {
-  Comp: DateInput,
-  label: 'Enter your date of birth'
-}
-
-export const DateTime = Template.bind({})
-DateTime.args = {
-  Comp: DateTimeInput,
-  label: 'Enter your date and time of birth'
-}
-
-export const Month = Template.bind({})
-Month.args = {
-  Comp: MonthInput,
-  label: 'Enter your month of birth'
-}
-
-export const Week = Template.bind({})
-Week.args = {
-  Comp: WeekInput,
-  label: 'Enter your week of birth'
-}
-
-export const Time = Template.bind({})
-Time.args = {
-  Comp: TimeInput,
-  label: 'Enter your time of birth'
 }
 
 export const NoLabel = Template.bind({})
