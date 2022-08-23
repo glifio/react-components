@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
+import { Colors } from '../theme'
 
 const BaseLabel = styled(Label)`
   .button-wrapper {
@@ -39,18 +40,18 @@ const BaseLabel = styled(Label)`
       top: 50%;
       right: 1em;
       transform: translateY(-50%);
-      color: var(--purple-medium);
+      color: ${Colors.PURPLE_MEDIUM};
 
       ${props =>
         props.error &&
         css`
-          color: var(--red-dark) !important;
+          color: ${Colors.RED_DARK} !important;
         `}
 
       ${props =>
         props.disabled &&
         css`
-          color: var(--gray-dark) !important;
+          color: ${Colors.GRAY_DARK} !important;
         `}
     }
   }

@@ -1,6 +1,7 @@
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { AddressLink } from './AddressLink'
+import { Colors } from '../theme'
 
 export default {
   title: 'LabeledText/AddressLink',
@@ -17,8 +18,8 @@ export default {
 
 const Template = args => <AddressLink {...args} />
 
-export const Labelled = Template.bind({})
-Labelled.args = {
+export const Base = Template.bind({})
+Base.args = {
   label: 'Safe Address',
   address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy'
 }
@@ -26,7 +27,7 @@ Labelled.args = {
 export const Black = Template.bind({})
 Black.args = {
   address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy',
-  color: 'var(--black)'
+  color: Colors.BLACK
 }
 
 export const HideCopy = Template.bind({})
