@@ -49,8 +49,7 @@ export const appendQueryParams = (
   params: Record<string, string | string[] | number | number[]>
 ): string => {
   // Return original url if no params are passed
-  if (Object.keys(params).length === 0)
-    return url
+  if (Object.keys(params).length === 0) return url
 
   // Get parameter string from input URL
   const [path, paramString] = url.split('?')
