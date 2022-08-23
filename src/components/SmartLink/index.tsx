@@ -57,7 +57,7 @@ export const SmartLink = ({
     if (params) updatedHref = appendQueryParams(updatedHref, params)
 
     return updatedHref
-  }, [query, isInternalUrl, href, params, retainParams])
+  }, [query, isInternalUrl, isGlifUrl, href, params, retainParams])
 
   const onClickProxy = useCallback(
     (e: MouseEvent<HTMLAnchorElement>) => {
