@@ -33,6 +33,15 @@ export const SmartLink = ({
     [href, isMailToOrTelUrl]
   )
 
+  const isGlifUrl = useMemo<boolean>(() => {
+    if (isInternalUrl) return true
+    if (isMailToOrTelUrl) return false
+    const urlObject = new URL(href)
+    const hostNameParts = urlObject.hostname.split('.')
+    const domainName = hostNameParts[hostNameParts.length - 2]
+    return domainName === 'glif'
+  }, [href, isInternalUrl, isMailToOrTelUrl])
+
   const hrefWithParams = useMemo<string>(() => {
     let updatedHref = href
 
@@ -41,7 +50,7 @@ export const SmartLink = ({
       updatedHref = appendQueryParams(updatedHref, query)
 
     // Add network query params by default
-    if (query && query.network)
+    if (query && query.network && isGlifUrl)
       updatedHref = appendQueryParams(updatedHref, { network: query.network })
 
     // Add new query params if passed
