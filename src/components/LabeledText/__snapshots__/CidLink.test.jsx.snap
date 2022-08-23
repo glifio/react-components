@@ -111,7 +111,7 @@ exports[`Receive it renders correctly 1`] = `
     color="var(--purple-medium)"
   >
     <a
-      href="https://explorer.glif.io/message/?cid=bafy2bzacebgtugc5fzoyyit3cis4emhuapnbq43lttiubvh6ubn5mt7o7eja6"
+      href="https://explorer-calibration.glif.link/message/?cid=bafy2bzacebgtugc5fzoyyit3cis4emhuapnbq43lttiubvh6ubn5mt7o7eja6"
       rel="noreferrer noopener"
       target="_blank"
     >
