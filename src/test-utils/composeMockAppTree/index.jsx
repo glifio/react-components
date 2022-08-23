@@ -6,6 +6,7 @@ import { mockWalletProviderInstance } from '../../../__mocks__/@glif/filecoin-wa
 import WalletProviderWrapper from '../../services/WalletProvider'
 import { initialState as walletProviderInitialState } from '../../services/WalletProvider/state'
 import { composeWalletProviderState } from './composeState'
+import { TestEnvironment } from '../TestEnvironment'
 
 jest.mock('../../services/WalletProvider')
 
