@@ -10,6 +10,7 @@ import {
   GLIF_DISCORD,
   GLIF_BLOG
 } from '../../constants'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 const Ul = styled.ul`
   list-style-type: none;
@@ -73,6 +74,7 @@ const AppIconStyled = styled(AppIconHeaderFooter)`
 `
 
 export default function Footer() {
+  const { walletUrl, safeUrl, explorerUrl, verifierUrl } = useEnvironment()
   return (
     <>
       <FooterWrapper>
@@ -98,16 +100,16 @@ export default function Footer() {
 
           <Ul>
             <Li>
-              <SmartLink href='https://wallet.glif.io'>Wallet</SmartLink>
+              <SmartLink href={walletUrl}>Wallet</SmartLink>
             </Li>
             <Li>
-              <SmartLink href='https://safe.glif.io'>Safe</SmartLink>
+              <SmartLink href={safeUrl}>Safe</SmartLink>
             </Li>
             <Li>
-              <SmartLink href='https://explorer.glif.io'>Explorer</SmartLink>
+              <SmartLink href={explorerUrl}>Explorer</SmartLink>
             </Li>
             <Li>
-              <SmartLink href='https://verify.glif.io'>Verifier</SmartLink>
+              <SmartLink href={verifierUrl}>Verifier</SmartLink>
             </Li>
           </Ul>
 

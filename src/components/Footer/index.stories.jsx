@@ -1,3 +1,4 @@
+import { Environment } from '../../services'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import Footer from './index'
@@ -5,7 +6,13 @@ import Footer from './index'
 export default {
   title: 'Footer/Footer',
   component: Footer,
-  decorators: [Story => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>],
+  decorators: [
+    Story => (
+      <Environment>
+        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+      </Environment>
+    )
+  ],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
 
