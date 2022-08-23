@@ -2,8 +2,9 @@ import { useMemo, ReactNode, MouseEvent, useCallback } from 'react'
 import { useRouter } from 'next/router'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
+import pick from 'lodash.pick'
 
-import { appendQueryParams } from '../../utils'
+import { appendQueryParams, glifParams } from '../../utils'
 
 const isAbsoluteUrlRegex = new RegExp('^(?:[a-z]+:)?//', 'i')
 const isMailOrTelUrlRegex = new RegExp('^(mailto|tel):.*', 'i')
@@ -45,13 +46,16 @@ export const SmartLink = ({
   const hrefWithParams = useMemo<string>(() => {
     let updatedHref = href
 
-    // Add existing query params if retained
-    if (query && isInternalUrl && retainParams)
-      updatedHref = appendQueryParams(updatedHref, query)
-
-    // Add network query params by default
-    if (query && query.network && isGlifUrl)
-      updatedHref = appendQueryParams(updatedHref, { network: query.network })
+    if (query) {
+      // Add existing query params if retained
+      if (isInternalUrl && retainParams) {
+        updatedHref = appendQueryParams(updatedHref, query)
+      }
+      // Or add Glif specific params
+      else if (isGlifUrl) {
+        updatedHref = appendQueryParams(updatedHref, pick(query, glifParams))
+      }
+    }
 
     // Add new query params if passed
     if (params) updatedHref = appendQueryParams(updatedHref, params)
