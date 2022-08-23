@@ -8,7 +8,7 @@ import theme from '../theme'
 import { createPath } from '../../utils'
 import { coinTypeCode } from '../../utils/createPath'
 import { LoginOption } from '../../customPropTypes'
-import { Environment, Network } from '../../services/EnvironmentProvider'
+import { TestEnvironment } from '../../test-utils/TestEnvironment'
 
 const fetchNextAccountSpy = jest
   .fn()
@@ -26,14 +26,7 @@ describe('Create new account', () => {
   })
   test('it creates a new account at the wallet index by default', async () => {
     const { container } = render(
-      <Environment
-        coinType={CoinType.TEST}
-        networkName={Network.CALIBRATION}
-        nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-        graphUrl='graph-calibration.glif.link/query'
-        lotusApiUrl='https://api.calibration.node.glif.io/'
-        explorerUrl='https://explorer-calibration.glif.link'
-      >
+      <TestEnvironment>
         <ThemeProvider theme={theme}>
           <CreateAccount
             keyDerive={keyDeriveSpy}
@@ -43,7 +36,7 @@ describe('Create new account', () => {
             fetchNextAccount={fetchNextAccountSpy}
           />
         </ThemeProvider>
-      </Environment>
+      </TestEnvironment>
     )
     expect(screen.getByText('Next account')).toBeInTheDocument()
     expect(screen.getByText('Expert Mode')).toBeInTheDocument()
@@ -62,14 +55,7 @@ describe('Create new account', () => {
   test('it creates a new account at the specified index in expert mode', async () => {
     await act(async () => {
       render(
-        <Environment
-          coinType={CoinType.TEST}
-          networkName={Network.CALIBRATION}
-          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-          graphUrl='graph-calibration.glif.link/query'
-          lotusApiUrl='https://api.calibration.node.glif.io/'
-          explorerUrl='https://explorer-calibration.glif.link'
-        >
+        <TestEnvironment>
           <ThemeProvider theme={theme}>
             <CreateAccount
               keyDerive={keyDeriveSpy}
@@ -79,7 +65,7 @@ describe('Create new account', () => {
               fetchNextAccount={fetchNextAccountSpy}
             />
           </ThemeProvider>
-        </Environment>
+        </TestEnvironment>
       )
       expect(screen.getByText('Next account')).toBeInTheDocument()
       expect(screen.getByText('Expert Mode')).toBeInTheDocument()
@@ -112,14 +98,7 @@ describe('Create new account', () => {
   test('it exports a private key', async () => {
     await act(async () => {
       render(
-        <Environment
-          coinType={CoinType.TEST}
-          networkName={Network.CALIBRATION}
-          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-          graphUrl='graph-calibration.glif.link/query'
-          lotusApiUrl='https://api.calibration.node.glif.io/'
-          explorerUrl='https://explorer-calibration.glif.link'
-        >
+        <TestEnvironment>
           <ThemeProvider theme={theme}>
             <CreateAccount
               keyDerive={keyDeriveSpy}
@@ -131,7 +110,7 @@ describe('Create new account', () => {
               fetchNextAccount={fetchNextAccountSpy}
             />
           </ThemeProvider>
-        </Environment>
+        </TestEnvironment>
       )
       expect(screen.getByText('Next account')).toBeInTheDocument()
       expect(screen.getByText('Expert Mode')).toBeInTheDocument()
