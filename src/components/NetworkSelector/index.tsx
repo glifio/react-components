@@ -10,61 +10,46 @@ import { Colors } from '../theme'
 
 export * from './useNetworkName'
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  min-width: 8em;
+const NetworkSelectorEl = styled.div`
   position: relative;
 `
 
-const SelectedNetworkWrapper = styled.div`
+const SelectedNetwork = styled.div`
   display: flex;
   align-items: center;
   gap: var(--space-s);
   cursor: pointer;
-  align-self: center;
+  user-select: none;
 
-  > span {
+  .network-name {
     text-transform: capitalize;
   }
 `
 
-const NetworkOption = styled.li.attrs(({ onClick }) => ({
-  role: 'button',
-  onClick
-}))`
-  height: var(--space-xl);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  text-transform: capitalize;
-
-  &:hover {
-    color: ${Colors.PURPLE_MEDIUM};
-  }
-  &:focus {
-    color: ${Colors.PURPLE_MEDIUM};
-  }
-`
-
-const NetworkOptionsWrapper = styled.ul`
+const NetworkOptions = styled.div`
+  position: absolute;
+  top: calc(100% + var(--space-m));
+  left: 50%;
+  transform: translateX(-50%);
   background-color: ${Colors.WHITE};
   box-shadow: 0 0 0.5em ${Colors.GRAY_LIGHT};
-  border-radius: 10px;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0;
+  border-radius: 8px;
+`
 
-  position: absolute;
-  top: var(--space-m);
-  width: 100%;
+const NetworkOption = styled.div`
+  padding: var(--space-m) var(--space-l);
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  text-transform: capitalize;
 
-  > div > hr {
-    margin: 0;
+  &:not(:first-child) {
+    border-top: 1px solid ${Colors.GRAY_LIGHT};
+  }
+
+  &:hover,
+  &:focus {
+    color: ${Colors.PURPLE_MEDIUM};
   }
 `
 
@@ -140,35 +125,35 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
   }, [closeDropdown])
 
   return (
-    <Wrapper>
-      <SelectedNetworkWrapper
+    <NetworkSelectorEl>
+      <SelectedNetwork
         onClick={e => {
           e.stopPropagation()
           setShowOptions(!showOptions)
         }}
       >
         <StatusIcon color={getStatusColor(success, connecting, error)} />
-        {!error && (
-          <span>{connecting ? 'Loading network' : networkNameFromNode}</span>
+        {error ? (
+          <span>Error connecting</span>
+        ) : connecting ? (
+          <span>Loading network</span>
+        ) : (
+          <span className='network-name'>{networkNameFromNode}</span>
         )}
-        {error && <span>Error connecting</span>}
-        {showOptions ? <span>↑</span> : <span>↓</span>}
-      </SelectedNetworkWrapper>
+        <span>{showOptions ? '↑' : '↓'}</span>
+      </SelectedNetwork>
       {showOptions && (
-        <NetworkOptionsWrapper>
+        <NetworkOptions>
           {Object.keys(networks)
             .filter(n => !networkNameInState.toLowerCase().includes(n))
             .map((n, i) => (
-              <div key={n}>
-                {i > 0 && <hr />}
-                <NetworkOption onClick={() => setNetwork(networks[n])} key={n}>
-                  {n}
-                </NetworkOption>
-              </div>
+              <NetworkOption onClick={() => setNetwork(networks[n])} role='button' tabIndex={i+1} key={n}>
+                {n}
+              </NetworkOption>
             ))}
-        </NetworkOptionsWrapper>
+        </NetworkOptions>
       )}
-    </Wrapper>
+    </NetworkSelectorEl>
   )
 }
 
