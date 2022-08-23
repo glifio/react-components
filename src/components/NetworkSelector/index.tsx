@@ -50,7 +50,6 @@ const NetworkOption = styled.li.attrs(({ onClick }) => ({
 `
 
 const NetworkOptionsWrapper = styled.ul`
-  visibility: ${({ visibility }) => visibility};
   background-color: ${Colors.WHITE};
   box-shadow: 0 0 0.5em ${Colors.GRAY_LIGHT};
   border-radius: 10px;
@@ -77,9 +76,7 @@ const getStatusColor = (success, connecting, error) => {
 }
 
 export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
-  const [dropdownVisibility, setDropdownVisibility] = useState<
-    'visible' | 'hidden'
-  >('hidden')
+  const [showOptions, setShowOptions] = useState<boolean>(false)
   const {
     setNetwork,
     lotusApiUrl,
@@ -133,8 +130,8 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
   }, [calledCallback, setCalledCallback, error, errorCallback])
 
   const closeDropdown = useCallback(
-    () => setDropdownVisibility('hidden'),
-    [setDropdownVisibility]
+    () => setShowOptions(false),
+    [setShowOptions]
   )
 
   useEffect(() => {
@@ -147,9 +144,7 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
       <SelectedNetworkWrapper
         onClick={e => {
           e.stopPropagation()
-          setDropdownVisibility(
-            dropdownVisibility === 'hidden' ? 'visible' : 'hidden'
-          )
+          setShowOptions(!showOptions)
         }}
       >
         <StatusIcon color={getStatusColor(success, connecting, error)} />
@@ -157,10 +152,10 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
           <span>{connecting ? 'Loading network' : networkNameFromNode}</span>
         )}
         {error && <span>Error connecting</span>}
-        {dropdownVisibility === 'hidden' ? <span>↓</span> : <span>↑</span>}
+        {showOptions ? <span>↑</span> : <span>↓</span>}
       </SelectedNetworkWrapper>
-      {dropdownVisibility !== 'hidden' && (
-        <NetworkOptionsWrapper visibility={dropdownVisibility}>
+      {showOptions && (
+        <NetworkOptionsWrapper>
           {Object.keys(networks)
             .filter(n => !networkNameInState.toLowerCase().includes(n))
             .map((n, i) => (
