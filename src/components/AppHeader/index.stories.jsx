@@ -6,8 +6,7 @@ import { NetworkSelector } from '../NetworkSelector'
 
 export default {
   title: 'AppHeader/AppHeader',
-  component: AppHeader,
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: AppHeader
 }
 
 const Template = args => <AppHeader {...args} />

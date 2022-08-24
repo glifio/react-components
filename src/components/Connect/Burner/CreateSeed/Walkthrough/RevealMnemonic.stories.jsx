@@ -12,8 +12,7 @@ export default {
         </WideDialog>
       </OneColumnCentered>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <RevealMnemonic {...args} />

@@ -54,8 +54,7 @@ export default {
         </WalletProviderWrapper>
       </ApolloProvider>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <AccountSelector {...args} />

@@ -8,8 +8,7 @@ export default {
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <ButtonV2 {...args}>Click me</ButtonV2>

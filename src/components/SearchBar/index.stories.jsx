@@ -5,8 +5,7 @@ export default {
   component: SearchBar,
   decorators: [
     Story => <div style={{ maxWidth: '35em', margin: '0 auto' }}>{Story()}</div>
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <SearchBar {...args} />

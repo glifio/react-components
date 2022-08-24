@@ -32,8 +32,7 @@ export default {
         <Dialog>{Story()}</Dialog>
       </div>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <LedgerError {...args} />

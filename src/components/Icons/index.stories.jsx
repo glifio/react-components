@@ -31,8 +31,7 @@ export default {
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 export const IconGitHub = args => <IconGitHubComp {...args} />

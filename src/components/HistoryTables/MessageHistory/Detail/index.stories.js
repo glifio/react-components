@@ -8,8 +8,7 @@ export default {
   component: MessageDetail,
   decorators: [
     Story => <ApolloProvider client={client}>{Story()}</ApolloProvider>
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => (

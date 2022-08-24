@@ -6,8 +6,7 @@ export default {
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 export const Title = args => <TitleComp {...args} />

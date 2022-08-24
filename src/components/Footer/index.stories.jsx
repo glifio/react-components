@@ -2,8 +2,7 @@ import Footer from './index'
 
 export default {
   title: 'Footer/Footer',
-  component: Footer,
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: Footer
 }
 
 const Template = args => <Footer {...args} />

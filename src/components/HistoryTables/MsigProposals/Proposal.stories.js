@@ -8,8 +8,7 @@ export default {
   component: Proposal,
   decorators: [
     Story => <ApolloProvider client={client}>{Story()}</ApolloProvider>
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <Proposal {...args} />

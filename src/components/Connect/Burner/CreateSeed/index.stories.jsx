@@ -7,8 +7,7 @@ export default {
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <CreateSeed {...args} />

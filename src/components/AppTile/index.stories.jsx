@@ -3,8 +3,7 @@ import { AppTile } from './index'
 
 export default {
   title: 'AppTile/AppTile',
-  component: AppTile,
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: AppTile
 }
 
 const Template = args => (
