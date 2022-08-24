@@ -1,19 +1,12 @@
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 import { CidLink } from './CidLink'
 import { Colors } from '../theme'
-import { Environment } from '../../services'
 
 export default {
   title: 'LabeledText/CidLink',
   component: CidLink,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Environment>
-          <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-        </Environment>
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }

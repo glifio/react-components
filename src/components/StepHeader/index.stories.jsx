@@ -1,6 +1,3 @@
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
-
 import StepHeader from './index'
 import { IconSend } from '../Icons'
 
@@ -9,9 +6,7 @@ export default {
   component: StepHeader,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }

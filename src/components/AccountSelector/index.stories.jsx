@@ -5,9 +5,7 @@ import WalletProviderWrapper, {
   initialLedgerState,
   initialMetaMaskState
 } from '../../services/WalletProvider'
-import theme from '../theme'
 import { client } from '../HistoryTables/apolloClient'
-import ThemeProvider from '../ThemeProvider'
 
 import AccountSelector from './index'
 import { LoginOption } from '../../customPropTypes'
@@ -51,7 +49,7 @@ export default {
           lotusApiAddr='https://api.calibration.node.glif.io'
         >
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
+            {Story()}
           </div>
         </WalletProviderWrapper>
       </ApolloProvider>

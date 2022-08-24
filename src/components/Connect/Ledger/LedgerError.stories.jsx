@@ -1,7 +1,5 @@
 import { initialLedgerState } from '../../../services/WalletProvider'
 import { Dialog } from '../../Layout'
-import theme from '../../theme'
-import ThemeProvider from '../../ThemeProvider'
 import { LedgerError } from './LedgerError'
 
 /**
@@ -31,9 +29,7 @@ export default {
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>
-          <Dialog>{Story()}</Dialog>
-        </ThemeProvider>
+        <Dialog>{Story()}</Dialog>
       </div>
     )
   ],

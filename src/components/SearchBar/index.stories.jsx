@@ -1,16 +1,10 @@
 import { SearchBar } from '.'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 
 export default {
   title: 'SearchBar/SearchBar',
   component: SearchBar,
   decorators: [
-    Story => (
-      <div style={{ maxWidth: '35em', margin: '0 auto' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
-    )
+    Story => <div style={{ maxWidth: '35em', margin: '0 auto' }}>{Story()}</div>
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }

@@ -1,7 +1,3 @@
-import { Environment } from '../../services/EnvironmentProvider'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
-
 import { NetworkSelector } from './index'
 
 export default {
@@ -9,11 +5,7 @@ export default {
   component: NetworkSelector,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Environment>
-          <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-        </Environment>
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }

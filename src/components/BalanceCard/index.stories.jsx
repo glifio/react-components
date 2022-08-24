@@ -1,7 +1,4 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
-
 import { BalanceCard } from '.'
 
 export default {
@@ -9,9 +6,7 @@ export default {
   component: BalanceCard,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }

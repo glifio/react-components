@@ -1,19 +1,12 @@
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 import { AddressLink } from './AddressLink'
 import { Colors } from '../theme'
-import { Environment } from '../../services'
 
 export default {
   title: 'LabeledText/AddressLink',
   component: AddressLink,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Environment>
-          <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-        </Environment>
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }
