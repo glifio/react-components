@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`SmartLink it automatically maintais glifParams in href seach params 1`] = `
+<a
+  href="https://wallet.glif.io/?network=calibration"
+  rel="noreferrer noopener"
+  target="_blank"
+>
+  Click me
+</a>
+`;
+
 exports[`SmartLink it can add params to external links 1`] = `
 <a
   href="https://google.com?test1=a&test1=b&test2=1&test2=2&test3=abc&test4=123"

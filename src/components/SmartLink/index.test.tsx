@@ -177,4 +177,23 @@ describe('SmartLink', () => {
     expect(link).toHaveAttribute('rel', 'noreferrer noopener')
     expect(result!.container.firstChild).toMatchSnapshot()
   })
+
+  test('it automatically maintais glifParams in href seach params', async () => {
+    let result: RenderResult | null = null
+    await act(async () => {
+      result = render(
+        <SmartLink href='https://wallet.glif.io/?network=calibration'>
+          {linkText}
+        </SmartLink>
+      )
+    })
+    const link = getByRole(result!.container, 'link')
+    expect(link).toHaveAttribute(
+      'href',
+      'https://wallet.glif.io/?network=calibration'
+    )
+    expect(link).toHaveAttribute('target', '_blank')
+    expect(link).toHaveAttribute('rel', 'noreferrer noopener')
+    expect(result!.container.firstChild).toMatchSnapshot()
+  })
 })
