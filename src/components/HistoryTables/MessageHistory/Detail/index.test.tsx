@@ -1,4 +1,3 @@
-import { CoinType } from '@glif/filecoin-address'
 import React from 'react'
 import { render, act, screen, waitFor, fireEvent } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
@@ -15,7 +14,7 @@ import {
   GasCostDocument,
   MessageReceiptDocument
 } from '../../../../generated/graphql'
-import { Environment, Network } from '../../../../services/EnvironmentProvider'
+import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
 jest
   .spyOn(require('../hooks/useMethodName'), 'useMethodName')
@@ -70,14 +69,7 @@ describe('Message detail view', () => {
 
     act(() => {
       const res = render(
-        <Environment
-          coinType={CoinType.TEST}
-          networkName={Network.CALIBRATION}
-          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-          graphUrl='graph-calibration.glif.link/query'
-          lotusApiUrl='https://api.calibration.node.glif.io/'
-          explorerUrl='https://explorer-calibration.glif.link'
-        >
+        <TestEnvironment>
           <MockedProvider>
             <ThemeProvider theme={theme}>
               <MessageDetail
@@ -87,7 +79,7 @@ describe('Message detail view', () => {
               />
             </ThemeProvider>
           </MockedProvider>
-        </Environment>
+        </TestEnvironment>
       )
       container = res.container
     })
@@ -119,14 +111,7 @@ describe('Message detail view', () => {
 
     act(() => {
       const res = render(
-        <Environment
-          coinType={CoinType.TEST}
-          networkName={Network.CALIBRATION}
-          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-          graphUrl='graph-calibration.glif.link/query'
-          lotusApiUrl='https://api.calibration.node.glif.io/'
-          explorerUrl='https://explorer-calibration.glif.link'
-        >
+        <TestEnvironment>
           <MockedProvider>
             <ThemeProvider theme={theme}>
               <MessageDetail
@@ -136,7 +121,7 @@ describe('Message detail view', () => {
               />
             </ThemeProvider>
           </MockedProvider>
-        </Environment>
+        </TestEnvironment>
       )
       container = res.container
     })
@@ -166,14 +151,7 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <Environment
-          coinType={CoinType.TEST}
-          networkName={Network.CALIBRATION}
-          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-          graphUrl='graph-calibration.glif.link/query'
-          lotusApiUrl='https://api.calibration.node.glif.io/'
-          explorerUrl='https://explorer-calibration.glif.link'
-        >
+        <TestEnvironment>
           <MockedProvider>
             <ThemeProvider theme={theme}>
               <MessageDetail
@@ -183,7 +161,7 @@ describe('Message detail view', () => {
               />
             </ThemeProvider>
           </MockedProvider>
-        </Environment>
+        </TestEnvironment>
       )
       container = res.container
     })
@@ -227,14 +205,7 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <Environment
-          coinType={CoinType.TEST}
-          networkName={Network.CALIBRATION}
-          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-          graphUrl='graph-calibration.glif.link/query'
-          lotusApiUrl='https://api.calibration.node.glif.io/'
-          explorerUrl='https://explorer-calibration.glif.link'
-        >
+        <TestEnvironment>
           <MockedProvider>
             <ThemeProvider theme={theme}>
               <MessageDetail
@@ -245,7 +216,7 @@ describe('Message detail view', () => {
               />
             </ThemeProvider>
           </MockedProvider>
-        </Environment>
+        </TestEnvironment>
       )
       container = res.container
     })
@@ -286,14 +257,7 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <Environment
-          coinType={CoinType.TEST}
-          networkName={Network.CALIBRATION}
-          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-          graphUrl='graph-calibration.glif.link/query'
-          lotusApiUrl='https://api.calibration.node.glif.io/'
-          explorerUrl='https://explorer-calibration.glif.link'
-        >
+        <TestEnvironment>
           <MockedProvider
             mocks={[
               {
@@ -345,7 +309,7 @@ describe('Message detail view', () => {
               />
             </ThemeProvider>
           </MockedProvider>
-        </Environment>
+        </TestEnvironment>
       )
       container = res.container
     })

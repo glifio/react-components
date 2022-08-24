@@ -1,4 +1,5 @@
 import { NextRouter } from 'next/router'
+import pick from 'lodash.pick'
 
 export const getQueryParam = {
   string: (router: NextRouter, key: string): string => {
@@ -48,6 +49,9 @@ export const appendQueryParams = (
   url: string,
   params: Record<string, string | string[] | number | number[]>
 ): string => {
+  // Return original url if no params are passed
+  if (Object.keys(params).length === 0) return url
+
   // Get parameter string from input URL
   const [path, paramString] = url.split('?')
 
@@ -89,15 +93,20 @@ interface NavigateOptions {
   retainParams?: boolean
 }
 
+export const glifParams = ['network']
+
 export function navigate(
   router: NextRouter,
   { pageUrl, params, retainParams }: NavigateOptions
 ): void {
+  const query = router?.query
   let updatedUrl = pageUrl
 
-  // Add existing query params if retained
-  if (router.query && retainParams)
-    updatedUrl = appendQueryParams(updatedUrl, router.query)
+  if (query) {
+    // Retain all query parameters or just the glifParams
+    const retainedParams = retainParams ? query : pick(query, glifParams)
+    updatedUrl = appendQueryParams(updatedUrl, retainedParams)
+  }
 
   // Add new query params if passed
   if (params) updatedUrl = appendQueryParams(updatedUrl, params)

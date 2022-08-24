@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import { CoinType } from '@glif/filecoin-address'
 import theme from '../../components/theme'
 import { ThemeProvider } from 'styled-components'
 import { mockWalletProviderInstance } from '../../../__mocks__/@glif/filecoin-wallet-provider'
 import WalletProviderWrapper from '../../services/WalletProvider'
 import { initialState as walletProviderInitialState } from '../../services/WalletProvider/state'
 import { composeWalletProviderState } from './composeState'
-import { Environment, Network } from '../../services/EnvironmentProvider'
+import { TestEnvironment } from '../TestEnvironment'
 
 jest.mock('../../services/WalletProvider')
 
@@ -29,14 +28,7 @@ const Index = (statePreset = 'preOnboard', options = {}) => {
 
   const Tree = ({ children }) => {
     return (
-      <Environment
-        coinType={CoinType.TEST}
-        networkName={Network.CALIBRATION}
-        nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-        graphUrl='graph-calibration.glif.link/query'
-        lotusApiUrl='https://api.calibration.node.glif.io/'
-        explorerUrl='https://explorer-calibration.glif.link'
-      >
+      <TestEnvironment>
         <WalletProviderWrapper
           options={options}
           statePreset={statePreset}
@@ -45,7 +37,7 @@ const Index = (statePreset = 'preOnboard', options = {}) => {
         >
           <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </WalletProviderWrapper>
-      </Environment>
+      </TestEnvironment>
     )
   }
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import { render, act, screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
-import { CoinType } from '@glif/filecoin-address'
 import ThemeProvider from '../../../ThemeProvider'
 import theme from '../../../theme'
 import MessageHistory from '.'
@@ -12,7 +11,7 @@ import {
   WALLET_ID_2
 } from '../../../../test-utils/constants'
 import { MessageConfirmedRow } from '../../types'
-import { Environment, Network } from '../../../../services/EnvironmentProvider'
+import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
 jest.mock('dayjs')
 
@@ -94,14 +93,7 @@ describe('Message history', () => {
 
     act(() => {
       const res = render(
-        <Environment
-          coinType={CoinType.TEST}
-          networkName={Network.CALIBRATION}
-          nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-          graphUrl='graph-calibration.glif.link/query'
-          lotusApiUrl='https://api.calibration.node.glif.io/'
-          explorerUrl='https://explorer-calibration.glif.link'
-        >
+        <TestEnvironment>
           <MockedProvider>
             <ThemeProvider theme={theme}>
               <MessageHistory
@@ -112,7 +104,7 @@ describe('Message history', () => {
               />
             </ThemeProvider>
           </MockedProvider>
-        </Environment>
+        </TestEnvironment>
       )
       container = res.container
     })
