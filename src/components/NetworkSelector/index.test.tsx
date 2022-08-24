@@ -106,6 +106,28 @@ describe('NetworkSelector', () => {
 
         expect(queryByText(Network.CALIBRATION)).toBe(null)
         expect(queryByText(Network.WALLABY)).toBe(null)
+
+        expect(mockRouterPush).toHaveBeenCalledWith('https://wallet.glif.io/')
+      })
+
+      // switch back and test URL params
+      act(() => {
+        fireEvent.click(getByText(Network.MAINNET))
+      })
+
+      act(() => {
+        fireEvent.click(getByText(Network.CALIBRATION))
+      })
+
+      await waitFor(() => {
+        expect(getByText(Network.CALIBRATION)).toBeInTheDocument()
+
+        expect(queryByText(Network.MAINNET)).toBe(null)
+        expect(queryByText(Network.WALLABY)).toBe(null)
+
+        expect(mockRouterPush).toHaveBeenCalledWith(
+          'https://wallet.glif.io/?network=calibration'
+        )
       })
     })
   })

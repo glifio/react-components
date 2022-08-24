@@ -35,6 +35,8 @@ export interface EnvironmentContextType {
   setNetwork: (network: NetworkInfo) => void
   sentryDsn?: string
   sentryEnv?: string
+  packageName?: string
+  packageVersion?: string
 }
 
 export const initialEnvironmentContext = {
@@ -140,7 +142,8 @@ export const useEnvironment = (): EnvironmentContextType => {
 }
 
 export const useLogger = (): Logger => {
-  const { isProd, sentryDsn, sentryEnv } = useEnvironment()
+  const { isProd, sentryDsn, sentryEnv, packageName, packageVersion } =
+    useEnvironment()
   return useMemo(
     () =>
       new Logger({
@@ -151,10 +154,10 @@ export const useLogger = (): Logger => {
         sentryDsn: sentryDsn || '',
         sentryEnv: sentryEnv || '',
         sentryTraces: 0,
-        packageName: 'react-components',
-        packageVersion: '?.?.?'
+        packageName: packageName || 'react-components',
+        packageVersion: packageVersion || '?.?.?'
       }),
-    [isProd, sentryDsn, sentryEnv]
+    [isProd, sentryDsn, sentryEnv, packageName, packageVersion]
   )
 }
 
