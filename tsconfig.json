@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "downlevelIteration": true,
     "outDir": "./dist",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "sourceRoot": "src/",
     "sourceMap": true
