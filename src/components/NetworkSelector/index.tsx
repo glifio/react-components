@@ -12,6 +12,7 @@ export * from './useNetworkName'
 
 const NetworkSelectorEl = styled.div`
   position: relative;
+  ${props => !props.enableSwitching && `pointer-events: none;`}
 `
 
 const SelectedNetwork = styled.div`
@@ -67,7 +68,10 @@ const getStatusColor = (success, connecting, error) => {
   return 'gray'
 }
 
-export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
+export function NetworkSelector({
+  enableSwitching,
+  errorCallback
+}: NetworkSelectorProps) {
   const [showOptions, setShowOptions] = useState<boolean>(false)
   const {
     setNetwork,
@@ -76,12 +80,14 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
     nodeStatusApiKey,
     networkName: networkNameInState
   } = useEnvironment()
+
   const [calledCallback, setCalledCallback] = useState(false)
   const {
     networkName: networkNameFromNode,
     error: networkNameErr,
     loading: networkNameLoading
   } = useNetworkName(lotusApiUrl)
+
   const { networkConnected, error: networkConnectedErr } = useNetworkStatus(
     nodeStatusApiUrl,
     nodeStatusApiKey
@@ -132,7 +138,7 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
   }, [closeDropdown])
 
   return (
-    <NetworkSelectorEl>
+    <NetworkSelectorEl enableSwitching={enableSwitching}>
       <SelectedNetwork
         onClick={e => {
           e.stopPropagation()
@@ -147,7 +153,7 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
         ) : (
           <span className='network-name'>{networkNameFromNode}</span>
         )}
-        <span>{showOptions ? '↑' : '↓'}</span>
+        {enableSwitching && <span>{showOptions ? '↑' : '↓'}</span>}
       </SelectedNetwork>
       {showOptions && (
         <NetworkOptions>
@@ -169,9 +175,15 @@ export function NetworkSelector({ errorCallback }: NetworkSelectorProps) {
 }
 
 export interface NetworkSelectorProps {
+  enableSwitching?: boolean
   errorCallback?: () => void
 }
 
 NetworkSelector.propTypes = {
+  enableSwitching: PropTypes.bool,
   errorCallback: PropTypes.func
+}
+
+NetworkSelector.defaultProps = {
+  enableSwitching: true
 }

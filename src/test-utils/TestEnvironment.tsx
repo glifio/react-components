@@ -1,13 +1,13 @@
 import React from 'react'
 import { CoinType } from '@glif/filecoin-address'
-import { Environment, Network } from '../services/EnvironmentProvider'
+import { Environment, Network, networks } from '../services/EnvironmentProvider'
 
 export const TestEnvironment = ({ children }) => (
   <Environment
     coinType={CoinType.TEST}
     networkName={Network.CALIBRATION}
-    nodeStatusApiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-    graphUrl='graph-calibration.glif.link/query'
+    nodeStatusApiKey={networks[Network.CALIBRATION].nodeStatusApiKey}
+    graphUrl={networks[Network.CALIBRATION].graphUrl}
     lotusApiUrl='https://api.calibration.node.glif.io/'
     explorerUrl='https://explorer-calibration.glif.link'
   >

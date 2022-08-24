@@ -2,8 +2,9 @@ import { ApolloClient, InMemoryCache, HttpLink, split } from '@apollo/client'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { defaultMessageHistoryClientCacheConfig } from './defaultCacheConfig'
+import { networks } from '../../services/EnvironmentProvider'
 
-const BASE_URL = 'graph-calibration.glif.link/query'
+const BASE_URL = networks.calibration.graphUrl
 
 const httpLink = new HttpLink({
   uri: `https://${BASE_URL}`

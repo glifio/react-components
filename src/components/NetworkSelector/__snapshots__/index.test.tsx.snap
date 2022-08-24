@@ -1,0 +1,294 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NetworkSelector interactions it renders the network after load 1`] = `
+.c2 {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  margin: 0;
+  border-color: var(--green-medium);
+}
+
+.c2:after {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.c2:after {
+  background-color: var(--green-medium);
+}
+
+.c0 {
+  position: relative;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-s);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.c1 .network-name {
+  text-transform: capitalize;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <div
+      class="c2"
+      color="green"
+    />
+    <span
+      class="network-name"
+    >
+      calibration
+    </span>
+    <span>
+      ↓
+    </span>
+  </div>
+</div>
+`;
+
+exports[`NetworkSelector interactions it renders the network options 1`] = `
+.c2 {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  margin: 0;
+  border-color: var(--green-medium);
+}
+
+.c2:after {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.c2:after {
+  background-color: var(--green-medium);
+}
+
+.c0 {
+  position: relative;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-s);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.c1 .network-name {
+  text-transform: capitalize;
+}
+
+.c3 {
+  position: absolute;
+  overflow: hidden;
+  top: calc(100% + var(--space-m));
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
+  border-radius: 8px;
+}
+
+.c4 {
+  padding: var(--space-m) var(--space-l);
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.c4:not(:first-child) {
+  border-top: 1px solid var(--gray-light);
+}
+
+.c4:hover,
+.c4:focus {
+  color: var(--purple-medium);
+}
+
+.c4.selected {
+  pointer-events: none;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <div
+      class="c2"
+      color="green"
+    />
+    <span
+      class="network-name"
+    >
+      calibration
+    </span>
+    <span>
+      ↑
+    </span>
+  </div>
+  <div
+    class="c3"
+  >
+    <div
+      class="c4"
+      role="button"
+      tabindex="1"
+    >
+      mainnet
+    </div>
+    <div
+      class="c4 selected"
+      role="button"
+      tabindex="2"
+    >
+      calibration
+    </div>
+    <div
+      class="c4"
+      role="button"
+      tabindex="3"
+    >
+      wallaby
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NetworkSelector it renders the loading state first 1`] = `
+.c2 {
+  position: relative;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  margin: 0;
+  border-color: var(--gray-medium);
+}
+
+.c2:after {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+.c2:after {
+  background-color: var(--gray-medium);
+}
+
+.c0 {
+  position: relative;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-s);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.c1 .network-name {
+  text-transform: capitalize;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <div
+      class="c2"
+      color="gray"
+    />
+    <span>
+      Loading network
+    </span>
+    <span>
+      ↓
+    </span>
+  </div>
+</div>
+`;
