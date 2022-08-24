@@ -6,8 +6,6 @@ import {
   WeekInput,
   TimeInput
 } from './Text'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 
 const StoryComponent = ({ value: defaultValue, Comp, ...props }) => {
   const [value, setValue] = useState(defaultValue)
@@ -18,11 +16,7 @@ export default {
   title: 'InputV2/Date',
   component: StoryComponent,
   decorators: [
-    Story => (
-      <div style={{ maxWidth: '35em', margin: '0 auto' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
-    )
+    Story => <div style={{ maxWidth: '35em', margin: '0 auto' }}>{Story()}</div>
   ],
   parameters: { actions: { argTypesRegex: '^on.*' } }
 }
