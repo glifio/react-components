@@ -1,6 +1,3 @@
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
-
 import InputWord from './InputWord'
 
 export default {
@@ -8,12 +5,9 @@ export default {
   component: InputWord,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^set.*' } }
+  ]
 }
 
 const Template = args => <InputWord {...args} />

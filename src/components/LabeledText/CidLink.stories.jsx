@@ -1,5 +1,3 @@
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 import { CidLink } from './CidLink'
 import { Colors } from '../theme'
 
@@ -8,12 +6,9 @@ export default {
   component: CidLink,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <CidLink {...args} />

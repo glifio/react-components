@@ -10,8 +10,7 @@ export default {
         <ShadowBox>{Story()}</ShadowBox>
       </Dialog>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const label = 'The answer is'

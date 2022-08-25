@@ -33,6 +33,7 @@ import { Wallet, WalletProviderAction, WalletProviderState } from './types'
 import { hasLedgerError, reportLedgerConfigError } from './ledgerUtils'
 import { reportMetaMaskError } from './metamaskUtils'
 import { reducerLogger } from '../../logger'
+import { useEnvironment } from '../EnvironmentProvider'
 
 export type WalletProviderContextType = {
   state: WalletProviderState
@@ -78,8 +79,9 @@ const WalletProviderWrapper = ({
   coinType,
   initialState: walletProviderInitialState
 }: WalletProviderPropTypes) => {
+  const { isProd } = useEnvironment()
   const [state, dispatch] = useReducer(
-    reducerLogger<WalletProviderState, WalletProviderAction>(reducer),
+    reducerLogger<WalletProviderState, WalletProviderAction>(reducer, isProd),
     walletProviderInitialState
   )
   const client = useApolloClient()

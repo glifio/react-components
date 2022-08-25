@@ -11,6 +11,7 @@ import {
   WALLET_ID_2
 } from '../../../../test-utils/constants'
 import { MessageConfirmedRow } from '../../types'
+import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
 jest.mock('dayjs')
 
@@ -92,16 +93,18 @@ describe('Message history', () => {
 
     act(() => {
       const res = render(
-        <MockedProvider>
-          <ThemeProvider theme={theme}>
-            <MessageHistory
-              offset={0}
-              address={WALLET_ADDRESS}
-              cidHref={cid => `/message/?cid=${cid}`}
-              warnMissingData
-            />
-          </ThemeProvider>
-        </MockedProvider>
+        <TestEnvironment>
+          <MockedProvider>
+            <ThemeProvider theme={theme}>
+              <MessageHistory
+                offset={0}
+                address={WALLET_ADDRESS}
+                cidHref={cid => `/message/?cid=${cid}`}
+                warnMissingData
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </TestEnvironment>
       )
       container = res.container
     })

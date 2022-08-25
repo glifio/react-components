@@ -8,6 +8,7 @@ import theme from '../theme'
 import { createPath } from '../../utils'
 import { coinTypeCode } from '../../utils/createPath'
 import { LoginOption } from '../../customPropTypes'
+import { TestEnvironment } from '../../test-utils/TestEnvironment'
 
 const fetchNextAccountSpy = jest
   .fn()
@@ -25,15 +26,17 @@ describe('Create new account', () => {
   })
   test('it creates a new account at the wallet index by default', async () => {
     const { container } = render(
-      <ThemeProvider theme={theme}>
-        <CreateAccount
-          keyDerive={keyDeriveSpy}
-          loginOption={LoginOption.IMPORT_SINGLE_KEY}
-          setError={() => {}}
-          accountIdx={0}
-          fetchNextAccount={fetchNextAccountSpy}
-        />
-      </ThemeProvider>
+      <TestEnvironment>
+        <ThemeProvider theme={theme}>
+          <CreateAccount
+            keyDerive={keyDeriveSpy}
+            loginOption={LoginOption.IMPORT_SINGLE_KEY}
+            setError={() => {}}
+            accountIdx={0}
+            fetchNextAccount={fetchNextAccountSpy}
+          />
+        </ThemeProvider>
+      </TestEnvironment>
     )
     expect(screen.getByText('Next account')).toBeInTheDocument()
     expect(screen.getByText('Expert Mode')).toBeInTheDocument()
@@ -52,15 +55,17 @@ describe('Create new account', () => {
   test('it creates a new account at the specified index in expert mode', async () => {
     await act(async () => {
       render(
-        <ThemeProvider theme={theme}>
-          <CreateAccount
-            keyDerive={keyDeriveSpy}
-            loginOption={LoginOption.IMPORT_SINGLE_KEY}
-            setError={() => {}}
-            accountIdx={0}
-            fetchNextAccount={fetchNextAccountSpy}
-          />
-        </ThemeProvider>
+        <TestEnvironment>
+          <ThemeProvider theme={theme}>
+            <CreateAccount
+              keyDerive={keyDeriveSpy}
+              loginOption={LoginOption.IMPORT_SINGLE_KEY}
+              setError={() => {}}
+              accountIdx={0}
+              fetchNextAccount={fetchNextAccountSpy}
+            />
+          </ThemeProvider>
+        </TestEnvironment>
       )
       expect(screen.getByText('Next account')).toBeInTheDocument()
       expect(screen.getByText('Expert Mode')).toBeInTheDocument()
@@ -93,17 +98,19 @@ describe('Create new account', () => {
   test('it exports a private key', async () => {
     await act(async () => {
       render(
-        <ThemeProvider theme={theme}>
-          <CreateAccount
-            keyDerive={keyDeriveSpy}
-            loginOption={LoginOption.IMPORT_SINGLE_KEY}
-            setError={err => {
-              console.log(err)
-            }}
-            accountIdx={0}
-            fetchNextAccount={fetchNextAccountSpy}
-          />
-        </ThemeProvider>
+        <TestEnvironment>
+          <ThemeProvider theme={theme}>
+            <CreateAccount
+              keyDerive={keyDeriveSpy}
+              loginOption={LoginOption.IMPORT_SINGLE_KEY}
+              setError={err => {
+                console.log(err)
+              }}
+              accountIdx={0}
+              fetchNextAccount={fetchNextAccountSpy}
+            />
+          </ThemeProvider>
+        </TestEnvironment>
       )
       expect(screen.getByText('Next account')).toBeInTheDocument()
       expect(screen.getByText('Expert Mode')).toBeInTheDocument()

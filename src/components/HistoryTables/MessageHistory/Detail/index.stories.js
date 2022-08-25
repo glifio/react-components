@@ -1,7 +1,5 @@
 import { ApolloProvider } from '@apollo/client'
 import { client } from '../../apolloClient'
-import theme from '../../../theme'
-import ThemeProvider from '../../../ThemeProvider'
 
 import MessageDetail from '.'
 
@@ -9,13 +7,8 @@ export default {
   title: 'MessageHistory/MessageDetail',
   component: MessageDetail,
   decorators: [
-    Story => (
-      <ApolloProvider client={client}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </ApolloProvider>
-    )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+    Story => <ApolloProvider client={client}>{Story()}</ApolloProvider>
+  ]
 }
 
 const Template = args => (

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useMemo } from 'react'
+import { useEnvironment } from '../../services'
 
 import truncateAddress from '../../utils/truncateAddress'
 import {
@@ -7,10 +8,6 @@ import {
   LabeledLinkProps,
   LabeledLinkPropTypes
 } from './LabeledLink'
-
-const explorerUrl =
-  process.env.NEXT_PUBLIC_EXPLORER_URL ||
-  'https://explorer-calibration.glif.link'
 
 export const AddressLink = ({
   id,
@@ -23,6 +20,7 @@ export const AddressLink = ({
   shouldTruncate,
   useNewTabIcon
 }: AddressLinkProps) => {
+  const { explorerUrl } = useEnvironment()
   // prioritize robust > id, use id if no robust exists
   const linkText = useMemo(() => {
     if (address) return shouldTruncate ? truncateAddress(address) : address

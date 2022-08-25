@@ -1,6 +1,5 @@
 import React from 'react'
 import { render, act, screen, waitFor } from '@testing-library/react'
-import { CoinType } from '@glif/filecoin-address'
 
 import AccountSelector from '.'
 
@@ -68,16 +67,15 @@ describe('AccountSelector', () => {
     const { Tree } = composeMockAppTree('multiAccount')
     await act(async () => {
       let res = render(
-        <MockedProvider mocks={apolloMocks}>
-          <Tree>
+        <Tree>
+          <MockedProvider mocks={apolloMocks}>
             <AccountSelector
               title=''
               helperText=''
-              coinType={CoinType.TEST}
               onSelectAccount={() => {}}
             />
-          </Tree>
-        </MockedProvider>
+          </MockedProvider>
+        </Tree>
       )
       expect(screen.getByText(/Loading/)).toBeInTheDocument()
       expect(res.container).toMatchSnapshot()
@@ -93,7 +91,6 @@ describe('AccountSelector', () => {
             <AccountSelector
               title='Select Account'
               helperText=''
-              coinType={CoinType.TEST}
               onSelectAccount={() => {}}
             />
           </Tree>
@@ -124,17 +121,16 @@ describe('AccountSelector', () => {
     const { Tree } = composeMockAppTree('multiAccount')
     await act(async () => {
       let res = render(
-        <MockedProvider mocks={apolloMocks}>
-          <Tree>
+        <Tree>
+          <MockedProvider mocks={apolloMocks}>
             <AccountSelector
               title='Select Account'
               helperText=''
-              coinType={CoinType.TEST}
               onSelectAccount={() => {}}
               showSelectedAccount
             />
-          </Tree>
-        </MockedProvider>
+          </MockedProvider>
+        </Tree>
       )
 
       await waitFor(() => {

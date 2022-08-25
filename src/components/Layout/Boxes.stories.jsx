@@ -9,8 +9,6 @@ import {
   WarningBox,
   ErrorBox
 } from './Boxes'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 
 const StoryComponent = ({ headers, multiline }) => (
   <OneColumnCentered>
@@ -153,9 +151,7 @@ const StoryComponent = ({ headers, multiline }) => (
 
 export default {
   title: 'Layout/Boxes',
-  component: StoryComponent,
-  decorators: [Story => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: StoryComponent
 }
 
 const Template = args => <StoryComponent {...args} />

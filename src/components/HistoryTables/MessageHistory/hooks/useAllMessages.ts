@@ -1,4 +1,5 @@
 import { SubscriptionResult } from '@apollo/client'
+import { CoinType } from '@glif/filecoin-address'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
   MessagePending,
@@ -11,6 +12,7 @@ import {
   useMessagesQuery,
   Message
 } from '../../../../generated/graphql'
+import { useEnvironment } from '../../../../services/EnvironmentProvider'
 import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
 import { uniqueifyMsgs } from '../../../../utils/uniqueifyMsgs'
 import { useSubmittedMessages } from '../../PendingMsgContext'
@@ -20,12 +22,13 @@ const WAIT_EPOCHS_BEFORE_REFRESH = 3
 
 export const usePendingMessages = (
   address: string,
-  chainHeadSubscription: SubscriptionResult<ChainHeadSubscription, any>
+  chainHeadSubscription: SubscriptionResult<ChainHeadSubscription, any>,
+  coinType: CoinType
 ) => {
   // pending messages from our static query
   const pendingMsgs = usePendingMessagesQuery({
     variables: {
-      address: convertAddrToPrefix(address)
+      address: convertAddrToPrefix(address, coinType)
     },
     // dont poll here because we rely on the subscription and StateListMessage query for updates
     pollInterval: 0,
@@ -35,7 +38,7 @@ export const usePendingMessages = (
   // pending messages from our subscription
   const pendingMsgSub = useMpoolUpdateSubscription({
     variables: {
-      address: convertAddrToPrefix(address)
+      address: convertAddrToPrefix(address, coinType)
     },
     shouldResubscribe: true
   })
@@ -109,6 +112,7 @@ export const usePendingMessages = (
 // note this does not filter out errors for loading pending messages...
 export const useAllMessages = (address: string, _offset: number = 0) => {
   const [offset, setOffset] = useState(_offset)
+  const { coinType } = useEnvironment()
 
   const chainHeadSub = useChainHeadSubscription({
     variables: {},
@@ -121,7 +125,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     setShouldRefresh,
     loading: pendingMsgsLoading,
     error: pendingMsgsError
-  } = usePendingMessages(address, chainHeadSub)
+  } = usePendingMessages(address, chainHeadSub, coinType)
 
   const {
     data: allMessages,
@@ -131,7 +135,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     fetchMore: fetchMoreMessages
   } = useMessagesQuery({
     variables: {
-      address: convertAddrToPrefix(address),
+      address: convertAddrToPrefix(address, coinType),
       limit: DEFAULT_LIMIT,
       offset
     },
@@ -206,6 +210,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
 }
 
 export const useMessage = (cid: string) => {
+  const { coinType } = useEnvironment()
   const {
     data: msgData,
     loading: msgLoading,
@@ -284,10 +289,10 @@ export const useMessage = (cid: string) => {
     const revalidateMsgCache = async (addrTo: string, addrFrom: string) => {
       await Promise.all([
         refetch({
-          address: convertAddrToPrefix(addrTo)
+          address: convertAddrToPrefix(addrTo, coinType)
         }),
         refetch({
-          address: convertAddrToPrefix(addrFrom)
+          address: convertAddrToPrefix(addrFrom, coinType)
         })
       ])
     }
@@ -307,7 +312,8 @@ export const useMessage = (cid: string) => {
     submittedMessages,
     pushPendingMessage,
     cid,
-    refetch
+    refetch,
+    coinType
   ])
 
   const loading = useMemo(() => {

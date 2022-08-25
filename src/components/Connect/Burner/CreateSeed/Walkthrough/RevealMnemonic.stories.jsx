@@ -1,5 +1,3 @@
-import theme from '../../../../theme'
-import ThemeProvider from '../../../../ThemeProvider'
 import { OneColumnCentered, WideDialog, ShadowBox } from '../../../../Layout'
 import RevealMnemonic from './RevealMnemonic'
 
@@ -8,16 +6,13 @@ export default {
   component: RevealMnemonic,
   decorators: [
     Story => (
-      <ThemeProvider theme={theme}>
-        <OneColumnCentered>
-          <WideDialog>
-            <ShadowBox>{Story()}</ShadowBox>
-          </WideDialog>
-        </OneColumnCentered>
-      </ThemeProvider>
+      <OneColumnCentered>
+        <WideDialog>
+          <ShadowBox>{Story()}</ShadowBox>
+        </WideDialog>
+      </OneColumnCentered>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <RevealMnemonic {...args} />

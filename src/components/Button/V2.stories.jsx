@@ -1,6 +1,4 @@
 import { ButtonV2, ButtonV2Link } from './V2'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 import { IconSpeedUp } from '../Icons'
 
 export default {
@@ -8,12 +6,9 @@ export default {
   component: ButtonV2,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <ButtonV2 {...args}>Click me</ButtonV2>

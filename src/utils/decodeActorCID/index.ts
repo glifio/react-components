@@ -1,16 +1,15 @@
 import base32Decode from 'base32-decode'
-import { Network } from '@glif/filecoin-address'
 import type { CID as IPLDNode } from '@glif/filecoin-wallet-provider'
 import { actorCodes } from '../../generated/actorCodes'
 import type { BuiltInActorName } from '../../customPropTypes'
+import { Network } from '../../services/EnvironmentProvider'
 
 export const decodeActorCID = (
-  cid: IPLDNode | string
+  cid: IPLDNode | string,
+  network: Network
 ): BuiltInActorName | 'unknown' => {
   const cidStr = typeof cid === 'string' ? cid : cid['/']
   if (!cidStr) throw new Error('Invalid cid passed to decodeActorCID')
-
-  const network = (process.env.NEXT_PUBLIC_COIN_TYPE as Network) || Network.TEST
   const actorName = actorCodes?.[network]?.[cidStr]
   if (actorName) {
     return actorName
@@ -26,6 +25,4 @@ export const decodeActorCID = (
   } catch {
     return 'unknown'
   }
-
-  return actorName
 }

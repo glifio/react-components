@@ -1,6 +1,3 @@
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
-
 import { AccountError } from './Error'
 
 export default {
@@ -8,12 +5,9 @@ export default {
   component: AccountError,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <AccountError {...args} />

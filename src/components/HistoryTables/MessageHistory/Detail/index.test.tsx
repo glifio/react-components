@@ -14,6 +14,7 @@ import {
   GasCostDocument,
   MessageReceiptDocument
 } from '../../../../generated/graphql'
+import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
 jest
   .spyOn(require('../hooks/useMethodName'), 'useMethodName')
@@ -68,15 +69,17 @@ describe('Message detail view', () => {
 
     act(() => {
       const res = render(
-        <MockedProvider>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-            />
-          </ThemeProvider>
-        </MockedProvider>
+        <TestEnvironment>
+          <MockedProvider>
+            <ThemeProvider theme={theme}>
+              <MessageDetail
+                cid={cid}
+                speedUpHref='/speed-up'
+                cancelHref='/cancel'
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </TestEnvironment>
       )
       container = res.container
     })
@@ -108,15 +111,17 @@ describe('Message detail view', () => {
 
     act(() => {
       const res = render(
-        <MockedProvider>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-            />
-          </ThemeProvider>
-        </MockedProvider>
+        <TestEnvironment>
+          <MockedProvider>
+            <ThemeProvider theme={theme}>
+              <MessageDetail
+                cid={cid}
+                speedUpHref='/speed-up'
+                cancelHref='/cancel'
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </TestEnvironment>
       )
       container = res.container
     })
@@ -146,15 +151,17 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <MockedProvider>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-            />
-          </ThemeProvider>
-        </MockedProvider>
+        <TestEnvironment>
+          <MockedProvider>
+            <ThemeProvider theme={theme}>
+              <MessageDetail
+                cid={cid}
+                speedUpHref='/speed-up'
+                cancelHref='/cancel'
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </TestEnvironment>
       )
       container = res.container
     })
@@ -198,16 +205,18 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <MockedProvider>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-              confirmations={50}
-            />
-          </ThemeProvider>
-        </MockedProvider>
+        <TestEnvironment>
+          <MockedProvider>
+            <ThemeProvider theme={theme}>
+              <MessageDetail
+                cid={cid}
+                speedUpHref='/speed-up'
+                cancelHref='/cancel'
+                confirmations={50}
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </TestEnvironment>
       )
       container = res.container
     })
@@ -248,57 +257,59 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <MockedProvider
-          mocks={[
-            {
-              request: {
-                query: GasCostDocument,
-                variables: {
-                  cid
+        <TestEnvironment>
+          <MockedProvider
+            mocks={[
+              {
+                request: {
+                  query: GasCostDocument,
+                  variables: {
+                    cid
+                  }
+                },
+                result: {
+                  data: {
+                    gascost: {
+                      gasUsed: 100,
+                      baseFeeBurn: '100',
+                      minerPenalty: '100',
+                      minerTip: '100',
+                      overEstimationBurn: '100',
+                      refund: '100',
+                      totalCost: '100'
+                    }
+                  }
                 }
               },
-              result: {
-                data: {
-                  gascost: {
-                    gasUsed: 100,
-                    baseFeeBurn: '100',
-                    minerPenalty: '100',
-                    minerTip: '100',
-                    overEstimationBurn: '100',
-                    refund: '100',
-                    totalCost: '100'
+              {
+                request: {
+                  query: MessageReceiptDocument,
+                  variables: {
+                    cid
+                  }
+                },
+                result: {
+                  data: {
+                    receipt: {
+                      exitCode: 0,
+                      return: '',
+                      gasUsed: 100
+                    }
                   }
                 }
               }
-            },
-            {
-              request: {
-                query: MessageReceiptDocument,
-                variables: {
-                  cid
-                }
-              },
-              result: {
-                data: {
-                  receipt: {
-                    exitCode: 0,
-                    return: '',
-                    gasUsed: 100
-                  }
-                }
-              }
-            }
-          ]}
-        >
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-              confirmations={50}
-            />
-          </ThemeProvider>
-        </MockedProvider>
+            ]}
+          >
+            <ThemeProvider theme={theme}>
+              <MessageDetail
+                cid={cid}
+                speedUpHref='/speed-up'
+                cancelHref='/cancel'
+                confirmations={50}
+              />
+            </ThemeProvider>
+          </MockedProvider>
+        </TestEnvironment>
       )
       container = res.container
     })

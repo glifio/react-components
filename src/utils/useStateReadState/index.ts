@@ -5,12 +5,7 @@ import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
 import { Address, AddressDocument, AddressQuery } from '../../generated/graphql'
 import { decodeActorCID } from '..'
-
-const lCli = new LotusRPCEngine({
-  apiAddress:
-    process.env.NEXT_PUBLIC_LOTUS_NODE_JSONRPC ||
-    'https://api.calibration.node.glif.io'
-})
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 export type LotusRPCActorState<T> = {
   Balance: string
@@ -43,24 +38,29 @@ export const useStateReadStateQuery = <T = any>(
     }
   >
 ): { data: LotusRPCActorState<T>; error: Error; loading: boolean } => {
+  const { lotusApiUrl: apiAddress, networkName } = useEnvironment()
   const [actorState, setActorState] = useState<LotusRPCActorState<T> | null>(
     null
   )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
   const [fetchedFor, setFetchedFor] = useState<string>('')
+
   const apolloClient = useApolloClient()
 
   useEffect(() => {
     const fetchState = async () => {
       try {
+        const lCli = new LotusRPCEngine({
+          apiAddress
+        })
         const res = await lCli.request<LotusRPCActorState<any>>(
           'StateReadState',
           baseOptions.variables.address,
           null
         )
 
-        if (res && decodeActorCID(res.Code).includes('multisig')) {
+        if (res && decodeActorCID(res.Code, networkName).includes('multisig')) {
           res.State = res.State as MsigState<string>
           const signers = await Promise.all(
             res.State.Signers.map(async (id: string) => {
@@ -118,7 +118,9 @@ export const useStateReadStateQuery = <T = any>(
     actorState,
     fetchedFor,
     setFetchedFor,
-    apolloClient
+    apolloClient,
+    apiAddress,
+    networkName
   ])
 
   return { data: actorState, error, loading }

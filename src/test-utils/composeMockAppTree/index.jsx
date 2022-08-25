@@ -6,6 +6,7 @@ import { mockWalletProviderInstance } from '../../../__mocks__/@glif/filecoin-wa
 import WalletProviderWrapper from '../../services/WalletProvider'
 import { initialState as walletProviderInitialState } from '../../services/WalletProvider/state'
 import { composeWalletProviderState } from './composeState'
+import { TestEnvironment } from '../TestEnvironment'
 
 jest.mock('../../services/WalletProvider')
 
@@ -27,14 +28,16 @@ const Index = (statePreset = 'preOnboard', options = {}) => {
 
   const Tree = ({ children }) => {
     return (
-      <WalletProviderWrapper
-        options={options}
-        statePreset={statePreset}
-        getState={cacheWalletProviderState}
-        initialState={initialState}
-      >
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
-      </WalletProviderWrapper>
+      <TestEnvironment>
+        <WalletProviderWrapper
+          options={options}
+          statePreset={statePreset}
+          getState={cacheWalletProviderState}
+          initialState={initialState}
+        >
+          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        </WalletProviderWrapper>
+      </TestEnvironment>
     )
   }
 

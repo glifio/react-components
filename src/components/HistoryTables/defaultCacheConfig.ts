@@ -1,5 +1,4 @@
 import { InMemoryCacheConfig } from '@apollo/client'
-import Logger from '../../utils/logger'
 import { removeMessageDups } from './utils'
 
 // The params field is expected to be a JSON string
@@ -16,8 +15,7 @@ const parseParams = (_: any, incoming: any) => {
     }
     return null
   } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e)
-    Logger.error(`Failed to parse MessageConfirmed.params: ${msg}`)
+    console.error(e)
     return null
   }
 }

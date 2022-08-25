@@ -1,6 +1,3 @@
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
-
 import DisplayWord from './DisplayWord'
 
 export default {
@@ -8,12 +5,9 @@ export default {
   component: DisplayWord,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
     )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  ]
 }
 
 const Template = args => <DisplayWord {...args} />
