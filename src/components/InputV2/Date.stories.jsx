@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Dialog, ShadowBox } from '../Layout'
 import {
   DateInput,
   DateTimeInput,
@@ -9,15 +10,18 @@ import {
 
 const StoryComponent = ({ value: defaultValue, Comp, ...props }) => {
   const [value, setValue] = useState(defaultValue)
-  return <Comp value={value} onChange={setValue} autoFocus={true} {...props} />
+  return (
+    <Dialog>
+      <ShadowBox>
+        <Comp value={value} onChange={setValue} autoFocus={true} {...props} />
+      </ShadowBox>
+    </Dialog>
+  )
 }
 
 export default {
   title: 'InputV2/Date',
-  component: StoryComponent,
-  decorators: [
-    Story => <div style={{ maxWidth: '35em', margin: '0 auto' }}>{Story()}</div>
-  ]
+  component: StoryComponent
 }
 
 const Template = args => <StoryComponent {...args} />
