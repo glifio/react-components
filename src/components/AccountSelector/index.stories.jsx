@@ -1,16 +1,17 @@
 import { ApolloProvider } from '@apollo/client'
 import { CoinType } from '@glif/filecoin-address'
 import Filecoin, { HDWalletProvider } from '@glif/filecoin-wallet-provider'
+import { FilecoinNumber } from '@glif/filecoin-number'
 import WalletProviderWrapper, {
   initialLedgerState,
   initialMetaMaskState
 } from '../../services/WalletProvider'
 import { client } from '../HistoryTables/apolloClient'
 
+import { TestEnvironment } from '../../test-utils/TestEnvironment'
 import AccountSelector from './index'
 import { LoginOption } from '../../customPropTypes'
 import { createPath } from '../../utils'
-import { FilecoinNumber } from '@glif/filecoin-number'
 
 const LOTUS_API_ADDR = 'https://api.calibration.node.glif.io'
 
@@ -42,17 +43,18 @@ export default {
   component: AccountSelector,
   decorators: [
     Story => (
-      <ApolloProvider client={client}>
-        <WalletProviderWrapper
-          initialState={initialState}
-          coinType={CoinType.TEST}
-          lotusApiAddr='https://api.calibration.node.glif.io'
-        >
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            {Story()}
-          </div>
-        </WalletProviderWrapper>
-      </ApolloProvider>
+      <TestEnvironment>
+        <ApolloProvider client={client}>
+          <WalletProviderWrapper
+            lotusApiAddr='https://api.calibration.node.glif.io'
+            initialState={initialState}
+          >
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              {Story()}
+            </div>
+          </WalletProviderWrapper>
+        </ApolloProvider>
+      </TestEnvironment>
     )
   ]
 }
