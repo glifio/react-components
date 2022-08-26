@@ -75,11 +75,9 @@ export const WalletProviderContext = createContext<WalletProviderContextType>({
 
 const WalletProviderWrapper = ({
   children,
-  lotusApiAddr,
-  coinType,
   initialState: walletProviderInitialState
 }: WalletProviderPropTypes) => {
-  const { isProd } = useEnvironment()
+  const { isProd, lotusApiUrl: lotusApiAddr, coinType } = useEnvironment()
   const [state, dispatch] = useReducer(
     reducerLogger<WalletProviderState, WalletProviderAction>(reducer, isProd),
     walletProviderInitialState
@@ -205,8 +203,6 @@ const WalletProviderWrapper = ({
 
 type WalletProviderPropTypes = {
   children: ReactNode
-  lotusApiAddr: string
-  coinType: CoinType
   initialState?: WalletProviderState
 }
 
