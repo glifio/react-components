@@ -1,7 +1,15 @@
 import { CoinType } from '@glif/filecoin-address'
 import { Logger, LogLevel } from '@glif/logger'
 import { useRouter } from 'next/router'
-import { createContext, useContext, ReactNode, useState, useMemo } from 'react'
+import isEqual from 'lodash.isequal'
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useMemo,
+  useEffect
+} from 'react'
 import { appendQueryParams, getQueryParam, removeQueryParam } from '../../utils'
 
 export enum Network {
@@ -92,6 +100,20 @@ export const Environment = ({
 }: EnvironmentProps) => {
   const router = useRouter()
   const [environment, setEnvironment] = useState(initialEnvironment)
+  /**
+   * The server renders the Environment with the initialContextValue (mainnet)
+   * and _then_ the page gets rerendered with the correct env based on the router
+   *
+   * this effect updates the initial environment once the env vars get loaded
+   */
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    if (!mounted) setMounted(true)
+    if (!isEqual(initialEnvironment, environment) && !mounted) {
+      setEnvironment({ ...environment, ...initialEnvironment })
+    }
+  }, [initialEnvironment, environment, mounted, setMounted])
+
   const setNetwork = (network: NetworkInfo) => {
     setEnvironment({ ...environment, ...network })
     const url =
