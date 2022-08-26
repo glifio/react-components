@@ -9,12 +9,7 @@ describe('useWalletProvider', () => {
   test('it exposes the necessary methods to manipulate state', () => {
     const wrapper = ({ children }) => (
       <MockedProvider>
-        <WalletProviderWrapper
-          coinType={CoinType.TEST}
-          lotusApiAddr='https://calibrationnet.nodes.glif.io'
-        >
-          {children}
-        </WalletProviderWrapper>
+        <WalletProviderWrapper>{children}</WalletProviderWrapper>
       </MockedProvider>
     )
     const { result } = renderHook(() => useWalletProvider(), { wrapper })
