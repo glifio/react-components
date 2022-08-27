@@ -77,25 +77,6 @@ export const emptyEnvironmentContext = {
   sentryEnv: ''
 }
 
-export const initialEnvironmentContext = {
-  homeUrl: 'https://apps.glif.io',
-  blogUrl: 'https://blog.glif.io',
-  walletUrl: 'https://wallet.glif.io',
-  safeUrl: 'https://safe.glif.io',
-  explorerUrl: 'https://explorer.glif.io',
-  verifierUrl: 'https://verify.glif.io',
-  nodeStatusApiUrl: 'https://api.uptimerobot.com/v2/getMonitors',
-  nodeStatusApiKey: 'm786191525-b3192b91db66217a44f7d4be',
-  graphUrl: 'graph.glif.link/query',
-  lotusApiUrl: 'https://mainnet.glif.host',
-  networkName: Network.MAINNET,
-  setNetwork: () => {},
-  coinType: CoinType.MAIN,
-  isProd: false,
-  sentryDsn: '',
-  sentryEnv: ''
-}
-
 export const EnvironmentContext = createContext<EnvironmentContextType>(
   emptyEnvironmentContext
 )
