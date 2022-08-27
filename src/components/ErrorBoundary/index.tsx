@@ -5,10 +5,6 @@ import { ErrorView } from '../ErrorView'
 import { OneColumnCentered } from '../Layout'
 import { useLogger } from '../../services/EnvironmentProvider'
 
-interface ErrorState {
-  hasError: boolean
-}
-
 export const ErrorBoundary = ({
   children,
   Wrapper,
@@ -37,7 +33,7 @@ class _ErrorBoundary extends React.Component<
 > {
   constructor(props) {
     super(props)
-    this.state = { hasError: false } as ErrorState
+    this.state = { hasError: false }
   }
 
   static getDerivedStateFromError() {
@@ -54,7 +50,7 @@ class _ErrorBoundary extends React.Component<
 
   render() {
     const { Wrapper } = this.props
-    if ((this.state as ErrorState).hasError) {
+    if (this.state.hasError) {
       return (
         <Wrapper>
           <OneColumnCentered>
