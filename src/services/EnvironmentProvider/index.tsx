@@ -58,6 +58,25 @@ export interface EnvironmentContextType {
   packageVersion?: string
 }
 
+export const emptyEnvironmentContext = {
+  homeUrl: 'https://apps.glif.io',
+  blogUrl: 'https://blog.glif.io',
+  walletUrl: 'https://wallet.glif.io',
+  safeUrl: 'https://safe.glif.io',
+  explorerUrl: 'https://explorer.glif.io',
+  verifierUrl: 'https://verify.glif.io',
+  nodeStatusApiUrl: 'https://api.uptimerobot.com/v2/getMonitors',
+  nodeStatusApiKey: '',
+  graphUrl: '',
+  lotusApiUrl: '',
+  networkName: Network.CALIBRATION,
+  setNetwork: () => {},
+  coinType: CoinType.TEST,
+  isProd: false,
+  sentryDsn: '',
+  sentryEnv: ''
+}
+
 export const initialEnvironmentContext = {
   homeUrl: 'https://apps.glif.io',
   blogUrl: 'https://blog.glif.io',
@@ -78,7 +97,7 @@ export const initialEnvironmentContext = {
 }
 
 export const EnvironmentContext = createContext<EnvironmentContextType>(
-  initialEnvironmentContext
+  emptyEnvironmentContext
 )
 
 export const networks: Record<Network, NetworkInfo> = {
@@ -109,7 +128,7 @@ export const Environment = ({ children, ...environment }: EnvironmentProps) => {
   return (
     <EnvironmentContext.Provider
       value={{
-        ...initialEnvironmentContext,
+        ...emptyEnvironmentContext,
         ...environment
       }}
     >
@@ -138,7 +157,6 @@ export const EnvironmentProvider = ({
   const [environment, setEnvironment] = useState({ ...env })
   const setNetwork = useCallback(
     (n: NetworkInfo) => {
-      setEnvironment({ ...environment, ...n })
       const url =
         n.networkName === Network.MAINNET
           ? removeQueryParam(router.asPath, 'network')
@@ -148,22 +166,21 @@ export const EnvironmentProvider = ({
 
       router.push(url)
     },
-    [router, environment, setEnvironment]
+    [router]
   )
 
-  // catches any mismatching URL => environment configs on render and adjusts the env to fit the URL bar
-
-  const [changedNetwork, setChangedNetwork] = useState(false)
+  // updates state based on the url bar changing
   useEffect(() => {
-    const shouldChangeNetwork =
-      !isEqual(pick(environment, networkInfoKeys), networks[network]) &&
-      !changedNetwork
-
+    const shouldChangeNetwork = !isEqual(
+      pick(environment, networkInfoKeys),
+      networks[network]
+    )
     if (shouldChangeNetwork) {
-      setChangedNetwork(true)
-      setNetwork(networks[network])
+      setEnvironment(_env => {
+        return { ..._env, ...networks[network] }
+      })
     }
-  }, [network, environment, setNetwork, changedNetwork, setChangedNetwork])
+  }, [network, environment, setNetwork])
 
   return (
     <Environment {...env} setNetwork={setNetwork}>
