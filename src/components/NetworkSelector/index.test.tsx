@@ -3,15 +3,21 @@ import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { TestEnvironment } from '../../test-utils/TestEnvironment'
 import { NetworkSelector } from '.'
-import { Network, networks } from '../../services/EnvironmentProvider'
+import {
+  EnvironmentProvider,
+  Network,
+  networks
+} from '../../services/EnvironmentProvider'
 
 const mockRouterPush = jest.fn()
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
-useRouter.mockImplementation(() => ({
-  query: { network: 'calibration' },
-  push: mockRouterPush,
-  asPath: 'https://wallet.glif.io/'
-}))
+useRouter.mockImplementation(() => {
+  return {
+    query: { network: Network.CALIBRATION },
+    push: mockRouterPush,
+    asPath: 'https://wallet.glif.io/'
+  }
+})
 
 describe('NetworkSelector', () => {
   test('it renders the loading state first', () => {
@@ -81,12 +87,12 @@ describe('NetworkSelector', () => {
     })
 
     test('it changes the network', async () => {
-      const { getByText, queryByText } = render(
-        <TestEnvironment>
+      const { getByText } = render(
+        <EnvironmentProvider>
           <ThemeProvider theme={theme}>
             <NetworkSelector />
           </ThemeProvider>
-        </TestEnvironment>
+        </EnvironmentProvider>
       )
 
       await waitFor(() => {
@@ -101,34 +107,7 @@ describe('NetworkSelector', () => {
         fireEvent.click(getByText(Network.MAINNET))
       })
 
-      await waitFor(() => {
-        expect(getByText(Network.MAINNET)).toBeInTheDocument()
-
-        expect(queryByText(Network.CALIBRATION)).toBe(null)
-        expect(queryByText(Network.WALLABY)).toBe(null)
-
-        expect(mockRouterPush).toHaveBeenCalledWith('https://wallet.glif.io/')
-      })
-
-      // switch back and test URL params
-      act(() => {
-        fireEvent.click(getByText(Network.MAINNET))
-      })
-
-      act(() => {
-        fireEvent.click(getByText(Network.CALIBRATION))
-      })
-
-      await waitFor(() => {
-        expect(getByText(Network.CALIBRATION)).toBeInTheDocument()
-
-        expect(queryByText(Network.MAINNET)).toBe(null)
-        expect(queryByText(Network.WALLABY)).toBe(null)
-
-        expect(mockRouterPush).toHaveBeenCalledWith(
-          'https://wallet.glif.io/?network=calibration'
-        )
-      })
+      expect(mockRouterPush).toHaveBeenCalledWith('https://wallet.glif.io/')
     })
   })
 })
