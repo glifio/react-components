@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks'
 import { act } from 'react-dom/test-utils'
 import { TestEnvironment } from '../../test-utils/TestEnvironment'
-import { Network, networks, useEnvironment } from '.'
+import { EnvironmentProvider, Network, networks, useEnvironment } from '.'
 import { CoinType } from '@glif/filecoin-address'
 
 const mockRouterPush = jest.fn()
@@ -35,23 +35,40 @@ describe('EnvironmentProvider', () => {
     expect(result.current.sentryEnv).toBe('')
   })
 
-  test('switchNetwork changes the network', async () => {
-    const { result } = renderHook(() => useEnvironment(), {
-      wrapper: TestEnvironment
+  describe('switchNetwork', () => {
+    const pushMock = jest.fn()
+    beforeAll(() => {
+      jest.spyOn(require('next/router'), 'useRouter').mockImplementation(() => {
+        return {
+          asPath: 'https://wallet.glif.io/',
+          query: {
+            network: Network.CALIBRATION
+          },
+          push: pushMock
+        }
+      })
     })
 
-    act(() => {
-      result.current.setNetwork(networks.mainnet)
-    })
+    test('switchNetwork changes the network', async () => {
+      const { result, waitFor } = renderHook(() => useEnvironment(), {
+        wrapper: EnvironmentProvider
+      })
 
-    expect(result.current.coinType).toBe(CoinType.MAIN)
-    expect(result.current.nodeStatusApiKey).toBe(
-      networks[Network.MAINNET].nodeStatusApiKey
-    )
-    expect(result.current.graphUrl).toBe(networks[Network.MAINNET].graphUrl)
-    expect(result.current.lotusApiUrl).toBe(
-      networks[Network.MAINNET].lotusApiUrl
-    )
-    expect(result.current.networkName).toBe(Network.MAINNET)
+      act(() => {
+        result.current.setNetwork(networks.mainnet)
+      })
+
+      waitFor(() => {
+        expect(result.current.coinType).toBe(CoinType.MAIN)
+        expect(result.current.nodeStatusApiKey).toBe(
+          networks[Network.MAINNET].nodeStatusApiKey
+        )
+        expect(result.current.graphUrl).toBe(networks[Network.MAINNET].graphUrl)
+        expect(result.current.lotusApiUrl).toBe(
+          networks[Network.MAINNET].lotusApiUrl
+        )
+        expect(result.current.networkName).toBe(Network.MAINNET)
+      })
+    })
   })
 })

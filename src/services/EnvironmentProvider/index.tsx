@@ -1,7 +1,18 @@
 import { CoinType } from '@glif/filecoin-address'
 import { Logger, LogLevel } from '@glif/logger'
 import { useRouter } from 'next/router'
-import { createContext, useContext, ReactNode, useState, useMemo } from 'react'
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useMemo,
+  useEffect,
+  useCallback
+} from 'react'
+import pick from 'lodash.pick'
+import isEqual from 'lodash.isequal'
+
 import { appendQueryParams, getQueryParam, removeQueryParam } from '../../utils'
 
 export enum Network {
@@ -17,6 +28,14 @@ export type NetworkInfo = {
   networkName: Network
   coinType: CoinType
 }
+
+const networkInfoKeys = [
+  'nodeStatusApiKey',
+  'graphUrl',
+  'lotusApiUrl',
+  'networkName',
+  'coinType'
+]
 
 export interface EnvironmentContextType {
   homeUrl: string
@@ -86,30 +105,12 @@ export const networks: Record<Network, NetworkInfo> = {
   }
 }
 
-export const Environment = ({
-  children,
-  ...initialEnvironment
-}: EnvironmentProps) => {
-  const router = useRouter()
-  const [environment, setEnvironment] = useState(initialEnvironment)
-  const setNetwork = (network: NetworkInfo) => {
-    setEnvironment({ ...environment, ...network })
-    const url =
-      network.networkName === Network.MAINNET
-        ? removeQueryParam(router.asPath, 'network')
-        : appendQueryParams(router.asPath, {
-            network: network.networkName
-          })
-
-    router.push(url)
-  }
-
+export const Environment = ({ children, ...environment }: EnvironmentProps) => {
   return (
     <EnvironmentContext.Provider
       value={{
         ...initialEnvironmentContext,
-        ...environment,
-        setNetwork
+        ...environment
       }}
     >
       {children}
@@ -134,7 +135,39 @@ export const EnvironmentProvider = ({
     ...networks[network]
   }
 
-  return <Environment {...env}>{children}</Environment>
+  const [environment, setEnvironment] = useState({ ...env })
+  const setNetwork = useCallback(
+    (n: NetworkInfo) => {
+      setEnvironment({ ...environment, ...n })
+      const url =
+        n.networkName === Network.MAINNET
+          ? removeQueryParam(router.asPath, 'network')
+          : appendQueryParams(router.asPath, {
+              network: n.networkName
+            })
+
+      router.push(url)
+    },
+    [router, environment, setEnvironment]
+  )
+
+  // catches any mismatching URL => environment configs and adjusts the env to fit the URL bar
+  useEffect(() => {
+    const shouldChangeNetwork = !isEqual(
+      pick(environment, networkInfoKeys),
+      networks[network]
+    )
+
+    if (shouldChangeNetwork) {
+      setNetwork(networks[network])
+    }
+  }, [network, environment, setNetwork])
+
+  return (
+    <Environment {...env} setNetwork={setNetwork}>
+      {children}
+    </Environment>
+  )
 }
 
 export const useEnvironment = (): EnvironmentContextType => {
