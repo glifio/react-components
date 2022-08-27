@@ -151,17 +151,19 @@ export const EnvironmentProvider = ({
     [router, environment, setEnvironment]
   )
 
-  // catches any mismatching URL => environment configs and adjusts the env to fit the URL bar
+  // catches any mismatching URL => environment configs on render and adjusts the env to fit the URL bar
+
+  const [changedNetwork, setChangedNetwork] = useState(false)
   useEffect(() => {
-    const shouldChangeNetwork = !isEqual(
-      pick(environment, networkInfoKeys),
-      networks[network]
-    )
+    const shouldChangeNetwork =
+      !isEqual(pick(environment, networkInfoKeys), networks[network]) &&
+      !changedNetwork
 
     if (shouldChangeNetwork) {
+      setChangedNetwork(true)
       setNetwork(networks[network])
     }
-  }, [network, environment, setNetwork])
+  }, [network, environment, setNetwork, changedNetwork, setChangedNetwork])
 
   return (
     <Environment {...env} setNetwork={setNetwork}>
