@@ -9,7 +9,7 @@ interface ErrorState {
   hasError: boolean
 }
 
-const ErrorBoundary = ({
+export const ErrorBoundary = ({
   children,
   Wrapper,
   title,
@@ -96,5 +96,3 @@ ErrorBoundary.defaultProps = {
   description:
     "We've been notified of the outage and expect to be back up and running again shortly."
 }
-
-export default ErrorBoundary
