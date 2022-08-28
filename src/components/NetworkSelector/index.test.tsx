@@ -11,13 +11,11 @@ import {
 
 const mockRouterPush = jest.fn()
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
-useRouter.mockImplementation(() => {
-  return {
-    query: { network: Network.CALIBRATION },
-    push: mockRouterPush,
-    asPath: 'https://wallet.glif.io/'
-  }
-})
+useRouter.mockImplementation(() => ({
+  query: { network: Network.CALIBRATION },
+  push: mockRouterPush,
+  asPath: 'https://wallet.glif.io/'
+}))
 
 describe('NetworkSelector', () => {
   test('it renders the loading state first', () => {

@@ -157,9 +157,7 @@ export const EnvironmentProvider = ({
       networks[network]
     )
     if (shouldChangeNetwork) {
-      setEnvironment(_env => {
-        return { ..._env, ...networks[network] }
-      })
+      setEnvironment({ ...environment, ...networks[network] })
     }
   }, [network, environment, setNetwork])
 
