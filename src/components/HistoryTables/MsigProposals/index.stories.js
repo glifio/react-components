@@ -1,13 +1,8 @@
-import { ApolloProvider } from '@apollo/client'
-import { client } from '../apolloClient'
 import ProposalHistory from './index'
 
 export default {
   title: 'ProposalHistory/Table',
-  component: ProposalHistory,
-  decorators: [
-    Story => <ApolloProvider client={client}>{Story()}</ApolloProvider>
-  ]
+  component: ProposalHistory
 }
 
 const Template = args => <ProposalHistory {...args} />

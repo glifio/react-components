@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { bool, func, string } from 'prop-types'
 import { CoinType } from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { useApolloClient } from '@apollo/client'
 
 import { LoadingScreen } from '../Loading/LoadingScreen'
@@ -24,7 +23,7 @@ const AccountSelector = ({
   helperText,
   title
 }: AccountSelectorProps) => {
-  const { coinType } = useEnvironment()
+  const { coinType, lotusApi } = useEnvironment()
   const logger = useLogger()
 
   const [loadingWallets, setLoadingWallets] = useState(false)
@@ -37,7 +36,6 @@ const AccountSelector = ({
     getProvider,
     wallets,
     walletError,
-    lotusApiAddr,
     loginOption
   } = useWalletProvider()
 
@@ -46,14 +44,10 @@ const AccountSelector = ({
 
   const getBalance = useCallback(
     async (address: string) => {
-      const lCli = new LotusRPCEngine({
-        apiAddress: lotusApiAddr
-      })
-
-      const bal = await lCli.request('WalletBalance', address)
+      const bal = await lotusApi.request('WalletBalance', address)
       return new FilecoinNumber(bal, 'attofil')
     },
-    [lotusApiAddr]
+    [lotusApi]
   )
 
   const getAddress = useCallback(

@@ -1,14 +1,8 @@
-import { ApolloProvider } from '@apollo/client'
-import { client } from '../../apolloClient'
-
 import MessageHistory from './index'
 
 export default {
   title: 'MessageHistory/Table',
-  component: MessageHistory,
-  decorators: [
-    Story => <ApolloProvider client={client}>{Story()}</ApolloProvider>
-  ]
+  component: MessageHistory
 }
 
 const Template = args => (

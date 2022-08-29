@@ -1,3 +1,4 @@
+import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { CoinType } from '@glif/filecoin-address'
 import { Logger, LogLevel } from '@glif/logger'
 import { useRouter } from 'next/router'
@@ -48,6 +49,7 @@ export interface EnvironmentContextType {
   nodeStatusApiKey: string
   graphUrl: string
   lotusApiUrl: string
+  lotusApi: LotusRpcEngine
   coinType: CoinType
   isProd: boolean
   networkName: Network
@@ -69,6 +71,7 @@ export const emptyEnvironmentContext = {
   nodeStatusApiKey: '',
   graphUrl: '',
   lotusApiUrl: '',
+  lotusApi: null,
   networkName: Network.CALIBRATION,
   setNetwork: () => {},
   coinType: CoinType.TEST,
@@ -129,23 +132,27 @@ export const EnvironmentProvider = ({
   const router = useRouter()
   let network = getQueryParam.string(router, 'network') as Network
   if (!network) network = Network.MAINNET
-
+  const lotusApi = networks[network].lotusApiUrl
+    ? new LotusRpcEngine({
+        apiAddress: networks[network].lotusApiUrl
+      })
+    : null
   const env: Omit<EnvironmentProps, 'children'> = {
     ...initialEnvironment,
-    ...networks[network]
+    ...networks[network],
+    lotusApi
   }
 
   const [environment, setEnvironment] = useState({ ...env })
   const setNetwork = useCallback(
-    (n: NetworkInfo) => {
+    async (n: NetworkInfo) => {
       const url =
         n.networkName === Network.MAINNET
           ? removeQueryParam(router.asPath, 'network')
           : appendQueryParams(router.asPath, {
               network: n.networkName
             })
-
-      router.push(url)
+      window?.location?.assign(url)
     },
     [router]
   )
@@ -157,7 +164,16 @@ export const EnvironmentProvider = ({
       networks[network]
     )
     if (shouldChangeNetwork) {
-      setEnvironment({ ...environment, ...networks[network] })
+      const newNetwork = networks[network]
+      setEnvironment({
+        ...environment,
+        ...newNetwork,
+        lotusApi: newNetwork.lotusApiUrl
+          ? new LotusRpcEngine({
+              apiAddress: newNetwork.lotusApiUrl
+            })
+          : null
+      })
     }
   }, [network, environment, setNetwork])
 

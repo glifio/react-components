@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { QueryHookOptions, useApolloClient } from '@apollo/client'
 import type { CID } from '@glif/filecoin-wallet-provider'
-import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
 import { Address, AddressDocument, AddressQuery } from '../../generated/graphql'
 import { decodeActorCID } from '..'
@@ -38,7 +37,7 @@ export const useStateReadStateQuery = <T = any>(
     }
   >
 ): { data: LotusRPCActorState<T>; error: Error; loading: boolean } => {
-  const { lotusApiUrl: apiAddress, networkName } = useEnvironment()
+  const { lotusApi, networkName } = useEnvironment()
   const [actorState, setActorState] = useState<LotusRPCActorState<T> | null>(
     null
   )
@@ -51,10 +50,7 @@ export const useStateReadStateQuery = <T = any>(
   useEffect(() => {
     const fetchState = async () => {
       try {
-        const lCli = new LotusRPCEngine({
-          apiAddress
-        })
-        const res = await lCli.request<LotusRPCActorState<any>>(
+        const res = await lotusApi.request<LotusRPCActorState<any>>(
           'StateReadState',
           baseOptions.variables.address,
           null
@@ -75,7 +71,7 @@ export const useStateReadStateQuery = <T = any>(
             })
           )
 
-          const availableBalance = await lCli.request<string>(
+          const availableBalance = await lotusApi.request<string>(
             'MsigGetAvailableBalance',
             baseOptions.variables.address,
             null
@@ -119,7 +115,7 @@ export const useStateReadStateQuery = <T = any>(
     fetchedFor,
     setFetchedFor,
     apolloClient,
-    apiAddress,
+    lotusApi,
     networkName
   ])
 
