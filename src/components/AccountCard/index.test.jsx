@@ -1,12 +1,14 @@
 /* eslint-disable import/first */
 /* eslint-disable import/newline-after-import */
 import { render, screen, act, fireEvent } from '@testing-library/react'
+import { ApolloProvider } from '@apollo/client'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { AccountCard } from '.'
 jest.mock('../../utils/copyToClipboard')
 import copyToClipboard from '../../utils/copyToClipboard'
 import { Base } from './index.stories'
+import { client } from '../HistoryTables/apolloClient'
 import { TestEnvironment } from '../../test-utils/TestEnvironment'
 
 describe('AccountCard', () => {
@@ -14,7 +16,9 @@ describe('AccountCard', () => {
     const { container } = render(
       <TestEnvironment>
         <ThemeProvider theme={theme}>
-          <Base {...Base.args} />
+          <ApolloProvider client={client}>
+            <Base {...Base.args} />
+          </ApolloProvider>
         </ThemeProvider>
       </TestEnvironment>
     )
@@ -25,15 +29,17 @@ describe('AccountCard', () => {
     const { container } = render(
       <TestEnvironment>
         <ThemeProvider theme={theme}>
-          <AccountCard
-            onAccountSwitch={() => {}}
-            color='purple'
-            address='t0123456789'
-            walletType='LEDGER'
-            onShowOnLedger={() => {}}
-            ledgerBusy={false}
-            mb={2}
-          />
+          <ApolloProvider client={client}>
+            <AccountCard
+              onAccountSwitch={() => {}}
+              color='purple'
+              address='t0123456789'
+              walletType='LEDGER'
+              onShowOnLedger={() => {}}
+              ledgerBusy={false}
+              mb={2}
+            />
+          </ApolloProvider>
         </ThemeProvider>
       </TestEnvironment>
     )
@@ -45,15 +51,17 @@ describe('AccountCard', () => {
     const { container } = render(
       <TestEnvironment>
         <ThemeProvider theme={theme}>
-          <AccountCard
-            onAccountSwitch={() => {}}
-            color='purple'
-            address='t0123456789'
-            walletType='CREATE_MNEMONIC'
-            onShowOnLedger={() => {}}
-            ledgerBusy={false}
-            mb={2}
-          />
+          <ApolloProvider client={client}>
+            <AccountCard
+              onAccountSwitch={() => {}}
+              color='purple'
+              address='t0123456789'
+              walletType='CREATE_MNEMONIC'
+              onShowOnLedger={() => {}}
+              ledgerBusy={false}
+              mb={2}
+            />
+          </ApolloProvider>
         </ThemeProvider>
       </TestEnvironment>
     )
@@ -65,15 +73,17 @@ describe('AccountCard', () => {
     render(
       <TestEnvironment>
         <ThemeProvider theme={theme}>
-          <AccountCard
-            onAccountSwitch={() => {}}
-            color='purple'
-            address='t0123'
-            walletType='LEDGER'
-            onShowOnLedger={() => {}}
-            ledgerBusy={false}
-            mb={2}
-          />
+          <ApolloProvider client={client}>
+            <AccountCard
+              onAccountSwitch={() => {}}
+              color='purple'
+              address='t0123'
+              walletType='LEDGER'
+              onShowOnLedger={() => {}}
+              ledgerBusy={false}
+              mb={2}
+            />
+          </ApolloProvider>
         </ThemeProvider>
       </TestEnvironment>
     )
@@ -87,15 +97,17 @@ describe('AccountCard', () => {
     const { getByText } = render(
       <TestEnvironment>
         <ThemeProvider theme={theme}>
-          <AccountCard
-            onAccountSwitch={mockOnAccountSwitch}
-            color='purple'
-            address='t0123'
-            walletType='LEDGER'
-            onShowOnLedger={() => {}}
-            ledgerBusy={false}
-            mb={2}
-          />
+          <ApolloProvider client={client}>
+            <AccountCard
+              onAccountSwitch={mockOnAccountSwitch}
+              color='purple'
+              address='t0123'
+              walletType='LEDGER'
+              onShowOnLedger={() => {}}
+              ledgerBusy={false}
+              mb={2}
+            />
+          </ApolloProvider>
         </ThemeProvider>
       </TestEnvironment>
     )
@@ -112,15 +124,17 @@ describe('AccountCard', () => {
     const { getByText } = render(
       <TestEnvironment>
         <ThemeProvider theme={theme}>
-          <AccountCard
-            onAccountSwitch={() => {}}
-            color='purple'
-            address='t0123'
-            walletType='LEDGER'
-            onShowOnLedger={mockOnShowOnLedger}
-            ledgerBusy={false}
-            mb={2}
-          />
+          <ApolloProvider client={client}>
+            <AccountCard
+              onAccountSwitch={() => {}}
+              color='purple'
+              address='t0123'
+              walletType='LEDGER'
+              onShowOnLedger={mockOnShowOnLedger}
+              ledgerBusy={false}
+              mb={2}
+            />
+          </ApolloProvider>
         </ThemeProvider>
       </TestEnvironment>
     )
@@ -139,15 +153,17 @@ describe('AccountCard', () => {
     const { getByText } = render(
       <TestEnvironment>
         <ThemeProvider theme={theme}>
-          <AccountCard
-            onAccountSwitch={() => {}}
-            color='purple'
-            address='t0123'
-            walletType='LEDGER'
-            onShowOnLedger={() => {}}
-            ledgerBusy={false}
-            mb={2}
-          />
+          <ApolloProvider client={client}>
+            <AccountCard
+              onAccountSwitch={() => {}}
+              color='purple'
+              address='t0123'
+              walletType='LEDGER'
+              onShowOnLedger={() => {}}
+              ledgerBusy={false}
+              mb={2}
+            />
+          </ApolloProvider>
         </ThemeProvider>
       </TestEnvironment>
     )
