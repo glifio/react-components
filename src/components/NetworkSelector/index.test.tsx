@@ -9,13 +9,13 @@ import {
   networks
 } from '../../services/EnvironmentProvider'
 
-const mockRouterPush = jest.fn()
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 useRouter.mockImplementation(() => ({
   query: { network: Network.CALIBRATION },
-  push: mockRouterPush,
   asPath: 'https://wallet.glif.io/'
 }))
+
+const windowReassignMock = jest.fn()
 
 describe('NetworkSelector', () => {
   test('it renders the loading state first', () => {
@@ -30,6 +30,13 @@ describe('NetworkSelector', () => {
 
   describe('interactions', () => {
     beforeEach(() => {
+      global.window = Object.create(window)
+      Object.defineProperty(window, 'location', {
+        value: {
+          assign: windowReassignMock
+        }
+      })
+
       jest
         .spyOn(require('./useNetworkName'), 'useNetworkName')
         .mockImplementation(lotusApiAddr => {
@@ -105,7 +112,7 @@ describe('NetworkSelector', () => {
         fireEvent.click(getByText(Network.MAINNET))
       })
 
-      expect(mockRouterPush).toHaveBeenCalledWith('https://wallet.glif.io/')
+      expect(windowReassignMock).toHaveBeenCalledWith('https://wallet.glif.io/')
     })
   })
 })
