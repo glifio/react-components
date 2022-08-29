@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import { useMemo } from 'react'
+import { useAddressQuery } from '../../generated/graphql'
 import { useEnvironment } from '../../services'
 
 import truncateAddress from '../../utils/truncateAddress'
@@ -18,16 +19,25 @@ export const AddressLink = ({
   hideCopy,
   hideCopyText,
   shouldTruncate,
+  fetchAddress,
   useNewTabIcon
 }: AddressLinkProps) => {
   const { explorerUrl } = useEnvironment()
-  // prioritize robust > id, use id if no robust exists
-  const linkText = useMemo(() => {
-    if (address) return shouldTruncate ? truncateAddress(address) : address
-    return id || ''
-  }, [address, id, shouldTruncate])
-  const copyText = address || id
+  const { data: gqlAddress } = useAddressQuery({
+    skip: !id || !!address || !fetchAddress,
+    variables: {
+      address: id
+    }
+  })
+
+  // prioritize robust > id
+  const linkText = useMemo<string>(() => {
+    const robust = gqlAddress?.address?.robust || address
+    return robust ? (shouldTruncate ? truncateAddress(robust) : robust) : id
+  }, [gqlAddress, address, id, shouldTruncate])
+  const copyText = gqlAddress?.address?.robust || address || id
   const href = `${explorerUrl}/actor/?address=${copyText}`
+
   return (
     <LabeledLink
       label={label}
@@ -47,6 +57,7 @@ export type AddressLinkProps = {
   id?: string
   address?: string
   shouldTruncate?: boolean
+  fetchAddress?: boolean
 } & Omit<LabeledLinkProps, 'href' | 'linkText' | 'copyText'>
 
 const { href, linkText, copyText, ...addressLinkPropTypes } =
@@ -56,9 +67,11 @@ AddressLink.propTypes = {
   id: PropTypes.string,
   address: PropTypes.string,
   shouldTruncate: PropTypes.bool,
+  fetchAddress: PropTypes.bool,
   ...addressLinkPropTypes
 }
 
 AddressLink.defaultProps = {
-  shouldTruncate: true
+  shouldTruncate: true,
+  fetchAddress: true
 }
