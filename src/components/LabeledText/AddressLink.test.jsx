@@ -1,7 +1,9 @@
+import { ApolloProvider } from '@apollo/client'
 import { render } from '@testing-library/react'
 import { AddressLink } from './AddressLink'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
+import { client } from '../HistoryTables/apolloClient'
 import { TestEnvironment } from '../../test-utils/TestEnvironment'
 
 describe('Receive', () => {
@@ -9,10 +11,12 @@ describe('Receive', () => {
     const { container } = render(
       <TestEnvironment>
         <ThemeProvider theme={theme}>
-          <AddressLink
-            label='Safe Address'
-            address='t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy'
-          />
+          <ApolloProvider client={client}>
+            <AddressLink
+              label='Safe Address'
+              address='t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy'
+            />
+          </ApolloProvider>
         </ThemeProvider>
       </TestEnvironment>
     )
