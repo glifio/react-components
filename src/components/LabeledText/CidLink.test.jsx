@@ -4,7 +4,7 @@ import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 import { TestEnvironment } from '../../test-utils/TestEnvironment'
 
-describe('Receive', () => {
+describe('CidLink', () => {
   test('it renders correctly', () => {
     const { container } = render(
       <TestEnvironment>

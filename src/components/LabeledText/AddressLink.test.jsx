@@ -6,7 +6,7 @@ import ThemeProvider from '../ThemeProvider'
 import { client } from '../HistoryTables/apolloClient'
 import { TestEnvironment } from '../../test-utils/TestEnvironment'
 
-describe('Receive', () => {
+describe('AddressLink', () => {
   test('it renders correctly', () => {
     const { container } = render(
       <TestEnvironment>
