@@ -10,9 +10,8 @@ export const ErrorBoundary = ({
   Wrapper,
   title,
   description
-}: Omit<ErrorBoundaryProps, 'logger'>) => {
+}: Partial<ErrorBoundaryProps>) => {
   const logger = useLogger()
-
   return (
     <_ErrorBoundary
       Wrapper={Wrapper}
@@ -27,7 +26,7 @@ export const ErrorBoundary = ({
 
 // This component catches all uncaught react and syncronous JS errors
 // and forwards the user to an error page + sends us the error report
-class _ErrorBoundary extends React.Component<
+export class _ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
@@ -76,19 +75,22 @@ type ErrorBoundaryProps = {
   description: string
 }
 
-ErrorBoundary.propTypes = {
-  Wrapper: PropTypes.element,
+const propTypes = {
+  Wrapper: PropTypes.node,
   children: PropTypes.node,
   logger: PropTypes.object,
   title: PropTypes.string,
   description: PropTypes.string
 }
 
-ErrorBoundary.defaultProps = {
-  Wrapper: () => <></>,
+const defaultProps = {
+  Wrapper: ({ children }) => <>{children}</>,
   children: <></>,
   logger: null,
   title: 'Glif is currently down',
   description:
     "We've been notified of the outage and expect to be back up and running again shortly."
 }
+
+ErrorBoundary.propTypes = propTypes
+ErrorBoundary.defaultProps = defaultProps
