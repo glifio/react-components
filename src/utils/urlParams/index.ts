@@ -101,7 +101,7 @@ export function navigate(
 ): void {
   const query = router?.query
   let updatedUrl = pageUrl
-  console.log(query, 'navigating!', pageUrl)
+
   if (query) {
     // Retain all query parameters or just the glifParams
     const retainedParams = retainParams ? query : pick(query, glifParams)
