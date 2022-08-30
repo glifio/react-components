@@ -31,6 +31,16 @@ import {
   useLogger
 } from '../../../services/EnvironmentProvider'
 
+export interface MsigState {
+  InitialBalance: string
+  NextTxnID: number
+  NumApprovalsThreshold: number
+  PendingTxns: LotusCID
+  Signers: string[]
+  StartEpoch: number
+  UnlockDuration: number
+}
+
 export default function ProposalDetail({
   id,
   msigAddress,
