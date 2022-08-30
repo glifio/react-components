@@ -70,16 +70,6 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
 
   const [viewActorState, setViewActorState] = useState(false)
 
-  const actorType = useMemo<string>(() => {
-    if (!actorStateData?.Code) return ''
-    try {
-      return decodeActorCID(actorStateData?.Code, networkName)
-    } catch (e) {
-      logger.error(e)
-      return 'unknown'
-    }
-  }, [actorStateData?.Code, networkName, logger])
-
   const loading = useMemo(() => {
     return actorStateLoading || addressLoading
   }, [actorStateLoading, addressLoading])
@@ -106,7 +96,8 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
           {addressData?.address.id && (
             <Line label='ID'>{addressData?.address.id}</Line>
           )}
-          <Line label='Actor'>{actorType}</Line>
+          <Line label='Actor Name'>{actorName || 'unknown'}</Line>
+          <Line label='Actor Code'>{actorStateData.Code['/']}</Line>
           <Line label='Balance'>
             {new FilecoinNumber(actorStateData?.Balance, 'attofil').toFil()} FIL
           </Line>
