@@ -45,6 +45,12 @@ export function ActorState({ address }: { address: string }) {
   const { availableBalance, error: availableBalanceError } =
     useMsigGetAvailableBalance(loadAvailableBalance ? address : '')
 
+  // Log available balance errors
+  useEffect(
+    () => availableBalanceError && logger.error(availableBalanceError),
+    [availableBalanceError, logger]
+  )
+
   const {
     data: addressData,
     error: addressError,
