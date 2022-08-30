@@ -133,10 +133,7 @@ export default function MessageDetail(props: MessageDetailProps) {
       <hr />
       <Lines>
         {messageState === MessageState.Error && (
-          <DetailCaption
-            name='Message Overview'
-            error={error}
-          />
+          <DetailCaption name='Message Overview' error={error} />
         )}
         {messageState === MessageState.NotFound && (
           <StandardBox>
