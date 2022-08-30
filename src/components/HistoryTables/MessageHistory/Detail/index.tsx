@@ -135,8 +135,6 @@ export default function MessageDetail(props: MessageDetailProps) {
         {messageState === MessageState.Error && (
           <DetailCaption
             name='Message Overview'
-            caption='Error'
-            loading={false}
             error={error}
           />
         )}
