@@ -8,6 +8,7 @@ import { useEnvironment } from '../../services/EnvironmentProvider'
 interface UseStateReadStateResult<T> {
   data: LotusActorState<T> | null
   loading: boolean
+  notFound: boolean
   error: Error | null
 }
 
@@ -16,6 +17,7 @@ export const useStateReadState = <T = object | null>(
 ): UseStateReadStateResult<T> => {
   const [data, setData] = useState<LotusActorState<T> | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
+  const [notFound, setNotFound] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
   const { lotusApiUrl: apiAddress } = useEnvironment()
 
@@ -29,6 +31,7 @@ export const useStateReadState = <T = object | null>(
 
   useEffect(() => {
     setData(null)
+    setNotFound(false)
     setError(null)
     if (!address) return
     if (validateAddressString(address)) {
@@ -36,12 +39,16 @@ export const useStateReadState = <T = object | null>(
       lotusRPC
         .request<LotusActorState<T>>('StateReadState', address, null)
         .then((a: LotusActorState<T>) => setData(a))
-        .catch((e: Error) => setError(e))
+        .catch((e: Error) => {
+          e.message.includes('actor not found')
+            ? setNotFound(true)
+            : setError(e)
+        })
         .finally(() => setLoading(false))
     } else {
       setError(new Error('Invalid address'))
     }
   }, [address, lotusRPC])
 
-  return { data, error, loading }
+  return { data, loading, notFound, error }
 }
