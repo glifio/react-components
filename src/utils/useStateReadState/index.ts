@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { CID } from '@glif/filecoin-wallet-provider'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
@@ -37,19 +37,24 @@ interface UseStateReadStateResult<T> {
 export const useStateReadState = <T = object | null>(
   address: string
 ): UseStateReadStateResult<T> => {
-  const { lotusApiUrl: apiAddress, networkName } = useEnvironment()
+  const { lotusApiUrl: apiAddress } = useEnvironment()
   const [data, setData] = useState<LotusRPCActorState<T> | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
   const [fetchedFor, setFetchedFor] = useState<string>('')
 
+  const lotusRPC = useMemo(
+    () =>
+      new LotusRPCEngine({
+        apiAddress
+      }),
+    [apiAddress]
+  )
+
   useEffect(() => {
     const fetchState = async () => {
       try {
-        const lCli = new LotusRPCEngine({
-          apiAddress
-        })
-        const res = await lCli.request<LotusRPCActorState<any>>(
+        const res = await lotusRPC.request<LotusRPCActorState<any>>(
           'StateReadState',
           address,
           null
@@ -74,16 +79,7 @@ export const useStateReadState = <T = object | null>(
       setFetchedFor(address)
       fetchState()
     }
-  }, [
-    address,
-    loading,
-    error,
-    data,
-    fetchedFor,
-    setFetchedFor,
-    apiAddress,
-    networkName
-  ])
+  }, [address, loading, error, data, fetchedFor, setFetchedFor, lotusRPC])
 
   return { data, error, loading }
 }
