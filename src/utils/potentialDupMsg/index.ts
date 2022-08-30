@@ -16,10 +16,8 @@ export const potentialDupMsg = (
 ): string | null => {
   if (!msg1 || !msg2) return null
 
-  const fromAddrEq =
-    isAddrEqual(msg1.from, msg2.from) || isAddrEqual(msg1.from, msg2.from)
-  const toAddrEq =
-    isAddrEqual(msg1.to, msg2.to) || isAddrEqual(msg1.to, msg2.to)
+  const fromAddrEq = isAddrEqual(msg1.from, msg2.from)
+  const toAddrEq = isAddrEqual(msg1.to, msg2.to)
   const methodEq = Number(msg1.method) === msg2.method
   const valueEq = new BigNumber(msg1.value).isEqualTo(msg2.value)
   const paramsEq =
