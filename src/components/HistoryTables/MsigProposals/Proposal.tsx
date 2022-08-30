@@ -1,6 +1,8 @@
-import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
+import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
+import { LotusCID, getActorName } from '@glif/filecoin-actor-utils'
+
 import { AddressLink } from '../../LabeledText/AddressLink'
 import { Parameters } from '../detail'
 import {
@@ -16,8 +18,7 @@ import {
 import {
   isAddrEqual,
   decodeActorCID,
-  useStateReadStateQuery,
-  MsigState,
+  useStateReadState,
   isAddressSigner
 } from '../../../utils'
 import { Lines, Line, PageTitle } from '../../Layout'
