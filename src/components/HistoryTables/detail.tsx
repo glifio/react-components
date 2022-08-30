@@ -36,7 +36,8 @@ const CAPTION = styled.div`
 
 export const DetailCaption = ({
   name,
-  caption,
+  infoMsg,
+  loadingMsg,
   loading,
   error
 }: DetailCaptionProps) => {
@@ -44,20 +45,23 @@ export const DetailCaption = ({
     return (
       <CAPTION className='error'>{`${name} failed to load: ${error.message}`}</CAPTION>
     )
-  if (loading) return <CAPTION>{caption}</CAPTION>
+  if (loading) return <CAPTION>{loadingMsg || `${name} is loading...`}</CAPTION>
+  if (infoMsg) return <CAPTION>{infoMsg}</CAPTION>
   return <></>
 }
 
 type DetailCaptionProps = {
   name: string
-  caption: string
+  infoMsg: string
+  loadingMsg: string
   loading: boolean
   error: Error
 }
 
 DetailCaption.propTypes = {
   name: PropTypes.string.isRequired,
-  caption: PropTypes.string.isRequired,
+  infoMsg: PropTypes.string.isRequired,
+  loadingMsg: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.object
 }
