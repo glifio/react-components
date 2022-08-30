@@ -4,14 +4,17 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { getActorName } from '@glif/filecoin-actor-utils'
 
 import { useAddressQuery } from '../../../generated/graphql'
-import { useStateReadStateQuery, convertAddrToPrefix } from '../../../utils'
+import {
+  useStateReadState,
+  useMsigGetAvailableBalance,
+  convertAddrToPrefix
+} from '../../../utils'
 import { Lines, Line, PageTitle } from '../../Layout'
 import { DetailCaption } from '../detail'
 import {
   useEnvironment,
   useLogger
 } from '../../../services/EnvironmentProvider'
-import { useMsigGetAvailableBalance } from '../../../utils/useMsigGetAvailableBalance'
 
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const { coinType } = useEnvironment()
@@ -30,9 +33,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
     data: actorStateData,
     loading: actorStateLoading,
     error: actorStateError
-  } = useStateReadStateQuery<unknown>({
-    variables: { address }
-  })
+  } = useStateReadState(address)
 
   // Load the address
   const {
