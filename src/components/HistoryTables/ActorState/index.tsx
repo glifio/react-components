@@ -47,9 +47,12 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   )
 
   // Load available balance for multisig actors
-  const loadAvailableBalance = actorName && actorName.includes('multisig')
-  const { availableBalance, error: availableBalanceError } =
-    useMsigGetAvailableBalance(loadAvailableBalance ? address : '')
+  const hasAvailableBalance = actorName && actorName.includes('multisig')
+  const {
+    availableBalance,
+    loading: availableBalanceLoading,
+    error: availableBalanceError
+  } = useMsigGetAvailableBalance(hasAvailableBalance ? address : '')
 
   // Log available balance errors
   useEffect(
@@ -107,9 +110,17 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
           <Line label='Balance'>
             {new FilecoinNumber(actorStateData?.Balance, 'attofil').toFil()} FIL
           </Line>
-          {availableBalance && (
+          {hasAvailableBalance && (
             <Line label='Available Balance'>
-              {availableBalance.toFil()} FIL
+              {availableBalanceError ? (
+                <>Failed to load</>
+              ) : availableBalanceLoading ? (
+                <>Loading...</>
+              ) : availableBalance ? (
+                <>{availableBalance.toFil()} FIL</>
+              ) : (
+                <></>
+              )}
             </Line>
           )}
           <Box
