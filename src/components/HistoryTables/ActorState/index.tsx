@@ -1,11 +1,12 @@
+import { useEffect, useMemo, useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { useMemo, useState } from 'react'
+import { getActorName } from '@glif/filecoin-actor-utils'
+
 import { useAddressQuery } from '../../../generated/graphql'
 import {
   useStateReadStateQuery,
   convertAddrToPrefix,
-  decodeActorCID,
-  MsigState
+  decodeActorCID
 } from '../../../utils'
 import Box from '../../Box'
 import { Lines, Line, PageTitle } from '../../Layout'
@@ -14,6 +15,7 @@ import {
   useEnvironment,
   useLogger
 } from '../../../services/EnvironmentProvider'
+import { useMsigGetAvailableBalance } from '../../../utils/useMsigGetAvailableBalance'
 
 const State = ({ state }: { state: unknown }) => (
   <pre>{JSON.stringify(state, null, 2)}</pre>
@@ -31,6 +33,17 @@ export function ActorState({ address }: { address: string }) {
       address: convertAddrToPrefix(address, coinType)
     }
   })
+
+  // Get the actor name from the actor code
+  const actorName = useMemo<string | null>(
+    () => (actorStateData ? getActorName(actorStateData.Code['/']) : null),
+    [actorStateData]
+  )
+
+  // Load available balance for multisig actors
+  const loadAvailableBalance = actorName && actorName.includes('multisig')
+  const { availableBalance, error: availableBalanceError } =
+    useMsigGetAvailableBalance(loadAvailableBalance ? address : '')
 
   const {
     data: addressData,
@@ -82,13 +95,9 @@ export function ActorState({ address }: { address: string }) {
           <Line label='Balance'>
             {new FilecoinNumber(actorStateData?.Balance, 'attofil').toFil()} FIL
           </Line>
-          {actorType.includes('/multisig') && (
+          {availableBalance && (
             <Line label='Available Balance'>
-              {new FilecoinNumber(
-                (actorStateData?.State as MsigState).AvailableBalance,
-                'attofil'
-              ).toFil()}{' '}
-              FIL
+              {availableBalance.toFil()} FIL
             </Line>
           )}
           <Box
