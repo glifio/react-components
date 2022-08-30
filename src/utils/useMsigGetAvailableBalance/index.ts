@@ -34,7 +34,7 @@ export const useMsigGetAvailableBalance = (
     if (validateAddressString(address)) {
       setLoading(true)
       lotusRPC
-        .request<string>('MsigGetAvailableBalance', address)
+        .request<string>('MsigGetAvailableBalance', address, null)
         .then((b: string) => setBalance(new FilecoinNumber(b, 'attofil')))
         .catch((e: Error) => setError(e))
         .finally(() => setLoading(false))
