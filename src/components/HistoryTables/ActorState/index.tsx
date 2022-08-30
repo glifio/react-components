@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types'
 import { useEffect, useMemo, useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { getActorName } from '@glif/filecoin-actor-utils'
+import {
+  getActorName,
+  describeLotusActorState
+} from '@glif/filecoin-actor-utils'
 
 import { useAddressQuery } from '../../../generated/graphql'
 import {
@@ -47,6 +50,12 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   // Get the actor name from the actor code
   const actorName = useMemo<string | null>(
     () => (actorStateData ? getActorName(actorStateData.Code['/']) : null),
+    [actorStateData]
+  )
+
+  // Get actor state with descriptors
+  const describedState = useMemo<object | null>(
+    () => (actorStateData ? describeLotusActorState(actorStateData) : null),
     [actorStateData]
   )
 
@@ -129,7 +138,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
             </p>
           </Line>
           {showActorState && (
-            <pre>{JSON.stringify(actorStateData?.State, null, 2)}</pre>
+            <pre>{JSON.stringify(describedState, null, 2)}</pre>
           )}
         </Lines>
       )}
