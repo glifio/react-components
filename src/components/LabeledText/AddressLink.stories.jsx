@@ -1,12 +1,18 @@
+import { ApolloProvider } from '@apollo/client'
 import { AddressLink } from './AddressLink'
 import { Colors } from '../theme'
+import { client } from '../HistoryTables/apolloClient'
 
 export default {
   title: 'LabeledText/AddressLink',
   component: AddressLink,
   decorators: [
     Story => (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
+      <ApolloProvider client={client}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          {Story()}
+        </div>
+      </ApolloProvider>
     )
   ]
 }

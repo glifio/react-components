@@ -3,7 +3,7 @@ import { LabeledLink } from './LabeledLink'
 import theme from '../theme'
 import ThemeProvider from '../ThemeProvider'
 
-describe('Receive', () => {
+describe('LabeledLink', () => {
   test('it renders correctly', () => {
     const { container } = render(
       <ThemeProvider theme={theme}>
