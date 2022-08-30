@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Receive it renders correctly 1`] = `
+exports[`LabeledLink it renders correctly 1`] = `
 .c0 h4 {
   margin: 0;
   color: var(--gray-dark);

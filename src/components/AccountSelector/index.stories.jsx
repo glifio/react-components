@@ -8,7 +8,6 @@ import WalletProviderWrapper, {
 } from '../../services/WalletProvider'
 import { client } from '../HistoryTables/apolloClient'
 
-import { TestEnvironment } from '../../test-utils/TestEnvironment'
 import AccountSelector from './index'
 import { LoginOption } from '../../customPropTypes'
 import { createPath } from '../../utils'
@@ -43,18 +42,16 @@ export default {
   component: AccountSelector,
   decorators: [
     Story => (
-      <TestEnvironment>
-        <ApolloProvider client={client}>
-          <WalletProviderWrapper
-            lotusApiAddr='https://api.calibration.node.glif.io'
-            initialState={initialState}
-          >
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              {Story()}
-            </div>
-          </WalletProviderWrapper>
-        </ApolloProvider>
-      </TestEnvironment>
+      <ApolloProvider client={client}>
+        <WalletProviderWrapper
+          lotusApiAddr='https://api.calibration.node.glif.io'
+          initialState={initialState}
+        >
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            {Story()}
+          </div>
+        </WalletProviderWrapper>
+      </ApolloProvider>
     )
   ]
 }
