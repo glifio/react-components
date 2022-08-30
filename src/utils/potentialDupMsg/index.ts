@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import { Message as GQLMessage } from '../../generated/graphql'
 import { isAddrEqual } from '../isAddrEqual'
 
-type ComparisonMessage = Pick<
+export type ComparisonMessage = Pick<
   GQLMessage,
   'cid' | 'from' | 'to' | 'value' | 'params' | 'method'
 > & { height: string | number }
