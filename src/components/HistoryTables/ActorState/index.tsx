@@ -4,12 +4,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { getActorName } from '@glif/filecoin-actor-utils'
 
 import { useAddressQuery } from '../../../generated/graphql'
-import {
-  useStateReadStateQuery,
-  convertAddrToPrefix,
-  decodeActorCID
-} from '../../../utils'
-import Box from '../../Box'
+import { useStateReadStateQuery, convertAddrToPrefix } from '../../../utils'
 import { Lines, Line, PageTitle } from '../../Layout'
 import { DetailCaption } from '../detail'
 import {
@@ -18,13 +13,11 @@ import {
 } from '../../../services/EnvironmentProvider'
 import { useMsigGetAvailableBalance } from '../../../utils/useMsigGetAvailableBalance'
 
-const State = ({ state }: { state: unknown }) => (
-  <pre>{JSON.stringify(state, null, 2)}</pre>
-)
-
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
-  const { coinType, networkName } = useEnvironment()
+  const { coinType } = useEnvironment()
   const logger = useLogger()
+
+  const [showActorState, setShowActorState] = useState(false)
 
   // Ensure network cointype for address
   const address = useMemo<string>(
@@ -32,11 +25,21 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
     [addressProp, coinType]
   )
 
+  // Load the actor state
   const {
     data: actorStateData,
-    error: actorStateError,
-    loading: actorStateLoading
+    loading: actorStateLoading,
+    error: actorStateError
   } = useStateReadStateQuery<unknown>({
+    variables: { address }
+  })
+
+  // Load the address
+  const {
+    data: addressData,
+    loading: addressLoading,
+    error: addressError
+  } = useAddressQuery({
     variables: { address }
   })
 
@@ -46,7 +49,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
     [actorStateData]
   )
 
-  // Load available balance for multisig actors
+  // Load the available balance for multisig actors
   const hasAvailableBalance = actorName && actorName.includes('multisig')
   const {
     availableBalance,
@@ -54,26 +57,30 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
     error: availableBalanceError
   } = useMsigGetAvailableBalance(hasAvailableBalance ? address : '')
 
+  // Log actor state errors
+  useEffect(
+    () => actorStateError && logger.error(actorStateError),
+    [actorStateError, logger]
+  )
+
+  // Log address errors
+  useEffect(
+    () => addressError && logger.error(addressError),
+    [addressError, logger]
+  )
+
   // Log available balance errors
   useEffect(
     () => availableBalanceError && logger.error(availableBalanceError),
     [availableBalanceError, logger]
   )
 
-  const {
-    data: addressData,
-    error: addressError,
-    loading: addressLoading
-  } = useAddressQuery({
-    variables: { address }
-  })
-
-  const [viewActorState, setViewActorState] = useState(false)
-
+  // Actor state or address loading
   const loading = useMemo(() => {
     return actorStateLoading || addressLoading
   }, [actorStateLoading, addressLoading])
 
+  // Actor state or address error
   const error = useMemo(() => {
     return actorStateError || addressError
   }, [actorStateError, addressError])
@@ -114,26 +121,15 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
               )}
             </Line>
           )}
-          <Box
-            display='flex'
-            gridGap='1em'
-            lineHeight='2em'
-            alignItems='center'
-          >
-            <Box minWidth='200px' flex='0 1 25%'>
-              State
-            </Box>
-            {viewActorState ? (
-              <p role='button' onClick={() => setViewActorState(false)}>
-                Click to hide actor state ↑
-              </p>
-            ) : (
-              <p role='button' onClick={() => setViewActorState(true)}>
-                Click to see actor state ↓
-              </p>
-            )}
-          </Box>
-          <Box>{viewActorState && <State state={actorStateData?.State} />}</Box>
+          <Line label='State'>
+            <p role='button' onClick={() => setShowActorState(!showActorState)}>
+              Click to{' '}
+              {showActorState ? 'hide actor state ↑' : 'show actor state ↓'}
+            </p>
+          </Line>
+          {showActorState && (
+            <pre>{JSON.stringify(actorStateData?.State, null, 2)}</pre>
+          )}
         </Lines>
       )}
     </div>
