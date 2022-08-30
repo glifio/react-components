@@ -27,7 +27,7 @@ import {
   WalletProviderOpts
 } from '../../services'
 import { useLogger } from '../../services/EnvironmentProvider'
-import { WarnPotentialDup } from './PotentialDup'
+import { WarnPotentialDup } from './WarnPotentialDup'
 
 export const TransactionForm = ({
   children,
