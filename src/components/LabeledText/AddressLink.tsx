@@ -73,5 +73,5 @@ AddressLink.propTypes = {
 
 AddressLink.defaultProps = {
   shouldTruncate: true,
-  fetchAddress: true
+  fetchAddress: false
 }
