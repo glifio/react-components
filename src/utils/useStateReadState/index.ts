@@ -37,11 +37,11 @@ interface UseStateReadStateResult<T> {
 export const useStateReadState = <T = object | null>(
   address: string
 ): UseStateReadStateResult<T> => {
-  const { lotusApiUrl: apiAddress } = useEnvironment()
   const [data, setData] = useState<LotusRPCActorState<T> | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
   const [fetchedFor, setFetchedFor] = useState<string>('')
+  const { lotusApiUrl: apiAddress } = useEnvironment()
 
   const lotusRPC = useMemo(
     () =>
