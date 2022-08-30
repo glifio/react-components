@@ -33,9 +33,9 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
 
   // Load the actor state
   const {
-    data: actorStateData,
-    loading: actorStateLoading,
-    error: actorStateError
+    data: actorData,
+    loading: actorLoading,
+    error: actorError
   } = useStateReadState(address)
 
   // Load the address
@@ -49,14 +49,14 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
 
   // Get the actor name from the actor code
   const actorName = useMemo<string | null>(
-    () => (actorStateData ? getActorName(actorStateData.Code['/']) : null),
-    [actorStateData]
+    () => (actorData ? getActorName(actorData.Code['/']) : null),
+    [actorData]
   )
 
   // Get actor state with descriptors
   const describedState = useMemo<object | null>(
-    () => (actorStateData ? describeLotusActorState(actorStateData) : null),
-    [actorStateData]
+    () => (actorData ? describeLotusActorState(actorData) : null),
+    [actorData]
   )
 
   // Load the available balance for multisig actors
@@ -69,8 +69,8 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
 
   // Log actor state errors
   useEffect(
-    () => actorStateError && logger.error(actorStateError),
-    [actorStateError, logger]
+    () => actorError && logger.error(actorError),
+    [actorError, logger]
   )
 
   // Log address errors
@@ -87,13 +87,13 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
 
   // Actor state or address loading
   const loading = useMemo(() => {
-    return actorStateLoading || addressLoading
-  }, [actorStateLoading, addressLoading])
+    return actorLoading || addressLoading
+  }, [actorLoading, addressLoading])
 
   // Actor state or address error
   const error = useMemo(() => {
-    return actorStateError || addressError
-  }, [actorStateError, addressError])
+    return actorError || addressError
+  }, [actorError, addressError])
 
   return (
     <div>
@@ -114,9 +114,9 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
             <Line label='ID'>{addressData?.address.id}</Line>
           )}
           <Line label='Actor Name'>{actorName || 'unknown'}</Line>
-          <Line label='Actor Code'>{actorStateData.Code['/']}</Line>
+          <Line label='Actor Code'>{actorData.Code['/']}</Line>
           <Line label='Balance'>
-            {new FilecoinNumber(actorStateData?.Balance, 'attofil').toFil()} FIL
+            {new FilecoinNumber(actorData?.Balance, 'attofil').toFil()} FIL
           </Line>
           {hasAvailableBalance && (
             <Line label='Available Balance'>
