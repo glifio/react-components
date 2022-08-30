@@ -21,17 +21,22 @@ const State = ({ state }: { state: unknown }) => (
   <pre>{JSON.stringify(state, null, 2)}</pre>
 )
 
-export function ActorState({ address }: { address: string }) {
+export function ActorState({ address: addressProp }: ActorStateProps) {
   const { coinType, networkName } = useEnvironment()
   const logger = useLogger()
+
+  // Ensure network cointype for address
+  const address = useMemo<string>(
+    () => convertAddrToPrefix(addressProp, coinType),
+    [addressProp, coinType]
+  )
+
   const {
     data: actorStateData,
     error: actorStateError,
     loading: actorStateLoading
   } = useStateReadStateQuery<unknown>({
-    variables: {
-      address: convertAddrToPrefix(address, coinType)
-    }
+    variables: { address }
   })
 
   // Get the actor name from the actor code
@@ -56,7 +61,7 @@ export function ActorState({ address }: { address: string }) {
     error: addressError,
     loading: addressLoading
   } = useAddressQuery({
-    variables: { address: convertAddrToPrefix(address, coinType) }
+    variables: { address }
   })
 
   const [viewActorState, setViewActorState] = useState(false)
@@ -130,4 +135,8 @@ export function ActorState({ address }: { address: string }) {
       )}
     </div>
   )
+}
+
+interface ActorStateProps {
+  address: string
 }
