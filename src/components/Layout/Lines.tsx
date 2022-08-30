@@ -47,6 +47,10 @@ const LineEl = styled.div`
     align-items: center;
     gap: 0.75em;
     word-break: break-word;
+
+    > p[role='button'] {
+      margin: 0;
+    }
   }
 `
 
