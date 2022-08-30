@@ -84,12 +84,12 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   )
 
   // Actor state or address loading
-  const loading = useMemo(() => {
+  const loading = useMemo<boolean>(() => {
     return actorLoading || addressLoading
   }, [actorLoading, addressLoading])
 
   // Actor state or address error
-  const error = useMemo(() => {
+  const error = useMemo<Error | null>(() => {
     return actorError || addressError
   }, [actorError, addressError])
 
