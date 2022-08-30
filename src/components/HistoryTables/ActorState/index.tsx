@@ -90,7 +90,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
 
   // Actor state or address error
   const error = useMemo<Error | null>(() => {
-    return actorError || addressError
+    return actorError || addressError || null
   }, [actorError, addressError])
 
   return (
@@ -99,7 +99,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
       <hr />
       <DetailCaption
         name='Actor Overview'
-        infoMsg={actorNotFound && `Actor not found: ${address}`}
+        infoMsg={actorNotFound ? `Actor not found: ${address}` : ''}
         loadingMsg='Locating this actor on the blockchain...'
         loading={loading}
         error={error}
