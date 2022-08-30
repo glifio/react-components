@@ -1,26 +1,23 @@
 import { useCallback } from 'react'
-import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { useWallet } from '../WalletProvider/useWallet'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import useSWR, { SWRConfiguration } from 'swr'
 
 import { useWalletProvider } from '../WalletProvider'
-import { useLogger } from '../EnvironmentProvider'
+import { useEnvironment, useLogger } from '../EnvironmentProvider'
 
 export const useBalancePoller = (
   swrOptions: SWRConfiguration = { refreshInterval: 10000 }
 ) => {
-  const { selectedWalletIdx, updateBalance, lotusApiAddr } = useWalletProvider()
+  const { lotusApi } = useEnvironment()
+  const { selectedWalletIdx, updateBalance } = useWalletProvider()
   const wallet = useWallet()
   const logger = useLogger()
   const fetcher = useCallback(
     async (address: string, prevBalance: FilecoinNumber, walletIdx: number) => {
       try {
-        const lCli = new LotusRPCEngine({
-          apiAddress: lotusApiAddr
-        })
         const latestBalance = new FilecoinNumber(
-          await lCli.request<string>('WalletBalance', address),
+          await lotusApi.request<string>('WalletBalance', address),
           'attofil'
         )
         if (!latestBalance.isEqualTo(prevBalance)) {
@@ -35,7 +32,7 @@ export const useBalancePoller = (
         )
       }
     },
-    [updateBalance, lotusApiAddr, logger]
+    [updateBalance, lotusApi, logger]
   )
 
   const { data } = useSWR(

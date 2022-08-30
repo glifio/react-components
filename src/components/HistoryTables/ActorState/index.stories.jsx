@@ -1,14 +1,8 @@
-import { ApolloProvider } from '@apollo/client'
-import { client } from '../apolloClient'
-
 import { ActorState } from '.'
 
 export default {
   title: 'ActorState/ActorState',
-  component: ActorState,
-  decorators: [
-    Story => <ApolloProvider client={client}>{Story()}</ApolloProvider>
-  ]
+  component: ActorState
 }
 
 const Template = args => <ActorState {...args} />

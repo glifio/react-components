@@ -1,7 +1,19 @@
+import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { CoinType } from '@glif/filecoin-address'
 import { Logger, LogLevel } from '@glif/logger'
 import { useRouter } from 'next/router'
-import { createContext, useContext, ReactNode, useState, useMemo } from 'react'
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useMemo,
+  useEffect,
+  useCallback
+} from 'react'
+import pick from 'lodash.pick'
+import isEqual from 'lodash.isequal'
+
 import { appendQueryParams, getQueryParam, removeQueryParam } from '../../utils'
 
 export enum Network {
@@ -18,6 +30,14 @@ export type NetworkInfo = {
   coinType: CoinType
 }
 
+const networkInfoKeys = [
+  'nodeStatusApiKey',
+  'graphUrl',
+  'lotusApiUrl',
+  'networkName',
+  'coinType'
+]
+
 export interface EnvironmentContextType {
   homeUrl: string
   blogUrl: string
@@ -29,6 +49,7 @@ export interface EnvironmentContextType {
   nodeStatusApiKey: string
   graphUrl: string
   lotusApiUrl: string
+  lotusApi: LotusRpcEngine
   coinType: CoinType
   isProd: boolean
   networkName: Network
@@ -39,7 +60,7 @@ export interface EnvironmentContextType {
   packageVersion?: string
 }
 
-export const initialEnvironmentContext = {
+export const emptyEnvironmentContext = {
   homeUrl: 'https://apps.glif.io',
   blogUrl: 'https://blog.glif.io',
   walletUrl: 'https://wallet.glif.io',
@@ -47,19 +68,20 @@ export const initialEnvironmentContext = {
   explorerUrl: 'https://explorer.glif.io',
   verifierUrl: 'https://verify.glif.io',
   nodeStatusApiUrl: 'https://api.uptimerobot.com/v2/getMonitors',
-  nodeStatusApiKey: 'm786191525-b3192b91db66217a44f7d4be',
-  graphUrl: 'graph.glif.link/query',
-  lotusApiUrl: 'https://mainnet.glif.host',
-  networkName: Network.MAINNET,
+  nodeStatusApiKey: '',
+  graphUrl: '',
+  lotusApiUrl: '',
+  lotusApi: null,
+  networkName: Network.CALIBRATION,
   setNetwork: () => {},
-  coinType: CoinType.MAIN,
+  coinType: CoinType.TEST,
   isProd: false,
   sentryDsn: '',
   sentryEnv: ''
 }
 
 export const EnvironmentContext = createContext<EnvironmentContextType>(
-  initialEnvironmentContext
+  emptyEnvironmentContext
 )
 
 export const networks: Record<Network, NetworkInfo> = {
@@ -86,30 +108,12 @@ export const networks: Record<Network, NetworkInfo> = {
   }
 }
 
-export const Environment = ({
-  children,
-  ...initialEnvironment
-}: EnvironmentProps) => {
-  const router = useRouter()
-  const [environment, setEnvironment] = useState(initialEnvironment)
-  const setNetwork = (network: NetworkInfo) => {
-    setEnvironment({ ...environment, ...network })
-    const url =
-      network.networkName === Network.MAINNET
-        ? removeQueryParam(router.asPath, 'network')
-        : appendQueryParams(router.asPath, {
-            network: network.networkName
-          })
-
-    router.push(url)
-  }
-
+export const Environment = ({ children, ...environment }: EnvironmentProps) => {
   return (
     <EnvironmentContext.Provider
       value={{
-        ...initialEnvironmentContext,
-        ...environment,
-        setNetwork
+        ...emptyEnvironmentContext,
+        ...environment
       }}
     >
       {children}
@@ -128,13 +132,56 @@ export const EnvironmentProvider = ({
   const router = useRouter()
   let network = getQueryParam.string(router, 'network') as Network
   if (!network) network = Network.MAINNET
-
+  const lotusApi = networks[network].lotusApiUrl
+    ? new LotusRpcEngine({
+        apiAddress: networks[network].lotusApiUrl
+      })
+    : null
   const env: Omit<EnvironmentProps, 'children'> = {
     ...initialEnvironment,
-    ...networks[network]
+    ...networks[network],
+    lotusApi
   }
 
-  return <Environment {...env}>{children}</Environment>
+  const [environment, setEnvironment] = useState({ ...env })
+  const setNetwork = useCallback(
+    async (n: NetworkInfo) => {
+      const url =
+        n.networkName === Network.MAINNET
+          ? removeQueryParam(router.asPath, 'network')
+          : appendQueryParams(router.asPath, {
+              network: n.networkName
+            })
+      window?.location?.assign(url)
+    },
+    [router]
+  )
+
+  // updates state based on the url bar changing
+  useEffect(() => {
+    const shouldChangeNetwork = !isEqual(
+      pick(environment, networkInfoKeys),
+      networks[network]
+    )
+    if (shouldChangeNetwork) {
+      const newNetwork = networks[network]
+      setEnvironment({
+        ...environment,
+        ...newNetwork,
+        lotusApi: newNetwork.lotusApiUrl
+          ? new LotusRpcEngine({
+              apiAddress: newNetwork.lotusApiUrl
+            })
+          : null
+      })
+    }
+  }, [network, environment, setNetwork])
+
+  return (
+    <Environment {...env} setNetwork={setNetwork}>
+      {children}
+    </Environment>
+  )
 }
 
 export const useEnvironment = (): EnvironmentContextType => {
