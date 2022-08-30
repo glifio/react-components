@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { useEffect, useMemo, useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { getActorName } from '@glif/filecoin-actor-utils'
@@ -21,7 +22,7 @@ const State = ({ state }: { state: unknown }) => (
   <pre>{JSON.stringify(state, null, 2)}</pre>
 )
 
-export function ActorState({ address: addressProp }: ActorStateProps) {
+export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const { coinType, networkName } = useEnvironment()
   const logger = useLogger()
 
@@ -139,4 +140,8 @@ export function ActorState({ address: addressProp }: ActorStateProps) {
 
 interface ActorStateProps {
   address: string
+}
+
+ActorState.propTypes = {
+  address: PropTypes.string
 }
