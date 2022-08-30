@@ -20,8 +20,8 @@ import {
 } from '../../../services/EnvironmentProvider'
 
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
-  const { coinType } = useEnvironment()
   const logger = useLogger()
+  const { coinType } = useEnvironment()
 
   const [showActorState, setShowActorState] = useState(false)
 
