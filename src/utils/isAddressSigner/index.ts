@@ -3,5 +3,5 @@ import { isAddrEqual } from '../isAddrEqual'
 
 export const isAddressSigner = (
   address: Address,
-  signers: Address[]
-): boolean => signers.some(signer => isAddrEqual(signer, address))
+  signers: Array<Address | string>
+): boolean => signers.some(signer => isAddrEqual(address, signer))
