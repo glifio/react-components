@@ -52,17 +52,17 @@ export const DetailCaption = ({
 
 type DetailCaptionProps = {
   name: string
-  infoMsg: string
-  loadingMsg: string
-  loading: boolean
-  error: Error
+  infoMsg?: string
+  loadingMsg?: string
+  loading?: boolean
+  error?: Error
 }
 
 DetailCaption.propTypes = {
   name: PropTypes.string.isRequired,
-  infoMsg: PropTypes.string.isRequired,
-  loadingMsg: PropTypes.string.isRequired,
-  loading: PropTypes.bool.isRequired,
+  infoMsg: PropTypes.string,
+  loadingMsg: PropTypes.string,
+  loading: PropTypes.bool,
   error: PropTypes.object
 }
 
