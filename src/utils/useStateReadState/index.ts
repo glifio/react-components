@@ -38,9 +38,7 @@ export const useStateReadState = <T = object | null>(
   address: string
 ): UseStateReadStateResult<T> => {
   const { lotusApiUrl: apiAddress, networkName } = useEnvironment()
-  const [actorState, setActorState] = useState<LotusRPCActorState<T> | null>(
-    null
-  )
+  const [data, setData] = useState<LotusRPCActorState<T> | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error>(undefined)
   const [fetchedFor, setFetchedFor] = useState<string>('')
@@ -56,11 +54,11 @@ export const useStateReadState = <T = object | null>(
           address,
           null
         )
-        setActorState({ ...res })
+        setData({ ...res })
       } catch (err) {
         if (err instanceof Error) {
           if (err.message.includes('actor not found')) {
-            setActorState({ ...emptyActorState })
+            setData({ ...emptyActorState })
           } else setError(err)
         } else setError(new Error('Failed to fetch'))
       } finally {
@@ -68,7 +66,7 @@ export const useStateReadState = <T = object | null>(
       }
     }
 
-    const firstLoad = !actorState && loading && !error
+    const firstLoad = !data && loading && !error
     const newLoad = fetchedFor !== address && !error
 
     if (firstLoad || newLoad) {
@@ -80,12 +78,12 @@ export const useStateReadState = <T = object | null>(
     address,
     loading,
     error,
-    actorState,
+    data,
     fetchedFor,
     setFetchedFor,
     apiAddress,
     networkName
   ])
 
-  return { data: actorState, error, loading }
+  return { data, error, loading }
 }
