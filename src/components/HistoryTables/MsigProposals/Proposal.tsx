@@ -1,26 +1,21 @@
 import PropTypes from 'prop-types'
 import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/router'
-import { LotusCID, getActorName } from '@glif/filecoin-actor-utils'
+import { getActorName } from '@glif/filecoin-actor-utils'
 
 import { AddressLink } from '../../LabeledText/AddressLink'
 import { Parameters } from '../detail'
 import {
+  MsigState,
   ADDRESS_PROPTYPE,
   GRAPHQL_ADDRESS_PROP_TYPE
 } from '../../../customPropTypes'
 import {
   Address,
   MsigTransaction,
-  useActorQuery,
   useMsigPendingQuery
 } from '../../../generated/graphql'
-import {
-  isAddrEqual,
-  decodeActorCID,
-  useStateReadState,
-  isAddressSigner
-} from '../../../utils'
+import { isAddrEqual, useStateReadState, isAddressSigner } from '../../../utils'
 import { Lines, Line, PageTitle } from '../../Layout'
 import { LoadingScreen } from '../../Loading/LoadingScreen'
 import { ErrorView } from '../../ErrorView'
@@ -32,16 +27,6 @@ import {
   useLogger
 } from '../../../services/EnvironmentProvider'
 
-export interface MsigState {
-  InitialBalance: string
-  NextTxnID: number
-  NumApprovalsThreshold: number
-  PendingTxns: LotusCID
-  Signers: string[]
-  StartEpoch: number
-  UnlockDuration: number
-}
-
 export default function ProposalDetail({
   id,
   msigAddress,
@@ -50,111 +35,96 @@ export default function ProposalDetail({
   cancel
 }: ProposalDetailProps) {
   const router = useRouter()
-  const { coinType, networkName } = useEnvironment()
   const logger = useLogger()
-  let {
-    data: msigTxsData,
-    loading: msigTxsLoading,
-    error: _msigTxsError
-  } = useMsigPendingQuery({
-    variables: {
-      address: convertAddrToPrefix(msigAddress, coinType)
-    },
-    pollInterval: 0
-  })
-
-  const proposal = useMemo(() => {
-    if (!msigTxsLoading && !_msigTxsError) {
-      return msigTxsData?.msigPending.find(p => p.id === id)
-    }
-    return null
-  }, [msigTxsData, msigTxsLoading, _msigTxsError, id])
+  const { coinType } = useEnvironment()
 
   const [seeMore, setSeeMore] = useState(false)
 
+  // Ensure network cointype for address
+  const address = useMemo<string>(
+    () => convertAddrToPrefix(msigAddress, coinType),
+    [msigAddress, coinType]
+  )
+
+  // Get safe proposals
+  const {
+    data: msigTxsData,
+    loading: msigTxsLoading,
+    error: msigTxsError
+  } = useMsigPendingQuery({
+    variables: { address },
+    pollInterval: 0
+  })
+
+  // Find current proposal
+  const proposal = useMemo(
+    () => msigTxsData?.msigPending.find(p => p.id === id) || null,
+    [msigTxsData, id]
+  )
+
+  // Load the actor state
   const {
     data: actorData,
     loading: actorLoading,
+    notFound: actorNotFound,
     error: actorError
-  } = useActorQuery({
-    variables: { address: convertAddrToPrefix(msigAddress, coinType) }
-  })
+  } = useStateReadState<MsigState>(address)
 
-  const loadMsigState = useMemo<boolean>(() => {
-    try {
-      return (
-        !!actorData &&
-        decodeActorCID(actorData.actor.Code, networkName).includes('multisig')
-      )
-    } catch (e) {
-      logger.error(e)
-      return false
-    }
-  }, [actorData, networkName, logger])
+  // Get the actor name from the actor code
+  const actorName = useMemo<string | null>(
+    () => (actorData ? getActorName(actorData.Code['/']) : null),
+    [actorData]
+  )
 
-  const {
-    data: stateData,
-    loading: stateLoading,
-    error: stateError
-  } = useStateReadStateQuery<MsigState>({
-    variables: { address: convertAddrToPrefix(msigAddress, coinType) },
-    skip: !loadMsigState
-  })
+  // Interpret state data as msig state if valid
+  const msigState = useMemo<MsigState | null>(() => {
+    const isMsigActor = actorName && actorName.includes('multisig')
+    return isMsigActor && actorData ? (actorData.State as MsigState) : null
+  }, [actorData, actorName])
 
-  const proposalFoundError = useMemo(() => {
-    if (!msigTxsLoading && !proposal) {
-      return new Error('Proposal not found')
-    }
-    return _msigTxsError
-  }, [_msigTxsError, msigTxsLoading, proposal])
+  // Log safe proposals errors
+  useEffect(
+    () => msigTxsError && logger.error(msigTxsError),
+    [msigTxsError, logger]
+  )
 
-  const actionRequired = useMemo<boolean>(() => {
-    if (!proposal || proposalFoundError || stateError || stateLoading)
-      return false
-    const walletAddressIsSigner = isAddressSigner(
-      walletAddress,
-      stateData.State.Signers
-    )
+  // Log actor state errors
+  useEffect(() => actorError && logger.error(actorError), [actorError, logger])
+
+  // Can the user approve the proposal
+  const canApprove = useMemo<boolean>(() => {
+    if (!proposal || !msigState) return false
+    const isSigner = isAddressSigner(walletAddress, msigState.Signers)
     const alreadyApproved = isAddressSigner(walletAddress, proposal.approved)
-    return walletAddressIsSigner && !alreadyApproved
-  }, [
-    proposal,
-    proposalFoundError,
-    walletAddress,
-    stateData?.State.Signers,
-    stateLoading,
-    stateError
-  ])
+    return isSigner && !alreadyApproved
+  }, [proposal, walletAddress, msigState])
 
+  // Is the user the proposer
   const isProposer = useMemo<boolean>(
-    () => isAddrEqual(walletAddress, proposal?.approved?.[0]),
+    () => proposal && isAddrEqual(walletAddress, proposal.approved[0]),
     [walletAddress, proposal]
   )
 
-  const loading = useMemo(
-    () => actorLoading || msigTxsLoading || stateLoading,
-    [actorLoading, msigTxsLoading, stateLoading]
+  // Determine approvals until execution
+  const approvalsUntilExecution = useMemo<number>(() => {
+    if (!proposal || !msigState) return 0
+    return msigState.NumApprovalsThreshold - proposal?.approved.length
+  }, [proposal, msigState])
+
+  // Proposals or actor state loading
+  const loading = useMemo<boolean>(
+    () => msigTxsLoading || actorLoading,
+    [msigTxsLoading, actorLoading]
   )
 
-  const error: Error | null = useMemo(
-    () => proposalFoundError || actorError || stateError || null,
-    [proposalFoundError, actorError, stateError]
-  )
-
-  const approvalsUntilExecution = useMemo(() => {
-    if (!loading && !proposalFoundError && !stateError) {
-      return (
-        Number(stateData?.State.NumApprovalsThreshold) -
-        proposal?.approved.length
-      )
-    }
-  }, [
-    loading,
-    proposalFoundError,
-    proposal?.approved.length,
-    stateError,
-    stateData?.State.NumApprovalsThreshold
-  ])
+  // Proposals or actor state error
+  const error = useMemo<Error | null>(() => {
+    if (msigTxsError) return msigTxsError
+    if (actorError) return actorError
+    if (actorNotFound) return new Error('Actor not found')
+    if (!msigTxsLoading && !proposal) return new Error('Proposal not found')
+    return null
+  }, [msigTxsError, actorError, actorNotFound, msigTxsLoading, proposal])
 
   if (loading) return <LoadingScreen />
   if (error)
@@ -173,7 +143,7 @@ export default function ProposalDetail({
       <PageTitle
         sideContent={
           <>
-            {actionRequired && (
+            {canApprove && (
               <ButtonV2 green onClick={() => approve(proposal)}>
                 <IconCheck width='1.75rem' />
                 Approve
@@ -202,9 +172,7 @@ export default function ProposalDetail({
             />
           )}
         </Line>
-        <Line label='Approvals until execution'>
-          {approvalsUntilExecution.toString()}
-        </Line>
+        <Line label='Approvals until execution'>{approvalsUntilExecution}</Line>
         <hr />
         <Parameters
           params={{
@@ -231,9 +199,7 @@ export default function ProposalDetail({
         <hr />
         {seeMore && (
           <>
-            <Line label='Next Transaction ID'>
-              {stateData?.State.NextTxnID}
-            </Line>
+            <Line label='Next Transaction ID'>{msigState?.NextTxnID}</Line>
             <Line
               label={`Approvers${
                 proposal?.approved ? ` (${proposal?.approved.length})` : ''
