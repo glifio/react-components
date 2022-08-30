@@ -35,6 +35,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const {
     data: actorData,
     loading: actorLoading,
+    notFound: actorNotFound,
     error: actorError
   } = useStateReadState(address)
 
@@ -68,10 +69,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   } = useMsigGetAvailableBalance(hasAvailableBalance ? address : '')
 
   // Log actor state errors
-  useEffect(
-    () => actorError && logger.error(actorError),
-    [actorError, logger]
-  )
+  useEffect(() => actorError && logger.error(actorError), [actorError, logger])
 
   // Log address errors
   useEffect(
@@ -101,11 +99,12 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
       <hr />
       <DetailCaption
         name='Actor Overview'
-        caption='Locating this actor on the blockchain...'
+        infoMsg={actorNotFound && `Actor not found: ${address}`}
+        loadingMsg='Locating this actor on the blockchain...'
         loading={loading}
         error={error}
       />
-      {!loading && !error && (
+      {!loading && !error && !actorNotFound && (
         <Lines>
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
@@ -116,7 +115,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
           <Line label='Actor Name'>{actorName || 'unknown'}</Line>
           <Line label='Actor Code'>{actorData.Code['/']}</Line>
           <Line label='Balance'>
-            {new FilecoinNumber(actorData?.Balance, 'attofil').toFil()} FIL
+            {new FilecoinNumber(actorData.Balance, 'attofil').toFil()} FIL
           </Line>
           {hasAvailableBalance && (
             <Line label='Available Balance'>
