@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { validateAddressString } from '@glif/filecoin-address'
-import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
 import { useEnvironment } from '../../services/EnvironmentProvider'
 
@@ -17,15 +16,7 @@ export const useMsigGetAvailableBalance = (
   const [balance, setBalance] = useState<FilecoinNumber | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
-  const { lotusApiUrl: apiAddress } = useEnvironment()
-
-  const lotusRPC = useMemo(
-    () =>
-      new LotusRPCEngine({
-        apiAddress
-      }),
-    [apiAddress]
-  )
+  const { lotusApi } = useEnvironment()
 
   useEffect(() => {
     setBalance(null)
@@ -33,7 +24,7 @@ export const useMsigGetAvailableBalance = (
     if (!address) return
     if (validateAddressString(address)) {
       setLoading(true)
-      lotusRPC
+      lotusApi
         .request<string>('MsigGetAvailableBalance', address, null)
         .then((b: string) => setBalance(new FilecoinNumber(b, 'attofil')))
         .catch((e: Error) => setError(e))
@@ -41,7 +32,7 @@ export const useMsigGetAvailableBalance = (
     } else {
       setError(new Error('Invalid address'))
     }
-  }, [address, lotusRPC])
+  }, [address, lotusApi])
 
   return { availableBalance: balance, loading, error }
 }
