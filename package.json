@@ -1,6 +1,6 @@
 {
   "name": "@glif/react-components",
-  "version": "2.0.0-alpha.147",
+  "version": "2.0.0-alpha.150",
   "description": "Shared react components for @glif projects",
   "main": "dist/index.js",
   "repository": {
@@ -21,7 +21,7 @@
     "codegen:actorCids": "node src/scripts/generate_actor_codes.mjs && eslint ./src/generated/actorCodes.ts --fix",
     "codegen:graphql": "graphql-codegen --config codegen.yml && eslint ./src/generated/graphql.tsx --fix",
     "build": "run-s clean codegen build:*",
-    "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --source-maps --ignore 'src/**/*.stories.jsx','src/**/*.test.jsx','src/**/*.test.js','src/**/*.test.tsx','src/**/*.test.ts','src/test-utils/**/*'",
+    "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --source-maps --ignore 'src/**/*.stories.jsx','src/**/*.test.jsx','src/**/*.test.js','src/**/*.test.tsx','src/**/*.test.ts'",
     "build:types": "tsc --emitDeclarationOnly",
     "watch": "npm run clean && run-p watch:*",
     "watch:babel": "npm run codegen && npm run build:babel -- --watch",
@@ -104,6 +104,7 @@
     "graphql": "^16.2.0",
     "graphql-ws": "^5.9.0",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
     "lodash.pick": "^4.4.0",
     "multiformats": "^9.6.5",
     "prop-types": "^15.7.2",

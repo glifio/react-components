@@ -27,6 +27,7 @@ import {
   WalletProviderOpts
 } from '../../services'
 import { useLogger } from '../../services/EnvironmentProvider'
+import { WarnPotentialDup } from './WarnPotentialDup'
 
 export const TransactionForm = ({
   children,
@@ -167,6 +168,7 @@ export const TransactionForm = ({
                 txState={txState}
                 onUpdate={getGasParams}
               />
+              <WarnPotentialDup message={messageWithGas} wallet={wallet} />
               {txState >= TxState.FillingTxFee && total && (
                 <TransactionTotal total={total} />
               )}

@@ -8,6 +8,7 @@ import WalletProviderWrapper, {
 
 import { useBalancePoller } from '.'
 import { composeWalletProviderState } from '../../test-utils/composeMockAppTree/composeState'
+import { TestEnvironment } from '../../test-utils/TestEnvironment'
 
 jest.mock('@glif/filecoin-rpc-client')
 jest.mock('../WalletProvider')
@@ -31,15 +32,17 @@ describe('useBalancePoller', () => {
     }
 
     Tree = ({ children }) => (
-      <SWRConfig value={{ dedupingInterval: 0 }}>
-        <WalletProviderWrapper
-          getState={cacheWalletProviderState}
-          statePreset={statePreset}
-          initialState={walletProviderInitialState}
-        >
-          {children}
-        </WalletProviderWrapper>
-      </SWRConfig>
+      <TestEnvironment>
+        <SWRConfig value={{ dedupingInterval: 0 }}>
+          <WalletProviderWrapper
+            getState={cacheWalletProviderState}
+            statePreset={statePreset}
+            initialState={walletProviderInitialState}
+          >
+            {children}
+          </WalletProviderWrapper>
+        </SWRConfig>
+      </TestEnvironment>
     )
 
     const bigBal = new FilecoinNumber('100', 'fil')
@@ -81,15 +84,17 @@ describe('useBalancePoller', () => {
     }
 
     Tree = ({ children }) => (
-      <SWRConfig value={{ dedupingInterval: 0 }}>
-        <WalletProviderWrapper
-          getState={cacheWalletProviderState}
-          statePreset={statePreset}
-          initialState={walletProviderInitialState}
-        >
-          {children}
-        </WalletProviderWrapper>
-      </SWRConfig>
+      <TestEnvironment>
+        <SWRConfig value={{ dedupingInterval: 0 }}>
+          <WalletProviderWrapper
+            getState={cacheWalletProviderState}
+            statePreset={statePreset}
+            initialState={walletProviderInitialState}
+          >
+            {children}
+          </WalletProviderWrapper>
+        </SWRConfig>
+      </TestEnvironment>
     )
 
     const bigBal = new FilecoinNumber('100', 'fil')

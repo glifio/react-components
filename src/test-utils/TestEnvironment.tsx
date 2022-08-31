@@ -1,5 +1,6 @@
 import React from 'react'
 import { CoinType } from '@glif/filecoin-address'
+import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { Environment, Network, networks } from '../services/EnvironmentProvider'
 
 export const TestEnvironment = ({ children }) => (
@@ -10,6 +11,11 @@ export const TestEnvironment = ({ children }) => (
     graphUrl={networks[Network.CALIBRATION].graphUrl}
     lotusApiUrl='https://api.calibration.node.glif.io/'
     explorerUrl='https://explorer-calibration.glif.link'
+    lotusApi={
+      new LotusRPCEngine({
+        apiAddress: networks[Network.CALIBRATION].lotusApiUrl
+      })
+    }
   >
     {children}
   </Environment>
