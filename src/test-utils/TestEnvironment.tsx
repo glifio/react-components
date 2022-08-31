@@ -6,10 +6,10 @@ import { Environment, Network, networks } from '../services/EnvironmentProvider'
 export const TestEnvironment = ({ children }) => (
   <Environment
     coinType={CoinType.TEST}
-    networkName={Network.WALLABY}
-    nodeStatusApiKey={networks[Network.WALLABY].nodeStatusApiKey}
-    graphUrl={networks[Network.WALLABY].graphUrl}
-    lotusApiUrl={networks[Network.WALLABY].lotusApiUrl}
+    networkName={Network.CALIBRATION}
+    nodeStatusApiKey={networks[Network.CALIBRATION].nodeStatusApiKey}
+    graphUrl={networks[Network.CALIBRATION].graphUrl}
+    lotusApiUrl={networks[Network.CALIBRATION].lotusApiUrl}
     explorerUrl='https://explorer-calibration.glif.link'
     lotusApi={
       new LotusRPCEngine({
