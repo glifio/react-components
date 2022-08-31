@@ -21,7 +21,7 @@
     "codegen:actorCids": "node src/scripts/generate_actor_codes.mjs && eslint ./src/generated/actorCodes.ts --fix",
     "codegen:graphql": "graphql-codegen --config codegen.yml && eslint ./src/generated/graphql.tsx --fix",
     "build": "run-s clean codegen build:*",
-    "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --source-maps --ignore 'src/**/*.stories.jsx','src/**/*.test.jsx','src/**/*.test.js','src/**/*.test.tsx','src/**/*.test.ts','src/test-utils/**/*'",
+    "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --source-maps --ignore 'src/**/*.stories.jsx','src/**/*.test.jsx','src/**/*.test.js','src/**/*.test.tsx','src/**/*.test.ts'",
     "build:types": "tsc --emitDeclarationOnly",
     "watch": "npm run clean && run-p watch:*",
     "watch:babel": "npm run codegen && npm run build:babel -- --watch",
