@@ -267,6 +267,7 @@ export type BuiltInActorName =
   | 'multisig'
   | 'reward'
   | 'verifiedregistry'
+  | 'evm'
 
 export type BuiltInActorRecord = [BuiltInActorName, CID]
 
