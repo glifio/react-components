@@ -1,7 +1,6 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { LotusActorState } from '@glif/filecoin-actor-utils'
 import { validateAddressString } from '@glif/filecoin-address'
-import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
 import { useEnvironment } from '../../services/EnvironmentProvider'
 
@@ -19,15 +18,7 @@ export const useStateReadState = <T = object | null>(
   const [loading, setLoading] = useState<boolean>(false)
   const [notFound, setNotFound] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
-  const { lotusApiUrl: apiAddress } = useEnvironment()
-
-  const lotusRPC = useMemo(
-    () =>
-      new LotusRPCEngine({
-        apiAddress
-      }),
-    [apiAddress]
-  )
+  const { lotusApi } = useEnvironment()
 
   useEffect(() => {
     setData(null)
@@ -36,7 +27,7 @@ export const useStateReadState = <T = object | null>(
     if (!address) return
     if (validateAddressString(address)) {
       setLoading(true)
-      lotusRPC
+      lotusApi
         .request<LotusActorState<T>>('StateReadState', address, null)
         .then((a: LotusActorState<T>) => setData(a))
         .catch((e: Error) => {
@@ -48,7 +39,7 @@ export const useStateReadState = <T = object | null>(
     } else {
       setError(new Error('Invalid address'))
     }
-  }, [address, lotusRPC])
+  }, [address, lotusApi])
 
   return { data, loading, notFound, error }
 }
