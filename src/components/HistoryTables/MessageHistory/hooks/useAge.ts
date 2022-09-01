@@ -1,8 +1,12 @@
-import dayjs, { Dayjs } from 'dayjs'
+import dayjs from 'dayjs'
 import { MessageConfirmedRow, MessagePendingRow } from '../../types'
 import { useTipsetQuery } from '../../../../generated/graphql'
 
-export const useUnformattedDateTime = (message: AgeHookArgs): Dayjs | null => {
+export const useAge = (
+  message: (MessageConfirmedRow | MessagePendingRow) & {
+    height?: number | string
+  }
+): string => {
   const { data: tipsetData } = useTipsetQuery({
     variables: {
       height: Number(message?.height)
@@ -10,16 +14,9 @@ export const useUnformattedDateTime = (message: AgeHookArgs): Dayjs | null => {
     skip: !message || !message?.height
   })
 
-  if (!tipsetData?.tipset?.minTimestamp) return null
+  if (!tipsetData?.tipset?.minTimestamp) return '...'
 
-  return dayjs.unix(tipsetData.tipset.minTimestamp)
-}
-
-export const useAge = (message: AgeHookArgs): string => {
-  const unformattedTime = useUnformattedDateTime(message)
-  return unformattedTime ? unformattedTime.format('YYYY-MM-DD hh:mm:ss') : '...'
-}
-
-type AgeHookArgs = (MessageConfirmedRow | MessagePendingRow) & {
-  height?: number | string
+  return dayjs
+    .unix(tipsetData.tipset.minTimestamp)
+    .format('YYYY-MM-DD hh:mm:ss')
 }
