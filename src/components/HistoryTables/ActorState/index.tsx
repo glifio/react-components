@@ -106,14 +106,14 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
       />
       {!loading && !error && !actorNotFound && (
         <Lines>
+          {addressData?.address.id && (
+            <Line label='ID address'>{addressData?.address.id}</Line>
+          )}
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
           )}
-          {addressData?.address.id && (
-            <Line label='ID'>{addressData?.address.id}</Line>
-          )}
-          <Line label='Actor Name'>{actorName || 'unknown'}</Line>
-          <Line label='Actor Code'>{actorData.Code['/']}</Line>
+          <Line label='Actor name'>{actorName || 'unknown'}</Line>
+          <Line label='Actor code'>{actorData.Code['/']}</Line>
           <Line label='Balance'>
             {new FilecoinNumber(actorData.Balance, 'attofil').toFil()} FIL
           </Line>
