@@ -33,34 +33,43 @@ DataTypeLine.propTypes = {
  */
 
 export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
-  const { Name: name, Type: type, Value: value } = dataType
+  const { Name, Value } = dataType
   const logger = useLogger()
 
-  switch (type) {
+  switch (dataType.Type) {
     case Type.Bool:
-      const boolVal = value as boolean
+      const boolVal = Value as boolean
       return <>{boolVal.toString()}</>
 
     case Type.String:
-      const strVal = value as string
+      const strVal = Value as string
 
-      if (dataType.Name === 'Address')
+      if (Name === 'Address')
         return (
           <AddressLink address={strVal} fetchAddress hideCopyText={false} />
         )
 
-      return <>{value}</>
+      return <>{Value}</>
 
     case Type.Number:
-      const numVal = value as number
+      const numVal = Value as number
       return <>{numVal}</>
+
+    case Type.Array:
+      const arrVal = Value as Array<boolean | string | number>
+      return <>{arrVal.join(', ')}</>
+
+    case Type.Object:
+      if (Name === 'Cid') {
+        const cid = dataType.Children['/'].Value as string
+        return <>CID: {cid}</>
+      }
+      return <>{JSON.stringify(Value)}</>
+
+    default:
+      logger.error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
+      return <>{JSON.stringify(Value)}</>
   }
-
-  logger.warn(
-    `Failed to interpret DataType, name: ${name}, type: ${type}, value: ${value}`
-  )
-
-  return <>{value}</>
 }
 
 interface DataTypeValueProps {
