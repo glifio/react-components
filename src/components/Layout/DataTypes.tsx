@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { DataType, Type } from '@glif/filecoin-actor-utils'
+import { DataType, DataTypeMap, Type } from '@glif/filecoin-actor-utils'
 
 import { Line } from './Lines'
 import { AddressLink } from '../LabeledText/AddressLink'
@@ -54,6 +54,41 @@ DataTypeLines.propTypes = {
   label: PropTypes.string,
   depth: PropTypes.number,
   dataType: PropTypes.object.isRequired
+}
+
+/**
+ * DataTypeMapLines
+ * Renders a DataTypeMap on multiple lines
+ */
+
+export const DataTypeMapLines = ({
+  label,
+  depth,
+  dataTypeMap
+}: DataTypeMapLinesProps) => (
+  <>
+    <Line label={label} depth={depth} />
+    {Object.entries(dataTypeMap).map(([key, dt], i) => (
+      <DataTypeLines
+        key={`${label}-${depth}-${i}-${key}`}
+        label={key}
+        depth={depth}
+        dataType={dt}
+      />
+    ))}
+  </>
+)
+
+interface DataTypeMapLinesProps {
+  label?: string
+  depth?: number
+  dataTypeMap: DataTypeMap
+}
+
+DataTypeMapLines.propTypes = {
+  label: PropTypes.string,
+  depth: PropTypes.number,
+  dataTypeMap: PropTypes.object.isRequired
 }
 
 /**
