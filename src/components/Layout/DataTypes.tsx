@@ -60,10 +60,13 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
       return <>{arrVal.join(', ')}</>
 
     case Type.Object:
+      const { Children } = dataType
+
       if (Name === 'Cid') {
-        const cid = dataType.Children['/'].Value as string
+        const cid = Children['/'].Value as string
         return <>CID: {cid}</>
       }
+
       return <>{JSON.stringify(Value)}</>
 
     default:
