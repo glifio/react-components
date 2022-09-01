@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { useState } from 'react'
 import { DataType, DataTypeMap, Type } from '@glif/filecoin-actor-utils'
 
 import { Line } from './Lines'
@@ -80,30 +81,47 @@ DataTypeLines.propTypes = {
 export const DataTypeMapLines = ({
   label,
   depth,
+  collapsable,
+  collapseName,
   dataTypeMap
-}: DataTypeMapLinesProps) => (
-  <>
-    {label && <Line label={label} depth={depth} />}
-    {Object.entries(dataTypeMap).map(([key, dt], i) => (
-      <DataTypeLines
-        key={`${label}-${depth}-${i}-${key}`}
-        label={key}
-        depth={label ? (depth ?? 0) + 1 : depth}
-        dataType={dt}
-      />
-    ))}
-  </>
-)
+}: DataTypeMapLinesProps) => {
+  const [collapsed, setCollapsed] = useState<boolean>(collapsable)
+
+  return (
+    <>
+      <Line label={label} depth={depth}>
+        {collapsable && (
+          <p role='button' onClick={() => setCollapsed(!collapsed)}>
+            Click to{' '}
+            {collapsed ? `show ${collapseName} ↓` : `hide ${collapseName} ↑`}
+          </p>
+        )}
+      </Line>
+      {!collapsed && Object.entries(dataTypeMap).map(([key, dt], i) => (
+        <DataTypeLines
+          key={`${label}-${depth}-${i}-${key}`}
+          label={key}
+          depth={(depth ?? 0) + 1}
+          dataType={dt}
+        />
+      ))}
+    </>
+  )
+}
 
 interface DataTypeMapLinesProps {
-  label?: string
+  label: string
   depth?: number
+  collapsable?: boolean
+  collapseName?: string
   dataTypeMap: DataTypeMap
 }
 
 DataTypeMapLines.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
   depth: PropTypes.number,
+  collapsable: PropTypes.bool,
+  collapseName: PropTypes.string,
   dataTypeMap: PropTypes.object.isRequired
 }
 
