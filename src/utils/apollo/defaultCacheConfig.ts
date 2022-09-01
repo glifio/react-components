@@ -1,5 +1,4 @@
 import { InMemoryCacheConfig } from '@apollo/client'
-import { removeMessageDups } from './utils'
 
 // The params field is expected to be a JSON string
 // or null. Both are safe to pass to JSON parse. The
@@ -18,6 +17,26 @@ const parseParams = (_: any, incoming: any) => {
     console.error(e)
     return null
   }
+}
+
+export function removeMessageDups(
+  existing: { __ref: any }[],
+  incoming: { __ref: any }[],
+  args: { offset: number; limit: number }
+) {
+  const head = [...existing]
+  const tail = head.splice(args.offset * args.limit)
+  const merged = [].concat(head, incoming, tail)
+
+  const found = new Set([])
+  return [...merged].filter(ele => {
+    if (!found.has(ele.__ref)) {
+      found.add(ele.__ref)
+      return true
+    }
+
+    return false
+  })
 }
 
 export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
@@ -48,7 +67,7 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
       }
     },
     Block: {
-      keyFields: ['Cid']
+      keyFields: ['cid']
     },
     Message: {
       keyFields: ['cid'],
@@ -57,6 +76,12 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
           merge: parseParams
         }
       }
+    },
+    Tipset: {
+      keyFields: ['height']
+    },
+    StateReplay: {
+      keyFields: ['cid']
     },
     Address: {
       keyFields: ['robust', 'id']
