@@ -1,26 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Message history it renders messages 1`] = `
-.c3 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: var(--space-m);
-  padding: 0 1em;
-  height: 2em;
-  line-height: 2em;
-  border-radius: 1em;
-  text-align: center;
-  white-space: nowrap;
-  color: var(--purple-medium);
-  background-color: var(--purple-light);
-}
-
 .c6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -121,6 +101,10 @@ exports[`Message history it renders messages 1`] = `
   color: var(--purple-medium);
 }
 
+.c3 > td.capitalize {
+  text-transform: capitalize;
+}
+
 .c2 {
   color: var(--yellow-dark);
 }
@@ -188,7 +172,9 @@ exports[`Message history it renders messages 1`] = `
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr
+          class="c3"
+        >
           <td>
             <a
               href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk0qmchbhjx7q747jghal3l4g"
@@ -196,21 +182,16 @@ exports[`Message history it renders messages 1`] = `
               bafy2b ... al3l4g
             </a>
           </td>
-          <td>
-            <div
-              class="c3"
-              color="purple"
-            >
-              <span>
-                ...
-              </span>
-            </div>
+          <td
+            class="capitalize"
+          >
+            send
           </td>
           <td>
             1020
           </td>
           <td>
-            ...
+            2022-08-02 09:50:30
           </td>
           <td>
             <div
@@ -258,7 +239,9 @@ exports[`Message history it renders messages 1`] = `
             0.000000000000001 FIL
           </td>
         </tr>
-        <tr>
+        <tr
+          class="c3"
+        >
           <td>
             <a
               href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk1qmchbhjx7q747jghal3l4g"
@@ -266,21 +249,16 @@ exports[`Message history it renders messages 1`] = `
               bafy2b ... al3l4g
             </a>
           </td>
-          <td>
-            <div
-              class="c3"
-              color="purple"
-            >
-              <span>
-                ...
-              </span>
-            </div>
+          <td
+            class="capitalize"
+          >
+            send
           </td>
           <td>
             1020
           </td>
           <td>
-            ...
+            2022-08-02 09:50:30
           </td>
           <td>
             <div
@@ -328,7 +306,9 @@ exports[`Message history it renders messages 1`] = `
             0.000000000000001 FIL
           </td>
         </tr>
-        <tr>
+        <tr
+          class="c3"
+        >
           <td>
             <a
               href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk2qmchbhjx7q747jghal3l4g"
@@ -336,21 +316,16 @@ exports[`Message history it renders messages 1`] = `
               bafy2b ... al3l4g
             </a>
           </td>
-          <td>
-            <div
-              class="c3"
-              color="purple"
-            >
-              <span>
-                ...
-              </span>
-            </div>
+          <td
+            class="capitalize"
+          >
+            send
           </td>
           <td>
             1020
           </td>
           <td>
-            ...
+            2022-08-02 09:50:30
           </td>
           <td>
             <div
@@ -398,7 +373,9 @@ exports[`Message history it renders messages 1`] = `
             0.000000000000001 FIL
           </td>
         </tr>
-        <tr>
+        <tr
+          class="c3"
+        >
           <td>
             <a
               href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk3qmchbhjx7q747jghal3l4g"
@@ -406,21 +383,16 @@ exports[`Message history it renders messages 1`] = `
               bafy2b ... al3l4g
             </a>
           </td>
-          <td>
-            <div
-              class="c3"
-              color="purple"
-            >
-              <span>
-                ...
-              </span>
-            </div>
+          <td
+            class="capitalize"
+          >
+            send
           </td>
           <td>
             1020
           </td>
           <td>
-            ...
+            2022-08-02 09:50:30
           </td>
           <td>
             <div
@@ -468,7 +440,9 @@ exports[`Message history it renders messages 1`] = `
             0.000000000000001 FIL
           </td>
         </tr>
-        <tr>
+        <tr
+          class="c3"
+        >
           <td>
             <a
               href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
@@ -476,21 +450,16 @@ exports[`Message history it renders messages 1`] = `
               bafy2b ... al3l4g
             </a>
           </td>
-          <td>
-            <div
-              class="c3"
-              color="purple"
-            >
-              <span>
-                ...
-              </span>
-            </div>
+          <td
+            class="capitalize"
+          >
+            send
           </td>
           <td>
             1020
           </td>
           <td>
-            ...
+            2022-08-02 09:50:30
           </td>
           <td>
             <div

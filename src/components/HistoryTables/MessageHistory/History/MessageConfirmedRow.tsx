@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
@@ -8,15 +9,21 @@ import {
   MESSAGE_CONFIRMED_ROW_PROP_TYPE
 } from '../../types'
 import { attoFilToFil } from '../../utils'
-import { useAge } from '../hooks/useAge'
+import { useAge } from '../../../../utils/useAge'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
 import truncateAddress from '../../../../utils/truncateAddress'
 
+const MessageHistoryRowWrapper = styled.tr`
+  > td {
+    &.capitalize {
+      text-transform: capitalize;
+    }
+  }
+`
+
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const { message, cidHref, inspectingAddress } = props
-  const time = useMemo(() => Date.now(), [])
-
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
   const fromAddressIsInspecting = useMemo(
     () => isAddrEqual(message.from, inspectingAddress),
@@ -27,18 +34,16 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
     [message.to, inspectingAddress]
   )
   const { methodName } = useMethodName(message)
-  const age = useAge(message, time)
+  const { age } = useAge(message?.height)
 
   return (
-    <tr>
+    <MessageHistoryRowWrapper>
       <td>
         <SmartLink href={cidHref(message.cid)}>
           {truncateAddress(message.cid)}
         </SmartLink>
       </td>
-      <td>
-        <Badge color='purple' text={methodName} />
-      </td>
+      <td className='capitalize'>{methodName}</td>
       <td>{message.height}</td>
       <td>{age}</td>
       <td>
@@ -66,7 +71,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         />
       </td>
       <td>{value}</td>
-    </tr>
+    </MessageHistoryRowWrapper>
   )
 }
 

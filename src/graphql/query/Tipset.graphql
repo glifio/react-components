@@ -1,0 +1,15 @@
+query Tipset($height: Uint64!) {
+  tipset(height: $height) {
+    cids
+    blks {
+      cid
+      timestamp
+      miner
+      parentWeight
+      parentBaseFee
+      parentStateRoot
+      winCount
+    }
+    minTimestamp
+  }
+}

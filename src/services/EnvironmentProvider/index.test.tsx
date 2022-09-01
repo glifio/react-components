@@ -36,15 +36,21 @@ describe('EnvironmentProvider', () => {
   })
 
   describe('switchNetwork', () => {
-    const pushMock = jest.fn()
+    const windowReassignMock = jest.fn()
     beforeAll(() => {
+      global.window = Object.create(window)
+      Object.defineProperty(window, 'location', {
+        value: {
+          assign: windowReassignMock
+        }
+      })
+
       jest.spyOn(require('next/router'), 'useRouter').mockImplementation(() => {
         return {
           asPath: 'https://wallet.glif.io/',
           query: {
             network: Network.CALIBRATION
-          },
-          push: pushMock
+          }
         }
       })
     })
@@ -68,6 +74,9 @@ describe('EnvironmentProvider', () => {
           networks[Network.MAINNET].lotusApiUrl
         )
         expect(result.current.networkName).toBe(Network.MAINNET)
+        expect(windowReassignMock).toHaveBeenCalledWith(
+          'https://wallet.glif.io/'
+        )
       })
     })
   })

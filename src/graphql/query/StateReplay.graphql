@@ -1,0 +1,21 @@
+query StateReplay($cid: String!) {
+  stateReplay(cid: $cid) {
+    receipt {
+      return
+      exitCode
+      gasUsed
+    }
+    gasCost {
+      baseFeeBurn
+      overEstimationBurn
+      minerPenalty
+      minerTip
+      gasUsed
+      refund
+      totalCost
+    }
+    executionTrace {
+      executionTrace
+    }
+  }
+}

@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
+import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
@@ -11,14 +12,16 @@ import {
 import { IconCheck, IconPending, IconClock } from '../Icons'
 import { Badge, Lines, Line, AddressLine } from '../Layout'
 import { getMethodName } from './methodName'
-import { useUnformattedDateTime } from './MessageHistory/hooks/useAge'
+import { useAge } from '../../utils/useAge'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
 import { Colors } from '../theme'
 import {
+  EXECUTION_TRACE_PROPTYPE,
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
 } from '../../customPropTypes'
+import { CidLink } from '../LabeledText/CidLink'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -236,10 +239,9 @@ export const MessageDetailBase = ({
   exitCode,
   cid,
   methodName,
-  confirmations,
-  time
+  confirmations
 }: MessageDetailBaseProps) => {
-  const unformattedTime = useUnformattedDateTime(message, time)
+  const { age } = useAge(message?.height)
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -257,7 +259,14 @@ export const MessageDetailBase = ({
 
   return (
     <>
-      <Line label='CID'>{cid}</Line>
+      <Line label='CID'>
+        <CidLink
+          cid={cid}
+          hideCopyText={false}
+          hideCopy={false}
+          shouldTruncate={false}
+        />
+      </Line>
       {Number(exitCode) >= 0 && (
         <Line label='Status and Confirmations'>
           <Status exitCode={exitCode} pending={pending} />
@@ -275,11 +284,7 @@ export const MessageDetailBase = ({
         ) : (
           <>
             <IconClock width='1.125em' />
-            {unformattedTime
-              ? `${unformattedTime?.from(
-                  time
-                )} (${unformattedTime?.toString()})`
-              : ''}
+            {age}
           </>
         )}
       </Line>
@@ -398,11 +403,13 @@ type SeeMoreContentProps = {
   gasUsed: number
   gasCost: GasCost
   actorName: string
+  executionTrace: ExecutionTrace
 }
 
 SeeMoreContent.propTypes = {
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   gasUsed: PropTypes.number.isRequired,
   gasCost: GRAPHQL_GAS_COST_PROPTYPE.isRequired,
-  actorName: PropTypes.string.isRequired
+  actorName: PropTypes.string.isRequired,
+  executionTrace: EXECUTION_TRACE_PROPTYPE.isRequired
 }
