@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useMemo, useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import {
+  DataTypeMap,
   getActorName,
   describeLotusActorState
 } from '@glif/filecoin-actor-utils'
@@ -18,6 +19,7 @@ import {
   useEnvironment,
   useLogger
 } from '../../../services/EnvironmentProvider'
+import { DataTypeMapLines } from '../../Layout/DataTypes'
 
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const logger = useLogger()
@@ -55,7 +57,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   )
 
   // Get actor state with descriptors
-  const describedState = useMemo<object | null>(
+  const describedState = useMemo<DataTypeMap | null>(
     () => (actorData ? describeLotusActorState(actorData) : null),
     [actorData]
   )
@@ -136,9 +138,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
               {showActorState ? 'hide actor state ↑' : 'show actor state ↓'}
             </p>
           </Line>
-          {showActorState && (
-            <pre>{JSON.stringify(describedState, null, 2)}</pre>
-          )}
+          {showActorState && <DataTypeMapLines dataTypeMap={describedState} />}
         </Lines>
       )}
     </div>
