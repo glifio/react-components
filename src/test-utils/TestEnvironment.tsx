@@ -9,7 +9,7 @@ export const TestEnvironment = ({ children }) => (
     networkName={Network.CALIBRATION}
     nodeStatusApiKey={networks[Network.CALIBRATION].nodeStatusApiKey}
     graphUrl={networks[Network.CALIBRATION].graphUrl}
-    lotusApiUrl='https://api.calibration.node.glif.io/'
+    lotusApiUrl={networks[Network.CALIBRATION].lotusApiUrl}
     explorerUrl='https://explorer-calibration.glif.link'
     lotusApi={
       new LotusRPCEngine({

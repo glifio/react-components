@@ -79,19 +79,19 @@ const generateActorCIDs = async apiAddress => {
 async function main() {
   const supportedNetworkRPCs = [
     'https://api.node.glif.io',
-    'https://api.calibration.node.glif.io'
+    'https://api.calibration.node.glif.io',
+    'https://wallaby.dev.node.glif.io/archive/lotus/rpc/v0'
   ]
 
   console.log(
     'Fetching actor codes for the following networks: ',
     supportedNetworkRPCs.join(' ')
   )
-  const [mainnet, calibration] = await Promise.all(
+  const [mainnet, calibration, wallaby] = await Promise.all(
     supportedNetworkRPCs.map(generateActorCIDs)
   )
 
-  // f and t are network codes, f mainnet, t testnet
-  const json = { mainnet, calibration, wallaby: {} }
+  const json = { mainnet, calibration, wallaby }
 
   console.log('Fetched actor codes: ', JSON.stringify(json, null, 2))
 

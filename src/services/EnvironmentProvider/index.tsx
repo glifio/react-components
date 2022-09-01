@@ -100,9 +100,9 @@ export const networks: Record<Network, NetworkInfo> = {
     coinType: CoinType.TEST
   },
   [Network.WALLABY]: {
-    nodeStatusApiKey: '',
-    graphUrl: '',
-    lotusApiUrl: '',
+    nodeStatusApiKey: 'm792585234-2e992345ecb11cd5846f7161',
+    graphUrl: 'graph-wallaby.glif.link/query',
+    lotusApiUrl: 'https://wallaby.dev.node.glif.io/archive/lotus/rpc/v0',
     networkName: Network.WALLABY,
     coinType: CoinType.TEST
   }
