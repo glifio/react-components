@@ -1,6 +1,5 @@
 import React from 'react'
 import { render, act, screen, waitFor, fireEvent } from '@testing-library/react'
-import { MockedProvider } from '@apollo/client/testing'
 import ThemeProvider from '../../../ThemeProvider'
 import theme from '../../../theme'
 import MessageDetail from '.'
@@ -10,10 +9,7 @@ import {
   WALLET_ID,
   WALLET_ID_2
 } from '../../../../test-utils/constants'
-import {
-  GasCostDocument,
-  MessageReceiptDocument
-} from '../../../../generated/graphql'
+import { StateReplayDocument } from '../../../../generated/graphql'
 import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
 jest
@@ -69,16 +65,14 @@ describe('Message detail view', () => {
 
     act(() => {
       const res = render(
-        <TestEnvironment>
-          <MockedProvider>
-            <ThemeProvider theme={theme}>
-              <MessageDetail
-                cid={cid}
-                speedUpHref='/speed-up'
-                cancelHref='/cancel'
-              />
-            </ThemeProvider>
-          </MockedProvider>
+        <TestEnvironment withApollo>
+          <ThemeProvider theme={theme}>
+            <MessageDetail
+              cid={cid}
+              speedUpHref='/speed-up'
+              cancelHref='/cancel'
+            />
+          </ThemeProvider>
         </TestEnvironment>
       )
       container = res.container
@@ -111,16 +105,14 @@ describe('Message detail view', () => {
 
     act(() => {
       const res = render(
-        <TestEnvironment>
-          <MockedProvider>
-            <ThemeProvider theme={theme}>
-              <MessageDetail
-                cid={cid}
-                speedUpHref='/speed-up'
-                cancelHref='/cancel'
-              />
-            </ThemeProvider>
-          </MockedProvider>
+        <TestEnvironment withApollo>
+          <ThemeProvider theme={theme}>
+            <MessageDetail
+              cid={cid}
+              speedUpHref='/speed-up'
+              cancelHref='/cancel'
+            />
+          </ThemeProvider>
         </TestEnvironment>
       )
       container = res.container
@@ -151,16 +143,14 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <TestEnvironment>
-          <MockedProvider>
-            <ThemeProvider theme={theme}>
-              <MessageDetail
-                cid={cid}
-                speedUpHref='/speed-up'
-                cancelHref='/cancel'
-              />
-            </ThemeProvider>
-          </MockedProvider>
+        <TestEnvironment withApollo>
+          <ThemeProvider theme={theme}>
+            <MessageDetail
+              cid={cid}
+              speedUpHref='/speed-up'
+              cancelHref='/cancel'
+            />
+          </ThemeProvider>
         </TestEnvironment>
       )
       container = res.container
@@ -205,17 +195,15 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <TestEnvironment>
-          <MockedProvider>
-            <ThemeProvider theme={theme}>
-              <MessageDetail
-                cid={cid}
-                speedUpHref='/speed-up'
-                cancelHref='/cancel'
-                confirmations={50}
-              />
-            </ThemeProvider>
-          </MockedProvider>
+        <TestEnvironment withApollo>
+          <ThemeProvider theme={theme}>
+            <MessageDetail
+              cid={cid}
+              speedUpHref='/speed-up'
+              cancelHref='/cancel'
+              confirmations={50}
+            />
+          </ThemeProvider>
         </TestEnvironment>
       )
       container = res.container
@@ -257,19 +245,20 @@ describe('Message detail view', () => {
 
     await act(async () => {
       const res = render(
-        <TestEnvironment>
-          <MockedProvider
-            mocks={[
-              {
-                request: {
-                  query: GasCostDocument,
-                  variables: {
-                    cid
-                  }
-                },
-                result: {
-                  data: {
-                    gascost: {
+        <TestEnvironment
+          withApollo
+          apolloMocks={[
+            {
+              request: {
+                query: StateReplayDocument,
+                variables: {
+                  cid
+                }
+              },
+              result: {
+                data: {
+                  stateReplay: {
+                    gasCost: {
                       gasUsed: 100,
                       baseFeeBurn: '100',
                       minerPenalty: '100',
@@ -277,38 +266,57 @@ describe('Message detail view', () => {
                       overEstimationBurn: '100',
                       refund: '100',
                       totalCost: '100'
-                    }
-                  }
-                }
-              },
-              {
-                request: {
-                  query: MessageReceiptDocument,
-                  variables: {
-                    cid
-                  }
-                },
-                result: {
-                  data: {
+                    },
                     receipt: {
                       exitCode: 0,
                       return: '',
                       gasUsed: 100
+                    },
+                    executionTrace: {
+                      executionTrace: {
+                        Duration: 1468352,
+                        Error: '',
+                        GasCharges: null,
+                        Msg: {
+                          CID: {
+                            '/': 'bafy2bzacedypi4a2z4x74dd2aelkxn44m5hylbcrlwxzqlwarkbl223qqmehk'
+                          },
+                          From: 't13koa6kz5otquokcgwusvtsxcdymuq7lqe4twb4i',
+                          GasFeeCap: '100401',
+                          GasLimit: 20487316,
+                          GasPremium: '99347',
+                          Method: 2,
+                          Nonce: 267,
+                          Params:
+                            'gtgqWCcAAVWg5AIgveswPFOPTNaXlRZxGRZNPygpY7FexhrfGENjM6vXf8hYG4SBVQHanA8rPXThRyhGtSVZyuIeGUh9cAEAAA==',
+                          To: 't01',
+                          Value: '1000000000000000000',
+                          Version: 0
+                        },
+
+                        MsgRct: {
+                          ExitCode: 0,
+                          GasUsed: 16389853,
+                          Return: 'gkQA364CVQKyggGxLxtInN+sLWmSJVZQr2b7Iw=='
+                        },
+
+                        Subcalls: null
+                      }
                     }
                   }
                 }
               }
-            ]}
-          >
-            <ThemeProvider theme={theme}>
-              <MessageDetail
-                cid={cid}
-                speedUpHref='/speed-up'
-                cancelHref='/cancel'
-                confirmations={50}
-              />
-            </ThemeProvider>
-          </MockedProvider>
+            }
+          ]}
+        >
+          <ThemeProvider theme={theme}>
+            <MessageDetail
+              cid={cid}
+              speedUpHref='/speed-up'
+              cancelHref='/cancel'
+              confirmations={50}
+            />
+          </ThemeProvider>
         </TestEnvironment>
       )
       container = res.container

@@ -1,6 +1,5 @@
 import React from 'react'
 import { render, act, screen } from '@testing-library/react'
-import { MockedProvider } from '@apollo/client/testing'
 import ThemeProvider from '../../../ThemeProvider'
 import theme from '../../../theme'
 import MessageHistory from '.'
@@ -13,7 +12,13 @@ import {
 import { MessageConfirmedRow } from '../../types'
 import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
-jest.mock('dayjs')
+jest
+  .spyOn(require('../hooks/useAge'), 'useAge')
+  .mockImplementation(() => '2022-08-02 09:50:30')
+
+jest
+  .spyOn(require('../hooks/useMethodName'), 'useMethodName')
+  .mockImplementation(() => ({ methodName: 'send' }))
 
 describe('Message history', () => {
   test('it renders no message history correctly with historical data missing warning', async () => {
@@ -35,7 +40,7 @@ describe('Message history', () => {
 
     act(() => {
       const res = render(
-        <MockedProvider>
+        <TestEnvironment withApollo>
           <ThemeProvider theme={theme}>
             <MessageHistory
               offset={0}
@@ -44,7 +49,7 @@ describe('Message history', () => {
               warnMissingData
             />
           </ThemeProvider>
-        </MockedProvider>
+        </TestEnvironment>
       )
       container = res.container
     })
@@ -93,17 +98,15 @@ describe('Message history', () => {
 
     act(() => {
       const res = render(
-        <TestEnvironment>
-          <MockedProvider>
-            <ThemeProvider theme={theme}>
-              <MessageHistory
-                offset={0}
-                address={WALLET_ADDRESS}
-                cidHref={cid => `/message/?cid=${cid}`}
-                warnMissingData
-              />
-            </ThemeProvider>
-          </MockedProvider>
+        <TestEnvironment withApollo>
+          <ThemeProvider theme={theme}>
+            <MessageHistory
+              offset={0}
+              address={WALLET_ADDRESS}
+              cidHref={cid => `/message/?cid=${cid}`}
+              warnMissingData
+            />
+          </ThemeProvider>
         </TestEnvironment>
       )
       container = res.container
