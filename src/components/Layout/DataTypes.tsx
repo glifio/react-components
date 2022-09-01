@@ -150,16 +150,6 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
       const arrVal = Value as Array<boolean | string | number>
       return <>{arrVal.join(', ')}</>
 
-    case Type.Object:
-      const { Children } = dataType
-
-      if (Name === 'Cid') {
-        const cid = Children['/'].Value as string
-        return <>CID: {cid}</>
-      }
-
-      return <>{JSON.stringify(Value)}</>
-
     default:
       throw new Error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
   }
