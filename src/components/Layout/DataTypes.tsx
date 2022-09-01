@@ -3,7 +3,41 @@ import { DataType, Type } from '@glif/filecoin-actor-utils'
 
 import { Line } from './Lines'
 import { AddressLink } from '../LabeledText/AddressLink'
-import { useLogger } from '../../services'
+
+/**
+ * DataTypeLines
+ * Renders a DataType on multiple lines, depending on the contents
+ */
+
+export const DataTypeLines = ({ dataType, ...props }: DataTypeLinesProps) => {
+  switch (dataType.Type) {
+    case Type.Bool:
+    case Type.String:
+    case Type.Number:
+      return <DataTypeLine dataType={dataType} {...props} />
+
+    case Type.Array:
+      return <></>
+
+    case Type.Object:
+      return <></>
+
+    default:
+      throw new Error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
+  }
+}
+
+interface DataTypeLinesProps {
+  label?: string
+  depth?: number
+  dataType: DataType
+}
+
+DataTypeLines.propTypes = {
+  label: PropTypes.string,
+  depth: PropTypes.number,
+  dataType: PropTypes.object.isRequired
+}
 
 /**
  * DataTypeLine
