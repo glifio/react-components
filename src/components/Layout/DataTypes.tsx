@@ -42,11 +42,13 @@ export const DataTypeLines = ({
 
       if (Name === 'Cid') {
         const cid = Children['/'].Value as string
-        return <DataTypeLine
-          label={`${label} (CID)`}
-          depth={depth}
-          dataType={{ Name, Type: Type.String, Value: cid }}
-        />
+        return (
+          <DataTypeLine
+            label={`${label} (CID)`}
+            depth={depth}
+            dataType={{ Name, Type: Type.String, Value: cid }}
+          />
+        )
       }
 
       return (
