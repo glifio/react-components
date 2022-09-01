@@ -42,7 +42,9 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
       const strVal = value as string
 
       if (dataType.Name === 'Address')
-        return <AddressLink address={strVal} fetchAddress hideCopyText={false} />
+        return (
+          <AddressLink address={strVal} fetchAddress hideCopyText={false} />
+        )
 
       return <>{value}</>
 
