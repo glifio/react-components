@@ -9,12 +9,12 @@ import { AddressLink } from '../LabeledText/AddressLink'
  * Renders a DataType on multiple lines, depending on the contents
  */
 
-export const DataTypeLines = ({ dataType, ...props }: DataTypeLinesProps) => {
+export const DataTypeLines = ({ label, depth, dataType }: DataTypeLinesProps) => {
   switch (dataType.Type) {
     case Type.Bool:
     case Type.String:
     case Type.Number:
-      return <DataTypeLine dataType={dataType} {...props} />
+      return <DataTypeLine label={label} depth={depth} dataType={dataType} />
 
     case Type.Array:
       return <></>
