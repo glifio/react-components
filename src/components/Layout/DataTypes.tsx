@@ -67,8 +67,7 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
       return <>{JSON.stringify(Value)}</>
 
     default:
-      logger.error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
-      return <>{JSON.stringify(Value)}</>
+      throw new Error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
   }
 }
 
