@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
+import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 import { CoinType } from '@glif/filecoin-address'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
 import { Environment, Network, networks } from '../services/EnvironmentProvider'
 
-export const TestEnvironment = ({ children }) => (
+const OptionalApolloMockProvider = ({ children, mocks, withApollo }) => {
+  if (withApollo || mocks.length > 0)
+    return <MockedProvider mocks={mocks}>{children}</MockedProvider>
+
+  return <>{children}</>
+}
+
+export const TestEnvironment = ({
+  children,
+  withApollo,
+  apolloMocks
+}: TestEnvironmentProps) => (
   <Environment
     coinType={CoinType.TEST}
     networkName={Network.CALIBRATION}
@@ -17,6 +29,19 @@ export const TestEnvironment = ({ children }) => (
       })
     }
   >
-    {children}
+    <OptionalApolloMockProvider withApollo={withApollo} mocks={apolloMocks}>
+      {children}
+    </OptionalApolloMockProvider>
   </Environment>
 )
+
+type TestEnvironmentProps = {
+  children: ReactNode
+  withApollo?: boolean
+  apolloMocks?: MockedResponse[]
+}
+
+TestEnvironment.defaultProps = {
+  withApollo: false,
+  apolloMocks: []
+}

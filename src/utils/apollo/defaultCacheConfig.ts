@@ -1,5 +1,5 @@
 import { InMemoryCacheConfig } from '@apollo/client'
-import { removeMessageDups } from './utils'
+import { removeMessageDups } from '../removeGQLMsgDups'
 
 // The params field is expected to be a JSON string
 // or null. Both are safe to pass to JSON parse. The
@@ -7,10 +7,23 @@ import { removeMessageDups } from './utils'
 const parseParams = (_: any, incoming: any) => {
   try {
     if (incoming) {
-      let params = JSON.parse(incoming)
+      const params = JSON.parse(incoming)
       if (typeof params.Value === 'object' && !!params.Value.Int) {
         params.Value = params.Value.Int
       }
+      return params
+    }
+    return null
+  } catch (e) {
+    console.error(e)
+    return null
+  }
+}
+
+const parseExecutionTrace = (_: any, incoming: any) => {
+  try {
+    if (incoming) {
+      const params = JSON.parse(incoming)
       return params
     }
     return null
@@ -48,13 +61,26 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
       }
     },
     Block: {
-      keyFields: ['Cid']
+      keyFields: ['cid']
     },
     Message: {
       keyFields: ['cid'],
       fields: {
         params: {
           merge: parseParams
+        }
+      }
+    },
+    Tipset: {
+      keyFields: ['height']
+    },
+    StateReplay: {
+      keyFields: ['cid']
+    },
+    ExecutionTrace: {
+      fields: {
+        executionTrace: {
+          merge: parseExecutionTrace
         }
       }
     },

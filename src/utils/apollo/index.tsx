@@ -8,7 +8,8 @@ import {
 } from '@apollo/client'
 import { getMainDefinition } from '@apollo/client/utilities'
 import { WebSocketLink } from '@apollo/client/link/ws'
-import { defaultMessageHistoryClientCacheConfig } from '../../components/HistoryTables/defaultCacheConfig'
+import { defaultMessageHistoryClientCacheConfig } from './defaultCacheConfig'
+
 import { useEnvironment } from '../../services'
 
 const httpLink = (uri: string): HttpLink =>
@@ -58,3 +59,5 @@ export function ApolloWrapper({ children }: { children: ReactNode }) {
   const client = createApolloClient(useEnvironment().graphUrl)
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
+
+export * from './defaultCacheConfig'

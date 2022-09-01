@@ -1,13 +1,8 @@
-import React, { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
-import * as dayjs from 'dayjs'
-import * as relativeTime from 'dayjs/plugin/relativeTime'
-import {
-  Message,
-  useGasCostQuery,
-  useMessageReceiptQuery
-} from '../../../../generated/graphql'
+import { Message, useStateReplayQuery } from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
 import { useMessage } from '../hooks/useAllMessages'
@@ -25,9 +20,6 @@ import {
   useEnvironment,
   useLogger
 } from '../../../../services/EnvironmentProvider'
-
-// add RelativeTime plugin to Day.js
-dayjs.extend(relativeTime.default)
 
 enum MessageState {
   Loading,
@@ -50,26 +42,33 @@ export default function MessageDetail(props: MessageDetailProps) {
   const { isProd } = useEnvironment()
   const logger = useLogger()
 
-  const { data: gasQuery, error: gasStateError } = useGasCostQuery({
-    variables: { cid },
-    pollInterval: 10000
-  })
-  const { data: msgRcptQuery, error: msgRcptError } = useMessageReceiptQuery({
-    variables: { cid },
-    pollInterval: 10000
-  })
+  const { data: stateReplayQuery, error: stateReplayError } =
+    useStateReplayQuery({
+      variables: { cid: props.cid },
+      pollInterval: 30000,
+      fetchPolicy: 'cache-first',
+      // give the message time to execute on-chain before fetching
+      skip: !props.cid || props.confirmations < 2
+    })
 
   const transactionFee = useMemo<string>(() => {
     if (pending) return 'Pending...'
-    const cost = gasQuery?.gascost?.totalCost
+    const cost = stateReplayQuery?.stateReplay?.gasCost?.totalCost
     return cost
       ? `${makeFriendlyBalance(new FilecoinNumber(cost, 'attofil'))} FIL`
       : 'Calculating...'
-  }, [gasQuery?.gascost?.totalCost, pending])
+  }, [stateReplayQuery?.stateReplay?.gasCost?.totalCost, pending])
 
   const gasUsed = useMemo(
-    () => gasQuery?.gascost?.gasUsed || 0,
-    [gasQuery?.gascost]
+    () => stateReplayQuery?.stateReplay?.gasCost?.gasUsed || 0,
+    [stateReplayQuery?.stateReplay?.gasCost]
+  )
+
+  const executionTrace = useMemo(
+    () =>
+      (stateReplayQuery?.stateReplay?.executionTrace
+        ?.executionTrace as unknown as ExecutionTrace) || null,
+    [stateReplayQuery]
   )
 
   const { methodName, actorName } = useMethodName(message)
@@ -80,11 +79,11 @@ export default function MessageDetail(props: MessageDetailProps) {
     if (!message) return null
     const isToExec = isAddrEqual(message?.to, 'f01')
     const isInitTx = Number(message?.method) === 2
-    const receiptReturn = msgRcptQuery?.receipt?.return
+    const receiptReturn = stateReplayQuery?.stateReplay?.receipt?.return
     return isToExec && isInitTx && receiptReturn
       ? getAddrFromReceipt(receiptReturn, coinType)
       : null
-  }, [message, msgRcptQuery?.receipt, coinType])
+  }, [message, stateReplayQuery?.stateReplay?.receipt, coinType])
 
   const messageState = useMemo<MessageState>(() => {
     if (error) return MessageState.Error
@@ -98,12 +97,8 @@ export default function MessageDetail(props: MessageDetailProps) {
   // Log errors
   useEffect(() => error && logger.error(error), [error, logger])
   useEffect(
-    () => gasStateError && logger.error(gasStateError),
-    [gasStateError, logger]
-  )
-  useEffect(
-    () => msgRcptError && logger.error(msgRcptError),
-    [msgRcptError, logger]
+    () => stateReplayError && logger.error(stateReplayError),
+    [stateReplayError, logger]
   )
 
   return (
@@ -165,19 +160,22 @@ export default function MessageDetail(props: MessageDetailProps) {
           />
         )}
         {messageState === MessageState.Confirmed && (
-          <MessageDetailBase
-            cid={cid}
-            methodName={methodName}
-            confirmations={confirmations}
-            time={time}
-            message={message}
-          />
+          <>
+            <MessageDetailBase
+              cid={cid}
+              methodName={methodName}
+              confirmations={confirmations}
+              time={time}
+              message={message}
+            />
+            <p>Loading more details...</p>
+          </>
         )}
         {messageState === MessageState.Executed && (
           <>
             <MessageDetailBase
               cid={cid}
-              exitCode={msgRcptQuery?.receipt?.exitCode}
+              exitCode={stateReplayQuery?.stateReplay?.receipt?.exitCode}
               methodName={methodName}
               confirmations={confirmations}
               time={time}
@@ -207,7 +205,8 @@ export default function MessageDetail(props: MessageDetailProps) {
               <SeeMoreContent
                 message={message as Message}
                 gasUsed={gasUsed}
-                gasCost={gasQuery?.gascost}
+                gasCost={stateReplayQuery?.stateReplay?.gasCost}
+                executionTrace={executionTrace}
                 actorName={actorName}
               />
             )}
