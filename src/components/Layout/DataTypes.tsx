@@ -27,7 +27,32 @@ DataTypeLine.propTypes = {
  */
 
 export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
-  return <>{dataType.Value}</>
+  const { Name: name, Type: type, Value: value } = dataType
+  const logger = useLogger()
+
+  switch (type) {
+    case Type.String:
+      const strVal = value as string
+
+      if (dataType.Name === 'Address')
+        return <AddressLink address={strVal} fetchAddress hideCopyText={false} />
+
+      return <>{value}</>
+
+    case Type.Bool:
+      const boolVal = value as boolean
+      return <>{boolVal.toString()}</>
+
+    case Type.Number:
+      const numVal = value as number
+      return <>{numVal}</>
+  }
+
+  logger.warn(
+    `Failed to interpret DataType, name: ${name}, type: ${type}, value: ${value}`
+  )
+  
+  return <>{value}</>
 }
 
 interface DataTypeValueProps {
