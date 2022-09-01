@@ -35,7 +35,8 @@ export type MessageLinkProps = {
   shouldTruncate?: boolean
 } & Omit<LabeledLinkProps, 'href' | 'linkText' | 'copyText'>
 
-const { href, linkText, copyText, ...messageLinkPropTypes } = LabeledLinkPropTypes
+const { href, linkText, copyText, ...messageLinkPropTypes } =
+  LabeledLinkPropTypes
 
 MessageLink.propTypes = {
   cid: PropTypes.string,
