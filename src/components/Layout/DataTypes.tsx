@@ -22,6 +22,8 @@ DataTypeLine.propTypes = {
 
 /**
  * DataTypeValue
+ * Renders the value of a DataType using the most suitable component.
+ * The value should be singular, not an array or object.
  */
 
 export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
