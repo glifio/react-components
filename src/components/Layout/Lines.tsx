@@ -87,7 +87,7 @@ Line.defaultProps = {
 export const AddressLine = ({ value, label, depth }: AddressLineProps) =>
   typeof value === 'string' ? (
     <Line label={label} depth={depth}>
-      <AddressLink address={value} hideCopyText={false} />
+      <AddressLink address={value} fetchAddress hideCopyText={false} />
     </Line>
   ) : (
     <Line label={label} depth={depth}>
