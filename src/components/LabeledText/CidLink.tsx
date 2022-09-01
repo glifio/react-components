@@ -11,13 +11,8 @@ import {
 
 export const CidLink = ({
   cid,
-  label,
-  color,
-  disableLink,
-  hideCopy,
-  hideCopyText,
   shouldTruncate,
-  useNewTabIcon
+  ...labeledLinkProps
 }: CidLinkProps) => {
   const { explorerUrl } = useEnvironment()
   const linkText = useMemo(
@@ -27,15 +22,10 @@ export const CidLink = ({
   const href = `${explorerUrl}/message/?cid=${cid}`
   return (
     <LabeledLink
-      label={label}
-      color={color}
       href={href}
       linkText={linkText}
       copyText={cid}
-      disableLink={disableLink}
-      hideCopy={hideCopy}
-      hideCopyText={hideCopyText}
-      useNewTabIcon={useNewTabIcon}
+      {...labeledLinkProps}
     />
   )
 }

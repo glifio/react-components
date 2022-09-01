@@ -22,14 +22,9 @@ import {
 export const AddressLink = ({
   id,
   address,
-  label,
-  color,
-  disableLink,
-  hideCopy,
-  hideCopyText,
   shouldTruncate,
   fetchAddress,
-  useNewTabIcon
+  ...labeledLinkProps
 }: AddressLinkProps) => {
   const { explorerUrl } = useEnvironment()
   const { data: gqlAddress } = useAddressQuery({
@@ -48,15 +43,10 @@ export const AddressLink = ({
 
   return (
     <LabeledLink
-      label={label}
-      color={color}
       href={href}
       linkText={linkText}
       copyText={copyText}
-      disableLink={disableLink}
-      hideCopy={hideCopy}
-      hideCopyText={hideCopyText}
-      useNewTabIcon={useNewTabIcon}
+      {...labeledLinkProps}
     />
   )
 }
