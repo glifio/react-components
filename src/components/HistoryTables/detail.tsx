@@ -21,7 +21,7 @@ import {
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
 } from '../../customPropTypes'
-import { CidLink } from '../LabeledText/CidLink'
+import { MessageLink } from '../LabeledText/MessageLink'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -260,7 +260,7 @@ export const MessageDetailBase = ({
   return (
     <>
       <Line label='CID'>
-        <CidLink
+        <MessageLink
           cid={cid}
           hideCopyText={false}
           hideCopy={false}
