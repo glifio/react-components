@@ -201,6 +201,10 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   word-break: break-word;
 }
 
+.c3 > div:last-child > p[role='button'] {
+  margin: 0;
+}
+
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -708,6 +712,10 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
   align-items: center;
   gap: 0.75em;
   word-break: break-word;
+}
+
+.c3 > div:last-child > p[role='button'] {
+  margin: 0;
 }
 
 .c0 {
@@ -1604,6 +1612,10 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   align-items: center;
   gap: 0.75em;
   word-break: break-word;
+}
+
+.c7 > div:last-child > p[role='button'] {
+  margin: 0;
 }
 
 .c0 {
