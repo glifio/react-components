@@ -29,7 +29,7 @@ export const DataTypeLines = ({
         <>
           {value.map((v, i) => (
             <DataTypeLine
-              key={`${label}-${depth}-${i}`}
+              key={i}
               label={i === 0 ? label : ''}
               depth={depth}
               dataType={{ ...Contains, Value: v }}
