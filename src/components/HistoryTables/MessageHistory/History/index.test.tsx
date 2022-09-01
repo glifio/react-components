@@ -13,8 +13,12 @@ import { MessageConfirmedRow } from '../../types'
 import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
 jest
-  .spyOn(require('../hooks/useAge'), 'useAge')
-  .mockImplementation(() => '2022-08-02 09:50:30')
+  .spyOn(require('../../../../utils/useAge'), 'useAge')
+  .mockImplementation(() => ({
+    age: '2022-08-02 09:50:30',
+    loading: false,
+    error: null
+  }))
 
 jest
   .spyOn(require('../hooks/useMethodName'), 'useMethodName')

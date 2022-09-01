@@ -9,7 +9,7 @@ import {
   MESSAGE_CONFIRMED_ROW_PROP_TYPE
 } from '../../types'
 import { attoFilToFil } from '../../utils'
-import { useAge } from '../hooks/useAge'
+import { useAge } from '../../../../utils/useAge'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
 import truncateAddress from '../../../../utils/truncateAddress'
@@ -34,7 +34,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
     [message.to, inspectingAddress]
   )
   const { methodName } = useMethodName(message)
-  const age = useAge(message)
+  const { age } = useAge(message?.height)
 
   return (
     <MessageHistoryRowWrapper>

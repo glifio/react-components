@@ -12,7 +12,7 @@ import {
 import { IconCheck, IconPending, IconClock } from '../Icons'
 import { Badge, Lines, Line, AddressLine } from '../Layout'
 import { getMethodName } from './methodName'
-import { useAge } from './MessageHistory/hooks/useAge'
+import { useAge } from '../../utils/useAge'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
 import { Colors } from '../theme'
@@ -237,7 +237,7 @@ export const MessageDetailBase = ({
   methodName,
   confirmations
 }: MessageDetailBaseProps) => {
-  const age = useAge(message)
+  const { age } = useAge(message?.height)
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
