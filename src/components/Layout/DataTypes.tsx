@@ -102,7 +102,7 @@ export const DataTypeMapLines = ({
       {!collapsed &&
         Object.entries(dataTypeMap).map(([key, dt], i) => (
           <DataTypeLines
-            key={`${label}-${depth}-${i}-${key}`}
+            key={key}
             label={key}
             depth={label ? (depth ?? 0) + 1 : depth}
             dataType={dt}
