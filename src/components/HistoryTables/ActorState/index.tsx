@@ -25,8 +25,6 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const logger = useLogger()
   const { coinType } = useEnvironment()
 
-  const [showActorState, setShowActorState] = useState(false)
-
   // Ensure network cointype for address
   const address = useMemo<string>(
     () => convertAddrToPrefix(addressProp, coinType),
@@ -132,15 +130,12 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
               )}
             </Line>
           )}
-          <Line label='State'>
-            <p role='button' onClick={() => setShowActorState(!showActorState)}>
-              Click to{' '}
-              {showActorState ? 'hide actor state ↑' : 'show actor state ↓'}
-            </p>
-          </Line>
-          {showActorState && (
-            <DataTypeMapLines depth={1} dataTypeMap={describedState} />
-          )}
+          <DataTypeMapLines
+            label='State'
+            collapsable
+            collapseName='actor state'
+            dataTypeMap={describedState}
+          />
         </Lines>
       )}
     </div>
