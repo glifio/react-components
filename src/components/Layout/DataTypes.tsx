@@ -35,7 +35,6 @@ DataTypeLine.propTypes = {
 
 export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
   const { Name, Value } = dataType
-  const logger = useLogger()
 
   switch (dataType.Type) {
     case Type.Bool:
