@@ -67,7 +67,7 @@ export const DataTypeMapLines = ({
   dataTypeMap
 }: DataTypeMapLinesProps) => (
   <>
-    <Line label={label} depth={depth} />
+    {label && <Line label={label} depth={depth} />}
     {Object.entries(dataTypeMap).map(([key, dt], i) => (
       <DataTypeLines
         key={`${label}-${depth}-${i}-${key}`}
