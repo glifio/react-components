@@ -1,8 +1,7 @@
 import { useState, useMemo, useEffect } from 'react'
+import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
-import * as dayjs from 'dayjs'
-import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { Message, useStateReplayQuery } from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
@@ -21,9 +20,6 @@ import {
   useEnvironment,
   useLogger
 } from '../../../../services/EnvironmentProvider'
-
-// add RelativeTime plugin to Day.js
-dayjs.extend(relativeTime.default)
 
 enum MessageState {
   Loading,
@@ -66,6 +62,13 @@ export default function MessageDetail(props: MessageDetailProps) {
   const gasUsed = useMemo(
     () => stateReplayQuery?.stateReplay?.gasCost?.gasUsed || 0,
     [stateReplayQuery?.stateReplay?.gasCost]
+  )
+
+  const executionTrace = useMemo(
+    () =>
+      (stateReplayQuery?.stateReplay?.executionTrace
+        ?.executionTrace as unknown as ExecutionTrace) || null,
+    [stateReplayQuery]
   )
 
   const { methodName, actorName } = useMethodName(message)
@@ -203,6 +206,7 @@ export default function MessageDetail(props: MessageDetailProps) {
                 message={message as Message}
                 gasUsed={gasUsed}
                 gasCost={stateReplayQuery?.stateReplay?.gasCost}
+                executionTrace={executionTrace}
                 actorName={actorName}
               />
             )}

@@ -5,7 +5,8 @@ import {
   number,
   oneOf,
   arrayOf,
-  Requireable
+  Requireable,
+  any
 } from 'prop-types'
 import { validateMnemonic } from 'bip39'
 import { validateAddressString, CoinType } from '@glif/filecoin-address'
@@ -125,6 +126,37 @@ export const GRAPHQL_MESSAGE_RECEIPT_PROPTYPE = shape({
   exitCode: number.isRequired,
   return: string.isRequired,
   gasUsed: number.isRequired
+})
+
+export const LOTUS_MESSAGE_PROPTYPE = shape({
+  CID: shape({
+    '/': string.isRequired
+  }).isRequired,
+  From: string.isRequired,
+  To: string.isRequired,
+  Value: string.isRequired,
+  Method: number.isRequired,
+  Nonce: number.isRequired,
+  Params: string,
+  Version: number,
+  GasFeeCap: string,
+  GasPremium: string,
+  GasLimit: number
+})
+
+export const MESSAGE_RECEIPT_PROPTYPE = shape({
+  ExitCode: number.isRequired,
+  GasUsed: number.isRequired,
+  Return: string
+})
+
+export const EXECUTION_TRACE_PROPTYPE = shape({
+  Duration: number.isRequired,
+  Msg: LOTUS_MESSAGE_PROPTYPE.isRequired,
+  MsgRct: MESSAGE_RECEIPT_PROPTYPE.isRequired,
+  GasCharges: number,
+  Error: string,
+  Subcalls: any
 })
 
 /**

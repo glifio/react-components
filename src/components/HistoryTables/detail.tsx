@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
+import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
@@ -16,6 +17,7 @@ import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
 import { Colors } from '../theme'
 import {
+  EXECUTION_TRACE_PROPTYPE,
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
 } from '../../customPropTypes'
@@ -397,11 +399,13 @@ type SeeMoreContentProps = {
   gasUsed: number
   gasCost: GasCost
   actorName: string
+  executionTrace: ExecutionTrace
 }
 
 SeeMoreContent.propTypes = {
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   gasUsed: PropTypes.number.isRequired,
   gasCost: GRAPHQL_GAS_COST_PROPTYPE.isRequired,
-  actorName: PropTypes.string.isRequired
+  actorName: PropTypes.string.isRequired,
+  executionTrace: EXECUTION_TRACE_PROPTYPE.isRequired
 }

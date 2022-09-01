@@ -6,10 +6,23 @@ import { InMemoryCacheConfig } from '@apollo/client'
 const parseParams = (_: any, incoming: any) => {
   try {
     if (incoming) {
-      let params = JSON.parse(incoming)
+      const params = JSON.parse(incoming)
       if (typeof params.Value === 'object' && !!params.Value.Int) {
         params.Value = params.Value.Int
       }
+      return params
+    }
+    return null
+  } catch (e) {
+    console.error(e)
+    return null
+  }
+}
+
+const parseExecutionTrace = (_: any, incoming: any) => {
+  try {
+    if (incoming) {
+      const params = JSON.parse(incoming)
       return params
     }
     return null
@@ -82,6 +95,13 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
     },
     StateReplay: {
       keyFields: ['cid']
+    },
+    ExecutionTrace: {
+      fields: {
+        executionTrace: {
+          merge: parseExecutionTrace
+        }
+      }
     },
     Address: {
       keyFields: ['robust', 'id']
