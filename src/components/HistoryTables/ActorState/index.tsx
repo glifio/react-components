@@ -55,10 +55,14 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   )
 
   // Get actor state with descriptors
-  const describedState = useMemo<DataTypeMap | null>(
-    () => (actorData ? describeLotusActorState(actorData) : null),
-    [actorData]
-  )
+  const describedState = useMemo<DataTypeMap | null>(() => {
+    try {
+      return actorData ? describeLotusActorState(actorData) : null
+    } catch (e) {
+      logger.error(e)
+      return null
+    }
+  }, [actorData, logger])
 
   // Load the available balance for multisig actors
   const hasAvailableBalance = actorName && actorName.includes('multisig')
@@ -130,12 +134,14 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
               )}
             </Line>
           )}
-          <DataTypeMapLines
-            label='State'
-            collapsable
-            collapseName='actor state'
-            dataTypeMap={describedState}
-          />
+          {describedState && (
+            <DataTypeMapLines
+              label='State'
+              collapsable
+              collapseName='actor state'
+              dataTypeMap={describedState}
+            />
+          )}
         </Lines>
       )}
     </div>
