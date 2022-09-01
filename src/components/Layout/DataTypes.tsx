@@ -1,3 +1,10 @@
+import PropTypes from 'prop-types'
+import { DataType, Type } from '@glif/filecoin-actor-utils'
+
+import { Line } from './Lines'
+import { AddressLink } from '../LabeledText/AddressLink'
+import { useLogger } from '../../services'
+
 /**
  * DataTypeLine
  */
@@ -51,7 +58,7 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
   logger.warn(
     `Failed to interpret DataType, name: ${name}, type: ${type}, value: ${value}`
   )
-  
+
   return <>{value}</>
 }
 
