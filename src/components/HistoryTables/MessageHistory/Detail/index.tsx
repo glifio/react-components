@@ -48,7 +48,7 @@ export default function MessageDetail(props: MessageDetailProps) {
       pollInterval: 30000,
       fetchPolicy: 'cache-first',
       // give the message time to execute on-chain before fetching
-      skip: !props.cid || props.confirmations < 2
+      skip: props.confirmations < 2
     })
 
   const transactionFee = useMemo<string>(() => {
