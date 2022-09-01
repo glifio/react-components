@@ -86,7 +86,7 @@ export const DataTypeMapLines = ({
       <DataTypeLines
         key={`${label}-${depth}-${i}-${key}`}
         label={key}
-        depth={depth}
+        depth={label ? (depth ?? 0) + 1 : depth}
         dataType={dt}
       />
     ))}
