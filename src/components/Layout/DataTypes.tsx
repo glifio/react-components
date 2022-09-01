@@ -3,6 +3,7 @@ import { DataType, DataTypeMap, Type } from '@glif/filecoin-actor-utils'
 
 import { Line } from './Lines'
 import { AddressLink } from '../LabeledText/AddressLink'
+import { FilecoinNumber } from '@glif/filecoin-number'
 
 /**
  * DataTypeLines
@@ -135,6 +136,9 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
         return (
           <AddressLink address={strVal} fetchAddress hideCopyText={false} />
         )
+
+      if (Name === 'FilecoinNumber')
+        return <>{new FilecoinNumber(strVal, 'attofil').toFil() + ' FIL'}</>
 
       return <>{Value}</>
 
