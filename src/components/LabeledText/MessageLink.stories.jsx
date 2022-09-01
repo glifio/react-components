@@ -1,9 +1,9 @@
-import { CidLink } from './CidLink'
+import { MessageLink } from './MessageLink'
 import { Colors } from '../theme'
 
 export default {
-  title: 'LabeledText/CidLink',
-  component: CidLink,
+  title: 'LabeledText/MessageLink',
+  component: MessageLink,
   decorators: [
     Story => (
       <div style={{ display: 'flex', justifyContent: 'center' }}>{Story()}</div>
@@ -11,7 +11,7 @@ export default {
   ]
 }
 
-const Template = args => <CidLink {...args} />
+const Template = args => <MessageLink {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
