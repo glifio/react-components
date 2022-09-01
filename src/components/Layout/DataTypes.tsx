@@ -6,7 +6,7 @@ import { AddressLink } from '../LabeledText/AddressLink'
 
 /**
  * DataTypeLines
- * Renders a DataType on multiple lines, depending on the contents
+ * Renders a DataType on multiple lines (depending on the contents)
  */
 
 export const DataTypeLines = ({
@@ -23,14 +23,18 @@ export const DataTypeLines = ({
     case Type.Array:
       const { Contains } = dataType
       const value = dataType.Value as Array<boolean | string | number>
-      return value.map((v, i) => (
-        <DataTypeLine
-          key={`${label}-${depth}-${i}`}
-          label={i === 0 ? label : ''}
-          depth={depth}
-          dataType={{ ...Contains, Value: v }}
-        />
-      ))
+      return (
+        <>
+          {value.map((v, i) => (
+            <DataTypeLine
+              key={`${label}-${depth}-${i}`}
+              label={i === 0 ? label : ''}
+              depth={depth}
+              dataType={{ ...Contains, Value: v }}
+            />
+          ))}
+        </>
+      )
 
     case Type.Object:
       return <></>
