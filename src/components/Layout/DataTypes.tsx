@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { DataType, DataTypeMap, Type } from '@glif/filecoin-actor-utils'
+import {
+  BaseValue,
+  DataType,
+  DataTypeMap,
+  Type
+} from '@glif/filecoin-actor-utils'
 
 import { Line } from './Lines'
 import { AddressLink } from '../LabeledText/AddressLink'
@@ -24,7 +29,7 @@ export const DataTypeLines = ({
 
     case Type.Array:
       const { Contains } = dataType
-      const value = dataType.Value as Array<boolean | string | number>
+      const value = dataType.Value as Array<BaseValue>
       return (
         <>
           {value.map((v, i) => (
@@ -100,7 +105,7 @@ export const DataTypeMapLines = ({
         </Line>
       )}
       {!collapsed &&
-        Object.entries(dataTypeMap).map(([key, dt], i) => (
+        Object.entries(dataTypeMap).map(([key, dt]) => (
           <DataTypeLines
             key={key}
             label={key}
@@ -182,7 +187,7 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
       return <>{numVal}</>
 
     case Type.Array:
-      const arrVal = Value as Array<boolean | string | number>
+      const arrVal = Value as Array<BaseValue>
       return <>{arrVal.join(', ')}</>
 
     default:
