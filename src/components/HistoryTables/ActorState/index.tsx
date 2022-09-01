@@ -138,7 +138,9 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
               {showActorState ? 'hide actor state ↑' : 'show actor state ↓'}
             </p>
           </Line>
-          {showActorState && <DataTypeMapLines depth={1} dataTypeMap={describedState} />}
+          {showActorState && (
+            <DataTypeMapLines depth={1} dataTypeMap={describedState} />
+          )}
         </Lines>
       )}
     </div>
