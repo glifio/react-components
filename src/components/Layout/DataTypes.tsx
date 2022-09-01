@@ -37,6 +37,10 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
   const logger = useLogger()
 
   switch (type) {
+    case Type.Bool:
+      const boolVal = value as boolean
+      return <>{boolVal.toString()}</>
+
     case Type.String:
       const strVal = value as string
 
@@ -46,10 +50,6 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
         )
 
       return <>{value}</>
-
-    case Type.Bool:
-      const boolVal = value as boolean
-      return <>{boolVal.toString()}</>
 
     case Type.Number:
       const numVal = value as number
