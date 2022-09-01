@@ -37,7 +37,8 @@ export const DataTypeLines = ({
       )
 
     case Type.Object:
-      return <></>
+      const { Children } = dataType
+      return <DataTypeMapLines label={label} depth={depth} dataTypeMap={Children} />
 
     default:
       throw new Error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
