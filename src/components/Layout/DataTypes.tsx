@@ -38,8 +38,20 @@ export const DataTypeLines = ({
       )
 
     case Type.Object:
-      const { Children } = dataType
-      return <DataTypeMapLines label={label} depth={depth} dataTypeMap={Children} />
+      const { Name, Children } = dataType
+
+      if (Name === 'Cid') {
+        const cid = Children['/'].Value as string
+        return <DataTypeLine
+          label={`${label} (CID)`}
+          depth={depth}
+          dataType={{ Name, Type: Type.String, Value: cid }}
+        />
+      }
+
+      return (
+        <DataTypeMapLines label={label} depth={depth} dataTypeMap={Children} />
+      )
 
     default:
       throw new Error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
