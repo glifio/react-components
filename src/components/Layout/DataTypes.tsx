@@ -7,6 +7,7 @@ import { useLogger } from '../../services'
 
 /**
  * DataTypeLine
+ * Renders the value of a DataType on a single line with label
  */
 
 export const DataTypeLine = ({ label, depth, dataType }: DataTypeLineProps) => (
