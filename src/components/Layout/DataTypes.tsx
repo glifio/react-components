@@ -85,32 +85,35 @@ export const DataTypeMapLines = ({
   collapseName,
   dataTypeMap
 }: DataTypeMapLinesProps) => {
-  const [collapsed, setCollapsed] = useState<boolean>(collapsable)
+  const [collapsed, setCollapsed] = useState<boolean>(collapsable && !!label)
 
   return (
     <>
-      <Line label={label} depth={depth}>
-        {collapsable && (
-          <p role='button' onClick={() => setCollapsed(!collapsed)}>
-            Click to{' '}
-            {collapsed ? `show ${collapseName} ↓` : `hide ${collapseName} ↑`}
-          </p>
-        )}
-      </Line>
-      {!collapsed && Object.entries(dataTypeMap).map(([key, dt], i) => (
-        <DataTypeLines
-          key={`${label}-${depth}-${i}-${key}`}
-          label={key}
-          depth={(depth ?? 0) + 1}
-          dataType={dt}
-        />
-      ))}
+      {label && (
+        <Line label={label} depth={depth}>
+          {collapsable && (
+            <p role='button' onClick={() => setCollapsed(!collapsed)}>
+              Click to{' '}
+              {collapsed ? `show ${collapseName} ↓` : `hide ${collapseName} ↑`}
+            </p>
+          )}
+        </Line>
+      )}
+      {!collapsed &&
+        Object.entries(dataTypeMap).map(([key, dt], i) => (
+          <DataTypeLines
+            key={`${label}-${depth}-${i}-${key}`}
+            label={key}
+            depth={label ? (depth ?? 0) + 1 : depth}
+            dataType={dt}
+          />
+        ))}
     </>
   )
 }
 
 interface DataTypeMapLinesProps {
-  label: string
+  label?: string
   depth?: number
   collapsable?: boolean
   collapseName?: string
@@ -118,7 +121,7 @@ interface DataTypeMapLinesProps {
 }
 
 DataTypeMapLines.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   depth: PropTypes.number,
   collapsable: PropTypes.bool,
   collapseName: PropTypes.string,
