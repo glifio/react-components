@@ -106,16 +106,12 @@ export const DataTypeMapLines = ({
 interface DataTypeMapLinesProps {
   label?: string
   depth?: number
-  collapsable?: boolean
-  collapseName?: string
   dataTypeMap: DataTypeMap
 }
 
 DataTypeMapLines.propTypes = {
   label: PropTypes.string,
   depth: PropTypes.number,
-  collapsable: PropTypes.bool,
-  collapseName: PropTypes.string,
   dataTypeMap: PropTypes.object.isRequired
 }
 
