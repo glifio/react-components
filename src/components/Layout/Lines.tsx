@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { useMemo, useState } from 'react'
+
 import { AddressLink } from '../LabeledText/AddressLink'
 import { Address } from '../../generated/graphql'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
@@ -78,6 +80,50 @@ Line.defaultProps = {
   label: '',
   depth: 0,
   children: <></>
+}
+
+/**
+ * CollapsableLines
+ */
+
+export const CollapsableLines = ({
+  label,
+  depth,
+  children,
+  toggleName
+}: CollapsableLinesProps) => {
+  const [collapsed, setCollapsed] = useState<boolean>(true)
+  const toggleText = useMemo<string>(() => {
+    const prefix = collapsed ? 'show' : 'hide'
+    const arrow = collapsed ? '↓' : '↑'
+    const name = toggleName || label.toLowerCase()
+    return `Click to ${prefix} ${name} ${arrow}`
+  }, [label, toggleName, collapsed])
+
+  return (
+    <>
+      <Line label={label} depth={depth}>
+        <p role='button' onClick={() => setCollapsed(!collapsed)}>
+          {toggleText}
+        </p>
+      </Line>
+      {!collapsed && children}
+    </>
+  )
+}
+
+interface CollapsableLinesProps {
+  label: string
+  depth?: number
+  children?: React.ReactNode
+  toggleName?: string
+}
+
+CollapsableLines.propTypes = {
+  label: PropTypes.string.isRequired,
+  depth: PropTypes.number,
+  children: PropTypes.node,
+  toggleName: PropTypes.string
 }
 
 /**
