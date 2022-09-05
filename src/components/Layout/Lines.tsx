@@ -127,6 +127,26 @@ CollapsableLines.propTypes = {
 }
 
 /**
+ * NullishLine
+ */
+
+export const NullishLine = ({ label, depth }: NullishLineProps) => (
+  <Line label={label} depth={depth}>
+    &ndash;
+  </Line>
+)
+
+interface NullishLineProps {
+  label?: string
+  depth?: number
+}
+
+NullishLine.propTypes = {
+  label: PropTypes.string,
+  depth: PropTypes.number
+}
+
+/**
  * AddressLine
  */
 
