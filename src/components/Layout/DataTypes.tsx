@@ -223,16 +223,18 @@ export const BaseTypeLines = ({ label, depth, data }: BaseTypeLinesProps) => {
         )
 
       if (Array.isArray(data)) {
-        {
-          data.map((child, i) => (
-            <BaseTypeLines
-              key={i}
-              label={i === 0 ? label : ''}
-              depth={depth}
-              data={child}
-            />
-          ))
-        }
+        return (
+          <>
+            {data.map((child, i) => (
+              <BaseTypeLines
+                key={i}
+                label={i === 0 ? label : ''}
+                depth={depth}
+                data={child}
+              />
+            ))}
+          </>
+        )
       }
 
       return <BaseTypeObjLines label={label} depth={depth} data={data} />
