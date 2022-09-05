@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
+import styled from 'styled-components'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
@@ -13,6 +14,10 @@ import truncateAddress from '../../../../utils/truncateAddress'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
+
+const CapitalizedTD = styled.td`
+  text-transform: capitalize;
+`
 
 export default function PendingMessageHistoryRow(
   props: PendingMessageHistoryRowProps
@@ -34,11 +39,7 @@ export default function PendingMessageHistoryRow(
           {truncateAddress(message.cid)}
         </SmartLink>
       </td>
-      {props.inspectingAddress && (
-        <td>
-          <Badge color='purple' text={methodName} />
-        </td>
-      )}
+      {props.inspectingAddress && <CapitalizedTD>{methodName}</CapitalizedTD>}
       <td>(Pending)</td>
       <td>(Pending)</td>
       <td>
