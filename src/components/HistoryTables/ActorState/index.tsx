@@ -13,13 +13,19 @@ import {
   useMsigGetAvailableBalance,
   convertAddrToPrefix
 } from '../../../utils'
-import { Lines, Line, PageTitle } from '../../Layout'
+import {
+  Lines,
+  Line,
+  NullishLine,
+  PageTitle,
+  CollapsableLines
+} from '../../Layout'
 import { DetailCaption } from '../detail'
 import {
   useEnvironment,
   useLogger
 } from '../../../services/EnvironmentProvider'
-import { DataTypeMapLines } from '../../Layout/DataTypes'
+import { BaseTypeObjLines, DataTypeMapLines } from '../../Layout/DataTypes'
 
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const logger = useLogger()
@@ -134,13 +140,16 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
               )}
             </Line>
           )}
-          {describedState && (
-            <DataTypeMapLines
-              label='State'
-              collapsable
-              collapseName='actor state'
-              dataTypeMap={describedState}
-            />
+          {actorData.State ? (
+            <CollapsableLines label='State' toggleName='actor state'>
+              {describedState ? (
+                <DataTypeMapLines depth={1} dataTypeMap={describedState} />
+              ) : (
+                <BaseTypeObjLines depth={1} data={actorData.State} />
+              )}
+            </CollapsableLines>
+          ) : (
+            <NullishLine label='State' />
           )}
         </Lines>
       )}
