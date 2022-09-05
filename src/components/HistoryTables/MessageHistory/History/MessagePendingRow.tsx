@@ -34,11 +34,7 @@ export default function PendingMessageHistoryRow(
           {truncateAddress(message.cid)}
         </SmartLink>
       </td>
-      {props.inspectingAddress && (
-        <td>
-          <Badge color='purple' text={methodName} />
-        </td>
-      )}
+      {props.inspectingAddress && <td className='capitalize'>{methodName}</td>}
       <td>(Pending)</td>
       <td>(Pending)</td>
       <td>
