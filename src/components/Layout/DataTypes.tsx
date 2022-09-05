@@ -6,7 +6,7 @@ import {
   Type
 } from '@glif/filecoin-actor-utils'
 
-import { Line } from './Lines'
+import { Line, NullishLine } from './Lines'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
@@ -208,19 +208,10 @@ export const BaseTypeLines = ({ label, depth, data }: BaseTypeLinesProps) => {
       )
 
     case 'undefined':
-      return (
-        <Line label={label} depth={depth}>
-          &ndash;
-        </Line>
-      )
+      return <NullishLine label={label} depth={depth} />
 
     case 'object':
-      if (data === null)
-        return (
-          <Line label={label} depth={depth}>
-            &ndash;
-          </Line>
-        )
+      if (data === null) return <NullishLine label={label} depth={depth} />
 
       if (Array.isArray(data)) {
         return (
