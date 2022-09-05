@@ -87,21 +87,19 @@ export const DataTypeMapLines = ({
   label,
   depth,
   dataTypeMap
-}: DataTypeMapLinesProps) => {
-  return (
-    <>
-      {label && <Line label={label} depth={depth} />}
-      {Object.entries(dataTypeMap).map(([key, dt]) => (
-        <DataTypeLines
-          key={key}
-          label={key}
-          depth={label ? (depth ?? 0) + 1 : depth}
-          dataType={dt}
-        />
-      ))}
-    </>
-  )
-}
+}: DataTypeMapLinesProps) => (
+  <>
+    {label && <Line label={label} depth={depth} />}
+    {Object.entries(dataTypeMap).map(([key, dt]) => (
+      <DataTypeLines
+        key={key}
+        label={key}
+        depth={label ? (depth ?? 0) + 1 : depth}
+        dataType={dt}
+      />
+    ))}
+  </>
+)
 
 interface DataTypeMapLinesProps {
   label?: string
