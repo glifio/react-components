@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
 import {
   BaseValue,
   DataType,
@@ -181,4 +180,111 @@ interface DataTypeValueProps {
 
 DataTypeValue.propTypes = {
   dataType: PropTypes.object.isRequired
+}
+
+/**
+ * BaseTypeLines
+ * Renders any native JavaScript data type on multiple lines (depending on the contents)
+ */
+
+export const BaseTypeLines = ({ label, depth, data }: BaseTypeLinesProps) => {
+  switch (typeof data) {
+    case 'string':
+      return (
+        <Line label={label} depth={depth}>
+          {data}
+        </Line>
+      )
+
+    case 'bigint':
+    case 'boolean':
+    case 'function':
+    case 'number':
+    case 'symbol':
+      return (
+        <Line label={label} depth={depth}>
+          {data.toString()}
+        </Line>
+      )
+
+    case 'undefined':
+      return (
+        <Line label={label} depth={depth}>
+          &ndash;
+        </Line>
+      )
+
+    case 'object':
+      if (data === null)
+        return (
+          <Line label={label} depth={depth}>
+            &ndash;
+          </Line>
+        )
+
+      if (Array.isArray(data)) {
+        {
+          data.map((child, i) => (
+            <BaseTypeLines
+              key={i}
+              label={i === 0 ? label : ''}
+              depth={depth}
+              data={child}
+            />
+          ))
+        }
+      }
+
+      return <BaseTypeObjLines label={label} depth={depth} data={data} />
+
+    default:
+      throw new Error(`Unexpected data type: ${typeof data}`)
+  }
+}
+
+interface BaseTypeLinesProps {
+  label?: string
+  depth?: number
+  data: any
+}
+
+BaseTypeLines.propTypes = {
+  label: PropTypes.string,
+  depth: PropTypes.number,
+  data: PropTypes.any.isRequired
+}
+
+/**
+ * BaseTypeObjLines
+ * Renders a native JavaScript object on multiple lines
+ */
+
+export const BaseTypeObjLines = ({
+  label,
+  depth,
+  data
+}: BaseTypeObjLinesProps) => (
+  <>
+    {label && <Line label={label} depth={depth} />}
+    {Object.entries(data).map(([key, child]) => (
+      <BaseTypeLines
+        key={key}
+        label={key}
+        depth={label ? (depth ?? 0) + 1 : depth}
+        data={child}
+      />
+    ))}
+  </>
+)
+
+interface BaseTypeObjLinesProps {
+  label?: string
+  depth?: number
+  data: object
+}
+
+BaseTypeObjLines.propTypes = {
+  label: PropTypes.string,
+  depth: PropTypes.number,
+  data: PropTypes.object.isRequired
 }
