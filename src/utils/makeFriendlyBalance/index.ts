@@ -21,7 +21,7 @@ export const makeFriendlyBalance = (value: FilecoinNumber, decimals: number = 3)
 
   // Zero after stripping decimals
   if (dpValue.isZero()) {
-    return `< ${minus}${Array(decimals - 1).fill('0').join('')}1`
+    return `< 0.${minus}${Array(decimals - 1).fill('0').join('')}1`
   }
 
   // Less than 1000
