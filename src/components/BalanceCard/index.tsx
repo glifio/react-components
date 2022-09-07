@@ -57,7 +57,11 @@ const BalanceBox = styled(OutlineBox)`
   }
 `
 
-export const BalanceCard = ({ balance, onSend, disableButtons }: BalanceCardProps) => {
+export const BalanceCard = ({
+  balance,
+  onSend,
+  disableButtons
+}: BalanceCardProps) => {
   const [preciseMode, setPreciseMode] = useState(false)
   return (
     <BalanceBox>
@@ -92,8 +96,8 @@ export const BalanceCard = ({ balance, onSend, disableButtons }: BalanceCardProp
 }
 
 interface BalanceCardProps {
-  balance: FilecoinNumber,
-  onSend: () => void,
+  balance: FilecoinNumber
+  onSend: () => void
   disableButtons: boolean
 }
 
