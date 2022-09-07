@@ -116,11 +116,11 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
       />
       {!loading && !error && !actorNotFound && (
         <Lines>
-          {addressData?.address.id && (
-            <Line label='ID address'>{addressData?.address.id}</Line>
-          )}
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
+          )}
+          {addressData?.address.id && (
+            <Line label='ID address'>{addressData?.address.id}</Line>
           )}
           <Line label='Actor name'>{actorName || 'unknown'}</Line>
           <Line label='Actor code'>{actorData.Code['/']}</Line>
