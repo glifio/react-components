@@ -18,20 +18,6 @@ describe('makeFriendlyBalance', () => {
     expect(() => makeFriendlyBalance(new BigNumber('-2'))).toThrow()
   })
 
-  test('it returns the number with no manipulation if the pretty argument is passed as false', () => {
-    expect(makeFriendlyBalance(new BigNumber(0.000043245235), 5, false)).toBe(
-      '0.000043245235'
-    )
-    expect(makeFriendlyBalance(new BigNumber('134'), 5, false)).toBe('134')
-    expect(makeFriendlyBalance(new BigNumber(532416423), 5, false)).toBe(
-      '532416423'
-    )
-    // javascripts biggest number, after this, things get tricky
-    expect(makeFriendlyBalance(new BigNumber(9007199254740991), 5, false)).toBe(
-      '9007199254740991'
-    )
-  })
-
   test('it returns "< number" when the decimal is smaller than the num of dps passed', () => {
     expect(makeFriendlyBalance(new BigNumber('0000.00001'), 2)).toEqual(
       '< 0.01'

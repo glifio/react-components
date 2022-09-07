@@ -20,12 +20,10 @@ const addComparisonOperator = (endNum, originalNum) => {
 
 export default (
   bigNumber: BigNumber | string | number,
-  dp: number = 3,
-  pretty: boolean = true
+  dp: number = 3
 ): BigNumber | string | number => {
   if (!bigNumber) throw new Error('No number passed to big number')
   if (!BigNumber.isBigNumber(bigNumber)) return bigNumber
-  if (!pretty) return bigNumber.toString()
   if (bigNumber.isEqualTo(0)) return '0'
   if (bigNumber.toString() === 'NaN') {
     throw new Error('Number must be a valid number')
