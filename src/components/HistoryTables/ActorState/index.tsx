@@ -59,6 +59,13 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
     [actorData]
   )
 
+  // Capitalize the actor name for display
+  const actorNameCapitalized = useMemo<string | null>(
+    () =>
+      actorName ? actorName.charAt(0).toUpperCase() + actorName.slice(1) : null,
+    [actorName]
+  )
+
   // Get actor state with descriptors
   const describedState = useMemo<DataTypeMap | null>(() => {
     try {
@@ -128,7 +135,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
           {addressData?.address.id && (
             <Line label='ID address'>{addressData?.address.id}</Line>
           )}
-          <Line label='Actor name'>{actorName || 'unknown'}</Line>
+          <Line label='Actor name'>{actorNameCapitalized || 'Unknown'}</Line>
           <Line label='Actor code'>{actorData.Code['/']}</Line>
           <Line label='Balance'>{friendlyBalance} FIL</Line>
           {hasAvailableBalance && (
