@@ -4,8 +4,7 @@ import {
   ADDRESS_PROPTYPE,
   FILECOIN_NUMBER_PROPTYPE
 } from '../../customPropTypes'
-import truncateAddress from '../../utils/truncateAddress'
-import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
+import { makeFriendlyBalance, truncateAddress } from '../../utils'
 
 const Header = styled.header`
   display: flex;
