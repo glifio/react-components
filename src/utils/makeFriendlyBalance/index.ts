@@ -4,9 +4,14 @@ export const makeFriendlyBalance = (
   value: FilecoinNumber,
   decimals: number = 3
 ): string => {
-  // Invalid
+  // Invalid value
   if (!FilecoinNumber.isFilecoinNumber(value)) {
-    throw new Error('Can only make friendly balance for FilecoinNumber value')
+    throw new Error('makeFriendlyBalance requires a valid FilecoinNumber value')
+  }
+
+  // Invalid decimals
+  if (decimals < 0) {
+    throw new Error('makeFriendlyBalance cannot handle negative decimals')
   }
 
   // NaN
@@ -24,9 +29,13 @@ export const makeFriendlyBalance = (
 
   // Zero after stripping decimals
   if (dpValue.isZero()) {
-    return `< 0.${minus}${Array(decimals - 1)
+    if (decimals === 0) return isNegative ? '< 0' : '> 0'
+
+    const sign = isNegative ? '>' : '<'
+    const nearest = `0.${Array(decimals - 1)
       .fill('0')
       .join('')}1`
+    return `${sign} ${minus}${nearest}`
   }
 
   // Less than 1000
