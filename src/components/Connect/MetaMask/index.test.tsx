@@ -138,8 +138,15 @@ describe('metamask onboarding', () => {
       )
 
       expect(
-        screen.getByText(/MetaMask doesn't support Snaps!/)
+        screen.getByText(/MetaMask Snaps is pre-release software/)
       ).toBeInTheDocument()
+      expect(screen.getByText(/To try Snaps,/)).toBeInTheDocument()
+      expect(
+        screen.getByText(
+          /a canary distribution for developers that provides access to upcoming features./
+        )
+      ).toBeInTheDocument()
+      expect(screen.getByText(/install MetaMask Flask/)).toBeInTheDocument()
     })
 
     test('it renders extension snap not installed', () => {

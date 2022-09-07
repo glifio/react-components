@@ -68,13 +68,14 @@ export const HelperText: FC<
   if (!extSupportsSnap)
     return (
       <>
-        <h2>MetaMask doesn&apos;t support Snaps!</h2>
+        <h2>MetaMask Snaps is pre-release software.</h2>
         <p>
-          Please{' '}
+          To try Snaps,{' '}
           <SmartLink href='https://metamask.io/flask/'>
-            upgrade MetaMask
+            install MetaMask Flask
           </SmartLink>{' '}
-          to get started
+          , a canary distribution for developers that provides access to
+          upcoming features.
         </p>
         <ButtonRowCenter>
           <ButtonV2 large onClick={back}>
