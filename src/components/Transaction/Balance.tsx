@@ -39,14 +39,14 @@ export const TransactionBalance = ({
       <div>
         <span>{msigBalance && 'Signer '}Balance</span>
         <span>
-          <>{makeFriendlyBalance(balance, 6)} FIL</>
+          <>{makeFriendlyBalance(balance)} FIL</>
         </span>
       </div>
       {msigBalance && (
         <div>
           <span>Safe Balance</span>
           <span>
-            <>{makeFriendlyBalance(msigBalance, 6)} FIL</>
+            <>{makeFriendlyBalance(msigBalance)} FIL</>
           </span>
         </div>
       )}

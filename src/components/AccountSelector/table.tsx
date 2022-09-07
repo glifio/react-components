@@ -39,7 +39,7 @@ const WalletRow = ({
           useNewTabIcon
         />
       </td>
-      <td>{makeFriendlyBalance(wallet.balance, 6)}</td>
+      <td>{makeFriendlyBalance(wallet.balance)}</td>
       <td>{convertAddrToPrefix(wallet.id, coinType) || '-'}</td>
       <td>{wallet.path}</td>
     </tr>

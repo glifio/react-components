@@ -86,7 +86,7 @@ export const BalanceCard = ({
         <hr />
       </div>
       <p className='balance'>
-        {preciseMode ? balance.toFil() : makeFriendlyBalance(balance, 3)} FIL
+        {preciseMode ? balance.toFil() : makeFriendlyBalance(balance)} FIL
       </p>
       <ButtonV2 green disabled={disableButtons} onClick={onSend}>
         Send
