@@ -165,10 +165,6 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
       const numVal = Value as number
       return <>{numVal}</>
 
-    case Type.Array:
-      const arrVal = Value as Array<BaseValue>
-      return <>{arrVal.join(', ')}</>
-
     default:
       throw new Error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
   }
