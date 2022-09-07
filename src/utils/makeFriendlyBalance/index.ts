@@ -2,7 +2,7 @@ import { BigNumber, FilecoinNumber } from '@glif/filecoin-number'
 
 export const makeFriendlyBalance = (
   value: FilecoinNumber,
-  decimals: number = 3
+  decimals: number = 4
 ): string => {
   // Invalid value
   if (!FilecoinNumber.isFilecoinNumber(value)) {
