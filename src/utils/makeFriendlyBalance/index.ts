@@ -16,7 +16,7 @@ export const makeFriendlyBalance = (
 
   // NaN
   if (value.isNaN()) {
-    throw new Error('Cannot make friendly balance for NaN value')
+    throw new Error('makeFriendlyBalance cannot handle NaN values')
   }
 
   // Zero

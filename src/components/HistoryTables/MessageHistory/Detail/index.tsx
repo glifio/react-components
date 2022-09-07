@@ -8,7 +8,8 @@ import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
 import { useMessage } from '../hooks/useAllMessages'
 import { useMethodName } from '../hooks/useMethodName'
 import { Lines, Line, StandardBox, PageTitle } from '../../../Layout'
-import { isAddrEqual, makeFriendlyBalance } from '../../../../utils'
+import { makeFriendlyBalance } from '../../../../utils/makeFriendlyBalance'
+import { isAddrEqual } from '../../../../utils/isAddrEqual'
 import {
   ExecReturn,
   getAddrFromReceipt

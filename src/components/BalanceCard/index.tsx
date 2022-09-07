@@ -6,7 +6,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { ButtonV2 } from '../Button/V2'
 import { OutlineBox } from '../Layout'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
-import { makeFriendlyBalance } from '../../utils'
+import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
 import { Colors } from '../theme'
 
 const BalanceBox = styled(OutlineBox)`
