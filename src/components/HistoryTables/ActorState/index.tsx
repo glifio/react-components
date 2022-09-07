@@ -8,11 +8,10 @@ import {
 } from '@glif/filecoin-actor-utils'
 
 import { useAddressQuery } from '../../../generated/graphql'
-import {
-  useStateReadState,
-  useMsigGetAvailableBalance,
-  convertAddrToPrefix
-} from '../../../utils'
+import { makeFriendlyBalance } from '../../../utils/makeFriendlyBalance'
+import { useStateReadState } from '../../../utils/useStateReadState'
+import { useMsigGetAvailableBalance } from '../../../utils/useMsigGetAvailableBalance'
+import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import {
   Lines,
   Line,
@@ -78,6 +77,13 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
     error: availableBalanceError
   } = useMsigGetAvailableBalance(hasAvailableBalance ? address : '')
 
+  // Cache friendly balance
+  const friendlyBalance = useMemo<string>(() => {
+    if (!actorData) return ''
+    const balance = new FilecoinNumber(actorData.Balance, 'attofil')
+    return makeFriendlyBalance(balance, 6)
+  }, [actorData])
+
   // Log actor state errors
   useEffect(() => actorError && logger.error(actorError), [actorError, logger])
 
@@ -124,9 +130,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
           )}
           <Line label='Actor name'>{actorName || 'unknown'}</Line>
           <Line label='Actor code'>{actorData.Code['/']}</Line>
-          <Line label='Balance'>
-            {new FilecoinNumber(actorData.Balance, 'attofil').toFil()} FIL
-          </Line>
+          <Line label='Balance'>{friendlyBalance} FIL</Line>
           {hasAvailableBalance && (
             <Line label='Available Balance'>
               {availableBalanceError ? (

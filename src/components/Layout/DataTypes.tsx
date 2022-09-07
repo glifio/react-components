@@ -9,6 +9,7 @@ import {
 import { Line, NullishLine } from './Lines'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { FilecoinNumber } from '@glif/filecoin-number'
+import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
 
 /**
  * DataTypeLines
@@ -156,8 +157,10 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
           <AddressLink address={strVal} fetchAddress hideCopyText={false} />
         )
 
-      if (Name === 'FilecoinNumber')
-        return <>{new FilecoinNumber(strVal, 'attofil').toFil() + ' FIL'}</>
+      if (Name === 'FilecoinNumber') {
+        const filVal = new FilecoinNumber(strVal, 'attofil')
+        return <>{`${(makeFriendlyBalance(filVal), 6)} FIL`}</>
+      }
 
       return <>{Value}</>
 
