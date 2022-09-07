@@ -1291,7 +1291,7 @@ exports[`BalanceCard it renders pretty under 1 dollar balances 1`] = `
   <p
     class="balance"
   >
-    &lt; 0.001
+    &lt; 0.0001
      FIL
   </p>
   <button
@@ -1508,7 +1508,7 @@ exports[`BalanceCard it renders pretty under thousand dollar balances 1`] = `
   <p
     class="balance"
   >
-    999.124
+    999.1241
      FIL
   </p>
   <button
