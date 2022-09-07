@@ -6,7 +6,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { ButtonV2 } from '../Button/V2'
 import { OutlineBox } from '../Layout'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
-import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
+import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
 import { Colors } from '../theme'
 
 const BalanceBox = styled(OutlineBox)`
@@ -86,7 +86,7 @@ export const BalanceCard = ({
         <hr />
       </div>
       <p className='balance'>
-        {preciseMode ? balance.toFil() : makeFriendlyBalance(balance, 3)} FIL
+        {preciseMode ? balance.toFil() : makeFriendlyBalance(balance)} FIL
       </p>
       <ButtonV2 green disabled={disableButtons} onClick={onSend}>
         Send

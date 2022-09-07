@@ -5,7 +5,7 @@ import {
   FILECOIN_NUMBER_PROPTYPE
 } from '../../customPropTypes'
 import truncateAddress from '../../utils/truncateAddress'
-import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
+import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
 
 const Header = styled.header`
   display: flex;
@@ -40,14 +40,14 @@ export const TransactionBalance = ({
       <div>
         <span>{msigBalance && 'Signer '}Balance</span>
         <span>
-          <>{makeFriendlyBalance(balance, 6)} FIL</>
+          <>{makeFriendlyBalance(balance)} FIL</>
         </span>
       </div>
       {msigBalance && (
         <div>
           <span>Safe Balance</span>
           <span>
-            <>{makeFriendlyBalance(msigBalance, 6)} FIL</>
+            <>{makeFriendlyBalance(msigBalance)} FIL</>
           </span>
         </div>
       )}
