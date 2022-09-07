@@ -143,7 +143,7 @@ describe('makeFriendlyBalance', () => {
     ).toEqual('> 0')
     expect(
       makeFriendlyBalance(new FilecoinNumber('0.0123456789', 'fil'), 1)
-    ).toEqual('< -0.1')
+    ).toEqual('< 0.1')
     expect(
       makeFriendlyBalance(new FilecoinNumber('0.123456789', 'fil'), 1)
     ).toEqual('0.1')
