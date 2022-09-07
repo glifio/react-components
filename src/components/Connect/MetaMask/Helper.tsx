@@ -74,7 +74,8 @@ export const HelperText: FC<
           <SmartLink href='https://metamask.io/flask/'>
             install MetaMask Flask
           </SmartLink>{' '}
-          , a canary distribution for developers that provides access to upcoming features.
+          , a canary distribution for developers that provides access to
+          upcoming features.
         </p>
         <ButtonRowCenter>
           <ButtonV2 large onClick={back}>
