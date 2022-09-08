@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { getActorName } from '@glif/filecoin-actor-utils'
 
@@ -37,8 +37,6 @@ export default function ProposalDetail({
   const router = useRouter()
   const logger = useLogger()
   const { coinType } = useEnvironment()
-
-  const [seeMore, setSeeMore] = useState(false)
 
   // Ensure network cointype for address
   const address = useMemo<string>(
@@ -172,8 +170,20 @@ export default function ProposalDetail({
             />
           )}
         </Line>
+        <Line
+          label={`Approvers${
+            proposal?.approved ? ` (${proposal?.approved.length})` : ''
+          }`}
+        >
+          {proposal?.approved.map((approver: Address) => (
+            <AddressLink
+              key={approver.robust || approver.id}
+              id={approver.id}
+              address={approver.robust}
+            />
+          ))}
+        </Line>
         <Line label='Approvals until execution'>{approvalsUntilExecution}</Line>
-        <hr />
         <Parameters
           params={{
             params: {
@@ -186,35 +196,6 @@ export default function ProposalDetail({
           actorName='/multisig'
           depth={0}
         />
-        <hr />
-        {seeMore ? (
-          <p role='button' onClick={() => setSeeMore(false)}>
-            Click to see less ↑
-          </p>
-        ) : (
-          <p role='button' onClick={() => setSeeMore(true)}>
-            Click to see more ↓
-          </p>
-        )}
-        <hr />
-        {seeMore && (
-          <>
-            <Line label='Next Transaction ID'>{msigState?.NextTxnID}</Line>
-            <Line
-              label={`Approvers${
-                proposal?.approved ? ` (${proposal?.approved.length})` : ''
-              }`}
-            >
-              {proposal?.approved.map((approver: Address) => (
-                <AddressLink
-                  key={approver.robust || approver.id}
-                  id={approver.id}
-                  address={approver.robust}
-                />
-              ))}
-            </Line>
-          </>
-        )}
       </Lines>
     </div>
   )
