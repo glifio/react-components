@@ -9,16 +9,11 @@ import {
   LabeledLinkPropTypes
 } from './LabeledLink'
 
-export const CidLink = ({
+export const MessageLink = ({
   cid,
-  label,
-  color,
-  disableLink,
-  hideCopy,
-  hideCopyText,
   shouldTruncate,
-  useNewTabIcon
-}: CidLinkProps) => {
+  ...labeledLinkProps
+}: MessageLinkProps) => {
   const { explorerUrl } = useEnvironment()
   const linkText = useMemo(
     () => (shouldTruncate ? truncateAddress(cid) : cid),
@@ -27,32 +22,28 @@ export const CidLink = ({
   const href = `${explorerUrl}/message/?cid=${cid}`
   return (
     <LabeledLink
-      label={label}
-      color={color}
       href={href}
       linkText={linkText}
       copyText={cid}
-      disableLink={disableLink}
-      hideCopy={hideCopy}
-      hideCopyText={hideCopyText}
-      useNewTabIcon={useNewTabIcon}
+      {...labeledLinkProps}
     />
   )
 }
 
-export type CidLinkProps = {
+export type MessageLinkProps = {
   cid?: string
   shouldTruncate?: boolean
 } & Omit<LabeledLinkProps, 'href' | 'linkText' | 'copyText'>
 
-const { href, linkText, copyText, ...cidLinkPropTypes } = LabeledLinkPropTypes
+const { href, linkText, copyText, ...messageLinkPropTypes } =
+  LabeledLinkPropTypes
 
-CidLink.propTypes = {
+MessageLink.propTypes = {
   cid: PropTypes.string,
   shouldTruncate: PropTypes.bool,
-  ...cidLinkPropTypes
+  ...messageLinkPropTypes
 }
 
-CidLink.defaultProps = {
+MessageLink.defaultProps = {
   shouldTruncate: true
 }

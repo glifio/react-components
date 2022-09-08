@@ -2,7 +2,8 @@ import { CoinType } from '@glif/filecoin-address'
 import PropTypes from 'prop-types'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { Wallet } from '../../services/WalletProvider'
-import { convertAddrToPrefix, makeFriendlyBalance } from '../../utils'
+import convertAddrToPrefix from '../../utils/convertAddrToPrefix'
+import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
 import { LoadingCaption, StatusIcon } from '../Layout'
 import { COIN_TYPE_PROPTYPE, WALLET_PROPTYPE } from '../../customPropTypes'
 import { useEnvironment } from '../../services/EnvironmentProvider'
@@ -39,7 +40,7 @@ const WalletRow = ({
           useNewTabIcon
         />
       </td>
-      <td>{makeFriendlyBalance(wallet.balance, 6, true)}</td>
+      <td>{makeFriendlyBalance(wallet.balance)}</td>
       <td>{convertAddrToPrefix(wallet.id, coinType) || '-'}</td>
       <td>{wallet.path}</td>
     </tr>

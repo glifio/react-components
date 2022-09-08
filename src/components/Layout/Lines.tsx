@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { useMemo, useState } from 'react'
+
 import { AddressLink } from '../LabeledText/AddressLink'
 import { Address } from '../../generated/graphql'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
@@ -47,6 +49,10 @@ const LineEl = styled.div`
     align-items: center;
     gap: 0.75em;
     word-break: break-word;
+
+    > p[role='button'] {
+      margin: 0;
+    }
   }
 `
 
@@ -77,13 +83,77 @@ Line.defaultProps = {
 }
 
 /**
+ * CollapsableLines
+ */
+
+export const CollapsableLines = ({
+  label,
+  depth,
+  children,
+  toggleName
+}: CollapsableLinesProps) => {
+  const [collapsed, setCollapsed] = useState<boolean>(true)
+  const toggleText = useMemo<string>(() => {
+    const prefix = collapsed ? 'show' : 'hide'
+    const arrow = collapsed ? '↓' : '↑'
+    const name = toggleName || label.toLowerCase()
+    return `Click to ${prefix} ${name} ${arrow}`
+  }, [label, toggleName, collapsed])
+
+  return (
+    <>
+      <Line label={label} depth={depth}>
+        <p role='button' onClick={() => setCollapsed(!collapsed)}>
+          {toggleText}
+        </p>
+      </Line>
+      {!collapsed && children}
+    </>
+  )
+}
+
+interface CollapsableLinesProps {
+  label: string
+  depth?: number
+  children?: React.ReactNode
+  toggleName?: string
+}
+
+CollapsableLines.propTypes = {
+  label: PropTypes.string.isRequired,
+  depth: PropTypes.number,
+  children: PropTypes.node,
+  toggleName: PropTypes.string
+}
+
+/**
+ * NullishLine
+ */
+
+export const NullishLine = ({ label, depth }: NullishLineProps) => (
+  <Line label={label} depth={depth}>
+    &ndash;
+  </Line>
+)
+
+interface NullishLineProps {
+  label?: string
+  depth?: number
+}
+
+NullishLine.propTypes = {
+  label: PropTypes.string,
+  depth: PropTypes.number
+}
+
+/**
  * AddressLine
  */
 
 export const AddressLine = ({ value, label, depth }: AddressLineProps) =>
   typeof value === 'string' ? (
     <Line label={label} depth={depth}>
-      <AddressLink address={value} hideCopyText={false} />
+      <AddressLink address={value} fetchAddress hideCopyText={false} />
     </Line>
   ) : (
     <Line label={label} depth={depth}>

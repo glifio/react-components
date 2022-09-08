@@ -1,50 +1,47 @@
 import useSWR, { SWRConfiguration } from 'swr'
 import { useCallback } from 'react'
-import { LotusActorState } from '@glif/filecoin-actor-utils'
+import { FilecoinNumber } from '@glif/filecoin-number'
 import { validateAddressString } from '@glif/filecoin-address'
 
 import { useEnvironment } from '../../services/EnvironmentProvider'
 
-interface UseStateReadStateResult<T> {
-  data: LotusActorState<T> | null
+interface UseMsigGetAvailableBalanceResult {
+  availableBalance: FilecoinNumber | null
   loading: boolean
-  notFound: boolean
   error: Error | null
 }
 
-export const useStateReadState = <T = object | null>(
+export const useMsigGetAvailableBalance = (
   address: string,
   swrConfig: SWRConfiguration = { refreshInterval: 10000 }
-): UseStateReadStateResult<T> => {
+): UseMsigGetAvailableBalanceResult => {
   const { lotusApi } = useEnvironment()
 
   const fetcher = useCallback(
     async (
       actorAddress: string,
       lotusMethod: string
-    ): Promise<LotusActorState<T> | null> => {
+    ): Promise<FilecoinNumber | null> => {
       if (!actorAddress) return null
 
       if (!validateAddressString(actorAddress))
         throw new Error('Invalid actor address')
 
-      return await lotusApi.request<LotusActorState<T>>(
-        lotusMethod,
-        actorAddress,
-        null
+      return new FilecoinNumber(
+        await lotusApi.request<string>(lotusMethod, actorAddress, null),
+        'attofil'
       )
     },
     [lotusApi]
   )
 
-  const { data, error } = useSWR<LotusActorState<T>, Error>(
-    [address, 'StateReadState'],
+  const { data, error } = useSWR<FilecoinNumber, Error>(
+    [address, 'MsigGetAvailableBalance'],
     fetcher,
     swrConfig
   )
 
   const loading = !!address && !data && !error
-  const notFound = !!error && error.message.includes('actor not found')
 
-  return { data, loading, notFound, error: notFound ? null : error }
+  return { availableBalance: data, loading, error }
 }

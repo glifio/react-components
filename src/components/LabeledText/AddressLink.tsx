@@ -10,24 +10,26 @@ import {
   LabeledLinkPropTypes
 } from './LabeledLink'
 
+/**
+ * AddressLink is a LabeledLink for actor addresses.
+ *
+ * When fetchAddress is false (default), both id and address can be
+ * provided, but only the (robust) address will be shown if present
+ *
+ * When fetchAddress is true, only the address prop needs to be provided
+ * (either id or robust) and the missing information will be fetched.
+ */
 export const AddressLink = ({
   id,
   address,
-  label,
-  color,
-  disableLink,
-  hideCopy,
-  hideCopyText,
   shouldTruncate,
   fetchAddress,
-  useNewTabIcon
+  ...labeledLinkProps
 }: AddressLinkProps) => {
   const { explorerUrl } = useEnvironment()
   const { data: gqlAddress } = useAddressQuery({
-    skip: !id || !!address || !fetchAddress,
-    variables: {
-      address: id
-    }
+    skip: !fetchAddress,
+    variables: { address }
   })
 
   // prioritize robust > id
@@ -35,20 +37,16 @@ export const AddressLink = ({
     const robust = gqlAddress?.address?.robust || address
     return robust ? (shouldTruncate ? truncateAddress(robust) : robust) : id
   }, [gqlAddress, address, id, shouldTruncate])
+
   const copyText = gqlAddress?.address?.robust || address || id
   const href = `${explorerUrl}/actor/?address=${copyText}`
 
   return (
     <LabeledLink
-      label={label}
-      color={color}
       href={href}
       linkText={linkText}
       copyText={copyText}
-      disableLink={disableLink}
-      hideCopy={hideCopy}
-      hideCopyText={hideCopyText}
-      useNewTabIcon={useNewTabIcon}
+      {...labeledLinkProps}
     />
   )
 }

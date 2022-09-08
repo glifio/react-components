@@ -5,7 +5,7 @@ module.exports = {
     '!**/node_modules/**',
     '!src/**/*.stories.{js,jsx,ts,tsx}'
   ],
-  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  testPathIgnorePatterns: ['/node_modules', '/dist'],
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest'
   },

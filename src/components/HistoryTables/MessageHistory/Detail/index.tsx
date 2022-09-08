@@ -8,7 +8,8 @@ import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
 import { useMessage } from '../hooks/useAllMessages'
 import { useMethodName } from '../hooks/useMethodName'
 import { Lines, Line, StandardBox, PageTitle } from '../../../Layout'
-import { isAddrEqual, makeFriendlyBalance } from '../../../../utils'
+import { makeFriendlyBalance } from '../../../../utils/makeFriendlyBalance'
+import { isAddrEqual } from '../../../../utils/isAddrEqual'
 import {
   ExecReturn,
   getAddrFromReceipt
@@ -128,12 +129,7 @@ export default function MessageDetail(props: MessageDetailProps) {
       <hr />
       <Lines>
         {messageState === MessageState.Error && (
-          <DetailCaption
-            name='Message Overview'
-            caption='Error'
-            loading={false}
-            error={error}
-          />
+          <DetailCaption name='Message Overview' error={error} />
         )}
         {messageState === MessageState.NotFound && (
           <StandardBox>

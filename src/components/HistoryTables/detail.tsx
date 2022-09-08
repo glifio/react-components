@@ -21,7 +21,7 @@ import {
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
 } from '../../customPropTypes'
-import { CidLink } from '../LabeledText/CidLink'
+import { MessageLink } from '../LabeledText/MessageLink'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -39,7 +39,8 @@ const CAPTION = styled.div`
 
 export const DetailCaption = ({
   name,
-  caption,
+  infoMsg,
+  loadingMsg,
   loading,
   error
 }: DetailCaptionProps) => {
@@ -47,21 +48,24 @@ export const DetailCaption = ({
     return (
       <CAPTION className='error'>{`${name} failed to load: ${error.message}`}</CAPTION>
     )
-  if (loading) return <CAPTION>{caption}</CAPTION>
+  if (loading) return <CAPTION>{loadingMsg || `${name} is loading...`}</CAPTION>
+  if (infoMsg) return <CAPTION>{infoMsg}</CAPTION>
   return <></>
 }
 
 type DetailCaptionProps = {
   name: string
-  caption: string
-  loading: boolean
-  error: Error
+  infoMsg?: string
+  loadingMsg?: string
+  loading?: boolean
+  error?: Error
 }
 
 DetailCaption.propTypes = {
   name: PropTypes.string.isRequired,
-  caption: PropTypes.string.isRequired,
-  loading: PropTypes.bool.isRequired,
+  infoMsg: PropTypes.string,
+  loadingMsg: PropTypes.string,
+  loading: PropTypes.bool,
   error: PropTypes.object
 }
 
@@ -256,7 +260,7 @@ export const MessageDetailBase = ({
   return (
     <>
       <Line label='CID'>
-        <CidLink
+        <MessageLink
           cid={cid}
           hideCopyText={false}
           hideCopy={false}

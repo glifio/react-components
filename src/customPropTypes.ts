@@ -11,9 +11,10 @@ import {
 import { validateMnemonic } from 'bip39'
 import { validateAddressString, CoinType } from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import BigNumber from 'bignumber.js'
-import type { CID as IPLDNode } from '@glif/filecoin-wallet-provider'
+import { LotusCID } from '@glif/filecoin-actor-utils'
 import { CID } from 'multiformats/cid'
+import BigNumber from 'bignumber.js'
+
 import { Network } from './services/EnvironmentProvider'
 
 /**
@@ -202,6 +203,20 @@ export const LOGIN_OPTION_PROPTYPE = oneOf(
 )
 
 /**
+ * MSIG State
+ */
+
+export interface MsigState {
+  InitialBalance: string
+  NextTxnID: number
+  NumApprovalsThreshold: number
+  PendingTxns: LotusCID
+  Signers: string[]
+  StartEpoch: number
+  UnlockDuration: number
+}
+
+/**
  * MSIG Method
  */
 
@@ -284,7 +299,7 @@ export const WALLET_PROPTYPE = shape({
 /* Actor types */
 
 export type SystemActorState = {
-  BuiltinActors: IPLDNode
+  BuiltinActors: LotusCID
 }
 
 export type BuiltInActorName =
