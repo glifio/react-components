@@ -3,13 +3,19 @@ import { Address } from '../../generated/graphql'
 import convertAddrToPrefix from '../convertAddrToPrefix'
 
 export const isAddrEqual = (
-  address: Address,
+  address: Address | string,
   address2: Address | string
 ): boolean => {
   if (!address || !address2) return false
 
-  const id1 = convertAddrToPrefix(address.id, CoinType.TEST)
-  const robust1 = convertAddrToPrefix(address.robust, CoinType.TEST)
+  const id1 = convertAddrToPrefix(
+    typeof address === 'string' ? address : address.id,
+    CoinType.TEST
+  )
+  const robust1 = convertAddrToPrefix(
+    typeof address === 'string' ? address : address.robust,
+    CoinType.TEST
+  )
   const id2 = convertAddrToPrefix(
     typeof address2 === 'string' ? address2 : address2.id,
     CoinType.TEST

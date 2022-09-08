@@ -168,7 +168,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   )
 }
 
-interface ActorStateProps {
+export interface ActorStateProps {
   address: string
 }
 
