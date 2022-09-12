@@ -18,8 +18,8 @@ import { appendQueryParams, getQueryParam, removeQueryParam } from '../../utils'
 
 export enum Network {
   MAINNET = 'mainnet',
-  CALIBRATION = 'calibration',
-  WALLABY = 'wallaby'
+  CALIBRATION = 'calibrationnet',
+  WALLABY = 'wallabynet'
 }
 
 export type NetworkInfo = {
