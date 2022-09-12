@@ -4,7 +4,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import {
   DataTypeMap,
   getActorName,
-  describeLotusActorState
+  describeActorState
 } from '@glif/filecoin-actor-utils'
 
 import { useAddressQuery } from '../../../generated/graphql'
@@ -28,7 +28,7 @@ import { BaseTypeObjLines, DataTypeMapLines } from '../../Layout/DataTypes'
 
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const logger = useLogger()
-  const { coinType } = useEnvironment()
+  const { coinType, networkName } = useEnvironment()
 
   // Ensure network cointype for address
   const address = useMemo<string>(
@@ -55,8 +55,8 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
 
   // Get the actor name from the actor code
   const actorName = useMemo<string | null>(
-    () => (actorData ? getActorName(actorData.Code['/']) : null),
-    [actorData]
+    () => (actorData ? getActorName(actorData.Code['/'], networkName) : null),
+    [actorData, networkName]
   )
 
   // Capitalize the actor name for display
@@ -69,12 +69,14 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   // Get actor state with descriptors
   const describedState = useMemo<DataTypeMap | null>(() => {
     try {
-      return actorData ? describeLotusActorState(actorData) : null
+      return actorName && actorData?.State
+        ? describeActorState(actorName, actorData.State)
+        : null
     } catch (e) {
       logger.error(e)
       return null
     }
-  }, [actorData, logger])
+  }, [actorName, actorData, logger])
 
   // Load the available balance for multisig actors
   const hasAvailableBalance = actorName && actorName.includes('multisig')
