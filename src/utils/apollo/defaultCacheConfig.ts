@@ -1,25 +1,6 @@
 import { InMemoryCacheConfig } from '@apollo/client'
 import { removeMessageDups } from '../removeGQLMsgDups'
 
-// The params field is expected to be a JSON string
-// or null. Both are safe to pass to JSON parse. The
-// result should be a valid javascript object or null.
-const parseParams = (_: any, incoming: any) => {
-  try {
-    if (incoming) {
-      const params = JSON.parse(incoming)
-      if (typeof params.Value === 'object' && !!params.Value.Int) {
-        params.Value = params.Value.Int
-      }
-      return params
-    }
-    return null
-  } catch (e) {
-    console.error(e)
-    return null
-  }
-}
-
 const parseExecutionTrace = (_: any, incoming: any) => {
   try {
     if (incoming) {
@@ -64,12 +45,7 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
       keyFields: ['cid']
     },
     Message: {
-      keyFields: ['cid'],
-      fields: {
-        params: {
-          merge: parseParams
-        }
-      }
+      keyFields: ['cid']
     },
     Tipset: {
       keyFields: ['height']
@@ -88,20 +64,10 @@ export const defaultMessageHistoryClientCacheConfig: InMemoryCacheConfig = {
       keyFields: ['robust', 'id']
     },
     MessagePending: {
-      keyFields: ['cid'],
-      fields: {
-        params: {
-          merge: parseParams
-        }
-      }
+      keyFields: ['cid']
     },
     MsigTransaction: {
-      keyFields: ['id'],
-      fields: {
-        params: {
-          merge: parseParams
-        }
-      }
+      keyFields: ['id']
     }
   }
 }
