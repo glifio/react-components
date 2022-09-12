@@ -1,9 +1,11 @@
-import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
-import * as dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { useRouter } from 'next/router'
+import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
+import { FilecoinNumber } from '@glif/filecoin-number'
+import { getMethodName } from '@glif/filecoin-actor-utils'
+
 import { Badge } from '../../Layout'
 import { AddressLink } from '../../LabeledText/AddressLink'
 import { ButtonV2 } from '../../Button/V2'
@@ -13,7 +15,6 @@ import { isAddrEqual } from '../../../utils/isAddrEqual'
 import { isAddressSigner } from '../../../utils/isAddressSigner'
 import { GRAPHQL_ADDRESS_PROP_TYPE } from '../../../customPropTypes'
 import { PROPOSAL_ROW_PROP_TYPE } from '../types'
-import { getMethodName } from '../methodName'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -52,7 +53,7 @@ export default function ProposalHistoryRow({
       <td>
         <Badge
           color='purple'
-          text={getMethodName('/multisig', proposal.method)}
+          text={getMethodName('multisig', proposal.method)}
         />
       </td>
       <td>
