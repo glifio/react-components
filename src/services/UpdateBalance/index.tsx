@@ -7,7 +7,7 @@ import { useWalletProvider } from '../WalletProvider'
 import { useEnvironment, useLogger } from '../EnvironmentProvider'
 
 export const useBalancePoller = (
-  swrOptions: SWRConfiguration = { refreshInterval: 10000 }
+  swrConfig: SWRConfiguration = { refreshInterval: 10000 }
 ) => {
   const { lotusApi } = useEnvironment()
   const { selectedWalletIdx, updateBalance } = useWalletProvider()
@@ -38,7 +38,7 @@ export const useBalancePoller = (
   const { data } = useSWR(
     wallet.address ? [wallet.address, wallet.balance, selectedWalletIdx] : null,
     fetcher,
-    swrOptions
+    swrConfig
   )
 
   return data
