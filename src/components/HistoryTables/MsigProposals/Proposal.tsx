@@ -36,7 +36,7 @@ export default function ProposalDetail({
 }: ProposalDetailProps) {
   const router = useRouter()
   const logger = useLogger()
-  const { coinType } = useEnvironment()
+  const { coinType, networkName } = useEnvironment()
 
   // Ensure network cointype for address
   const address = useMemo<string>(
@@ -70,8 +70,8 @@ export default function ProposalDetail({
 
   // Get the actor name from the actor code
   const actorName = useMemo<string | null>(
-    () => (actorData ? getActorName(actorData.Code['/']) : null),
-    [actorData]
+    () => (actorData ? getActorName(actorData.Code['/'], networkName) : null),
+    [actorData, networkName]
   )
 
   // Interpret state data as msig state if valid
