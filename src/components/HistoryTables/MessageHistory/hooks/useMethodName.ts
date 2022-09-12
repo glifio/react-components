@@ -1,14 +1,9 @@
-import { useMemo } from 'react'
-import { getMethodName } from '@glif/filecoin-actor-utils'
+import { getActorName, getMethodName } from '@glif/filecoin-actor-utils'
 
 import { useActorQuery } from '../../../../generated/graphql'
-import { decodeActorCID } from '../../../../utils'
 import { MessageConfirmedRow, MessagePendingRow } from '../../types'
 import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
-import {
-  useEnvironment,
-  useLogger
-} from '../../../../services/EnvironmentProvider'
+import { useEnvironment } from '../../../../services/EnvironmentProvider'
 
 type MessageForMethodNameType =
   | Pick<MessageConfirmedRow, 'to' | 'cid' | 'method'>
@@ -18,8 +13,9 @@ export const useMethodName = (
   message: MessageForMethodNameType
 ): { methodName: string; actorName: string } => {
   const { coinType, networkName } = useEnvironment()
-  const logger = useLogger()
-  const actor = useActorQuery({
+
+  // Get actor data from GraphQL
+  const { data } = useActorQuery({
     variables: {
       address: convertAddrToPrefix(
         message?.to.robust || message?.to.id,
@@ -28,20 +24,11 @@ export const useMethodName = (
     }
   })
 
-  const actorName = useMemo<string>(() => {
-    if (!message?.cid || actor.loading || actor.error || !actor.data) return ''
-    try {
-      return decodeActorCID(actor.data?.actor.Code, networkName)
-    } catch (e) {
-      logger.error(e)
-      return 'unknown'
-    }
-  }, [actor, networkName, message?.cid, logger])
+  // Resolve actor code, name and message name
+  const actorCode = data?.actor?.Code
+  const actorName = actorCode ? getActorName(actorCode, networkName) : null
+  const methodNum = Number(message.method)
+  const methodName = actorName ? getMethodName(actorName, methodNum) : null
 
-  const methodName = useMemo(() => {
-    if (actorName) return getMethodName(actorName, Number(message.method))
-    else return '...'
-  }, [actorName, message?.method])
-
-  return { methodName, actorName }
+  return { methodName: methodName ?? '...', actorName: actorName ?? 'unknown' }
 }
