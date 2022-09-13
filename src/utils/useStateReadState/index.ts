@@ -1,5 +1,5 @@
 import useSWR, { SWRConfiguration } from 'swr'
-import { useCallback } from 'react'
+import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { LotusActorState } from '@glif/filecoin-actor-utils'
 import { validateAddressString } from '@glif/filecoin-address'
 
@@ -16,29 +16,26 @@ export const useStateReadState = <T = object | null>(
   address: string,
   swrConfig: SWRConfiguration = { refreshInterval: 10000 }
 ): UseStateReadStateResult<T> => {
+  const fetcher = async (
+    lotusApi: LotusRpcEngine,
+    lotusMethod: string,
+    actorAddress: string
+  ): Promise<LotusActorState<T> | null> => {
+    if (!actorAddress) return null
+
+    if (!validateAddressString(actorAddress))
+      throw new Error('Invalid actor address')
+
+    return await lotusApi.request<LotusActorState<T>>(
+      lotusMethod,
+      actorAddress,
+      null
+    )
+  }
+
   const { lotusApi } = useEnvironment()
-
-  const fetcher = useCallback(
-    async (
-      actorAddress: string,
-      lotusMethod: string
-    ): Promise<LotusActorState<T> | null> => {
-      if (!actorAddress) return null
-
-      if (!validateAddressString(actorAddress))
-        throw new Error('Invalid actor address')
-
-      return await lotusApi.request<LotusActorState<T>>(
-        lotusMethod,
-        actorAddress,
-        null
-      )
-    },
-    [lotusApi]
-  )
-
   const { data, error } = useSWR<LotusActorState<T>, Error>(
-    [address, 'StateReadState'],
+    [lotusApi, 'StateReadState', address],
     fetcher,
     swrConfig
   )
