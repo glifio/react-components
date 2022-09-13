@@ -55,7 +55,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
 
   // Get the actor name from the actor code
   const actorName = useMemo<string | null>(
-    () => (actorData ? getActorName(actorData.Code['/'], networkName) : null),
+    () => (actorData ? getActorName(actorData.Code, networkName) : null),
     [actorData, networkName]
   )
 
@@ -73,7 +73,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
         ? describeActorState(actorName, actorData.State)
         : null
     } catch (e) {
-      logger.error(e)
+      logger.error(`Failed to describe actor state for address ${address}: ${e.message}`)
       return null
     }
   }, [actorName, actorData, logger])
