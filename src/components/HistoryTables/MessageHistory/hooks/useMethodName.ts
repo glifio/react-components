@@ -27,8 +27,7 @@ export const useMethodName = (
   // Resolve actor code, name and message name
   const actorCode = data?.actor?.Code
   const actorName = actorCode ? getActorName(actorCode, networkName) : null
-  const methodNum = Number(message.method)
-  const methodName = actorName ? getMethodName(actorName, methodNum) : null
+  const methodName = actorName ? getMethodName(actorName, Number(message.method)) : null
 
   return { methodName: methodName ?? '...', actorName: actorName ?? 'unknown' }
 }
