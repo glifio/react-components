@@ -2,7 +2,13 @@ import useSWR from 'swr'
 import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { useEnvironment } from '../../services/EnvironmentProvider'
 
-export const useNetworkName = () => {
+interface UseNetworkNameResult {
+  networkName: string
+  loading: boolean
+  error: Error | null
+}
+
+export const useNetworkName = (): UseNetworkNameResult => {
   const fetcher = async (
     lotusApi: LotusRpcEngine,
     lotusMethod: string
