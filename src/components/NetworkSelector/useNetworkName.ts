@@ -8,12 +8,12 @@ interface UseNetworkNameResult {
   error: Error | null
 }
 
-export const useNetworkName = (): UseNetworkNameResult => {
-  const fetcher = async (
-    lotusApi: LotusRpcEngine,
-    lotusMethod: string
-  ): Promise<string> => await lotusApi.request<string>(lotusMethod)
+const fetcher = async (
+  lotusApi: LotusRpcEngine,
+  lotusMethod: string
+): Promise<string> => await lotusApi.request<string>(lotusMethod)
 
+export const useNetworkName = (): UseNetworkNameResult => {
   const { lotusApi } = useEnvironment()
   const { data, error } = useSWR<string, Error>(
     [lotusApi, 'StateNetworkName'],
