@@ -15,7 +15,16 @@ interface NetworkStatusResponse {
   monitors: { status: NetworkStatus }[]
 }
 
-export const useNetworkStatus = (statusApiAddr: string, apiKey: string) => {
+interface UseNetworkStatusResult {
+  networkConnected: boolean
+  loading: boolean
+  error: Error | null
+}
+
+export const useNetworkStatus = (
+  statusApiAddr: string,
+  apiKey: string
+): UseNetworkStatusResult => {
   const fetcher = async (
     url: string,
     key: string
