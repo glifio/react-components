@@ -11,14 +11,14 @@ export const parameters = {
 
 export const decorators = [
   Story => (
-    <ErrorBoundary>
       <TestEnvironment>
         <ApolloWrapper>
           <ThemeProvider theme={theme}>
-            <Story />
+            <ErrorBoundary>
+              <Story />
+            </ErrorBoundary>
           </ThemeProvider>
         </ApolloWrapper>
       </TestEnvironment>
-    </ErrorBoundary>
   )
 ]
