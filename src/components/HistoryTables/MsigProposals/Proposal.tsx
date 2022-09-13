@@ -70,7 +70,7 @@ export default function ProposalDetail({
 
   // Get the actor name from the actor code
   const actorName = useMemo<string | null>(
-    () => (actorData ? getActorName(actorData.Code['/'], networkName) : null),
+    () => (actorData ? getActorName(actorData.Code, networkName) : null),
     [actorData, networkName]
   )
 
