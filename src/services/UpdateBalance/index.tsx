@@ -1,47 +1,56 @@
-import { useCallback } from 'react'
+import useSWR, { SWRConfiguration } from 'swr'
+import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { useWallet } from '../WalletProvider/useWallet'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import useSWR, { SWRConfiguration } from 'swr'
+import { validateAddressString } from '@glif/filecoin-address'
 
 import { useWalletProvider } from '../WalletProvider'
 import { useEnvironment, useLogger } from '../EnvironmentProvider'
 
+interface UseBalancePollerResult {
+  balance: FilecoinNumber | null
+  loading: boolean
+  error: Error | null
+}
+
+const fetcher = async (
+  lotusApi: LotusRpcEngine,
+  lotusMethod: string,
+  actorAddress: string
+): Promise<FilecoinNumber | null> => {
+  if (!actorAddress) return null
+
+  if (!validateAddressString(actorAddress))
+    throw new Error('Invalid actor address')
+
+  return new FilecoinNumber(
+    await lotusApi.request<string>(lotusMethod, actorAddress),
+    'attofil'
+  )
+}
+
 export const useBalancePoller = (
   swrConfig: SWRConfiguration = { refreshInterval: 10000 }
-) => {
-  const { lotusApi } = useEnvironment()
-  const { selectedWalletIdx, updateBalance } = useWalletProvider()
+): UseBalancePollerResult => {
   const wallet = useWallet()
   const logger = useLogger()
-  const fetcher = useCallback(
-    async (address: string, prevBalance: FilecoinNumber, walletIdx: number) => {
-      try {
-        const latestBalance = new FilecoinNumber(
-          await lotusApi.request<string>('WalletBalance', address),
-          'attofil'
-        )
-        if (!latestBalance.isEqualTo(prevBalance)) {
-          updateBalance(latestBalance, walletIdx)
-        }
-
-        return latestBalance
-      } catch (err) {
-        logger.error(
-          err instanceof Error ? err.message : 'Error fetching balance',
-          'useBalancePoller'
-        )
-      }
-    },
-    [updateBalance, lotusApi, logger]
-  )
-
-  const { data } = useSWR(
-    wallet.address ? [wallet.address, wallet.balance, selectedWalletIdx] : null,
+  const { lotusApi } = useEnvironment()
+  const { selectedWalletIdx, updateBalance } = useWalletProvider()
+  const { data, error } = useSWR<FilecoinNumber, Error>(
+    [lotusApi, 'WalletBalance', wallet.address],
     fetcher,
     swrConfig
   )
 
-  return data
+  if (data && !data.isEqualTo(wallet.balance)) {
+    updateBalance(data, selectedWalletIdx)
+  }
+
+  if (error) logger.error(error)
+  
+  const loading = !!wallet.address && !data && !error
+
+  return { balance: data, loading, error }
 }
 
 // Polls lotus for up to date balances about the user's selected wallet
