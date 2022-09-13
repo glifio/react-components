@@ -29,7 +29,7 @@ const fetcher = async <T>(
   )
 }
 
-export const useStateReadState = <T = object | null>(
+export const useStateReadState = <T = Record<string, any> | null>(
   address: string,
   swrConfig: SWRConfiguration = { refreshInterval: 10000 }
 ): UseStateReadStateResult<T> => {
