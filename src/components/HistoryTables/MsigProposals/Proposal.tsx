@@ -2,9 +2,9 @@ import PropTypes from 'prop-types'
 import { useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { getActorName } from '@glif/filecoin-actor-utils'
+import { FilecoinNumber } from '@glif/filecoin-number'
 
 import { AddressLink } from '../../LabeledText/AddressLink'
-import { Parameters } from '../detail'
 import {
   MsigState,
   ADDRESS_PROPTYPE,
@@ -16,7 +16,14 @@ import {
   useMsigPendingQuery
 } from '../../../generated/graphql'
 import { isAddrEqual, useStateReadState, isAddressSigner } from '../../../utils'
-import { Lines, Line, PageTitle } from '../../Layout'
+import {
+  Lines,
+  Line,
+  PageTitle,
+  FilecoinLine,
+  AddressLine,
+  MethodLine
+} from '../../Layout'
 import { LoadingScreen } from '../../Loading/LoadingScreen'
 import { ErrorView } from '../../ErrorView'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
@@ -76,7 +83,7 @@ export default function ProposalDetail({
 
   // Interpret state data as msig state if valid
   const msigState = useMemo<MsigState | null>(() => {
-    const isMsigActor = actorName && actorName.includes('multisig')
+    const isMsigActor = actorName === 'multisig'
     return isMsigActor && actorData ? (actorData.State as MsigState) : null
   }, [actorData, actorName])
 
@@ -178,17 +185,16 @@ export default function ProposalDetail({
           ))}
         </Line>
         <Line label='Approvals until execution'>{approvalsUntilExecution}</Line>
-        <Parameters
-          params={{
-            params: {
-              to: proposal.to.robust,
-              value: proposal.value,
-              method: proposal.method,
-              params: proposal.params
-            }
-          }}
-          actorName='/multisig'
-          depth={0}
+        <hr />
+        <AddressLine label='To' value={proposal.to} />
+        <FilecoinLine
+          label='Value'
+          value={new FilecoinNumber(proposal.value, 'attofil')}
+        />
+        <MethodLine
+          label='Method'
+          actorName={actorName}
+          methodNum={proposal.method}
         />
       </Lines>
     </div>
