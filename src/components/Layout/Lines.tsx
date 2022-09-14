@@ -186,6 +186,7 @@ export const MethodLine = ({
     <Badge
       color='purple'
       text={getMethodName(actorName, methodNum) || `Method ${methodNum}`}
+      uppercase={false}
     />
   </Line>
 )
