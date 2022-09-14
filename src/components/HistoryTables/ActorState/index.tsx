@@ -73,10 +73,12 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
         ? describeActorState(actorName, actorData.State)
         : null
     } catch (e) {
-      logger.error(`Failed to describe actor state for address ${address}: ${e.message}`)
+      logger.error(
+        `Failed to describe actor state for address ${address}: ${e.message}`
+      )
       return null
     }
-  }, [actorName, actorData, logger])
+  }, [actorName, actorData, address, logger])
 
   // Load the available balance for multisig actors
   const hasAvailableBalance = actorName && actorName.includes('multisig')
