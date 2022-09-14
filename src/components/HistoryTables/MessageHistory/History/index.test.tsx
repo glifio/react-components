@@ -22,7 +22,7 @@ jest
 
 jest
   .spyOn(require('../hooks/useMethodName'), 'useMethodName')
-  .mockImplementation(() => ({ methodName: 'send' }))
+  .mockImplementation(() => 'send')
 
 describe('Message history', () => {
   test('it renders no message history correctly with historical data missing warning', async () => {

@@ -15,10 +15,6 @@ import truncateAddress from '../../../../utils/truncateAddress'
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
-const CapitalizedTD = styled.td`
-  text-transform: capitalize;
-`
-
 export default function PendingMessageHistoryRow(
   props: PendingMessageHistoryRowProps
 ) {
@@ -31,7 +27,7 @@ export default function PendingMessageHistoryRow(
     () => isAddrEqual(message.to, inspectingAddress),
     [message.to, inspectingAddress]
   )
-  const { methodName } = useMethodName({ ...message, actorName: '' })
+  const methodName = useMethodName(message.to, message.method)
   return (
     <tr>
       <td>
@@ -39,7 +35,7 @@ export default function PendingMessageHistoryRow(
           {truncateAddress(message.cid)}
         </SmartLink>
       </td>
-      {props.inspectingAddress && <CapitalizedTD>{methodName}</CapitalizedTD>}
+      {props.inspectingAddress && <td>{methodName}</td>}
       <td>(Pending)</td>
       <td>(Pending)</td>
       <td>

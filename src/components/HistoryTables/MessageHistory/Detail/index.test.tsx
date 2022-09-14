@@ -14,12 +14,7 @@ import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
 jest
   .spyOn(require('../hooks/useMethodName'), 'useMethodName')
-  .mockImplementation(() => {
-    return {
-      methodName: 'send',
-      actorName: 'account'
-    }
-  })
+  .mockImplementation(() => 'send')
 
 const speedUpBtnText = 'Speed up'
 const cancelBtnText = 'Cancel'
