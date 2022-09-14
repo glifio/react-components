@@ -84,7 +84,7 @@ const propTypes = {
 }
 
 const defaultProps = {
-  Wrapper: <></>,
+  Wrapper: ({ children }) => <>{children}</>,
   children: <></>,
   logger: null,
   title: 'Glif is currently down',
