@@ -6,7 +6,12 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { Address } from '../../generated/graphql'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
-import { ADDRESS_PROPTYPE, FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
+import {
+  ADDRESS_PROPTYPE,
+  FILECOIN_NUMBER_PROPTYPE
+} from '../../customPropTypes'
+import { Badge } from './Badge'
+import { getMethodName } from '@glif/filecoin-actor-utils'
 
 /**
  * Lines
@@ -164,6 +169,35 @@ type FilecoinLineProps = {
 
 FilecoinLine.propTypes = {
   value: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  ...LinePropTypes
+}
+
+/**
+ * MethodLine
+ */
+
+export const MethodLine = ({
+  label,
+  depth,
+  actorName,
+  methodNum
+}: MethodLineProps) => (
+  <Line label={label} depth={depth}>
+    <Badge
+      color='purple'
+      text={getMethodName(actorName, methodNum) || `Method ${methodNum}`}
+    />
+  </Line>
+)
+
+type MethodLineProps = {
+  actorName: string
+  methodNum: number
+} & LineProps
+
+MethodLine.propTypes = {
+  actorName: PropTypes.string.isRequired,
+  methodNum: PropTypes.number.isRequired,
   ...LinePropTypes
 }
 
