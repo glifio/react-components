@@ -159,7 +159,7 @@ NullishLine.propTypes = {
 
 export const FilecoinLine = ({ label, depth, value }: FilecoinLineProps) => (
   <Line label={label} depth={depth}>
-    {(makeFriendlyBalance(value, 6))} FIL
+    {makeFriendlyBalance(value, 6)} FIL
   </Line>
 )
 
