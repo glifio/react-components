@@ -10,15 +10,15 @@ import { BaseTypeObjLines, DataTypeLines } from './DataTypes'
 import { Line, NullishLine } from './Lines'
 import { useEnvironment, useLogger } from '../../services'
 import { useActorQuery } from '../../generated/graphql'
-import { useStateDecodeParams } from '../../utils'
+import { convertAddrToPrefix, useStateDecodeParams } from '../../utils'
 
 export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
-  const { networkName } = useEnvironment()
+  const { coinType, networkName } = useEnvironment()
   const logger = useLogger()
 
   // Get actor data
   const { data: actorData, error: actorDataError } = useActorQuery({
-    variables: { address }
+    variables: { address: convertAddrToPrefix(address, coinType) }
   })
 
   // Log actor data errors
