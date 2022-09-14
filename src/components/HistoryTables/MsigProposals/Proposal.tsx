@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { getActorName } from '@glif/filecoin-actor-utils'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
-import { AddressLink } from '../../LabeledText/AddressLink'
 import {
   MsigState,
   ADDRESS_PROPTYPE,
@@ -169,15 +168,13 @@ export default function ProposalDetail({
       <Lines>
         <Line label='Proposal ID'>{id}</Line>
         <AddressLine label='Proposer' value={proposal.approved[0]} />
-        <Line label={`Approvers (${proposal.approved.length})`}>
-          {proposal.approved.map((approver: Address) => (
-            <AddressLink
-              key={approver.robust || approver.id}
-              id={approver.id}
-              address={approver.robust}
-            />
-          ))}
-        </Line>
+        {proposal.approved.map((approver: Address, index) => (
+          <AddressLine
+            key={approver.robust || approver.id}
+            label={index === 0 ? `Approvers (${proposal.approved.length})` : ''}
+            value={approver}
+          />
+        ))}
         <Line label='Approvals until execution'>{approvalsUntilExecution}</Line>
         <hr />
         <AddressLine label='To' value={proposal.to} />
