@@ -10,18 +10,19 @@ import {
   useChainHeadSubscription
 } from '../../generated/graphql'
 import { IconCheck, IconPending, IconClock } from '../Icons'
-import { Badge, Lines, Line, AddressLine } from '../Layout'
-import { getMethodName } from './methodName'
+import { Badge, Line } from '../Layout'
 import { useAge } from '../../utils/useAge'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
 import { Colors } from '../theme'
 import {
+  ADDRESS_PROPTYPE,
   EXECUTION_TRACE_PROPTYPE,
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
 } from '../../customPropTypes'
 import { MessageLink } from '../LabeledText/MessageLink'
+import { LinesParams } from '../Layout/LinesParams'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -244,8 +245,7 @@ const SpanGray = styled.span`
 export const SeeMoreContent = ({
   message,
   gasUsed,
-  gasCost,
-  actorName
+  gasCost
 }: SeeMoreContentProps) => {
   const gasPercentage = useMemo<string>(() => {
     const gasLimit = new FilecoinNumber(message.gasLimit, 'attofil')
@@ -292,10 +292,10 @@ export const SeeMoreContent = ({
       </Line>
       <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
       <hr />
-      <Parameters
-        params={{ params: message.params }}
-        actorName={actorName}
-        depth={0}
+      <LinesParams
+        address={message.to.robust || message.to.id}
+        method={Number(message.method)}
+        params={message.params}
       />
     </>
   )
@@ -305,7 +305,6 @@ type SeeMoreContentProps = {
   message: Message
   gasUsed: number
   gasCost: GasCost
-  actorName: string
   executionTrace: ExecutionTrace
 }
 
@@ -313,6 +312,5 @@ SeeMoreContent.propTypes = {
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   gasUsed: PropTypes.number.isRequired,
   gasCost: GRAPHQL_GAS_COST_PROPTYPE.isRequired,
-  actorName: PropTypes.string.isRequired,
   executionTrace: EXECUTION_TRACE_PROPTYPE.isRequired
 }
