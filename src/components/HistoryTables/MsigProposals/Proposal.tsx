@@ -187,14 +187,14 @@ export default function ProposalDetail({
         <Line label='Approvals until execution'>{approvalsUntilExecution}</Line>
         <hr />
         <AddressLine label='To' value={proposal.to} />
-        <FilecoinLine
-          label='Value'
-          value={new FilecoinNumber(proposal.value, 'attofil')}
-        />
         <MethodLine
           label='Method'
           actorName={actorName}
           methodNum={proposal.method}
+        />
+        <FilecoinLine
+          label='Value'
+          value={new FilecoinNumber(proposal.value, 'attofil')}
         />
       </Lines>
     </div>
