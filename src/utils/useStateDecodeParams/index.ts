@@ -22,6 +22,14 @@ const fetcher = async <T>(
   if (!validateAddressString(actorAddress))
     throw new Error('Invalid actor address')
 
+  // Temporarily attempt to parse as JSON string,
+  // until StateDecodeParams is removed from graph
+  try {
+    return JSON.parse(base64Params)
+  } catch {
+    // params are not a JSON string
+  }
+
   return await lotusApi.request<T>(
     lotusMethod,
     actorAddress,
