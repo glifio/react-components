@@ -47,7 +47,7 @@ export const useBalancePoller = (
   }
 
   if (error) logger.error(error)
-  
+
   const loading = !!wallet.address && !data && !error
 
   return { balance: data, loading, error }
