@@ -16,7 +16,6 @@ import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
 import { Colors } from '../theme'
 import {
-  ADDRESS_PROPTYPE,
   EXECUTION_TRACE_PROPTYPE,
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
