@@ -89,7 +89,8 @@ export const Status = ({ exitCode, pending }: StatusProps) => {
 
   const icon = useMemo(() => {
     if (pending) return <IconPending />
-    if (success) return <IconCheck width='1.1875rem' />
+    if (success)
+      return <IconCheck width='1.1875rem' stroke={Colors.GREEN_MEDIUM} />
     return null
   }, [success, pending])
 
@@ -115,7 +116,11 @@ export const Confirmations = ({ count, total }: ConfirmationsProps) => {
     <Badge
       color={confirmed ? 'green' : 'yellow'}
       text={`${Math.min(count, total)} / ${total} Confirmations`}
-      icon={confirmed ? <IconCheck width='1.1875rem' /> : null}
+      icon={
+        confirmed ? (
+          <IconCheck width='1.1875rem' stroke={Colors.GREEN_MEDIUM} />
+        ) : null
+      }
       uppercase={false}
     />
   )

@@ -1006,13 +1006,13 @@ export const IconCheck = forwardRef<HTMLOrSVGElement, any>((props, ref) => (
     height='22px'
     viewBox='0 0 23 22'
     fill='none'
+    stroke='#007B39'
     xmlns='http://www.w3.org/2000/svg'
     ref={ref}
     {...props}
   >
     <path
       d='M2 12.5264L7.42857 19.544L21 2'
-      stroke='#007B39'
       strokeWidth='3'
       strokeLinecap='round'
       strokeLinejoin='round'
