@@ -16,8 +16,9 @@ import {
 } from '../../../generated/graphql'
 import { isAddrEqual, useStateReadState, isAddressSigner } from '../../../utils'
 import {
-  Lines,
   Line,
+  Lines,
+  LinesParams,
   PageTitle,
   FilecoinLine,
   AddressLine,
@@ -186,6 +187,11 @@ export default function ProposalDetail({
         <FilecoinLine
           label='Value'
           value={new FilecoinNumber(proposal.value, 'attofil')}
+        />
+        <LinesParams
+          address={proposal.to.robust || proposal.to.id}
+          method={proposal.method}
+          params={proposal.params}
         />
       </Lines>
     </div>
