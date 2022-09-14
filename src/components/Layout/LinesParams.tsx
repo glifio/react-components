@@ -72,7 +72,7 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
       {params} ({decodeParamsError ? 'failed to decode' : 'decoding...'})
     </Line>
   ) : (
-    <NullishLine label='State' />
+    <NullishLine label='Params' />
   )
 }
 

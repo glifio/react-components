@@ -69,7 +69,7 @@ exports[`NetworkSelector interactions it renders the network after load 1`] = `
     <span
       class="network-name"
     >
-      calibration
+      calibrationnet
     </span>
     <span>
       ↓
@@ -183,7 +183,7 @@ exports[`NetworkSelector interactions it renders the network options 1`] = `
     <span
       class="network-name"
     >
-      calibration
+      calibrationnet
     </span>
     <span>
       ↑
@@ -204,14 +204,14 @@ exports[`NetworkSelector interactions it renders the network options 1`] = `
       role="button"
       tabindex="2"
     >
-      calibration
+      calibrationnet
     </div>
     <div
       class="c4"
       role="button"
       tabindex="3"
     >
-      wallaby
+      wallabynet
     </div>
   </div>
 </div>
