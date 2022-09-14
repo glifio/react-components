@@ -168,13 +168,7 @@ export default function ProposalDetail({
       <hr />
       <Lines>
         <Line label='Proposal ID'>{id}</Line>
-        <Line label='Proposer'>
-          <AddressLink
-            id={proposal.approved[0].id}
-            address={proposal.approved[0].robust}
-            hideCopyText={false}
-          />
-        </Line>
+        <AddressLine label='Proposer' value={proposal.approved[0]} />
         <Line label={`Approvers (${proposal.approved.length})`}>
           {proposal.approved.map((approver: Address) => (
             <AddressLink
