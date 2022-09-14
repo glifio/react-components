@@ -1,10 +1,12 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useMemo, useState } from 'react'
+import { FilecoinNumber } from '@glif/filecoin-number'
 
-import { AddressLink } from '../LabeledText/AddressLink'
 import { Address } from '../../generated/graphql'
-import { ADDRESS_PROPTYPE } from '../../customPropTypes'
+import { AddressLink } from '../LabeledText/AddressLink'
+import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
+import { ADDRESS_PROPTYPE, FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 
 /**
  * Lines
@@ -144,6 +146,25 @@ interface NullishLineProps {
 NullishLine.propTypes = {
   label: PropTypes.string,
   depth: PropTypes.number
+}
+
+/**
+ * FilecoinLine
+ */
+
+export const FilecoinLine = ({ label, depth, value }: FilecoinLineProps) => (
+  <Line label={label} depth={depth}>
+    {(makeFriendlyBalance(value), 6)} FIL
+  </Line>
+)
+
+type FilecoinLineProps = {
+  value: FilecoinNumber
+} & LineProps
+
+FilecoinLine.propTypes = {
+  value: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  ...LinePropTypes
 }
 
 /**
