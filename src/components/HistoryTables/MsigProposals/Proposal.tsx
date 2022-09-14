@@ -162,20 +162,14 @@ export default function ProposalDetail({
       <Lines>
         <Line label='Proposal ID'>{id}</Line>
         <Line label='Proposer'>
-          {proposal?.approved[0] && (
-            <AddressLink
-              id={proposal.approved[0].id}
-              address={proposal.approved[0].robust}
-              hideCopyText={false}
-            />
-          )}
+          <AddressLink
+            id={proposal.approved[0].id}
+            address={proposal.approved[0].robust}
+            hideCopyText={false}
+          />
         </Line>
-        <Line
-          label={`Approvers${
-            proposal?.approved ? ` (${proposal?.approved.length})` : ''
-          }`}
-        >
-          {proposal?.approved.map((approver: Address) => (
+        <Line label={`Approvers (${proposal.approved.length})`}>
+          {proposal.approved.map((approver: Address) => (
             <AddressLink
               key={approver.robust || approver.id}
               id={approver.id}
