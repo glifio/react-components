@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'

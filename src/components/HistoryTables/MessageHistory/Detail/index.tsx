@@ -72,7 +72,7 @@ export default function MessageDetail(props: MessageDetailProps) {
     [stateReplayQuery]
   )
 
-  const methodName = message ? useMethodName(message.to, message.method) : null
+  const methodName = useMethodName(message?.to, message?.method)
 
   const { coinType } = useEnvironment()
 

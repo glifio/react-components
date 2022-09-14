@@ -1,5 +1,4 @@
 import { useMemo } from 'react'
-import styled from 'styled-components'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'

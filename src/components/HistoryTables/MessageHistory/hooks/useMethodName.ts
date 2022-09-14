@@ -13,8 +13,9 @@ export const useMethodName = (
   // Get actor data from GraphQL
   const { data } = useActorQuery({
     variables: {
-      address: convertAddrToPrefix(address.robust || address.id, coinType)
-    }
+      address: convertAddrToPrefix(address?.robust || address?.id, coinType)
+    },
+    skip: !address
   })
 
   // Resolve actor code, name and message name
