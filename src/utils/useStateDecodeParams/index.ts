@@ -1,4 +1,4 @@
-import useSWR from 'swr'
+import useSWRImmutable from 'swr/immutable'
 import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { validateAddressString } from '@glif/filecoin-address'
 
@@ -46,7 +46,7 @@ export const useStateDecodeParams = <T = Record<string, any> | null>(
   params: string
 ): UseStateDecodeParamsResult<T> => {
   const { lotusApiUrl } = useEnvironment()
-  const { data, error } = useSWR<T, Error>(
+  const { data, error } = useSWRImmutable<T, Error>(
     [lotusApiUrl, 'StateDecodeParams', address, method, params],
     fetcher
   )
