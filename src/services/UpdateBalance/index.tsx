@@ -14,15 +14,16 @@ interface UseBalancePollerResult {
 }
 
 const fetcher = async (
-  lotusApi: LotusRpcEngine,
+  apiAddress: string,
   lotusMethod: string,
   actorAddress: string
 ): Promise<FilecoinNumber | null> => {
-  if (!actorAddress) return null
+  if (!apiAddress || !actorAddress) return null
 
   if (!validateAddressString(actorAddress))
     throw new Error('Invalid actor address')
 
+  const lotusApi = new LotusRpcEngine({ apiAddress })
   return new FilecoinNumber(
     await lotusApi.request<string>(lotusMethod, actorAddress),
     'attofil'
@@ -34,10 +35,10 @@ export const useBalancePoller = (
 ): UseBalancePollerResult => {
   const wallet = useWallet()
   const logger = useLogger()
-  const { lotusApi } = useEnvironment()
+  const { lotusApiUrl } = useEnvironment()
   const { selectedWalletIdx, updateBalance } = useWalletProvider()
   const { data, error } = useSWR<FilecoinNumber, Error>(
-    [lotusApi, 'WalletBalance', wallet.address],
+    [lotusApiUrl, 'WalletBalance', wallet.address],
     fetcher,
     swrConfig
   )

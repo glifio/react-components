@@ -9,14 +9,18 @@ interface UseNetworkNameResult {
 }
 
 const fetcher = async (
-  lotusApi: LotusRpcEngine,
+  apiAddress: string,
   lotusMethod: string
-): Promise<string> => await lotusApi.request<string>(lotusMethod)
+): Promise<string> => {
+  if (!apiAddress) return null
+  const lotusApi = new LotusRpcEngine({ apiAddress })
+  return await lotusApi.request<string>(lotusMethod)
+}
 
 export const useNetworkName = (): UseNetworkNameResult => {
-  const { lotusApi } = useEnvironment()
+  const { lotusApiUrl } = useEnvironment()
   const { data, error } = useSWR<string, Error>(
-    [lotusApi, 'StateNetworkName'],
+    [lotusApiUrl, 'StateNetworkName'],
     fetcher
   )
 

@@ -13,15 +13,16 @@ interface UseStateReadStateResult<T> {
 }
 
 const fetcher = async <T>(
-  lotusApi: LotusRpcEngine,
+  apiAddress: string,
   lotusMethod: string,
   actorAddress: string
 ): Promise<LotusActorState<T> | null> => {
-  if (!actorAddress) return null
+  if (!apiAddress || !actorAddress) return null
 
   if (!validateAddressString(actorAddress))
     throw new Error('Invalid actor address')
 
+  const lotusApi = new LotusRpcEngine({ apiAddress })
   return await lotusApi.request<LotusActorState<T>>(
     lotusMethod,
     actorAddress,
@@ -33,9 +34,9 @@ export const useStateReadState = <T = Record<string, any> | null>(
   address: string,
   swrConfig: SWRConfiguration = { refreshInterval: 10000 }
 ): UseStateReadStateResult<T> => {
-  const { lotusApi } = useEnvironment()
+  const { lotusApiUrl } = useEnvironment()
   const { data, error } = useSWR<LotusActorState<T>, Error>(
-    [lotusApi, 'StateReadState', address],
+    [lotusApiUrl, 'StateReadState', address],
     fetcher,
     swrConfig
   )

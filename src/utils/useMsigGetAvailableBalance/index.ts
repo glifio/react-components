@@ -12,15 +12,16 @@ interface UseMsigGetAvailableBalanceResult {
 }
 
 const fetcher = async (
-  lotusApi: LotusRpcEngine,
+  apiAddress: string,
   lotusMethod: string,
   actorAddress: string
 ): Promise<FilecoinNumber | null> => {
-  if (!actorAddress) return null
+  if (!apiAddress || !actorAddress) return null
 
   if (!validateAddressString(actorAddress))
     throw new Error('Invalid actor address')
 
+  const lotusApi = new LotusRpcEngine({ apiAddress })
   return new FilecoinNumber(
     await lotusApi.request<string>(lotusMethod, actorAddress, null),
     'attofil'
@@ -31,9 +32,9 @@ export const useMsigGetAvailableBalance = (
   address: string,
   swrConfig: SWRConfiguration = { refreshInterval: 10000 }
 ): UseMsigGetAvailableBalanceResult => {
-  const { lotusApi } = useEnvironment()
+  const { lotusApiUrl } = useEnvironment()
   const { data, error } = useSWR<FilecoinNumber, Error>(
-    [lotusApi, 'MsigGetAvailableBalance', address],
+    [lotusApiUrl, 'MsigGetAvailableBalance', address],
     fetcher,
     swrConfig
   )

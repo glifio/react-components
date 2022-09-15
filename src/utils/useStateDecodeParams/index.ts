@@ -11,13 +11,13 @@ interface UseStateDecodeParamsResult<T> {
 }
 
 const fetcher = async <T>(
-  lotusApi: LotusRpcEngine,
+  apiAddress: string,
   lotusMethod: string,
   actorAddress: string,
   methodNum: number,
   base64Params: string
 ): Promise<T | null> => {
-  if (!actorAddress || !base64Params) return null
+  if (!apiAddress || !actorAddress || !base64Params) return null
 
   if (!validateAddressString(actorAddress))
     throw new Error('Invalid actor address')
@@ -30,6 +30,7 @@ const fetcher = async <T>(
     // params are not a JSON string
   }
 
+  const lotusApi = new LotusRpcEngine({ apiAddress })
   return await lotusApi.request<T>(
     lotusMethod,
     actorAddress,
@@ -44,9 +45,9 @@ export const useStateDecodeParams = <T = Record<string, any> | null>(
   method: number,
   params: string
 ): UseStateDecodeParamsResult<T> => {
-  const { lotusApi } = useEnvironment()
+  const { lotusApiUrl } = useEnvironment()
   const { data, error } = useSWR<T, Error>(
-    [lotusApi, 'StateDecodeParams', address, method, params],
+    [lotusApiUrl, 'StateDecodeParams', address, method, params],
     fetcher
   )
 
