@@ -130,8 +130,11 @@ export const EnvironmentProvider = ({
   'nodeStatusApiKey' | 'graphUrl' | 'lotusApiUrl' | 'coinType' | 'networkName'
 >) => {
   const router = useRouter()
-  let network = getQueryParam.string(router, 'network') as Network
-  if (!network) network = Network.MAINNET
+  const networkParam = getQueryParam.string(router, 'network') as Network
+  const network =
+    Object.keys(networks).find(
+      network => network === networkParam || network === `${networkParam}net`
+    ) || Network.MAINNET
   const lotusApi = networks[network].lotusApiUrl
     ? new LotusRpcEngine({
         apiAddress: networks[network].lotusApiUrl
