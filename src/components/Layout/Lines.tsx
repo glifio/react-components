@@ -10,7 +10,6 @@ import {
   ADDRESS_PROPTYPE,
   FILECOIN_NUMBER_PROPTYPE
 } from '../../customPropTypes'
-import { Badge } from './Badge'
 import { getMethodName } from '@glif/filecoin-actor-utils'
 
 /**
@@ -183,11 +182,7 @@ export const MethodLine = ({
   methodNum
 }: MethodLineProps) => (
   <Line label={label} depth={depth}>
-    <Badge
-      color='purple'
-      text={getMethodName(actorName, methodNum) || `Method ${methodNum}`}
-      uppercase={false}
-    />
+    {getMethodName(actorName, methodNum) || methodNum}
   </Line>
 )
 

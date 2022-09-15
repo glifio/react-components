@@ -6,7 +6,6 @@ import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { getMethodName } from '@glif/filecoin-actor-utils'
 
-import { Badge } from '../../Layout'
 import { AddressLink } from '../../LabeledText/AddressLink'
 import { ButtonV2 } from '../../Button/V2'
 import { IconCheck, IconFail } from '../../Icons'
@@ -50,12 +49,7 @@ export default function ProposalHistoryRow({
       }}
     >
       <td>{proposal.id}</td>
-      <td>
-        <Badge
-          color='purple'
-          text={getMethodName('multisig', proposal.method)}
-        />
-      </td>
+      <td>{getMethodName('multisig', proposal.method)}</td>
       <td>
         <AddressLink
           id={proposal.approved[0].id}
