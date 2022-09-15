@@ -133,7 +133,7 @@ export const EnvironmentProvider = ({
   const networkParam = getQueryParam.string(router, 'network') as Network
   const network =
     Object.keys(networks).find(
-      network => network === networkParam || network === `${networkParam}net`
+      name => name === networkParam || name === `${networkParam}net`
     ) || Network.MAINNET
   const lotusApi = networks[network].lotusApiUrl
     ? new LotusRpcEngine({

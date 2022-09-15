@@ -55,12 +55,12 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
         return describeMessageParams(actorName, method, decodedParams)
       } catch (e) {
         logger.error(
-          `Failed to describe message params for actor address: ${address}, method: ${method}, params: ${params}, with message: ${e.message}`
+          `Failed to describe message params for network: ${networkName}, address: ${address}, method: ${method}, params: ${params}, with message: ${e.message}`
         )
       }
     }
     return null
-  }, [address, method, params, actorName, decodedParams, logger])
+  }, [address, method, params, actorName, decodedParams, networkName, logger])
 
   // Return most verbose params first
   return describedParams ? (
