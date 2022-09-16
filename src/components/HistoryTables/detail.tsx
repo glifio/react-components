@@ -22,6 +22,7 @@ import {
 } from '../../customPropTypes'
 import { MessageLink } from '../LabeledText/MessageLink'
 import { LinesParams } from '../Layout/LinesParams'
+import { LinesReturn } from '../Layout/LinesReturn'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -244,7 +245,8 @@ const SpanGray = styled.span`
 export const SeeMoreContent = ({
   message,
   gasUsed,
-  gasCost
+  gasCost,
+  executionTrace
 }: SeeMoreContentProps) => {
   const gasPercentage = useMemo<string>(() => {
     const gasLimit = new FilecoinNumber(message.gasLimit, 'attofil')
@@ -295,6 +297,12 @@ export const SeeMoreContent = ({
         address={message.to.robust || message.to.id}
         method={Number(message.method)}
         params={message.params}
+      />
+      <hr />
+      <LinesReturn
+        address={message.to.robust || message.to.id}
+        method={Number(message.method)}
+        returnVal={executionTrace.MsgRct.Return}
       />
     </>
   )
