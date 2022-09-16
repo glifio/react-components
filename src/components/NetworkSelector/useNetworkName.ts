@@ -1,4 +1,4 @@
-import useSWRImmutable from 'swr/immutable'
+import useSWR from 'swr'
 import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { useEnvironment } from '../../services/EnvironmentProvider'
 
@@ -19,7 +19,7 @@ const fetcher = async (
 
 export const useNetworkName = (): UseNetworkNameResult => {
   const { lotusApiUrl } = useEnvironment()
-  const { data, error } = useSWRImmutable<string, Error>(
+  const { data, error } = useSWR<string, Error>(
     [lotusApiUrl, 'StateNetworkName'],
     fetcher
   )
