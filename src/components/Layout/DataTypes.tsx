@@ -25,6 +25,7 @@ export const DataTypeLines = ({
     case Type.Bool:
     case Type.String:
     case Type.Number:
+    case Type.Bytes:
       return <DataTypeLine label={label} depth={depth} dataType={dataType} />
 
     case Type.Array:
@@ -167,6 +168,10 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
     case Type.Number:
       const numVal = Value as number
       return <>{numVal}</>
+
+    case Type.Bytes:
+      const base64Val = Value as string
+      return <>{base64Val}</>
 
     default:
       throw new Error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
