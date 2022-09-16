@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
@@ -14,14 +13,6 @@ import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
 import truncateAddress from '../../../../utils/truncateAddress'
 
-const MessageHistoryRowWrapper = styled.tr`
-  > td {
-    &.capitalize {
-      text-transform: capitalize;
-    }
-  }
-`
-
 export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   const { message, cidHref, inspectingAddress } = props
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
@@ -33,17 +24,17 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
     () => isAddrEqual(message.to, inspectingAddress),
     [message.to, inspectingAddress]
   )
-  const { methodName } = useMethodName(message)
+  const methodName = useMethodName(message.to, message.method)
   const { age } = useAge(message?.height)
 
   return (
-    <MessageHistoryRowWrapper>
+    <tr>
       <td>
         <SmartLink href={cidHref(message.cid)}>
           {truncateAddress(message.cid)}
         </SmartLink>
       </td>
-      <td className='capitalize'>{methodName}</td>
+      <td>{methodName}</td>
       <td>{message.height}</td>
       <td>{age}</td>
       <td>
@@ -71,7 +62,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
         />
       </td>
       <td>{value}</td>
-    </MessageHistoryRowWrapper>
+    </tr>
   )
 }
 

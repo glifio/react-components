@@ -4,7 +4,8 @@ import {
   act,
   fireEvent,
   RenderResult,
-  getByText
+  getByText,
+  waitFor
 } from '@testing-library/react'
 
 import {
@@ -112,8 +113,14 @@ describe('ActorState', () => {
         </TestEnvironment>
       )
 
+      await waitFor(() => {
+        expect(
+          getByText(result!.container, 'Click to show actor state ↓')
+        ).toBeInTheDocument()
+      })
+
       fireEvent.click(
-        getByText(result.container, 'Click to show actor state ↓')
+        getByText(result!.container, 'Click to show actor state ↓')
       )
     })
 

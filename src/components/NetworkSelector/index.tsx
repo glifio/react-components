@@ -75,7 +75,6 @@ export function NetworkSelector({
   const [showOptions, setShowOptions] = useState<boolean>(false)
   const {
     setNetwork,
-    lotusApiUrl,
     nodeStatusApiUrl,
     nodeStatusApiKey,
     networkName: networkNameInState
@@ -86,7 +85,7 @@ export function NetworkSelector({
     networkName: networkNameFromNode,
     error: networkNameErr,
     loading: networkNameLoading
-  } = useNetworkName(lotusApiUrl)
+  } = useNetworkName()
 
   const { networkConnected, error: networkConnectedErr } = useNetworkStatus(
     nodeStatusApiUrl,

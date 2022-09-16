@@ -72,7 +72,7 @@ export default function MessageDetail(props: MessageDetailProps) {
     [stateReplayQuery]
   )
 
-  const { methodName, actorName } = useMethodName(message)
+  const methodName = useMethodName(message?.to, message?.method)
 
   const { coinType } = useEnvironment()
 
@@ -203,7 +203,6 @@ export default function MessageDetail(props: MessageDetailProps) {
                 gasUsed={gasUsed}
                 gasCost={stateReplayQuery?.stateReplay?.gasCost}
                 executionTrace={executionTrace}
-                actorName={actorName}
               />
             )}
           </>

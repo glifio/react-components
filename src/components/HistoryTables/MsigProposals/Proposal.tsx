@@ -2,9 +2,8 @@ import PropTypes from 'prop-types'
 import { useEffect, useMemo } from 'react'
 import { useRouter } from 'next/router'
 import { getActorName } from '@glif/filecoin-actor-utils'
+import { FilecoinNumber } from '@glif/filecoin-number'
 
-import { AddressLink } from '../../LabeledText/AddressLink'
-import { Parameters } from '../detail'
 import {
   MsigState,
   ADDRESS_PROPTYPE,
@@ -16,7 +15,15 @@ import {
   useMsigPendingQuery
 } from '../../../generated/graphql'
 import { isAddrEqual, useStateReadState, isAddressSigner } from '../../../utils'
-import { Lines, Line, PageTitle } from '../../Layout'
+import {
+  Line,
+  Lines,
+  LinesParams,
+  PageTitle,
+  FilecoinLine,
+  AddressLine,
+  MethodLine
+} from '../../Layout'
 import { LoadingScreen } from '../../Loading/LoadingScreen'
 import { ErrorView } from '../../ErrorView'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
@@ -36,7 +43,7 @@ export default function ProposalDetail({
 }: ProposalDetailProps) {
   const router = useRouter()
   const logger = useLogger()
-  const { coinType } = useEnvironment()
+  const { coinType, networkName } = useEnvironment()
 
   // Ensure network cointype for address
   const address = useMemo<string>(
@@ -70,13 +77,13 @@ export default function ProposalDetail({
 
   // Get the actor name from the actor code
   const actorName = useMemo<string | null>(
-    () => (actorData ? getActorName(actorData.Code['/']) : null),
-    [actorData]
+    () => (actorData ? getActorName(actorData.Code, networkName) : null),
+    [actorData, networkName]
   )
 
   // Interpret state data as msig state if valid
   const msigState = useMemo<MsigState | null>(() => {
-    const isMsigActor = actorName && actorName.includes('multisig')
+    const isMsigActor = actorName === 'multisig'
     return isMsigActor && actorData ? (actorData.State as MsigState) : null
   }, [actorData, actorName])
 
@@ -161,40 +168,30 @@ export default function ProposalDetail({
       <hr />
       <Lines>
         <Line label='Proposal ID'>{id}</Line>
-        <Line label='Proposer'>
-          {proposal?.approved[0] && (
-            <AddressLink
-              id={proposal.approved[0].id}
-              address={proposal.approved[0].robust}
-              hideCopyText={false}
-            />
-          )}
-        </Line>
-        <Line
-          label={`Approvers${
-            proposal?.approved ? ` (${proposal?.approved.length})` : ''
-          }`}
-        >
-          {proposal?.approved.map((approver: Address) => (
-            <AddressLink
-              key={approver.robust || approver.id}
-              id={approver.id}
-              address={approver.robust}
-            />
-          ))}
-        </Line>
+        <AddressLine label='Proposer' value={proposal.approved[0]} />
+        {proposal.approved.map((approver: Address, index) => (
+          <AddressLine
+            key={approver.robust || approver.id}
+            label={index === 0 ? `Approvers (${proposal.approved.length})` : ''}
+            value={approver}
+          />
+        ))}
         <Line label='Approvals until execution'>{approvalsUntilExecution}</Line>
-        <Parameters
-          params={{
-            params: {
-              to: proposal.to.robust,
-              value: proposal.value,
-              method: proposal.method,
-              params: proposal.params
-            }
-          }}
-          actorName='/multisig'
-          depth={0}
+        <hr />
+        <AddressLine label='To' value={proposal.to} />
+        <MethodLine
+          label='Method'
+          actorName={actorName}
+          methodNum={proposal.method}
+        />
+        <FilecoinLine
+          label='Value'
+          value={new FilecoinNumber(proposal.value, 'attofil')}
+        />
+        <LinesParams
+          address={proposal.to.robust || proposal.to.id}
+          method={proposal.method}
+          params={proposal.params}
         />
       </Lines>
     </div>

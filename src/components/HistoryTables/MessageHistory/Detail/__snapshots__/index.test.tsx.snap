@@ -914,13 +914,13 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
             class="c15"
             fill="none"
             height="22px"
+            stroke="var(--green-medium)"
             viewBox="0 0 23 22"
             width="1.1875rem"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M2 12.5264L7.42857 19.544L21 2"
-              stroke="#007B39"
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="3"
@@ -1237,9 +1237,11 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
       class="c3"
     >
       <div>
-        Parameters
+        Params
       </div>
-      <div />
+      <div>
+        –
+      </div>
     </div>
   </div>
 </div>

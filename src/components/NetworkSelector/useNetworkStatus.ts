@@ -9,24 +9,42 @@ enum NetworkStatus {
   DOWN = 9
 }
 
-export const useNetworkStatus = (statusApiAddr: string, apiKey: string) => {
-  const { data: networkConnected = false, error = null } = useSWR(
-    'networkStatus',
-    async () => {
-      const { data } = await axios.post<{
-        stat: string
-        pagination: object
-        monitors: { status: NetworkStatus }[]
-      }>(statusApiAddr, {
-        api_key: apiKey,
-        format: 'json',
-        logs: 1
-      })
+interface NetworkStatusResponse {
+  stat: string
+  pagination: object
+  monitors: { status: NetworkStatus }[]
+}
 
-      if (data.monitors[0].status !== NetworkStatus.SUCCESS) return false
-      return true
-    }
+interface UseNetworkStatusResult {
+  networkConnected: boolean
+  loading: boolean
+  error: Error | null
+}
+
+const fetcher = async (
+  url: string,
+  key: string
+): Promise<NetworkStatusResponse> =>
+  (
+    await axios.post<NetworkStatusResponse>(url, {
+      api_key: key,
+      format: 'json',
+      logs: 1
+    })
+  ).data
+
+export const useNetworkStatus = (
+  statusApiAddr: string,
+  apiKey: string
+): UseNetworkStatusResult => {
+  const { data, error } = useSWR<NetworkStatusResponse, Error>(
+    [statusApiAddr, apiKey],
+    fetcher
   )
 
-  return { networkConnected, error }
+  return {
+    networkConnected: data?.monitors[0].status === NetworkStatus.SUCCESS,
+    loading: !data && !error,
+    error
+  }
 }

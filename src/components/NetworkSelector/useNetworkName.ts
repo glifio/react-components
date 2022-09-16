@@ -1,22 +1,28 @@
 import useSWR from 'swr'
-import LotusRPCEngine from '@glif/filecoin-rpc-client'
+import LotusRpcEngine from '@glif/filecoin-rpc-client'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
-const fetcher = async (lotusApiAddr: string) => {
-  const lCli = new LotusRPCEngine({
-    apiAddress: lotusApiAddr
-  })
-  const network = (await lCli.request('StateNetworkName')) as string
-  if (network) return network
-
-  throw new Error('Not connected to a network')
+interface UseNetworkNameResult {
+  networkName: string
+  loading: boolean
+  error: Error | null
 }
 
-export const useNetworkName = (lotusApiAddr: string) => {
-  const {
-    data: networkName = '',
-    error = null,
-    isValidating
-  } = useSWR(lotusApiAddr, fetcher)
+const fetcher = async (
+  apiAddress: string,
+  lotusMethod: string
+): Promise<string> => {
+  if (!apiAddress) return null
+  const lotusApi = new LotusRpcEngine({ apiAddress })
+  return await lotusApi.request<string>(lotusMethod)
+}
 
-  return { networkName, error, loading: isValidating }
+export const useNetworkName = (): UseNetworkNameResult => {
+  const { lotusApiUrl } = useEnvironment()
+  const { data, error } = useSWR<string, Error>(
+    [lotusApiUrl, 'StateNetworkName'],
+    fetcher
+  )
+
+  return { networkName: data ?? '', loading: !data && !error, error }
 }

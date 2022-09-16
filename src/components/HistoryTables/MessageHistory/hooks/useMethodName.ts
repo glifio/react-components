@@ -1,46 +1,25 @@
-import { useMemo } from 'react'
-import { useActorQuery } from '../../../../generated/graphql'
-import { getMethodName } from '../../methodName'
-import { decodeActorCID } from '../../../../utils'
-import { MessageConfirmedRow, MessagePendingRow } from '../../types'
-import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
-import {
-  useEnvironment,
-  useLogger
-} from '../../../../services/EnvironmentProvider'
+import { getActorName, getMethodName } from '@glif/filecoin-actor-utils'
 
-type MessageForMethodNameType =
-  | Pick<MessageConfirmedRow, 'to' | 'cid' | 'method'>
-  | (MessagePendingRow & { actorName: string })
+import { Address, useActorQuery } from '../../../../generated/graphql'
+import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
+import { useEnvironment } from '../../../../services/EnvironmentProvider'
 
 export const useMethodName = (
-  message: MessageForMethodNameType
-): { methodName: string; actorName: string } => {
+  address: Address,
+  method: string
+): string | null => {
   const { coinType, networkName } = useEnvironment()
-  const logger = useLogger()
-  const actor = useActorQuery({
+
+  // Get actor data from GraphQL
+  const { data } = useActorQuery({
     variables: {
-      address: convertAddrToPrefix(
-        message?.to.robust || message?.to.id,
-        coinType
-      )
-    }
+      address: convertAddrToPrefix(address?.robust || address?.id, coinType)
+    },
+    skip: !address
   })
 
-  const actorName = useMemo<string>(() => {
-    if (!message?.cid || actor.loading || actor.error || !actor.data) return ''
-    try {
-      return decodeActorCID(actor.data?.actor.Code, networkName)
-    } catch (e) {
-      logger.error(e)
-      return 'unknown'
-    }
-  }, [actor, networkName, message?.cid, logger])
-
-  const methodName = useMemo(() => {
-    if (actorName) return getMethodName(actorName, Number(message.method))
-    else return '...'
-  }, [actorName, message?.method])
-
-  return { methodName, actorName }
+  // Resolve actor code, name and message name
+  const actorCode = data?.actor?.Code
+  const actorName = actorCode ? getActorName(actorCode, networkName) : null
+  return actorName ? getMethodName(actorName, Number(method)) : null
 }

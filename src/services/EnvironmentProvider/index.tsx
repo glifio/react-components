@@ -18,8 +18,8 @@ import { appendQueryParams, getQueryParam, removeQueryParam } from '../../utils'
 
 export enum Network {
   MAINNET = 'mainnet',
-  CALIBRATION = 'calibration',
-  WALLABY = 'wallaby'
+  CALIBRATION = 'calibrationnet',
+  WALLABY = 'wallabynet'
 }
 
 export type NetworkInfo = {
@@ -130,8 +130,11 @@ export const EnvironmentProvider = ({
   'nodeStatusApiKey' | 'graphUrl' | 'lotusApiUrl' | 'coinType' | 'networkName'
 >) => {
   const router = useRouter()
-  let network = getQueryParam.string(router, 'network') as Network
-  if (!network) network = Network.MAINNET
+  const networkParam = getQueryParam.string(router, 'network') as Network
+  const network =
+    Object.keys(networks).find(
+      name => name === networkParam || name === `${networkParam}net`
+    ) || Network.MAINNET
   const lotusApi = networks[network].lotusApiUrl
     ? new LotusRpcEngine({
         apiAddress: networks[network].lotusApiUrl

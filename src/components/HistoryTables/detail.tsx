@@ -10,8 +10,7 @@ import {
   useChainHeadSubscription
 } from '../../generated/graphql'
 import { IconCheck, IconPending, IconClock } from '../Icons'
-import { Badge, Lines, Line, AddressLine } from '../Layout'
-import { getMethodName } from './methodName'
+import { Badge, Line } from '../Layout'
 import { useAge } from '../../utils/useAge'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
@@ -22,6 +21,7 @@ import {
   GRAPHQL_MESSAGE_PROPTYPE
 } from '../../customPropTypes'
 import { MessageLink } from '../LabeledText/MessageLink'
+import { LinesParams } from '../Layout/LinesParams'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -70,108 +70,6 @@ DetailCaption.propTypes = {
 }
 
 /**
- * Parameters
- * Parameter rows of the detail page
- */
-export const Parameters = ({ params, depth, actorName }: ParametersProps) => (
-  <>
-    {Object.entries(params).map(([key, value]) => {
-      switch (key.toLowerCase()) {
-        case 'method': {
-          return (
-            <Line key={`${depth}-${key}`} label={key} depth={depth}>
-              <Badge
-                color='purple'
-                text={getMethodName(actorName, value as number)}
-              />
-            </Line>
-          )
-        }
-
-        case 'to':
-        case 'from':
-        case 'signer':
-          return (
-            <AddressLine
-              key={`${depth}-${key}`}
-              value={value}
-              label={key}
-              depth={depth}
-            />
-          )
-
-        case 'approved':
-          return value.map((signer, index) => (
-            <AddressLine
-              key={`${depth}-${key}-${index}`}
-              value={signer}
-              label={index ? '' : 'Approved by'}
-              depth={depth}
-            />
-          ))
-
-        case 'value':
-          return (
-            <Line key={`${depth}-${key}`} label={key} depth={depth}>
-              {new FilecoinNumber(value, 'attofil').toFil()} FIL
-            </Line>
-          )
-
-        default: {
-          switch (typeof value) {
-            case 'object':
-              if (value)
-                return (
-                  <Lines key={`${depth}-${key}`}>
-                    <Line
-                      label={key === 'params' ? 'Parameters' : key}
-                      depth={depth}
-                    ></Line>
-                    <Parameters
-                      params={value}
-                      depth={depth + 1}
-                      actorName={actorName}
-                    />
-                  </Lines>
-                )
-              break
-
-            case 'boolean':
-              return (
-                <Line key={`${depth}-${key}`} label={key} depth={depth}>
-                  {value ? 'true' : 'false'}
-                </Line>
-              )
-          }
-
-          return (
-            <Line
-              key={`${depth}-${key}`}
-              label={key === 'params' ? 'Parameters' : key}
-              depth={depth}
-            >
-              {value ?? '—'}
-            </Line>
-          )
-        }
-      }
-    })}
-  </>
-)
-
-type ParametersProps = {
-  params: object
-  depth: number
-  actorName: string
-}
-
-Parameters.propTypes = {
-  params: PropTypes.object.isRequired,
-  depth: PropTypes.number.isRequired,
-  actorName: PropTypes.string.isRequired
-}
-
-/**
  * Status
  * Badge displaying the current status of the message
  */
@@ -191,7 +89,8 @@ export const Status = ({ exitCode, pending }: StatusProps) => {
 
   const icon = useMemo(() => {
     if (pending) return <IconPending />
-    if (success) return <IconCheck width='1.1875rem' />
+    if (success)
+      return <IconCheck width='1.1875rem' stroke={Colors.GREEN_MEDIUM} />
     return null
   }, [success, pending])
 
@@ -217,7 +116,11 @@ export const Confirmations = ({ count, total }: ConfirmationsProps) => {
     <Badge
       color={confirmed ? 'green' : 'yellow'}
       text={`${Math.min(count, total)} / ${total} Confirmations`}
-      icon={confirmed ? <IconCheck width='1.1875rem' /> : null}
+      icon={
+        confirmed ? (
+          <IconCheck width='1.1875rem' stroke={Colors.GREEN_MEDIUM} />
+        ) : null
+      }
       uppercase={false}
     />
   )
@@ -341,8 +244,7 @@ const SpanGray = styled.span`
 export const SeeMoreContent = ({
   message,
   gasUsed,
-  gasCost,
-  actorName
+  gasCost
 }: SeeMoreContentProps) => {
   const gasPercentage = useMemo<string>(() => {
     const gasLimit = new FilecoinNumber(message.gasLimit, 'attofil')
@@ -389,10 +291,10 @@ export const SeeMoreContent = ({
       </Line>
       <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
       <hr />
-      <Parameters
-        params={{ params: message.params }}
-        actorName={actorName}
-        depth={0}
+      <LinesParams
+        address={message.to.robust || message.to.id}
+        method={Number(message.method)}
+        params={message.params}
       />
     </>
   )
@@ -402,7 +304,6 @@ type SeeMoreContentProps = {
   message: Message
   gasUsed: number
   gasCost: GasCost
-  actorName: string
   executionTrace: ExecutionTrace
 }
 
@@ -410,6 +311,5 @@ SeeMoreContent.propTypes = {
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   gasUsed: PropTypes.number.isRequired,
   gasCost: GRAPHQL_GAS_COST_PROPTYPE.isRequired,
-  actorName: PropTypes.string.isRequired,
   executionTrace: EXECUTION_TRACE_PROPTYPE.isRequired
 }
