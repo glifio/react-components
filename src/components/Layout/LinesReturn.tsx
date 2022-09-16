@@ -35,7 +35,7 @@ export const LinesReturn = ({
 
   // Decode return value
   const decodedReturnVal = useMemo<Record<string, any> | null>(
-    () => decode(fromString(returnVal, 'base64')),
+    () => (returnVal ? decode(fromString(returnVal, 'base64')) : null),
     [returnVal]
   )
 

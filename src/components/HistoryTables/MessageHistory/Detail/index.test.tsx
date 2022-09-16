@@ -224,7 +224,7 @@ describe('Message detail view', () => {
     })
   })
 
-  test('it renders the executed msg state correctly', async () => {
+  test('it renders the executed msg state correctly (with no return vals)', async () => {
     jest
       .spyOn(require('../hooks/useAllMessages'), 'useMessage')
       .mockImplementation(() => {
@@ -292,7 +292,7 @@ describe('Message detail view', () => {
                         MsgRct: {
                           ExitCode: 0,
                           GasUsed: 16389853,
-                          Return: 'gkQA364CVQKyggGxLxtInN+sLWmSJVZQr2b7Iw=='
+                          Return: ''
                         },
 
                         Subcalls: null

@@ -5,10 +5,10 @@ import {
   DataTypeMap,
   Type
 } from '@glif/filecoin-actor-utils'
+import { FilecoinNumber } from '@glif/filecoin-number'
 
 import { Line, NullishLine } from './Lines'
 import { AddressLink } from '../LabeledText/AddressLink'
-import { FilecoinNumber } from '@glif/filecoin-number'
 import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
 
 /**
@@ -121,7 +121,7 @@ DataTypeMapLines.propTypes = {
 
 export const DataTypeLine = ({ label, depth, dataType }: DataTypeLineProps) => (
   <Line label={label} depth={depth}>
-    <DataTypeValue dataType={dataType} />
+    <DataTypeValue dataType={dataType} label={label} />
   </Line>
 )
 
@@ -142,7 +142,7 @@ DataTypeLine.propTypes = {
  * Renders the value of a DataType using the most suitable component.
  */
 
-export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
+export const DataTypeValue = ({ dataType, label }: DataTypeValueProps) => {
   const { Name, Value } = dataType
 
   switch (dataType.Type) {
@@ -153,10 +153,15 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
     case Type.String:
       const strVal = Value as string
 
-      if (Name === 'Address')
-        return (
+      if (Name === 'Address') {
+        // Here we handle special address cases for rendering
+        // if the label is `IDAddress`, we want to show the ID address and not fetch the robust
+        return label === 'IDAddress' ? (
+          <AddressLink id={strVal} fetchAddress={false} hideCopyText={false} />
+        ) : (
           <AddressLink address={strVal} fetchAddress hideCopyText={false} />
         )
+      }
 
       if (Name === 'FilecoinNumber') {
         const filVal = new FilecoinNumber(strVal, 'attofil')
@@ -180,10 +185,12 @@ export const DataTypeValue = ({ dataType }: DataTypeValueProps) => {
 
 interface DataTypeValueProps {
   dataType: DataType
+  label?: string
 }
 
 DataTypeValue.propTypes = {
-  dataType: PropTypes.object.isRequired
+  dataType: PropTypes.object.isRequired,
+  label: PropTypes.string
 }
 
 /**

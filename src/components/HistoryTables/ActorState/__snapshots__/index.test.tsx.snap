@@ -354,46 +354,6 @@ exports[`ActorState it renders the actor state correctly 1`] = `
       class="c4"
     >
       <div>
-        InitialBalance
-      </div>
-      <div>
-        6 FIL
-      </div>
-    </div>
-    <div
-      class="c4"
-    >
-      <div>
-        NextTxnID
-      </div>
-      <div>
-        0
-      </div>
-    </div>
-    <div
-      class="c4"
-    >
-      <div>
-        NumApprovalsThreshold
-      </div>
-      <div>
-        1
-      </div>
-    </div>
-    <div
-      class="c4"
-    >
-      <div>
-        PendingTxns (CID)
-      </div>
-      <div>
-        bafy2bzaceamp42wmmgr2g2ymg46euououzfyck7szknvfacqscohrvaikwfay
-      </div>
-    </div>
-    <div
-      class="c4"
-    >
-      <div>
         Signers
       </div>
       <div>
@@ -461,6 +421,36 @@ exports[`ActorState it renders the actor state correctly 1`] = `
       class="c4"
     >
       <div>
+        NumApprovalsThreshold
+      </div>
+      <div>
+        1
+      </div>
+    </div>
+    <div
+      class="c4"
+    >
+      <div>
+        NextTxnID
+      </div>
+      <div>
+        0
+      </div>
+    </div>
+    <div
+      class="c4"
+    >
+      <div>
+        InitialBalance
+      </div>
+      <div>
+        6 FIL
+      </div>
+    </div>
+    <div
+      class="c4"
+    >
+      <div>
         StartEpoch
       </div>
       <div>
@@ -475,6 +465,16 @@ exports[`ActorState it renders the actor state correctly 1`] = `
       </div>
       <div>
         100
+      </div>
+    </div>
+    <div
+      class="c4"
+    >
+      <div>
+        PendingTxns (CID)
+      </div>
+      <div>
+        bafy2bzaceamp42wmmgr2g2ymg46euououzfyck7szknvfacqscohrvaikwfay
       </div>
     </div>
   </div>
