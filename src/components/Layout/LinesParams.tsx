@@ -68,8 +68,12 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
   ) : decodedParams ? (
     <BaseTypeObjLines label='Params' data={decodedParams} />
   ) : params ? (
-    <Line label='Params'>
-      {params} ({decodeParamsError ? 'failed to decode' : 'decoding...'})
+    <Line
+      label={`Params (${
+        decodeParamsError ? 'failed to decode' : 'decoding...'
+      })`}
+    >
+      {params}
     </Line>
   ) : (
     <NullishLine label='Params' />
