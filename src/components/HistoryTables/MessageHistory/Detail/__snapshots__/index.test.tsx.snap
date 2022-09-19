@@ -528,7 +528,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
 </div>
 `;
 
-exports[`Message detail view it renders the executed msg state correctly 1`] = `
+exports[`Message detail view it renders the executed msg state correctly (with no return vals) 1`] = `
 .c4 h4 {
   margin: 0;
   color: var(--gray-dark);
@@ -1238,6 +1238,17 @@ exports[`Message detail view it renders the executed msg state correctly 1`] = `
     >
       <div>
         Params
+      </div>
+      <div>
+        –
+      </div>
+    </div>
+    <hr />
+    <div
+      class="c3"
+    >
+      <div>
+        Return
       </div>
       <div>
         –
