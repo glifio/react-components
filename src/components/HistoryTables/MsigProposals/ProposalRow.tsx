@@ -14,6 +14,7 @@ import { isAddrEqual } from '../../../utils/isAddrEqual'
 import { isAddressSigner } from '../../../utils/isAddressSigner'
 import { GRAPHQL_ADDRESS_PROP_TYPE } from '../../../customPropTypes'
 import { PROPOSAL_ROW_PROP_TYPE } from '../types'
+import { navigate } from '../../../utils/urlParams'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -42,7 +43,7 @@ export default function ProposalHistoryRow({
       className='selectable'
       onClick={() => {
         if (idHref(proposal.id).charAt(0) === '/') {
-          router.push(idHref(proposal.id))
+          navigate(router, { pageUrl: idHref(proposal.id), retainParams: true })
         } else {
           window.open(idHref(proposal.id), '_blank')
         }
