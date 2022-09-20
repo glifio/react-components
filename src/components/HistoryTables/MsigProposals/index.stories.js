@@ -15,6 +15,6 @@ Base.args = {
     id: 't029519'
   },
   idHref: id => `/#/detail/${id}`,
-  approve: console.log,
-  cancel: console.log
+  approveHref: id => `/#/approve/${id}`,
+  cancelHref: id => `/#/cancel/${id}`
 }

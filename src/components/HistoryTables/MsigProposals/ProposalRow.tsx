@@ -7,7 +7,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { getMethodName } from '@glif/filecoin-actor-utils'
 
 import { AddressLink } from '../../LabeledText/AddressLink'
-import { ButtonV2 } from '../../Button/V2'
+import { ButtonV2Link } from '../../Button/V2'
 import { IconCheck, IconFail } from '../../Icons'
 import { Address, MsigTransaction } from '../../../generated/graphql'
 import { isAddrEqual } from '../../../utils/isAddrEqual'
@@ -23,8 +23,8 @@ export default function ProposalHistoryRow({
   proposal,
   walletAddress,
   idHref,
-  approve,
-  cancel
+  approveHref,
+  cancelHref
 }: ProposalHistoryRowProps) {
   const router = useRouter()
 
@@ -63,16 +63,16 @@ export default function ProposalHistoryRow({
       <td>{proposal.approved?.length}</td>
       <td>
         {isProposer ? (
-          <ButtonV2 red onClick={() => cancel(proposal)}>
+          <ButtonV2Link red href={cancelHref(proposal.id)}>
             <IconFail width='1.25rem' />
             Cancel
-          </ButtonV2>
+          </ButtonV2Link>
         ) : (
           canApprove && (
-            <ButtonV2 green onClick={() => approve(proposal)}>
+            <ButtonV2Link green href={approveHref(proposal.id)}>
               <IconCheck width='1.75rem' />
               Approve
-            </ButtonV2>
+            </ButtonV2Link>
           )
         )}
       </td>
@@ -84,14 +84,14 @@ type ProposalHistoryRowProps = {
   proposal: MsigTransaction
   walletAddress: Address
   idHref: (id: number) => string
-  approve: (proposal: MsigTransaction) => void
-  cancel: (proposal: MsigTransaction) => void
+  approveHref: (id: number) => string
+  cancelHref: (id: number) => string
 }
 
 ProposalHistoryRow.propTypes = {
   proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
   walletAddress: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   idHref: PropTypes.func.isRequired,
-  approve: PropTypes.func.isRequired,
-  cancel: PropTypes.func.isRequired
+  approveHref: PropTypes.func.isRequired,
+  cancelHref: PropTypes.func.isRequired
 }
