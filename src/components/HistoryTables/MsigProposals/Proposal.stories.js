@@ -13,6 +13,6 @@ Detail.args = {
   id: 8,
   msigAddress: 't2i43oi6rnf2s6rp544rcegfbcdp5l62cayz2btmy',
   walletAddress: { robust: WALLET_ADDRESS, id: WALLET_ID },
-  approve: console.log,
-  cancel: console.log
+  approveHref: id => `/#/approve/${id}`,
+  cancelHref: id => `/#/cancel/${id}`
 }

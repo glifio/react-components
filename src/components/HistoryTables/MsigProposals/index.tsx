@@ -19,8 +19,8 @@ export default function ProposalHistoryTable({
   msigAddress,
   walletAddress,
   idHref,
-  approve,
-  cancel
+  approveHref,
+  cancelHref
 }: ProposalHistoryTableProps) {
   const { coinType } = useEnvironment()
   const { data, loading, error } = useMsigPendingQuery({
@@ -57,8 +57,8 @@ export default function ProposalHistoryTable({
               proposal={proposal}
               walletAddress={walletAddress}
               idHref={idHref}
-              approve={approve}
-              cancel={cancel}
+              approveHref={approveHref}
+              cancelHref={cancelHref}
             />
           ))}
         </tbody>
@@ -71,14 +71,14 @@ type ProposalHistoryTableProps = {
   msigAddress: string
   walletAddress: Address
   idHref: (id: number) => string
-  approve: (proposal: MsigTransaction) => void
-  cancel: (proposal: MsigTransaction) => void
+  approveHref: (id: number) => string
+  cancelHref: (id: number) => string
 }
 
 ProposalHistoryTable.propTypes = {
   msigAddress: ADDRESS_PROPTYPE.isRequired,
   walletAddress: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   idHref: PropTypes.func.isRequired,
-  approve: PropTypes.func.isRequired,
-  cancel: PropTypes.func.isRequired
+  approveHref: PropTypes.func.isRequired,
+  cancelHref: PropTypes.func.isRequired
 }

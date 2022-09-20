@@ -9,11 +9,7 @@ import {
   ADDRESS_PROPTYPE,
   GRAPHQL_ADDRESS_PROP_TYPE
 } from '../../../customPropTypes'
-import {
-  Address,
-  MsigTransaction,
-  useMsigPendingQuery
-} from '../../../generated/graphql'
+import { Address, useMsigPendingQuery } from '../../../generated/graphql'
 import { isAddrEqual, useStateReadState, isAddressSigner } from '../../../utils'
 import {
   Line,
@@ -27,7 +23,7 @@ import {
 import { LoadingScreen } from '../../Loading/LoadingScreen'
 import { ErrorView } from '../../ErrorView'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
-import { ButtonV2 } from '../../Button/V2'
+import { ButtonV2Link } from '../../Button/V2'
 import { IconCheck, IconFail } from '../../Icons'
 import {
   useEnvironment,
@@ -38,8 +34,8 @@ export default function ProposalDetail({
   id,
   msigAddress,
   walletAddress,
-  approve,
-  cancel
+  approveHref,
+  cancelHref
 }: ProposalDetailProps) {
   const router = useRouter()
   const logger = useLogger()
@@ -149,16 +145,16 @@ export default function ProposalDetail({
         sideContent={
           <>
             {canApprove && (
-              <ButtonV2 green onClick={() => approve(proposal)}>
+              <ButtonV2Link green href={approveHref(proposal.id)}>
                 <IconCheck width='1.75rem' />
                 Approve
-              </ButtonV2>
+              </ButtonV2Link>
             )}
             {isProposer && (
-              <ButtonV2 red onClick={() => cancel(proposal)}>
+              <ButtonV2Link red href={cancelHref(proposal.id)}>
                 <IconFail width='1.25rem' />
                 Cancel
-              </ButtonV2>
+              </ButtonV2Link>
             )}
           </>
         }
@@ -202,14 +198,14 @@ type ProposalDetailProps = {
   id: number
   msigAddress: string
   walletAddress: Address
-  approve: (proposal: MsigTransaction) => void
-  cancel: (proposal: MsigTransaction) => void
+  approveHref: (id: number) => string
+  cancelHref: (id: number) => string
 }
 
 ProposalDetail.propTypes = {
   id: PropTypes.number.isRequired,
   msigAddress: ADDRESS_PROPTYPE.isRequired,
   walletAddress: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
-  approve: PropTypes.func.isRequired,
-  cancel: PropTypes.func.isRequired
+  approveHref: PropTypes.func.isRequired,
+  cancelHref: PropTypes.func.isRequired
 }
