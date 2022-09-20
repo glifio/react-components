@@ -1785,8 +1785,6 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
 }
 
 .c2 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1813,6 +1811,8 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   color: var(--white);
   border-color: var(--green-medium);
   background: var(--green-medium);
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .c2 svg path {
@@ -1852,9 +1852,12 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   stroke: var(--green-medium);
 }
 
-.c4 {
+.c2:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
+}
+
+.c4 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1881,6 +1884,8 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   color: var(--white);
   border-color: var(--red-medium);
   background: var(--red-medium);
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .c4 svg path {
@@ -1918,6 +1923,11 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
 
 .c4:hover svg path {
   stroke: var(--red-medium);
+}
+
+.c4:hover {
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 <div>
