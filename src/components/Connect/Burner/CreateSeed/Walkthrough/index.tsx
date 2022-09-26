@@ -1,6 +1,4 @@
-import React from 'react'
 import PropTypes from 'prop-types'
-import { Text } from '../../../../Typography'
 import { MNEMONIC_PROPTYPE } from '../../../../../customPropTypes'
 import RevealMnemonic from './RevealMnemonic'
 import WordPrompt from './WordPrompt'
@@ -27,7 +25,7 @@ const Walkthrough = ({
     case 3:
       return <RevealMnemonic valid mnemonic={mnemonic} />
     default:
-      return <Text>Error, how the hell did you get here?</Text>
+      return <p>Error, how the hell did you get here?</p>
   }
 }
 
