@@ -27,7 +27,6 @@ export { default as ProposalDetail } from './HistoryTables/MsigProposals/Proposa
 export * from './HistoryTables/ActorState'
 export * from './HistoryTables/PendingMsgContext'
 export * from './NetworkSelector'
-export { default as StepHeader } from './StepHeader'
 export * from './ErrorBoundary'
 export * from './ErrorView'
 export { default as Tooltip } from './Tooltip'
