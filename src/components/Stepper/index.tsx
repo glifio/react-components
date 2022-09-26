@@ -5,6 +5,7 @@ import { Colors } from '../theme'
 const StepperEl = styled.div`
   display: flex;
   align-items: center;
+  justify-content: right;
   gap: 1em;
 
   ${props =>
