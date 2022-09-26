@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Filecoin, { HDWalletProvider } from '@glif/filecoin-wallet-provider'
 import { generateMnemonic } from '@zondax/filecoin-signing-tools/js'
-import StepHeader from '../../../StepHeader'
+import { Stepper } from '../../../Stepper'
 import { LoadingScreen } from '../../../Loading/LoadingScreen'
 
 import {
@@ -81,7 +81,7 @@ export const CreateSeed = ({
         }}
       >
         <ShadowBox>
-          <StepHeader currentStep={walkthroughStep} totalSteps={3} />
+          <Stepper step={walkthroughStep} steps={3} />
           {mnemonic && (
             <Walkthrough
               importSeedError={importSeedError}
