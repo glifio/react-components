@@ -1,13 +1,13 @@
 import { forwardRef } from 'react'
 import styled from 'styled-components'
 import { string, object } from 'prop-types'
-import { baseColors } from '../theme'
+import { Colors } from '../theme'
 import Box from '../Box'
 
 const GlyphText = styled.h3`
-  font-family: ${props => props.theme.fonts.AliasMedium};
+  font-family: 'RT-Alias-Medium', 'system-ui', 'Segoe UI', 'Roboto', Helvetica;
   font-weight: 700;
-  font-size: ${props => props.theme.fontSizes[4]};
+  font-size: 1.5rem;
 `
 
 const Glyph = forwardRef<HTMLDivElement, any>(
@@ -47,7 +47,7 @@ Glyph.propTypes = {
 }
 
 Glyph.defaultProps = {
-  color: baseColors.mono.black,
+  color: Colors.BLACK,
   acronym: ''
 }
 
