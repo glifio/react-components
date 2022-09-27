@@ -34,9 +34,6 @@ npm run storybook
 WIP.  In the meantime:
 
 ```js
-export { default as theme } from './theme'
-export { default as ThemeProvider } from './ThemeProvider'
-
 export * from './AccountCard'
 export * from './AccountCard/Error'
 export * from './BalanceCard'
@@ -53,10 +50,7 @@ export { default as Tooltip } from './Tooltip'
 export * from './Link'
 export * from './Icons'
 export * from './MnemonicWord'
-
 export * from './Layout'
-
-export * from './Typography'
 ```
 
 ## FAQ

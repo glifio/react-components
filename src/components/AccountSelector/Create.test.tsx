@@ -3,8 +3,6 @@ import { act, render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { CoinType } from '@glif/filecoin-address'
 
 import { CreateAccount } from './Create'
-import ThemeProvider from '../ThemeProvider'
-import theme from '../theme'
 import { createPath } from '../../utils'
 import { coinTypeCode } from '../../utils/createPath'
 import { LoginOption } from '../../customPropTypes'
@@ -27,15 +25,13 @@ describe('Create new account', () => {
   test('it creates a new account at the wallet index by default', async () => {
     const { container } = render(
       <TestEnvironment>
-        <ThemeProvider theme={theme}>
-          <CreateAccount
-            keyDerive={keyDeriveSpy}
-            loginOption={LoginOption.IMPORT_SINGLE_KEY}
-            setError={() => {}}
-            accountIdx={0}
-            fetchNextAccount={fetchNextAccountSpy}
-          />
-        </ThemeProvider>
+        <CreateAccount
+          keyDerive={keyDeriveSpy}
+          loginOption={LoginOption.IMPORT_SINGLE_KEY}
+          setError={() => {}}
+          accountIdx={0}
+          fetchNextAccount={fetchNextAccountSpy}
+        />
       </TestEnvironment>
     )
     expect(screen.getByText('Next account')).toBeInTheDocument()
@@ -56,15 +52,13 @@ describe('Create new account', () => {
     await act(async () => {
       render(
         <TestEnvironment>
-          <ThemeProvider theme={theme}>
-            <CreateAccount
-              keyDerive={keyDeriveSpy}
-              loginOption={LoginOption.IMPORT_SINGLE_KEY}
-              setError={() => {}}
-              accountIdx={0}
-              fetchNextAccount={fetchNextAccountSpy}
-            />
-          </ThemeProvider>
+          <CreateAccount
+            keyDerive={keyDeriveSpy}
+            loginOption={LoginOption.IMPORT_SINGLE_KEY}
+            setError={() => {}}
+            accountIdx={0}
+            fetchNextAccount={fetchNextAccountSpy}
+          />
         </TestEnvironment>
       )
       expect(screen.getByText('Next account')).toBeInTheDocument()
@@ -99,17 +93,15 @@ describe('Create new account', () => {
     await act(async () => {
       render(
         <TestEnvironment>
-          <ThemeProvider theme={theme}>
-            <CreateAccount
-              keyDerive={keyDeriveSpy}
-              loginOption={LoginOption.IMPORT_SINGLE_KEY}
-              setError={err => {
-                console.log(err)
-              }}
-              accountIdx={0}
-              fetchNextAccount={fetchNextAccountSpy}
-            />
-          </ThemeProvider>
+          <CreateAccount
+            keyDerive={keyDeriveSpy}
+            loginOption={LoginOption.IMPORT_SINGLE_KEY}
+            setError={err => {
+              console.log(err)
+            }}
+            accountIdx={0}
+            fetchNextAccount={fetchNextAccountSpy}
+          />
         </TestEnvironment>
       )
       expect(screen.getByText('Next account')).toBeInTheDocument()

@@ -1,7 +1,4 @@
-export { default as theme } from './theme'
 export * from './theme'
-export { default as ThemeProvider } from './ThemeProvider'
-
 export * from './AccountCard'
 export * from './AccountCard/Error'
 export * from './AppTile'
@@ -41,4 +38,3 @@ export * from './SearchBar'
 export * from './SearchBar/SearchAddress'
 export * from './SearchBar/SearchAddressMessage'
 export * from './Transaction'
-export * from './Typography'

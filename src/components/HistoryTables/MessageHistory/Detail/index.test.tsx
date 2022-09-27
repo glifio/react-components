@@ -1,7 +1,5 @@
 import React from 'react'
 import { render, act, screen, waitFor, fireEvent } from '@testing-library/react'
-import ThemeProvider from '../../../ThemeProvider'
-import theme from '../../../theme'
 import MessageDetail from '.'
 import {
   WALLET_ADDRESS,
@@ -61,13 +59,11 @@ describe('Message detail view', () => {
     act(() => {
       const res = render(
         <TestEnvironment withApollo>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-            />
-          </ThemeProvider>
+          <MessageDetail
+            cid={cid}
+            speedUpHref='/speed-up'
+            cancelHref='/cancel'
+          />
         </TestEnvironment>
       )
       container = res.container
@@ -101,13 +97,11 @@ describe('Message detail view', () => {
     act(() => {
       const res = render(
         <TestEnvironment withApollo>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-            />
-          </ThemeProvider>
+          <MessageDetail
+            cid={cid}
+            speedUpHref='/speed-up'
+            cancelHref='/cancel'
+          />
         </TestEnvironment>
       )
       container = res.container
@@ -139,13 +133,11 @@ describe('Message detail view', () => {
     await act(async () => {
       const res = render(
         <TestEnvironment withApollo>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-            />
-          </ThemeProvider>
+          <MessageDetail
+            cid={cid}
+            speedUpHref='/speed-up'
+            cancelHref='/cancel'
+          />
         </TestEnvironment>
       )
       container = res.container
@@ -191,14 +183,12 @@ describe('Message detail view', () => {
     await act(async () => {
       const res = render(
         <TestEnvironment withApollo>
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-              confirmations={50}
-            />
-          </ThemeProvider>
+          <MessageDetail
+            cid={cid}
+            speedUpHref='/speed-up'
+            cancelHref='/cancel'
+            confirmations={50}
+          />
         </TestEnvironment>
       )
       container = res.container
@@ -304,14 +294,12 @@ describe('Message detail view', () => {
             }
           ]}
         >
-          <ThemeProvider theme={theme}>
-            <MessageDetail
-              cid={cid}
-              speedUpHref='/speed-up'
-              cancelHref='/cancel'
-              confirmations={50}
-            />
-          </ThemeProvider>
+          <MessageDetail
+            cid={cid}
+            speedUpHref='/speed-up'
+            cancelHref='/cancel'
+            confirmations={50}
+          />
         </TestEnvironment>
       )
       container = res.container

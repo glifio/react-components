@@ -14,8 +14,6 @@ import {
 } from '../../../test-utils/constants'
 import { TestEnvironment } from '../../../test-utils/TestEnvironment'
 import { isAddrEqual } from '../../../utils/isAddrEqual'
-import ThemeProvider from '../../ThemeProvider'
-import theme from '../../theme'
 import { ActorState } from '.'
 
 jest
@@ -73,9 +71,7 @@ describe('ActorState', () => {
     await act(async () => {
       result = render(
         <TestEnvironment withApollo>
-          <ThemeProvider theme={theme}>
-            <ActorState address={MULTISIG_ACTOR_ADDRESS} />
-          </ThemeProvider>
+          <ActorState address={MULTISIG_ACTOR_ADDRESS} />
         </TestEnvironment>
       )
 
@@ -90,9 +86,7 @@ describe('ActorState', () => {
     await act(async () => {
       result = render(
         <TestEnvironment withApollo>
-          <ThemeProvider theme={theme}>
-            <ActorState address='t011' />
-          </ThemeProvider>
+          <ActorState address='t011' />
         </TestEnvironment>
       )
     })
@@ -107,9 +101,7 @@ describe('ActorState', () => {
     await act(async () => {
       result = render(
         <TestEnvironment withApollo>
-          <ThemeProvider theme={theme}>
-            <ActorState address={MULTISIG_ACTOR_ADDRESS} />
-          </ThemeProvider>
+          <ActorState address={MULTISIG_ACTOR_ADDRESS} />
         </TestEnvironment>
       )
 

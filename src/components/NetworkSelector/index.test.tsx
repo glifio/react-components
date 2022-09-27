@@ -1,6 +1,4 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 import { TestEnvironment } from '../../test-utils/TestEnvironment'
 import { NetworkSelector } from '.'
 import {
@@ -19,11 +17,7 @@ const windowReassignMock = jest.fn()
 
 describe('NetworkSelector', () => {
   test('it renders the loading state first', () => {
-    const { container, getByText } = render(
-      <ThemeProvider theme={theme}>
-        <NetworkSelector />
-      </ThemeProvider>
-    )
+    const { container, getByText } = render(<NetworkSelector />)
     expect(getByText(/Loading network/)).toBeInTheDocument()
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -56,9 +50,7 @@ describe('NetworkSelector', () => {
     test('it renders the network after load', async () => {
       const { container, getByText } = render(
         <TestEnvironment>
-          <ThemeProvider theme={theme}>
-            <NetworkSelector />
-          </ThemeProvider>
+          <NetworkSelector />
         </TestEnvironment>
       )
 
@@ -71,9 +63,7 @@ describe('NetworkSelector', () => {
     test('it renders the network options', async () => {
       const { container, getByText, getAllByText } = render(
         <TestEnvironment>
-          <ThemeProvider theme={theme}>
-            <NetworkSelector />
-          </ThemeProvider>
+          <NetworkSelector />
         </TestEnvironment>
       )
 
@@ -94,9 +84,7 @@ describe('NetworkSelector', () => {
     test('it changes the network', async () => {
       const { getByText } = render(
         <EnvironmentProvider>
-          <ThemeProvider theme={theme}>
-            <NetworkSelector />
-          </ThemeProvider>
+          <NetworkSelector />
         </EnvironmentProvider>
       )
 

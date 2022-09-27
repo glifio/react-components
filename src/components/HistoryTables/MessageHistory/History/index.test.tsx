@@ -1,7 +1,5 @@
 import React from 'react'
 import { render, act, screen } from '@testing-library/react'
-import ThemeProvider from '../../../ThemeProvider'
-import theme from '../../../theme'
 import MessageHistory from '.'
 import {
   WALLET_ADDRESS,
@@ -45,14 +43,12 @@ describe('Message history', () => {
     act(() => {
       const res = render(
         <TestEnvironment withApollo>
-          <ThemeProvider theme={theme}>
-            <MessageHistory
-              offset={0}
-              address={WALLET_ADDRESS}
-              cidHref={cid => `/message/?cid=${cid}`}
-              warnMissingData
-            />
-          </ThemeProvider>
+          <MessageHistory
+            offset={0}
+            address={WALLET_ADDRESS}
+            cidHref={cid => `/message/?cid=${cid}`}
+            warnMissingData
+          />
         </TestEnvironment>
       )
       container = res.container
@@ -103,14 +99,12 @@ describe('Message history', () => {
     act(() => {
       const res = render(
         <TestEnvironment withApollo>
-          <ThemeProvider theme={theme}>
-            <MessageHistory
-              offset={0}
-              address={WALLET_ADDRESS}
-              cidHref={cid => `/message/?cid=${cid}`}
-              warnMissingData
-            />
-          </ThemeProvider>
+          <MessageHistory
+            offset={0}
+            address={WALLET_ADDRESS}
+            cidHref={cid => `/message/?cid=${cid}`}
+            warnMissingData
+          />
         </TestEnvironment>
       )
       container = res.container

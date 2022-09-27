@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
-import theme from '../../components/theme'
-import { ThemeProvider } from 'styled-components'
 import { mockWalletProviderInstance } from '../../../__mocks__/@glif/filecoin-wallet-provider'
 import WalletProviderWrapper from '../../services/WalletProvider'
 import { initialState as walletProviderInitialState } from '../../services/WalletProvider/state'
@@ -35,7 +33,7 @@ const Index = (statePreset = 'preOnboard', options = {}) => {
           getState={cacheWalletProviderState}
           initialState={initialState}
         >
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
+          {children}
         </WalletProviderWrapper>
       </TestEnvironment>
     )

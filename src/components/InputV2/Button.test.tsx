@@ -6,8 +6,6 @@ import {
   RenderResult
 } from '@testing-library/react'
 import { ButtonInput } from './Button'
-import ThemeProvider from '../ThemeProvider'
-import theme from '../theme'
 
 const labelText = 'Do something'
 const infoText = 'Now is your chance'
@@ -19,9 +17,7 @@ describe('Button input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ButtonInput label={labelText} info={infoText} value={inputValue} />
-        </ThemeProvider>
+        <ButtonInput label={labelText} info={infoText} value={inputValue} />
       )
     })
     expect(result.container.firstChild).toMatchSnapshot()
@@ -31,14 +27,12 @@ describe('Button input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ButtonInput
-            label={labelText}
-            info={infoText}
-            value={inputValue}
-            submit
-          />
-        </ThemeProvider>
+        <ButtonInput
+          label={labelText}
+          info={infoText}
+          value={inputValue}
+          submit
+        />
       )
     })
     expect(result.container.firstChild).toMatchSnapshot()
@@ -48,14 +42,7 @@ describe('Button input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ButtonInput
-            red
-            label={labelText}
-            info={infoText}
-            value={inputValue}
-          />
-        </ThemeProvider>
+        <ButtonInput red label={labelText} info={infoText} value={inputValue} />
       )
     })
     expect(result.container.firstChild).toMatchSnapshot()
@@ -65,14 +52,12 @@ describe('Button input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ButtonInput
-            green
-            label={labelText}
-            info={infoText}
-            value={inputValue}
-          />
-        </ThemeProvider>
+        <ButtonInput
+          green
+          label={labelText}
+          info={infoText}
+          value={inputValue}
+        />
       )
     })
     expect(result.container.firstChild).toMatchSnapshot()
@@ -82,14 +67,12 @@ describe('Button input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ButtonInput
-            disabled
-            label={labelText}
-            info={infoText}
-            value={inputValue}
-          />
-        </ThemeProvider>
+        <ButtonInput
+          disabled
+          label={labelText}
+          info={infoText}
+          value={inputValue}
+        />
       )
     })
     expect(result.container.firstChild).toMatchSnapshot()
@@ -99,14 +82,12 @@ describe('Button input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ButtonInput
-            label={labelText}
-            info={infoText}
-            value={inputValue}
-            onClick={onClick}
-          />
-        </ThemeProvider>
+        <ButtonInput
+          label={labelText}
+          info={infoText}
+          value={inputValue}
+          onClick={onClick}
+        />
       )
       // Click on the button
       fireEvent.click(getByRole(result.container, 'button'))

@@ -7,8 +7,6 @@ import {
 } from '@testing-library/react'
 import { useState } from 'react'
 import { NumberInput, NumberInputProps } from './Number'
-import ThemeProvider from '../ThemeProvider'
-import theme from '../theme'
 
 const labelText = 'What is your favourite number?'
 const infoText = 'Or your second favourite'
@@ -24,14 +22,12 @@ describe('Number input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <NumberInput
-            label={labelText}
-            info={infoText}
-            value={500}
-            setIsValid={setIsValid}
-          />
-        </ThemeProvider>
+        <NumberInput
+          label={labelText}
+          info={infoText}
+          value={500}
+          setIsValid={setIsValid}
+        />
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
@@ -44,15 +40,13 @@ describe('Number input', () => {
     let input: HTMLElement | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ControlledInput
-            label={labelText}
-            info={infoText}
-            max={100}
-            setIsValid={setIsValid}
-            autoFocus={true}
-          />
-        </ThemeProvider>
+        <ControlledInput
+          label={labelText}
+          info={infoText}
+          max={100}
+          setIsValid={setIsValid}
+          autoFocus={true}
+        />
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'spinbutton')
@@ -71,15 +65,13 @@ describe('Number input', () => {
     let input: HTMLElement | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ControlledInput
-            label={labelText}
-            info={infoText}
-            min={-100}
-            setIsValid={setIsValid}
-            autoFocus={true}
-          />
-        </ThemeProvider>
+        <ControlledInput
+          label={labelText}
+          info={infoText}
+          min={-100}
+          setIsValid={setIsValid}
+          autoFocus={true}
+        />
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'spinbutton')
@@ -97,9 +89,7 @@ describe('Number input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <NumberInput label={labelText} info={infoText} disabled={true} />
-        </ThemeProvider>
+        <NumberInput label={labelText} info={infoText} disabled={true} />
       )
       expect(result.container.firstChild).toMatchSnapshot()
     })
@@ -110,9 +100,7 @@ describe('Number input', () => {
     let input: HTMLElement | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ControlledInput label={labelText} info={infoText} autoFocus={true} />
-        </ThemeProvider>
+        <ControlledInput label={labelText} info={infoText} autoFocus={true} />
       )
       input = getByRole(result.container, 'spinbutton')
 
