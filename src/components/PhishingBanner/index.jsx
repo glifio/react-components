@@ -1,8 +1,8 @@
-import React, { useMemo, useEffect, useState } from 'react'
+import { useMemo, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Colors } from '../theme'
 import { SmartLink } from '../SmartLink'
-import { baseColors } from '../theme'
 import { useLogger } from '../../services/EnvironmentProvider'
 
 const PhishingBannerContainer = styled.div`
@@ -12,7 +12,7 @@ const PhishingBannerContainer = styled.div`
   border-radius: 10px;
   font-size: var(--type-small);
   text-align: center;
-  background: ${baseColors.red.base};
+  background: ${Colors.RED_MEDIUM};
   color: white;
 
   p {
