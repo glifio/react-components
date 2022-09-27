@@ -26,9 +26,12 @@ const Content = styled.div`
   padding: 0.5em 0.75em;
   color: ${Colors.BLACK};
   background-color: ${Colors.WHITE};
-  border-radius: ${props => props.theme.radii[2]};
-  box-shadow: ${props => props.theme.shadows[2]};
-  z-index: ${props => props.theme.zIndices[1]};
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0.7px 2.2px -8px,
+    rgba(0, 0, 0, 0.04) 0px 1.7px 2.4px, rgba(0, 0, 0, 0.106) 0px 3.1px 8.1px,
+    rgba(0, 0, 0, 0.04) 0px 5.6px 12.1px, rgba(0, 0, 0, 0.045) 0px 4.4px 4.8px,
+    rgba(0, 0, 0, 0.05) 0px 15px 41px;
+  z-index: 9;
 `
 
 const Wrapper = styled.div`
