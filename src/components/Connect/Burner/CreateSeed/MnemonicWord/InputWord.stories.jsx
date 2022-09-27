@@ -1,7 +1,7 @@
-import InputWord from './InputWord'
+import { InputWord } from './InputWord'
 
 export default {
-  title: 'MnemonicWord/InputWord',
+  title: 'Connect/InputWord',
   component: InputWord,
   decorators: [
     Story => (
@@ -15,7 +15,6 @@ const Template = args => <InputWord {...args} />
 export const Base = Template.bind({})
 Base.args = {
   num: 12,
-  wordToMatch: 'hello world',
-  importSeedError: false,
-  correctWordCount: 2
+  word: 'hello',
+  onValidChange: valid => console.log(valid)
 }

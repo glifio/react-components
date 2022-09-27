@@ -1,4 +1,5 @@
 import Tooltip from './index'
+import { Colors } from '../theme'
 
 export default {
   title: 'Tooltip/Tooltip',
@@ -16,5 +17,5 @@ export const Base = Template.bind({})
 Base.args = {
   content:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec est ultrices, posuere lorem a, convallis quam. Etiam venenatis velit.',
-  color: 'core.black'
+  color: Colors.BLACK
 }

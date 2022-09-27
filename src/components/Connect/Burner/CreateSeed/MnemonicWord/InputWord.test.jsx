@@ -1,13 +1,9 @@
 import { render } from '@testing-library/react'
-
 import { Base } from './InputWord.stories'
 
-describe('Box', () => {
+describe('InputWord', () => {
   test('renders the story', () => {
-    const mockSetCorrectWordCount = jest.fn()
-    const { container } = render(
-      <Base {...Base.args} setCorrectWordCount={mockSetCorrectWordCount} />
-    )
+    const { container } = render(<Base {...Base.args} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 })

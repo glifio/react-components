@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-
 import { Safe } from './index.stories'
 
 describe('AppTile', () => {

@@ -1,111 +1,85 @@
-import { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Filecoin, { HDWalletProvider } from '@glif/filecoin-wallet-provider'
 import { generateMnemonic } from '@zondax/filecoin-signing-tools/js'
-import { Stepper } from '../../../Stepper'
-import { LoadingScreen } from '../../../Loading/LoadingScreen'
 
+import { LoadingScreen } from '../../../Loading/LoadingScreen'
+import { Walkthrough } from './Walkthrough'
+import { LoginOption } from '../../../../customPropTypes'
+import { ButtonV2 } from '../../../Button/V2'
+import { Stepper } from '../../../Stepper'
+import { ErrorView } from '../../../ErrorView'
+import { ButtonRowSpaced, WideDialog, ShadowBox } from '../../../Layout'
 import {
   useWalletProvider,
   createWalletProvider
 } from '../../../../services/WalletProvider'
 
-import Walkthrough from './Walkthrough'
-import { LoginOption } from '../../../../customPropTypes'
-import { ButtonRowSpaced, WideDialog, ShadowBox } from '../../../Layout'
-import { ButtonV2 } from '../../../Button/V2'
-
 export const CreateSeed = ({
-  initialWalkthroughStep,
+  testMnemonic,
+  initialStep,
   back,
   next
 }: CreateSeedProps) => {
-  const [mnemonic, setMnemonic] = useState('')
-  const [walkthroughStep, setWalkthroughStep] = useState(initialWalkthroughStep)
-  const [loading, setLoading] = useState(true)
-  const [canContinue, setCanContinue] = useState(false)
-  const [importSeedError, setImportSeedError] = useState(false)
+  const mnemonic = useRef<string>(testMnemonic || generateMnemonic())
+  const [step, setStep] = useState<number>(initialStep || 1)
+  const [valid, setValid] = useState<boolean>(false)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [walletError, setWalletError] = useState<string>('')
   const { dispatch, fetchDefaultWallet, walletList, lotusApiAddr } =
     useWalletProvider()
 
-  const nextStep = () => {
-    setImportSeedError(false)
-    if (walkthroughStep === 1) setWalkthroughStep(2)
-    else if (walkthroughStep === 2 && canContinue) setWalkthroughStep(3)
-    else if (walkthroughStep === 2) setImportSeedError(true)
-    else if (walkthroughStep >= 3) setWalkthroughStep(walkthroughStep + 1)
-  }
+  // Prevent going to step 3 until all words are valid
+  const nextDisabled = step === 2 && !valid
 
-  useEffect(() => {
-    setMnemonic(generateMnemonic())
-    setLoading(false)
-  }, [setMnemonic, setLoading])
+  // Creates a wallet using the generated seed phrase
+  const createWallet = useCallback(async () => {
+    const subProvider = new HDWalletProvider(mnemonic.current)
+    const provider = new Filecoin(subProvider, { apiAddress: lotusApiAddr })
+    dispatch(createWalletProvider(provider, LoginOption.CREATE_MNEMONIC))
+    walletList([await fetchDefaultWallet(provider)])
+  }, [lotusApiAddr, dispatch, fetchDefaultWallet, walletList])
 
+  // Create the wallet when going to step 4
   useEffect(() => {
-    const instantiateProvider = async () => {
-      try {
-        const provider = new Filecoin(new HDWalletProvider(mnemonic), {
-          apiAddress: lotusApiAddr
-        })
-        dispatch(createWalletProvider(provider, LoginOption.CREATE_MNEMONIC))
-        const wallet = await fetchDefaultWallet(provider)
-        walletList([wallet])
-        next()
-      } catch (err) {
-        setImportSeedError(err.message || JSON.stringify(err))
-      }
-    }
-    if (walkthroughStep === 4 && !loading) {
+    if (step === 4 && !loading) {
       setLoading(true)
-      instantiateProvider()
+      createWallet()
+        .then(() => next())
+        .catch(e => setWalletError(e.message))
     }
-  }, [
-    dispatch,
-    fetchDefaultWallet,
-    mnemonic,
-    walkthroughStep,
-    loading,
-    walletList,
-    next,
-    lotusApiAddr
-  ])
+  }, [step, loading, createWallet, next])
 
-  return loading || walkthroughStep === 4 ? (
+  return walletError ? (
+    <ErrorView title='Wallet creation failed' description={walletError} />
+  ) : loading ? (
     <LoadingScreen />
   ) : (
     <WideDialog>
       <form
         onSubmit={e => {
           e.preventDefault()
-          nextStep()
+          !nextDisabled && setStep(step + 1)
         }}
       >
         <ShadowBox>
-          <Stepper step={walkthroughStep} steps={3} />
-          {mnemonic && (
-            <Walkthrough
-              importSeedError={importSeedError}
-              canContinue={canContinue}
-              walkthroughStep={walkthroughStep}
-              mnemonic={mnemonic}
-              setCanContinue={setCanContinue}
-            />
-          )}
+          <Stepper step={step} steps={3} />
+          <Walkthrough
+            mnemonic={mnemonic.current}
+            step={step}
+            onValidChange={setValid}
+          />
         </ShadowBox>
         <ButtonRowSpaced>
           <ButtonV2
             large
             type='button'
-            onClick={() =>
-              walkthroughStep === 1
-                ? back()
-                : setWalkthroughStep(walkthroughStep - 1)
-            }
+            onClick={() => (step === 1 ? back() : setStep(step - 1))}
           >
             Back
           </ButtonV2>
-          <ButtonV2 large green type='submit'>
-            {walkthroughStep === 1 ? "I've recorded my seed phrase" : 'Next'}
+          <ButtonV2 large green type='submit' disabled={nextDisabled}>
+            {step === 1 ? "I've recorded my seed phrase" : 'Next'}
           </ButtonV2>
         </ButtonRowSpaced>
       </form>
@@ -114,18 +88,15 @@ export const CreateSeed = ({
 }
 
 export interface CreateSeedProps {
-  // we pass this optional prop to make testing the core wallet functionality easier
-  initialWalkthroughStep?: number
+  testMnemonic?: string // for tests / stories
+  initialStep?: number // for tests / stories
   back: () => void
   next: () => void
 }
 
 CreateSeed.propTypes = {
-  initialWalkthroughStep: PropTypes.number,
+  testMnemonic: PropTypes.string,
+  initialStep: PropTypes.number,
   back: PropTypes.func.isRequired,
   next: PropTypes.func.isRequired
-}
-
-CreateSeed.defaultProps = {
-  initialWalkthroughStep: 1
 }

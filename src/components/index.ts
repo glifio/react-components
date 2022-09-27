@@ -30,8 +30,6 @@ export { default as PhishingBanner } from './PhishingBanner'
 export { default as Footer } from './Footer'
 export * from './SmartLink'
 export * from './Icons'
-export * from './MnemonicWord'
-
 export * from './Layout'
 export * from './SearchBar'
 export * from './SearchBar/SearchAddress'

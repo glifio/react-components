@@ -1,7 +1,7 @@
-import DisplayWord from './DisplayWord'
+import { DisplayWord } from './DisplayWord'
 
 export default {
-  title: 'MnemonicWord/DisplayWord',
+  title: 'Connect/DisplayWord',
   component: DisplayWord,
   decorators: [
     Story => (
@@ -14,7 +14,6 @@ const Template = args => <DisplayWord {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  word: 'hello world',
   num: 12,
-  valid: true
+  word: 'hello world'
 }

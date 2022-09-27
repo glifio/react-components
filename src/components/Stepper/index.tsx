@@ -37,7 +37,6 @@ export const Stepper = ({ step, steps, error }: StepperProps) => (
     <span>Step {step}</span>
     <div className='dots'>
       {new Array(steps).fill(null).map((_, i) => (
-        /* eslint-disable react/no-array-index-key */
         <div key={i} className={step > i ? 'active' : ''} />
       ))}
     </div>

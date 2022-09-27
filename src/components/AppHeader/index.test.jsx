@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-
 import { Base } from './index.stories'
 
 describe('AppHeader', () => {

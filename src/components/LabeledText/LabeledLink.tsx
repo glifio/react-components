@@ -9,7 +9,7 @@ import { Colors } from '../theme'
 
 const LabeledLinkEl = styled.div`
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 
   > a {

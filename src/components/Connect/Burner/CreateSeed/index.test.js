@@ -19,7 +19,7 @@ describe('Create seed phrase configuration', () => {
 
     render(
       <Tree>
-        <CreateSeed initialWalkthroughStep={1} next={nextSpy} back={backSpy} />
+        <CreateSeed initialStep={1} next={nextSpy} back={backSpy} />
       </Tree>
     )
 
@@ -35,7 +35,7 @@ describe('Create seed phrase configuration', () => {
 
     render(
       <Tree>
-        <CreateSeed initialWalkthroughStep={2} next={nextSpy} back={backSpy} />
+        <CreateSeed initialStep={2} next={nextSpy} back={backSpy} />
       </Tree>
     )
 
@@ -50,7 +50,7 @@ describe('Create seed phrase configuration', () => {
 
     render(
       <Tree>
-        <CreateSeed initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
+        <CreateSeed initialStep={3} next={nextSpy} back={backSpy} />
       </Tree>
     )
 
@@ -65,7 +65,7 @@ describe('Create seed phrase configuration', () => {
 
     const { container } = render(
       <Tree>
-        <CreateSeed initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
+        <CreateSeed initialStep={3} next={nextSpy} back={backSpy} />
       </Tree>
     )
 

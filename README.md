@@ -48,7 +48,6 @@ export * from './ErrorView'
 export { default as Tooltip } from './Tooltip'
 export * from './Link'
 export * from './Icons'
-export * from './MnemonicWord'
 export * from './Layout'
 ```
 
