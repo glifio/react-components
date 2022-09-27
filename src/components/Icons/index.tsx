@@ -3,7 +3,7 @@ import PropTypes, { oneOf, string } from 'prop-types'
 import styled, { keyframes, css } from 'styled-components'
 import { space, color, layout, flexbox, border, position } from 'styled-system'
 
-import theme, { Colors, devices } from '../theme'
+import { Colors, devices } from '../theme'
 
 const IconBase = styled.svg`
   ${position}
@@ -13,10 +13,6 @@ const IconBase = styled.svg`
   ${flexbox}
   ${border}
 `
-
-// allows us to get an object property by string, used for accessing colors from theme by passing a string prop
-const resolvePath = (object: object, path: string, defaultValue?: string) =>
-  path.split('.').reduce((o, p) => (o ? o[p] : defaultValue), object)
 
 const rotate = keyframes`
 0% { transform:rotate(0deg);}
@@ -186,7 +182,7 @@ export const IconSend = forwardRef((_, ref) => (
     />
     <path
       d='M17.5657 10.4343C17.2533 10.1219 16.7467 10.1219 16.4343 10.4343L11.3431 15.5255C11.0307 15.8379 11.0307 16.3444 11.3431 16.6569C11.6556 16.9693 12.1621 16.9693 12.4745 16.6569L17 12.1314L21.5255 16.6569C21.8379 16.9693 22.3444 16.9693 22.6569 16.6569C22.9693 16.3444 22.9693 15.8379 22.6569 15.5255L17.5657 10.4343ZM17.8 23L17.8 11L16.2 11L16.2 23L17.8 23Z'
-      fill={theme.colors.core.nearblack}
+      fill={Colors.BLACK}
     />
     <rect
       x='33'
@@ -195,7 +191,7 @@ export const IconSend = forwardRef((_, ref) => (
       height='32'
       rx='16'
       transform='rotate(-180 33 33)'
-      stroke={theme.colors.core.nearblack}
+      stroke={Colors.BLACK}
       strokeWidth='1.4'
     />
   </IconBase>
@@ -216,7 +212,7 @@ export const IconReceive = forwardRef((_, ref) => (
       width='32'
       height='32'
       rx='16'
-      fill={theme.colors.core.primary}
+      fill={Colors.PURPLE_MEDIUM}
     />
     <path
       d='M16.4343 23.5657C16.7467 23.8781 17.2533 23.8781 17.5657 23.5657L22.6569 18.4745C22.9693 18.1621 22.9693 17.6556 22.6569 17.3431C22.3444 17.0307 21.8379 17.0307 21.5255 17.3431L17 21.8686L12.4745 17.3431C12.1621 17.0307 11.6556 17.0307 11.3431 17.3431C11.0307 17.6556 11.0307 18.1621 11.3431 18.4745L16.4343 23.5657ZM16.2 11L16.2 23L17.8 23L17.8 11L16.2 11Z'
@@ -240,35 +236,32 @@ export const IconReceive = forwardRef((_, ref) => (
 // }
 
 export const IconClose = forwardRef<HTMLOrSVGElement, { fill: string } & any>(
-  (props, ref) => {
-    let fill = theme.colors.core.primary
-    if (props?.fill) {
-      const themeColor = resolvePath(theme.colors, props.fill)
-      fill = themeColor || props.fill
-    }
-    return (
-      <IconBase
-        width='24'
-        height='24'
-        viewBox='0 0 24 24'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-        ref={ref}
-        {...props}
-      >
-        <path
-          fillRule='evenodd'
-          clipRule='evenodd'
-          d='M19.7333 4.2669C19.3776 3.91103 18.801 3.91103 18.4453 4.2669L11.9994 10.7166L5.55552 4.26885C5.19986 3.91299 4.62323 3.91299 4.26757 4.26885C3.91191 4.62472 3.91191 5.20169 4.26757 5.55756L10.7115 12.0053L4.27793 18.4426C3.92228 18.7985 3.92228 19.3755 4.27793 19.7313C4.63359 20.0872 5.21022 20.0872 5.56587 19.7313L11.9994 13.294L18.435 19.7333C18.7906 20.0892 19.3672 20.0892 19.7229 19.7333C20.0786 19.3774 20.0786 18.8005 19.7229 18.4446L13.2874 12.0053L19.7333 5.5556C20.0889 5.19974 20.0889 4.62276 19.7333 4.2669Z'
-          fill={fill}
-        />
-      </IconBase>
-    )
-  }
+  (props, ref) => (
+    <IconBase
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      ref={ref}
+      {...props}
+    >
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M19.7333 4.2669C19.3776 3.91103 18.801 3.91103 18.4453 4.2669L11.9994 10.7166L5.55552 4.26885C5.19986 3.91299 4.62323 3.91299 4.26757 4.26885C3.91191 4.62472 3.91191 5.20169 4.26757 5.55756L10.7115 12.0053L4.27793 18.4426C3.92228 18.7985 3.92228 19.3755 4.27793 19.7313C4.63359 20.0872 5.21022 20.0872 5.56587 19.7313L11.9994 13.294L18.435 19.7333C18.7906 20.0892 19.3672 20.0892 19.7229 19.7333C20.0786 19.3774 20.0786 18.8005 19.7229 18.4446L13.2874 12.0053L19.7333 5.5556C20.0889 5.19974 20.0889 4.62276 19.7333 4.2669Z'
+        fill={props.fill}
+      />
+    </IconBase>
+  )
 )
 
 IconClose.propTypes = {
   fill: string
+}
+
+IconClose.defaultProps = {
+  fill: Colors.PURPLE_MEDIUM
 }
 
 export const IconApproximatelyEquals = forwardRef((props, ref) => (
@@ -379,38 +372,35 @@ export const IconViewAddress = forwardRef<HTMLOrSVGElement, any>(
 )
 
 export const IconEdit = forwardRef<HTMLOrSVGElement, { stroke: string } & any>(
-  (props, ref) => {
-    let stroke = 'currentColor'
-    if (props?.stroke) {
-      const themeColor = resolvePath(theme.colors, props.stroke)
-      stroke = themeColor || props.stroke
-    }
-
-    return (
-      <IconBase
-        fill='none'
-        stroke={stroke}
-        width='24'
-        height='24'
-        viewBox='0 0 24 24'
-        xmlns='http://www.w3.org/2000/svg'
-        ref={ref}
-      >
-        <path
-          fillRule='evenodd'
-          clipRule='evenodd'
-          fill={props.fill || 'none'}
-          strokeWidth='2'
-          d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'
-        />
-      </IconBase>
-    )
-  }
+  (props, ref) => (
+    <IconBase
+      fill='none'
+      stroke={props.stroke}
+      width='24'
+      height='24'
+      viewBox='0 0 24 24'
+      xmlns='http://www.w3.org/2000/svg'
+      ref={ref}
+    >
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        fill={props.fill || 'none'}
+        strokeWidth='2'
+        d='M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z'
+      />
+    </IconBase>
+  )
 )
 
 IconEdit.propTypes = {
   fill: string,
   stroke: string
+}
+
+IconEdit.defaultProps = {
+  fill: 'none',
+  stroke: Colors.PURPLE_MEDIUM
 }
 
 const AppIconHeaderFooterSvg = styled.svg`
