@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { SmartLink } from '../SmartLink'
 import { devices } from '../theme'
@@ -73,7 +72,7 @@ const AppIconStyled = styled(AppIconHeaderFooter)`
   }
 `
 
-export default function Footer() {
+export const Footer = () => {
   const { walletUrl, safeUrl, explorerUrl, verifierUrl } = useEnvironment()
   return (
     <>

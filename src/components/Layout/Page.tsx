@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { PhishingBanner } from '../PhishingBanner'
 import { AppHeader, AppHeaderProps, AppHeaderPropTypes } from '../AppHeader'
-import Footer from '../Footer'
+import { Footer } from '../Footer'
 
 import { devices } from '../theme'
 
