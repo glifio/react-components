@@ -3,14 +3,10 @@ import { Colors, devices, fontSize } from '../theme'
 
 export const OneColumn = styled.div`
   position: relative;
-  padding: 3rem 1.5rem;
-
-  &:not(:last-child) {
-    padding-bottom: 0;
-  }
+  margin: 3rem 1.5rem;
 
   @media (min-width: ${devices.tablet}) {
-    padding: 3rem;
+    margin: 3rem;
   }
 
   > *:first-child {
@@ -54,6 +50,7 @@ export const OneColumnLargeText = styled(OneColumn)`
 `
 
 export const OneColumnCentered = styled(OneColumn)`
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
