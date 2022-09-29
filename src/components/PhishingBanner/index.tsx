@@ -39,7 +39,7 @@ const PhishingBannerContainer = styled.div`
   }
 `
 
-export default function PhishingBanner({ href }) {
+export const PhishingBanner = ({ href }: PhishingBannerProps) => {
   const [closed, setClosed] = useState(false)
   const logger = useLogger()
   const glifDomain = 'glif.io'
@@ -81,6 +81,10 @@ export default function PhishingBanner({ href }) {
       )}
     </>
   )
+}
+
+interface PhishingBannerProps {
+  href: string
 }
 
 PhishingBanner.propTypes = {

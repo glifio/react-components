@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import PhishingBanner from '../PhishingBanner'
+import { PhishingBanner } from '../PhishingBanner'
 import { AppHeader, AppHeaderProps, AppHeaderPropTypes } from '../AppHeader'
 import Footer from '../Footer'
 
