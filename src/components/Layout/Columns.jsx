@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Colors, devices, fontSize } from '../theme'
+import { Colors, devices } from '../theme'
 
 export const OneColumn = styled.div`
   position: relative;
@@ -31,7 +31,7 @@ export const TwoColumns = styled.div`
 `
 
 export const OneColumnLargeText = styled(OneColumn)`
-  font-size: ${fontSize('large')};
+  font-size: var(--font-size-xl);
 
   p {
     max-width: 670px;
