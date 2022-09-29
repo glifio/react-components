@@ -11,59 +11,44 @@ exports[`AddressLink it renders correctly 1`] = `
   line-height: 1.5;
 }
 
-.c2 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: var(--purple-medium);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c5 {
+.c3 {
   width: 24;
   height: 24;
 }
 
-.c4 {
-  height: auto;
+.c2 {
+  position: relative;
   cursor: pointer;
-  opacity: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  outline: none;
 }
 
-.c7 {
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
+.c2 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
-.c3:hover .c6 {
+.c2 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  opacity: 0;
+  color: var(--purple-medium);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c2:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
+}
+
+.c2:hover .copy-text {
+  opacity: 1;
 }
 
 .c1 {
@@ -71,7 +56,7 @@ exports[`AddressLink it renders correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 
@@ -117,42 +102,35 @@ exports[`AddressLink it renders correctly 1`] = `
     >
       t137sj ... 2vizpy
     </a>
-    <div
+    <span
       class="c2"
       color="var(--purple-medium)"
-      display="flex"
+      role="button"
     >
-      <button
-        class="c3 c4"
-        display="flex"
-        role="button"
-        type="button"
+      <svg
+        class="c3"
+        fill="none"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <svg
-          class="c5 c6 c7"
-          fill="none"
-          height="24"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            fill="#1A0066"
-            height="12"
-            width="12"
-            x="8"
-            y="4"
-          />
-          <rect
-            fill="#E0D7FE"
-            height="12"
-            width="12"
-            x="4"
-            y="8"
-          />
-        </svg>
-      </button>
-    </div>
+        <rect
+          fill="#1A0066"
+          height="12"
+          width="12"
+          x="8"
+          y="4"
+        />
+        <rect
+          fill="#E0D7FE"
+          height="12"
+          width="12"
+          x="4"
+          y="8"
+        />
+      </svg>
+    </span>
   </div>
 </div>
 `;

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ActorState it renders the actor state correctly 1`] = `
-.c10 {
+.c8 {
   width: 24;
   height: 24;
 }
@@ -17,68 +17,37 @@ exports[`ActorState it renders the actor state correctly 1`] = `
 }
 
 .c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: var(--purple-medium);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c9 {
-  height: auto;
+  position: relative;
   cursor: pointer;
-  opacity: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  outline: none;
 }
 
-.c12 {
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
+.c7 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
-.c8:hover .c11 {
+.c7 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  opacity: 0;
+  color: var(--purple-medium);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c7:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c14 {
-  -webkit-transition: 0.18s ease-in;
-  transition: 0.18s ease-in;
-  opacity: 0;
-  text-align: left;
-  color: var(--purple-medium);
-  margin-top: 0;
-  margin-left: 4px;
-  margin-top: 0;
-  margin-left: 4px;
-}
-
-.c8:hover .c13 {
+.c7:hover .copy-text {
   opacity: 1;
 }
 
@@ -87,7 +56,7 @@ exports[`ActorState it renders the actor state correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 
@@ -371,48 +340,40 @@ exports[`ActorState it renders the actor state correctly 1`] = `
             >
               f2m4f2 ... sha5za
             </a>
-            <div
+            <span
               class="c7"
               color="var(--purple-medium)"
-              display="flex"
+              role="button"
             >
-              <button
-                class="c8 c9"
-                display="flex"
-                role="button"
-                type="button"
+              <svg
+                class="c8"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="c10 c11 c12"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    fill="#1A0066"
-                    height="12"
-                    width="12"
-                    x="8"
-                    y="4"
-                  />
-                  <rect
-                    fill="#E0D7FE"
-                    height="12"
-                    width="12"
-                    x="4"
-                    y="8"
-                  />
-                </svg>
-                <span
-                  class="c13 c14"
-                  color="var(--purple-medium)"
-                >
-                  Copy
-                </span>
-              </button>
-            </div>
+                <rect
+                  fill="#1A0066"
+                  height="12"
+                  width="12"
+                  x="8"
+                  y="4"
+                />
+                <rect
+                  fill="#E0D7FE"
+                  height="12"
+                  width="12"
+                  x="4"
+                  y="8"
+                />
+              </svg>
+              <span
+                class="copy-text"
+              >
+                Copy
+              </span>
+            </span>
           </div>
         </div>
       </div>

@@ -102,11 +102,7 @@ exports[`ErrorBoundary it should catch errors and render the error boundary comp
 
 .c0 {
   position: relative;
-  padding: 3rem 1.5rem;
-}
-
-.c0:not(:last-child) {
-  padding-bottom: 0;
+  margin: 3rem 1.5rem;
 }
 
 .c0 > *:first-child {
@@ -118,6 +114,7 @@ exports[`ErrorBoundary it should catch errors and render the error boundary comp
 }
 
 .c1 {
+  height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -162,7 +159,7 @@ exports[`ErrorBoundary it should catch errors and render the error boundary comp
 
 @media (min-width:868px) {
   .c0 {
-    padding: 3rem;
+    margin: 3rem;
   }
 }
 

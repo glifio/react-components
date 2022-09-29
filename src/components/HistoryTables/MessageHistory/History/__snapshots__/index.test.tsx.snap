@@ -36,7 +36,7 @@ exports[`Message history it renders messages 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 

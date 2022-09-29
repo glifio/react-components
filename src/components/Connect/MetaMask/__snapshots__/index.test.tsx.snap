@@ -1,75 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`metamask onboarding it renders loading state 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-pack: space-around;
-  -webkit-justify-content: space-around;
-  -ms-flex-pack: space-around;
-  justify-content: space-around;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+.c4 {
+  mix-blend-mode: color-dodge;
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
+  mix-blend-mode: overlay;
+}
+
+.c1 {
+  position: relative;
+  margin: 3rem 1.5rem;
+}
+
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.c2 {
   height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .c3 {
-  mix-blend-mode: color-dodge;
-}
-
-.c4 {
-  mix-blend-mode: overlay;
-}
-
-.c2 {
   opacity: 0;
   -webkit-animation-name: QSrYq;
   animation-name: QSrYq;
@@ -83,17 +66,31 @@ exports[`metamask onboarding it renders loading state 1`] = `
   transition-timing-function: cubic-bezier(0.215,0.61,0.355,1);
 }
 
+@media (min-width:868px) {
+  .c1 {
+    margin: 3rem;
+  }
+}
+
+@media (min-width:868px) {
+  .c0 {
+    display: grid;
+    -webkit-align-items: start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 <div
   class="c0"
-  display="flex"
-  width="100%"
 >
   <div
-    class="c1"
-    display="flex"
+    class="c1 c2"
   >
     <div
-      class="c2"
+      class="c3"
     >
       <svg
         fill="none"
@@ -234,13 +231,13 @@ exports[`metamask onboarding it renders loading state 1`] = `
             fill="#161616"
           />
           <path
-            class="c3"
+            class="c4"
             d="M33.9015 14.3693L33.215 13.8742L34.3135 12.8705L33.4759 12.2104L34.5743 11.3717L33.8466 10.8216L35 5.21144L33.2699 0L22.1342 4.1664H12.8658L1.73009 0L0 5.21144L1.16712 10.8216L0.425657 11.3717L1.52413 12.2104L0.686544 12.8705L1.78501 13.8742L1.09847 14.3693L2.67752 16.2256L0.288348 23.6783L2.49902 31.2824L10.2844 29.1373L14.9392 26.8685L14.5588 29.9431L14.9117 29.6186L20.0883 29.6048L20.4315 29.9073L20.0608 26.8685L24.7156 29.1373L32.501 31.2824L34.7254 23.6783L32.3225 16.2256L33.9015 14.3693Z"
             fill="url(#paint13_linear)"
             fill-opacity="0.1"
           />
           <path
-            class="c4"
+            class="c5"
             d="M33.9015 14.3693L33.215 13.8742L34.3135 12.8705L33.4759 12.2104L34.5743 11.3717L33.8466 10.8216L35 5.21144L33.2699 0L22.1342 4.1664H12.8658L1.73009 0L0 5.21144L1.16712 10.8216L0.425657 11.3717L1.52413 12.2104L0.686544 12.8705L1.78501 13.8742L1.09847 14.3693L2.67752 16.2256L0.288348 23.6783L2.49902 31.2824L10.2844 29.1373L14.9392 26.8685L15.5845 26.4009H16.5457H18.468H19.4292L20.0608 26.8685L24.7156 29.1373L32.501 31.2824L34.7254 23.6783L32.3225 16.2256L33.9015 14.3693Z"
             fill="url(#paint14_radial)"
           />
@@ -500,9 +497,7 @@ exports[`metamask onboarding it renders loading state 1`] = `
     </div>
   </div>
   <div
-    class="c5"
-    display="flex"
-    height="100%"
+    class="c1 c2"
   >
     <h2>
       Connecting to FILSnap
