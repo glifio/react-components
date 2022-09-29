@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import { FC, useCallback, useEffect, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
-import Box from '../../Box'
 import { IconMetaMaskFlask } from '../../Icons'
 import { HelperText } from './Helper'
 import {
@@ -10,6 +9,7 @@ import {
 } from '../../../services/WalletProvider'
 import { connectFILSnap as _connectFILSnap } from '../../../services/WalletProvider/metamaskUtils'
 import { LoginOption } from '../../../customPropTypes'
+import { OneColumnCentered, TwoColumns } from '../../Layout'
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -89,34 +89,21 @@ export const MetaMask = ({ next, back }: MetamaskProps) => {
   }, [fetchMetaMaskState])
 
   return (
-    <Box
-      display='flex'
-      flexDirection='row'
-      justifyContent='space-around'
-      flexWrap='wrap'
-      width='100%'
-    >
-      <Box alignSelf='center' display='flex' justifyContent='center'>
+    <TwoColumns>
+      <OneColumnCentered>
         <MMFadeIn>
           <IconMetaMaskFlask height='231' width='245' />
         </MMFadeIn>
-      </Box>
-      <Box
-        height='100%'
-        alignSelf='center'
-        display='flex'
-        flexDirection='column'
-        justifyContent='center'
-        alignItems='center'
-      >
+      </OneColumnCentered>
+      <OneColumnCentered>
         <HelperText
           {...state.metamask}
           onRetry={fetchMetaMaskState}
           back={back}
           connectFILSnap={connectFILSnap}
         />
-      </Box>
-    </Box>
+      </OneColumnCentered>
+    </TwoColumns>
   )
 }
 
