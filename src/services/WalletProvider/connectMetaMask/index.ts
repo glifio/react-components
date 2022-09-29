@@ -100,7 +100,7 @@ export default async function connectMetaMask(
         )
         return
       }
-      console.log('UNHANDLED METAMASK ERROR', err.message)
+      console.error(`UNHANDLED METAMASK ERROR: ${err.message}`)
       dispatch(metamaskConfigurationFail({}))
     }
   }
