@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { FC, useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { IconMetaMaskFlask } from '../../Icons'
 import { HelperText } from './Helper'
