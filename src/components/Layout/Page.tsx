@@ -6,24 +6,24 @@ import { PhishingBanner } from '../PhishingBanner'
 import { AppHeader, AppHeaderProps, AppHeaderPropTypes } from '../AppHeader'
 import { Footer } from '../Footer'
 
-import { devices } from '../theme'
+import { devices, Spaces } from '../theme'
 
 const PageOuter = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1920px;
   margin: 0 auto;
-  padding: var(--space-m);
-  gap: var(--space-m);
+  padding: ${Spaces.MEDIUM};
+  gap: ${Spaces.MEDIUM};
 `
 
 const PageInner = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
+  gap: ${Spaces.MEDIUM};
 
   @media (min-width: ${devices.tablet}) {
-    min-height: calc(100vh - 2 * var(--space-m));
+    min-height: calc(100vh - 2 * ${Spaces.MEDIUM});
   }
 
   > * {

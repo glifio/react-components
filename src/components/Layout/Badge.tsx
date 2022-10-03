@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
+import { Spaces } from '../theme'
 
 const BadgeEl = styled.div`
   display: inline-flex;
   align-items: center;
-  gap: var(--space-m);
+  gap: ${Spaces.MEDIUM};
   padding: 0 1em;
   height: 2em;
   line-height: 2em;

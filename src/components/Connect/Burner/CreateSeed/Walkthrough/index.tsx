@@ -9,6 +9,7 @@ import { InputWord } from '../MnemonicWord/InputWord'
 import { DisplayWord } from '../MnemonicWord/DisplayWord'
 import { generateRandomWords } from '../generateRandomWords'
 import copyToClipboard from '../../../../../utils/copyToClipboard'
+import { Spaces } from '../../../../theme'
 
 const Title = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const Title = styled.div`
 const MnemonicWords = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-l);
+  gap: ${Spaces.LARGE};
 `
 
 export const Walkthrough = ({
@@ -67,22 +68,20 @@ export const Walkthrough = ({
         {step === 3 && (
           <h3>Success! Please click &apos;Next&apos; to access your wallet.</h3>
         )}
-        {step !== 2 && (
-          <ButtonRow>
-            <ButtonV2
-              type='button'
-              onClick={() => {
-                copyToClipboard(mnemonic)
-                setCopied(true)
-              }}
-            >
-              {copied ? 'Copied' : 'Copy'}
-            </ButtonV2>
-            <ButtonV2Link download='dontlookhere.txt' href={objectUrl}>
-              Download
-            </ButtonV2Link>
-          </ButtonRow>
-        )}
+        <ButtonRow>
+          <ButtonV2
+            type='button'
+            onClick={() => {
+              copyToClipboard(mnemonic)
+              setCopied(true)
+            }}
+          >
+            {copied ? 'Copied' : 'Copy'}
+          </ButtonV2>
+          <ButtonV2Link download='dontlookhere.txt' href={objectUrl}>
+            Download
+          </ButtonV2Link>
+        </ButtonRow>
       </Title>
       <MnemonicWords>
         {mnemonic.split(' ').map((word, i) =>

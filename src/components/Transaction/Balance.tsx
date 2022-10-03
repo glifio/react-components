@@ -6,12 +6,13 @@ import {
 } from '../../customPropTypes'
 import truncateAddress from '../../utils/truncateAddress'
 import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
+import { Spaces } from '../theme'
 
 const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-l);
+  gap: ${Spaces.LARGE};
 
   > * {
     display: flex;

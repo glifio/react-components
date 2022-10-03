@@ -1,14 +1,13 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { devices } from '../theme'
+import { devices, Spaces } from '../theme'
 
 export const AppTilesWrapper = styled.div`
-  gap: var(--space-m);
+  gap: ${Spaces.MEDIUM};
 
   @media (max-width: ${devices.tablet}) {
-    margin-top: var(--space-xl);
-    margin-bottom: var(--space-xl);
+    margin-top: ${Spaces.XLARGE};
+    margin-bottom: ${Spaces.XLARGE};
     display: flex;
     overflow-x: scroll;
     scrollbar-width: none;

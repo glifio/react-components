@@ -7,7 +7,7 @@ const TooltipEl = styled.span`
   position: relative;
 
   .icon {
-    cursor: pointer;
+    cursor: help;
     display: inline-block;
     width: 1.5em;
     height: 1.5em;

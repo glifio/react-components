@@ -1,22 +1,22 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { useMemo, useState } from 'react'
-import { Colors } from '../theme'
+import { Colors, Spaces } from '../theme'
 
 const SearchBarEl = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-s);
+  gap: ${Spaces.SMALL};
 
   ${props =>
     props.large &&
     css`
-      gap: var(--space-m);
+      gap: ${Spaces.MEDIUM};
     `}
 
   form {
     display: flex;
-    gap: var(--space-m);
+    gap: ${Spaces.MEDIUM};
     width: 100%;
   }
   input[type='search'] {

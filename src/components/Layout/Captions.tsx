@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { LoadingIcon } from '../Loading/LoadingIcon'
+import { Spaces } from '../theme'
 
 export const Caption = ({ name, loading, empty, error }: CaptionProps) => {
   if (error) return <ErrorCaption name={name} error={error} />
@@ -68,7 +69,7 @@ const LoadingCaptionContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-l);
+  gap: ${Spaces.LARGE};
 `
 
 export const LoadingCaption = () => (

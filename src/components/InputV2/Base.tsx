@@ -2,13 +2,13 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
-import { Colors } from '../theme'
+import { Colors, Spaces } from '../theme'
 
 const BaseLabel = styled(Label)`
   .button-wrapper {
     display: flex;
     align-items: center;
-    gap: var(--space-m);
+    gap: ${Spaces.MEDIUM};
 
     > *:first-child {
       flex: 1 0 auto;

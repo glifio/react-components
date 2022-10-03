@@ -5,28 +5,28 @@ import { SmartLink } from '../SmartLink'
 import { AppIconHeaderFooter } from '../Icons'
 import { LabeledText, LabeledTextProps } from '../LabeledText'
 import { AddressLink, AddressLinkProps } from '../LabeledText/AddressLink'
-import { Colors } from '../theme'
+import { Colors, Spaces } from '../theme'
 
 const Header = styled.header`
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: var(--space-m) 0;
-  margin: var(--space-nm) 0;
+  padding: ${Spaces.MEDIUM} 0;
+  margin: ${Spaces.N_MEDIUM} 0;
   background-color: ${Colors.WHITE_BROKEN};
 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  column-gap: var(--space-l);
-  row-gap: var(--space-m);
+  column-gap: ${Spaces.LARGE};
+  row-gap: ${Spaces.MEDIUM};
 `
 
 const NavLeft = styled.nav`
   display: flex;
   flex-wrap: nowrap;
   align-items: flex-end;
-  gap: var(--space-l);
+  gap: ${Spaces.LARGE};
   flex-grow: 1;
 `
 
@@ -39,7 +39,7 @@ const NavRight = styled(NavLeft)`
 const navItemStyle = css`
   display: flex;
   align-items: flex-end;
-  padding: 0 var(--space-m);
+  padding: 0 ${Spaces.MEDIUM};
   transition: color 0.1s ease-out;
   text-decoration: none;
   cursor: pointer;

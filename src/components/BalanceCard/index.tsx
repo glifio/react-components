@@ -7,7 +7,7 @@ import { ButtonV2 } from '../Button/V2'
 import { OutlineBox } from '../Layout'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
-import { Colors } from '../theme'
+import { Colors, FontSizes, Spaces } from '../theme'
 
 const BalanceBox = styled(OutlineBox)`
   display: flex;
@@ -20,7 +20,7 @@ const BalanceBox = styled(OutlineBox)`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: var(--font-size-l);
+    font-size: ${FontSizes.LARGE};
     margin-bottom: 1em;
 
     h3 {
@@ -29,7 +29,7 @@ const BalanceBox = styled(OutlineBox)`
 
     .toggle {
       display: flex;
-      gap: var(--space-m);
+      gap: ${Spaces.MEDIUM};
       font-size: 1rem;
 
       span {
@@ -52,7 +52,7 @@ const BalanceBox = styled(OutlineBox)`
   }
 
   .balance {
-    font-size: var(--font-size-xxl);
+    font-size: ${FontSizes.XXLARGE};
     font-weight: 700;
   }
 `

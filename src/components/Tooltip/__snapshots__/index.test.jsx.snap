@@ -43,7 +43,7 @@ exports[`Tooltip storybook example renders 1`] = `
 }
 
 .c0 .icon {
-  cursor: pointer;
+  cursor: help;
   display: inline-block;
   width: 1.5em;
   height: 1.5em;

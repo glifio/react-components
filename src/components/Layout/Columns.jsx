@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Colors, devices } from '../theme'
+import { Colors, devices, FontSizes, Spaces } from '../theme'
 
 export const OneColumn = styled.div`
   position: relative;
@@ -21,7 +21,7 @@ export const OneColumn = styled.div`
 export const TwoColumns = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
+  gap: ${Spaces.MEDIUM};
 
   @media (min-width: ${devices.tablet}) {
     display: grid;
@@ -31,7 +31,7 @@ export const TwoColumns = styled.div`
 `
 
 export const OneColumnLargeText = styled(OneColumn)`
-  font-size: var(--font-size-xl);
+  font-size: ${FontSizes.XLARGE};
 
   p {
     max-width: 670px;

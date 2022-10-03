@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
-import { devices } from '../theme'
+import { devices, FontSizes } from '../theme'
 
 export const AppTileWrapper = styled.a`
   position: relative;
-  font-size: var(--font-size-xl);
+  font-size: ${FontSizes.XLARGE};
   line-height: 1.3em;
   display: block;
   text-decoration: none;

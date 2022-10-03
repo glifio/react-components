@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Colors } from '../theme'
+import { Colors, FontSizes, Spaces } from '../theme'
 
 /*
  * Apply the margin and font size from a standard h2 element to the page
@@ -11,14 +11,14 @@ const PageTitleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-l);
+  gap: ${Spaces.LARGE};
   margin: 1em 0;
-  font-size: var(--font-size-xl);
+  font-size: ${FontSizes.XLARGE};
 
   .side-bar {
     display: flex;
     align-items: center;
-    gap: var(--space-m);
+    gap: ${Spaces.MEDIUM};
     font-size: 1rem;
   }
 `

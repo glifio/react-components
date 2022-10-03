@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { SmartLink } from '../SmartLink'
-import { devices } from '../theme'
+import { devices, Spaces } from '../theme'
 import { AppIconHeaderFooter } from '../Icons'
 import {
   GLIF_EMAIL,
@@ -36,7 +36,7 @@ const FooterContent = styled.div`
     max-width: 670px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-m);
+    gap: ${Spaces.MEDIUM};
     margin: 0 auto;
   }
 `

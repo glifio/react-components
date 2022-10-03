@@ -39,3 +39,23 @@ export enum Colors {
   BLUE_MEDIUM = 'var(--blue-medium)',
   BLUE_DARK = 'var(--blue-dark)'
 }
+
+export enum Spaces {
+  SMALL = 'var(--space-s)',
+  MEDIUM = 'var(--space-m)',
+  LARGE = 'var(--space-l)',
+  XLARGE = 'var(--space-xl)',
+
+  N_SMALL = 'var(--space-ns)',
+  N_MEDIUM = 'var(--space-nm)',
+  N_LARGE = 'var(--space-nl)',
+  N_XLARGE = 'var(--space-nxl)'
+}
+
+export enum FontSizes {
+  XSMALL = 'var(--font-size-xs)',
+  SMALL = 'var(--font-size-s)',
+  LARGE = 'var(--font-size-l)',
+  XLARGE = 'var(--font-size-xl)',
+  XXLARGE = 'var(--font-size-xxl)'
+}
