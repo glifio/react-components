@@ -107,7 +107,6 @@
     "lodash.pick": "^4.4.0",
     "multiformats": "^9.6.5",
     "prop-types": "^15.7.2",
-    "styled-system": "^5.1.5",
     "subscriptions-transport-ws": "^0.11.0",
     "swr": "^1.0.1"
   },
