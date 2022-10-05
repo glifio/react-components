@@ -82,8 +82,6 @@ IconBase.propTypes = {
 }
 
 IconBase.defaultProps = {
-  rotate: false,
-  rotateStepped: false,
   rotateEase: 'ease',
   rotateDuration: '4s'
 }
