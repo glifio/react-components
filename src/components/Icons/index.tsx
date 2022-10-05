@@ -26,14 +26,17 @@ const IconBaseEl = styled.svg`
     ${props.rotate &&
     css`
       animation-name: ${rotate};
+      animation-duration: ${props.rotateDuration};
+      animation-timing-function: ${props.rotateEase};
+      animation-iteration-count: infinite;
     `}
     ${props.rotateStepped &&
     css`
       animation-name: ${rotateStepped};
+      animation-duration: ${props.rotateDuration};
+      animation-timing-function: ${props.rotateEase};
+      animation-iteration-count: infinite;
     `}
-    animation-duration: ${props.rotateDuration};
-    animation-timing-function: ${props.rotateEase};
-    animation-iteration-count: infinite;
   `}
 `
 
