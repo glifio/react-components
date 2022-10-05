@@ -6,7 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useNetworkStatus } from './useNetworkStatus'
 import { StatusIcon } from '../Layout'
 import { networks, useEnvironment } from '../../services/EnvironmentProvider'
-import { Colors } from '../theme'
+import { Colors, Spaces } from '../theme'
 
 export * from './useNetworkName'
 
@@ -18,7 +18,7 @@ const NetworkSelectorEl = styled.div`
 const SelectedNetwork = styled.div`
   display: flex;
   align-items: center;
-  gap: var(--space-s);
+  gap: ${Spaces.SMALL};
   cursor: pointer;
   user-select: none;
 
@@ -30,7 +30,7 @@ const SelectedNetwork = styled.div`
 const NetworkOptions = styled.div`
   position: absolute;
   overflow: hidden;
-  top: calc(100% + var(--space-m));
+  top: calc(100% + ${Spaces.MEDIUM});
   left: 50%;
   transform: translateX(-50%);
   background-color: ${Colors.WHITE};
@@ -39,7 +39,7 @@ const NetworkOptions = styled.div`
 `
 
 const NetworkOption = styled.div`
-  padding: var(--space-m) var(--space-l);
+  padding: ${Spaces.MEDIUM} ${Spaces.LARGE};
   cursor: pointer;
   outline: none;
   text-align: center;

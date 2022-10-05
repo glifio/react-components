@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputWord renders the story 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5em;
+  font-size: 1.125em;
+  text-align: center;
+  line-height: 2em;
+}
+
+.c0 .num {
+  width: 1.5em;
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.c0 .word {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c1 {
+  display: block !important;
+  width: 100% !important;
+  padding: 0 1em !important;
+  border: 2px solid !important;
+  border-radius: 1em !important;
+  text-align: center !important;
+  color: var(--purple-medium) !important;
+  border-color: var(--purple-medium) !important;
+  background-color: var(--purple-light) !important;
+}
+
+.c1:focus {
+  color: var(--purple-medium) !important;
+  border-color: var(--purple-medium) !important;
+  background-color: var(--white) !important;
+}
+
+<span
+  class="c0"
+>
+  <span
+    class="num"
+  >
+    12
+  </span>
+  <span
+    class="word"
+  >
+    <input
+      class="c1"
+      size="1"
+      type="text"
+      value=""
+    />
+  </span>
+</span>
+`;

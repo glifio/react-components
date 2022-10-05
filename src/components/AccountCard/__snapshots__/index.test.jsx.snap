@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AccountCard renders the card 1`] = `
-.c14 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -29,34 +29,34 @@ exports[`AccountCard renders the card 1`] = `
   border-color: var(--white);
 }
 
-.c14 svg path {
+.c8 svg path {
   stroke: var(--black);
 }
 
-.c14:hover {
+.c8:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c14:hover svg path {
+.c8:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c14:active {
+.c8:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c14:active svg path {
+.c8:active svg path {
   stroke: var(--white) !important;
 }
 
-.c14 svg path {
+.c8 svg path {
   stroke: var(--white);
 }
 
-.c8 {
+.c6 {
   width: 24;
   height: 24;
 }
@@ -113,69 +113,39 @@ exports[`AccountCard renders the card 1`] = `
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: var(--white);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c7 {
-  height: auto;
+  position: relative;
   cursor: pointer;
-  opacity: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  outline: none;
 }
 
-.c10 {
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
+.c5 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
-.c6:hover .c9 {
+.c5 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  color: var(--white);
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c5:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c12 {
-  -webkit-transition: 0.18s ease-in;
-  transition: 0.18s ease-in;
-  opacity: 0;
-  text-align: left;
-  color: var(--white);
-  margin-top: 0;
-  margin-left: 4px;
-  margin-top: 0;
-  margin-left: 4px;
-}
-
-.c6:hover .c11 {
+.c5:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c4 {
@@ -183,7 +153,7 @@ exports[`AccountCard renders the card 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 
@@ -212,7 +182,7 @@ exports[`AccountCard renders the card 1`] = `
   fill: var(--purple-medium);
 }
 
-.c13 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -223,12 +193,12 @@ exports[`AccountCard renders the card 1`] = `
   gap: var(--space-m);
 }
 
-.c13 > p,
-.c13 > hr {
+.c7 > p,
+.c7 > hr {
   margin: 0.5em 0;
 }
 
-.c13 > p[role='button'] {
+.c7 > p[role='button'] {
   margin: 0;
 }
 
@@ -295,48 +265,40 @@ exports[`AccountCard renders the card 1`] = `
         >
           t0123456789
         </a>
-        <div
+        <span
           class="c5"
           color="var(--white)"
-          display="flex"
+          role="button"
         >
-          <button
-            class="c6 c7"
-            display="flex"
-            role="button"
-            type="button"
+          <svg
+            class="c6"
+            fill="none"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              class="c8 c9 c10"
-              fill="none"
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                fill="#1A0066"
-                height="12"
-                width="12"
-                x="8"
-                y="4"
-              />
-              <rect
-                fill="#E0D7FE"
-                height="12"
-                width="12"
-                x="4"
-                y="8"
-              />
-            </svg>
-            <span
-              class="c11 c12"
-              color="var(--white)"
-            >
-              Copy
-            </span>
-          </button>
-        </div>
+            <rect
+              fill="#1A0066"
+              height="12"
+              width="12"
+              x="8"
+              y="4"
+            />
+            <rect
+              fill="#E0D7FE"
+              height="12"
+              width="12"
+              x="4"
+              y="8"
+            />
+          </svg>
+          <span
+            class="copy-text"
+          >
+            Copy
+          </span>
+        </span>
       </div>
     </div>
   </div>
@@ -344,15 +306,15 @@ exports[`AccountCard renders the card 1`] = `
     class="buttons"
   >
     <div
-      class="c13"
+      class="c7"
     >
       <button
-        class="c14"
+        class="c8"
       >
         Show on Device
       </button>
       <button
-        class="c14"
+        class="c8"
       >
         Switch
       </button>
@@ -362,7 +324,7 @@ exports[`AccountCard renders the card 1`] = `
 `;
 
 exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
-.c14 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -390,34 +352,34 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   border-color: var(--white);
 }
 
-.c14 svg path {
+.c8 svg path {
   stroke: var(--black);
 }
 
-.c14:hover {
+.c8:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c14:hover svg path {
+.c8:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c14:active {
+.c8:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c14:active svg path {
+.c8:active svg path {
   stroke: var(--white) !important;
 }
 
-.c14 svg path {
+.c8 svg path {
   stroke: var(--white);
 }
 
-.c8 {
+.c6 {
   width: 24;
   height: 24;
 }
@@ -474,69 +436,39 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: var(--white);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c7 {
-  height: auto;
+  position: relative;
   cursor: pointer;
-  opacity: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  outline: none;
 }
 
-.c10 {
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
+.c5 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
-.c6:hover .c9 {
+.c5 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  color: var(--white);
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c5:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c12 {
-  -webkit-transition: 0.18s ease-in;
-  transition: 0.18s ease-in;
-  opacity: 0;
-  text-align: left;
-  color: var(--white);
-  margin-top: 0;
-  margin-left: 4px;
-  margin-top: 0;
-  margin-left: 4px;
-}
-
-.c6:hover .c11 {
+.c5:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c4 {
@@ -544,7 +476,7 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 
@@ -573,7 +505,7 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   fill: var(--purple-medium);
 }
 
-.c13 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -584,12 +516,12 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   gap: var(--space-m);
 }
 
-.c13 > p,
-.c13 > hr {
+.c7 > p,
+.c7 > hr {
   margin: 0.5em 0;
 }
 
-.c13 > p[role='button'] {
+.c7 > p[role='button'] {
   margin: 0;
 }
 
@@ -656,48 +588,40 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
         >
           t0123456789
         </a>
-        <div
+        <span
           class="c5"
           color="var(--white)"
-          display="flex"
+          role="button"
         >
-          <button
-            class="c6 c7"
-            display="flex"
-            role="button"
-            type="button"
+          <svg
+            class="c6"
+            fill="none"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              class="c8 c9 c10"
-              fill="none"
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                fill="#1A0066"
-                height="12"
-                width="12"
-                x="8"
-                y="4"
-              />
-              <rect
-                fill="#E0D7FE"
-                height="12"
-                width="12"
-                x="4"
-                y="8"
-              />
-            </svg>
-            <span
-              class="c11 c12"
-              color="var(--white)"
-            >
-              Copy
-            </span>
-          </button>
-        </div>
+            <rect
+              fill="#1A0066"
+              height="12"
+              width="12"
+              x="8"
+              y="4"
+            />
+            <rect
+              fill="#E0D7FE"
+              height="12"
+              width="12"
+              x="4"
+              y="8"
+            />
+          </svg>
+          <span
+            class="copy-text"
+          >
+            Copy
+          </span>
+        </span>
       </div>
     </div>
   </div>
@@ -705,10 +629,10 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
     class="buttons"
   >
     <div
-      class="c13"
+      class="c7"
     >
       <button
-        class="c14"
+        class="c8"
       >
         Switch
       </button>
@@ -718,7 +642,7 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
 `;
 
 exports[`AccountCard renders the story 1`] = `
-.c14 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -746,34 +670,34 @@ exports[`AccountCard renders the story 1`] = `
   border-color: var(--white);
 }
 
-.c14 svg path {
+.c8 svg path {
   stroke: var(--black);
 }
 
-.c14:hover {
+.c8:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c14:hover svg path {
+.c8:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c14:active {
+.c8:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c14:active svg path {
+.c8:active svg path {
   stroke: var(--white) !important;
 }
 
-.c14 svg path {
+.c8 svg path {
   stroke: var(--white);
 }
 
-.c8 {
+.c6 {
   width: 24;
   height: 24;
 }
@@ -830,69 +754,39 @@ exports[`AccountCard renders the story 1`] = `
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: var(--white);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c7 {
-  height: auto;
+  position: relative;
   cursor: pointer;
-  opacity: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  outline: none;
 }
 
-.c10 {
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
+.c5 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
-.c6:hover .c9 {
+.c5 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  color: var(--white);
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c5:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c12 {
-  -webkit-transition: 0.18s ease-in;
-  transition: 0.18s ease-in;
-  opacity: 0;
-  text-align: left;
-  color: var(--white);
-  margin-top: 0;
-  margin-left: 4px;
-  margin-top: 0;
-  margin-left: 4px;
-}
-
-.c6:hover .c11 {
+.c5:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c4 {
@@ -900,7 +794,7 @@ exports[`AccountCard renders the story 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 
@@ -929,7 +823,7 @@ exports[`AccountCard renders the story 1`] = `
   fill: var(--purple-medium);
 }
 
-.c13 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -940,12 +834,12 @@ exports[`AccountCard renders the story 1`] = `
   gap: var(--space-m);
 }
 
-.c13 > p,
-.c13 > hr {
+.c7 > p,
+.c7 > hr {
   margin: 0.5em 0;
 }
 
-.c13 > p[role='button'] {
+.c7 > p[role='button'] {
   margin: 0;
 }
 
@@ -1012,48 +906,40 @@ exports[`AccountCard renders the story 1`] = `
         >
           t0123456789
         </a>
-        <div
+        <span
           class="c5"
           color="var(--white)"
-          display="flex"
+          role="button"
         >
-          <button
-            class="c6 c7"
-            display="flex"
-            role="button"
-            type="button"
+          <svg
+            class="c6"
+            fill="none"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              class="c8 c9 c10"
-              fill="none"
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <rect
-                fill="#1A0066"
-                height="12"
-                width="12"
-                x="8"
-                y="4"
-              />
-              <rect
-                fill="#E0D7FE"
-                height="12"
-                width="12"
-                x="4"
-                y="8"
-              />
-            </svg>
-            <span
-              class="c11 c12"
-              color="var(--white)"
-            >
-              Copy
-            </span>
-          </button>
-        </div>
+            <rect
+              fill="#1A0066"
+              height="12"
+              width="12"
+              x="8"
+              y="4"
+            />
+            <rect
+              fill="#E0D7FE"
+              height="12"
+              width="12"
+              x="4"
+              y="8"
+            />
+          </svg>
+          <span
+            class="copy-text"
+          >
+            Copy
+          </span>
+        </span>
       </div>
     </div>
   </div>
@@ -1061,15 +947,15 @@ exports[`AccountCard renders the story 1`] = `
     class="buttons"
   >
     <div
-      class="c13"
+      class="c7"
     >
       <button
-        class="c14"
+        class="c8"
       >
         Show on Device
       </button>
       <button
-        class="c14"
+        class="c8"
       >
         Switch
       </button>

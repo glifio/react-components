@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CopyText renders the story 1`] = `
+.c1 {
+  width: 24;
+  height: 24;
+}
+
+.c0 {
+  position: relative;
+  cursor: pointer;
+}
+
+.c0 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c0 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  color: var(--purple-medium);
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c0:hover svg {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+}
+
+.c0:hover .copy-text {
+  opacity: 1;
+  pointer-events: all;
+}
+
+<span
+  class="c0"
+  color="var(--purple-medium)"
+  role="button"
+>
+  <svg
+    class="c1"
+    fill="none"
+    height="24"
+    viewBox="0 0 24 24"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      fill="#1A0066"
+      height="12"
+      width="12"
+      x="8"
+      y="4"
+    />
+    <rect
+      fill="#E0D7FE"
+      height="12"
+      width="12"
+      x="4"
+      y="8"
+    />
+  </svg>
+  <span
+    class="copy-text"
+  >
+    Copy
+  </span>
+</span>
+`;

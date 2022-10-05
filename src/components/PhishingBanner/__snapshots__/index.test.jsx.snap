@@ -14,7 +14,7 @@ exports[`Phishing Banner renders the phishing banner 1`] = `
   border-radius: 10px;
   font-size: var(--type-small);
   text-align: center;
-  background: #ff4242;
+  background: var(--red-medium);
   color: white;
 }
 

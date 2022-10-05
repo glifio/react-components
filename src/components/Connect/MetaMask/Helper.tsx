@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import PropTypes from 'prop-types'
 import { ButtonV2 } from '../../Button/V2'
 import { SmartLink } from '../../SmartLink'
 import { ButtonRowCenter } from '../../Layout'
@@ -7,17 +7,7 @@ import {
   METAMASK_STATE_PROPTYPES
 } from '../../../services/WalletProvider/metamaskUtils'
 
-const Connecting: FC = () => {
-  return <h2>Connecting to FILSnap</h2>
-}
-
-export const HelperText: FC<
-  MetaMaskState & {
-    onRetry: () => void
-    back: () => void
-    connectFILSnap: () => void
-  }
-> = ({
+export const HelperText = ({
   extInstalled,
   extSupportsSnap,
   snapInstalled,
@@ -27,8 +17,8 @@ export const HelperText: FC<
   connectFILSnap,
   onRetry,
   back
-}) => {
-  if (loading) return <Connecting />
+}: HelperTextProps) => {
+  if (loading) return <h2>Connecting to FILSnap</h2>
   if (!extInstalled)
     return (
       <>
@@ -117,9 +107,18 @@ export const HelperText: FC<
         </ButtonRowCenter>
       </>
     )
-  return <Connecting />
+  return <h2>Connecting to FILSnap</h2>
+}
+
+type HelperTextProps = MetaMaskState & {
+  connectFILSnap: () => void
+  onRetry: () => void
+  back: () => void
 }
 
 HelperText.propTypes = {
-  ...METAMASK_STATE_PROPTYPES
+  ...METAMASK_STATE_PROPTYPES,
+  connectFILSnap: PropTypes.func.isRequired,
+  onRetry: PropTypes.func.isRequired,
+  back: PropTypes.func.isRequired
 }

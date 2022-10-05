@@ -10,12 +10,12 @@ npm install @glif/react-components
 
 ``` jsx
 import {
-  Box
+  StandardBox
 } from '@glif/react-components'
 
 function Component () {
   return (
-    <Box>Hello World</Box>
+    <StandardBox>Hello World</StandardBox>
   )
 }
 ```
@@ -27,37 +27,6 @@ Clone the project locally and run:
 ```
 npm i
 npm run storybook
-```
-
-## API
-
-WIP.  In the meantime:
-
-```js
-export { default as theme } from './theme'
-export { default as ThemeProvider } from './ThemeProvider'
-
-export * from './AccountCard'
-export * from './AccountCard/Error'
-export * from './BalanceCard'
-export { default as Address } from './Address'
-export * from './Copy'
-export { default as Stepper } from './Stepper'
-export { default as Glyph } from './Glyph'
-export { default as Box } from './Box'
-export { default as MessageHistoryTable } from './MessageHistoryTable'
-export * from './Loading/LoadingIcon'
-export * from './Loading/LoadingScreen'
-export { default as StepHeader } from './StepHeader'
-export * from './ErrorView'
-export { default as Tooltip } from './Tooltip'
-export * from './Link'
-export * from './Icons'
-export * from './MnemonicWord'
-
-export * from './Layout'
-
-export * from './Typography'
 ```
 
 ## FAQ

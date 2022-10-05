@@ -1,4 +1,4 @@
-import { bool } from 'prop-types'
+import PropTypes from 'prop-types'
 
 export const initialMetaMaskState = {
   extInstalled: false,
@@ -28,11 +28,11 @@ export type MetaMaskActionType =
   | 'METAMASK_CONFIGURED_FAIL'
 
 export const METAMASK_STATE_PROPTYPES = {
-  extInstalled: bool.isRequired,
-  extSupportsSnap: bool.isRequired,
-  snapInstalled: bool.isRequired,
-  snapEnabled: bool.isRequired,
-  extUnlocked: bool.isRequired,
-  loading: bool.isRequired,
-  error: bool.isRequired
+  extInstalled: PropTypes.bool.isRequired,
+  extSupportsSnap: PropTypes.bool.isRequired,
+  snapInstalled: PropTypes.bool.isRequired,
+  snapEnabled: PropTypes.bool.isRequired,
+  extUnlocked: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired
 }

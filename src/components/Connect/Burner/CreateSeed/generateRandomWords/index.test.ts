@@ -1,4 +1,4 @@
-import generateRandomWords from '.'
+import { generateRandomWords } from '.'
 
 const mnemonic =
   'tuna sun current because impact nuclear actor immune auction gun nominee vivid zoo tell vicious canvas master lottery reflect uphold cinnamon spice left educate'

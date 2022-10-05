@@ -11,80 +11,50 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   line-height: 1.5;
 }
 
-.c6 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: var(--purple-medium);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c9 {
+.c7 {
   width: 24;
   height: 24;
 }
 
-.c14 {
+.c8 {
   width: 1.125em;
   height: 20px;
 }
 
-.c8 {
-  height: auto;
+.c6 {
+  position: relative;
   cursor: pointer;
-  opacity: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  outline: none;
 }
 
-.c11 {
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
+.c6 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
-.c7:hover .c10 {
+.c6 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  color: var(--purple-medium);
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c6:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c13 {
-  -webkit-transition: 0.18s ease-in;
-  transition: 0.18s ease-in;
-  opacity: 0;
-  text-align: left;
-  color: var(--purple-medium);
-  margin-top: 0;
-  margin-left: 4px;
-  margin-top: 0;
-  margin-left: 4px;
-}
-
-.c7:hover .c12 {
+.c6:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c5 {
@@ -92,7 +62,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 
@@ -121,7 +91,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   fill: var(--purple-medium);
 }
 
-.c15 {
+.c9 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -276,48 +246,40 @@ exports[`Message detail view it renders the confirmed but not executed msg state
             >
               bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g
             </a>
-            <div
+            <span
               class="c6"
               color="var(--purple-medium)"
-              display="flex"
+              role="button"
             >
-              <button
-                class="c7 c8"
-                display="flex"
-                role="button"
-                type="button"
+              <svg
+                class="c7"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="c9 c10 c11"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    fill="#1A0066"
-                    height="12"
-                    width="12"
-                    x="8"
-                    y="4"
-                  />
-                  <rect
-                    fill="#E0D7FE"
-                    height="12"
-                    width="12"
-                    x="4"
-                    y="8"
-                  />
-                </svg>
-                <span
-                  class="c12 c13"
-                  color="var(--purple-medium)"
-                >
-                  Copy
-                </span>
-              </button>
-            </div>
+                <rect
+                  fill="#1A0066"
+                  height="12"
+                  width="12"
+                  x="8"
+                  y="4"
+                />
+                <rect
+                  fill="#E0D7FE"
+                  height="12"
+                  width="12"
+                  x="4"
+                  y="8"
+                />
+              </svg>
+              <span
+                class="copy-text"
+              >
+                Copy
+              </span>
+            </span>
           </div>
         </div>
       </div>
@@ -340,7 +302,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
       </div>
       <div>
         <svg
-          class="c14"
+          class="c8"
           fill="none"
           height="20px"
           viewBox="0 0 20 20"
@@ -380,48 +342,40 @@ exports[`Message detail view it renders the confirmed but not executed msg state
             >
               t1z225 ... 6z6wgi
             </a>
-            <div
+            <span
               class="c6"
               color="var(--purple-medium)"
-              display="flex"
+              role="button"
             >
-              <button
-                class="c7 c8"
-                display="flex"
-                role="button"
-                type="button"
+              <svg
+                class="c7"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="c9 c10 c11"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    fill="#1A0066"
-                    height="12"
-                    width="12"
-                    x="8"
-                    y="4"
-                  />
-                  <rect
-                    fill="#E0D7FE"
-                    height="12"
-                    width="12"
-                    x="4"
-                    y="8"
-                  />
-                </svg>
-                <span
-                  class="c12 c13"
-                  color="var(--purple-medium)"
-                >
-                  Copy
-                </span>
-              </button>
-            </div>
+                <rect
+                  fill="#1A0066"
+                  height="12"
+                  width="12"
+                  x="8"
+                  y="4"
+                />
+                <rect
+                  fill="#E0D7FE"
+                  height="12"
+                  width="12"
+                  x="4"
+                  y="8"
+                />
+              </svg>
+              <span
+                class="copy-text"
+              >
+                Copy
+              </span>
+            </span>
           </div>
         </div>
       </div>
@@ -447,48 +401,40 @@ exports[`Message detail view it renders the confirmed but not executed msg state
             >
               t1nq5k ... btuo3a
             </a>
-            <div
+            <span
               class="c6"
               color="var(--purple-medium)"
-              display="flex"
+              role="button"
             >
-              <button
-                class="c7 c8"
-                display="flex"
-                role="button"
-                type="button"
+              <svg
+                class="c7"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="c9 c10 c11"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    fill="#1A0066"
-                    height="12"
-                    width="12"
-                    x="8"
-                    y="4"
-                  />
-                  <rect
-                    fill="#E0D7FE"
-                    height="12"
-                    width="12"
-                    x="4"
-                    y="8"
-                  />
-                </svg>
-                <span
-                  class="c12 c13"
-                  color="var(--purple-medium)"
-                >
-                  Copy
-                </span>
-              </button>
-            </div>
+                <rect
+                  fill="#1A0066"
+                  height="12"
+                  width="12"
+                  x="8"
+                  y="4"
+                />
+                <rect
+                  fill="#E0D7FE"
+                  height="12"
+                  width="12"
+                  x="4"
+                  y="8"
+                />
+              </svg>
+              <span
+                class="copy-text"
+              >
+                Copy
+              </span>
+            </span>
           </div>
         </div>
       </div>
@@ -512,7 +458,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
       </div>
       <div>
         <div
-          class="c15"
+          class="c9"
           color="purple"
         >
           <span>
@@ -539,85 +485,55 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   line-height: 1.5;
 }
 
-.c6 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: var(--purple-medium);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c9 {
+.c7 {
   width: 24;
   height: 24;
 }
 
-.c17 {
+.c11 {
   width: 1.125em;
   height: 20px;
 }
 
-.c15 {
+.c9 {
   width: 1.1875rem;
   height: 22px;
 }
 
-.c8 {
-  height: auto;
+.c6 {
+  position: relative;
   cursor: pointer;
-  opacity: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  outline: none;
 }
 
-.c11 {
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
+.c6 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
-.c7:hover .c10 {
+.c6 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  color: var(--purple-medium);
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c6:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c13 {
-  -webkit-transition: 0.18s ease-in;
-  transition: 0.18s ease-in;
-  opacity: 0;
-  text-align: left;
-  color: var(--purple-medium);
-  margin-top: 0;
-  margin-left: 4px;
-  margin-top: 0;
-  margin-left: 4px;
-}
-
-.c7:hover .c12 {
+.c6:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c5 {
@@ -625,7 +541,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 
@@ -654,7 +570,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   fill: var(--purple-medium);
 }
 
-.c18 {
+.c12 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -674,7 +590,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   background-color: var(--purple-light);
 }
 
-.c14 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -694,7 +610,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   background-color: var(--green-light);
 }
 
-.c16 {
+.c10 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -814,7 +730,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   color: var(--purple-medium);
 }
 
-.c19 {
+.c13 {
   color: var(--gray-medium);
 }
 
@@ -853,48 +769,40 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             >
               bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g
             </a>
-            <div
+            <span
               class="c6"
               color="var(--purple-medium)"
-              display="flex"
+              role="button"
             >
-              <button
-                class="c7 c8"
-                display="flex"
-                role="button"
-                type="button"
+              <svg
+                class="c7"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="c9 c10 c11"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    fill="#1A0066"
-                    height="12"
-                    width="12"
-                    x="8"
-                    y="4"
-                  />
-                  <rect
-                    fill="#E0D7FE"
-                    height="12"
-                    width="12"
-                    x="4"
-                    y="8"
-                  />
-                </svg>
-                <span
-                  class="c12 c13"
-                  color="var(--purple-medium)"
-                >
-                  Copy
-                </span>
-              </button>
-            </div>
+                <rect
+                  fill="#1A0066"
+                  height="12"
+                  width="12"
+                  x="8"
+                  y="4"
+                />
+                <rect
+                  fill="#E0D7FE"
+                  height="12"
+                  width="12"
+                  x="4"
+                  y="8"
+                />
+              </svg>
+              <span
+                class="copy-text"
+              >
+                Copy
+              </span>
+            </span>
           </div>
         </div>
       </div>
@@ -907,11 +815,11 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       </div>
       <div>
         <div
-          class="c14"
+          class="c8"
           color="green"
         >
           <svg
-            class="c15"
+            class="c9"
             fill="none"
             height="22px"
             stroke="var(--green-medium)"
@@ -931,7 +839,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
           </span>
         </div>
         <div
-          class="c16"
+          class="c10"
           color="yellow"
         >
           <span>
@@ -958,7 +866,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       </div>
       <div>
         <svg
-          class="c17"
+          class="c11"
           fill="none"
           height="20px"
           viewBox="0 0 20 20"
@@ -998,48 +906,40 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             >
               t1z225 ... 6z6wgi
             </a>
-            <div
+            <span
               class="c6"
               color="var(--purple-medium)"
-              display="flex"
+              role="button"
             >
-              <button
-                class="c7 c8"
-                display="flex"
-                role="button"
-                type="button"
+              <svg
+                class="c7"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="c9 c10 c11"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    fill="#1A0066"
-                    height="12"
-                    width="12"
-                    x="8"
-                    y="4"
-                  />
-                  <rect
-                    fill="#E0D7FE"
-                    height="12"
-                    width="12"
-                    x="4"
-                    y="8"
-                  />
-                </svg>
-                <span
-                  class="c12 c13"
-                  color="var(--purple-medium)"
-                >
-                  Copy
-                </span>
-              </button>
-            </div>
+                <rect
+                  fill="#1A0066"
+                  height="12"
+                  width="12"
+                  x="8"
+                  y="4"
+                />
+                <rect
+                  fill="#E0D7FE"
+                  height="12"
+                  width="12"
+                  x="4"
+                  y="8"
+                />
+              </svg>
+              <span
+                class="copy-text"
+              >
+                Copy
+              </span>
+            </span>
           </div>
         </div>
       </div>
@@ -1065,48 +965,40 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             >
               t1nq5k ... btuo3a
             </a>
-            <div
+            <span
               class="c6"
               color="var(--purple-medium)"
-              display="flex"
+              role="button"
             >
-              <button
-                class="c7 c8"
-                display="flex"
-                role="button"
-                type="button"
+              <svg
+                class="c7"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="c9 c10 c11"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    fill="#1A0066"
-                    height="12"
-                    width="12"
-                    x="8"
-                    y="4"
-                  />
-                  <rect
-                    fill="#E0D7FE"
-                    height="12"
-                    width="12"
-                    x="4"
-                    y="8"
-                  />
-                </svg>
-                <span
-                  class="c12 c13"
-                  color="var(--purple-medium)"
-                >
-                  Copy
-                </span>
-              </button>
-            </div>
+                <rect
+                  fill="#1A0066"
+                  height="12"
+                  width="12"
+                  x="8"
+                  y="4"
+                />
+                <rect
+                  fill="#E0D7FE"
+                  height="12"
+                  width="12"
+                  x="4"
+                  y="8"
+                />
+              </svg>
+              <span
+                class="copy-text"
+              >
+                Copy
+              </span>
+            </span>
           </div>
         </div>
       </div>
@@ -1130,7 +1022,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       </div>
       <div>
         <div
-          class="c18"
+          class="c12"
           color="purple"
         >
           <span>
@@ -1164,7 +1056,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       <div>
         1,000
         <span
-          class="c19"
+          class="c13"
         >
           |
         </span>
@@ -1185,7 +1077,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       </div>
       <div>
         <span
-          class="c19"
+          class="c13"
         >
           Premium
         </span>
@@ -1199,7 +1091,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       <div />
       <div>
         <span
-          class="c19"
+          class="c13"
         >
           Fee Cap
         </span>
@@ -1213,7 +1105,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       <div />
       <div>
         <span
-          class="c19"
+          class="c13"
         >
           Base
         </span>
@@ -1549,20 +1441,6 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   line-height: 1.5;
 }
 
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: var(--purple-medium);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
 .c3 {
   width: 1.25rem;
   height: 25px;
@@ -1573,61 +1451,45 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   height: 28px;
 }
 
-.c13 {
+.c11 {
   width: 24;
   height: 24;
 }
 
-.c12 {
-  height: auto;
+.c10 {
+  position: relative;
   cursor: pointer;
-  opacity: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  outline: none;
 }
 
-.c15 {
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
+.c10 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
-.c11:hover .c14 {
+.c10 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  color: var(--purple-medium);
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c10:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c17 {
-  -webkit-transition: 0.18s ease-in;
-  transition: 0.18s ease-in;
-  opacity: 0;
-  text-align: left;
-  color: var(--purple-medium);
-  margin-top: 0;
-  margin-left: 4px;
-  margin-top: 0;
-  margin-left: 4px;
-}
-
-.c11:hover .c16 {
+.c10:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c9 {
@@ -1635,7 +1497,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 
@@ -1664,7 +1526,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   fill: var(--purple-medium);
 }
 
-.c18 {
+.c12 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -2020,48 +1882,40 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             >
               bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g
             </a>
-            <div
+            <span
               class="c10"
               color="var(--purple-medium)"
-              display="flex"
+              role="button"
             >
-              <button
-                class="c11 c12"
-                display="flex"
-                role="button"
-                type="button"
+              <svg
+                class="c11"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="c13 c14 c15"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    fill="#1A0066"
-                    height="12"
-                    width="12"
-                    x="8"
-                    y="4"
-                  />
-                  <rect
-                    fill="#E0D7FE"
-                    height="12"
-                    width="12"
-                    x="4"
-                    y="8"
-                  />
-                </svg>
-                <span
-                  class="c16 c17"
-                  color="var(--purple-medium)"
-                >
-                  Copy
-                </span>
-              </button>
-            </div>
+                <rect
+                  fill="#1A0066"
+                  height="12"
+                  width="12"
+                  x="8"
+                  y="4"
+                />
+                <rect
+                  fill="#E0D7FE"
+                  height="12"
+                  width="12"
+                  x="4"
+                  y="8"
+                />
+              </svg>
+              <span
+                class="copy-text"
+              >
+                Copy
+              </span>
+            </span>
           </div>
         </div>
       </div>
@@ -2108,48 +1962,40 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             >
               t1z225 ... 6z6wgi
             </a>
-            <div
+            <span
               class="c10"
               color="var(--purple-medium)"
-              display="flex"
+              role="button"
             >
-              <button
-                class="c11 c12"
-                display="flex"
-                role="button"
-                type="button"
+              <svg
+                class="c11"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="c13 c14 c15"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    fill="#1A0066"
-                    height="12"
-                    width="12"
-                    x="8"
-                    y="4"
-                  />
-                  <rect
-                    fill="#E0D7FE"
-                    height="12"
-                    width="12"
-                    x="4"
-                    y="8"
-                  />
-                </svg>
-                <span
-                  class="c16 c17"
-                  color="var(--purple-medium)"
-                >
-                  Copy
-                </span>
-              </button>
-            </div>
+                <rect
+                  fill="#1A0066"
+                  height="12"
+                  width="12"
+                  x="8"
+                  y="4"
+                />
+                <rect
+                  fill="#E0D7FE"
+                  height="12"
+                  width="12"
+                  x="4"
+                  y="8"
+                />
+              </svg>
+              <span
+                class="copy-text"
+              >
+                Copy
+              </span>
+            </span>
           </div>
         </div>
       </div>
@@ -2175,48 +2021,40 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             >
               t1nq5k ... btuo3a
             </a>
-            <div
+            <span
               class="c10"
               color="var(--purple-medium)"
-              display="flex"
+              role="button"
             >
-              <button
-                class="c11 c12"
-                display="flex"
-                role="button"
-                type="button"
+              <svg
+                class="c11"
+                fill="none"
+                height="24"
+                viewBox="0 0 24 24"
+                width="24"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  class="c13 c14 c15"
-                  fill="none"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    fill="#1A0066"
-                    height="12"
-                    width="12"
-                    x="8"
-                    y="4"
-                  />
-                  <rect
-                    fill="#E0D7FE"
-                    height="12"
-                    width="12"
-                    x="4"
-                    y="8"
-                  />
-                </svg>
-                <span
-                  class="c16 c17"
-                  color="var(--purple-medium)"
-                >
-                  Copy
-                </span>
-              </button>
-            </div>
+                <rect
+                  fill="#1A0066"
+                  height="12"
+                  width="12"
+                  x="8"
+                  y="4"
+                />
+                <rect
+                  fill="#E0D7FE"
+                  height="12"
+                  width="12"
+                  x="4"
+                  y="8"
+                />
+              </svg>
+              <span
+                class="copy-text"
+              >
+                Copy
+              </span>
+            </span>
           </div>
         </div>
       </div>
@@ -2240,7 +2078,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
       </div>
       <div>
         <div
-          class="c18"
+          class="c12"
           color="purple"
         >
           <span>

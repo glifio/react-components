@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import styled, { css, keyframes } from 'styled-components'
-import { devices, fontSize } from '../theme'
+import { devices, FontSizes, Spaces } from '../theme'
 
 const transitionIn = keyframes`
 from {
@@ -64,16 +64,16 @@ export const AppTitleHeader = styled.header`
   align-items: flex-start;
   position: relative;
   z-index: 2;
-  font-size: ${fontSize('medium')};
+  font-size: ${FontSizes.XLARGE};
   line-height: 1;
 
   ${props => props.soon && 'opacity: 0.3'}
 
   @media (max-width: ${devices.phone}) {
-    padding: var(--space-m);
+    padding: ${Spaces.MEDIUM};
   }
   @media (min-width: ${devices.phone}) {
-    padding: var(--space-l);
+    padding: ${Spaces.LARGE};
   }
 `
 
@@ -131,7 +131,7 @@ AppTitleContent.propTypes = {
 
 export const AppTitleDescription = styled.div`
   z-index: 1;
-  font-size: ${fontSize('medium')};
+  font-size: ${FontSizes.XLARGE};
   line-height: 1.3;
 
   ${props =>
@@ -153,8 +153,8 @@ export const AppTitleDescription = styled.div`
   @media (max-width: ${devices.tablet}) {
     width: 100%;
     white-space: normal;
-    font-size: ${fontSize('small', 'phone')};
-    padding: 15px 5px 0 var(--space-m);
+    font-size: 1rem;
+    padding: 15px 5px 0 ${Spaces.MEDIUM};
   }
   @media (min-width: ${devices.tablet}) {
     position: absolute;
@@ -163,7 +163,7 @@ export const AppTitleDescription = styled.div`
     width: 100%;
     height: 100%;
     color: #fff;
-    padding: var(--space-l);
+    padding: ${Spaces.LARGE};
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 
 import { LabeledText } from '.'
 import { SmartLink } from '../SmartLink'
-import { CopyText } from '../Copy'
+import { CopyText } from '../CopyText'
 import { IconNewTab } from '../Icons'
 import { Colors } from '../theme'
 
 const LabeledLinkEl = styled.div`
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 
   > a {

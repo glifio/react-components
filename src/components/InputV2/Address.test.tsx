@@ -7,8 +7,6 @@ import {
 } from '@testing-library/react'
 import { useState } from 'react'
 import { AddressInput, AddressInputProps } from './Address'
-import ThemeProvider from '../ThemeProvider'
-import theme from '../theme'
 
 const labelText = "Enter the recipient's address"
 const infoText = 'This will receive your funds'
@@ -26,14 +24,12 @@ describe('Address input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <AddressInput
-            label={labelText}
-            info={infoText}
-            value={validAddress}
-            setIsValid={setIsValid}
-          />
-        </ThemeProvider>
+        <AddressInput
+          label={labelText}
+          info={infoText}
+          value={validAddress}
+          setIsValid={setIsValid}
+        />
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
@@ -46,14 +42,12 @@ describe('Address input', () => {
     let input: HTMLElement | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ControlledInput
-            label={labelText}
-            info={infoText}
-            setIsValid={setIsValid}
-            autoFocus={true}
-          />
-        </ThemeProvider>
+        <ControlledInput
+          label={labelText}
+          info={infoText}
+          setIsValid={setIsValid}
+          autoFocus={true}
+        />
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'textbox')
@@ -71,9 +65,7 @@ describe('Address input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <AddressInput label={labelText} info={infoText} disabled={true} />
-        </ThemeProvider>
+        <AddressInput label={labelText} info={infoText} disabled={true} />
       )
       expect(result.container.firstChild).toMatchSnapshot()
     })
@@ -83,14 +75,12 @@ describe('Address input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <AddressInput
-            label={labelText}
-            info={infoText}
-            value={validAddress}
-            truncate={false}
-          />
-        </ThemeProvider>
+        <AddressInput
+          label={labelText}
+          info={infoText}
+          value={validAddress}
+          truncate={false}
+        />
       )
       expect(result.container.firstChild).toMatchSnapshot()
     })

@@ -1,4 +1,4 @@
-import Footer from './index'
+import { Footer } from '.'
 
 export default {
   title: 'Footer/Footer',

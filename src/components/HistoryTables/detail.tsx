@@ -29,11 +29,11 @@ const CAPTION = styled.div`
   text-align: left;
   padding: 1em;
   margin: -0.5em 0;
-  color: ${props => props.theme.colors.gray.medium};
+  color: ${Colors.GRAY_MEDIUM};
 
   &.error {
-    background: ${props => props.theme.colors.red.light};
-    color: ${props => props.theme.colors.red.dark};
+    background-color: ${Colors.RED_LIGHT};
+    color: ${Colors.RED_DARK};
     border-radius: 4px;
   }
 `

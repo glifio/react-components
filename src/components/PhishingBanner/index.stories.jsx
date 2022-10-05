@@ -1,4 +1,4 @@
-import PhishingBanner from './index'
+import { PhishingBanner } from './index'
 
 export default {
   title: 'PhishingBanner/PhishingBanner',

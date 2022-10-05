@@ -1,7 +1,5 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 import { AppTileWrapper } from './AppTileWrapper'
-import { fontSize } from '../theme'
 
 import {
   AppTitleContent,
@@ -9,6 +7,7 @@ import {
   AppTitleDescription,
   AppTitleImg
 } from './AppTileContent'
+import { FontSizes, Spaces } from '../theme'
 
 export function AppTile({
   description,
@@ -37,7 +36,7 @@ export function AppTile({
           <div>
             <h2
               style={{
-                fontSize: fontSize('medium'),
+                fontSize: FontSizes.XLARGE,
                 margin: 0,
                 opacity: soon ? '0.3' : '1',
                 textDecoration: 'none'
@@ -48,7 +47,7 @@ export function AppTile({
             {oldTileName && (
               <h3
                 style={{
-                  fontSize: fontSize('medium'),
+                  fontSize: FontSizes.XLARGE,
                   opacity: '0.3',
                   textDecoration: 'line-through',
                   lineHeight: 1,
@@ -61,7 +60,7 @@ export function AppTile({
             {beta && (
               <h3
                 style={{
-                  fontSize: fontSize('medium'),
+                  fontSize: FontSizes.XLARGE,
                   opacity: '0.5',
                   lineHeight: 1,
                   margin: 0
@@ -83,7 +82,7 @@ export function AppTile({
               height: '100%',
               color: '#fff',
               zIndex: '2',
-              padding: 'var(--space-m)',
+              padding: Spaces.MEDIUM,
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',

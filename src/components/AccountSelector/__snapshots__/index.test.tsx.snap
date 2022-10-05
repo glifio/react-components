@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AccountSelector it displays the accounts in a table view and option to load next account 1`] = `
-.c8 {
+.c6 {
   width: 24;
   height: 24;
 }
@@ -46,7 +46,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   border-color: var(--gray-medium);
 }
 
-.c13 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -55,7 +55,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   margin: 1.5em 0;
 }
 
-.c14 {
+.c8 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -73,69 +73,39 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
 }
 
 .c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: var(--purple-medium);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c7 {
-  height: auto;
+  position: relative;
   cursor: pointer;
-  opacity: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  outline: none;
 }
 
-.c10 {
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
+.c5 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
-.c6:hover .c9 {
+.c5 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  color: var(--purple-medium);
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c5:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c12 {
-  -webkit-transition: 0.18s ease-in;
-  transition: 0.18s ease-in;
-  opacity: 0;
-  text-align: left;
-  color: var(--purple-medium);
-  margin-top: 0;
-  margin-left: 4px;
-  margin-top: 0;
-  margin-left: 4px;
-}
-
-.c6:hover .c11 {
+.c5:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c4 {
@@ -143,7 +113,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 
@@ -202,7 +172,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--purple-medium);
 }
 
-.c17 {
+.c11 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -229,30 +199,30 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   font-size: 1.25em;
 }
 
-.c17 svg path {
+.c11 svg path {
   stroke: var(--black);
 }
 
-.c17:hover {
+.c11:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c17:hover svg path {
+.c11:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c17:active {
+.c11:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c17:active svg path {
+.c11:active svg path {
   stroke: var(--white) !important;
 }
 
-.c15 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -269,7 +239,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   justify-content: space-between;
 }
 
-.c15 > *:first-child {
+.c9 > *:first-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -279,26 +249,26 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   flex-direction: column;
 }
 
-.c15 > *:last-child:not(.toggle-wrapper) {
+.c9 > *:last-child:not(.toggle-wrapper) {
   -webkit-flex: 0 0 65%;
   -ms-flex: 0 0 65%;
   flex: 0 0 65%;
 }
 
-.c15 span.info,
-.c15 span.error {
+.c9 span.info,
+.c9 span.error {
   font-size: 0.875rem;
 }
 
-.c15 span.error {
+.c9 span.error {
   color: var(--red-medium);
 }
 
-.c16 .toggle-wrapper {
+.c10 .toggle-wrapper {
   position: relative;
 }
 
-.c16 input {
+.c10 input {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -307,7 +277,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   opacity: 0;
 }
 
-.c16 .toggle {
+.c10 .toggle {
   display: inline-block;
   position: relative;
   width: 2.25em;
@@ -317,7 +287,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--blue-medium);
 }
 
-.c16 .toggle::after {
+.c10 .toggle::after {
   content: '';
   position: absolute;
   top: 0;
@@ -328,12 +298,12 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--white);
 }
 
-.c16 input:checked ~ .toggle {
+.c10 input:checked ~ .toggle {
   border-color: var(--blue-dark);
   background-color: var(--blue-dark);
 }
 
-.c16 input:checked ~ .toggle::after {
+.c10 input:checked ~ .toggle::after {
   left: auto;
   right: 0;
 }
@@ -426,48 +396,40 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                     />
                   </svg>
                 </a>
-                <div
+                <span
                   class="c5"
                   color="var(--purple-medium)"
-                  display="flex"
+                  role="button"
                 >
-                  <button
-                    class="c6 c7"
-                    display="flex"
-                    role="button"
-                    type="button"
+                  <svg
+                    class="c6"
+                    fill="none"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      class="c8 c9 c10"
-                      fill="none"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect
-                        fill="#1A0066"
-                        height="12"
-                        width="12"
-                        x="8"
-                        y="4"
-                      />
-                      <rect
-                        fill="#E0D7FE"
-                        height="12"
-                        width="12"
-                        x="4"
-                        y="8"
-                      />
-                    </svg>
-                    <span
-                      class="c11 c12"
-                      color="var(--purple-medium)"
-                    >
-                      Copy
-                    </span>
-                  </button>
-                </div>
+                    <rect
+                      fill="#1A0066"
+                      height="12"
+                      width="12"
+                      x="8"
+                      y="4"
+                    />
+                    <rect
+                      fill="#E0D7FE"
+                      height="12"
+                      width="12"
+                      x="4"
+                      y="8"
+                    />
+                  </svg>
+                  <span
+                    class="copy-text"
+                  >
+                    Copy
+                  </span>
+                </span>
               </div>
             </div>
           </td>
@@ -526,48 +488,40 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                     />
                   </svg>
                 </a>
-                <div
+                <span
                   class="c5"
                   color="var(--purple-medium)"
-                  display="flex"
+                  role="button"
                 >
-                  <button
-                    class="c6 c7"
-                    display="flex"
-                    role="button"
-                    type="button"
+                  <svg
+                    class="c6"
+                    fill="none"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      class="c8 c9 c10"
-                      fill="none"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect
-                        fill="#1A0066"
-                        height="12"
-                        width="12"
-                        x="8"
-                        y="4"
-                      />
-                      <rect
-                        fill="#E0D7FE"
-                        height="12"
-                        width="12"
-                        x="4"
-                        y="8"
-                      />
-                    </svg>
-                    <span
-                      class="c11 c12"
-                      color="var(--purple-medium)"
-                    >
-                      Copy
-                    </span>
-                  </button>
-                </div>
+                    <rect
+                      fill="#1A0066"
+                      height="12"
+                      width="12"
+                      x="8"
+                      y="4"
+                    />
+                    <rect
+                      fill="#E0D7FE"
+                      height="12"
+                      width="12"
+                      x="4"
+                      y="8"
+                    />
+                  </svg>
+                  <span
+                    class="copy-text"
+                  >
+                    Copy
+                  </span>
+                </span>
               </div>
             </div>
           </td>
@@ -626,48 +580,40 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                     />
                   </svg>
                 </a>
-                <div
+                <span
                   class="c5"
                   color="var(--purple-medium)"
-                  display="flex"
+                  role="button"
                 >
-                  <button
-                    class="c6 c7"
-                    display="flex"
-                    role="button"
-                    type="button"
+                  <svg
+                    class="c6"
+                    fill="none"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      class="c8 c9 c10"
-                      fill="none"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect
-                        fill="#1A0066"
-                        height="12"
-                        width="12"
-                        x="8"
-                        y="4"
-                      />
-                      <rect
-                        fill="#E0D7FE"
-                        height="12"
-                        width="12"
-                        x="4"
-                        y="8"
-                      />
-                    </svg>
-                    <span
-                      class="c11 c12"
-                      color="var(--purple-medium)"
-                    >
-                      Copy
-                    </span>
-                  </button>
-                </div>
+                    <rect
+                      fill="#1A0066"
+                      height="12"
+                      width="12"
+                      x="8"
+                      y="4"
+                    />
+                    <rect
+                      fill="#E0D7FE"
+                      height="12"
+                      width="12"
+                      x="4"
+                      y="8"
+                    />
+                  </svg>
+                  <span
+                    class="copy-text"
+                  >
+                    Copy
+                  </span>
+                </span>
               </div>
             </div>
           </td>
@@ -684,10 +630,10 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
       </tbody>
     </table>
     <div
-      class="c13 c14"
+      class="c7 c8"
     >
       <label
-        class="c15 c16"
+        class="c9 c10"
       >
         <div>
           <span>
@@ -707,7 +653,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
         </div>
       </label>
       <button
-        class="c17"
+        class="c11"
       >
         Next account
       </button>
@@ -807,7 +753,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   height: calc(2em * 0.5);
 }
 
-.c10 {
+.c8 {
   width: 24;
   height: 24;
 }
@@ -879,69 +825,39 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
 }
 
 .c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  color: var(--purple-medium);
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c9 {
-  height: auto;
+  position: relative;
   cursor: pointer;
-  opacity: 1;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  outline: none;
 }
 
-.c12 {
-  -webkit-transition: 0.24s ease-in-out;
-  transition: 0.24s ease-in-out;
+.c7 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
 }
 
-.c8:hover .c11 {
+.c7 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100% + 0.25em);
+  color: var(--purple-medium);
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+}
+
+.c7:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c14 {
-  -webkit-transition: 0.18s ease-in;
-  transition: 0.18s ease-in;
-  opacity: 0;
-  text-align: left;
-  color: var(--purple-medium);
-  margin-top: 0;
-  margin-left: 4px;
-  margin-top: 0;
-  margin-left: 4px;
-}
-
-.c8:hover .c13 {
+.c7:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c6 {
@@ -949,7 +865,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  grid-gap: 0.25em;
+  gap: 0.25em;
   line-height: 1.5;
 }
 
@@ -1108,48 +1024,40 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                     />
                   </svg>
                 </a>
-                <div
+                <span
                   class="c7"
                   color="var(--purple-medium)"
-                  display="flex"
+                  role="button"
                 >
-                  <button
-                    class="c8 c9"
-                    display="flex"
-                    role="button"
-                    type="button"
+                  <svg
+                    class="c8"
+                    fill="none"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      class="c10 c11 c12"
-                      fill="none"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect
-                        fill="#1A0066"
-                        height="12"
-                        width="12"
-                        x="8"
-                        y="4"
-                      />
-                      <rect
-                        fill="#E0D7FE"
-                        height="12"
-                        width="12"
-                        x="4"
-                        y="8"
-                      />
-                    </svg>
-                    <span
-                      class="c13 c14"
-                      color="var(--purple-medium)"
-                    >
-                      Copy
-                    </span>
-                  </button>
-                </div>
+                    <rect
+                      fill="#1A0066"
+                      height="12"
+                      width="12"
+                      x="8"
+                      y="4"
+                    />
+                    <rect
+                      fill="#E0D7FE"
+                      height="12"
+                      width="12"
+                      x="4"
+                      y="8"
+                    />
+                  </svg>
+                  <span
+                    class="copy-text"
+                  >
+                    Copy
+                  </span>
+                </span>
               </div>
             </div>
           </td>
@@ -1208,48 +1116,40 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                     />
                   </svg>
                 </a>
-                <div
+                <span
                   class="c7"
                   color="var(--purple-medium)"
-                  display="flex"
+                  role="button"
                 >
-                  <button
-                    class="c8 c9"
-                    display="flex"
-                    role="button"
-                    type="button"
+                  <svg
+                    class="c8"
+                    fill="none"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      class="c10 c11 c12"
-                      fill="none"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect
-                        fill="#1A0066"
-                        height="12"
-                        width="12"
-                        x="8"
-                        y="4"
-                      />
-                      <rect
-                        fill="#E0D7FE"
-                        height="12"
-                        width="12"
-                        x="4"
-                        y="8"
-                      />
-                    </svg>
-                    <span
-                      class="c13 c14"
-                      color="var(--purple-medium)"
-                    >
-                      Copy
-                    </span>
-                  </button>
-                </div>
+                    <rect
+                      fill="#1A0066"
+                      height="12"
+                      width="12"
+                      x="8"
+                      y="4"
+                    />
+                    <rect
+                      fill="#E0D7FE"
+                      height="12"
+                      width="12"
+                      x="4"
+                      y="8"
+                    />
+                  </svg>
+                  <span
+                    class="copy-text"
+                  >
+                    Copy
+                  </span>
+                </span>
               </div>
             </div>
           </td>
@@ -1308,48 +1208,40 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                     />
                   </svg>
                 </a>
-                <div
+                <span
                   class="c7"
                   color="var(--purple-medium)"
-                  display="flex"
+                  role="button"
                 >
-                  <button
-                    class="c8 c9"
-                    display="flex"
-                    role="button"
-                    type="button"
+                  <svg
+                    class="c8"
+                    fill="none"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      class="c10 c11 c12"
-                      fill="none"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect
-                        fill="#1A0066"
-                        height="12"
-                        width="12"
-                        x="8"
-                        y="4"
-                      />
-                      <rect
-                        fill="#E0D7FE"
-                        height="12"
-                        width="12"
-                        x="4"
-                        y="8"
-                      />
-                    </svg>
-                    <span
-                      class="c13 c14"
-                      color="var(--purple-medium)"
-                    >
-                      Copy
-                    </span>
-                  </button>
-                </div>
+                    <rect
+                      fill="#1A0066"
+                      height="12"
+                      width="12"
+                      x="8"
+                      y="4"
+                    />
+                    <rect
+                      fill="#E0D7FE"
+                      height="12"
+                      width="12"
+                      x="4"
+                      y="8"
+                    />
+                  </svg>
+                  <span
+                    class="copy-text"
+                  >
+                    Copy
+                  </span>
+                </span>
               </div>
             </div>
           </td>

@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
-import { Colors } from '../theme'
+import { Colors, Spaces } from '../theme'
 
 export const Label = styled.label`
   display: flex;
-  gap: var(--space-m);
+  gap: ${Spaces.MEDIUM};
   text-align: left;
 
   ${props =>

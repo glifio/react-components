@@ -75,7 +75,7 @@ const connectWithLedger = async (
         dispatch({ type: 'LEDGER_REPLUG' })
       }
     } else {
-      console.log('UNHANDLED', err.message)
+      console.error(`UNHANDLED LEDGER ERROR: ${err.message}`)
       dispatch({ type: 'LEDGER_REPLUG' })
     }
   }

@@ -1,43 +1,33 @@
 import { render, act, fireEvent } from '@testing-library/react'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 import { ErrorView } from '.'
 import { Base } from './index.stories'
 
 describe('Error', () => {
   test('renders the story', () => {
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Base {...Base.args} />
-      </ThemeProvider>
-    )
+    const { container } = render(<Base {...Base.args} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 
   test('renders the error', () => {
     const { container } = render(
-      <ThemeProvider theme={theme}>
-        <ErrorView
-          title='Ledger only supports Chrome'
-          description='Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option'
-          linkDisplay='Install Google Chrome.'
-          linkhref='https://www.google.com/chrome'
-        />
-      </ThemeProvider>
+      <ErrorView
+        title='Ledger only supports Chrome'
+        description='Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option'
+        linkDisplay='Install Google Chrome.'
+        linkhref='https://www.google.com/chrome'
+      />
     )
     expect(container.firstChild).toMatchSnapshot()
   })
 
   test('renders the error with the correct text', () => {
     const { getByText } = render(
-      <ThemeProvider theme={theme}>
-        <ErrorView
-          title='Ledger only supports Chrome'
-          description='Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option'
-          linkDisplay='Install Google Chrome.'
-          linkhref='https://www.google.com/chrome'
-        />
-      </ThemeProvider>
+      <ErrorView
+        title='Ledger only supports Chrome'
+        description='Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option'
+        linkDisplay='Install Google Chrome.'
+        linkhref='https://www.google.com/chrome'
+      />
     )
 
     expect(getByText('Ledger only supports Chrome')).toBeTruthy()
@@ -62,14 +52,12 @@ describe('Error', () => {
     }))
 
     const { getByText } = render(
-      <ThemeProvider theme={theme}>
-        <ErrorView
-          title='Ledger only supports Chrome'
-          description='Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option'
-          linkDisplay='Install Google Chrome.'
-          linkhref='https://www.google.com/chrome'
-        />
-      </ThemeProvider>
+      <ErrorView
+        title='Ledger only supports Chrome'
+        description='Please install Google Chrome to continue using your Ledger device, or choose an alternative setup option'
+        linkDisplay='Install Google Chrome.'
+        linkhref='https://www.google.com/chrome'
+      />
     )
 
     act(() => {

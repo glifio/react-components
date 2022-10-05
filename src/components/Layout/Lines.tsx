@@ -1,7 +1,8 @@
+import { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { useMemo, useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
+import { getMethodName } from '@glif/filecoin-actor-utils'
 
 import { Address } from '../../generated/graphql'
 import { AddressLink } from '../LabeledText/AddressLink'
@@ -10,7 +11,7 @@ import {
   ADDRESS_PROPTYPE,
   FILECOIN_NUMBER_PROPTYPE
 } from '../../customPropTypes'
-import { getMethodName } from '@glif/filecoin-actor-utils'
+import { Spaces } from '../theme'
 
 /**
  * Lines
@@ -19,7 +20,7 @@ import { getMethodName } from '@glif/filecoin-actor-utils'
 export const Lines = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
+  gap: ${Spaces.MEDIUM};
 
   > p,
   > hr {

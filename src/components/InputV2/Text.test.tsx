@@ -7,8 +7,6 @@ import {
 } from '@testing-library/react'
 import { useState } from 'react'
 import { TextInput, TextInputProps } from './Text'
-import ThemeProvider from '../ThemeProvider'
-import theme from '../theme'
 
 const labelText = 'Enter your name'
 const infoText = 'Nice to meet you'
@@ -26,14 +24,12 @@ describe('Text input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <TextInput
-            label={labelText}
-            info={infoText}
-            value={inputValue}
-            setIsValid={setIsValid}
-          />
-        </ThemeProvider>
+        <TextInput
+          label={labelText}
+          info={infoText}
+          value={inputValue}
+          setIsValid={setIsValid}
+        />
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
@@ -45,15 +41,13 @@ describe('Text input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <TextInput
-            deletable={true}
-            label={labelText}
-            info={infoText}
-            value={inputValue}
-            onDelete={onDelete}
-          />
-        </ThemeProvider>
+        <TextInput
+          deletable={true}
+          label={labelText}
+          info={infoText}
+          value={inputValue}
+          onDelete={onDelete}
+        />
       )
       // Click on the delete button
       fireEvent.click(result.container.querySelector('svg'))
@@ -67,16 +61,14 @@ describe('Text input', () => {
     let input: HTMLElement | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ControlledInput
-            label={labelText}
-            info={infoText}
-            value={inputValue}
-            setIsValid={setIsValid}
-            required={true}
-            autoFocus={true}
-          />
-        </ThemeProvider>
+        <ControlledInput
+          label={labelText}
+          info={infoText}
+          value={inputValue}
+          setIsValid={setIsValid}
+          required={true}
+          autoFocus={true}
+        />
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'textbox')
@@ -95,17 +87,15 @@ describe('Text input', () => {
     let input: HTMLElement | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ControlledInput
-            label={labelText}
-            info={infoText}
-            value={inputValue}
-            setIsValid={setIsValid}
-            vertical={true}
-            required={true}
-            autoFocus={true}
-          />
-        </ThemeProvider>
+        <ControlledInput
+          label={labelText}
+          info={infoText}
+          value={inputValue}
+          setIsValid={setIsValid}
+          vertical={true}
+          required={true}
+          autoFocus={true}
+        />
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'textbox')
@@ -123,9 +113,7 @@ describe('Text input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <TextInput label={labelText} info={infoText} disabled={true} />
-        </ThemeProvider>
+        <TextInput label={labelText} info={infoText} disabled={true} />
       )
       expect(result.container.firstChild).toMatchSnapshot()
     })

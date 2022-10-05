@@ -1,6 +1,6 @@
-import { FC, useCallback, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import { useCallback, useEffect, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
-import Box from '../../Box'
 import { IconMetaMaskFlask } from '../../Icons'
 import { HelperText } from './Helper'
 import {
@@ -9,6 +9,7 @@ import {
 } from '../../../services/WalletProvider'
 import { connectFILSnap as _connectFILSnap } from '../../../services/WalletProvider/metamaskUtils'
 import { LoginOption } from '../../../customPropTypes'
+import { OneColumnCentered, TwoColumns } from '../../Layout'
 
 const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -33,10 +34,7 @@ const MMFadeIn = styled.div`
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
 `
 
-const ConnectMM: FC<{ next: () => void; back: () => void }> = ({
-  next,
-  back
-}) => {
+export const MetaMask = ({ next, back }: MetamaskProps) => {
   const [fetchingState, setFetchingState] = useState(false)
   const { dispatch, state, connectMetaMask, fetchDefaultWallet, walletList } =
     useWalletProvider()
@@ -91,35 +89,30 @@ const ConnectMM: FC<{ next: () => void; back: () => void }> = ({
   }, [fetchMetaMaskState])
 
   return (
-    <Box
-      display='flex'
-      flexDirection='row'
-      justifyContent='space-around'
-      flexWrap='wrap'
-      width='100%'
-    >
-      <Box alignSelf='center' display='flex' justifyContent='center'>
+    <TwoColumns>
+      <OneColumnCentered>
         <MMFadeIn>
           <IconMetaMaskFlask height='231' width='245' />
         </MMFadeIn>
-      </Box>
-      <Box
-        height='100%'
-        alignSelf='center'
-        display='flex'
-        flexDirection='column'
-        justifyContent='center'
-        alignItems='center'
-      >
+      </OneColumnCentered>
+      <OneColumnCentered>
         <HelperText
           {...state.metamask}
           onRetry={fetchMetaMaskState}
           back={back}
           connectFILSnap={connectFILSnap}
         />
-      </Box>
-    </Box>
+      </OneColumnCentered>
+    </TwoColumns>
   )
 }
 
-export default ConnectMM
+export interface MetamaskProps {
+  back: () => void
+  next: () => void
+}
+
+MetaMask.propTypes = {
+  back: PropTypes.func.isRequired,
+  next: PropTypes.func.isRequired
+}

@@ -1,7 +1,7 @@
 import { render, screen, act, fireEvent } from '@testing-library/react'
 import composeMockAppTree from '../../../test-utils/composeMockAppTree'
 import { mockFetchDefaultWallet } from '../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
-import ConnectMetaMask from '.'
+import { MetaMask } from '.'
 import { HelperText } from './Helper'
 import { TESTNET_PATH_CODE } from '../../../constants'
 import createPath from '../../../utils/createPath'
@@ -17,7 +17,7 @@ describe('metamask onboarding', () => {
     await act(async () => {
       res = render(
         <Tree>
-          <ConnectMetaMask back={backSpy} next={nextSpy} />
+          <MetaMask back={backSpy} next={nextSpy} />
         </Tree>
       )
     })
@@ -31,7 +31,7 @@ describe('metamask onboarding', () => {
     await act(async () => {
       render(
         <Tree>
-          <ConnectMetaMask back={backSpy} next={nextSpy} />
+          <MetaMask back={backSpy} next={nextSpy} />
         </Tree>
       )
       jest.runAllTimers()
@@ -45,7 +45,7 @@ describe('metamask onboarding', () => {
     await act(async () => {
       render(
         <Tree>
-          <ConnectMetaMask back={backSpy} next={nextSpy} />
+          <MetaMask back={backSpy} next={nextSpy} />
         </Tree>
       )
     })
