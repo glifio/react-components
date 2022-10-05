@@ -793,7 +793,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             class="has-stroke"
             fill="none"
             height="22"
-            stroke="var(--black)"
+            stroke="var(--green-medium)"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="3"
