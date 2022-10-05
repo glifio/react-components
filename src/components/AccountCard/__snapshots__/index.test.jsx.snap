@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AccountCard renders the card 1`] = `
-.c8 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -29,36 +29,31 @@ exports[`AccountCard renders the card 1`] = `
   border-color: var(--white);
 }
 
-.c8 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c8:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c8:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c8:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c8:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
 }
 
-.c8 svg path {
+.c7 svg path {
   stroke: var(--white);
-}
-
-.c6 {
-  width: 24;
-  height: 24;
 }
 
 .c0 {
@@ -182,7 +177,7 @@ exports[`AccountCard renders the card 1`] = `
   fill: var(--purple-medium);
 }
 
-.c7 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -193,12 +188,12 @@ exports[`AccountCard renders the card 1`] = `
   gap: var(--space-m);
 }
 
-.c7 > p,
-.c7 > hr {
+.c6 > p,
+.c6 > hr {
   margin: 0.5em 0;
 }
 
-.c7 > p[role='button'] {
+.c6 > p[role='button'] {
   margin: 0;
 }
 
@@ -271,26 +266,25 @@ exports[`AccountCard renders the card 1`] = `
           role="button"
         >
           <svg
-            class="c6"
-            fill="none"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
+            class=""
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect
               fill="#1A0066"
               height="12"
               width="12"
-              x="8"
-              y="4"
+              x="4"
+              y="0"
             />
             <rect
               fill="#E0D7FE"
               height="12"
               width="12"
-              x="4"
-              y="8"
+              x="0"
+              y="4"
             />
           </svg>
           <span
@@ -306,15 +300,15 @@ exports[`AccountCard renders the card 1`] = `
     class="buttons"
   >
     <div
-      class="c7"
+      class="c6"
     >
       <button
-        class="c8"
+        class="c7"
       >
         Show on Device
       </button>
       <button
-        class="c8"
+        class="c7"
       >
         Switch
       </button>
@@ -324,7 +318,7 @@ exports[`AccountCard renders the card 1`] = `
 `;
 
 exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
-.c8 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -352,36 +346,31 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   border-color: var(--white);
 }
 
-.c8 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c8:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c8:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c8:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c8:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
 }
 
-.c8 svg path {
+.c7 svg path {
   stroke: var(--white);
-}
-
-.c6 {
-  width: 24;
-  height: 24;
 }
 
 .c0 {
@@ -505,7 +494,7 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   fill: var(--purple-medium);
 }
 
-.c7 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -516,12 +505,12 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   gap: var(--space-m);
 }
 
-.c7 > p,
-.c7 > hr {
+.c6 > p,
+.c6 > hr {
   margin: 0.5em 0;
 }
 
-.c7 > p[role='button'] {
+.c6 > p[role='button'] {
   margin: 0;
 }
 
@@ -594,26 +583,25 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
           role="button"
         >
           <svg
-            class="c6"
-            fill="none"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
+            class=""
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect
               fill="#1A0066"
               height="12"
               width="12"
-              x="8"
-              y="4"
+              x="4"
+              y="0"
             />
             <rect
               fill="#E0D7FE"
               height="12"
               width="12"
-              x="4"
-              y="8"
+              x="0"
+              y="4"
             />
           </svg>
           <span
@@ -629,10 +617,10 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
     class="buttons"
   >
     <div
-      class="c7"
+      class="c6"
     >
       <button
-        class="c8"
+        class="c7"
       >
         Switch
       </button>
@@ -642,7 +630,7 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
 `;
 
 exports[`AccountCard renders the story 1`] = `
-.c8 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -670,36 +658,31 @@ exports[`AccountCard renders the story 1`] = `
   border-color: var(--white);
 }
 
-.c8 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c8:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c8:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c8:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c8:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
 }
 
-.c8 svg path {
+.c7 svg path {
   stroke: var(--white);
-}
-
-.c6 {
-  width: 24;
-  height: 24;
 }
 
 .c0 {
@@ -823,7 +806,7 @@ exports[`AccountCard renders the story 1`] = `
   fill: var(--purple-medium);
 }
 
-.c7 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -834,12 +817,12 @@ exports[`AccountCard renders the story 1`] = `
   gap: var(--space-m);
 }
 
-.c7 > p,
-.c7 > hr {
+.c6 > p,
+.c6 > hr {
   margin: 0.5em 0;
 }
 
-.c7 > p[role='button'] {
+.c6 > p[role='button'] {
   margin: 0;
 }
 
@@ -912,26 +895,25 @@ exports[`AccountCard renders the story 1`] = `
           role="button"
         >
           <svg
-            class="c6"
-            fill="none"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
+            class=""
+            height="16"
+            viewBox="0 0 16 16"
+            width="16"
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect
               fill="#1A0066"
               height="12"
               width="12"
-              x="8"
-              y="4"
+              x="4"
+              y="0"
             />
             <rect
               fill="#E0D7FE"
               height="12"
               width="12"
-              x="4"
-              y="8"
+              x="0"
+              y="4"
             />
           </svg>
           <span
@@ -947,15 +929,15 @@ exports[`AccountCard renders the story 1`] = `
     class="buttons"
   >
     <div
-      class="c7"
+      class="c6"
     >
       <button
-        class="c8"
+        class="c7"
       >
         Show on Device
       </button>
       <button
-        class="c8"
+        class="c7"
       >
         Switch
       </button>

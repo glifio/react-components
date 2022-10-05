@@ -11,16 +11,6 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   line-height: 1.5;
 }
 
-.c7 {
-  width: 24;
-  height: 24;
-}
-
-.c8 {
-  width: 1.125em;
-  height: 20px;
-}
-
 .c6 {
   position: relative;
   cursor: pointer;
@@ -91,7 +81,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   fill: var(--purple-medium);
 }
 
-.c9 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -252,26 +242,25 @@ exports[`Message detail view it renders the confirmed but not executed msg state
               role="button"
             >
               <svg
-                class="c7"
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+                class=""
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
                   fill="#1A0066"
                   height="12"
                   width="12"
-                  x="8"
-                  y="4"
+                  x="4"
+                  y="0"
                 />
                 <rect
                   fill="#E0D7FE"
                   height="12"
                   width="12"
-                  x="4"
-                  y="8"
+                  x="0"
+                  y="4"
                 />
               </svg>
               <span
@@ -302,19 +291,19 @@ exports[`Message detail view it renders the confirmed but not executed msg state
       </div>
       <div>
         <svg
-          class="c8"
+          class="has-stroke"
           fill="none"
-          height="20px"
+          height="20"
+          stroke="var(--black)"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
           viewBox="0 0 20 20"
           width="1.125em"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M10 6V10L13 13M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10Z"
-            stroke="#3F3F46"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
           />
         </svg>
         ...
@@ -348,26 +337,25 @@ exports[`Message detail view it renders the confirmed but not executed msg state
               role="button"
             >
               <svg
-                class="c7"
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+                class=""
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
                   fill="#1A0066"
                   height="12"
                   width="12"
-                  x="8"
-                  y="4"
+                  x="4"
+                  y="0"
                 />
                 <rect
                   fill="#E0D7FE"
                   height="12"
                   width="12"
-                  x="4"
-                  y="8"
+                  x="0"
+                  y="4"
                 />
               </svg>
               <span
@@ -407,26 +395,25 @@ exports[`Message detail view it renders the confirmed but not executed msg state
               role="button"
             >
               <svg
-                class="c7"
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+                class=""
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
                   fill="#1A0066"
                   height="12"
                   width="12"
-                  x="8"
-                  y="4"
+                  x="4"
+                  y="0"
                 />
                 <rect
                   fill="#E0D7FE"
                   height="12"
                   width="12"
-                  x="4"
-                  y="8"
+                  x="0"
+                  y="4"
                 />
               </svg>
               <span
@@ -458,7 +445,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
       </div>
       <div>
         <div
-          class="c9"
+          class="c7"
           color="purple"
         >
           <span>
@@ -483,21 +470,6 @@ exports[`Message detail view it renders the executed msg state correctly (with n
 .c4 p {
   margin: 0;
   line-height: 1.5;
-}
-
-.c7 {
-  width: 24;
-  height: 24;
-}
-
-.c11 {
-  width: 1.125em;
-  height: 20px;
-}
-
-.c9 {
-  width: 1.1875rem;
-  height: 22px;
 }
 
 .c6 {
@@ -570,7 +542,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   fill: var(--purple-medium);
 }
 
-.c12 {
+.c9 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -590,7 +562,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   background-color: var(--purple-light);
 }
 
-.c8 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -610,7 +582,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   background-color: var(--green-light);
 }
 
-.c10 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -730,7 +702,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   color: var(--purple-medium);
 }
 
-.c13 {
+.c10 {
   color: var(--gray-medium);
 }
 
@@ -775,26 +747,25 @@ exports[`Message detail view it renders the executed msg state correctly (with n
               role="button"
             >
               <svg
-                class="c7"
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+                class=""
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
                   fill="#1A0066"
                   height="12"
                   width="12"
-                  x="8"
-                  y="4"
+                  x="4"
+                  y="0"
                 />
                 <rect
                   fill="#E0D7FE"
                   height="12"
                   width="12"
-                  x="4"
-                  y="8"
+                  x="0"
+                  y="4"
                 />
               </svg>
               <span
@@ -815,23 +786,23 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       </div>
       <div>
         <div
-          class="c8"
+          class="c7"
           color="green"
         >
           <svg
-            class="c9"
+            class="has-stroke"
             fill="none"
-            height="22px"
-            stroke="var(--green-medium)"
+            height="22"
+            stroke="var(--black)"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="3"
             viewBox="0 0 23 22"
             width="1.1875rem"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M2 12.5264L7.42857 19.544L21 2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
             />
           </svg>
           <span>
@@ -839,7 +810,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
           </span>
         </div>
         <div
-          class="c10"
+          class="c8"
           color="yellow"
         >
           <span>
@@ -866,19 +837,19 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       </div>
       <div>
         <svg
-          class="c11"
+          class="has-stroke"
           fill="none"
-          height="20px"
+          height="20"
+          stroke="var(--black)"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
           viewBox="0 0 20 20"
           width="1.125em"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M10 6V10L13 13M19 10C19 11.1819 18.7672 12.3522 18.3149 13.4442C17.8626 14.5361 17.1997 15.5282 16.364 16.364C15.5282 17.1997 14.5361 17.8626 13.4442 18.3149C12.3522 18.7672 11.1819 19 10 19C8.8181 19 7.64778 18.7672 6.55585 18.3149C5.46392 17.8626 4.47177 17.1997 3.63604 16.364C2.80031 15.5282 2.13738 14.5361 1.68508 13.4442C1.23279 12.3522 1 11.1819 1 10C1 7.61305 1.94821 5.32387 3.63604 3.63604C5.32387 1.94821 7.61305 1 10 1C12.3869 1 14.6761 1.94821 16.364 3.63604C18.0518 5.32387 19 7.61305 19 10Z"
-            stroke="#3F3F46"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
           />
         </svg>
         ...
@@ -912,26 +883,25 @@ exports[`Message detail view it renders the executed msg state correctly (with n
               role="button"
             >
               <svg
-                class="c7"
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+                class=""
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
                   fill="#1A0066"
                   height="12"
                   width="12"
-                  x="8"
-                  y="4"
+                  x="4"
+                  y="0"
                 />
                 <rect
                   fill="#E0D7FE"
                   height="12"
                   width="12"
-                  x="4"
-                  y="8"
+                  x="0"
+                  y="4"
                 />
               </svg>
               <span
@@ -971,26 +941,25 @@ exports[`Message detail view it renders the executed msg state correctly (with n
               role="button"
             >
               <svg
-                class="c7"
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+                class=""
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
                   fill="#1A0066"
                   height="12"
                   width="12"
-                  x="8"
-                  y="4"
+                  x="4"
+                  y="0"
                 />
                 <rect
                   fill="#E0D7FE"
                   height="12"
                   width="12"
-                  x="4"
-                  y="8"
+                  x="0"
+                  y="4"
                 />
               </svg>
               <span
@@ -1022,7 +991,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       </div>
       <div>
         <div
-          class="c12"
+          class="c9"
           color="purple"
         >
           <span>
@@ -1056,7 +1025,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       <div>
         1,000
         <span
-          class="c13"
+          class="c10"
         >
           |
         </span>
@@ -1077,7 +1046,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       </div>
       <div>
         <span
-          class="c13"
+          class="c10"
         >
           Premium
         </span>
@@ -1091,7 +1060,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       <div />
       <div>
         <span
-          class="c13"
+          class="c10"
         >
           Fee Cap
         </span>
@@ -1105,7 +1074,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       <div />
       <div>
         <span
-          class="c13"
+          class="c10"
         >
           Base
         </span>
@@ -1431,43 +1400,28 @@ exports[`Message detail view it renders the not found state correctly 1`] = `
 `;
 
 exports[`Message detail view it renders the pending msg state correctly 1`] = `
-.c8 h4 {
+.c6 h4 {
   margin: 0;
   color: var(--gray-dark);
 }
 
-.c8 p {
+.c6 p {
   margin: 0;
   line-height: 1.5;
 }
 
-.c3 {
-  width: 1.25rem;
-  height: 25px;
-}
-
-.c5 {
-  width: 0.8rem;
-  height: 28px;
-}
-
-.c11 {
-  width: 24;
-  height: 24;
-}
-
-.c10 {
+.c8 {
   position: relative;
   cursor: pointer;
 }
 
-.c10 svg {
+.c8 svg {
   -webkit-transition: -webkit-transform 0.1s ease-out;
   -webkit-transition: transform 0.1s ease-out;
   transition: transform 0.1s ease-out;
 }
 
-.c10 .copy-text {
+.c8 .copy-text {
   position: absolute;
   top: calc(50% - 0.2em);
   left: calc(100% + 0.25em);
@@ -1481,18 +1435,18 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   pointer-events: none;
 }
 
-.c10:hover svg {
+.c8:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c10:hover .copy-text {
+.c8:hover .copy-text {
   opacity: 1;
   pointer-events: all;
 }
 
-.c9 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1501,32 +1455,32 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   line-height: 1.5;
 }
 
-.c9 > a {
+.c7 > a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c9 > a:hover {
+.c7 > a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c9 > a svg {
+.c7 > a svg {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
   vertical-align: middle;
 }
 
-.c9 > a svg:hover {
+.c7 > a svg:hover {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
   fill: var(--purple-medium);
 }
 
-.c12 {
+.c9 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1546,7 +1500,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   background-color: var(--purple-light);
 }
 
-.c6 {
+.c4 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1557,16 +1511,16 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   gap: var(--space-m);
 }
 
-.c6 > p,
-.c6 > hr {
+.c4 > p,
+.c4 > hr {
   margin: 0.5em 0;
 }
 
-.c6 > p[role='button'] {
+.c4 > p[role='button'] {
   margin: 0;
 }
 
-.c7 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1581,7 +1535,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   padding-left: 0em;
 }
 
-.c7 > div:first-child {
+.c5 > div:first-child {
   -webkit-flex: 0 1 25%;
   -ms-flex: 0 1 25%;
   flex: 0 1 25%;
@@ -1589,7 +1543,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   text-transform: capitalize;
 }
 
-.c7 > div:last-child {
+.c5 > div:last-child {
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
@@ -1606,7 +1560,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   word-break: break-word;
 }
 
-.c7 > div:last-child > p[role='button'] {
+.c5 > div:last-child > p[role='button'] {
   margin: 0;
 }
 
@@ -1719,7 +1673,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   text-decoration: none;
 }
 
-.c4 {
+.c3 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1750,44 +1704,44 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   text-decoration: none;
 }
 
-.c4 svg path {
+.c3 svg path {
   stroke: var(--black);
 }
 
-.c4:hover {
+.c3:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c4:hover svg path {
+.c3:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c4:active {
+.c3:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c4:active svg path {
+.c3:active svg path {
   stroke: var(--white) !important;
 }
 
-.c4 svg path {
+.c3 svg path {
   stroke: var(--white);
 }
 
-.c4:hover {
+.c3:hover {
   color: var(--red-medium);
   border-color: var(--red-medium);
   background: var(--white);
 }
 
-.c4:hover svg path {
+.c3:hover svg path {
   stroke: var(--red-medium);
 }
 
-.c4:hover {
+.c3:hover {
   -webkit-text-decoration: none;
   text-decoration: none;
 }
@@ -1809,48 +1763,44 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
         href="/speed-up"
       >
         <svg
-          class="c3"
+          class="has-stroke"
           fill="none"
-          height="25px"
+          height="25"
+          stroke="var(--black)"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
           viewBox="0 0 30 25"
           width="1.25rem"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M14.1982 13.6736C14.0714 13.9822 13.8873 14.2507 13.6605 14.4577L3.9218 23.3482C3.6505 23.5959 3.32789 23.7467 2.99012 23.7838C2.65236 23.8208 2.31279 23.7427 2.00946 23.5581C1.70613 23.3735 1.45102 23.0898 1.27273 22.7386C1.09444 22.3875 1 21.9829 1 21.5701V3.78904C1 3.37627 1.09444 2.97166 1.27273 2.62053C1.45102 2.26941 1.70613 1.98565 2.00946 1.80106C2.31279 1.61646 2.65236 1.53832 2.99012 1.57539C3.32789 1.61246 3.6505 1.76327 3.9218 2.01093L13.6605 10.9015C13.8873 11.1085 14.0714 11.377 14.1982 11.6856C14.325 11.9942 14.391 12.3345 14.391 12.6796C14.391 13.0246 14.325 13.3649 14.1982 13.6736Z"
-            stroke="#3F3F46"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
           />
           <path
             d="M28.8072 13.6736C28.6804 13.9822 28.4963 14.2507 28.2695 14.4577L18.5308 23.3482C18.2595 23.5959 17.9369 23.7467 17.5991 23.7838C17.2614 23.8208 16.9218 23.7427 16.6185 23.5581C16.3151 23.3735 16.06 23.0898 15.8817 22.7386C15.7035 22.3875 15.609 21.9829 15.609 21.5701V3.78904C15.609 3.37627 15.7035 2.97166 15.8817 2.62053C16.06 2.26941 16.3151 1.98565 16.6185 1.80106C16.9218 1.61646 17.2614 1.53832 17.5991 1.57539C17.9369 1.61246 18.2595 1.76327 18.5308 2.01093L28.2695 10.9015C28.4963 11.1085 28.6804 11.377 28.8072 11.6856C28.934 11.9942 29 12.3345 29 12.6796C29 13.0246 28.934 13.3649 28.8072 13.6736Z"
-            stroke="#3F3F46"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
           />
         </svg>
         Speed up
       </a>
       <a
-        class="c4"
+        class="c3"
         href="/cancel"
       >
         <svg
-          class="c5"
+          class="has-stroke"
           fill="none"
-          height="28px"
+          height="28"
+          stroke="var(--black)"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
           viewBox="0 0 22 28"
           width="0.8rem"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             d="M1 1.33203L21 26.028M1 26.028L21 1.33203L1 26.028Z"
-            stroke="#3F3F46"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
           />
         </svg>
         Cancel
@@ -1859,20 +1809,20 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   </div>
   <hr />
   <div
-    class="c6"
+    class="c4"
   >
     <div
-      class="c7"
+      class="c5"
     >
       <div>
         CID
       </div>
       <div>
         <div
-          class="c8"
+          class="c6"
         >
           <div
-            class="c9"
+            class="c7"
             color="var(--purple-medium)"
           >
             <a
@@ -1883,31 +1833,30 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
               bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g
             </a>
             <span
-              class="c10"
+              class="c8"
               color="var(--purple-medium)"
               role="button"
             >
               <svg
-                class="c11"
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+                class=""
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
                   fill="#1A0066"
                   height="12"
                   width="12"
-                  x="8"
-                  y="4"
+                  x="4"
+                  y="0"
                 />
                 <rect
                   fill="#E0D7FE"
                   height="12"
                   width="12"
-                  x="4"
-                  y="8"
+                  x="0"
+                  y="4"
                 />
               </svg>
               <span
@@ -1921,7 +1870,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
       </div>
     </div>
     <div
-      class="c7"
+      class="c5"
     >
       <div>
         Height
@@ -1931,7 +1880,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
       </div>
     </div>
     <div
-      class="c7"
+      class="c5"
     >
       <div>
         Timestamp
@@ -1942,17 +1891,17 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
     </div>
     <hr />
     <div
-      class="c7"
+      class="c5"
     >
       <div>
         From
       </div>
       <div>
         <div
-          class="c8"
+          class="c6"
         >
           <div
-            class="c9"
+            class="c7"
             color="var(--purple-medium)"
           >
             <a
@@ -1963,31 +1912,30 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
               t1z225 ... 6z6wgi
             </a>
             <span
-              class="c10"
+              class="c8"
               color="var(--purple-medium)"
               role="button"
             >
               <svg
-                class="c11"
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+                class=""
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
                   fill="#1A0066"
                   height="12"
                   width="12"
-                  x="8"
-                  y="4"
+                  x="4"
+                  y="0"
                 />
                 <rect
                   fill="#E0D7FE"
                   height="12"
                   width="12"
-                  x="4"
-                  y="8"
+                  x="0"
+                  y="4"
                 />
               </svg>
               <span
@@ -2001,17 +1949,17 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
       </div>
     </div>
     <div
-      class="c7"
+      class="c5"
     >
       <div>
         To
       </div>
       <div>
         <div
-          class="c8"
+          class="c6"
         >
           <div
-            class="c9"
+            class="c7"
             color="var(--purple-medium)"
           >
             <a
@@ -2022,31 +1970,30 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
               t1nq5k ... btuo3a
             </a>
             <span
-              class="c10"
+              class="c8"
               color="var(--purple-medium)"
               role="button"
             >
               <svg
-                class="c11"
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+                class=""
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
                   fill="#1A0066"
                   height="12"
                   width="12"
-                  x="8"
-                  y="4"
+                  x="4"
+                  y="0"
                 />
                 <rect
                   fill="#E0D7FE"
                   height="12"
                   width="12"
-                  x="4"
-                  y="8"
+                  x="0"
+                  y="4"
                 />
               </svg>
               <span
@@ -2061,7 +2008,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
     </div>
     <hr />
     <div
-      class="c7"
+      class="c5"
     >
       <div>
         Value
@@ -2071,14 +2018,14 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
       </div>
     </div>
     <div
-      class="c7"
+      class="c5"
     >
       <div>
         Method
       </div>
       <div>
         <div
-          class="c12"
+          class="c9"
           color="purple"
         >
           <span>

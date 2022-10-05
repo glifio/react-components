@@ -93,6 +93,7 @@ exports[`metamask onboarding it renders loading state 1`] = `
       class="c3"
     >
       <svg
+        class=""
         fill="none"
         height="231"
         viewBox="0 0 35 33"
