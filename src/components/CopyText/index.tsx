@@ -18,8 +18,8 @@ const CopyTextEl = styled.span`
     position: absolute;
     top: calc(50% - 0.2em);
     left: calc(100% + 0.25em);
-    opacity: 0;
     color: ${props => props.color};
+    opacity: 0;
     transform: translateY(-50%);
     transition: opacity 0.2s ease-in;
     pointer-events: none;
@@ -31,6 +31,7 @@ const CopyTextEl = styled.span`
     }
     .copy-text {
       opacity: 1;
+      pointer-events: all;
     }
   }
 `
