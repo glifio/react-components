@@ -1,19 +1,20 @@
 import {
   IconGitHub as IconGitHubComp,
-  IconGlif as IconGlifComp,
   IconSuccess as IconSuccessComp,
   IconFail as IconFailComp,
   IconPending as IconPendingComp,
-  IconSend as IconSendComp,
-  IconReceive as IconReceiveComp,
   IconClose as IconCloseComp,
   IconApproximatelyEquals as IconApproximatelyEqualsComp,
-  IconViewAccountAddress as IconViewAccountAddressComp,
   IconCopyAccountAddress as IconCopyAccountAddressComp,
   IconLedger as IconLedgerComp,
   IconViewAddress as IconViewAddressComp,
   IconEdit as IconEditComp,
-  AppIconHeaderFooter as AppIconHeaderFooterComp,
+  IconGlif as IconGlifComp,
+  IconSafe as IconSafeComp,
+  IconExplorer as IconExplorerComp,
+  IconVerifier as IconVerifierComp,
+  IconWallet as IconWalletComp,
+  IconNode as IconNodeComp,
   IconMetaMaskFlask as IconMetaMaskComp,
   IconSpeedUp as IconSpeedUpComp,
   IconCancel as IconCancelComp,
@@ -36,26 +37,16 @@ export default {
 
 export const IconGitHub = args => <IconGitHubComp {...args} />
 
-export const IconGlif = args => <IconGlifComp {...args} />
-
 export const IconSuccess = args => <IconSuccessComp {...args} />
 
 export const IconFail = args => <IconFailComp {...args} />
 
 export const IconPending = args => <IconPendingComp {...args} />
 
-export const IconSend = args => <IconSendComp {...args} />
-
-export const IconReceive = args => <IconReceiveComp {...args} />
-
 export const IconClose = args => <IconCloseComp {...args} />
 
 export const IconApproximatelyEquals = args => (
   <IconApproximatelyEqualsComp {...args} />
-)
-
-export const IconViewAccountAddress = args => (
-  <IconViewAccountAddressComp {...args} />
 )
 
 export const IconCopyAccountAddress = args => (
@@ -68,7 +59,17 @@ export const IconViewAddress = args => <IconViewAddressComp {...args} />
 
 export const IconEdit = args => <IconEditComp {...args} />
 
-export const AppIconHeaderFooter = args => <AppIconHeaderFooterComp {...args} />
+export const IconGlif = args => <IconGlifComp {...args} />
+
+export const IconSafe = args => <IconSafeComp {...args} />
+
+export const IconExplorer = args => <IconExplorerComp {...args} />
+
+export const IconVerifier = args => <IconVerifierComp {...args} />
+
+export const IconWallet = args => <IconWalletComp {...args} />
+
+export const IconNode = args => <IconNodeComp {...args} />
 
 export const IconMetaMask = args => <IconMetaMaskComp {...args} />
 
