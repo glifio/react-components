@@ -31,8 +31,8 @@ exports[`AddressLink it renders correctly 1`] = `
   position: absolute;
   top: calc(50% - 0.2em);
   left: calc(100% + 0.25em);
-  opacity: 0;
   color: var(--purple-medium);
+  opacity: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -49,6 +49,7 @@ exports[`AddressLink it renders correctly 1`] = `
 
 .c2:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c1 {

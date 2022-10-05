@@ -36,8 +36,8 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   position: absolute;
   top: calc(50% - 0.2em);
   left: calc(100% + 0.25em);
-  opacity: 0;
   color: var(--purple-medium);
+  opacity: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -54,6 +54,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
 
 .c6:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c5 {
@@ -514,8 +515,8 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   position: absolute;
   top: calc(50% - 0.2em);
   left: calc(100% + 0.25em);
-  opacity: 0;
   color: var(--purple-medium);
+  opacity: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -532,6 +533,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
 
 .c6:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c5 {
@@ -1469,8 +1471,8 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   position: absolute;
   top: calc(50% - 0.2em);
   left: calc(100% + 0.25em);
-  opacity: 0;
   color: var(--purple-medium);
+  opacity: 0;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -1487,6 +1489,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
 
 .c10:hover .copy-text {
   opacity: 1;
+  pointer-events: all;
 }
 
 .c9 {
