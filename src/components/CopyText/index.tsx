@@ -24,6 +24,7 @@ const CopyTextEl = styled.span`
     transform: translateY(-50%);
     transition: opacity 0.2s ease-in;
     pointer-events: none;
+    white-space: nowrap;
   }
 
   &:hover {
