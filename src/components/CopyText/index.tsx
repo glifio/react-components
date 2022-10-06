@@ -11,6 +11,7 @@ const CopyTextEl = styled.span`
   cursor: pointer;
 
   svg {
+    vertical-align: middle;
     transition: transform 0.1s ease-out;
   }
 
