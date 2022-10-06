@@ -39,6 +39,7 @@ exports[`MessageLink it renders correctly 1`] = `
   -webkit-transition: opacity 0.2s ease-in;
   transition: opacity 0.2s ease-in;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .c2:hover svg {
