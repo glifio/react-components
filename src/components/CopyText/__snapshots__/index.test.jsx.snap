@@ -2,8 +2,7 @@
 
 exports[`CopyText renders the story 1`] = `
 .c1 {
-  width: 24;
-  height: 24;
+  vertical-align: middle;
 }
 
 .c0 {
@@ -20,7 +19,8 @@ exports[`CopyText renders the story 1`] = `
 .c0 .copy-text {
   position: absolute;
   top: calc(50% - 0.2em);
-  left: calc(100% + 0.25em);
+  left: calc(100%);
+  padding-left: 0.5em;
   color: var(--purple-medium);
   opacity: 0;
   -webkit-transform: translateY(-50%);
@@ -49,25 +49,24 @@ exports[`CopyText renders the story 1`] = `
 >
   <svg
     class="c1"
-    fill="none"
-    height="24"
-    viewBox="0 0 24 24"
-    width="24"
+    height="16"
+    viewBox="0 0 16 16"
+    width="16"
     xmlns="http://www.w3.org/2000/svg"
   >
     <rect
       fill="#1A0066"
       height="12"
       width="12"
-      x="8"
-      y="4"
+      x="4"
+      y="0"
     />
     <rect
       fill="#E0D7FE"
       height="12"
       width="12"
-      x="4"
-      y="8"
+      x="0"
+      y="4"
     />
   </svg>
   <span

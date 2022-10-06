@@ -2,8 +2,7 @@
 
 exports[`ActorState it renders the actor state correctly 1`] = `
 .c8 {
-  width: 24;
-  height: 24;
+  vertical-align: middle;
 }
 
 .c5 h4 {
@@ -30,7 +29,8 @@ exports[`ActorState it renders the actor state correctly 1`] = `
 .c7 .copy-text {
   position: absolute;
   top: calc(50% - 0.2em);
-  left: calc(100% + 0.25em);
+  left: calc(100%);
+  padding-left: 0.5em;
   color: var(--purple-medium);
   opacity: 0;
   -webkit-transform: translateY(-50%);
@@ -57,7 +57,7 @@ exports[`ActorState it renders the actor state correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.25em;
+  gap: 0.35em;
   line-height: 1.5;
 }
 
@@ -76,7 +76,6 @@ exports[`ActorState it renders the actor state correctly 1`] = `
 .c6 > a svg {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
-  vertical-align: middle;
 }
 
 .c6 > a svg:hover {
@@ -348,25 +347,24 @@ exports[`ActorState it renders the actor state correctly 1`] = `
             >
               <svg
                 class="c8"
-                fill="none"
-                height="24"
-                viewBox="0 0 24 24"
-                width="24"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
                   fill="#1A0066"
                   height="12"
                   width="12"
-                  x="8"
-                  y="4"
+                  x="4"
+                  y="0"
                 />
                 <rect
                   fill="#E0D7FE"
                   height="12"
                   width="12"
-                  x="4"
-                  y="8"
+                  x="0"
+                  y="4"
                 />
               </svg>
               <span

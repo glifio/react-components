@@ -8,7 +8,7 @@ import { getMethodName } from '@glif/filecoin-actor-utils'
 
 import { AddressLink } from '../../LabeledText/AddressLink'
 import { ButtonV2Link } from '../../Button/V2'
-import { IconCheck, IconFail } from '../../Icons'
+import { IconCheck, IconCancel } from '../../Icons'
 import { Address, MsigTransaction } from '../../../generated/graphql'
 import { isAddrEqual } from '../../../utils/isAddrEqual'
 import { isAddressSigner } from '../../../utils/isAddressSigner'
@@ -64,13 +64,13 @@ export default function ProposalHistoryRow({
       <td>
         {isProposer ? (
           <ButtonV2Link red href={cancelHref(proposal.id)}>
-            <IconFail width='1.25rem' />
+            <IconCancel width='auto' height='1em' />
             Cancel
           </ButtonV2Link>
         ) : (
           canApprove && (
             <ButtonV2Link green href={approveHref(proposal.id)}>
-              <IconCheck width='1.75rem' />
+              <IconCheck width='auto' height='1em' />
               Approve
             </ButtonV2Link>
           )

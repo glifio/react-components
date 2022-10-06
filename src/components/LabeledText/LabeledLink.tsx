@@ -9,7 +9,7 @@ import { Colors } from '../theme'
 
 const LabeledLinkEl = styled.div`
   display: flex;
-  gap: 0.25em;
+  gap: 0.35em;
   line-height: 1.5;
 
   > a {
@@ -23,7 +23,6 @@ const LabeledLinkEl = styled.div`
 
     svg {
       transition: 0.24s ease-in-out;
-      vertical-align: middle;
 
       &:hover {
         transform: scale(1.25);

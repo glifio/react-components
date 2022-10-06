@@ -1,9 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AccountSelector it displays the accounts in a table view and option to load next account 1`] = `
-.c6 {
-  width: 24;
-  height: 24;
+.c5 {
+  vertical-align: middle;
 }
 
 .c0 {
@@ -72,21 +71,22 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   line-height: 1.5;
 }
 
-.c5 {
+.c6 {
   position: relative;
   cursor: pointer;
 }
 
-.c5 svg {
+.c6 svg {
   -webkit-transition: -webkit-transform 0.1s ease-out;
   -webkit-transition: transform 0.1s ease-out;
   transition: transform 0.1s ease-out;
 }
 
-.c5 .copy-text {
+.c6 .copy-text {
   position: absolute;
   top: calc(50% - 0.2em);
-  left: calc(100% + 0.25em);
+  left: calc(100%);
+  padding-left: 0.5em;
   color: var(--purple-medium);
   opacity: 0;
   -webkit-transform: translateY(-50%);
@@ -97,13 +97,13 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   pointer-events: none;
 }
 
-.c5:hover svg {
+.c6:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c5:hover .copy-text {
+.c6:hover .copy-text {
   opacity: 1;
   pointer-events: all;
 }
@@ -113,7 +113,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.25em;
+  gap: 0.35em;
   line-height: 1.5;
 }
 
@@ -132,7 +132,6 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
 .c4 > a svg {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
-  vertical-align: middle;
 }
 
 .c4 > a svg:hover {
@@ -379,9 +378,11 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   target="_blank"
                 >
                   <svg
-                    height="18px"
+                    class="c5 has-fill"
+                    fill="var(--black)"
+                    height="18"
                     viewBox="0 0 24 24"
-                    width="18px"
+                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -397,31 +398,30 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   </svg>
                 </a>
                 <span
-                  class="c5"
+                  class="c6"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class="c6"
-                    fill="none"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    width="24"
+                    class="c5"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
                       fill="#1A0066"
                       height="12"
                       width="12"
-                      x="8"
-                      y="4"
+                      x="4"
+                      y="0"
                     />
                     <rect
                       fill="#E0D7FE"
                       height="12"
                       width="12"
-                      x="4"
-                      y="8"
+                      x="0"
+                      y="4"
                     />
                   </svg>
                   <span
@@ -471,9 +471,11 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   target="_blank"
                 >
                   <svg
-                    height="18px"
+                    class="c5 has-fill"
+                    fill="var(--black)"
+                    height="18"
                     viewBox="0 0 24 24"
-                    width="18px"
+                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -489,31 +491,30 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   </svg>
                 </a>
                 <span
-                  class="c5"
+                  class="c6"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class="c6"
-                    fill="none"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    width="24"
+                    class="c5"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
                       fill="#1A0066"
                       height="12"
                       width="12"
-                      x="8"
-                      y="4"
+                      x="4"
+                      y="0"
                     />
                     <rect
                       fill="#E0D7FE"
                       height="12"
                       width="12"
-                      x="4"
-                      y="8"
+                      x="0"
+                      y="4"
                     />
                   </svg>
                   <span
@@ -563,9 +564,11 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   target="_blank"
                 >
                   <svg
-                    height="18px"
+                    class="c5 has-fill"
+                    fill="var(--black)"
+                    height="18"
                     viewBox="0 0 24 24"
-                    width="18px"
+                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -581,31 +584,30 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   </svg>
                 </a>
                 <span
-                  class="c5"
+                  class="c6"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class="c6"
-                    fill="none"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    width="24"
+                    class="c5"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
                       fill="#1A0066"
                       height="12"
                       width="12"
-                      x="8"
-                      y="4"
+                      x="4"
+                      y="0"
                     />
                     <rect
                       fill="#E0D7FE"
                       height="12"
                       width="12"
-                      x="4"
-                      y="8"
+                      x="0"
+                      y="4"
                     />
                   </svg>
                   <span
@@ -753,9 +755,8 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   height: calc(2em * 0.5);
 }
 
-.c8 {
-  width: 24;
-  height: 24;
+.c7 {
+  vertical-align: middle;
 }
 
 .c0 {
@@ -824,21 +825,22 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   line-height: 1.5;
 }
 
-.c7 {
+.c8 {
   position: relative;
   cursor: pointer;
 }
 
-.c7 svg {
+.c8 svg {
   -webkit-transition: -webkit-transform 0.1s ease-out;
   -webkit-transition: transform 0.1s ease-out;
   transition: transform 0.1s ease-out;
 }
 
-.c7 .copy-text {
+.c8 .copy-text {
   position: absolute;
   top: calc(50% - 0.2em);
-  left: calc(100% + 0.25em);
+  left: calc(100%);
+  padding-left: 0.5em;
   color: var(--purple-medium);
   opacity: 0;
   -webkit-transform: translateY(-50%);
@@ -849,13 +851,13 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   pointer-events: none;
 }
 
-.c7:hover svg {
+.c8:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c7:hover .copy-text {
+.c8:hover .copy-text {
   opacity: 1;
   pointer-events: all;
 }
@@ -865,7 +867,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.25em;
+  gap: 0.35em;
   line-height: 1.5;
 }
 
@@ -884,7 +886,6 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
 .c6 > a svg {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
-  vertical-align: middle;
 }
 
 .c6 > a svg:hover {
@@ -1007,9 +1008,11 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   target="_blank"
                 >
                   <svg
-                    height="18px"
+                    class="c7 has-fill"
+                    fill="var(--black)"
+                    height="18"
                     viewBox="0 0 24 24"
-                    width="18px"
+                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -1025,31 +1028,30 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   </svg>
                 </a>
                 <span
-                  class="c7"
+                  class="c8"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class="c8"
-                    fill="none"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    width="24"
+                    class="c7"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
                       fill="#1A0066"
                       height="12"
                       width="12"
-                      x="8"
-                      y="4"
+                      x="4"
+                      y="0"
                     />
                     <rect
                       fill="#E0D7FE"
                       height="12"
                       width="12"
-                      x="4"
-                      y="8"
+                      x="0"
+                      y="4"
                     />
                   </svg>
                   <span
@@ -1099,9 +1101,11 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   target="_blank"
                 >
                   <svg
-                    height="18px"
+                    class="c7 has-fill"
+                    fill="var(--black)"
+                    height="18"
                     viewBox="0 0 24 24"
-                    width="18px"
+                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -1117,31 +1121,30 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   </svg>
                 </a>
                 <span
-                  class="c7"
+                  class="c8"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class="c8"
-                    fill="none"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    width="24"
+                    class="c7"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
                       fill="#1A0066"
                       height="12"
                       width="12"
-                      x="8"
-                      y="4"
+                      x="4"
+                      y="0"
                     />
                     <rect
                       fill="#E0D7FE"
                       height="12"
                       width="12"
-                      x="4"
-                      y="8"
+                      x="0"
+                      y="4"
                     />
                   </svg>
                   <span
@@ -1191,9 +1194,11 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   target="_blank"
                 >
                   <svg
-                    height="18px"
+                    class="c7 has-fill"
+                    fill="var(--black)"
+                    height="18"
                     viewBox="0 0 24 24"
-                    width="18px"
+                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -1209,31 +1214,30 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   </svg>
                 </a>
                 <span
-                  class="c7"
+                  class="c8"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class="c8"
-                    fill="none"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    width="24"
+                    class="c7"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
                       fill="#1A0066"
                       height="12"
                       width="12"
-                      x="8"
-                      y="4"
+                      x="4"
+                      y="0"
                     />
                     <rect
                       fill="#E0D7FE"
                       height="12"
                       width="12"
-                      x="4"
-                      y="8"
+                      x="0"
+                      y="4"
                     />
                   </svg>
                   <span

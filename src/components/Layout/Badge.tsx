@@ -21,6 +21,14 @@ const BadgeEl = styled.div`
         return css`
           color: var(--${props.color}-medium);
           background-color: var(--${props.color}-light);
+
+          svg.has-fill {
+            fill: var(--${props.color}-medium);
+          }
+
+          svg.has-stroke {
+            stroke: var(--${props.color}-medium);
+          }
         `
       case 'yellow':
       case 'red':
@@ -30,6 +38,14 @@ const BadgeEl = styled.div`
         return css`
           color: var(--${props.color}-dark);
           background-color: var(--${props.color}-light);
+
+          svg.has-fill {
+            fill: var(--${props.color}-dark);
+          }
+
+          svg.has-stroke {
+            stroke: var(--${props.color}-dark);
+          }
         `
     }
   }}

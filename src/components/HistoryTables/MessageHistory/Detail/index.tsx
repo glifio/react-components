@@ -110,13 +110,13 @@ export default function MessageDetail(props: MessageDetailProps) {
             <>
               {speedUpHref && !isProd && (
                 <ButtonV2Link green href={speedUpHref} retainParams>
-                  <IconSpeedUp width='1.25rem' />
+                  <IconSpeedUp width='auto' height='1em' />
                   Speed up
                 </ButtonV2Link>
               )}
               {cancelHref && !isProd && (
                 <ButtonV2Link red href={cancelHref} retainParams>
-                  <IconCancel width='0.8rem' />
+                  <IconCancel width='auto' height='1em' />
                   Cancel
                 </ButtonV2Link>
               )}

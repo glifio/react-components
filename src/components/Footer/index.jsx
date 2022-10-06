@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { SmartLink } from '../SmartLink'
-import { devices, Spaces } from '../theme'
-import { AppIconHeaderFooter } from '../Icons'
+import { Colors, devices, Spaces } from '../theme'
+import { IconGlif } from '../Icons'
 import {
   GLIF_EMAIL,
   GLIF_CODE,
@@ -60,8 +60,13 @@ const Copyright = styled.div`
   }
 `
 
-const AppIconStyled = styled(AppIconHeaderFooter)`
-  @media (max-width: ${devices.tablet}) {
+const AppIconWrapper = styled.span`
+  display: inline-block;
+  height: 35px;
+  margin-bottom: 1.75em;
+
+  @media (min-width: ${devices.phone}) {
+    height: 45px;
     margin-bottom: 2em;
   }
 
@@ -69,6 +74,13 @@ const AppIconStyled = styled(AppIconHeaderFooter)`
     position: absolute;
     left: 30px;
     top: 30px;
+    height: 55px;
+    margin-bottom: 0;
+  }
+
+  svg {
+    width: auto;
+    height: 100%;
   }
 `
 
@@ -77,7 +89,9 @@ export const Footer = () => {
   return (
     <>
       <FooterWrapper>
-        <AppIconStyled footer />
+        <AppIconWrapper>
+          <IconGlif color={Colors.WHITE} />
+        </AppIconWrapper>
         <FooterContent>
           <Ul>
             <Li>

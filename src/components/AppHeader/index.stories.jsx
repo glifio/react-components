@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { AppHeader } from './index'
-import { AppIconHeaderFooter, SafeIconHeaderFooter } from '../Icons'
+import { IconGlif, IconSafe } from '../Icons'
 import { SearchAddressMessage } from '../SearchBar/SearchAddressMessage'
 import { NetworkSelector } from '../NetworkSelector'
 
@@ -13,7 +13,7 @@ const Template = args => <AppHeader {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  appIcon: <AppIconHeaderFooter iconStyle='dark' />,
+  appIcon: <IconGlif />,
   appUrl: 'https://glif.io',
   appHeaderLinks: [
     {
@@ -35,7 +35,7 @@ export const App = Template.bind({})
 App.args = {
   logout: () => {},
   connection: <NetworkSelector errorCallback={() => {}} />,
-  appIcon: <SafeIconHeaderFooter />,
+  appIcon: <IconSafe />,
   appUrl: 'https://safe.glif.io',
   addressLinks: [
     {
@@ -79,7 +79,7 @@ const SearchBarWrapper = styled.div`
 
 export const Search = Template.bind({})
 Search.args = {
-  appIcon: <AppIconHeaderFooter iconStyle='dark' />,
+  appIcon: <IconGlif />,
   appUrl: 'https://glif.io',
   customHeaderComps: (
     <SearchBarWrapper>

@@ -2,10 +2,10 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
 import { SmartLink } from '../SmartLink'
-import { AppIconHeaderFooter } from '../Icons'
+import { IconGlif } from '../Icons'
 import { LabeledText, LabeledTextProps } from '../LabeledText'
 import { AddressLink, AddressLinkProps } from '../LabeledText/AddressLink'
-import { Colors, Spaces } from '../theme'
+import { Colors, devices, Spaces } from '../theme'
 
 const Header = styled.header`
   position: sticky;
@@ -58,6 +58,24 @@ const NavButton = styled.span`
   ${navItemStyle}
 `
 
+const AppIconWrapper = styled.span`
+  display: inline-block;
+  height: 35px;
+
+  @media (min-width: ${devices.phone}) {
+    height: 45px;
+  }
+
+  @media (min-width: ${devices.tablet}) {
+    height: 55px;
+  }
+
+  svg {
+    width: auto;
+    height: 100%;
+  }
+`
+
 export function AppHeader(props: AppHeaderProps) {
   const router = useRouter()
   const {
@@ -74,7 +92,13 @@ export function AppHeader(props: AppHeaderProps) {
     <Header>
       <NavLeft>
         {appIcon &&
-          (appUrl ? <SmartLink href={appUrl}>{appIcon}</SmartLink> : appIcon)}
+          (appUrl ? (
+            <SmartLink href={appUrl}>
+              <AppIconWrapper>{appIcon}</AppIconWrapper>
+            </SmartLink>
+          ) : (
+            <AppIconWrapper>{appIcon}</AppIconWrapper>
+          ))}
         {addressLinks?.map((addressLink, index) => (
           <AddressLink key={index} {...addressLink} />
         ))}
@@ -136,6 +160,6 @@ export const AppHeaderPropTypes = {
 
 AppHeader.propTypes = AppHeaderPropTypes
 AppHeader.defaultProps = {
-  appIcon: <AppIconHeaderFooter iconStyle='dark' />,
+  appIcon: <IconGlif />,
   appUrl: '/'
 }
