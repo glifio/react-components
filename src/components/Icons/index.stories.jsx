@@ -14,7 +14,7 @@ import {
   IconVerifier as IconVerifierComp,
   IconWallet as IconWalletComp,
   IconNode as IconNodeComp,
-  IconMetaMaskFlask as IconMetaMaskComp,
+  IconMetaMask as IconMetaMaskComp,
   IconSpeedUp as IconSpeedUpComp,
   IconCancel as IconCancelComp,
   IconCheck as IconCheckComp,

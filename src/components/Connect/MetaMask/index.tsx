@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
-import { IconMetaMaskFlask } from '../../Icons'
+import { IconMetaMask } from '../../Icons'
 import { HelperText } from './Helper'
 import {
   useWalletProvider,
@@ -92,7 +92,7 @@ export const MetaMask = ({ next, back }: MetamaskProps) => {
     <TwoColumns>
       <OneColumnCentered>
         <MMFadeIn>
-          <IconMetaMaskFlask height='231' width='245' />
+          <IconMetaMask height='231' width='245' />
         </MMFadeIn>
       </OneColumnCentered>
       <OneColumnCentered>

@@ -449,7 +449,7 @@ IconNode.propTypes = IconPropTypes
  * MetaMaskFlask
  */
 
-export const IconMetaMaskFlask = ({
+export const IconMetaMask = ({
   width,
   height,
   color,
@@ -782,7 +782,7 @@ export const IconMetaMaskFlask = ({
   </IconBase>
 )
 
-IconMetaMaskFlask.propTypes = IconPropTypes
+IconMetaMask.propTypes = IconPropTypes
 
 /**
  * Speed Up
