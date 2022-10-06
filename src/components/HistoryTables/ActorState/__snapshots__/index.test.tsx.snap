@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ActorState it renders the actor state correctly 1`] = `
+.c8 {
+  vertical-align: middle;
+}
+
 .c5 h4 {
   margin: 0;
   color: var(--gray-dark);
@@ -25,7 +29,8 @@ exports[`ActorState it renders the actor state correctly 1`] = `
 .c7 .copy-text {
   position: absolute;
   top: calc(50% - 0.2em);
-  left: calc(100% + 0.25em);
+  left: calc(100%);
+  padding-left: 0.5em;
   color: var(--purple-medium);
   opacity: 0;
   -webkit-transform: translateY(-50%);
@@ -52,7 +57,7 @@ exports[`ActorState it renders the actor state correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.25em;
+  gap: 0.35em;
   line-height: 1.5;
 }
 
@@ -71,7 +76,6 @@ exports[`ActorState it renders the actor state correctly 1`] = `
 .c6 > a svg {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
-  vertical-align: middle;
 }
 
 .c6 > a svg:hover {
@@ -342,7 +346,7 @@ exports[`ActorState it renders the actor state correctly 1`] = `
               role="button"
             >
               <svg
-                class=""
+                class="c8"
                 height="16"
                 viewBox="0 0 16 16"
                 width="16"

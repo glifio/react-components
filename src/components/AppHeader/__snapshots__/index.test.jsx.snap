@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AppHeader renders the box 1`] = `
+.c3 {
+  vertical-align: middle;
+}
+
 .c0 {
   position: -webkit-sticky;
   position: sticky;
@@ -44,7 +48,7 @@ exports[`AppHeader renders the box 1`] = `
   flex-grow: 1;
 }
 
-.c3 {
+.c4 {
   gap: 0;
   -webkit-box-flex: 0;
   -webkit-flex-grow: 0;
@@ -56,7 +60,7 @@ exports[`AppHeader renders the box 1`] = `
   align-items: stretch;
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -73,8 +77,8 @@ exports[`AppHeader renders the box 1`] = `
   cursor: pointer;
 }
 
-.c4:hover,
-.c4.active {
+.c5:hover,
+.c5.active {
   color: var(--purple-medium);
 }
 
@@ -115,7 +119,7 @@ exports[`AppHeader renders the box 1`] = `
         class="c2"
       >
         <svg
-          class="has-fill"
+          class="c3 has-fill"
           clip-rule="evenodd"
           fill="var(--black)"
           fill-rule="evenodd"
@@ -141,10 +145,10 @@ exports[`AppHeader renders the box 1`] = `
     </a>
   </nav>
   <nav
-    class="c1 c3"
+    class="c1 c4"
   >
     <a
-      class="c4"
+      class="c5"
       href="https://glif.io/blog"
       rel="noreferrer noopener"
       target="_blank"
@@ -152,7 +156,7 @@ exports[`AppHeader renders the box 1`] = `
       Blog
     </a>
     <a
-      class="c4"
+      class="c5"
       href="https://github.com/glifio"
       rel="noreferrer noopener"
       target="_blank"
@@ -160,7 +164,7 @@ exports[`AppHeader renders the box 1`] = `
       Code
     </a>
     <a
-      class="c4"
+      class="c5"
       href="https://lotus.filecoin.io/docs/developers/hosted-lotus"
       rel="noreferrer noopener"
       target="_blank"

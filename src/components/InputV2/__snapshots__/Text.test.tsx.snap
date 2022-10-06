@@ -43,6 +43,10 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
   color: var(--red-medium);
 }
 
+.c2 {
+  vertical-align: middle;
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -134,7 +138,7 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
       
     </div>
     <svg
-      class="has-fill"
+      class="c2 has-fill"
       clip-rule="evenodd"
       fill="var(--purple-medium)"
       fill-rule="evenodd"

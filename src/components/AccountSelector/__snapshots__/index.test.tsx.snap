@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AccountSelector it displays the accounts in a table view and option to load next account 1`] = `
+.c5 {
+  vertical-align: middle;
+}
+
 .c0 {
   padding: 1.5em;
   border-radius: 8px;
@@ -41,7 +45,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   border-color: var(--gray-medium);
 }
 
-.c6 {
+.c7 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -50,7 +54,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   margin: 1.5em 0;
 }
 
-.c7 {
+.c8 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -67,21 +71,22 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   line-height: 1.5;
 }
 
-.c5 {
+.c6 {
   position: relative;
   cursor: pointer;
 }
 
-.c5 svg {
+.c6 svg {
   -webkit-transition: -webkit-transform 0.1s ease-out;
   -webkit-transition: transform 0.1s ease-out;
   transition: transform 0.1s ease-out;
 }
 
-.c5 .copy-text {
+.c6 .copy-text {
   position: absolute;
   top: calc(50% - 0.2em);
-  left: calc(100% + 0.25em);
+  left: calc(100%);
+  padding-left: 0.5em;
   color: var(--purple-medium);
   opacity: 0;
   -webkit-transform: translateY(-50%);
@@ -92,13 +97,13 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   pointer-events: none;
 }
 
-.c5:hover svg {
+.c6:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c5:hover .copy-text {
+.c6:hover .copy-text {
   opacity: 1;
   pointer-events: all;
 }
@@ -108,7 +113,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.25em;
+  gap: 0.35em;
   line-height: 1.5;
 }
 
@@ -127,7 +132,6 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
 .c4 > a svg {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
-  vertical-align: middle;
 }
 
 .c4 > a svg:hover {
@@ -167,7 +171,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--purple-medium);
 }
 
-.c10 {
+.c11 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -194,30 +198,30 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   font-size: 1.25em;
 }
 
-.c10 svg path {
+.c11 svg path {
   stroke: var(--black);
 }
 
-.c10:hover {
+.c11:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c10:hover svg path {
+.c11:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c10:active {
+.c11:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c10:active svg path {
+.c11:active svg path {
   stroke: var(--white) !important;
 }
 
-.c8 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -234,7 +238,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   justify-content: space-between;
 }
 
-.c8 > *:first-child {
+.c9 > *:first-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -244,26 +248,26 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   flex-direction: column;
 }
 
-.c8 > *:last-child:not(.toggle-wrapper) {
+.c9 > *:last-child:not(.toggle-wrapper) {
   -webkit-flex: 0 0 65%;
   -ms-flex: 0 0 65%;
   flex: 0 0 65%;
 }
 
-.c8 span.info,
-.c8 span.error {
+.c9 span.info,
+.c9 span.error {
   font-size: 0.875rem;
 }
 
-.c8 span.error {
+.c9 span.error {
   color: var(--red-medium);
 }
 
-.c9 .toggle-wrapper {
+.c10 .toggle-wrapper {
   position: relative;
 }
 
-.c9 input {
+.c10 input {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -272,7 +276,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   opacity: 0;
 }
 
-.c9 .toggle {
+.c10 .toggle {
   display: inline-block;
   position: relative;
   width: 2.25em;
@@ -282,7 +286,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--blue-medium);
 }
 
-.c9 .toggle::after {
+.c10 .toggle::after {
   content: '';
   position: absolute;
   top: 0;
@@ -293,12 +297,12 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
   background-color: var(--white);
 }
 
-.c9 input:checked ~ .toggle {
+.c10 input:checked ~ .toggle {
   border-color: var(--blue-dark);
   background-color: var(--blue-dark);
 }
 
-.c9 input:checked ~ .toggle::after {
+.c10 input:checked ~ .toggle::after {
   left: auto;
   right: 0;
 }
@@ -374,7 +378,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   target="_blank"
                 >
                   <svg
-                    class="has-fill"
+                    class="c5 has-fill"
                     fill="var(--black)"
                     height="18"
                     viewBox="0 0 24 24"
@@ -394,12 +398,12 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   </svg>
                 </a>
                 <span
-                  class="c5"
+                  class="c6"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class=""
+                    class="c5"
                     height="16"
                     viewBox="0 0 16 16"
                     width="16"
@@ -467,7 +471,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   target="_blank"
                 >
                   <svg
-                    class="has-fill"
+                    class="c5 has-fill"
                     fill="var(--black)"
                     height="18"
                     viewBox="0 0 24 24"
@@ -487,12 +491,12 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   </svg>
                 </a>
                 <span
-                  class="c5"
+                  class="c6"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class=""
+                    class="c5"
                     height="16"
                     viewBox="0 0 16 16"
                     width="16"
@@ -560,7 +564,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   target="_blank"
                 >
                   <svg
-                    class="has-fill"
+                    class="c5 has-fill"
                     fill="var(--black)"
                     height="18"
                     viewBox="0 0 24 24"
@@ -580,12 +584,12 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   </svg>
                 </a>
                 <span
-                  class="c5"
+                  class="c6"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class=""
+                    class="c5"
                     height="16"
                     viewBox="0 0 16 16"
                     width="16"
@@ -628,10 +632,10 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
       </tbody>
     </table>
     <div
-      class="c6 c7"
+      class="c7 c8"
     >
       <label
-        class="c8 c9"
+        class="c9 c10"
       >
         <div>
           <span>
@@ -651,7 +655,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
         </div>
       </label>
       <button
-        class="c10"
+        class="c11"
       >
         Next account
       </button>
@@ -751,6 +755,10 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   height: calc(2em * 0.5);
 }
 
+.c7 {
+  vertical-align: middle;
+}
+
 .c0 {
   padding: 1.5em;
   border-radius: 8px;
@@ -817,21 +825,22 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   line-height: 1.5;
 }
 
-.c7 {
+.c8 {
   position: relative;
   cursor: pointer;
 }
 
-.c7 svg {
+.c8 svg {
   -webkit-transition: -webkit-transform 0.1s ease-out;
   -webkit-transition: transform 0.1s ease-out;
   transition: transform 0.1s ease-out;
 }
 
-.c7 .copy-text {
+.c8 .copy-text {
   position: absolute;
   top: calc(50% - 0.2em);
-  left: calc(100% + 0.25em);
+  left: calc(100%);
+  padding-left: 0.5em;
   color: var(--purple-medium);
   opacity: 0;
   -webkit-transform: translateY(-50%);
@@ -842,13 +851,13 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   pointer-events: none;
 }
 
-.c7:hover svg {
+.c8:hover svg {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
 }
 
-.c7:hover .copy-text {
+.c8:hover .copy-text {
   opacity: 1;
   pointer-events: all;
 }
@@ -858,7 +867,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.25em;
+  gap: 0.35em;
   line-height: 1.5;
 }
 
@@ -877,7 +886,6 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
 .c6 > a svg {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
-  vertical-align: middle;
 }
 
 .c6 > a svg:hover {
@@ -1000,7 +1008,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   target="_blank"
                 >
                   <svg
-                    class="has-fill"
+                    class="c7 has-fill"
                     fill="var(--black)"
                     height="18"
                     viewBox="0 0 24 24"
@@ -1020,12 +1028,12 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   </svg>
                 </a>
                 <span
-                  class="c7"
+                  class="c8"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class=""
+                    class="c7"
                     height="16"
                     viewBox="0 0 16 16"
                     width="16"
@@ -1093,7 +1101,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   target="_blank"
                 >
                   <svg
-                    class="has-fill"
+                    class="c7 has-fill"
                     fill="var(--black)"
                     height="18"
                     viewBox="0 0 24 24"
@@ -1113,12 +1121,12 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   </svg>
                 </a>
                 <span
-                  class="c7"
+                  class="c8"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class=""
+                    class="c7"
                     height="16"
                     viewBox="0 0 16 16"
                     width="16"
@@ -1186,7 +1194,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   target="_blank"
                 >
                   <svg
-                    class="has-fill"
+                    class="c7 has-fill"
                     fill="var(--black)"
                     height="18"
                     viewBox="0 0 24 24"
@@ -1206,12 +1214,12 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   </svg>
                 </a>
                 <span
-                  class="c7"
+                  class="c8"
                   color="var(--purple-medium)"
                   role="button"
                 >
                   <svg
-                    class=""
+                    class="c7"
                     height="16"
                     viewBox="0 0 16 16"
                     width="16"

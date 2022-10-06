@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Message history it renders messages 1`] = `
-.c5 {
+.c6 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -21,44 +21,55 @@ exports[`Message history it renders messages 1`] = `
   background-color: var(--yellow-light);
 }
 
-.c3 h4 {
+.c6 svg.has-fill {
+  fill: var(--yellow-dark);
+}
+
+.c6 svg.has-stroke {
+  stroke: var(--yellow-dark);
+}
+
+.c2 {
+  vertical-align: middle;
+}
+
+.c4 h4 {
   margin: 0;
   color: var(--gray-dark);
 }
 
-.c3 p {
+.c4 p {
   margin: 0;
   line-height: 1.5;
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.25em;
+  gap: 0.35em;
   line-height: 1.5;
 }
 
-.c4 > a {
+.c5 > a {
   color: var(--purple-medium);
   -webkit-text-decoration: none;
   text-decoration: none;
 }
 
-.c4 > a:hover {
+.c5 > a:hover {
   color: var(--purple-medium);
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c4 > a svg {
+.c5 > a svg {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
-  vertical-align: middle;
 }
 
-.c4 > a svg:hover {
+.c5 > a svg:hover {
   -webkit-transform: scale(1.25);
   -ms-transform: scale(1.25);
   transform: scale(1.25);
@@ -101,7 +112,7 @@ exports[`Message history it renders messages 1`] = `
   color: var(--purple-medium);
 }
 
-.c2 {
+.c3 {
   color: var(--yellow-dark);
 }
 
@@ -119,7 +130,7 @@ exports[`Message history it renders messages 1`] = `
         class="side-bar"
       >
         <svg
-          class="has-stroke"
+          class="c2 has-stroke"
           fill="none"
           height="20"
           stroke="var(--yellow-dark)"
@@ -135,7 +146,7 @@ exports[`Message history it renders messages 1`] = `
           />
         </svg>
         <span
-          class="c2"
+          class="c3"
         >
           Syncing data from Mainnet
         </span>
@@ -188,10 +199,10 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <span>
@@ -202,7 +213,7 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c5"
+              class="c6"
               color="yellow"
             >
               <span>
@@ -212,10 +223,10 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <a
@@ -251,10 +262,10 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <span>
@@ -265,7 +276,7 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c5"
+              class="c6"
               color="yellow"
             >
               <span>
@@ -275,10 +286,10 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <a
@@ -314,10 +325,10 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <span>
@@ -328,7 +339,7 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c5"
+              class="c6"
               color="yellow"
             >
               <span>
@@ -338,10 +349,10 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <a
@@ -377,10 +388,10 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <span>
@@ -391,7 +402,7 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c5"
+              class="c6"
               color="yellow"
             >
               <span>
@@ -401,10 +412,10 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <a
@@ -440,10 +451,10 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <span>
@@ -454,7 +465,7 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c5"
+              class="c6"
               color="yellow"
             >
               <span>
@@ -464,10 +475,10 @@ exports[`Message history it renders messages 1`] = `
           </td>
           <td>
             <div
-              class="c3"
+              class="c4"
             >
               <div
-                class="c4"
+                class="c5"
                 color="var(--purple-medium)"
               >
                 <a
@@ -491,6 +502,10 @@ exports[`Message history it renders messages 1`] = `
 `;
 
 exports[`Message history it renders no message history correctly with historical data missing warning 1`] = `
+.c2 {
+  vertical-align: middle;
+}
+
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -527,7 +542,7 @@ exports[`Message history it renders no message history correctly with historical
   color: var(--purple-medium);
 }
 
-.c2 {
+.c3 {
   color: var(--yellow-dark);
 }
 
@@ -545,7 +560,7 @@ exports[`Message history it renders no message history correctly with historical
         class="side-bar"
       >
         <svg
-          class="has-stroke"
+          class="c2 has-stroke"
           fill="none"
           height="20"
           stroke="var(--yellow-dark)"
@@ -561,7 +576,7 @@ exports[`Message history it renders no message history correctly with historical
           />
         </svg>
         <span
-          class="c2"
+          class="c3"
         >
           Syncing data from Mainnet
         </span>

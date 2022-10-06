@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
+.c3 {
+  vertical-align: middle;
+}
+
 .c1 {
   padding: 1.5em;
   border-radius: 8px;
@@ -33,7 +37,7 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   color: var(--white);
 }
 
-.c3 {
+.c4 {
   background-color: var(--white);
   box-shadow: 0 0 0.5em var(--gray-light);
 }
@@ -47,7 +51,7 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   border-color: var(--red-dark);
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -56,7 +60,7 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   margin: 1.5em 0;
 }
 
-.c5 {
+.c6 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -88,7 +92,7 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   gap: var(--space-m);
 }
 
-.c6 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -115,30 +119,30 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   font-size: 1.25em;
 }
 
-.c6 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c6:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c6:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c6:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c6:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -168,40 +172,40 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
   background: var(--green-medium);
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--black);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c7:active {
+.c8:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c7:active svg path {
+.c8:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--white);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--green-medium);
   border-color: var(--green-medium);
   background: var(--white);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--green-medium);
 }
 
@@ -212,7 +216,7 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
     class="c1 c2"
   >
     <svg
-      class="has-stroke"
+      class="c3 has-stroke"
       fill="none"
       height="20"
       stroke="var(--red-dark)"
@@ -232,7 +236,7 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
     </p>
   </div>
   <div
-    class="c1 c3"
+    class="c1 c4"
   >
     <h2>
       Connect with Ledger Device
@@ -248,16 +252,16 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
     </a>
   </div>
   <div
-    class="c4 c5"
+    class="c5 c6"
   >
     <button
-      class="c6"
+      class="c7"
       type="button"
     >
       Back
     </button>
     <button
-      class="c7"
+      class="c8"
     >
       Connect
     </button>
@@ -266,6 +270,10 @@ exports[`Ledger configuration it renders busy error in the UI correctly 1`] = `
 `;
 
 exports[`Ledger configuration it renders connectedFailure ledger error in the UI correctly 1`] = `
+.c3 {
+  vertical-align: middle;
+}
+
 .c1 {
   padding: 1.5em;
   border-radius: 8px;
@@ -298,7 +306,7 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   color: var(--white);
 }
 
-.c3 {
+.c4 {
   background-color: var(--white);
   box-shadow: 0 0 0.5em var(--gray-light);
 }
@@ -312,7 +320,7 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   border-color: var(--red-dark);
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -321,7 +329,7 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   margin: 1.5em 0;
 }
 
-.c5 {
+.c6 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -353,7 +361,7 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   gap: var(--space-m);
 }
 
-.c6 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -380,30 +388,30 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   font-size: 1.25em;
 }
 
-.c6 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c6:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c6:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c6:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c6:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -433,40 +441,40 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
   background: var(--green-medium);
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--black);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c7:active {
+.c8:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c7:active svg path {
+.c8:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--white);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--green-medium);
   border-color: var(--green-medium);
   background: var(--white);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--green-medium);
 }
 
@@ -477,7 +485,7 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
     class="c1 c2"
   >
     <svg
-      class="has-stroke"
+      class="c3 has-stroke"
       fill="none"
       height="20"
       stroke="var(--red-dark)"
@@ -497,7 +505,7 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
     </p>
   </div>
   <div
-    class="c1 c3"
+    class="c1 c4"
   >
     <h2>
       Connect with Ledger Device
@@ -513,16 +521,16 @@ exports[`Ledger configuration it renders connectedFailure ledger error in the UI
     </a>
   </div>
   <div
-    class="c4 c5"
+    class="c5 c6"
   >
     <button
-      class="c6"
+      class="c7"
       type="button"
     >
       Back
     </button>
     <button
-      class="c7"
+      class="c8"
     >
       Connect
     </button>
@@ -764,6 +772,10 @@ exports[`Ledger configuration it renders correctly 1`] = `
 `;
 
 exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI correctly 1`] = `
+.c3 {
+  vertical-align: middle;
+}
+
 .c1 {
   padding: 1.5em;
   border-radius: 8px;
@@ -796,7 +808,7 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   color: var(--white);
 }
 
-.c3 {
+.c4 {
   background-color: var(--white);
   box-shadow: 0 0 0.5em var(--gray-light);
 }
@@ -810,7 +822,7 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   border-color: var(--red-dark);
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -819,7 +831,7 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   margin: 1.5em 0;
 }
 
-.c5 {
+.c6 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -851,7 +863,7 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   gap: var(--space-m);
 }
 
-.c6 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -878,30 +890,30 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   font-size: 1.25em;
 }
 
-.c6 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c6:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c6:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c6:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c6:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -931,40 +943,40 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
   background: var(--green-medium);
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--black);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c7:active {
+.c8:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c7:active svg path {
+.c8:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--white);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--green-medium);
   border-color: var(--green-medium);
   background: var(--white);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--green-medium);
 }
 
@@ -975,7 +987,7 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
     class="c1 c2"
   >
     <svg
-      class="has-stroke"
+      class="c3 has-stroke"
       fill="none"
       height="20"
       stroke="var(--red-dark)"
@@ -995,7 +1007,7 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
     </p>
   </div>
   <div
-    class="c1 c3"
+    class="c1 c4"
   >
     <h2>
       Connect with Ledger Device
@@ -1011,16 +1023,16 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
     </a>
   </div>
   <div
-    class="c4 c5"
+    class="c5 c6"
   >
     <button
-      class="c6"
+      class="c7"
       type="button"
     >
       Back
     </button>
     <button
-      class="c7"
+      class="c8"
     >
       Connect
     </button>
@@ -1029,6 +1041,10 @@ exports[`Ledger configuration it renders filecoinAppNotOpen error in the UI corr
 `;
 
 exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctly 1`] = `
+.c3 {
+  vertical-align: middle;
+}
+
 .c1 {
   padding: 1.5em;
   border-radius: 8px;
@@ -1061,7 +1077,7 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   color: var(--white);
 }
 
-.c3 {
+.c4 {
   background-color: var(--white);
   box-shadow: 0 0 0.5em var(--gray-light);
 }
@@ -1075,7 +1091,7 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   border-color: var(--red-dark);
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1084,7 +1100,7 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   margin: 1.5em 0;
 }
 
-.c5 {
+.c6 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -1116,7 +1132,7 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   gap: var(--space-m);
 }
 
-.c6 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1143,30 +1159,30 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   font-size: 1.25em;
 }
 
-.c6 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c6:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c6:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c6:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c6:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1196,40 +1212,40 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
   background: var(--green-medium);
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--black);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c7:active {
+.c8:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c7:active svg path {
+.c8:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--white);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--green-medium);
   border-color: var(--green-medium);
   background: var(--white);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--green-medium);
 }
 
@@ -1240,7 +1256,7 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
     class="c1 c2"
   >
     <svg
-      class="has-stroke"
+      class="c3 has-stroke"
       fill="none"
       height="20"
       stroke="var(--red-dark)"
@@ -1263,7 +1279,7 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
     </p>
   </div>
   <div
-    class="c1 c3"
+    class="c1 c4"
   >
     <h2>
       Connect with Ledger Device
@@ -1279,16 +1295,16 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
     </a>
   </div>
   <div
-    class="c4 c5"
+    class="c5 c6"
   >
     <button
-      class="c6"
+      class="c7"
       type="button"
     >
       Back
     </button>
     <button
-      class="c7"
+      class="c8"
     >
       Connect
     </button>
@@ -1297,6 +1313,10 @@ exports[`Ledger configuration it renders inUseByAnotherApp ledger error correctl
 `;
 
 exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
+.c3 {
+  vertical-align: middle;
+}
+
 .c1 {
   padding: 1.5em;
   border-radius: 8px;
@@ -1329,7 +1349,7 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   color: var(--white);
 }
 
-.c3 {
+.c4 {
   background-color: var(--white);
   box-shadow: 0 0 0.5em var(--gray-light);
 }
@@ -1343,7 +1363,7 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   border-color: var(--red-dark);
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1352,7 +1372,7 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   margin: 1.5em 0;
 }
 
-.c5 {
+.c6 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -1384,7 +1404,7 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   gap: var(--space-m);
 }
 
-.c6 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1411,30 +1431,30 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   font-size: 1.25em;
 }
 
-.c6 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c6:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c6:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c6:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c6:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1464,40 +1484,40 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
   background: var(--green-medium);
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--black);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c7:active {
+.c8:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c7:active svg path {
+.c8:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--white);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--green-medium);
   border-color: var(--green-medium);
   background: var(--white);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--green-medium);
 }
 
@@ -1508,7 +1528,7 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
     class="c1 c2"
   >
     <svg
-      class="has-stroke"
+      class="c3 has-stroke"
       fill="none"
       height="20"
       stroke="var(--red-dark)"
@@ -1528,7 +1548,7 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
     </p>
   </div>
   <div
-    class="c1 c3"
+    class="c1 c4"
   >
     <h2>
       Connect with Ledger Device
@@ -1544,16 +1564,16 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
     </a>
   </div>
   <div
-    class="c4 c5"
+    class="c5 c6"
   >
     <button
-      class="c6"
+      class="c7"
       type="button"
     >
       Back
     </button>
     <button
-      class="c7"
+      class="c8"
     >
       Connect
     </button>
@@ -1562,6 +1582,10 @@ exports[`Ledger configuration it renders locked ledger error correctly 1`] = `
 `;
 
 exports[`Ledger configuration it renders replug error correctly 1`] = `
+.c3 {
+  vertical-align: middle;
+}
+
 .c1 {
   padding: 1.5em;
   border-radius: 8px;
@@ -1594,7 +1618,7 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   color: var(--white);
 }
 
-.c3 {
+.c4 {
   background-color: var(--white);
   box-shadow: 0 0 0.5em var(--gray-light);
 }
@@ -1608,7 +1632,7 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   border-color: var(--red-dark);
 }
 
-.c4 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1617,7 +1641,7 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   margin: 1.5em 0;
 }
 
-.c5 {
+.c6 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -1649,7 +1673,7 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   gap: var(--space-m);
 }
 
-.c6 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1676,30 +1700,30 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   font-size: 1.25em;
 }
 
-.c6 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c6:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c6:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c6:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c6:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 {
+.c8 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1729,40 +1753,40 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
   background: var(--green-medium);
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--black);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c7:active {
+.c8:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c7:active svg path {
+.c8:active svg path {
   stroke: var(--white) !important;
 }
 
-.c7 svg path {
+.c8 svg path {
   stroke: var(--white);
 }
 
-.c7:hover {
+.c8:hover {
   color: var(--green-medium);
   border-color: var(--green-medium);
   background: var(--white);
 }
 
-.c7:hover svg path {
+.c8:hover svg path {
   stroke: var(--green-medium);
 }
 
@@ -1773,7 +1797,7 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
     class="c1 c2"
   >
     <svg
-      class="has-stroke"
+      class="c3 has-stroke"
       fill="none"
       height="20"
       stroke="var(--red-dark)"
@@ -1793,7 +1817,7 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
     </p>
   </div>
   <div
-    class="c1 c3"
+    class="c1 c4"
   >
     <h2>
       Connect with Ledger Device
@@ -1809,16 +1833,16 @@ exports[`Ledger configuration it renders replug error correctly 1`] = `
     </a>
   </div>
   <div
-    class="c4 c5"
+    class="c5 c6"
   >
     <button
-      class="c6"
+      class="c7"
       type="button"
     >
       Back
     </button>
     <button
-      class="c7"
+      class="c8"
     >
       Connect
     </button>

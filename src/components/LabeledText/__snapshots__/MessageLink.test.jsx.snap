@@ -11,6 +11,10 @@ exports[`MessageLink it renders correctly 1`] = `
   line-height: 1.5;
 }
 
+.c3 {
+  vertical-align: middle;
+}
+
 .c2 {
   position: relative;
   cursor: pointer;
@@ -25,7 +29,8 @@ exports[`MessageLink it renders correctly 1`] = `
 .c2 .copy-text {
   position: absolute;
   top: calc(50% - 0.2em);
-  left: calc(100% + 0.25em);
+  left: calc(100%);
+  padding-left: 0.5em;
   color: var(--purple-medium);
   opacity: 0;
   -webkit-transform: translateY(-50%);
@@ -52,7 +57,7 @@ exports[`MessageLink it renders correctly 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.25em;
+  gap: 0.35em;
   line-height: 1.5;
 }
 
@@ -71,7 +76,6 @@ exports[`MessageLink it renders correctly 1`] = `
 .c1 > a svg {
   -webkit-transition: 0.24s ease-in-out;
   transition: 0.24s ease-in-out;
-  vertical-align: middle;
 }
 
 .c1 > a svg:hover {
@@ -104,7 +108,7 @@ exports[`MessageLink it renders correctly 1`] = `
       role="button"
     >
       <svg
-        class=""
+        class="c3"
         height="16"
         viewBox="0 0 16 16"
         width="16"

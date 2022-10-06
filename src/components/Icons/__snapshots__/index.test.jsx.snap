@@ -1,8 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Icons renders IconApproximatelyEquals 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   fill="var(--black)"
   height="20"
   viewBox="2 2 20 20"
@@ -19,14 +23,18 @@ exports[`Icons renders IconApproximatelyEquals 1`] = `
 `;
 
 exports[`Icons renders IconCancel 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-stroke"
+  class="c0 has-stroke"
   fill="none"
   height="28"
   stroke="var(--black)"
   stroke-linecap="round"
   stroke-linejoin="round"
-  stroke-width="2"
+  stroke-width="3"
   viewBox="0 0 22 28"
   width="22"
   xmlns="http://www.w3.org/2000/svg"
@@ -38,8 +46,12 @@ exports[`Icons renders IconCancel 1`] = `
 `;
 
 exports[`Icons renders IconCheck 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-stroke"
+  class="c0 has-stroke"
   fill="none"
   height="22"
   stroke="var(--black)"
@@ -57,8 +69,12 @@ exports[`Icons renders IconCheck 1`] = `
 `;
 
 exports[`Icons renders IconClock 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-stroke"
+  class="c0 has-stroke"
   fill="none"
   height="20"
   stroke="var(--black)"
@@ -76,8 +92,12 @@ exports[`Icons renders IconClock 1`] = `
 `;
 
 exports[`Icons renders IconClose 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   clip-rule="evenodd"
   fill="var(--purple-medium)"
   fill-rule="evenodd"
@@ -93,8 +113,12 @@ exports[`Icons renders IconClose 1`] = `
 `;
 
 exports[`Icons renders IconCopyAccountAddress 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class=""
+  class="c0"
   height="16"
   viewBox="0 0 16 16"
   width="16"
@@ -118,8 +142,12 @@ exports[`Icons renders IconCopyAccountAddress 1`] = `
 `;
 
 exports[`Icons renders IconEdit 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-stroke"
+  class="c0 has-stroke"
   fill="none"
   height="20"
   stroke="var(--purple-medium)"
@@ -135,8 +163,12 @@ exports[`Icons renders IconEdit 1`] = `
 `;
 
 exports[`Icons renders IconError 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-stroke"
+  class="c0 has-stroke"
   fill="none"
   height="20"
   stroke="var(--red-dark)"
@@ -154,8 +186,12 @@ exports[`Icons renders IconError 1`] = `
 `;
 
 exports[`Icons renders IconExplorer 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   clip-rule="evenodd"
   fill="var(--black)"
   fill-rule="evenodd"
@@ -171,8 +207,12 @@ exports[`Icons renders IconExplorer 1`] = `
 `;
 
 exports[`Icons renders IconFail 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   fill="var(--red-medium)"
   height="24"
   viewBox="0 0 24 24"
@@ -206,8 +246,12 @@ exports[`Icons renders IconFail 1`] = `
 `;
 
 exports[`Icons renders IconGitHub 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-stroke"
+  class="c0 has-stroke"
   fill="none"
   height="42"
   stroke="var(--black)"
@@ -228,8 +272,12 @@ exports[`Icons renders IconGitHub 1`] = `
 `;
 
 exports[`Icons renders IconGlif 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   clip-rule="evenodd"
   fill="var(--black)"
   fill-rule="evenodd"
@@ -254,8 +302,12 @@ exports[`Icons renders IconGlif 1`] = `
 `;
 
 exports[`Icons renders IconLedger 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   clip-rule="evenodd"
   fill="var(--black)"
   fill-rule="evenodd"
@@ -272,15 +324,19 @@ exports[`Icons renders IconLedger 1`] = `
 
 exports[`Icons renders IconMetaMask 1`] = `
 .c0 {
-  mix-blend-mode: color-dodge;
+  vertical-align: middle;
 }
 
 .c1 {
+  mix-blend-mode: color-dodge;
+}
+
+.c2 {
   mix-blend-mode: overlay;
 }
 
 <svg
-  class=""
+  class="c0"
   fill="none"
   height="auto"
   viewBox="0 0 35 33"
@@ -419,13 +475,13 @@ exports[`Icons renders IconMetaMask 1`] = `
       fill="#161616"
     />
     <path
-      class="c0"
+      class="c1"
       d="M33.9015 14.3693L33.215 13.8742L34.3135 12.8705L33.4759 12.2104L34.5743 11.3717L33.8466 10.8216L35 5.21144L33.2699 0L22.1342 4.1664H12.8658L1.73009 0L0 5.21144L1.16712 10.8216L0.425657 11.3717L1.52413 12.2104L0.686544 12.8705L1.78501 13.8742L1.09847 14.3693L2.67752 16.2256L0.288348 23.6783L2.49902 31.2824L10.2844 29.1373L14.9392 26.8685L14.5588 29.9431L14.9117 29.6186L20.0883 29.6048L20.4315 29.9073L20.0608 26.8685L24.7156 29.1373L32.501 31.2824L34.7254 23.6783L32.3225 16.2256L33.9015 14.3693Z"
       fill="url(#paint13_linear)"
       fill-opacity="0.1"
     />
     <path
-      class="c1"
+      class="c2"
       d="M33.9015 14.3693L33.215 13.8742L34.3135 12.8705L33.4759 12.2104L34.5743 11.3717L33.8466 10.8216L35 5.21144L33.2699 0L22.1342 4.1664H12.8658L1.73009 0L0 5.21144L1.16712 10.8216L0.425657 11.3717L1.52413 12.2104L0.686544 12.8705L1.78501 13.8742L1.09847 14.3693L2.67752 16.2256L0.288348 23.6783L2.49902 31.2824L10.2844 29.1373L14.9392 26.8685L15.5845 26.4009H16.5457H18.468H19.4292L20.0608 26.8685L24.7156 29.1373L32.501 31.2824L34.7254 23.6783L32.3225 16.2256L33.9015 14.3693Z"
       fill="url(#paint14_radial)"
     />
@@ -685,8 +741,12 @@ exports[`Icons renders IconMetaMask 1`] = `
 `;
 
 exports[`Icons renders IconNewTab 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   fill="var(--black)"
   height="18"
   viewBox="0 0 24 24"
@@ -707,8 +767,12 @@ exports[`Icons renders IconNewTab 1`] = `
 `;
 
 exports[`Icons renders IconNode 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   clip-rule="evenodd"
   fill="var(--black)"
   fill-rule="evenodd"
@@ -725,6 +789,7 @@ exports[`Icons renders IconNode 1`] = `
 
 exports[`Icons renders IconPending 1`] = `
 .c0 {
+  vertical-align: middle;
   -webkit-animation-name: WNDHq;
   animation-name: WNDHq;
   -webkit-animation-duration: 4s;
@@ -767,8 +832,12 @@ exports[`Icons renders IconPending 1`] = `
 `;
 
 exports[`Icons renders IconSafe 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   clip-rule="evenodd"
   fill="var(--black)"
   fill-rule="evenodd"
@@ -784,8 +853,12 @@ exports[`Icons renders IconSafe 1`] = `
 `;
 
 exports[`Icons renders IconSearch 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-stroke"
+  class="c0 has-stroke"
   fill="none"
   height="24"
   stroke="var(--black)"
@@ -803,8 +876,12 @@ exports[`Icons renders IconSearch 1`] = `
 `;
 
 exports[`Icons renders IconSpeedUp 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-stroke"
+  class="c0 has-stroke"
   fill="none"
   height="25"
   stroke="var(--black)"
@@ -825,8 +902,12 @@ exports[`Icons renders IconSpeedUp 1`] = `
 `;
 
 exports[`Icons renders IconSuccess 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   fill="var(--green-medium)"
   height="24"
   viewBox="0 0 24 24"
@@ -860,8 +941,12 @@ exports[`Icons renders IconSuccess 1`] = `
 `;
 
 exports[`Icons renders IconVerifier 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   clip-rule="evenodd"
   fill="var(--black)"
   fill-rule="evenodd"
@@ -877,8 +962,12 @@ exports[`Icons renders IconVerifier 1`] = `
 `;
 
 exports[`Icons renders IconWallet 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-fill"
+  class="c0 has-fill"
   clip-rule="evenodd"
   fill="var(--black)"
   fill-rule="evenodd"
@@ -894,8 +983,12 @@ exports[`Icons renders IconWallet 1`] = `
 `;
 
 exports[`Icons renders IconWarn 1`] = `
+.c0 {
+  vertical-align: middle;
+}
+
 <svg
-  class="has-stroke"
+  class="c0 has-stroke"
   fill="none"
   height="20"
   stroke="var(--yellow-dark)"

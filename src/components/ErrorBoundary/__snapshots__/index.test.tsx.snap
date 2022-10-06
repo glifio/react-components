@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ErrorBoundary it should catch errors and render the error boundary component 1`] = `
-.c6 {
+.c7 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -27,27 +27,31 @@ exports[`ErrorBoundary it should catch errors and render the error boundary comp
   background: transparent;
 }
 
-.c6 svg path {
+.c7 svg path {
   stroke: var(--black);
 }
 
-.c6:hover {
+.c7:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c6:hover svg path {
+.c7:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c6:active {
+.c7:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c6:active svg path {
+.c7:active svg path {
   stroke: var(--white) !important;
+}
+
+.c5 {
+  vertical-align: middle;
 }
 
 .c3 {
@@ -91,7 +95,7 @@ exports[`ErrorBoundary it should catch errors and render the error boundary comp
   border-color: var(--red-dark);
 }
 
-.c5 {
+.c6 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -173,7 +177,7 @@ exports[`ErrorBoundary it should catch errors and render the error boundary comp
       class="c3 c4"
     >
       <svg
-        class="has-stroke"
+        class="c5 has-stroke"
         fill="none"
         height="20"
         stroke="var(--red-dark)"
@@ -216,10 +220,10 @@ exports[`ErrorBoundary it should catch errors and render the error boundary comp
       </p>
     </div>
     <div
-      class="c5"
+      class="c6"
     >
       <button
-        class="c6"
+        class="c7"
       >
         Back
       </button>
