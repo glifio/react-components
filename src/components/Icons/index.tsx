@@ -23,7 +23,7 @@ const rotateStepped = keyframes`
 
 const IconBaseEl = styled.svg`
   vertical-align: middle;
-  
+
   ${props => css`
     ${props.rotate &&
     css`
@@ -451,12 +451,7 @@ IconNode.propTypes = IconPropTypes
  * MetaMaskFlask
  */
 
-export const IconMetaMask = ({
-  width,
-  height,
-  color,
-  ...props
-}: IconProps) => (
+export const IconMetaMask = ({ width, height, color, ...props }: IconProps) => (
   <IconBase
     width={width ?? 175}
     height={height ?? 'auto'}
