@@ -24,7 +24,7 @@ import { LoadingScreen } from '../../Loading/LoadingScreen'
 import { ErrorView } from '../../ErrorView'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import { ButtonV2Link } from '../../Button/V2'
-import { IconCheck, IconFail } from '../../Icons'
+import { IconCheck, IconCancel } from '../../Icons'
 import {
   useEnvironment,
   useLogger
@@ -146,13 +146,13 @@ export default function ProposalDetail({
           <>
             {canApprove && (
               <ButtonV2Link green href={approveHref(proposal.id)}>
-                <IconCheck width='1.75rem' />
+                <IconCheck width='auto' height='1em' />
                 Approve
               </ButtonV2Link>
             )}
             {isProposer && (
               <ButtonV2Link red href={cancelHref(proposal.id)}>
-                <IconFail width='1.25rem' />
+                <IconCancel width='auto' height='1em' />
                 Cancel
               </ButtonV2Link>
             )}
