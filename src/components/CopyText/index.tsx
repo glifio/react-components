@@ -17,7 +17,8 @@ const CopyTextEl = styled.span`
   .copy-text {
     position: absolute;
     top: calc(50% - 0.2em);
-    left: calc(100% + 0.25em);
+    left: calc(100%);
+    padding-left: 0.5em;
     color: ${props => props.color};
     opacity: 0;
     transform: translateY(-50%);
