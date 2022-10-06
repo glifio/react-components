@@ -818,7 +818,7 @@ export const IconCancel = ({ width, height, color, ...props }: IconProps) => (
     viewBox='0 0 22 28'
     fill='none'
     stroke={color ?? Colors.BLACK}
-    strokeWidth={2}
+    strokeWidth={3}
     strokeLinecap='round'
     strokeLinejoin='round'
     {...props}
