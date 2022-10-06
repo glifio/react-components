@@ -187,7 +187,7 @@ export const MessageDetailBase = ({
           'Pending'
         ) : (
           <>
-            <IconClock width='1.125em' />
+            <IconClock width='1em' height='auto' />
             {age}
           </>
         )}
