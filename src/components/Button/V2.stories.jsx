@@ -14,7 +14,7 @@ export default {
 const Template = args => <ButtonV2 {...args}>Click me</ButtonV2>
 const TemplateIcon = args => (
   <ButtonV2 {...args}>
-    <IconSpeedUp width='1.25rem' />
+    <IconSpeedUp width={args.large ? '1.5rem' : '1.25rem'} height='auto' />
     Click me
   </ButtonV2>
 )
