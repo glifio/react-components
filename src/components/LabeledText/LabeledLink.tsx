@@ -23,7 +23,6 @@ const LabeledLinkEl = styled.div`
 
     svg {
       transition: 0.24s ease-in-out;
-      vertical-align: middle;
 
       &:hover {
         transform: scale(1.25);

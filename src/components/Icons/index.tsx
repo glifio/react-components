@@ -22,6 +22,8 @@ const rotateStepped = keyframes`
 `
 
 const IconBaseEl = styled.svg`
+  vertical-align: middle;
+  
   ${props => css`
     ${props.rotate &&
     css`
