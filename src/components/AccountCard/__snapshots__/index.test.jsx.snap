@@ -135,6 +135,7 @@ exports[`AccountCard renders the card 1`] = `
   -webkit-transition: opacity 0.2s ease-in;
   transition: opacity 0.2s ease-in;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .c5:hover svg {
@@ -456,6 +457,7 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
   -webkit-transition: opacity 0.2s ease-in;
   transition: opacity 0.2s ease-in;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .c5:hover svg {
@@ -772,6 +774,7 @@ exports[`AccountCard renders the story 1`] = `
   -webkit-transition: opacity 0.2s ease-in;
   transition: opacity 0.2s ease-in;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .c5:hover svg {

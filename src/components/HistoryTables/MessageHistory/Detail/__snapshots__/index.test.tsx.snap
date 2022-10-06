@@ -39,6 +39,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
   -webkit-transition: opacity 0.2s ease-in;
   transition: opacity 0.2s ease-in;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .c6:hover svg {
@@ -512,6 +513,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   -webkit-transition: opacity 0.2s ease-in;
   transition: opacity 0.2s ease-in;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .c6:hover svg {
@@ -1478,6 +1480,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
   -webkit-transition: opacity 0.2s ease-in;
   transition: opacity 0.2s ease-in;
   pointer-events: none;
+  white-space: nowrap;
 }
 
 .c9:hover svg {
