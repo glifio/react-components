@@ -7,7 +7,6 @@ import {
   IconApproximatelyEquals as IconApproximatelyEqualsComp,
   IconCopyAccountAddress as IconCopyAccountAddressComp,
   IconLedger as IconLedgerComp,
-  IconViewAddress as IconViewAddressComp,
   IconEdit as IconEditComp,
   IconGlif as IconGlifComp,
   IconSafe as IconSafeComp,
@@ -54,8 +53,6 @@ export const IconCopyAccountAddress = args => (
 )
 
 export const IconLedger = args => <IconLedgerComp {...args} />
-
-export const IconViewAddress = args => <IconViewAddressComp {...args} />
 
 export const IconEdit = args => <IconEditComp {...args} />
 
