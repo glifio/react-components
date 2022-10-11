@@ -14,7 +14,7 @@ exports[`Phishing Banner renders the phishing banner 1`] = `
   border-radius: 10px;
   font-size: var(--type-small);
   text-align: center;
-  background: #ff4242;
+  background: var(--red-medium);
   color: white;
 }
 
@@ -51,11 +51,11 @@ exports[`Phishing Banner renders the phishing banner 1`] = `
   <p>
     For your protection, please check your browser's URL bar that you're visiting 
     <a
-      href="https://sender.glif.io"
+      href="https://test.glif.io"
       rel="noreferrer noopener"
       target="_blank"
     >
-      https://sender.glif.io
+      https://test.glif.io
     </a>
   </p>
   <button

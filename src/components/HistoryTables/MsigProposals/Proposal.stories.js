@@ -1,34 +1,18 @@
-import { ApolloProvider } from '@apollo/client'
-import { client } from '../apolloClient'
-import theme from '../../theme'
-import ThemeProvider from '../../ThemeProvider'
-
 import Proposal from './Proposal'
+import { WALLET_ADDRESS, WALLET_ID } from '../../../test-utils/constants'
 
 export default {
   title: 'ProposalHistory/Proposal',
-  component: Proposal,
-  decorators: [
-    Story => (
-      <ApolloProvider client={client}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </ApolloProvider>
-    )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: Proposal
 }
 
-const Template = args => (
-  <Proposal speedUp={() => {}} cancel={() => {}} {...args} />
-)
+const Template = args => <Proposal {...args} />
 
 export const Detail = Template.bind({})
 Detail.args = {
-  cid: 'bafy2bzaceazsl4l2cimnmu3u7yiond4ffjav7lecfg5qedjj6loeqdpclk4hg',
-  walletAddress: 't029519',
   id: 8,
-  address: 't2i43oi6rnf2s6rp544rcegfbcdp5l62cayz2btmy',
-  accept: console.log,
-  reject: console.log,
-  cidHref: () => ''
+  msigAddress: 't2i43oi6rnf2s6rp544rcegfbcdp5l62cayz2btmy',
+  walletAddress: { robust: WALLET_ADDRESS, id: WALLET_ID },
+  approveHref: id => `/#/approve/${id}`,
+  cancelHref: id => `/#/cancel/${id}`
 }

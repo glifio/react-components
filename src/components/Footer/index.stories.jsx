@@ -1,12 +1,8 @@
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
-import Footer from './index'
+import { Footer } from '.'
 
 export default {
   title: 'Footer/Footer',
-  component: Footer,
-  decorators: [Story => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: Footer
 }
 
 const Template = args => <Footer {...args} />

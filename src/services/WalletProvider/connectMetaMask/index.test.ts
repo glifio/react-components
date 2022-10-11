@@ -19,8 +19,6 @@ describe('connectMetaMask', () => {
       }
     })
 
-  beforeEach(jest.clearAllMocks)
-
   test('it returns a metamask provider and dispatches a success configuration action', async () => {
     jest
       .spyOn(require('../metamaskUtils/errorHandling'), 'metaMaskEnable')

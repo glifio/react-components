@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingScreen renders correctly 1`] = `
+.c1 {
+  position: relative;
+  display: inline-block;
+  background-color: var(--purple-medium);
+  width: 3em;
+  height: 3em;
+  margin: 0;
+}
+
+.c1:after {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 0;
+  left: 0;
+  background-color: var(--purple-dark);
+  -webkit-animation-name: gxoozo;
+  animation-name: gxoozo;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  width: calc(3em * 0.5);
+  height: calc(3em * 0.5);
+}
+
+.c0 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  class="c0"
+>
+  <span
+    class="c1"
+  />
+  <p>
+    Loading...
+  </p>
+</div>
+`;

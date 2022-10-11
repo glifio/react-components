@@ -1,8 +1,7 @@
-import React from 'react'
 import styled from 'styled-components'
-import { SmartLink } from '../Link/SmartLink'
-import { devices, space } from '../theme'
-import { AppIconHeaderFooter } from '../Icons'
+import { SmartLink } from '../SmartLink'
+import { Colors, devices, Spaces } from '../theme'
+import { IconGlif } from '../Icons'
 import {
   GLIF_EMAIL,
   GLIF_CODE,
@@ -10,6 +9,7 @@ import {
   GLIF_DISCORD,
   GLIF_BLOG
 } from '../../constants'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 const Ul = styled.ul`
   list-style-type: none;
@@ -36,7 +36,7 @@ const FooterContent = styled.div`
     max-width: 670px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: ${space()};
+    gap: ${Spaces.MEDIUM};
     margin: 0 auto;
   }
 `
@@ -60,8 +60,13 @@ const Copyright = styled.div`
   }
 `
 
-const AppIconStyled = styled(AppIconHeaderFooter)`
-  @media (max-width: ${devices.tablet}) {
+const AppIconWrapper = styled.span`
+  display: inline-block;
+  height: 35px;
+  margin-bottom: 1.75em;
+
+  @media (min-width: ${devices.phone}) {
+    height: 45px;
     margin-bottom: 2em;
   }
 
@@ -69,14 +74,24 @@ const AppIconStyled = styled(AppIconHeaderFooter)`
     position: absolute;
     left: 30px;
     top: 30px;
+    height: 55px;
+    margin-bottom: 0;
+  }
+
+  svg {
+    width: auto;
+    height: 100%;
   }
 `
 
-export default function Footer() {
+export const Footer = () => {
+  const { walletUrl, safeUrl, explorerUrl, verifierUrl } = useEnvironment()
   return (
     <>
       <FooterWrapper>
-        <AppIconStyled footer />
+        <AppIconWrapper>
+          <IconGlif color={Colors.WHITE} />
+        </AppIconWrapper>
         <FooterContent>
           <Ul>
             <Li>
@@ -98,24 +113,16 @@ export default function Footer() {
 
           <Ul>
             <Li>
-              <SmartLink href={`${process.env.NEXT_PUBLIC_WALLET_URL}`}>
-                Wallet
-              </SmartLink>
+              <SmartLink href={walletUrl}>Wallet</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={`${process.env.NEXT_PUBLIC_SAFE_URL}`}>
-                Safe
-              </SmartLink>
+              <SmartLink href={safeUrl}>Safe</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={`${process.env.NEXT_PUBLIC_EXPLORER_URL}`}>
-                Explorer
-              </SmartLink>
+              <SmartLink href={explorerUrl}>Explorer</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={`${process.env.NEXT_PUBLIC_VERIFIER_URL}`}>
-                Verifier
-              </SmartLink>
+              <SmartLink href={verifierUrl}>Verifier</SmartLink>
             </Li>
           </Ul>
 

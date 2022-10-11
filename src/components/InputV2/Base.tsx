@@ -1,17 +1,74 @@
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
+import { Colors, Spaces } from '../theme'
+
+const BaseLabel = styled(Label)`
+  .button-wrapper {
+    display: flex;
+    align-items: center;
+    gap: ${Spaces.MEDIUM};
+
+    > *:first-child {
+      flex: 1 0 auto;
+    }
+
+    > *:not(:first-child) {
+      flex: 0 0 auto;
+      transition: transform 0.1s ease-out;
+
+      &:hover:not(:active) {
+        transform: scale(1.2);
+      }
+
+      &:active {
+        transition: none;
+      }
+    }
+  }
+
+  .unit-wrapper {
+    position: relative;
+
+    input {
+      width: 100%;
+    }
+
+    .unit {
+      position: absolute;
+      top: 50%;
+      right: 1em;
+      transform: translateY(-50%);
+      color: ${Colors.PURPLE_MEDIUM};
+
+      ${props =>
+        props.error &&
+        css`
+          color: ${Colors.RED_DARK} !important;
+        `}
+
+      ${props =>
+        props.disabled &&
+        css`
+          color: ${Colors.GRAY_DARK} !important;
+        `}
+    }
+  }
+`
 
 export const BaseInput = ({
   deletable,
   vertical,
   centered,
+  className,
   label,
   info,
   error,
   name,
   type,
-  autofocus,
+  autoFocus,
+  autoComplete,
   disabled,
   placeholder,
   min,
@@ -22,10 +79,11 @@ export const BaseInput = ({
   onChange,
   onFocus,
   onBlur,
+  onClick,
   onEnter,
   onDelete
 }: BaseInputProps) => (
-  <Label
+  <BaseLabel
     disabled={disabled}
     vertical={vertical}
     centered={centered}
@@ -46,10 +104,14 @@ export const BaseInput = ({
     <div className='button-wrapper'>
       <div className='unit-wrapper'>
         <input
-          className={error ? 'error' : ''}
+          className={[
+            ...(className ? [className] : []),
+            ...(error ? ['error'] : [])
+          ].join(' ')}
           name={name}
           type={type}
-          autoFocus={autofocus}
+          autoFocus={autoFocus}
+          autoComplete={autoComplete}
           disabled={disabled}
           placeholder={placeholder}
           min={min}
@@ -57,8 +119,9 @@ export const BaseInput = ({
           step={step}
           value={value}
           onChange={e => onChange(e.target.value)}
-          onFocus={() => onFocus()}
-          onBlur={() => onBlur()}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onClick={onClick}
           onKeyDown={e => e.key === 'Enter' && onEnter()}
           style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
         />
@@ -67,19 +130,21 @@ export const BaseInput = ({
       {deletable && <IconClose onClick={onDelete} />}
     </div>
     {vertical && error && <span className='error'>{error}</span>}
-  </Label>
+  </BaseLabel>
 )
 
 export interface BaseInputProps {
   deletable?: boolean
   vertical?: boolean
   centered?: boolean
+  className?: string
   label?: string
   info?: string
   error?: string
   name?: string
   type?: string
-  autofocus?: boolean
+  autoFocus?: boolean
+  autoComplete?: 'on' | 'off'
   disabled?: boolean
   placeholder?: string
   min?: number | string
@@ -90,6 +155,7 @@ export interface BaseInputProps {
   onChange?: (value: string) => void
   onFocus?: () => void
   onBlur?: () => void
+  onClick?: () => void
   onEnter?: () => void
   onDelete?: () => void
 }
@@ -98,12 +164,14 @@ export const BaseInputPropTypes = {
   deletable: PropTypes.bool,
   vertical: PropTypes.bool,
   centered: PropTypes.bool,
+  className: PropTypes.string,
   label: PropTypes.string,
   info: PropTypes.string,
   error: PropTypes.string,
   name: PropTypes.string,
   type: PropTypes.string,
-  autofocus: PropTypes.bool,
+  autoFocus: PropTypes.bool,
+  autoComplete: PropTypes.oneOf(['on', 'off']),
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -114,6 +182,7 @@ export const BaseInputPropTypes = {
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
+  onClick: PropTypes.func,
   onEnter: PropTypes.func,
   onDelete: PropTypes.func
 }
@@ -123,22 +192,25 @@ BaseInput.defaultProps = {
   deletable: false,
   vertical: false,
   centered: false,
+  className: '',
   label: '',
   info: '',
   error: '',
   name: '',
   type: 'text',
-  autofocus: false,
+  autoFocus: false,
+  autoComplete: 'on',
   disabled: false,
   placeholder: '',
   min: '',
   max: '',
-  step: '',
+  step: 'any',
   value: '',
   unit: '',
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
+  onClick: () => {},
   onEnter: () => {},
   onDelete: () => {}
 }

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
-import { IconWarn, IconError } from '../Icons'
+import { IconError, IconWarn } from '../Icons'
+import { Colors } from '../theme'
 
 /**
  * Box base styling
@@ -29,11 +30,11 @@ const BoxBase = styled.div`
     margin: 0; // Should be followed by <hr />
   }
 
-  > header:first-child {
+  header:first-child {
     margin: -1.5em -1.5em 1.5em -1.5em;
     padding: 1.5em;
-    background-color: var(--purple-medium);
-    color: var(--white);
+    background-color: ${Colors.PURPLE_MEDIUM};
+    color: ${Colors.WHITE};
   }
 
   ${props =>
@@ -55,9 +56,30 @@ BoxBase.defaultProps = {
  * Standard Box
  */
 export const StandardBox = styled(BoxBase)`
-  background-color: var(--blue-gray);
+  background-color: ${Colors.BLUE_GRAY};
   hr {
-    border-color: var(--gray-medium);
+    border-color: ${Colors.GRAY_MEDIUM};
+  }
+`
+
+/**
+ * Primary Box
+ */
+export const PrimaryBox = styled(BoxBase)`
+  background-color: ${Colors.PURPLE_MEDIUM};
+  color: ${Colors.WHITE};
+  hr {
+    border-color: ${Colors.WHITE};
+  }
+`
+
+/**
+ * Outline Box
+ */
+export const OutlineBox = styled(BoxBase)`
+  border: 1px solid ${Colors.BLACK};
+  hr {
+    border-color: ${Colors.BLACK};
   }
 `
 
@@ -65,18 +87,18 @@ export const StandardBox = styled(BoxBase)`
  * Shadow Box
  */
 export const ShadowBox = styled(BoxBase)`
-  background-color: var(--white);
-  box-shadow: 0 0 0.5em var(--gray-light);
+  background-color: ${Colors.WHITE};
+  box-shadow: 0 0 0.5em ${Colors.GRAY_LIGHT};
 `
 
 /**
  * Info box
  */
 export const InfoBox = styled(BoxBase)`
-  background-color: var(--green-light);
-  color: var(--green-dark);
+  background-color: ${Colors.GREEN_LIGHT};
+  color: ${Colors.GREEN_DARK};
   hr {
-    border-color: var(--green-dark);
+    border-color: ${Colors.GREEN_DARK};
   }
 `
 
@@ -84,10 +106,10 @@ export const InfoBox = styled(BoxBase)`
  * Warning box
  */
 const WarningBoxEl = styled(BoxBase)`
-  background-color: var(--yellow-light);
-  color: var(--yellow-dark);
+  background-color: ${Colors.YELLOW_LIGHT};
+  color: ${Colors.YELLOW_DARK};
   hr {
-    border-color: var(--yellow-dark);
+    border-color: ${Colors.YELLOW_DARK};
   }
 `
 
@@ -102,10 +124,10 @@ export const WarningBox = ({ children }) => (
  * Error box
  */
 const ErrorBoxEl = styled(BoxBase)`
-  background-color: var(--red-light);
-  color: var(--red-dark);
+  background-color: ${Colors.RED_LIGHT};
+  color: ${Colors.RED_DARK};
   hr {
-    border-color: var(--red-dark);
+    border-color: ${Colors.RED_DARK};
   }
 `
 

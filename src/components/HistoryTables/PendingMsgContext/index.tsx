@@ -1,13 +1,21 @@
-import { useContext, createContext, useState, ReactElement } from 'react'
+import {
+  useContext,
+  createContext,
+  useState,
+  ReactElement,
+  Context
+} from 'react'
 import PropTypes from 'prop-types'
 import { MessagePending } from '../../../generated/graphql'
-import useWallet from '../../../services/WalletProvider/useWallet'
+import { useWallet } from '../../../services/WalletProvider/useWallet'
 
-export const PendingMsgContext = createContext<{
+export type PendingMsgContextType = {
   messages: MessagePending[]
   pushPendingMessage: (msg: MessagePending) => void
   clearPendingMessage: (cid: string) => void
-}>({
+}
+
+export const PendingMsgContext = createContext<PendingMsgContextType>({
   messages: [],
   pushPendingMessage: () => {},
   clearPendingMessage: () => {}
@@ -54,6 +62,9 @@ PendingMessageProvider.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export const useSubmittedMessages = () => {
-  return useContext(PendingMsgContext)
+export const useSubmittedMessages = (
+  pendingMsgContext?: Context<PendingMsgContextType>
+) => {
+  const ctx = pendingMsgContext || PendingMsgContext
+  return useContext(ctx)
 }

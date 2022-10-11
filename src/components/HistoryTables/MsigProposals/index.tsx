@@ -1,28 +1,49 @@
+import { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import { isAddrEqual } from '../../../utils'
-import Box from '../../Box'
 import ProposalRow from './ProposalRow'
 import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
-import { ADDRESS_PROPTYPE } from '../../../customPropTypes'
-import { TABLE, TableCaption } from '../table'
-import { useMsigPendingQuery } from '../../../generated/graphql'
-import { Title } from '../generic'
+import {
+  ADDRESS_PROPTYPE,
+  GRAPHQL_ADDRESS_PROP_TYPE
+} from '../../../customPropTypes'
+import {
+  Address,
+  MsigTransaction,
+  useMsigPendingQuery
+} from '../../../generated/graphql'
+import { Caption, PageTitle } from '../../Layout'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
+import { useEnvironment } from '../../../services/EnvironmentProvider'
 
-export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
+export default function ProposalHistoryTable({
+  msigAddress,
+  walletAddress,
+  idHref,
+  approveHref,
+  cancelHref
+}: ProposalHistoryTableProps) {
+  const { coinType } = useEnvironment()
   const { data, loading, error } = useMsigPendingQuery({
     variables: {
-      address: convertAddrToPrefix(props.address)
+      address: convertAddrToPrefix(msigAddress, coinType)
     },
     pollInterval: 10000,
     fetchPolicy: 'cache-and-network'
   })
 
+  const proposals = useMemo<Array<MsigTransaction>>(
+    () =>
+      data?.msigPending
+        ? [...data?.msigPending].sort((a, b) => a.id - b.id)
+        : [],
+    [data?.msigPending]
+  )
+
   return (
-    <Box>
-      <Title>Safe Proposals</Title>
-      <TABLE>
-        <TableCaption
+    <>
+      <PageTitle>Safe Proposals</PageTitle>
+      <table>
+        <Caption
           name='Safe Proposals'
           loading={loading}
           error={error}
@@ -30,41 +51,34 @@ export default function ProposalHistoryTable(props: ProposalHistoryTableProps) {
         />
         <ProposalRowColumnTitles />
         <tbody>
-          {data &&
-            [...data?.msigPending]
-              .sort((a, b) => a.id - b.id)
-              .map(proposal => (
-                <ProposalRow
-                  key={proposal.id}
-                  proposal={proposal}
-                  idHref={props.idHref}
-                  inspectingAddress={props.address}
-                  actionRequired={
-                    !proposal.approved.some(address =>
-                      isAddrEqual(address, props.walletAddr)
-                    )
-                  }
-                />
-              ))}
+          {proposals.map(proposal => (
+            <ProposalRow
+              key={proposal.id}
+              proposal={proposal}
+              walletAddress={walletAddress}
+              idHref={idHref}
+              approveHref={approveHref}
+              cancelHref={cancelHref}
+            />
+          ))}
         </tbody>
-      </TABLE>
-    </Box>
+      </table>
+    </>
   )
 }
 
 type ProposalHistoryTableProps = {
+  msigAddress: string
+  walletAddress: Address
   idHref: (id: number) => string
-  address: string
-  walletAddr: string
+  approveHref: (id: number) => string
+  cancelHref: (id: number) => string
 }
 
 ProposalHistoryTable.propTypes = {
-  idHref: PropTypes.func,
-  address: ADDRESS_PROPTYPE.isRequired,
-  walletAddr: ADDRESS_PROPTYPE.isRequired
-}
-
-ProposalHistoryTable.defaultProps = {
-  // TODO
-  idHref: (id: number) => `/#/detail/${id}`
+  msigAddress: ADDRESS_PROPTYPE.isRequired,
+  walletAddress: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  idHref: PropTypes.func.isRequired,
+  approveHref: PropTypes.func.isRequired,
+  cancelHref: PropTypes.func.isRequired
 }

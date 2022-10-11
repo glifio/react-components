@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -8,13 +7,12 @@ import {
 } from '@testing-library/react'
 import { useState } from 'react'
 import { ParamsInput, ParamsInputProps } from './Params'
-import ThemeProvider from '../ThemeProvider'
-import theme from '../theme'
 
 const labelText = 'Enter some Base64 parameters'
 const infoText = 'Only valid Base64 is allowed'
 const validBase64 = 'dGVzdDEyMw=='
 const invalidBase64 = 'test123'
+const setIsValid = jest.fn()
 
 function ControlledInput({ value, ...props }: ParamsInputProps) {
   const [controlled, setControlled] = useState<string>(value)
@@ -22,26 +20,16 @@ function ControlledInput({ value, ...props }: ParamsInputProps) {
 }
 
 describe('Params input', () => {
-  afterEach(cleanup)
-  let setIsValid = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setIsValid = jest.fn()
-  })
-
   test('it renders correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ParamsInput
-            label={labelText}
-            info={infoText}
-            value={validBase64}
-            setIsValid={setIsValid}
-          />
-        </ThemeProvider>
+        <ParamsInput
+          label={labelText}
+          info={infoText}
+          value={validBase64}
+          setIsValid={setIsValid}
+        />
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
@@ -54,14 +42,12 @@ describe('Params input', () => {
     let input: HTMLElement | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ControlledInput
-            label={labelText}
-            info={infoText}
-            setIsValid={setIsValid}
-            autofocus={true}
-          />
-        </ThemeProvider>
+        <ControlledInput
+          label={labelText}
+          info={infoText}
+          setIsValid={setIsValid}
+          autoFocus={true}
+        />
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'textbox')
@@ -80,16 +66,14 @@ describe('Params input', () => {
     let input: HTMLElement | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ControlledInput
-            label={labelText}
-            info={infoText}
-            value={validBase64}
-            setIsValid={setIsValid}
-            required={true}
-            autofocus={true}
-          />
-        </ThemeProvider>
+        <ControlledInput
+          label={labelText}
+          info={infoText}
+          value={validBase64}
+          setIsValid={setIsValid}
+          required={true}
+          autoFocus={true}
+        />
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'textbox')
@@ -107,9 +91,7 @@ describe('Params input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ParamsInput label={labelText} info={infoText} disabled={true} />
-        </ThemeProvider>
+        <ParamsInput label={labelText} info={infoText} disabled={true} />
       )
       expect(result.container.firstChild).toMatchSnapshot()
     })

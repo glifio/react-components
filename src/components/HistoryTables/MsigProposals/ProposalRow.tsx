@@ -1,94 +1,97 @@
-import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
-import * as dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { useRouter } from 'next/router'
+import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
-import { Badge } from '../generic'
-import { TR, TD } from '../table'
-import { AddressLink } from '../../AddressLink'
-import { SmartLink } from '../../Link/SmartLink'
-import { MsigTransaction } from '../../../generated/graphql'
+import { FilecoinNumber } from '@glif/filecoin-number'
+import { getMethodName } from '@glif/filecoin-actor-utils'
+
+import { AddressLink } from '../../LabeledText/AddressLink'
+import { ButtonV2Link } from '../../Button/V2'
+import { IconCheck, IconCancel } from '../../Icons'
+import { Address, MsigTransaction } from '../../../generated/graphql'
 import { isAddrEqual } from '../../../utils/isAddrEqual'
+import { isAddressSigner } from '../../../utils/isAddressSigner'
+import { GRAPHQL_ADDRESS_PROP_TYPE } from '../../../customPropTypes'
 import { PROPOSAL_ROW_PROP_TYPE } from '../types'
-import { getMethodName } from '../methodName'
-import appTheme from '../../theme'
+import { navigate } from '../../../utils/urlParams'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
-export default function ProposalHistoryRow(props: ProposalHistoryRowProps) {
-  const { proposal, idHref, inspectingAddress, actionRequired } = props
-
+export default function ProposalHistoryRow({
+  proposal,
+  walletAddress,
+  idHref,
+  approveHref,
+  cancelHref
+}: ProposalHistoryRowProps) {
   const router = useRouter()
-  const proposerIsInspecting = useMemo(
-    () => isAddrEqual(proposal.approved[0], inspectingAddress),
-    [proposal.approved, inspectingAddress]
+
+  const isProposer = useMemo<boolean>(
+    () => isAddrEqual(proposal.approved[0], walletAddress),
+    [proposal.approved, walletAddress]
+  )
+
+  const canApprove = useMemo<boolean>(
+    () => !isAddressSigner(walletAddress, proposal.approved),
+    [proposal.approved, walletAddress]
   )
 
   return (
-    <TR
-      css={`
-        &:hover {
-          cursor: pointer;
-        }
-      `}
+    <tr
+      className='selectable'
       onClick={() => {
-        if (props?.idHref(proposal.id).charAt(0) === '/') {
-          router.push(idHref(proposal.id))
+        if (idHref(proposal.id).charAt(0) === '/') {
+          navigate(router, { pageUrl: idHref(proposal.id), retainParams: true })
         } else {
           window.open(idHref(proposal.id), '_blank')
         }
       }}
     >
-      <TD>
-        <SmartLink href={idHref(proposal.id)}>{proposal.id}</SmartLink>
-      </TD>
-      <TD>
-        <Badge
-          color='purple'
-          text={getMethodName('/multisig', proposal.method)}
-        />
-      </TD>
-      <TD>
+      <td>{proposal.id}</td>
+      <td>{getMethodName('multisig', proposal.method)}</td>
+      <td>
         <AddressLink
-          id={proposal.approved[0].robust ? '' : proposal.approved[0].id}
+          id={proposal.approved[0].id}
           address={proposal.approved[0].robust}
-          disableLink={proposerIsInspecting}
+          disableLink={isProposer}
           hideCopy
         />
-      </TD>
-      <TD>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</TD>
-      <TD>{proposal.approved?.length}</TD>
-      {actionRequired && (
-        <TD
-          css={`
-            color: ${({ theme }: { theme: typeof appTheme }) =>
-              theme.colors.core.primary};
-          `}
-        >
-          Action required
-        </TD>
-      )}
-    </TR>
+      </td>
+      <td>{new FilecoinNumber(proposal.value, 'attofil').toFil()} FIL</td>
+      <td>{proposal.approved?.length}</td>
+      <td>
+        {isProposer ? (
+          <ButtonV2Link red href={cancelHref(proposal.id)}>
+            <IconCancel width='auto' height='1em' />
+            Cancel
+          </ButtonV2Link>
+        ) : (
+          canApprove && (
+            <ButtonV2Link green href={approveHref(proposal.id)}>
+              <IconCheck width='auto' height='1em' />
+              Approve
+            </ButtonV2Link>
+          )
+        )}
+      </td>
+    </tr>
   )
 }
 
 type ProposalHistoryRowProps = {
-  key: any
   proposal: MsigTransaction
+  walletAddress: Address
   idHref: (id: number) => string
-  inspectingAddress?: string
-  actionRequired?: boolean
+  approveHref: (id: number) => string
+  cancelHref: (id: number) => string
 }
 
 ProposalHistoryRow.propTypes = {
   proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
+  walletAddress: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   idHref: PropTypes.func.isRequired,
-  inspectingAddress: PropTypes.string,
-  actionRequired: PropTypes.bool
-}
-
-ProposalHistoryRow.defaultProps = {
-  inspectingAddress: ''
+  approveHref: PropTypes.func.isRequired,
+  cancelHref: PropTypes.func.isRequired
 }

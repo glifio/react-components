@@ -2,95 +2,116 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
+import { SmartLink } from '../SmartLink'
 import { Toggle } from '../InputV2/Toggle'
+import { ButtonInput } from '../InputV2/Button'
 import { FilecoinInput } from '../InputV2/Filecoin'
-import { TransactionMaxFee } from './MaxFee'
-import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
+import {
+  FILECOIN_NUMBER_PROPTYPE,
+  TxState,
+  TX_STATE_PROPTYPE
+} from '../../customPropTypes'
 
 export const TransactionFee = ({
+  inputFee,
+  setInputFee,
   maxFee,
-  setMaxFee,
-  affordableFee,
-  calculatedFee,
-  gasLoading,
-  disabled
+  txFee,
+  txState,
+  onUpdate
 }: TransactionFeeProps) => {
   // Input states
-  const [expert, setExpert] = useState<boolean>(false)
-  const [txFee, setTxFee] = useState<FilecoinNumber | null>(null)
-  const [isTxFeeValid, setIsTxFeeValid] = useState<boolean>(false)
+  const [isDirty, setIsDirty] = useState<boolean>(false)
+  const [expertMode, setExpertMode] = useState<boolean>(false)
+  const [isInputFeeValid, setIsInputFeeValid] = useState<boolean>(false)
 
-  // When leaving the tx fee input or pressing Enter, we set maxFee
-  // to update the gas params if the following conditions are met:
-  // - the input is valid
-  // - the value is different from the previous max fee
-  // - the value is different from the calculated max fee
-  const setMaxFeeIfChanged = () => {
-    if (
-      txFee &&
-      isTxFeeValid &&
-      (!maxFee || txFee.toAttoFil() !== maxFee.toAttoFil()) &&
-      (!calculatedFee || txFee.toAttoFil() !== calculatedFee.toAttoFil())
-    ) {
-      setMaxFee(txFee)
-    }
+  // When enabling expert mode, set TX fee input to current value
+  // When disabling expert mode, clear TX fee input
+  const onChangeExpertToggle = (checked: boolean) => {
+    setInputFee(checked ? txFee : null)
+    setIsDirty(false)
+    setExpertMode(checked)
   }
 
-  // When enabling expert mode, set TX fee input value
-  // When disabling expert mode, reset to default TX fee
-  const onChangeExpertToggle = (checked: boolean) => {
-    checked ? setTxFee(calculatedFee) : setMaxFee(null)
-    setExpert(checked)
+  const onChangeTxFee = (fee: FilecoinNumber) => {
+    setInputFee(fee)
+    setIsDirty(true)
+  }
+
+  const onClickUpdate = () => {
+    setIsDirty(false)
+    onUpdate()
   }
 
   return (
-    <>
-      {/* Once we have an initially calculated
-          fee, or we are loading a new one, we
-          display the UI to modify the fee */}
-      {(gasLoading || calculatedFee) && (
-        <>
-          <Toggle
-            label='Expert Mode'
-            checked={expert}
-            onChange={onChangeExpertToggle}
-            disabled={gasLoading || disabled}
+    txState >= TxState.FillingTxFee && (
+      <>
+        <hr />
+        <Toggle
+          label='Expert Mode'
+          checked={expertMode}
+          onChange={onChangeExpertToggle}
+          disabled={txState !== TxState.FillingTxFee}
+        />
+        {expertMode && (
+          <FilecoinInput
+            label='Transaction Fee'
+            max={maxFee}
+            value={inputFee}
+            denom='attofil'
+            onChange={onChangeTxFee}
+            setIsValid={setIsInputFeeValid}
+            disabled={txState !== TxState.FillingTxFee}
           />
-          {expert && (
-            <FilecoinInput
-              label='Transaction Fee'
-              max={affordableFee}
-              value={txFee}
-              denom='attofil'
-              onBlur={setMaxFeeIfChanged}
-              onEnter={setMaxFeeIfChanged}
-              onChange={setTxFee}
-              setIsValid={setIsTxFeeValid}
-              disabled={gasLoading || disabled}
-            />
-          )}
-        </>
-      )}
-      {gasLoading && <p>Calculating transaction fees...</p>}
-      {calculatedFee && <TransactionMaxFee maxFee={calculatedFee} />}
-    </>
+        )}
+        {isDirty && (
+          <ButtonInput
+            label='Update Transaction Fee'
+            value='Update'
+            onClick={onClickUpdate}
+            disabled={!isInputFeeValid || txState !== TxState.FillingTxFee}
+          />
+        )}
+        {txState === TxState.LoadingTxFee && (
+          <p>Calculating transaction fees...</p>
+        )}
+        {txFee && (
+          <p>
+            {txFee.isGreaterThan(maxFee) ? (
+              <>
+                Your wallet address does not have sufficient funds to afford the
+                transaction fee of {txFee.toFil()} FIL.
+              </>
+            ) : (
+              <>
+                You will not pay more than {txFee.toFil()} FIL for this
+                transaction.
+              </>
+            )}{' '}
+            <SmartLink href='https://filfox.info/en/stats/gas'>
+              More information on average gas fee statistics.
+            </SmartLink>
+          </p>
+        )}
+      </>
+    )
   )
 }
 
 export interface TransactionFeeProps {
+  inputFee: FilecoinNumber
+  setInputFee: (inputFee: FilecoinNumber) => void
   maxFee: FilecoinNumber
-  setMaxFee: (maxFee: FilecoinNumber) => void
-  affordableFee: FilecoinNumber
-  calculatedFee: FilecoinNumber
-  gasLoading: boolean
-  disabled: boolean
+  txFee: FilecoinNumber
+  txState: TxState
+  onUpdate: () => void
 }
 
 TransactionFee.propTypes = {
+  inputFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  setInputFee: PropTypes.func.isRequired,
   maxFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  setMaxFee: PropTypes.func.isRequired,
-  affordableFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  calculatedFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  gasLoading: PropTypes.bool,
-  disabled: PropTypes.bool
+  txFee: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  txState: TX_STATE_PROPTYPE.isRequired,
+  onUpdate: PropTypes.func.isRequired
 }

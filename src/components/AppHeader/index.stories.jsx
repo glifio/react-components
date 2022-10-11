@@ -1,30 +1,19 @@
-import theme, { space } from '../theme'
-import ThemeProvider from '../ThemeProvider'
-import Box from '../Box'
+import styled from 'styled-components'
 import { AppHeader } from './index'
-import { AppIconHeaderFooter, SafeIconHeaderFooter } from '../Icons'
-import { NetworkConnection } from '../NetworkConnection'
+import { IconGlif, IconSafe } from '../Icons'
+import { SearchAddressMessage } from '../SearchBar/SearchAddressMessage'
+import { NetworkSelector } from '../NetworkSelector'
 
 export default {
   title: 'AppHeader/AppHeader',
-  component: AppHeader,
-  decorators: [
-    Story => (
-      <ThemeProvider theme={theme}>
-        <Box display='flex' flexDirection='column' gridGap={space()}>
-          {Story()}
-        </Box>
-      </ThemeProvider>
-    )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: AppHeader
 }
 
 const Template = args => <AppHeader {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  appIcon: <AppIconHeaderFooter iconStyle='dark' />,
+  appIcon: <IconGlif />,
   appUrl: 'https://glif.io',
   appHeaderLinks: [
     {
@@ -45,15 +34,8 @@ Base.args = {
 export const App = Template.bind({})
 App.args = {
   logout: () => {},
-  connection: (
-    <NetworkConnection
-      lotusApiAddr='https://calibration.node.glif.io'
-      apiKey='m787669344-2a9b90eb03dbff3e503c93c7'
-      statusApiAddr='https://api.uptimerobot.com/v2/getMonitors'
-      errorCallback={() => {}}
-    />
-  ),
-  appIcon: <SafeIconHeaderFooter />,
+  connection: <NetworkSelector errorCallback={() => {}} />,
+  appIcon: <IconSafe />,
   appUrl: 'https://safe.glif.io',
   addressLinks: [
     {
@@ -63,6 +45,12 @@ App.args = {
     {
       label: 'Wallet Address',
       address: 't1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza'
+    }
+  ],
+  labeledTexts: [
+    {
+      label: 'Balance',
+      text: '100 FIL'
     }
   ],
   appHeaderLinks: [
@@ -81,6 +69,39 @@ App.args = {
     {
       title: 'Admin',
       url: 'https://safe.glif.io/admin'
+    }
+  ]
+}
+
+const SearchBarWrapper = styled.div`
+  flex-basis: 40em;
+`
+
+export const Search = Template.bind({})
+Search.args = {
+  appIcon: <IconGlif />,
+  appUrl: 'https://glif.io',
+  customHeaderComps: (
+    <SearchBarWrapper>
+      <SearchAddressMessage hideErrorMessage />
+    </SearchBarWrapper>
+  ),
+  appHeaderLinks: [
+    {
+      title: 'Wallet',
+      url: 'https://wallet-calibration.glif.link'
+    },
+    {
+      title: 'Safe',
+      url: 'https://safe-calibration.glif.link'
+    },
+    {
+      title: 'Blog',
+      url: 'https://blog.glif.io/'
+    },
+    {
+      title: 'Discord',
+      url: 'https://discord.gg/B9ju5Eu4Rq'
     }
   ]
 }

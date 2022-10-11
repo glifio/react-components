@@ -1,5 +1,4 @@
 import {
-  cleanup,
   render,
   act,
   getByRole,
@@ -8,11 +7,10 @@ import {
 } from '@testing-library/react'
 import { useState } from 'react'
 import { BigIntInput, BigIntInputProps } from './BigInt'
-import ThemeProvider from '../ThemeProvider'
-import theme from '../theme'
 
 const labelText = 'Enter a really big value'
 const infoText = 'This can exceed MAX_SAFE_INTEGER'
+const setIsValid = jest.fn()
 
 function ControlledInput({ value, ...props }: BigIntInputProps) {
   const [controlled, setControlled] = useState<BigInt>(value)
@@ -20,26 +18,16 @@ function ControlledInput({ value, ...props }: BigIntInputProps) {
 }
 
 describe('BigInt input', () => {
-  afterEach(cleanup)
-  let setIsValid = jest.fn()
-
-  beforeEach(() => {
-    jest.clearAllMocks()
-    setIsValid = jest.fn()
-  })
-
   test('it renders correctly', async () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <BigIntInput
-            label={labelText}
-            info={infoText}
-            value={500n}
-            setIsValid={setIsValid}
-          />
-        </ThemeProvider>
+        <BigIntInput
+          label={labelText}
+          info={infoText}
+          value={500n}
+          setIsValid={setIsValid}
+        />
       )
     })
     expect(setIsValid).toHaveBeenCalledTimes(1)
@@ -52,15 +40,13 @@ describe('BigInt input', () => {
     let input: HTMLElement | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ControlledInput
-            label={labelText}
-            info={infoText}
-            max={100n}
-            setIsValid={setIsValid}
-            autofocus={true}
-          />
-        </ThemeProvider>
+        <ControlledInput
+          label={labelText}
+          info={infoText}
+          max={100n}
+          setIsValid={setIsValid}
+          autoFocus={true}
+        />
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'spinbutton')
@@ -79,15 +65,13 @@ describe('BigInt input', () => {
     let input: HTMLElement | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <ControlledInput
-            label={labelText}
-            info={infoText}
-            min={-100n}
-            setIsValid={setIsValid}
-            autofocus={true}
-          />
-        </ThemeProvider>
+        <ControlledInput
+          label={labelText}
+          info={infoText}
+          min={-100n}
+          setIsValid={setIsValid}
+          autoFocus={true}
+        />
       )
       // Make sure the error is shown
       input = getByRole(result.container, 'spinbutton')
@@ -105,9 +89,7 @@ describe('BigInt input', () => {
     let result: RenderResult | null = null
     await act(async () => {
       result = render(
-        <ThemeProvider theme={theme}>
-          <BigIntInput label={labelText} info={infoText} disabled={true} />
-        </ThemeProvider>
+        <BigIntInput label={labelText} info={infoText} disabled={true} />
       )
       expect(result.container.firstChild).toMatchSnapshot()
     })

@@ -2,28 +2,28 @@ import { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import PhishingBanner from '../PhishingBanner'
+import { PhishingBanner } from '../PhishingBanner'
 import { AppHeader, AppHeaderProps, AppHeaderPropTypes } from '../AppHeader'
-import Footer from '../Footer'
+import { Footer } from '../Footer'
 
-import { devices, space } from '../theme'
+import { devices, Spaces } from '../theme'
 
 const PageOuter = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 1920px;
   margin: 0 auto;
-  padding: ${space()};
-  gap: ${space()};
+  padding: ${Spaces.MEDIUM};
+  gap: ${Spaces.MEDIUM};
 `
 
 const PageInner = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${space()};
+  gap: ${Spaces.MEDIUM};
 
   @media (min-width: ${devices.tablet}) {
-    min-height: calc(100vh - 2 * ${space()});
+    min-height: calc(100vh - 2 * ${Spaces.MEDIUM});
   }
 
   > * {

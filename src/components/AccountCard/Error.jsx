@@ -1,42 +1,53 @@
+import styled from 'styled-components'
 import { string, func } from 'prop-types'
-import Box from '../Box'
-import Glyph from '../Glyph'
-import Button from '../Button'
-import { Text } from '../Typography'
+import { ButtonV2 } from '../Button/V2'
+import { StandardBox } from '../Layout'
+import { Colors } from '../theme'
 
-const AccountError = ({ errorMsg, onTryAgain, ...props }) => (
-  <Box
-    display='flex'
-    flexDirection='column'
-    justifyContent='space-between'
-    width={11}
-    height={11}
-    borderRadius={2}
-    p={3}
-    bg='card.error.background'
-    color='card.error.foreground'
-    boxShadow={1}
-    {...props}
-  >
-    <Box display='flex' alignItems='center' justifyContent='flex-start'>
-      <Glyph mr={3} acronym='Er' color='status.fail.foreground' />
-      <Text>Error</Text>
-    </Box>
-    <Box>
-      <Text margin={0}>{errorMsg}</Text>
-    </Box>
-    <Box display='flex'>
-      <Button
-        title='Try again'
-        onClick={onTryAgain}
-        height='100%'
-        backgroundColor='core.transparent'
-        borderColor='status.fail.foreground'
-        color='status.fail.foreground'
-        p={2}
-      />
-    </Box>
-  </Box>
+const AccountErrorBox = styled(StandardBox)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 18em;
+  height: 18em;
+  background-color: ${Colors.RED_LIGHT};
+  color: ${Colors.RED_DARK};
+
+  h3 {
+    margin-top: 0;
+  }
+
+  hr {
+    border-color: ${Colors.RED_DARK};
+  }
+
+  button {
+    color: ${Colors.RED_DARK};
+    border-color: ${Colors.RED_DARK};
+
+    &:hover {
+      color: ${Colors.WHITE};
+      border-color: ${Colors.WHITE};
+      background-color: ${Colors.RED_LIGHT};
+    }
+
+    &:active {
+      color: ${Colors.RED_LIGHT} !important;
+      border-color: ${Colors.WHITE} !important;
+      background-color: ${Colors.WHITE} !important;
+    }
+  }
+`
+
+export const AccountError = ({ errorMsg, onTryAgain }) => (
+  <AccountErrorBox>
+    <div>
+      <h3>Error</h3>
+      <hr />
+      <p>{errorMsg}</p>
+    </div>
+    <ButtonV2 onClick={onTryAgain}>Try again</ButtonV2>
+  </AccountErrorBox>
 )
 
 AccountError.propTypes = {
@@ -47,5 +58,3 @@ AccountError.propTypes = {
 AccountError.defaultProps = {
   errorMsg: ''
 }
-
-export default AccountError

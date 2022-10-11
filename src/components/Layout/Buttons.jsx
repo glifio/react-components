@@ -1,10 +1,10 @@
 import styled from 'styled-components'
-import { space } from '../theme'
+import { Spaces } from '../theme'
 
 export const FullWidthButtons = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${space()};
+  gap: ${Spaces.MEDIUM};
   margin: 3em 0;
 
   a,
@@ -16,7 +16,7 @@ export const FullWidthButtons = styled.div`
 
 export const ButtonRow = styled.div`
   display: flex;
-  gap: ${space()};
+  gap: ${Spaces.MEDIUM};
   margin: 1.5em 0;
 `
 

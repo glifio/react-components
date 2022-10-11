@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
+import { Colors } from '../theme'
 
 const Total = styled.div`
   display: flex;
@@ -8,20 +9,20 @@ const Total = styled.div`
   justify-content: space-between;
 
   span {
-    color: var(--purple-medium);
+    color: ${Colors.PURPLE_MEDIUM};
     font-size: 1.75rem;
   }
 `
 
 export const TransactionTotal = ({ total }: TransactionTotalProps) => {
   return (
-    <footer>
+    <>
       <hr />
       <Total>
         <span>Total</span>
         <span>{total.toFil()} FIL</span>
       </Total>
-    </footer>
+    </>
   )
 }
 

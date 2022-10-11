@@ -5,7 +5,7 @@ module.exports = {
     '!**/node_modules/**',
     '!src/**/*.stories.{js,jsx,ts,tsx}'
   ],
-  testPathIgnorePatterns: ['/node_modules/', '/.next/'],
+  testPathIgnorePatterns: ['/node_modules', '/dist'],
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest'
   },
@@ -14,9 +14,20 @@ module.exports = {
     '^.+\\.module\\.(css|sass|scss)$'
   ],
   moduleNameMapper: {
-    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy'
+    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+    'multiformats/basics':
+      '<rootDir>/node_modules/multiformats/cjs/src/basics.js',
+    'multiformats/cid': '<rootDir>/node_modules/multiformats/cjs/src/cid.js',
+    multiformats: '<rootDir>/node_modules/multiformats/cjs/src/index.js',
+    '@ipld/dag-cbor': '<rootDir>/node_modules/@ipld/dag-cbor/cjs/index.js',
+    cborg: '<rootDir>/node_modules/cborg/cjs/cborg.js',
+    uint8arrays: '<rootDir>/node_modules/uint8arrays/cjs/src/index.js'
   },
   setupFilesAfterEnv: ['./jest.setup.js'],
   testEnvironment: 'jsdom',
-  modulePathIgnorePatterns: ['<rootDir>/.*/__mocks__']
+  modulePathIgnorePatterns: ['<rootDir>/.*/__mocks__'],
+  clearMocks: true,
+  fakeTimers: {
+    enableGlobally: true
+  }
 }

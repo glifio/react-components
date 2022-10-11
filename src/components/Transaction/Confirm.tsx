@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import PropTypes from 'prop-types'
 import { InfoBox } from '../Layout'
-import { SmartLink } from '../Link/SmartLink'
+import { SmartLink } from '../SmartLink'
 import {
   LoginOption,
   LOGIN_OPTION_PROPTYPE,
@@ -133,13 +133,14 @@ export type TransactionConfirmProps = {
   approvalsLeft?: number
 }
 
-TransactionConfirm.propTypes = {
+export const TransactionConfirmPropTypes = {
   loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
   msig: PropTypes.bool,
   method: MSIG_METHOD_PROPTYPE,
   approvalsLeft: PropTypes.number
 }
 
+TransactionConfirm.propTypes = TransactionConfirmPropTypes
 TransactionConfirm.defaultProps = {
   msig: false
 }

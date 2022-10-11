@@ -9,16 +9,25 @@ const unix = jest.fn().mockImplementation(() => {
   }
 })
 
+const fromNow = jest
+  .fn()
+  .mockImplementation(hidePrefix => (hidePrefix ? '10 days' : 'in 10 days'))
+
 const extend = jest.fn()
+
+const add = jest.fn().mockImplementation(() => dayjs())
 
 const dayjs = () => {
   return {
+    add,
     unix,
-    extend
+    extend,
+    fromNow
   }
 }
 
 dayjs.unix = unix
 dayjs.extend = extend
+dayjs.add = add
 
 module.exports = dayjs

@@ -1,16 +1,12 @@
-import { ThemeProvider } from 'styled-components'
 import { Dialog, OneColumnCentered } from '../Layout'
 import { TransactionLoading } from './Loading'
-import theme from '../theme'
 
 const StoryComponent = ({ description }) => (
-  <ThemeProvider theme={theme}>
-    <OneColumnCentered>
-      <Dialog>
-        <TransactionLoading description={description} />
-      </Dialog>
-    </OneColumnCentered>
-  </ThemeProvider>
+  <OneColumnCentered>
+    <Dialog>
+      <TransactionLoading description={description} />
+    </Dialog>
+  </OneColumnCentered>
 )
 
 export default {

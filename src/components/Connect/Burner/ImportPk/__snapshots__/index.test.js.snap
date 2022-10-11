@@ -1,569 +1,537 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Import private key configuration it renders step one correctly correctly 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-content: center;
-  -ms-flex-line-pack: center;
-  align-content: center;
-}
-
-.c2 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
-  border-width: 1px;
-  padding: 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  max-width: 560px;
-  min-height: 300px;
-  overflow: hidden;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-}
-
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 16px;
-  background-color: #FF9E80;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c4 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
-  border-style: solid;
-  background-color: #FF9E80;
-  color: #661800;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-}
-
+exports[`Import private key configuration it renders correctly 1`] = `
 .c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  padding-left: 16px;
-  padding-right: 16px;
-  padding-top: 24px;
-  padding-bottom: 24px;
-}
-
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c11 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
   cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-top: 32px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
   border-width: 1px;
-  border-radius: 4px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
 }
 
-.c11:hover {
-  opacity: 0.8;
+.c7 svg path {
+  stroke: var(--black);
 }
 
-.c12 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-top: 32px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
+.c7:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
 }
 
-.c12:hover {
-  opacity: 0.8;
+.c7:hover svg path {
+  stroke: var(--purple-medium);
 }
 
-.c6 {
-  color: #661800;
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
+.c7:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c7:active svg path {
+  stroke: var(--white) !important;
 }
 
 .c8 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+  pointer-events: none;
+  color: var(--gray-medium);
+  border-color: var(--gray-medium);
+  background: transparent;
+}
+
+.c8 svg path {
+  stroke: var(--black);
+}
+
+.c8:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c8:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c8:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c8:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c8 svg path {
+  stroke: var(--white);
+}
+
+.c8:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c8:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c8 svg path {
+  stroke: var(--gray-medium);
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--space-m);
+  text-align: left;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c3 * {
+  text-align: center;
+}
+
+.c3 span.info,
+.c3 span.error {
+  font-size: 0.875rem;
+}
+
+.c3 span.error {
+  color: var(--red-medium);
+}
+
+.c4 .button-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: var(--space-m);
+}
+
+.c4 .button-wrapper > *:first-child {
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+
+.c4 .button-wrapper > *:not(:first-child) {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c4 .button-wrapper > *:not(:first-child):hover:not(:active) {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.c4 .button-wrapper > *:not(:first-child):active {
+  -webkit-transition: none;
+  transition: none;
+}
+
+.c4 .unit-wrapper {
+  position: relative;
+}
+
+.c4 .unit-wrapper input {
+  width: 100%;
+}
+
+.c4 .unit-wrapper .unit {
+  position: absolute;
+  top: 50%;
+  right: 1em;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: var(--purple-medium);
+}
+
+.c1 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
+  margin: 0;
+}
+
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c2 {
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
 }
 
 .c5 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--space-m);
+  margin: 1.5em 0;
 }
 
-.c9 {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-bottom: 2px solid #5E26FF00;
-  color: #5E26FF;
-  font-size: 1.25rem;
+.c6 {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
-.c9:hover {
-  border-bottom: 2px solid #5E26FF;
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+  width: 100%;
+  margin: 0 auto;
+  max-width: 40em;
+}
+
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 <div
   class="c0"
-  display="flex"
 >
-  <div
-    class="c1"
-    display="flex"
-    width="100%"
+  <form
+    autocomplete="off"
   >
+    
     <div
-      class="c2"
-      display="flex"
-      overflow="hidden"
-      width="100%"
+      class="c1 c2"
     >
-      <div
-        class="c3"
-        display="flex"
+      <h2>
+        Import private key
+      </h2>
+      <hr />
+      <label
+        class="c3 c4"
       >
+        <span>
+          Please enter your private key below to continue
+        </span>
+        
         <div
-          class="c4"
-          color="status.warning.foreground"
-          display="flex"
-          size="6"
+          class="button-wrapper"
         >
-          <h3
-            class="c5"
+          <div
+            class="unit-wrapper"
           >
-            Wn
-          </h3>
+            <input
+              autocomplete="off"
+              class=""
+              max=""
+              min=""
+              name="private-key"
+              placeholder="Enter your private key"
+              step="any"
+              style="padding-right: 1em;"
+              type="text"
+              value=""
+            />
+            
+          </div>
         </div>
-        <h2
-          class="c6"
-          color="status.warning.foreground"
-          font-family="RT-Alias-Grotesk"
-          font-size="4"
-          font-weight="400"
-        >
-          Warning
-        </h2>
-      </div>
-      <div
-        class="c7"
-      >
-        <p
-          class="c8"
-          font-family="RT-Alias-Grotesk"
-          font-size="2"
-          font-weight="400"
-        >
-          We do not recommend you use this burner wallet to hold or transact significant sums of Filecoin. For significant sums, Glif Sender should be used with a non-burner wallet.
-        </p>
-        <a
-          class="c9"
-          color="core.primary"
-          font-size="3"
-          href="https://coinsutra.com/security-risks-bitcoin-wallets/"
-          rel="noopener"
-          target="_blank"
-        >
-          Why isn't it secure?
-        </a>
-      </div>
+        
+      </label>
     </div>
     <div
-      class="c10"
-      display="flex"
+      class="c5 c6"
     >
       <button
-        class="c11"
-        font-size="3"
-        height="6"
+        class="c7"
         type="button"
       >
         Back
       </button>
       <button
-        class="c12"
-        font-size="3"
-        height="6"
-        type="button"
+        class="c8"
+        disabled=""
+        type="submit"
       >
-        I Understand
+        Connect
       </button>
     </div>
-  </div>
+  </form>
 </div>
 `;
 
-exports[`Import private key configuration it renders step two correctly correctly 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+exports[`Import private key configuration it sends the user to wallet view, with a wallet in state upon successful config 1`] = `
+.c8 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
-  border-radius: 4px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
   border-width: 1px;
-  padding: 16px;
-  display: inline-block;
-  width: 100%;
-  max-width: 560px;
-  min-height: 240px;
-  overflow: hidden;
-}
-
-.c3 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-width: 0.1875rem;
-  border-radius: 8px;
   border-style: solid;
-  color: #000;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 48px;
-  height: 48px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+  pointer-events: none;
+  color: var(--gray-medium);
+  border-color: var(--gray-medium);
+  background: transparent;
+}
+
+.c8 svg path {
+  stroke: var(--black);
+}
+
+.c8:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c8:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c8:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c8:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c8 svg path {
+  stroke: var(--white);
+}
+
+.c8:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c8:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c8 svg path {
+  stroke: var(--gray-medium);
 }
 
 .c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
-}
-
-.c8 {
-  min-width: 0;
-  box-sizing: border-box;
-  border-color: #C4C4C4;
-  margin: 8px;
-  width: auto;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c11 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: flex-end;
-  -webkit-box-align: flex-end;
-  -ms-flex-align: flex-end;
-  align-items: flex-end;
-}
-
-.c13 {
-  min-width: 0;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-}
-
-.c14 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-right: 16px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  min-width: 48px;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c16 {
-  min-width: 0;
-  box-sizing: border-box;
-  position: relative;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.c18 {
-  min-width: 0;
-  box-sizing: border-box;
-  margin-top: 48px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c19 {
+  text-align: center;
+  white-space: nowrap;
   cursor: pointer;
-  border: 1px solid #262626;
-  background-color: transparent;
-  border-color: #262626;
-  color: #262626;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-right: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
   border-width: 1px;
-  border-radius: 4px;
+  border-style: solid;
+  border-radius: 8px;
+  border-color: var(--black);
+  background: transparent;
+  font-size: 1.25em;
+  pointer-events: none;
+  color: var(--gray-medium);
+  border-color: var(--gray-medium);
+  background: transparent;
 }
 
-.c19:hover {
-  opacity: 0.8;
+.c7 svg path {
+  stroke: var(--black);
 }
 
-.c20 {
-  cursor: not-allowed;
-  border: 1px solid #C4C4C4;
-  background-color: #C4C4C4;
-  border-color: #C4C4C4;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  margin-left: 8px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  border-width: 1px;
-  border-radius: 4px;
+.c7:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
 }
 
-.c20:hover {
-  opacity: 1;
+.c7:hover svg path {
+  stroke: var(--purple-medium);
 }
 
-.c9 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: RT-Alias-Grotesk;
+.c7:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c7:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c7 svg path {
+  stroke: var(--gray-medium);
+}
+
+.c1 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
   margin: 0;
-  margin-top: 16px;
 }
 
-.c10 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1.4;
-  font-family: RT-Alias-Grotesk;
-}
-
-.c15 {
-  color: #262626;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
 }
 
 .c2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
+}
+
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 100%;
-  border-color: silver;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  gap: var(--space-m);
+  margin: 1.5em 0;
+}
+
+.c6 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
@@ -571,210 +539,32 @@ exports[`Import private key configuration it renders step two correctly correctl
 }
 
 .c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c6 {
-  font-family: "RT-Alias-Medium","system-ui","Segoe UI","Roboto",Helvetica;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-.c17 {
-  min-width: 0;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  padding-left: 8px;
-  padding-right: 8px;
-  border-radius: 1px;
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
-  font-size: 1.125rem;
-  text-align: left;
-  cursor: text;
-  background: #d1ddfa;
-  padding-left: 16px;
-  padding-right: 16px;
-  width: 480px;
+  position: relative;
   display: inline-block;
-  height: 48px;
-  border-radius: 4px;
-  border: 0;
-  border-color: #999999;
+  background-color: var(--purple-medium);
+  width: 3em;
+  height: 3em;
+  margin: 0;
 }
 
-.c17:hover {
-  background: #bacbf7;
-  cursor: text;
-}
-
-.c17:focus {
-  box-shadow: 0;
-  outline: 0;
-  background: #bacbf7;
-}
-
-.c12 {
-  display: inline-block;
-  width: 100%;
-  border-radius: 1px;
-}
-
-<div
-  class="c0"
-  display="flex"
->
-  <div
-    class="c1"
-    display="inline-block"
-    overflow="hidden"
-    width="100%"
-  >
-    <ul
-      class="c2"
-      display="flex"
-      width="100%"
-    >
-      <div
-        class="c3"
-        display="flex"
-      >
-        <li
-          class="c4"
-          display="flex"
-        >
-          <div
-            class="c5"
-            color="#000"
-            display="flex"
-            size="6"
-          >
-            <h3
-              class="c6"
-            >
-              Pk
-            </h3>
-          </div>
-        </li>
-        <div
-          class="c7"
-          width="2"
-        />
-        
-      </div>
-    </ul>
-    <div
-      class="c8"
-      display="flex"
-      width="auto"
-    >
-      <h2
-        class="c9"
-        font-family="RT-Alias-Grotesk"
-        font-size="4"
-        font-weight="400"
-      >
-        Import
-      </h2>
-      <p
-        class="c10"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Please input your private key below
-      </p>
-      <div
-        class="c11"
-        display="flex"
-      >
-        <div
-          class="c12"
-        >
-          <div
-            class="c13"
-            display="flex"
-          >
-            <div
-              class="c14"
-              display="flex"
-            >
-              <h4
-                class="c15"
-                color="core.nearblack"
-                font-family="RT-Alias-Grotesk"
-                font-size="2"
-                font-weight="400"
-              >
-                Private key
-              </h4>
-            </div>
-            <div
-              class="c16"
-              display="flex"
-            >
-              <input
-                class="c17"
-                display="inline-block"
-                height="6"
-                name=""
-                placeholder="Your private key"
-                type="password"
-                value=""
-                width="12"
-              />
-              
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  <div
-    class="c18"
-    display="flex"
-    width="100%"
-  >
-    <button
-      class="c19"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Back
-    </button>
-    <button
-      class="c20"
-      disabled=""
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Next
-    </button>
-  </div>
-</div>
-`;
-
-exports[`Import private key configuration it sends the user to wallet view, with a wallet in state upon successful config 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
+.c4:after {
   position: absolute;
+  display: block;
+  content: '';
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  background-color: var(--purple-dark);
+  -webkit-animation-name: gxoozo;
+  animation-name: gxoozo;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  width: calc(3em * 0.5);
+  height: calc(3em * 0.5);
+}
+
+.c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -782,6 +572,32 @@ exports[`Import private key configuration it sends the user to wallet view, with
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  gap: var(--space-m);
+  width: 100%;
+  margin: 0 auto;
+  max-width: 40em;
+}
+
+.c0 form {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -792,56 +608,49 @@ exports[`Import private key configuration it sends the user to wallet view, with
   justify-content: center;
 }
 
-.c3 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-  margin-top: 16px;
-}
-
-.c1 {
-  display: inline-block;
-  height: 48px;
-  width: 48px;
-  text-align: left;
-  background-color: var(--purple-medium);
-}
-
-.c2 {
-  display: inline-block;
-  height: 24px;
-  width: 24px;
-  background-color: var(--purple-dark);
-  -webkit-animation-name: bvGDKI;
-  animation-name: bvGDKI;
-  -webkit-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-}
-
 <div
   class="c0"
-  display="flex"
-  height="100%"
-  width="100%"
 >
-  <span
-    class="c1"
+  <form
+    autocomplete="off"
   >
-    <span
-      class="c2"
-    />
-  </span>
-  <h4
-    class="c3"
-    font-family="RT-Alias-Grotesk"
-    font-size="2"
-    font-weight="400"
-  >
-    Loading...
-  </h4>
+    
+    <div
+      class="c1 c2"
+    >
+      <h2>
+        Import private key
+      </h2>
+      <hr />
+      <div
+        class="c3"
+      >
+        <span
+          class="c4"
+        />
+        <p>
+          Loading...
+        </p>
+      </div>
+    </div>
+    <div
+      class="c5 c6"
+    >
+      <button
+        class="c7"
+        disabled=""
+        type="button"
+      >
+        Back
+      </button>
+      <button
+        class="c8"
+        disabled=""
+        type="submit"
+      >
+        Connect
+      </button>
+    </div>
+  </form>
 </div>
 `;

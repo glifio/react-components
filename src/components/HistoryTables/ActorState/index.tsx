@@ -1,113 +1,181 @@
+import PropTypes from 'prop-types'
+import { useEffect, useMemo } from 'react'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { useMemo, useState } from 'react'
-import styled from 'styled-components'
-import { useAddressQuery } from '../../../generated/graphql'
 import {
-  useStateReadStateQuery,
-  decodeActorCID,
-  MsigState
-} from '../../../utils'
-import Box from '../../Box'
-import { P } from '../../Typography'
-import { Title } from '../generic'
-import { DetailCaption, Line } from '../detail'
+  DataTypeMap,
+  getActorName,
+  describeActorState
+} from '@glif/filecoin-actor-utils'
+
+import { useAddressQuery } from '../../../generated/graphql'
+import { makeFriendlyBalance } from '../../../utils/makeFriendlyBalance'
+import { useStateReadState } from '../../../utils/useStateReadState'
+import { useMsigGetAvailableBalance } from '../../../utils/useMsigGetAvailableBalance'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
+import {
+  Lines,
+  Line,
+  NullishLine,
+  PageTitle,
+  CollapsableLines
+} from '../../Layout'
+import { DetailCaption } from '../detail'
+import {
+  useEnvironment,
+  useLogger
+} from '../../../services/EnvironmentProvider'
+import { BaseTypeObjLines, DataTypeMapLines } from '../../Layout/DataTypes'
 
-const ViewState = styled(P).attrs(() => ({
-  color: 'core.primary',
-  role: 'button'
-}))`
-  cursor: pointer;
-`
+export const ActorState = ({ address: addressProp }: ActorStateProps) => {
+  const logger = useLogger()
+  const { coinType, networkName } = useEnvironment()
 
-function State({ state }: { state: unknown }) {
-  return (
-    <>
-      <pre>{JSON.stringify(state, null, 2)}</pre>
-    </>
+  // Ensure network cointype for address
+  const address = useMemo<string>(
+    () => convertAddrToPrefix(addressProp, coinType),
+    [addressProp, coinType]
   )
-}
 
-export function ActorState({ address }: { address: string }) {
+  // Load the actor state
   const {
-    data: actorStateData,
-    error: actorStateError,
-    loading: actorStateLoading
-  } = useStateReadStateQuery<unknown>({
-    variables: {
-      address: convertAddrToPrefix(address)
-    }
-  })
+    data: actorData,
+    loading: actorLoading,
+    notFound: actorNotFound,
+    error: actorError
+  } = useStateReadState(address)
 
+  // Load the address
   const {
     data: addressData,
-    error: adddressError,
-    loading: addressLoading
-  } = useAddressQuery({ variables: { address: convertAddrToPrefix(address) } })
+    loading: addressLoading,
+    error: addressError
+  } = useAddressQuery({
+    variables: { address }
+  })
 
-  const [viewActorState, setViewActorState] = useState(false)
+  // Get the actor name from the actor code
+  const actorName = useMemo<string | null>(
+    () => (actorData ? getActorName(actorData.Code, networkName) : null),
+    [actorData, networkName]
+  )
 
-  const actorType = useMemo(() => {
-    return decodeActorCID(actorStateData?.Code['/'])
-  }, [actorStateData?.Code])
+  // Capitalize the actor name for display
+  const actorNameCapitalized = useMemo<string | null>(
+    () =>
+      actorName ? actorName.charAt(0).toUpperCase() + actorName.slice(1) : null,
+    [actorName]
+  )
 
-  const loading = useMemo(() => {
-    return actorStateLoading || addressLoading
-  }, [actorStateLoading, addressLoading])
+  // Get actor state with descriptors
+  const describedState = useMemo<DataTypeMap | null>(() => {
+    try {
+      return actorName && actorData?.State
+        ? describeActorState(actorName, actorData.State)
+        : null
+    } catch (e) {
+      logger.error(
+        `Failed to describe actor state for network: ${networkName}, address: ${address}, with message: ${e.message}`
+      )
+      return null
+    }
+  }, [actorName, actorData, address, networkName, logger])
 
-  const error = useMemo(() => {
-    return actorStateError || adddressError
-  }, [actorStateError, adddressError])
+  // Load the available balance for multisig actors
+  const hasAvailableBalance = actorName && actorName.includes('multisig')
+  const {
+    availableBalance,
+    loading: availableBalanceLoading,
+    error: availableBalanceError
+  } = useMsigGetAvailableBalance(hasAvailableBalance ? address : '')
+
+  // Cache friendly balance
+  const friendlyBalance = useMemo<string>(() => {
+    if (!actorData) return ''
+    const balance = new FilecoinNumber(actorData.Balance, 'attofil')
+    return makeFriendlyBalance(balance, 6)
+  }, [actorData])
+
+  // Log actor state errors
+  useEffect(() => actorError && logger.error(actorError), [actorError, logger])
+
+  // Log address errors
+  useEffect(
+    () => addressError && logger.error(addressError),
+    [addressError, logger]
+  )
+
+  // Log available balance errors
+  useEffect(
+    () => availableBalanceError && logger.error(availableBalanceError),
+    [availableBalanceError, logger]
+  )
+
+  // Actor state or address loading
+  const loading = useMemo<boolean>(() => {
+    return actorLoading || addressLoading
+  }, [actorLoading, addressLoading])
+
+  // Actor state or address error
+  const error = useMemo<Error | null>(() => {
+    return actorError || addressError || null
+  }, [actorError, addressError])
 
   return (
-    <Box>
-      <Title>Overview</Title>
+    <div>
+      <PageTitle>Actor Overview</PageTitle>
       <hr />
       <DetailCaption
         name='Actor Overview'
-        captian='Locating this actor on the blockchain...'
+        infoMsg={actorNotFound ? `Actor not found: ${address}` : ''}
+        loadingMsg='Locating this actor on the blockchain...'
         loading={loading}
         error={error}
       />
-      {!loading && !error && (
-        <>
+      {!loading && !error && !actorNotFound && (
+        <Lines>
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
           )}
           {addressData?.address.id && (
-            <Line label='ID'>{addressData?.address.id}</Line>
+            <Line label='ID address'>{addressData?.address.id}</Line>
           )}
-          <Line label='Actor'>{actorType}</Line>
-          <Line label='Balance'>
-            {new FilecoinNumber(actorStateData?.Balance, 'attofil').toFil()} FIL
-          </Line>
-          {actorType.includes('/multisig') && (
+          <Line label='Actor name'>{actorNameCapitalized || 'Unknown'}</Line>
+          <Line label='Actor code'>{actorData.Code['/']}</Line>
+          <Line label='Balance'>{friendlyBalance} FIL</Line>
+          {hasAvailableBalance && (
             <Line label='Available Balance'>
-              {new FilecoinNumber(
-                (actorStateData?.State as MsigState).AvailableBalance,
-                'attofil'
-              ).toFil()}{' '}
-              FIL
+              {availableBalanceError ? (
+                <>Failed to load</>
+              ) : availableBalanceLoading ? (
+                <>Loading...</>
+              ) : availableBalance ? (
+                <>{availableBalance.toFil()} FIL</>
+              ) : (
+                <></>
+              )}
             </Line>
           )}
-          <Box
-            display='flex'
-            gridGap='1em'
-            my='1em'
-            lineHeight='2em'
-            alignItems='center'
-          >
-            <Box minWidth='200px' flex='0 1 25%'>
-              State
-            </Box>
-            <ViewState onClick={() => setViewActorState(!viewActorState)}>
-              Click to{' '}
-              {viewActorState ? 'hide actor state ↑' : 'see actor state ↓'}
-            </ViewState>
-          </Box>
-          <Box>{viewActorState && <State state={actorStateData?.State} />}</Box>
-        </>
+          {actorData.State ? (
+            <CollapsableLines label='State' toggleName='actor state'>
+              {describedState ? (
+                <DataTypeMapLines depth={1} dataTypeMap={describedState} />
+              ) : (
+                <BaseTypeObjLines depth={1} data={actorData.State} />
+              )}
+            </CollapsableLines>
+          ) : (
+            <NullishLine label='State' />
+          )}
+        </Lines>
       )}
-    </Box>
+    </div>
   )
+}
+
+export interface ActorStateProps {
+  address: string
+}
+
+ActorState.propTypes = {
+  address: PropTypes.string
 }

@@ -1,26 +1,24 @@
 import PropTypes from 'prop-types'
-import { ErrorBox } from '../Layout'
+import { ErrorBox, WarningBox } from '../Layout'
 import { StandardBox } from '../Layout'
+import { TxState, TX_STATE_PROPTYPE } from '../../customPropTypes'
+import { LoadingIcon } from '../Loading/LoadingIcon'
 import {
-  LoginOption,
-  LOGIN_OPTION_PROPTYPE,
-  MsigMethod,
-  MSIG_METHOD_PROPTYPE,
-  TxState,
-  TX_STATE_PROPTYPE
-} from '../../customPropTypes'
-import LoaderGlyph from '../LoaderGlyph'
-import { TransactionConfirm } from './Confirm'
+  TransactionConfirm,
+  TransactionConfirmProps,
+  TransactionConfirmPropTypes
+} from './Confirm'
 
 export const TransactionHeader = ({
   txState,
   title,
   description,
+  warning,
+  errorMessage,
   loginOption,
   msig,
   method,
-  approvalsLeft,
-  errorMessage
+  approvalsLeft
 }: TransactionHeaderProps) => (
   <>
     <StandardBox>
@@ -31,19 +29,33 @@ export const TransactionHeader = ({
           ? 'Something went wrong'
           : txState === TxState.LoadingMessage
           ? 'Loading message information...'
+          : txState === TxState.LoadingFailed
+          ? 'Failed to load message information'
+          : txState === TxState.FillingTxFee
+          ? 'Please review the transaction below'
+          : txState === TxState.LoadingTxFee
+          ? 'Loading transaction fee...'
           : txState === TxState.LoadingTxDetails
           ? 'Loading transaction details...'
-          : txState === TxState.MPoolPushing
-          ? 'Sending your transaction...'
           : txState === TxState.AwaitingConfirmation
           ? 'Awaiting confirmation...'
+          : txState === TxState.MPoolPushing
+          ? 'Sending your transaction...'
           : description}
       </p>
       {(txState === TxState.LoadingMessage ||
         txState === TxState.LoadingTxDetails ||
-        txState === TxState.MPoolPushing) && <LoaderGlyph />}
+        txState === TxState.MPoolPushing) && <LoadingIcon />}
     </StandardBox>
+    {warning &&
+      (txState === TxState.FillingTxFee ||
+        txState === TxState.LoadingTxFee) && <WarningBox>{warning}</WarningBox>}
     {errorMessage && <ErrorBox>{errorMessage}</ErrorBox>}
+    {txState === TxState.LoadingFailed && (
+      <ErrorBox>
+        The message you are trying to access could not be loaded
+      </ErrorBox>
+    )}
     {txState === TxState.AwaitingConfirmation && (
       <TransactionConfirm
         loginOption={loginOption}
@@ -55,24 +67,19 @@ export const TransactionHeader = ({
   </>
 )
 
-export interface TransactionHeaderProps {
+export type TransactionHeaderProps = {
   txState: TxState
   title: string
   description: string
-  loginOption: LoginOption
-  msig?: boolean
-  method?: MsigMethod
-  approvalsLeft?: number
+  warning?: string
   errorMessage?: string
-}
+} & TransactionConfirmProps
 
 TransactionHeader.propTypes = {
   txState: TX_STATE_PROPTYPE.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  loginOption: LOGIN_OPTION_PROPTYPE.isRequired,
-  msig: PropTypes.bool,
-  method: MSIG_METHOD_PROPTYPE,
-  approvalsLeft: PropTypes.number,
-  errorMessage: PropTypes.string
+  warning: PropTypes.string,
+  errorMessage: PropTypes.string,
+  ...TransactionConfirmPropTypes
 }

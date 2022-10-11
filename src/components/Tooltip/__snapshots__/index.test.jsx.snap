@@ -1,21 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`StyledATag storybook example renders 1`] = `
-.c2 {
-  width: 2em;
-  height: 2em;
-  padding: 0;
-  line-height: 2em;
-  border-radius: 1em;
-  border: 1px solid var(--black);
-  color: var(--black);
-  background: transparent;
+exports[`Tooltip storybook example renders 1`] = `
+.c1 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
   text-align: center;
-  cursor: pointer;
+  word-break: break-word;
 }
 
-.c4 {
-  display: none;
+.c1 > *:first-child {
+  margin-top: 0;
+}
+
+.c1 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c1 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c1 > h2:first-child {
+  margin: 0;
+}
+
+.c1 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c2 {
+  background-color: var(--white);
+  box-shadow: 0 0 0.5em var(--gray-light);
+}
+
+.c0 {
+  position: relative;
+}
+
+.c0 .icon {
+  cursor: help;
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  text-align: center;
+  border: 1px solid var(--black);
+  border-radius: 50%;
+  -webkit-transition: color 0.1s ease-out,border-color 0.1s ease-out;
+  transition: color 0.1s ease-out,border-color 0.1s ease-out;
+}
+
+.c0 .content {
+  z-index: 1;
   position: absolute;
   top: calc(100% + 0.5em);
   left: 50%;
@@ -26,39 +67,34 @@ exports[`StyledATag storybook example renders 1`] = `
   -webkit-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   transform: translateX(-50%);
-  padding: 0.5em 0.75em;
-  color: var(--black);
-  background-color: var(--white);
-  border-radius: 4px;
-  box-shadow: rgba(0,0,0,0.10) 0px 0.7px 2.2px -8px,rgba(0,0,0,0.04) 0px 1.7px 2.4px,rgba(0,0,0,0.106) 0px 3.1px 8.1px,rgba(0,0,0,0.04) 0px 5.6px 12.1px,rgba(0,0,0,0.045) 0px 4.4px 4.8px,rgba(0,0,0,0.05) 0px 15px 41px;
-  z-index: 9;
+  padding: 0.75em 1em;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
 }
 
-.c0 {
-  position: relative;
-}
-
-.c0:hover .c1 {
+.c0:hover .icon {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c0:hover .c3 {
-  display: block;
+.c0:hover .content {
+  opacity: 1;
 }
 
-<div
+<span
   class="c0"
 >
-  <button
-    class="c1 c2"
+  <span
+    class="icon"
   >
     ?
-  </button>
+  </span>
   <div
-    class="c3 c4"
+    class="c1 c2 content"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec est ultrices, posuere lorem a, convallis quam. Etiam venenatis velit.
   </div>
-</div>
+</span>
 `;

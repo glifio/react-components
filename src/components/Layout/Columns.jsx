@@ -1,12 +1,12 @@
 import styled from 'styled-components'
-import { devices, fontSize, space } from '../theme'
+import { Colors, devices, FontSizes, Spaces } from '../theme'
 
 export const OneColumn = styled.div`
   position: relative;
-  padding: 3rem 1.5rem;
+  margin: 3rem 1.5rem;
 
   @media (min-width: ${devices.tablet}) {
-    padding: 3rem;
+    margin: 3rem;
   }
 
   > *:first-child {
@@ -21,7 +21,7 @@ export const OneColumn = styled.div`
 export const TwoColumns = styled.div`
   display: flex;
   flex-direction: column;
-  gap: ${space()};
+  gap: ${Spaces.MEDIUM};
 
   @media (min-width: ${devices.tablet}) {
     display: grid;
@@ -31,7 +31,7 @@ export const TwoColumns = styled.div`
 `
 
 export const OneColumnLargeText = styled(OneColumn)`
-  font-size: ${fontSize('large')};
+  font-size: ${FontSizes.XLARGE};
 
   p {
     max-width: 670px;
@@ -40,7 +40,7 @@ export const OneColumnLargeText = styled(OneColumn)`
 
   &.primary {
     color: white;
-    background-color: var(--purple-medium);
+    background-color: ${Colors.PURPLE_MEDIUM};
     border-radius: 8px;
 
     a:hover {
@@ -50,6 +50,7 @@ export const OneColumnLargeText = styled(OneColumn)`
 `
 
 export const OneColumnCentered = styled(OneColumn)`
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

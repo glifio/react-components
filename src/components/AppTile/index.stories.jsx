@@ -1,13 +1,9 @@
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 import { AppTilesWrapper } from './AppTilesWrapper'
 import { AppTile } from './index'
 
 export default {
   title: 'AppTile/AppTile',
-  component: AppTile,
-  decorators: [Story => <ThemeProvider theme={theme}>{Story()}</ThemeProvider>],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: AppTile
 }
 
 const Template = args => (

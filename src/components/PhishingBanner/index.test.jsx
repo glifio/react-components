@@ -1,18 +1,9 @@
-import { render, cleanup, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-
-import ThemeProvider from '../ThemeProvider'
-import theme from '../theme'
+import { render, screen } from '@testing-library/react'
 import { Base } from './index.stories'
 
 describe('Phishing Banner', () => {
-  afterEach(cleanup)
   test('renders the phishing banner', () => {
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Base {...Base.args} />
-      </ThemeProvider>
-    )
+    const { container } = render(<Base {...Base.args} />)
     expect(screen.getByText(/glif.io/)).toBeInTheDocument()
     expect(container.firstChild).toMatchSnapshot()
   })

@@ -1,31 +1,26 @@
 import { useState } from 'react'
 import { Toggle } from './Toggle'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
+import { Dialog, ShadowBox } from '../Layout'
 
 const StoryComponent = ({ checked: defaultChecked, ...props }) => {
   const [checked, setChecked] = useState(defaultChecked)
   return (
-    <Toggle
-      checked={checked}
-      onChange={setChecked}
-      autofocus={true}
-      {...props}
-    />
+    <Dialog>
+      <ShadowBox>
+        <Toggle
+          checked={checked}
+          onChange={setChecked}
+          autoFocus={true}
+          {...props}
+        />
+      </ShadowBox>
+    </Dialog>
   )
 }
 
 export default {
   title: 'InputV2/Toggle',
-  component: StoryComponent,
-  decorators: [
-    Story => (
-      <div style={{ maxWidth: '35em', margin: '0 auto' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
-    )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: StoryComponent
 }
 
 const Template = args => <StoryComponent {...args} />

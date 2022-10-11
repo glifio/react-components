@@ -1,30 +1,23 @@
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen, act, fireEvent } from '@testing-library/react'
 import composeMockAppTree from '../../../test-utils/composeMockAppTree'
 import { mockFetchDefaultWallet } from '../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
-import ConnectMetaMask from '.'
+import { MetaMask } from '.'
 import { HelperText } from './Helper'
-import { flushPromises } from '../../../test-utils'
 import { TESTNET_PATH_CODE } from '../../../constants'
 import createPath from '../../../utils/createPath'
 import { initialMetaMaskState } from '../../../services/WalletProvider/metamaskUtils'
 
-describe('metamask onboarding', () => {
-  let backSpy, nextSpy
-  afterEach(() => {
-    jest.clearAllMocks()
-    jest.useFakeTimers()
-    backSpy = jest.fn()
-    nextSpy = jest.fn()
-    cleanup()
-  })
+const backSpy = jest.fn()
+const nextSpy = jest.fn()
 
+describe('metamask onboarding', () => {
   test('it renders loading state', async () => {
     const { Tree } = composeMockAppTree('preOnboard')
     let res
     await act(async () => {
       res = render(
         <Tree>
-          <ConnectMetaMask back={backSpy} next={nextSpy} />
+          <MetaMask back={backSpy} next={nextSpy} />
         </Tree>
       )
     })
@@ -38,12 +31,11 @@ describe('metamask onboarding', () => {
     await act(async () => {
       render(
         <Tree>
-          <ConnectMetaMask back={backSpy} next={nextSpy} />
+          <MetaMask back={backSpy} next={nextSpy} />
         </Tree>
       )
+      jest.runAllTimers()
     })
-    await jest.runOnlyPendingTimers()
-    await flushPromises()
     expect(nextSpy).toHaveBeenCalled()
   })
 
@@ -53,10 +45,9 @@ describe('metamask onboarding', () => {
     await act(async () => {
       render(
         <Tree>
-          <ConnectMetaMask back={backSpy} next={nextSpy} />
+          <MetaMask back={backSpy} next={nextSpy} />
         </Tree>
       )
-      await flushPromises()
     })
 
     expect(mockFetchDefaultWallet).toHaveBeenCalled()
@@ -147,8 +138,15 @@ describe('metamask onboarding', () => {
       )
 
       expect(
-        screen.getByText(/MetaMask doesn't support Snaps!/)
+        screen.getByText(/MetaMask Snaps is pre-release software/)
       ).toBeInTheDocument()
+      expect(screen.getByText(/To try Snaps,/)).toBeInTheDocument()
+      expect(
+        screen.getByText(
+          /a canary distribution for developers that provides access to upcoming features./
+        )
+      ).toBeInTheDocument()
+      expect(screen.getByText(/install MetaMask Flask/)).toBeInTheDocument()
     })
 
     test('it renders extension snap not installed', () => {

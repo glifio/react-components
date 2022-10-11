@@ -1,0 +1,136 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddressLink it renders correctly 1`] = `
+.c0 h4 {
+  margin: 0;
+  color: var(--gray-dark);
+}
+
+.c0 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.c3 {
+  vertical-align: middle;
+}
+
+.c2 {
+  position: relative;
+  cursor: pointer;
+}
+
+.c2 svg {
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c2 .copy-text {
+  position: absolute;
+  top: calc(50% - 0.2em);
+  left: calc(100%);
+  padding-left: 0.5em;
+  color: var(--purple-medium);
+  opacity: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transition: opacity 0.2s ease-in;
+  transition: opacity 0.2s ease-in;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.c2:hover svg {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+}
+
+.c2:hover .copy-text {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.35em;
+  line-height: 1.5;
+}
+
+.c1 > a {
+  color: var(--purple-medium);
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.c1 > a:hover {
+  color: var(--purple-medium);
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.c1 > a svg {
+  -webkit-transition: 0.24s ease-in-out;
+  transition: 0.24s ease-in-out;
+}
+
+.c1 > a svg:hover {
+  -webkit-transform: scale(1.25);
+  -ms-transform: scale(1.25);
+  transform: scale(1.25);
+  fill: var(--purple-medium);
+}
+
+<div
+  class="c0"
+>
+  <h4>
+    Safe Address
+  </h4>
+  <div
+    class="c1"
+    color="var(--purple-medium)"
+  >
+    <a
+      href="https://explorer-calibration.glif.link/actor/?address=t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy"
+      rel="noreferrer noopener"
+      target="_blank"
+    >
+      t137sj ... 2vizpy
+    </a>
+    <span
+      class="c2"
+      color="var(--purple-medium)"
+      role="button"
+    >
+      <svg
+        class="c3"
+        height="16"
+        viewBox="0 0 16 16"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          fill="#1A0066"
+          height="12"
+          width="12"
+          x="4"
+          y="0"
+        />
+        <rect
+          fill="#E0D7FE"
+          height="12"
+          width="12"
+          x="0"
+          y="4"
+        />
+      </svg>
+    </span>
+  </div>
+</div>
+`;

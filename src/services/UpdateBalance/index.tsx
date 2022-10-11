@@ -1,49 +1,57 @@
-import { useCallback } from 'react'
-import LotusRPCEngine from '@glif/filecoin-rpc-client'
-import useWallet from '../WalletProvider/useWallet'
-import { FilecoinNumber } from '@glif/filecoin-number'
 import useSWR, { SWRConfiguration } from 'swr'
+import LotusRpcEngine from '@glif/filecoin-rpc-client'
+import { useWallet } from '../WalletProvider/useWallet'
+import { FilecoinNumber } from '@glif/filecoin-number'
+import { validateAddressString } from '@glif/filecoin-address'
 
 import { useWalletProvider } from '../WalletProvider'
-import { logger } from '../../logger'
+import { useEnvironment, useLogger } from '../EnvironmentProvider'
+
+interface UseBalancePollerResult {
+  balance: FilecoinNumber | null
+  loading: boolean
+  error: Error | null
+}
+
+const fetcher = async (
+  apiAddress: string,
+  lotusMethod: string,
+  actorAddress: string
+): Promise<FilecoinNumber | null> => {
+  if (!apiAddress || !actorAddress) return null
+
+  if (!validateAddressString(actorAddress))
+    throw new Error('Invalid actor address')
+
+  const lotusApi = new LotusRpcEngine({ apiAddress })
+  return new FilecoinNumber(
+    await lotusApi.request<string>(lotusMethod, actorAddress),
+    'attofil'
+  )
+}
 
 export const useBalancePoller = (
-  swrOptions: SWRConfiguration = { refreshInterval: 10000 }
-) => {
-  const { selectedWalletIdx, updateBalance, lotusApiAddr } = useWalletProvider()
+  swrConfig: SWRConfiguration = { refreshInterval: 10000 }
+): UseBalancePollerResult => {
   const wallet = useWallet()
-  const fetcher = useCallback(
-    async (address: string, prevBalance: FilecoinNumber, walletIdx: number) => {
-      try {
-        const lCli = new LotusRPCEngine({
-          apiAddress: lotusApiAddr
-        })
-        const latestBalance = new FilecoinNumber(
-          await lCli.request<string>('WalletBalance', address),
-          'attofil'
-        )
-        if (!latestBalance.isEqualTo(prevBalance)) {
-          updateBalance(latestBalance, walletIdx)
-        }
-
-        return latestBalance
-      } catch (err) {
-        logger.error(
-          err instanceof Error ? err.message : 'Error fetching balance',
-          'useBalancePoller'
-        )
-      }
-    },
-    [updateBalance, lotusApiAddr]
-  )
-
-  const { data } = useSWR(
-    wallet.address ? [wallet.address, wallet.balance, selectedWalletIdx] : null,
+  const logger = useLogger()
+  const { lotusApiUrl } = useEnvironment()
+  const { selectedWalletIdx, updateBalance } = useWalletProvider()
+  const { data, error } = useSWR<FilecoinNumber, Error>(
+    [lotusApiUrl, 'WalletBalance', wallet.address],
     fetcher,
-    swrOptions
+    swrConfig
   )
 
-  return data
+  if (data && !data.isEqualTo(wallet.balance)) {
+    updateBalance(data, selectedWalletIdx)
+  }
+
+  if (error) logger.error(error)
+
+  const loading = !!wallet.address && !data && !error
+
+  return { balance: data, loading, error }
 }
 
 // Polls lotus for up to date balances about the user's selected wallet

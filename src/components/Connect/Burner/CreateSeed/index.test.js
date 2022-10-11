@@ -1,42 +1,17 @@
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen, act, fireEvent } from '@testing-library/react'
 import composeMockAppTree from '../../../../test-utils/composeMockAppTree'
-import { flushPromises } from '../../../../test-utils'
 
-import Create from '.'
+import { CreateSeed } from '.'
 import { TESTNET_PATH_CODE } from '../../../../constants'
 import { mockFetchDefaultWallet } from '../../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
 import createPath from '../../../../utils/createPath'
 
+const backSpy = jest.fn()
+const nextSpy = jest.fn()
+
 describe('Create seed phrase configuration', () => {
   beforeAll(() => {
     global.URL.createObjectURL = jest.fn()
-  })
-
-  let backSpy, nextSpy
-  beforeEach(() => {
-    backSpy = jest.fn()
-    nextSpy = jest.fn()
-  })
-
-  afterEach(() => {
-    jest.clearAllMocks()
-    cleanup()
-  })
-
-  test('it renders the warning correctly', () => {
-    const { Tree } = composeMockAppTree('preOnboard')
-
-    const { container } = render(
-      <Tree>
-        <Create initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
-      </Tree>
-    )
-    expect(
-      screen.getByText(
-        /We do not recommend you use this burner wallet to hold or transact significant sums of Filecoin/
-      )
-    ).toBeInTheDocument()
-    expect(container.firstChild).toMatchSnapshot()
   })
 
   test('it renders step 1 correctly', () => {
@@ -44,12 +19,10 @@ describe('Create seed phrase configuration', () => {
 
     render(
       <Tree>
-        <Create initialWalkthroughStep={1} next={nextSpy} back={backSpy} />
+        <CreateSeed initialStep={1} next={nextSpy} back={backSpy} />
       </Tree>
     )
-    act(() => {
-      fireEvent.click(screen.getByText('I Understand'))
-    })
+
     expect(screen.getByText(/Step 1/)).toBeInTheDocument()
     expect(screen.getByText(/Copy/)).toBeInTheDocument()
     expect(screen.getByText(/Download/)).toBeInTheDocument()
@@ -62,13 +35,9 @@ describe('Create seed phrase configuration', () => {
 
     render(
       <Tree>
-        <Create initialWalkthroughStep={2} next={nextSpy} back={backSpy} />
+        <CreateSeed initialStep={2} next={nextSpy} back={backSpy} />
       </Tree>
     )
-
-    act(() => {
-      fireEvent.click(screen.getByText('I Understand'))
-    })
 
     expect(
       screen.getByText(/Add the correct words to the empty inputs/)
@@ -81,13 +50,9 @@ describe('Create seed phrase configuration', () => {
 
     render(
       <Tree>
-        <Create initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
+        <CreateSeed initialStep={3} next={nextSpy} back={backSpy} />
       </Tree>
     )
-
-    act(() => {
-      fireEvent.click(screen.getByText('I Understand'))
-    })
 
     expect(
       screen.getByText(/Success! Please click 'Next' to access your wallet./)
@@ -100,17 +65,12 @@ describe('Create seed phrase configuration', () => {
 
     const { container } = render(
       <Tree>
-        <Create initialWalkthroughStep={3} next={nextSpy} back={backSpy} />
+        <CreateSeed initialStep={3} next={nextSpy} back={backSpy} />
       </Tree>
     )
 
-    act(() => {
-      fireEvent.click(screen.getByText('I Understand'))
-    })
-
     await act(async () => {
       fireEvent.click(screen.getByText('Next'))
-      await flushPromises()
     })
     expect(container.firstChild).toMatchSnapshot()
     expect(mockFetchDefaultWallet).toHaveBeenCalled()

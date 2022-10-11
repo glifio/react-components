@@ -1,17 +1,9 @@
-import { cleanup, render } from '@testing-library/react'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
+import { render } from '@testing-library/react'
 import { Base } from './index.stories'
 
 describe('Stepper', () => {
-  afterEach(cleanup)
-
   test('renders the story', () => {
-    const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Base {...Base.args} />
-      </ThemeProvider>
-    )
+    const { container } = render(<Base {...Base.args} />)
     expect(container.firstChild).toMatchSnapshot()
   })
 })

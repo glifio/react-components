@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
-import { space } from '../theme'
+import { Colors, Spaces } from '../theme'
 
 export const Label = styled.label`
   display: flex;
-  gap: ${space()};
+  gap: ${Spaces.MEDIUM};
   text-align: left;
 
   ${props =>
@@ -33,7 +33,7 @@ export const Label = styled.label`
           }
 
           > *:last-child:not(.toggle-wrapper) {
-            flex: 0 0 50%;
+            flex: 0 0 65%;
           }
         `}
 
@@ -43,57 +43,6 @@ export const Label = styled.label`
   }
 
   span.error {
-    color: var(--red-medium);
-  }
-
-  .button-wrapper {
-    display: flex;
-    align-items: center;
-    gap: ${space()};
-
-    > *:first-child {
-      flex: 1 0 auto;
-    }
-
-    > *:not(:first-child) {
-      flex: 0 0 auto;
-      transition: transform 0.1s ease-out;
-
-      &:hover:not(:active) {
-        transform: scale(1.2);
-      }
-
-      &:active {
-        transition: none;
-      }
-    }
-  }
-
-  .unit-wrapper {
-    position: relative;
-
-    input {
-      width: 100%;
-    }
-
-    .unit {
-      position: absolute;
-      top: 50%;
-      right: 1em;
-      transform: translateY(-50%);
-      color: var(--purple-medium);
-
-      ${props =>
-        props.error &&
-        css`
-          color: var(--red-dark) !important;
-        `}
-
-      ${props =>
-        props.disabled &&
-        css`
-          color: var(--gray-dark) !important;
-        `}
-    }
+    color: ${Colors.RED_MEDIUM};
   }
 `

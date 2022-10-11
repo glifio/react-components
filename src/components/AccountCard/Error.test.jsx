@@ -1,17 +1,11 @@
-import { cleanup, render } from '@testing-library/react'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
+import { render } from '@testing-library/react'
 import { Base } from './Error.stories'
 
 describe('AccountError', () => {
-  afterEach(cleanup)
-
   test('renders the story', () => {
     const mockOnTryAgain = jest.fn()
     const { container } = render(
-      <ThemeProvider theme={theme}>
-        <Base {...Base.args} onTryAgain={mockOnTryAgain} />
-      </ThemeProvider>
+      <Base {...Base.args} onTryAgain={mockOnTryAgain} />
     )
     expect(container.firstChild).toMatchSnapshot()
   })

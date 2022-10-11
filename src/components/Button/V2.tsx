@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
-import { ReactNode } from 'react'
+import { MouseEvent, ReactNode, useCallback } from 'react'
 import {
   SmartLink,
   SmartLinkProps,
   SmartLinkPropTypes
-} from '../Link/SmartLink'
+} from '../SmartLink'
 
 /*
  * ButtonV2
@@ -14,16 +14,28 @@ export const ButtonV2 = ({
   children,
   onClick,
   disabled,
+  stopPropagation,
   ...classNameProps
-}: ButtonProps) => (
-  <button
-    className={getClassName(classNameProps)}
-    disabled={disabled}
-    onClick={() => onClick()}
-  >
-    {children}
-  </button>
-)
+}: ButtonProps) => {
+
+  const onClickProxy = useCallback(
+    (e: MouseEvent<HTMLButtonElement>) => {
+      stopPropagation && e.stopPropagation()
+      onClick(e)
+    },
+    [stopPropagation, onClick]
+  )
+
+  return (
+    <button
+      className={getClassName(classNameProps)}
+      disabled={disabled}
+      onClick={onClickProxy}
+    >
+      {children}
+    </button>
+  )
+}
 
 interface ButtonClassNameProps {
   disabled?: boolean
@@ -35,8 +47,10 @@ interface ButtonClassNameProps {
 }
 
 type ButtonProps = {
+  type?: string
   children: ReactNode
-  onClick?: () => void
+  stopPropagation?: boolean
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 } & ButtonClassNameProps
 
 const ButtonPropTypes = {
@@ -50,10 +64,13 @@ const ButtonPropTypes = {
   white: PropTypes.bool,
   gray: PropTypes.bool,
   red: PropTypes.bool,
-  green: PropTypes.bool
+  green: PropTypes.bool,
+  type: PropTypes.string,
+  stopPropagation: PropTypes.bool
 }
 
 const ButtonDefaultProps = {
+  stopPropagation: true,
   disabled: false,
   large: false,
   white: false,
@@ -100,4 +117,7 @@ ButtonV2Link.propTypes = {
   ...SmartLinkPropTypes
 }
 
-ButtonV2Link.defaultProps = ButtonDefaultProps
+ButtonV2Link.defaultProps = {
+  ...ButtonDefaultProps,
+  ...SmartLink.defaultProps
+}

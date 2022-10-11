@@ -1,6 +1,5 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
-import { cleanup } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import { SWRConfig } from 'swr'
 import WalletProviderWrapper, {
@@ -9,18 +8,14 @@ import WalletProviderWrapper, {
 
 import { useBalancePoller } from '.'
 import { composeWalletProviderState } from '../../test-utils/composeMockAppTree/composeState'
+import { TestEnvironment } from '../../test-utils/TestEnvironment'
 
 jest.mock('@glif/filecoin-rpc-client')
 jest.mock('../WalletProvider')
 
 describe('useBalancePoller', () => {
-  afterEach(cleanup)
-
   let Tree = ({ children }) => <>{children}</>
   let walletProviderState
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
 
   test('it updates the wallets balance in the walletprovider state when the balance changes', async () => {
     const statePreset = 'postOnboard'
@@ -37,15 +32,17 @@ describe('useBalancePoller', () => {
     }
 
     Tree = ({ children }) => (
-      <SWRConfig value={{ dedupingInterval: 0 }}>
-        <WalletProviderWrapper
-          getState={cacheWalletProviderState}
-          statePreset={statePreset}
-          initialState={walletProviderInitialState}
-        >
-          {children}
-        </WalletProviderWrapper>
-      </SWRConfig>
+      <TestEnvironment>
+        <SWRConfig value={{ dedupingInterval: 0 }}>
+          <WalletProviderWrapper
+            getState={cacheWalletProviderState}
+            statePreset={statePreset}
+            initialState={walletProviderInitialState}
+          >
+            {children}
+          </WalletProviderWrapper>
+        </SWRConfig>
+      </TestEnvironment>
     )
 
     const bigBal = new FilecoinNumber('100', 'fil')
@@ -87,15 +84,17 @@ describe('useBalancePoller', () => {
     }
 
     Tree = ({ children }) => (
-      <SWRConfig value={{ dedupingInterval: 0 }}>
-        <WalletProviderWrapper
-          getState={cacheWalletProviderState}
-          statePreset={statePreset}
-          initialState={walletProviderInitialState}
-        >
-          {children}
-        </WalletProviderWrapper>
-      </SWRConfig>
+      <TestEnvironment>
+        <SWRConfig value={{ dedupingInterval: 0 }}>
+          <WalletProviderWrapper
+            getState={cacheWalletProviderState}
+            statePreset={statePreset}
+            initialState={walletProviderInitialState}
+          >
+            {children}
+          </WalletProviderWrapper>
+        </SWRConfig>
+      </TestEnvironment>
     )
 
     const bigBal = new FilecoinNumber('100', 'fil')

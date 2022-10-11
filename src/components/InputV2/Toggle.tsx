@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { Label } from './Label'
+import { Colors } from '../theme'
 
 const ToggleLabel = styled(Label)`
   .toggle-wrapper {
     position: relative;
-    padding: 0.5em 0;
   }
 
   input {
@@ -23,14 +23,14 @@ const ToggleLabel = styled(Label)`
     width: 2.25em;
     height: 1.5em;
     border-radius: 0.75em;
-    border: 2px solid var(--blue-medium);
-    background-color: var(--blue-medium);
+    border: 2px solid ${Colors.BLUE_MEDIUM};
+    background-color: ${Colors.BLUE_MEDIUM};
 
     ${props =>
       props.disabled &&
       css`
-        border-color: var(--gray-light) !important;
-        background-color: var(--gray-light) !important;
+        border-color: ${Colors.GRAY_LIGHT} !important;
+        background-color: ${Colors.GRAY_LIGHT} !important;
       `}
 
     &::after {
@@ -41,13 +41,13 @@ const ToggleLabel = styled(Label)`
       width: calc(1.5em - 4px);
       height: calc(1.5em - 4px);
       border-radius: 50%;
-      background-color: var(--white);
+      background-color: ${Colors.WHITE};
     }
   }
 
   input:checked ~ .toggle {
-    border-color: var(--blue-dark);
-    background-color: var(--blue-dark);
+    border-color: ${Colors.BLUE_DARK};
+    background-color: ${Colors.BLUE_DARK};
   }
 
   input:checked ~ .toggle::after {
@@ -59,7 +59,7 @@ const ToggleLabel = styled(Label)`
 export const Toggle = ({
   label,
   info,
-  autofocus,
+  autoFocus,
   disabled,
   checked,
   onChange
@@ -69,23 +69,23 @@ export const Toggle = ({
       {label && <span>{label}</span>}
       {info && <span className='info'>{info}</span>}
     </div>
-    <span className='toggle-wrapper'>
+    <div className='toggle-wrapper'>
       <input
         type='checkbox'
-        autoFocus={autofocus}
+        autoFocus={autoFocus}
         disabled={disabled}
         checked={checked}
         onChange={e => onChange(e.target.checked)}
       />
       <span className='toggle'></span>
-    </span>
+    </div>
   </ToggleLabel>
 )
 
 interface ToggleProps {
   label?: string
   info?: string
-  autofocus?: boolean
+  autoFocus?: boolean
   disabled?: boolean
   checked?: boolean
   onChange?: (checked: boolean) => void
@@ -94,7 +94,7 @@ interface ToggleProps {
 Toggle.propTypes = {
   label: PropTypes.string,
   info: PropTypes.string,
-  autofocus: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   disabled: PropTypes.bool,
   checked: PropTypes.bool,
   onChange: PropTypes.func
@@ -103,7 +103,7 @@ Toggle.propTypes = {
 Toggle.defaultProps = {
   label: '',
   info: '',
-  autofocus: false,
+  autoFocus: false,
   disabled: false,
   checked: false,
   onChange: () => {}

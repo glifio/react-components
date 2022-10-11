@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SmartLink it automatically maintais glifParams in href seach params 1`] = `
+<a
+  href="https://wallet.glif.io/?network=calibration"
+  rel="noreferrer noopener"
+  target="_blank"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it can add params to external links 1`] = `
+<a
+  href="https://google.com?test1=a&test1=b&test2=1&test2=2&test3=abc&test4=123"
+  rel="noreferrer noopener"
+  target="_blank"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it can add params to internal links 1`] = `
+<a
+  href="/home?test1=a&test1=b&test2=1&test2=2&test3=abc&test4=123"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it can retain params for internal links 1`] = `
+<a
+  href="/home?foo=bar&glif=ftw"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it doesn't retain params for external links 1`] = `
+<a
+  href="https://google.com"
+  rel="noreferrer noopener"
+  target="_blank"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it renders external download links correctly 1`] = `
+<a
+  download=""
+  href="http://localhost:6006/favicon.ico"
+  rel="noreferrer noopener"
+  target="_self"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it renders external links correctly 1`] = `
+<a
+  href="https://google.com"
+  rel="noreferrer noopener"
+  target="_blank"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it renders internal download links correctly 1`] = `
+<a
+  download=""
+  href="/favicon.ico"
+  rel="noreferrer noopener"
+  target="_self"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it renders internal links correctly 1`] = `
+<a
+  href="/home"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it renders mailto links correctly 1`] = `
+<a
+  href="mailto:squad@glif.io"
+  rel="noreferrer noopener"
+  target="_self"
+>
+  Click me
+</a>
+`;
+
+exports[`SmartLink it renders tel links correctly 1`] = `
+<a
+  href="tel:+4733378901"
+  rel="noreferrer noopener"
+  target="_self"
+>
+  Click me
+</a>
+`;

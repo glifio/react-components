@@ -1,40 +1,32 @@
 import { useState } from 'react'
 import { ButtonV2 } from '../Button/V2'
-import { ButtonRowRight } from '../Layout/Buttons'
+import { Dialog, ButtonRowRight, ShadowBox } from '../Layout'
 import { NumberInput } from './Number'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
 
 const StoryComponent = ({ value: defaultValue, ...props }) => {
   const [value, setValue] = useState(defaultValue)
   const [isValid, setIsValid] = useState(false)
   return (
-    <div>
-      <NumberInput
-        value={value}
-        onChange={setValue}
-        setIsValid={setIsValid}
-        autofocus={true}
-        {...props}
-      />
+    <Dialog>
+      <ShadowBox>
+        <NumberInput
+          value={value}
+          onChange={setValue}
+          setIsValid={setIsValid}
+          autoFocus={true}
+          {...props}
+        />
+      </ShadowBox>
       <ButtonRowRight>
         <ButtonV2 disabled={!isValid}>Send</ButtonV2>
       </ButtonRowRight>
-    </div>
+    </Dialog>
   )
 }
 
 export default {
   title: 'InputV2/Number',
-  component: StoryComponent,
-  decorators: [
-    Story => (
-      <div style={{ maxWidth: '35em', margin: '0 auto' }}>
-        <ThemeProvider theme={theme}>{Story()}</ThemeProvider>
-      </div>
-    )
-  ],
-  parameters: { actions: { argTypesRegex: '^on.*' } }
+  component: StoryComponent
 }
 
 const Template = args => <StoryComponent {...args} />
@@ -60,7 +52,7 @@ MinValue.args = {
 export const MinMaxValue = Template.bind({})
 MinMaxValue.args = {
   label: 'Enter your age',
-  info: 'You must be between 25 and 35 years old',
+  info: 'Between 25 and 35 years old',
   min: 25,
   max: 35
 }

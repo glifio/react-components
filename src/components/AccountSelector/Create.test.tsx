@@ -1,59 +1,129 @@
 import React from 'react'
-import { render, act, screen, cleanup, fireEvent } from '@testing-library/react'
+import { act, render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { CoinType } from '@glif/filecoin-address'
 
-import ThemeProvider from '../ThemeProvider'
-import theme from '../theme'
-import Create from './Create'
-import { flushPromises } from '../../test-utils'
+import { CreateAccount } from './Create'
+import { createPath } from '../../utils'
+import { coinTypeCode } from '../../utils/createPath'
+import { LoginOption } from '../../customPropTypes'
+import { TestEnvironment } from '../../test-utils/TestEnvironment'
 
-describe('Create Account', () => {
-  afterEach(() => {
-    cleanup()
-    jest.clearAllMocks()
+const fetchNextAccountSpy = jest
+  .fn()
+  .mockImplementation(() => Promise.resolve())
+
+const keyDeriveSpy = jest.fn().mockImplementation(() => Promise.resolve())
+
+const createObjectURLSpy = jest
+  .fn()
+  .mockImplementation(() => Promise.resolve('data-url-string'))
+
+describe('Create new account', () => {
+  beforeAll(() => {
+    global.URL.createObjectURL = createObjectURLSpy
   })
-  test('it calls the callback with the right network and index', () => {
-    const mock = jest.fn()
-    const nextAccountIdx = 1
+  test('it creates a new account at the wallet index by default', async () => {
+    const { container } = render(
+      <TestEnvironment>
+        <CreateAccount
+          keyDerive={keyDeriveSpy}
+          loginOption={LoginOption.IMPORT_SINGLE_KEY}
+          setError={() => {}}
+          accountIdx={0}
+          fetchNextAccount={fetchNextAccountSpy}
+        />
+      </TestEnvironment>
+    )
+    expect(screen.getByText('Next account')).toBeInTheDocument()
+    expect(screen.getByText('Expert Mode')).toBeInTheDocument()
+
     act(() => {
-      render(
-        <ThemeProvider theme={theme}>
-          <Create
-            onClick={mock}
-            loading={false}
-            nextAccountIndex={nextAccountIdx}
-            defaultCoinType={CoinType.TEST}
-            errorMsg=''
-          />
-        </ThemeProvider>
-      )
-      fireEvent.click(screen.getByText('Create'))
+      fireEvent.click(screen.getByText('Next account'))
     })
 
-    expect(mock).toHaveBeenCalledWith(nextAccountIdx, 't')
+    waitFor(() => {
+      expect(fetchNextAccountSpy).toHaveBeenCalledWith(0, CoinType.TEST)
+    })
+
+    expect(container.firstChild).toMatchSnapshot()
   })
 
-  test('it calls the callback with the right network and index 2', async () => {
-    const mock = jest.fn()
-    const nextAccountIdx = 5
-
+  test('it creates a new account at the specified index in expert mode', async () => {
     await act(async () => {
       render(
-        <ThemeProvider theme={theme}>
-          <Create
-            onClick={mock}
-            loading={false}
-            nextAccountIndex={nextAccountIdx}
-            defaultCoinType={CoinType.TEST}
-            errorMsg=''
+        <TestEnvironment>
+          <CreateAccount
+            keyDerive={keyDeriveSpy}
+            loginOption={LoginOption.IMPORT_SINGLE_KEY}
+            setError={() => {}}
+            accountIdx={0}
+            fetchNextAccount={fetchNextAccountSpy}
           />
-        </ThemeProvider>
+        </TestEnvironment>
       )
-      fireEvent.click(screen.getByText('Normal address'))
-      await flushPromises()
-      fireEvent.click(screen.getByText('Create'))
-    })
+      expect(screen.getByText('Next account')).toBeInTheDocument()
+      expect(screen.getByText('Expert Mode')).toBeInTheDocument()
 
-    expect(mock).toHaveBeenCalledWith(nextAccountIdx, 'f')
+      const toggle = screen.getByRole('checkbox')
+      toggle.focus()
+      fireEvent.click(toggle)
+      toggle.blur()
+
+      await waitFor(() => {
+        expect(screen.getByText('Create account')).toBeInTheDocument()
+      })
+
+      const accountIdx = screen.getByRole('spinbutton')
+      accountIdx.focus()
+      fireEvent.change(accountIdx, { target: { value: 10 } })
+      accountIdx.blur()
+
+      await waitFor(() => {
+        expect(
+          screen.getByText(createPath(coinTypeCode(CoinType.TEST), 10))
+        ).toBeInTheDocument()
+      })
+
+      fireEvent.click(screen.getByText('Add account'))
+      expect(fetchNextAccountSpy).toHaveBeenCalledWith(10, CoinType.TEST)
+    })
+  })
+
+  test('it exports a private key', async () => {
+    await act(async () => {
+      render(
+        <TestEnvironment>
+          <CreateAccount
+            keyDerive={keyDeriveSpy}
+            loginOption={LoginOption.IMPORT_SINGLE_KEY}
+            setError={err => {
+              console.log(err)
+            }}
+            accountIdx={0}
+            fetchNextAccount={fetchNextAccountSpy}
+          />
+        </TestEnvironment>
+      )
+      expect(screen.getByText('Next account')).toBeInTheDocument()
+      expect(screen.getByText('Expert Mode')).toBeInTheDocument()
+
+      const toggle = screen.getByRole('checkbox')
+      toggle.focus()
+      fireEvent.click(toggle)
+      toggle.blur()
+
+      await waitFor(() => {
+        expect(screen.getByText('Create account')).toBeInTheDocument()
+      })
+
+      const privateKeyExport = screen.getByText('Export private key')
+      fireEvent.click(privateKeyExport)
+
+      await waitFor(() => {
+        expect(createObjectURLSpy).toHaveBeenCalled()
+        // TODO: find out why this test doesn't work
+        // expect(screen.getByRole('download')).toHaveAttribute('href', 'data-url-string')
+      })
+    })
   })
 })

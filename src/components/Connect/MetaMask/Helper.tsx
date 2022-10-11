@@ -1,23 +1,13 @@
-import { FC } from 'react'
+import PropTypes from 'prop-types'
 import { ButtonV2 } from '../../Button/V2'
-import { space } from '../../theme'
-import { SmartLink } from '../../Link/SmartLink'
+import { SmartLink } from '../../SmartLink'
+import { ButtonRowCenter } from '../../Layout'
 import {
   MetaMaskState,
   METAMASK_STATE_PROPTYPES
 } from '../../../services/WalletProvider/metamaskUtils'
 
-const Connecting: FC = () => {
-  return <h2>Connecting to FILSnap</h2>
-}
-
-export const HelperText: FC<
-  MetaMaskState & {
-    onRetry: () => void
-    back: () => void
-    connectFILSnap: () => void
-  }
-> = ({
+export const HelperText = ({
   extInstalled,
   extSupportsSnap,
   snapInstalled,
@@ -27,8 +17,8 @@ export const HelperText: FC<
   connectFILSnap,
   onRetry,
   back
-}) => {
-  if (loading) return <Connecting />
+}: HelperTextProps) => {
+  if (loading) return <h2>Connecting to FILSnap</h2>
   if (!extInstalled)
     return (
       <>
@@ -40,12 +30,14 @@ export const HelperText: FC<
           </SmartLink>{' '}
           to get started
         </p>
-        <ButtonV2 mt={space('large')} onClick={() => window.location.reload()}>
-          Try again
-        </ButtonV2>
-        <ButtonV2 mt={space('large')} onClick={back}>
-          Back
-        </ButtonV2>
+        <ButtonRowCenter>
+          <ButtonV2 large onClick={back}>
+            Back
+          </ButtonV2>
+          <ButtonV2 large onClick={() => window.location.reload()}>
+            Try again
+          </ButtonV2>
+        </ButtonRowCenter>
       </>
     )
   if (!extUnlocked)
@@ -53,31 +45,36 @@ export const HelperText: FC<
       <>
         <h2>MetaMask locked!</h2>
         <p>Please unlock MetaMask to get started</p>
-        <ButtonV2 mt={space('large')} onClick={onRetry}>
-          Try again
-        </ButtonV2>
-        <ButtonV2 mt={space('large')} onClick={back}>
-          Back
-        </ButtonV2>
+        <ButtonRowCenter>
+          <ButtonV2 large onClick={back}>
+            Back
+          </ButtonV2>
+          <ButtonV2 large onClick={onRetry}>
+            Try again
+          </ButtonV2>
+        </ButtonRowCenter>
       </>
     )
   if (!extSupportsSnap)
     return (
       <>
-        <h2>MetaMask doesn&apos;t support Snaps!</h2>
+        <h2>MetaMask Snaps is pre-release software.</h2>
         <p>
-          Please{' '}
+          To try Snaps,{' '}
           <SmartLink href='https://metamask.io/flask/'>
-            upgrade MetaMask
+            install MetaMask Flask
           </SmartLink>{' '}
-          to get started
+          , a canary distribution for developers that provides access to
+          upcoming features.
         </p>
-        <ButtonV2 mt={space('large')} onClick={onRetry}>
-          Try again
-        </ButtonV2>
-        <ButtonV2 mt={space('large')} onClick={back}>
-          Back
-        </ButtonV2>
+        <ButtonRowCenter>
+          <ButtonV2 large onClick={back}>
+            Back
+          </ButtonV2>
+          <ButtonV2 large onClick={onRetry}>
+            Try again
+          </ButtonV2>
+        </ButtonRowCenter>
       </>
     )
 
@@ -85,12 +82,14 @@ export const HelperText: FC<
     return (
       <>
         <h2>FILSnap not detected!</h2>
-        <ButtonV2 large mt={space('large')} onClick={connectFILSnap}>
-          Connect FILSnap
-        </ButtonV2>
-        <ButtonV2 mt={space('large')} onClick={back}>
-          Back
-        </ButtonV2>
+        <ButtonRowCenter>
+          <ButtonV2 large onClick={back}>
+            Back
+          </ButtonV2>
+          <ButtonV2 large onClick={connectFILSnap}>
+            Connect FILSnap
+          </ButtonV2>
+        </ButtonRowCenter>
       </>
     )
   if (!snapEnabled)
@@ -98,17 +97,28 @@ export const HelperText: FC<
       <>
         <h2>FILSnap disabled!</h2>
         <p>Please enable FILSnap in your MetaMask settings to continue.</p>
-        <ButtonV2 mt={space('large')} onClick={onRetry}>
-          Try again
-        </ButtonV2>
-        <ButtonV2 mt={space('large')} onClick={back}>
-          Back
-        </ButtonV2>
+        <ButtonRowCenter>
+          <ButtonV2 large onClick={back}>
+            Back
+          </ButtonV2>
+          <ButtonV2 large onClick={onRetry}>
+            Try again
+          </ButtonV2>
+        </ButtonRowCenter>
       </>
     )
-  return <Connecting />
+  return <h2>Connecting to FILSnap</h2>
+}
+
+type HelperTextProps = MetaMaskState & {
+  connectFILSnap: () => void
+  onRetry: () => void
+  back: () => void
 }
 
 HelperText.propTypes = {
-  ...METAMASK_STATE_PROPTYPES
+  ...METAMASK_STATE_PROPTYPES,
+  connectFILSnap: PropTypes.func.isRequired,
+  onRetry: PropTypes.func.isRequired,
+  back: PropTypes.func.isRequired
 }

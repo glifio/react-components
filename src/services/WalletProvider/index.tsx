@@ -4,8 +4,10 @@ import {
   useReducer,
   useCallback,
   Dispatch,
-  ReactChildren
+  ReactNode,
+  Context
 } from 'react'
+import { useApolloClient } from '@apollo/client'
 import PropTypes from 'prop-types'
 import Filecoin, {
   LedgerProvider,
@@ -16,7 +18,6 @@ import { CoinType } from '@glif/filecoin-address'
 
 import reducer, {
   initialState,
-  setLoginOption,
   setError,
   clearError,
   resetLedgerState,
@@ -32,9 +33,9 @@ import { Wallet, WalletProviderAction, WalletProviderState } from './types'
 import { hasLedgerError, reportLedgerConfigError } from './ledgerUtils'
 import { reportMetaMaskError } from './metamaskUtils'
 import { reducerLogger } from '../../logger'
-import { LoginOption } from '../../customPropTypes'
+import { useEnvironment } from '../EnvironmentProvider'
 
-type WalletProviderContextType = {
+export type WalletProviderContextType = {
   state: WalletProviderState
   lotusApiAddr: string
   dispatch: Dispatch<WalletProviderAction> | null
@@ -43,7 +44,6 @@ type WalletProviderContextType = {
   connectLedger: () => Promise<Filecoin & { wallet: LedgerProvider }>
   connectMetaMask: () => Promise<Filecoin & { wallet: MetaMaskProvider }>
   setWalletError: (errorMessage: string) => void
-  setLoginOption: (loginOption: LoginOption) => void
   resetWalletError: () => void
   resetLedgerState: () => void
   resetState: () => void
@@ -56,14 +56,13 @@ type WalletProviderContextType = {
 
 export const WalletProviderContext = createContext<WalletProviderContextType>({
   state: { ...initialState },
-  lotusApiAddr: 'https://calibration.node.glif.io',
+  lotusApiAddr: 'https://api.calibration.node.glif.io',
   dispatch: null,
   fetchDefaultWallet: null,
   getProvider: null,
   connectLedger: null,
   connectMetaMask: null,
   setWalletError: null,
-  setLoginOption: null,
   resetWalletError: () => {},
   resetLedgerState: null,
   resetState: null,
@@ -76,17 +75,14 @@ export const WalletProviderContext = createContext<WalletProviderContextType>({
 
 const WalletProviderWrapper = ({
   children,
-  lotusApiAddr,
-  coinType
-}: {
-  children: ReactChildren
-  lotusApiAddr: string
-  coinType: CoinType
-}) => {
+  initialState: walletProviderInitialState
+}: WalletProviderPropTypes) => {
+  const { isProd, lotusApiUrl: lotusApiAddr, coinType } = useEnvironment()
   const [state, dispatch] = useReducer(
-    reducerLogger<WalletProviderState, WalletProviderAction>(reducer),
-    initialState
+    reducerLogger<WalletProviderState, WalletProviderAction>(reducer, isProd),
+    walletProviderInitialState
   )
+  const client = useApolloClient()
   return (
     <WalletProviderContext.Provider
       value={{
@@ -103,16 +99,13 @@ const WalletProviderWrapper = ({
               dispatch,
               state.loginOption,
               walletProvider,
-              coinType
+              coinType,
+              client
             ),
-          [dispatch, state.loginOption, state.walletProvider, coinType]
+          [dispatch, state.loginOption, state.walletProvider, coinType, client]
         ),
         setWalletError: useCallback(
           errorMessage => dispatch(setError(errorMessage)),
-          [dispatch]
-        ),
-        setLoginOption: useCallback(
-          loginOption => dispatch(setLoginOption(loginOption)),
           [dispatch]
         ),
         getProvider: useCallback(async (): Promise<Filecoin> => {
@@ -208,12 +201,32 @@ const WalletProviderWrapper = ({
   )
 }
 
+type WalletProviderPropTypes = {
+  children: ReactNode
+  initialState?: WalletProviderState
+}
+
 WalletProviderWrapper.propTypes = {
   children: PropTypes.node.isRequired
 }
 
-export const useWalletProvider = () => {
-  const value = useContext(WalletProviderContext)
+WalletProviderWrapper.defaultProps = {
+  initialState
+}
+
+export type WalletProviderOpts = {
+  context: Context<WalletProviderContextType>
+}
+
+export const useWalletProvider = (opts?: WalletProviderOpts) => {
+  let ctx: Context<WalletProviderContextType>
+  if (opts?.context) {
+    ctx = opts.context
+  } else {
+    ctx = WalletProviderContext
+  }
+
+  const value = useContext(ctx)
   const { state } = value
   return {
     ...state,

@@ -1,14 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Message, LotusMessage } from '@glif/filecoin-message'
-import LotusRPCEngine from '@glif/filecoin-rpc-client'
 
 import { validateCID } from './validateCID'
-
-const lotusRPC = new LotusRPCEngine({
-  apiAddress:
-    process.env.NEXT_PUBLIC_LOTUS_NODE_JSONRPC ||
-    'https://calibration.node.glif.io'
-})
+import { useEnvironment } from '../services/EnvironmentProvider'
 
 interface UseGetMessageResult {
   message: Message
@@ -20,13 +14,14 @@ export const useGetMessage = (cid: string): UseGetMessageResult => {
   const [message, setMessage] = useState<Message | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<Error | null>(null)
+  const { lotusApi } = useEnvironment()
 
   useEffect(() => {
     setMessage(null)
     setError(null)
     if (validateCID(cid)) {
       setLoading(true)
-      lotusRPC
+      lotusApi
         .request<LotusMessage>('ChainGetMessage', { '/': cid })
         .then((m: LotusMessage) => setMessage(Message.fromLotusType(m)))
         .catch((e: Error) => setError(e))
@@ -34,7 +29,7 @@ export const useGetMessage = (cid: string): UseGetMessageResult => {
     } else {
       setError(new Error('Invalid CID'))
     }
-  }, [cid])
+  }, [cid, lotusApi])
 
   return { message, loading, error }
 }

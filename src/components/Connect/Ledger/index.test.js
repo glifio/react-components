@@ -1,35 +1,29 @@
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen, act, fireEvent } from '@testing-library/react'
 import { initialState as wpInitialState } from '../../../services/WalletProvider/state'
 import { initialLedgerState } from '../../../services/WalletProvider/ledgerUtils'
 import composeMockAppTree from '../../../test-utils/composeMockAppTree'
 import { mockFetchDefaultWallet } from '../../../test-utils/composeMockAppTree/createWalletProviderContextFuncs'
-import ConnectLedger from '.'
-import { flushPromises } from '../../../test-utils'
+import { Ledger } from '.'
 import { TESTNET_PATH_CODE } from '../../../constants'
 import createPath from '../../../utils/createPath'
 
-describe('Ledger configuration', () => {
-  let backSpy, nextSpy
-  afterEach(() => {
-    jest.clearAllMocks()
-    backSpy = jest.fn()
-    nextSpy = jest.fn()
-    cleanup()
-  })
+const backSpy = jest.fn()
+const nextSpy = jest.fn()
 
+describe('Ledger configuration', () => {
   test('it renders correctly', () => {
     const { Tree } = composeMockAppTree('preOnboard')
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
-    expect(screen.getByText(/Unlock & Open/)).toBeInTheDocument()
     expect(
       screen.getByText(
         /Please unlock your Ledger device and open the Filecoin App/
       )
     ).toBeInTheDocument()
+    expect(screen.getByText(/Connect with Ledger Device/)).toBeInTheDocument()
 
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -48,7 +42,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -76,7 +70,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -100,7 +94,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -124,7 +118,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -148,7 +142,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -174,7 +168,7 @@ describe('Ledger configuration', () => {
     })
     const { container } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
     expect(
@@ -190,15 +184,12 @@ describe('Ledger configuration', () => {
       /* container */
     } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
 
     await act(async () => {
-      fireEvent.click(
-        screen.getByText('My Ledger device is unlocked & Filecoin app open')
-      )
-      await flushPromises()
+      fireEvent.click(screen.getByText('Connect'))
     })
 
     expect(mockFetchDefaultWallet).toHaveBeenCalled()
@@ -213,15 +204,12 @@ describe('Ledger configuration', () => {
       /* container */
     } = render(
       <Tree>
-        <ConnectLedger back={backSpy} next={nextSpy} />
+        <Ledger back={backSpy} next={nextSpy} />
       </Tree>
     )
 
     await act(async () => {
-      fireEvent.click(
-        screen.getByText('My Ledger device is unlocked & Filecoin app open')
-      )
-      await flushPromises()
+      fireEvent.click(screen.getByText('Connect'))
     })
     expect(nextSpy).toHaveBeenCalled()
   })

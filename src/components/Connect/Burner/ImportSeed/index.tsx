@@ -1,113 +1,88 @@
-import React, { FC, useState } from 'react'
 import Filecoin, { HDWalletProvider } from '@glif/filecoin-wallet-provider'
-import { validateMnemonic } from 'bip39'
-
-import Box from '../../../Box'
-import Button from '../../../Button'
-import OnboardCard from '../../../Card/OnboardCard'
-import { Text, Title } from '../../../Typography'
-import StepHeader from '../../../StepHeader'
-import LoadingScreen from '../../../LoadingScreen'
-import Input from '../../../Input'
-import {
-  createWalletProvider,
-  useWalletProvider
-} from '../../../../services/WalletProvider'
-import BurnerWalletWarning from '../Warning'
+import PropTypes from 'prop-types'
+import { useState } from 'react'
 import { LoginOption } from '../../../../customPropTypes'
+import { createWalletProvider, useWalletProvider } from '../../../../services'
+import { ButtonV2 } from '../../../Button/V2'
+import { InputV2 } from '../../../InputV2'
+import { Dialog, ShadowBox, ButtonRowSpaced, ErrorBox } from '../../../Layout'
+import { LoadingIcon } from '../../../Loading/LoadingIcon'
+import { Loading } from '../../Loading'
 
-const InputMnemonic: FC<{ next: () => void; back: () => void }> = ({
-  next,
-  back
-}) => {
-  const { dispatch, fetchDefaultWallet, lotusApiAddr } = useWalletProvider()
-  const [mnemonic, setMnemonic] = useState('')
-  const [mnemonicError, setMnemonicError] = useState('')
-  const [loadingNextScreen, setLoadingNextScreen] = useState(false)
-  const { walletList } = useWalletProvider()
-  const [acceptedWarning, setAcceptedWarning] = useState(false)
-
-  const instantiateProvider = async () => {
-    setLoadingNextScreen(true)
-    setMnemonic('')
-    try {
-      const trimmed = mnemonic.trim()
-      const isValid = validateMnemonic(trimmed)
-      if (isValid) {
-        const provider = new Filecoin(new HDWalletProvider(mnemonic), {
-          apiAddress: lotusApiAddr
-        })
-        dispatch(createWalletProvider(provider, LoginOption.IMPORT_MNEMONIC))
-        const wallet = await fetchDefaultWallet(provider)
-        walletList([wallet])
-        next()
-      } else {
-        setMnemonicError('Invalid seed phrase')
-      }
-    } catch (err) {
-      setLoadingNextScreen(false)
-      setMnemonicError(err.message || JSON.stringify(err))
-    }
-  }
-
+export const ImportSeed = ({ back, next }: ImportSeedProps) => {
+  const { dispatch, fetchDefaultWallet, lotusApiAddr, walletList } =
+    useWalletProvider()
+  const [seed, setSeed] = useState('')
+  const [isValid, setIsValid] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [importError, setImportError] = useState('')
   return (
-    <>
-      {acceptedWarning ? (
-        <>
-          {loadingNextScreen ? (
-            <LoadingScreen />
+    <Dialog>
+      <form
+        autoComplete='off'
+        onSubmit={async e => {
+          e.preventDefault()
+          setImportError('')
+          setLoading(true)
+          if (isValid) {
+            try {
+              const provider = new Filecoin(new HDWalletProvider(seed), {
+                apiAddress: lotusApiAddr
+              })
+              dispatch(
+                createWalletProvider(provider, LoginOption.IMPORT_MNEMONIC)
+              )
+              const wallet = await fetchDefaultWallet(provider)
+              walletList([wallet])
+              next()
+            } catch (err) {
+              setImportError(err?.message || JSON.stringify(err))
+              setLoading(false)
+            }
+          }
+        }}
+      >
+        {importError && <ErrorBox>{importError}</ErrorBox>}
+        <ShadowBox>
+          <h2>Import seed phrase</h2>
+          <hr />
+          {loading ? (
+            <Loading>
+              <LoadingIcon />
+              <p>Loading...</p>
+            </Loading>
           ) : (
-            <Box display='flex' flexDirection='column' justifyContent='center'>
-              <OnboardCard>
-                <StepHeader
-                  currentStep={1}
-                  totalSteps={2}
-                  glyphAcronym='Sp'
-                  m={2}
-                  showStepper={false}
-                />
-
-                <Title mt={3}>Input, Import & Proceed</Title>
-                <Text>Please input your seed phrase below to continue </Text>
-                <Input.Mnemonic
-                  error={mnemonicError}
-                  setError={setMnemonicError}
-                  value={mnemonic}
-                  onChange={e => setMnemonic(e.target.value)}
-                />
-              </OnboardCard>
-              <Box
-                mt={6}
-                display='flex'
-                flexDirection='row'
-                width='100%'
-                justifyContent='space-between'
-              >
-                <Button
-                  title='Back'
-                  onClick={back}
-                  variant='secondary'
-                  mr={2}
-                />
-                <Button
-                  title='Next'
-                  disabled={!!(mnemonic.length === 0 || mnemonicError)}
-                  onClick={instantiateProvider}
-                  variant='primary'
-                  ml={2}
-                />
-              </Box>
-            </Box>
+            <InputV2.SeedPhrase
+              name='seed-phrase'
+              label='Please enter your seed phrase below to continue'
+              vertical={true}
+              centered={true}
+              autoFocus={true}
+              value={seed}
+              onChange={setSeed}
+              setIsValid={setIsValid}
+            />
           )}
-        </>
-      ) : (
-        <BurnerWalletWarning
-          back={back}
-          next={() => setAcceptedWarning(true)}
-        />
-      )}
-    </>
+        </ShadowBox>
+        <ButtonRowSpaced>
+          <ButtonV2 large disabled={loading} onClick={back} type='button'>
+            Back
+          </ButtonV2>
+          <ButtonV2 large disabled={loading || !isValid} green type='submit'>
+            Connect
+          </ButtonV2>
+        </ButtonRowSpaced>
+      </form>
+    </Dialog>
   )
 }
 
-export default InputMnemonic
+export interface ImportSeedProps {
+  back: () => void
+  next: () => void
+}
+
+ImportSeed.propTypes = {
+  back: PropTypes.func.isRequired,
+  next: PropTypes.func.isRequired
+}

@@ -1,55 +1,54 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { Colors } from '../theme'
+import { ShadowBox } from '../Layout'
 
-const Icon = styled.button`
-  width: 2em;
-  height: 2em;
-  padding: 0;
-  line-height: 2em;
-  border-radius: 1em;
-  border: 1px solid var(--black);
-  color: var(--black);
-  background: transparent;
-  text-align: center;
-  cursor: pointer;
-`
-
-const Content = styled.div`
-  display: none;
-  position: absolute;
-  top: calc(100% + 0.5em);
-  left: 50%;
-  width: max-content;
-  max-width: 20em;
-  transform: translateX(-50%);
-  padding: 0.5em 0.75em;
-  color: var(--black);
-  background-color: var(--white);
-  border-radius: ${props => props.theme.radii[2]};
-  box-shadow: ${props => props.theme.shadows[2]};
-  z-index: ${props => props.theme.zIndices[1]};
-`
-
-const Wrapper = styled.div`
+const TooltipEl = styled.span`
   position: relative;
 
+  .icon {
+    cursor: help;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.5em;
+    text-align: center;
+    border: 1px solid ${Colors.BLACK};
+    border-radius: 50%;
+    transition: color 0.1s ease-out, border-color 0.1s ease-out;
+  }
+
+  .content {
+    z-index: 1;
+    position: absolute;
+    top: calc(100% + 0.5em);
+    left: 50%;
+    width: max-content;
+    max-width: 20em;
+    transform: translateX(-50%);
+    padding: 0.75em 1em;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+    pointer-events: none;
+  }
+
   &:hover {
-    ${Icon} {
-      color: var(--purple-medium);
-      border-color: var(--purple-medium);
+    .icon {
+      color: ${Colors.PURPLE_MEDIUM};
+      border-color: ${Colors.PURPLE_MEDIUM};
     }
-    ${Content} {
-      display: block;
+    .content {
+      opacity: 1;
     }
   }
 `
 
-const Tooltip = ({ content }: TooltipProps) => {
+export const Tooltip = ({ content }: TooltipProps) => {
   return (
-    <Wrapper>
-      <Icon>?</Icon>
-      <Content>{content}</Content>
-    </Wrapper>
+    <TooltipEl>
+      <span className='icon'>?</span>
+      <ShadowBox className='content'>{content}</ShadowBox>
+    </TooltipEl>
   )
 }
 
@@ -60,5 +59,3 @@ interface TooltipProps {
 Tooltip.propTypes = {
   content: PropTypes.string.isRequired
 }
-
-export default Tooltip

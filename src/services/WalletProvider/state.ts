@@ -18,12 +18,6 @@ export const initialState: WalletProviderState = {
 }
 
 /* ACTIONS */
-export const setLoginOption = (
-  loginOption: LoginOption
-): WalletProviderAction => ({
-  type: 'SET_LOGIN_OPTION',
-  payload: { loginOption }
-})
 
 export const createWalletProvider = (
   provider: Filecoin,

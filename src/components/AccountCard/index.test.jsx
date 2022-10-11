@@ -1,28 +1,24 @@
-/* eslint-disable import/first */
-/* eslint-disable import/newline-after-import */
-import { cleanup, render, screen, act, fireEvent } from '@testing-library/react'
-import theme from '../theme'
-import ThemeProvider from '../ThemeProvider'
-import AccountCard from '.'
-jest.mock('../../utils/copyToClipboard')
+import { render, screen, act, fireEvent } from '@testing-library/react'
+import { AccountCard } from '.'
 import copyToClipboard from '../../utils/copyToClipboard'
 import { Base } from './index.stories'
+import { TestEnvironment } from '../../test-utils/TestEnvironment'
+
+jest.mock('../../utils/copyToClipboard')
 
 describe('AccountCard', () => {
-  afterEach(cleanup)
-
   test('renders the story', () => {
     const { container } = render(
-      <ThemeProvider theme={theme}>
+      <TestEnvironment withApollo>
         <Base {...Base.args} />
-      </ThemeProvider>
+      </TestEnvironment>
     )
     expect(container.firstChild).toMatchSnapshot()
   })
 
   test('renders the card', () => {
     const { container } = render(
-      <ThemeProvider theme={theme}>
+      <TestEnvironment withApollo>
         <AccountCard
           onAccountSwitch={() => {}}
           color='purple'
@@ -32,7 +28,7 @@ describe('AccountCard', () => {
           ledgerBusy={false}
           mb={2}
         />
-      </ThemeProvider>
+      </TestEnvironment>
     )
 
     expect(container.firstChild).toMatchSnapshot()
@@ -40,7 +36,7 @@ describe('AccountCard', () => {
 
   test('renders the card CREATE_MNEMONIC', () => {
     const { container } = render(
-      <ThemeProvider theme={theme}>
+      <TestEnvironment withApollo>
         <AccountCard
           onAccountSwitch={() => {}}
           color='purple'
@@ -50,7 +46,7 @@ describe('AccountCard', () => {
           ledgerBusy={false}
           mb={2}
         />
-      </ThemeProvider>
+      </TestEnvironment>
     )
 
     expect(container.firstChild).toMatchSnapshot()
@@ -58,7 +54,7 @@ describe('AccountCard', () => {
 
   test('renders the address', () => {
     render(
-      <ThemeProvider theme={theme}>
+      <TestEnvironment withApollo>
         <AccountCard
           onAccountSwitch={() => {}}
           color='purple'
@@ -68,7 +64,7 @@ describe('AccountCard', () => {
           ledgerBusy={false}
           mb={2}
         />
-      </ThemeProvider>
+      </TestEnvironment>
     )
 
     expect(screen.getByText('t0123', { exact: false })).toBeInTheDocument()
@@ -78,7 +74,7 @@ describe('AccountCard', () => {
   test('clicking "Switch" calls onAccountSwitch', () => {
     const mockOnAccountSwitch = jest.fn()
     const { getByText } = render(
-      <ThemeProvider theme={theme}>
+      <TestEnvironment withApollo>
         <AccountCard
           onAccountSwitch={mockOnAccountSwitch}
           color='purple'
@@ -88,7 +84,7 @@ describe('AccountCard', () => {
           ledgerBusy={false}
           mb={2}
         />
-      </ThemeProvider>
+      </TestEnvironment>
     )
 
     act(() => {
@@ -101,7 +97,7 @@ describe('AccountCard', () => {
   test('clicking "Show on Device" calls onShowOnLedger', () => {
     const mockOnShowOnLedger = jest.fn()
     const { getByText } = render(
-      <ThemeProvider theme={theme}>
+      <TestEnvironment withApollo>
         <AccountCard
           onAccountSwitch={() => {}}
           color='purple'
@@ -111,7 +107,7 @@ describe('AccountCard', () => {
           ledgerBusy={false}
           mb={2}
         />
-      </ThemeProvider>
+      </TestEnvironment>
     )
 
     act(() => {
@@ -126,7 +122,7 @@ describe('AccountCard', () => {
     copyToClipboard.mockImplementationOnce(mockCopyToClipboard)
 
     const { getByText } = render(
-      <ThemeProvider theme={theme}>
+      <TestEnvironment withApollo>
         <AccountCard
           onAccountSwitch={() => {}}
           color='purple'
@@ -136,7 +132,7 @@ describe('AccountCard', () => {
           ledgerBusy={false}
           mb={2}
         />
-      </ThemeProvider>
+      </TestEnvironment>
     )
 
     act(() => {

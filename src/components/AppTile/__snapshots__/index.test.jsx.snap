@@ -2,12 +2,12 @@
 
 exports[`AppTile renders the AppTile 1`] = `
 .c0 {
-  gap: 10px;
+  gap: var(--space-m);
 }
 
 .c1 {
   position: relative;
-  font-size: 28px;
+  font-size: var(--font-size-xl);
   line-height: 1.3em;
   display: block;
   -webkit-text-decoration: none;
@@ -46,7 +46,7 @@ exports[`AppTile renders the AppTile 1`] = `
   align-items: flex-start;
   position: relative;
   z-index: 2;
-  font-size: 26px;
+  font-size: var(--font-size-xl);
   line-height: 1;
 }
 
@@ -59,7 +59,7 @@ exports[`AppTile renders the AppTile 1`] = `
 
 .c5 {
   z-index: 1;
-  font-size: 26px;
+  font-size: var(--font-size-xl);
   line-height: 1.3;
 }
 
@@ -69,8 +69,8 @@ exports[`AppTile renders the AppTile 1`] = `
 
 @media (max-width:868px) {
   .c0 {
-    margin-top: calc(20px * 2);
-    margin-bottom: calc(20px * 2);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-xl);
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -150,13 +150,13 @@ exports[`AppTile renders the AppTile 1`] = `
 
 @media (max-width:480px) {
   .c3 {
-    padding: 8px;
+    padding: var(--space-m);
   }
 }
 
 @media (min-width:480px) {
   .c3 {
-    padding: 20px;
+    padding: var(--space-l);
   }
 }
 
@@ -194,8 +194,8 @@ exports[`AppTile renders the AppTile 1`] = `
   .c5 {
     width: 100%;
     white-space: normal;
-    font-size: 13px;
-    padding: 15px 5px 0 8px;
+    font-size: 1rem;
+    padding: 15px 5px 0 var(--space-m);
   }
 }
 
@@ -207,7 +207,7 @@ exports[`AppTile renders the AppTile 1`] = `
     width: 100%;
     height: 100%;
     color: #fff;
-    padding: 20px;
+    padding: var(--space-l);
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -242,12 +242,12 @@ exports[`AppTile renders the AppTile 1`] = `
       >
         <div>
           <h2
-            style="font-size: 26px; margin: 0px; opacity: 1; text-decoration: none;"
+            style="margin: 0px; opacity: 1; text-decoration: none;"
           >
             Safe
           </h2>
           <h3
-            style="font-size: 26px; opacity: 0.3; text-decoration: line-through; line-height: 1; margin: 0px;"
+            style="opacity: 0.3; text-decoration: line-through; line-height: 1; margin: 0px;"
           >
             Vault
           </h3>

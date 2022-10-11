@@ -1,15 +1,17 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { useWalletProvider } from '../'
+import { useWalletProvider, WalletProviderOpts } from '../'
 import { Wallet } from '../types'
 
-const noWallet: Wallet = {
+export const noWallet: Wallet = {
   address: '',
+  id: '',
+  robust: '',
   balance: new FilecoinNumber('0', 'fil'),
   path: ''
 }
 
-export default function useWallet(): Wallet {
-  const { wallets, selectedWalletIdx } = useWalletProvider()
+export const useWallet = (opts?: WalletProviderOpts): Wallet => {
+  const { wallets, selectedWalletIdx } = useWalletProvider(opts)
 
   if (wallets.length === 0) return noWallet
   if (!wallets[selectedWalletIdx]) return noWallet

@@ -4,12 +4,18 @@ import {
   oneOfType,
   number,
   oneOf,
-  object,
-  Requireable
+  arrayOf,
+  Requireable,
+  any
 } from 'prop-types'
 import { validateMnemonic } from 'bip39'
 import { validateAddressString, CoinType } from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
+import { LotusCID } from '@glif/filecoin-actor-utils'
+import { CID } from 'multiformats/cid'
+import BigNumber from 'bignumber.js'
+
+import { Network } from './services/EnvironmentProvider'
 
 /**
  * ADDRESS_PROPTYPE
@@ -44,7 +50,30 @@ export const GRAPHQL_ADDRESS_PROP_TYPE = shape({
 })
 
 /**
- * FILECOIN_NUMBER_PROPTYPE
+ * BigNumber
+ */
+
+const createBigNumberPropType =
+  isRequired => (props, propName, componentName) => {
+    const prop = props[propName]
+    if (prop == null) {
+      if (isRequired) {
+        return new Error(`Missing prop "${propName}" in "${componentName}"`)
+      }
+    } else if (!BigNumber.isBigNumber(prop)) {
+      return new Error(
+        `Invalid prop "${propName}" supplied to "${componentName}"`
+      )
+    }
+  }
+
+export const BIGNUMBER_PROPTYPE: Requireable<any> = Object.assign(
+  createBigNumberPropType(false),
+  { isRequired: createBigNumberPropType(true) }
+)
+
+/**
+ * FilecoinNumber
  */
 
 const createFilecoinNumberPropType =
@@ -54,17 +83,10 @@ const createFilecoinNumberPropType =
       if (isRequired) {
         return new Error(`Missing prop "${propName}" in "${componentName}"`)
       }
-    } else {
-      // instanceof prop checking is broken in nextjs on server side render cycles
-      const isFilecoinNumber =
-        typeof prop === 'object' &&
-        'toFil' in prop &&
-        'toAttoFil' in prop &&
-        'toPicoFil' in prop
-      if (!isFilecoinNumber)
-        return new Error(
-          `Invalid prop "${propName}" supplied to "${componentName}"`
-        )
+    } else if (!FilecoinNumber.isFilecoinNumber(prop)) {
+      return new Error(
+        `Invalid prop "${propName}" supplied to "${componentName}"`
+      )
     }
   }
 
@@ -74,18 +96,68 @@ export const FILECOIN_NUMBER_PROPTYPE: Requireable<any> = Object.assign(
 )
 
 /**
- * MESSAGE_PROPS
+ * Message
  */
 
-export const MESSAGE_PROPS = shape({
+export const MESSAGE_PROPTYPE = shape({
   to: ADDRESS_PROPTYPE.isRequired,
   from: ADDRESS_PROPTYPE.isRequired,
-  value: string.isRequired,
-  cid: string.isRequired,
-  status: oneOf(['confirmed', 'pending']).isRequired,
-  timestamp: oneOfType([string, number]).isRequired,
+  nonce: number.isRequired,
+  method: number.isRequired,
+  value: BIGNUMBER_PROPTYPE.isRequired,
+  gasPremium: BIGNUMBER_PROPTYPE.isRequired,
+  gasFeeCap: BIGNUMBER_PROPTYPE.isRequired,
+  gasLimit: number.isRequired,
+  params: oneOfType([string, arrayOf(string)])
+})
+
+export const GRAPHQL_MESSAGE_PROPTYPE = shape({
+  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  nonce: number.isRequired,
   method: string.isRequired,
-  params: object.isRequired
+  value: string.isRequired,
+  gasPremium: string.isRequired,
+  gasFeeCap: string.isRequired,
+  gasLimit: number.isRequired,
+  params: oneOfType([string, arrayOf(string)])
+})
+
+export const GRAPHQL_MESSAGE_RECEIPT_PROPTYPE = shape({
+  exitCode: number.isRequired,
+  return: string.isRequired,
+  gasUsed: number.isRequired
+})
+
+export const LOTUS_MESSAGE_PROPTYPE = shape({
+  CID: shape({
+    '/': string.isRequired
+  }).isRequired,
+  From: string.isRequired,
+  To: string.isRequired,
+  Value: string.isRequired,
+  Method: number.isRequired,
+  Nonce: number.isRequired,
+  Params: string,
+  Version: number,
+  GasFeeCap: string,
+  GasPremium: string,
+  GasLimit: number
+})
+
+export const MESSAGE_RECEIPT_PROPTYPE = shape({
+  ExitCode: number.isRequired,
+  GasUsed: number.isRequired,
+  Return: string
+})
+
+export const EXECUTION_TRACE_PROPTYPE = shape({
+  Duration: number.isRequired,
+  Msg: LOTUS_MESSAGE_PROPTYPE.isRequired,
+  MsgRct: MESSAGE_RECEIPT_PROPTYPE.isRequired,
+  GasCharges: number,
+  Error: string,
+  Subcalls: any
 })
 
 /**
@@ -104,6 +176,16 @@ export const GAS_PARAMS_PROPTYPE = shape({
   gasLimit: FILECOIN_NUMBER_PROPTYPE.isRequired
 })
 
+export const GRAPHQL_GAS_COST_PROPTYPE = shape({
+  baseFeeBurn: string.isRequired,
+  minerPenalty: string.isRequired,
+  minerTip: string.isRequired,
+  overEstimationBurn: string.isRequired,
+  refund: string.isRequired,
+  totalCost: string.isRequired,
+  gasUsed: number.isRequired
+})
+
 /**
  * Login Option
  */
@@ -119,6 +201,20 @@ export enum LoginOption {
 export const LOGIN_OPTION_PROPTYPE = oneOf(
   Object.values(LoginOption) as Array<LoginOption>
 )
+
+/**
+ * MSIG State
+ */
+
+export interface MsigState {
+  InitialBalance: string
+  NextTxnID: number
+  NumApprovalsThreshold: number
+  PendingTxns: LotusCID
+  Signers: string[]
+  StartEpoch: number
+  UnlockDuration: number
+}
 
 /**
  * MSIG Method
@@ -143,14 +239,19 @@ export const MSIG_METHOD_PROPTYPE = oneOf(
 
 /**
  * Transaction State
+ * These values are numeric and should stay in order of the tx flow.
+ * This is so we can check e.g. txState > TxState.FillingTxForm.
  */
 
 export enum TxState {
-  FillingForm = 'FillingForm',
-  LoadingMessage = 'LoadingMessage',
-  LoadingTxDetails = 'LoadingTxDetails',
-  AwaitingConfirmation = 'AwaitingConfirmation',
-  MPoolPushing = 'MPoolPushing'
+  LoadingMessage = 0,
+  LoadingFailed,
+  FillingForm,
+  FillingTxFee,
+  LoadingTxFee,
+  LoadingTxDetails,
+  AwaitingConfirmation,
+  MPoolPushing
 }
 
 export const TX_STATE_PROPTYPE = oneOf(Object.values(TxState) as Array<TxState>)
@@ -187,3 +288,38 @@ export const MNEMONIC_PROPTYPE: Requireable<any> = Object.assign(
   createMnemonicPropType(false),
   { isRequired: createMnemonicPropType(true) }
 )
+
+export const WALLET_PROPTYPE = shape({
+  path: string,
+  balance: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  robust: ADDRESS_PROPTYPE.isRequired,
+  id: ADDRESS_PROPTYPE.isRequired,
+  address: ADDRESS_PROPTYPE.isRequired
+})
+/* Actor types */
+
+export type SystemActorState = {
+  BuiltinActors: LotusCID
+}
+
+export type BuiltInActorName =
+  | 'system'
+  | 'init'
+  | 'cron'
+  | 'account'
+  | 'storagepower'
+  | 'storageminer'
+  | 'storagemarket'
+  | 'paymentchannel'
+  | 'multisig'
+  | 'reward'
+  | 'verifiedregistry'
+  | 'evm'
+
+export type BuiltInActorRecord = [BuiltInActorName, CID]
+
+export type BuiltInActorRegistryReturn = BuiltInActorRecord[]
+
+export type BuiltInActorNetworkRegistry = Record<string, BuiltInActorName>
+
+export type BuiltInActorRegistry = Record<Network, BuiltInActorNetworkRegistry>

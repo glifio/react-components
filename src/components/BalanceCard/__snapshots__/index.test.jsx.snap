@@ -1,19 +1,117 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BalanceCard it renders correctly 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
   border-radius: 8px;
-  padding: 16px;
-  background-color: transparent;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c3 svg path {
+  stroke: var(--black);
+}
+
+.c3:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c3:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c3:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c3:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c3 svg path {
+  stroke: var(--white);
+}
+
+.c3:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c3:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  border: 1px solid var(--black);
+}
+
+.c1 hr {
+  border-color: var(--black);
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 300px;
-  min-height: 300px;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -21,213 +119,216 @@ exports[`BalanceCard it renders correctly 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  width: 18em;
+  height: 18em;
 }
 
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  font-size: var(--font-size-l);
+  margin-bottom: 1em;
 }
 
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
+.c2 .title h3 {
+  margin: 0;
 }
 
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  overflow: hidden;
-}
-
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title .toggle {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  gap: var(--space-m);
+  font-size: 1rem;
 }
 
-.c11 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
+.c2 .title .toggle span {
+  color: var(--gray-dark);
 }
 
-.c11:hover {
-  opacity: 0.8;
+.c2 .title .toggle span.active {
+  color: var(--black);
 }
 
-.c8 {
-  color: #262626;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c2 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c3 {
-  color: #000;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c6 {
-  color: #666666;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c4:hover {
+.c2 .title .toggle span:hover {
   cursor: pointer;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c9 {
-  word-wrap: break-word;
+.c2 hr {
+  margin: 0;
+}
+
+.c2 .balance {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
 }
 
 <div
-  class="c0"
-  display="flex"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    display="flex"
-  >
-    <h4
-      class="c2"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Balance
-    </h4>
+  <div>
     <div
-      class="c1"
-      display="flex"
+      class="title"
     >
-      <h4
-        class="c3 c4"
-        color="core.black"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Approx.
-      </h4>
+      <h3>
+        Balance
+      </h3>
       <div
-        class="c5"
-        width="2"
-      />
-      <h4
-        class="c6 c4"
-        color="core.darkgray"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
+        class="toggle"
       >
-        Exact
-      </h4>
+        <span
+          class="active"
+        >
+          Approx.
+        </span>
+        <span
+          class=""
+        >
+          Exact
+        </span>
+      </div>
     </div>
+    <hr />
   </div>
-  <div
-    class="c7"
-    overflow="hidden"
+  <p
+    class="balance"
   >
-    <h2
-      class="c8 c9"
-      color="card.balance.color"
-      font-family="RT-Alias-Grotesk"
-      font-size="6"
-      font-weight="700"
-    >
-      100
-       FIL
-    </h2>
-  </div>
-  <div
-    class="c10"
-    display="flex"
+    100
+     FIL
+  </p>
+  <button
+    class="c3"
   >
-    <button
-      class="c11"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Send
-    </button>
-  </div>
+    Send
+  </button>
 </div>
 `;
 
 exports[`BalanceCard it renders precise when the user clicks "precise" 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
   border-radius: 8px;
-  padding: 16px;
-  background-color: transparent;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c3 svg path {
+  stroke: var(--black);
+}
+
+.c3:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c3:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c3:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c3:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c3 svg path {
+  stroke: var(--white);
+}
+
+.c3:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c3:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  border: 1px solid var(--black);
+}
+
+.c1 hr {
+  border-color: var(--black);
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 300px;
-  min-height: 300px;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -235,213 +336,216 @@ exports[`BalanceCard it renders precise when the user clicks "precise" 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  width: 18em;
+  height: 18em;
 }
 
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  font-size: var(--font-size-l);
+  margin-bottom: 1em;
 }
 
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
+.c2 .title h3 {
+  margin: 0;
 }
 
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  overflow: hidden;
-}
-
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title .toggle {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  gap: var(--space-m);
+  font-size: 1rem;
 }
 
-.c11 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
+.c2 .title .toggle span {
+  color: var(--gray-dark);
 }
 
-.c11:hover {
-  opacity: 0.8;
+.c2 .title .toggle span.active {
+  color: var(--black);
 }
 
-.c8 {
-  color: #262626;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c2 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c6 {
-  color: #000;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c3 {
-  color: #666666;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c4:hover {
+.c2 .title .toggle span:hover {
   cursor: pointer;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c9 {
-  word-wrap: break-word;
+.c2 hr {
+  margin: 0;
+}
+
+.c2 .balance {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
 }
 
 <div
-  class="c0"
-  display="flex"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    display="flex"
-  >
-    <h4
-      class="c2"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Balance
-    </h4>
+  <div>
     <div
-      class="c1"
-      display="flex"
+      class="title"
     >
-      <h4
-        class="c3 c4"
-        color="core.darkgray"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Approx.
-      </h4>
+      <h3>
+        Balance
+      </h3>
       <div
-        class="c5"
-        width="2"
-      />
-      <h4
-        class="c6 c4"
-        color="core.black"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
+        class="toggle"
       >
-        Exact
-      </h4>
+        <span
+          class=""
+        >
+          Approx.
+        </span>
+        <span
+          class="active"
+        >
+          Exact
+        </span>
+      </div>
     </div>
+    <hr />
   </div>
-  <div
-    class="c7"
-    overflow="hidden"
+  <p
+    class="balance"
   >
-    <h2
-      class="c8 c9"
-      color="card.balance.color"
-      font-family="RT-Alias-Grotesk"
-      font-size="6"
-      font-weight="700"
-    >
-      23488219.00001
-       FIL
-    </h2>
-  </div>
-  <div
-    class="c10"
-    display="flex"
+    23488219.00001
+     FIL
+  </p>
+  <button
+    class="c3"
   >
-    <button
-      class="c11"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Send
-    </button>
-  </div>
+    Send
+  </button>
 </div>
 `;
 
 exports[`BalanceCard it renders pretty billion dollar balances 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
   border-radius: 8px;
-  padding: 16px;
-  background-color: transparent;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c3 svg path {
+  stroke: var(--black);
+}
+
+.c3:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c3:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c3:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c3:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c3 svg path {
+  stroke: var(--white);
+}
+
+.c3:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c3:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  border: 1px solid var(--black);
+}
+
+.c1 hr {
+  border-color: var(--black);
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 300px;
-  min-height: 300px;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -449,213 +553,216 @@ exports[`BalanceCard it renders pretty billion dollar balances 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  width: 18em;
+  height: 18em;
 }
 
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  font-size: var(--font-size-l);
+  margin-bottom: 1em;
 }
 
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
+.c2 .title h3 {
+  margin: 0;
 }
 
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  overflow: hidden;
-}
-
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title .toggle {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  gap: var(--space-m);
+  font-size: 1rem;
 }
 
-.c11 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
+.c2 .title .toggle span {
+  color: var(--gray-dark);
 }
 
-.c11:hover {
-  opacity: 0.8;
+.c2 .title .toggle span.active {
+  color: var(--black);
 }
 
-.c8 {
-  color: #262626;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c2 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c3 {
-  color: #000;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c6 {
-  color: #666666;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c4:hover {
+.c2 .title .toggle span:hover {
   cursor: pointer;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c9 {
-  word-wrap: break-word;
+.c2 hr {
+  margin: 0;
+}
+
+.c2 .balance {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
 }
 
 <div
-  class="c0"
-  display="flex"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    display="flex"
-  >
-    <h4
-      class="c2"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Balance
-    </h4>
+  <div>
     <div
-      class="c1"
-      display="flex"
+      class="title"
     >
-      <h4
-        class="c3 c4"
-        color="core.black"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Approx.
-      </h4>
+      <h3>
+        Balance
+      </h3>
       <div
-        class="c5"
-        width="2"
-      />
-      <h4
-        class="c6 c4"
-        color="core.darkgray"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
+        class="toggle"
       >
-        Exact
-      </h4>
+        <span
+          class="active"
+        >
+          Approx.
+        </span>
+        <span
+          class=""
+        >
+          Exact
+        </span>
+      </div>
     </div>
+    <hr />
   </div>
-  <div
-    class="c7"
-    overflow="hidden"
+  <p
+    class="balance"
   >
-    <h2
-      class="c8 c9"
-      color="card.balance.color"
-      font-family="RT-Alias-Grotesk"
-      font-size="6"
-      font-weight="700"
-    >
-      10.023B
-       FIL
-    </h2>
-  </div>
-  <div
-    class="c10"
-    display="flex"
+    10.023B
+     FIL
+  </p>
+  <button
+    class="c3"
   >
-    <button
-      class="c11"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Send
-    </button>
-  </div>
+    Send
+  </button>
 </div>
 `;
 
 exports[`BalanceCard it renders pretty million dollar balances 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
   border-radius: 8px;
-  padding: 16px;
-  background-color: transparent;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c3 svg path {
+  stroke: var(--black);
+}
+
+.c3:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c3:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c3:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c3:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c3 svg path {
+  stroke: var(--white);
+}
+
+.c3:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c3:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  border: 1px solid var(--black);
+}
+
+.c1 hr {
+  border-color: var(--black);
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 300px;
-  min-height: 300px;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -663,213 +770,216 @@ exports[`BalanceCard it renders pretty million dollar balances 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  width: 18em;
+  height: 18em;
 }
 
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  font-size: var(--font-size-l);
+  margin-bottom: 1em;
 }
 
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
+.c2 .title h3 {
+  margin: 0;
 }
 
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  overflow: hidden;
-}
-
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title .toggle {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  gap: var(--space-m);
+  font-size: 1rem;
 }
 
-.c11 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
+.c2 .title .toggle span {
+  color: var(--gray-dark);
 }
 
-.c11:hover {
-  opacity: 0.8;
+.c2 .title .toggle span.active {
+  color: var(--black);
 }
 
-.c8 {
-  color: #262626;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c2 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c3 {
-  color: #000;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c6 {
-  color: #666666;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c4:hover {
+.c2 .title .toggle span:hover {
   cursor: pointer;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c9 {
-  word-wrap: break-word;
+.c2 hr {
+  margin: 0;
+}
+
+.c2 .balance {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
 }
 
 <div
-  class="c0"
-  display="flex"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    display="flex"
-  >
-    <h4
-      class="c2"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Balance
-    </h4>
+  <div>
     <div
-      class="c1"
-      display="flex"
+      class="title"
     >
-      <h4
-        class="c3 c4"
-        color="core.black"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Approx.
-      </h4>
+      <h3>
+        Balance
+      </h3>
       <div
-        class="c5"
-        width="2"
-      />
-      <h4
-        class="c6 c4"
-        color="core.darkgray"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
+        class="toggle"
       >
-        Exact
-      </h4>
+        <span
+          class="active"
+        >
+          Approx.
+        </span>
+        <span
+          class=""
+        >
+          Exact
+        </span>
+      </div>
     </div>
+    <hr />
   </div>
-  <div
-    class="c7"
-    overflow="hidden"
+  <p
+    class="balance"
   >
-    <h2
-      class="c8 c9"
-      color="card.balance.color"
-      font-family="RT-Alias-Grotesk"
-      font-size="6"
-      font-weight="700"
-    >
-      10.022M
-       FIL
-    </h2>
-  </div>
-  <div
-    class="c10"
-    display="flex"
+    10.022M
+     FIL
+  </p>
+  <button
+    class="c3"
   >
-    <button
-      class="c11"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Send
-    </button>
-  </div>
+    Send
+  </button>
 </div>
 `;
 
 exports[`BalanceCard it renders pretty thousand dollar balances 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
   border-radius: 8px;
-  padding: 16px;
-  background-color: transparent;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c3 svg path {
+  stroke: var(--black);
+}
+
+.c3:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c3:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c3:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c3:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c3 svg path {
+  stroke: var(--white);
+}
+
+.c3:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c3:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  border: 1px solid var(--black);
+}
+
+.c1 hr {
+  border-color: var(--black);
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 300px;
-  min-height: 300px;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -877,213 +987,216 @@ exports[`BalanceCard it renders pretty thousand dollar balances 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  width: 18em;
+  height: 18em;
 }
 
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  font-size: var(--font-size-l);
+  margin-bottom: 1em;
 }
 
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
+.c2 .title h3 {
+  margin: 0;
 }
 
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  overflow: hidden;
-}
-
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title .toggle {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  gap: var(--space-m);
+  font-size: 1rem;
 }
 
-.c11 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
+.c2 .title .toggle span {
+  color: var(--gray-dark);
 }
 
-.c11:hover {
-  opacity: 0.8;
+.c2 .title .toggle span.active {
+  color: var(--black);
 }
 
-.c8 {
-  color: #262626;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c2 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c3 {
-  color: #000;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c6 {
-  color: #666666;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c4:hover {
+.c2 .title .toggle span:hover {
   cursor: pointer;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c9 {
-  word-wrap: break-word;
+.c2 hr {
+  margin: 0;
+}
+
+.c2 .balance {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
 }
 
 <div
-  class="c0"
-  display="flex"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    display="flex"
-  >
-    <h4
-      class="c2"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Balance
-    </h4>
+  <div>
     <div
-      class="c1"
-      display="flex"
+      class="title"
     >
-      <h4
-        class="c3 c4"
-        color="core.black"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Approx.
-      </h4>
+      <h3>
+        Balance
+      </h3>
       <div
-        class="c5"
-        width="2"
-      />
-      <h4
-        class="c6 c4"
-        color="core.darkgray"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
+        class="toggle"
       >
-        Exact
-      </h4>
+        <span
+          class="active"
+        >
+          Approx.
+        </span>
+        <span
+          class=""
+        >
+          Exact
+        </span>
+      </div>
     </div>
+    <hr />
   </div>
-  <div
-    class="c7"
-    overflow="hidden"
+  <p
+    class="balance"
   >
-    <h2
-      class="c8 c9"
-      color="card.balance.color"
-      font-family="RT-Alias-Grotesk"
-      font-size="6"
-      font-weight="700"
-    >
-      10.021K
-       FIL
-    </h2>
-  </div>
-  <div
-    class="c10"
-    display="flex"
+    10.021K
+     FIL
+  </p>
+  <button
+    class="c3"
   >
-    <button
-      class="c11"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Send
-    </button>
-  </div>
+    Send
+  </button>
 </div>
 `;
 
 exports[`BalanceCard it renders pretty under 1 dollar balances 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
   border-radius: 8px;
-  padding: 16px;
-  background-color: transparent;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c3 svg path {
+  stroke: var(--black);
+}
+
+.c3:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c3:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c3:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c3:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c3 svg path {
+  stroke: var(--white);
+}
+
+.c3:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c3:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  border: 1px solid var(--black);
+}
+
+.c1 hr {
+  border-color: var(--black);
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 300px;
-  min-height: 300px;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -1091,213 +1204,216 @@ exports[`BalanceCard it renders pretty under 1 dollar balances 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  width: 18em;
+  height: 18em;
 }
 
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  font-size: var(--font-size-l);
+  margin-bottom: 1em;
 }
 
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
+.c2 .title h3 {
+  margin: 0;
 }
 
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  overflow: hidden;
-}
-
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title .toggle {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  gap: var(--space-m);
+  font-size: 1rem;
 }
 
-.c11 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
+.c2 .title .toggle span {
+  color: var(--gray-dark);
 }
 
-.c11:hover {
-  opacity: 0.8;
+.c2 .title .toggle span.active {
+  color: var(--black);
 }
 
-.c8 {
-  color: #262626;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c2 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c3 {
-  color: #000;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c6 {
-  color: #666666;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c4:hover {
+.c2 .title .toggle span:hover {
   cursor: pointer;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c9 {
-  word-wrap: break-word;
+.c2 hr {
+  margin: 0;
+}
+
+.c2 .balance {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
 }
 
 <div
-  class="c0"
-  display="flex"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    display="flex"
-  >
-    <h4
-      class="c2"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Balance
-    </h4>
+  <div>
     <div
-      class="c1"
-      display="flex"
+      class="title"
     >
-      <h4
-        class="c3 c4"
-        color="core.black"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Approx.
-      </h4>
+      <h3>
+        Balance
+      </h3>
       <div
-        class="c5"
-        width="2"
-      />
-      <h4
-        class="c6 c4"
-        color="core.darkgray"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
+        class="toggle"
       >
-        Exact
-      </h4>
+        <span
+          class="active"
+        >
+          Approx.
+        </span>
+        <span
+          class=""
+        >
+          Exact
+        </span>
+      </div>
     </div>
+    <hr />
   </div>
-  <div
-    class="c7"
-    overflow="hidden"
+  <p
+    class="balance"
   >
-    <h2
-      class="c8 c9"
-      color="card.balance.color"
-      font-family="RT-Alias-Grotesk"
-      font-size="6"
-      font-weight="700"
-    >
-      &lt; 0.001
-       FIL
-    </h2>
-  </div>
-  <div
-    class="c10"
-    display="flex"
+    &lt; 0.0001
+     FIL
+  </p>
+  <button
+    class="c3"
   >
-    <button
-      class="c11"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Send
-    </button>
-  </div>
+    Send
+  </button>
 </div>
 `;
 
 exports[`BalanceCard it renders pretty under thousand dollar balances 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
   border-radius: 8px;
-  padding: 16px;
-  background-color: transparent;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c3 svg path {
+  stroke: var(--black);
+}
+
+.c3:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c3:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c3:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c3:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c3 svg path {
+  stroke: var(--white);
+}
+
+.c3:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c3:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  border: 1px solid var(--black);
+}
+
+.c1 hr {
+  border-color: var(--black);
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 300px;
-  min-height: 300px;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -1305,213 +1421,216 @@ exports[`BalanceCard it renders pretty under thousand dollar balances 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  width: 18em;
+  height: 18em;
 }
 
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  font-size: var(--font-size-l);
+  margin-bottom: 1em;
 }
 
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
+.c2 .title h3 {
+  margin: 0;
 }
 
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  overflow: hidden;
-}
-
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title .toggle {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  gap: var(--space-m);
+  font-size: 1rem;
 }
 
-.c11 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
+.c2 .title .toggle span {
+  color: var(--gray-dark);
 }
 
-.c11:hover {
-  opacity: 0.8;
+.c2 .title .toggle span.active {
+  color: var(--black);
 }
 
-.c8 {
-  color: #262626;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c2 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c3 {
-  color: #000;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c6 {
-  color: #666666;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c4:hover {
+.c2 .title .toggle span:hover {
   cursor: pointer;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c9 {
-  word-wrap: break-word;
+.c2 hr {
+  margin: 0;
+}
+
+.c2 .balance {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
 }
 
 <div
-  class="c0"
-  display="flex"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    display="flex"
-  >
-    <h4
-      class="c2"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Balance
-    </h4>
+  <div>
     <div
-      class="c1"
-      display="flex"
+      class="title"
     >
-      <h4
-        class="c3 c4"
-        color="core.black"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Approx.
-      </h4>
+      <h3>
+        Balance
+      </h3>
       <div
-        class="c5"
-        width="2"
-      />
-      <h4
-        class="c6 c4"
-        color="core.darkgray"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
+        class="toggle"
       >
-        Exact
-      </h4>
+        <span
+          class="active"
+        >
+          Approx.
+        </span>
+        <span
+          class=""
+        >
+          Exact
+        </span>
+      </div>
     </div>
+    <hr />
   </div>
-  <div
-    class="c7"
-    overflow="hidden"
+  <p
+    class="balance"
   >
-    <h2
-      class="c8 c9"
-      color="card.balance.color"
-      font-family="RT-Alias-Grotesk"
-      font-size="6"
-      font-weight="700"
-    >
-      999.124
-       FIL
-    </h2>
-  </div>
-  <div
-    class="c10"
-    display="flex"
+    999.1241
+     FIL
+  </p>
+  <button
+    class="c3"
   >
-    <button
-      class="c11"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Send
-    </button>
-  </div>
+    Send
+  </button>
 </div>
 `;
 
 exports[`BalanceCard renders the story 1`] = `
-.c0 {
-  min-width: 0;
-  box-sizing: border-box;
-  border: 1px solid;
+.c3 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  gap: 0.75rem;
+  padding: 0.5em 0.75em;
+  color: var(--black);
+  border-width: 1px;
+  border-style: solid;
   border-radius: 8px;
-  padding: 16px;
-  background-color: transparent;
+  border-color: var(--black);
+  background: transparent;
+  color: var(--white);
+  border-color: var(--green-medium);
+  background: var(--green-medium);
+}
+
+.c3 svg path {
+  stroke: var(--black);
+}
+
+.c3:hover {
+  color: var(--purple-medium);
+  border-color: var(--purple-medium);
+}
+
+.c3:hover svg path {
+  stroke: var(--purple-medium);
+}
+
+.c3:active {
+  color: var(--white) !important;
+  border-color: var(--purple-medium) !important;
+  background: var(--purple-medium) !important;
+}
+
+.c3:active svg path {
+  stroke: var(--white) !important;
+}
+
+.c3 svg path {
+  stroke: var(--white);
+}
+
+.c3:hover {
+  color: var(--green-medium);
+  border-color: var(--green-medium);
+  background: var(--white);
+}
+
+.c3:hover svg path {
+  stroke: var(--green-medium);
+}
+
+.c0 {
+  padding: 1.5em;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  word-break: break-word;
+}
+
+.c0 > *:first-child {
+  margin-top: 0;
+}
+
+.c0 > *:last-child {
+  margin-bottom: 0;
+}
+
+.c0 > svg:first-child {
+  display: block;
+  margin: 0 auto 1em;
+}
+
+.c0 > h2:first-child {
+  margin: 0;
+}
+
+.c0 header:first-child {
+  margin: -1.5em -1.5em 1.5em -1.5em;
+  padding: 1.5em;
+  background-color: var(--purple-medium);
+  color: var(--white);
+}
+
+.c1 {
+  border: 1px solid var(--black);
+}
+
+.c1 hr {
+  border-color: var(--black);
+}
+
+.c2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  width: 300px;
-  min-height: 300px;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -1519,195 +1638,100 @@ exports[`BalanceCard renders the story 1`] = `
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  width: 18em;
+  height: 18em;
 }
 
-.c1 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  font-size: var(--font-size-l);
+  margin-bottom: 1em;
 }
 
-.c5 {
-  min-width: 0;
-  box-sizing: border-box;
-  width: 8px;
+.c2 .title h3 {
+  margin: 0;
 }
 
-.c7 {
-  min-width: 0;
-  box-sizing: border-box;
-  padding-top: 24px;
-  padding-bottom: 24px;
-  overflow: hidden;
-}
-
-.c10 {
-  min-width: 0;
-  box-sizing: border-box;
+.c2 .title .toggle {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  gap: var(--space-m);
+  font-size: 1rem;
 }
 
-.c11 {
-  cursor: pointer;
-  border: 1px solid #1AD08F;
-  background-color: #1AD08F;
-  border-color: #1AD08F;
-  color: #08442F;
-  font-size: 1.125rem;
-  -webkit-transition: 0.18s ease-in-out;
-  transition: 0.18s ease-in-out;
-  border-radius: 4px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 16px;
-  padding-right: 16px;
-  height: 48px;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  border-width: 1px;
-  border-radius: 4px;
+.c2 .title .toggle span {
+  color: var(--gray-dark);
 }
 
-.c11:hover {
-  opacity: 0.8;
+.c2 .title .toggle span.active {
+  color: var(--black);
 }
 
-.c8 {
-  color: #262626;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c2 {
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c3 {
-  color: #000;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c6 {
-  color: #666666;
-  font-size: 1.125rem;
-  font-weight: 400;
-  line-height: 1;
-  font-family: RT-Alias-Grotesk;
-  margin: 0;
-}
-
-.c4:hover {
+.c2 .title .toggle span:hover {
   cursor: pointer;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.c9 {
-  word-wrap: break-word;
+.c2 hr {
+  margin: 0;
+}
+
+.c2 .balance {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
 }
 
 <div
-  class="c0"
-  display="flex"
-  width="300px"
+  class="c0 c1 c2"
 >
-  <div
-    class="c1"
-    display="flex"
-  >
-    <h4
-      class="c2"
-      font-family="RT-Alias-Grotesk"
-      font-size="2"
-      font-weight="400"
-    >
-      Balance
-    </h4>
+  <div>
     <div
-      class="c1"
-      display="flex"
+      class="title"
     >
-      <h4
-        class="c3 c4"
-        color="core.black"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
-      >
-        Approx.
-      </h4>
+      <h3>
+        Balance
+      </h3>
       <div
-        class="c5"
-        width="2"
-      />
-      <h4
-        class="c6 c4"
-        color="core.darkgray"
-        font-family="RT-Alias-Grotesk"
-        font-size="2"
-        font-weight="400"
+        class="toggle"
       >
-        Exact
-      </h4>
+        <span
+          class="active"
+        >
+          Approx.
+        </span>
+        <span
+          class=""
+        >
+          Exact
+        </span>
+      </div>
     </div>
+    <hr />
   </div>
-  <div
-    class="c7"
-    overflow="hidden"
+  <p
+    class="balance"
   >
-    <h2
-      class="c8 c9"
-      color="card.balance.color"
-      font-family="RT-Alias-Grotesk"
-      font-size="6"
-      font-weight="700"
-    >
-      100
-       FIL
-    </h2>
-  </div>
-  <div
-    class="c10"
-    display="flex"
+    100
+     FIL
+  </p>
+  <button
+    class="c3"
   >
-    <button
-      class="c11"
-      font-size="3"
-      height="6"
-      type="button"
-    >
-      Send
-    </button>
-  </div>
+    Send
+  </button>
 </div>
 `;

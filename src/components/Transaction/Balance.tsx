@@ -5,14 +5,14 @@ import {
   FILECOIN_NUMBER_PROPTYPE
 } from '../../customPropTypes'
 import truncateAddress from '../../utils/truncateAddress'
-import makeFriendlyBalance from '../../utils/makeFriendlyBalance'
-import { space } from '../theme'
+import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
+import { Spaces } from '../theme'
 
 const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: ${space('large')};
+  gap: ${Spaces.LARGE};
 
   > * {
     display: flex;
@@ -41,14 +41,14 @@ export const TransactionBalance = ({
       <div>
         <span>{msigBalance && 'Signer '}Balance</span>
         <span>
-          <>{makeFriendlyBalance(balance, 6, true)} FIL</>
+          <>{makeFriendlyBalance(balance)} FIL</>
         </span>
       </div>
       {msigBalance && (
         <div>
           <span>Safe Balance</span>
           <span>
-            <>{makeFriendlyBalance(msigBalance, 6, true)} FIL</>
+            <>{makeFriendlyBalance(msigBalance)} FIL</>
           </span>
         </div>
       )}

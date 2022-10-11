@@ -1,79 +1,91 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import { space } from '../theme'
-import { ButtonV2 } from '../Button/V2'
-import { SmartLink } from '../Link/SmartLink'
-import { AppIconHeaderFooter } from '../Icons'
-import { AddressLink, AddressLinkProps } from '../AddressLink'
-import AppIconWrapper from './AppIconWrapper'
+import { SmartLink } from '../SmartLink'
+import { IconGlif } from '../Icons'
+import { LabeledText, LabeledTextProps } from '../LabeledText'
+import { AddressLink, AddressLinkProps } from '../LabeledText/AddressLink'
+import { Colors, devices, Spaces } from '../theme'
 
 const Header = styled.header`
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: ${space()} 0;
-  margin: -${space()} 0;
-  background-color: var(--white-broken);
+  padding: ${Spaces.MEDIUM} 0;
+  margin: ${Spaces.N_MEDIUM} 0;
+  background-color: ${Colors.WHITE_BROKEN};
 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  column-gap: ${space('large')};
-  row-gap: ${space()};
+  column-gap: ${Spaces.LARGE};
+  row-gap: ${Spaces.MEDIUM};
 `
 
 const NavLeft = styled.nav`
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: flex-end;
-  gap: ${space('large')};
+  gap: ${Spaces.LARGE};
+  flex-grow: 1;
 `
 
 const NavRight = styled(NavLeft)`
-  gap: ${space()};
+  gap: 0;
+  flex-grow: 0;
+  align-items: stretch;
 `
 
-const NavLinkSimple = styled(SmartLink)`
-  color: black;
+const navItemStyle = css`
+  display: flex;
+  align-items: flex-end;
+  padding: 0 ${Spaces.MEDIUM};
+  transition: color 0.1s ease-out;
   text-decoration: none;
-
-  &:hover {
-    color: black;
-  }
-`
-
-const NavLinkRound = styled(NavLinkSimple)`
-  padding: 0.5em 0.75em;
-  border: 1px solid black;
-  border-radius: 2em;
+  cursor: pointer;
 
   &:hover,
   &.active {
-    color: var(--purple-medium);
-    border-color: var(--purple-medium);
-  }
-
-  &:active {
-    color: white;
-    background: var(--purple-medium);
+    color: ${Colors.PURPLE_MEDIUM};
   }
 `
 
-const NavButton = styled(ButtonV2)`
-  border-radius: 2em;
+const NavLink = styled(SmartLink)`
+  ${navItemStyle}
+`
+
+const NavButton = styled.span`
+  ${navItemStyle}
+`
+
+const AppIconWrapper = styled.span`
+  display: inline-block;
+  height: 35px;
+
+  @media (min-width: ${devices.phone}) {
+    height: 45px;
+  }
+
+  @media (min-width: ${devices.tablet}) {
+    height: 55px;
+  }
+
+  svg {
+    width: auto;
+    height: 100%;
+  }
 `
 
 export function AppHeader(props: AppHeaderProps) {
   const router = useRouter()
   const {
-    back,
     logout,
     connection,
-    appTitle,
     appIcon,
     appUrl,
     addressLinks,
+    labeledTexts,
+    customHeaderComps,
     appHeaderLinks
   } = props
   return (
@@ -81,32 +93,31 @@ export function AppHeader(props: AppHeaderProps) {
       <NavLeft>
         {appIcon &&
           (appUrl ? (
-            <NavLinkSimple href={appUrl}>
-              <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
-            </NavLinkSimple>
+            <SmartLink href={appUrl}>
+              <AppIconWrapper>{appIcon}</AppIconWrapper>
+            </SmartLink>
           ) : (
-            <AppIconWrapper title={appTitle}>{appIcon}</AppIconWrapper>
+            <AppIconWrapper>{appIcon}</AppIconWrapper>
           ))}
         {addressLinks?.map((addressLink, index) => (
           <AddressLink key={index} {...addressLink} />
         ))}
+        {labeledTexts?.map((labeledText, index) => (
+          <LabeledText key={index} {...labeledText} />
+        ))}
+        {customHeaderComps}
         {connection}
       </NavLeft>
       <NavRight>
-        {back && (
-          <NavButton onClick={back === true ? router.back : back}>
-            Back
-          </NavButton>
-        )}
         {appHeaderLinks &&
           appHeaderLinks.map((link, index) => (
-            <NavLinkRound
+            <NavLink
               key={index}
               href={link.url}
               className={link.url === router?.pathname ? 'active' : ''}
             >
               {link.title}
-            </NavLinkRound>
+            </NavLink>
           ))}
         {logout && <NavButton onClick={logout}>Logout</NavButton>}
       </NavRight>
@@ -115,13 +126,13 @@ export function AppHeader(props: AppHeaderProps) {
 }
 
 export interface AppHeaderProps {
-  back?: boolean | (() => void)
   logout?: () => void
   connection?: JSX.Element
-  appTitle?: string
   appIcon?: JSX.Element
   appUrl?: string
   addressLinks?: Array<AddressLinkProps>
+  labeledTexts?: Array<LabeledTextProps>
+  customHeaderComps?: React.ReactNode
   appHeaderLinks?: Array<{
     title: string
     url: string
@@ -129,13 +140,16 @@ export interface AppHeaderProps {
 }
 
 export const AppHeaderPropTypes = {
-  back: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   logout: PropTypes.func,
   connection: PropTypes.node,
-  appTitle: PropTypes.string,
   appIcon: PropTypes.node,
   appUrl: PropTypes.string,
   addressLinks: PropTypes.arrayOf(PropTypes.shape(AddressLink.propTypes)),
+  labeledTexts: PropTypes.arrayOf(PropTypes.shape(LabeledText.propTypes)),
+  customHeaderComps: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   appHeaderLinks: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -146,6 +160,6 @@ export const AppHeaderPropTypes = {
 
 AppHeader.propTypes = AppHeaderPropTypes
 AppHeader.defaultProps = {
-  appIcon: <AppIconHeaderFooter iconStyle='dark' />,
+  appIcon: <IconGlif />,
   appUrl: '/'
 }
