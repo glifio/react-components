@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { string, func } from 'prop-types'
-import { ButtonV2 } from '../Button/V2'
+import { ButtonV2 } from '../ButtonV2'
 import { StandardBox } from '../Layout'
 import { Colors } from '../theme'
 

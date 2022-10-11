@@ -7,7 +7,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { getMethodName } from '@glif/filecoin-actor-utils'
 
 import { AddressLink } from '../../LabeledText/AddressLink'
-import { ButtonV2Link } from '../../Button/V2'
+import { ButtonV2Link } from '../../ButtonV2'
 import { IconCheck, IconCancel } from '../../Icons'
 import { Address, MsigTransaction } from '../../../generated/graphql'
 import { isAddrEqual } from '../../../utils/isAddrEqual'

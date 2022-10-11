@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 import { MNEMONIC_PROPTYPE } from '../../../../../customPropTypes'
 import { ButtonRow } from '../../../../Layout/Buttons'
-import { ButtonV2, ButtonV2Link } from '../../../../Button/V2'
+import { ButtonV2, ButtonV2Link } from '../../../../ButtonV2'
 import { InputWord } from '../MnemonicWord/InputWord'
 import { DisplayWord } from '../MnemonicWord/DisplayWord'
 import { generateRandomWords } from '../generateRandomWords'

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ButtonV2 } from '../Button/V2'
+import { ButtonV2 } from '../ButtonV2'
 import { ButtonRowRight, Dialog, ShadowBox, Lines } from '../Layout'
 import { InputV2 } from '.'
 

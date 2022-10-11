@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useRouter } from 'next/router'
-import { ButtonV2 } from '../Button/V2'
+import { ButtonV2 } from '../ButtonV2'
 import { ButtonRowSpaced } from '../Layout'
 
 export const TransactionButtons = ({

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { ButtonV2 } from '../../Button/V2'
+import { ButtonV2 } from '../../ButtonV2'
 import { SmartLink } from '../../SmartLink'
 import { ButtonRowCenter } from '../../Layout'
 import {

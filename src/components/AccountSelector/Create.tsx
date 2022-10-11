@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import PropTypes from 'prop-types'
 import { createPath } from '../../utils'
 import { coinTypeCode } from '../../utils/createPath'
-import { ButtonV2 } from '../Button/V2'
+import { ButtonV2 } from '../ButtonV2'
 import { InputV2 } from '../InputV2'
 import { Toggle } from '../InputV2/Toggle'
 import {

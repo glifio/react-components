@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { func, bool } from 'prop-types'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
-import { ButtonV2 } from '../Button/V2'
+import { ButtonV2 } from '../ButtonV2'
 import { OutlineBox } from '../Layout'
 import { FILECOIN_NUMBER_PROPTYPE } from '../../customPropTypes'
 import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'

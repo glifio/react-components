@@ -23,7 +23,7 @@ import {
 import { LoadingScreen } from '../../Loading/LoadingScreen'
 import { ErrorView } from '../../ErrorView'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
-import { ButtonV2Link } from '../../Button/V2'
+import { ButtonV2Link } from '../../ButtonV2'
 import { IconCheck, IconCancel } from '../../Icons'
 import {
   useEnvironment,

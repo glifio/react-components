@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { string, func, bool, oneOf } from 'prop-types'
 import { ADDRESS_PROPTYPE } from '../../customPropTypes'
-import { ButtonV2 } from '../Button/V2'
+import { ButtonV2 } from '../ButtonV2'
 import { PrimaryBox, Lines } from '../Layout'
 import { AddressLink } from '../LabeledText/AddressLink'
 import {

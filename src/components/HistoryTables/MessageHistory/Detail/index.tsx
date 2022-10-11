@@ -15,7 +15,7 @@ import {
   getAddrFromReceipt
 } from '../../../../utils/getAddrFromReceipt'
 import { LoadingIcon } from '../../../Loading/LoadingIcon'
-import { ButtonV2Link } from '../../../Button/V2'
+import { ButtonV2Link } from '../../../ButtonV2'
 import { IconCancel, IconSpeedUp } from '../../../Icons'
 import {
   useEnvironment,

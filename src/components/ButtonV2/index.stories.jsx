@@ -1,4 +1,4 @@
-import { ButtonV2, ButtonV2Link } from './V2'
+import { ButtonV2, ButtonV2Link } from '.'
 import { IconSpeedUp } from '../Icons'
 
 export default {

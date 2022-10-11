@@ -7,7 +7,7 @@ import {
 } from '../../../services/WalletProvider'
 import { ButtonRowSpaced, Dialog, ShadowBox } from '../../Layout'
 import { LoginOption } from '../../../customPropTypes'
-import { ButtonV2 } from '../../Button/V2'
+import { ButtonV2 } from '../../ButtonV2'
 import { Loading } from '../Loading'
 import { LoadingIcon } from '../../Loading/LoadingIcon'
 
