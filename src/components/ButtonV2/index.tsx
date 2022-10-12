@@ -44,7 +44,7 @@ export const ButtonV2 = ({
   disabled,
   stopPropagation,
   ...classNameProps
-}: ButtonProps) => {
+}: ButtonV2Props) => {
   const onClickProxy = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       stopPropagation && e.stopPropagation()
@@ -64,14 +64,14 @@ export const ButtonV2 = ({
   )
 }
 
-type ButtonProps = {
+type ButtonV2Props = {
   children: ReactNode
   type?: string
   stopPropagation?: boolean
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 } & ButtonClassNameProps
 
-const ButtonPropTypes = {
+const ButtonV2PropTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -87,7 +87,7 @@ const ButtonDefaultProps = {
   onClick: () => {}
 }
 
-ButtonV2.propTypes = ButtonPropTypes
+ButtonV2.propTypes = ButtonV2PropTypes
 ButtonV2.defaultProps = ButtonDefaultProps
 
 /*
@@ -111,10 +111,10 @@ export const ButtonV2Link = ({
   </SmartLink>
 )
 
-type ButtonLinkProps = ButtonProps & SmartLinkProps
+type ButtonLinkProps = ButtonV2Props & SmartLinkProps
 
 ButtonV2Link.propTypes = {
-  ...ButtonPropTypes,
+  ...ButtonV2PropTypes,
   ...SmartLinkPropTypes
 }
 
