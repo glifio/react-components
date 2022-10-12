@@ -65,8 +65,8 @@ export const ButtonV2 = ({
 }
 
 type ButtonProps = {
-  type?: string
   children: ReactNode
+  type?: string
   stopPropagation?: boolean
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 } & ButtonClassNameProps
@@ -76,25 +76,14 @@ const ButtonPropTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
-  onClick: PropTypes.func,
-  disabled: PropTypes.bool,
-  large: PropTypes.bool,
-  white: PropTypes.bool,
-  gray: PropTypes.bool,
-  red: PropTypes.bool,
-  green: PropTypes.bool,
   type: PropTypes.string,
-  stopPropagation: PropTypes.bool
+  stopPropagation: PropTypes.bool,
+  onClick: PropTypes.func,
+  ...ButtonClassNamePropTypes
 }
 
 const ButtonDefaultProps = {
   stopPropagation: true,
-  disabled: false,
-  large: false,
-  white: false,
-  gray: false,
-  red: false,
-  green: false,
   onClick: () => {}
 }
 
