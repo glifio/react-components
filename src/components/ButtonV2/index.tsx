@@ -33,10 +33,6 @@ export const getButtonClassName = (props: ButtonClassNameProps): string => {
   return buttonClassNames.filter(name => !!props[name]).join(' ')
 }
 
-/*
- * ButtonV2
- */
-
 export const ButtonV2 = ({
   children,
   type,
