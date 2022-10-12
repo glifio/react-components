@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import { MouseEvent, ReactNode, useCallback } from 'react'
-import { SmartLink, SmartLinkProps, SmartLinkPropTypes } from '../SmartLink'
 
 // Supported button class names
 export const buttonClassNames = [
@@ -73,7 +72,7 @@ type ButtonV2Props = {
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 } & ButtonClassNameProps
 
-const ButtonV2PropTypes = {
+ButtonV2.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
@@ -84,43 +83,7 @@ const ButtonV2PropTypes = {
   ...ButtonClassNamePropTypes
 }
 
-const ButtonV2DefaultProps = {
+ButtonV2.defaultProps = {
   stopPropagation: true,
   onClick: () => {}
-}
-
-ButtonV2.propTypes = ButtonV2PropTypes
-ButtonV2.defaultProps = ButtonV2DefaultProps
-
-/*
- * ButtonV2Link
- */
-
-export const ButtonV2Link = ({
-  children,
-  href,
-  download,
-  onClick,
-  ...classNameProps
-}: ButtonLinkProps) => (
-  <SmartLink
-    className={getButtonClassName(classNameProps)}
-    href={href}
-    download={download}
-    onClick={onClick}
-  >
-    {children}
-  </SmartLink>
-)
-
-type ButtonLinkProps = ButtonV2Props & SmartLinkProps
-
-ButtonV2Link.propTypes = {
-  ...ButtonV2PropTypes,
-  ...SmartLinkPropTypes
-}
-
-ButtonV2Link.defaultProps = {
-  ...ButtonV2DefaultProps,
-  ...SmartLink.defaultProps
 }
