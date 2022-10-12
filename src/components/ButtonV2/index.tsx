@@ -1,10 +1,38 @@
 import PropTypes from 'prop-types'
 import { MouseEvent, ReactNode, useCallback } from 'react'
-import {
-  SmartLink,
-  SmartLinkProps,
-  SmartLinkPropTypes
-} from '../SmartLink'
+import { SmartLink, SmartLinkProps, SmartLinkPropTypes } from '../SmartLink'
+
+// Supported button class names
+export const buttonClassNames = [
+  'disabled',
+  'large',
+  'white',
+  'gray',
+  'red',
+  'green'
+] as const
+
+// Button class name types
+export type ButtonClassName = typeof buttonClassNames[number]
+export type ButtonClassNameProps = Partial<Record<ButtonClassName, boolean>>
+
+// Button class name PropTypes
+export const ButtonClassNamePropTypes: Record<
+  ButtonClassName,
+  PropTypes.Requireable<boolean>
+> = {
+  disabled: PropTypes.bool,
+  large: PropTypes.bool,
+  white: PropTypes.bool,
+  gray: PropTypes.bool,
+  red: PropTypes.bool,
+  green: PropTypes.bool
+}
+
+// Get the class name string from button props
+export const getButtonClassName = (props: ButtonClassNameProps): string => {
+  return buttonClassNames.filter(name => !!props[name]).join(' ')
+}
 
 /*
  * ButtonV2
@@ -17,7 +45,6 @@ export const ButtonV2 = ({
   stopPropagation,
   ...classNameProps
 }: ButtonProps) => {
-
   const onClickProxy = useCallback(
     (e: MouseEvent<HTMLButtonElement>) => {
       stopPropagation && e.stopPropagation()
@@ -28,22 +55,13 @@ export const ButtonV2 = ({
 
   return (
     <button
-      className={getClassName(classNameProps)}
+      className={getButtonClassName(classNameProps)}
       disabled={disabled}
       onClick={onClickProxy}
     >
       {children}
     </button>
   )
-}
-
-interface ButtonClassNameProps {
-  disabled?: boolean
-  large?: boolean
-  white?: boolean
-  gray?: boolean
-  red?: boolean
-  green?: boolean
 }
 
 type ButtonProps = {
@@ -83,12 +101,6 @@ const ButtonDefaultProps = {
 ButtonV2.propTypes = ButtonPropTypes
 ButtonV2.defaultProps = ButtonDefaultProps
 
-const getClassName = (props: ButtonClassNameProps): string => {
-  const allowed = ['disabled', 'large', 'white', 'gray', 'red', 'green']
-  const classes = Object.keys(props).filter(name => props[name] && allowed.includes(name))
-  return classes.join(' ')
-}
-
 /*
  * ButtonV2Link
  */
@@ -101,7 +113,7 @@ export const ButtonV2Link = ({
   ...classNameProps
 }: ButtonLinkProps) => (
   <SmartLink
-    className={getClassName(classNameProps)}
+    className={getButtonClassName(classNameProps)}
     href={href}
     download={download}
     onClick={onClick}
