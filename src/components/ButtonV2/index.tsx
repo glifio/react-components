@@ -40,9 +40,10 @@ export const getButtonClassName = (props: ButtonClassNameProps): string => {
 
 export const ButtonV2 = ({
   children,
+  type,
+  stopPropagation,
   onClick,
   disabled,
-  stopPropagation,
   ...classNameProps
 }: ButtonV2Props) => {
   const onClickProxy = useCallback(
@@ -55,9 +56,10 @@ export const ButtonV2 = ({
 
   return (
     <button
-      className={getButtonClassName(classNameProps)}
+      type={type}
       disabled={disabled}
       onClick={onClickProxy}
+      className={getButtonClassName(classNameProps)}
     >
       {children}
     </button>
@@ -66,7 +68,7 @@ export const ButtonV2 = ({
 
 type ButtonV2Props = {
   children: ReactNode
-  type?: string
+  type?: 'button' | 'submit' | 'reset'
   stopPropagation?: boolean
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void
 } & ButtonClassNameProps
@@ -82,13 +84,13 @@ const ButtonV2PropTypes = {
   ...ButtonClassNamePropTypes
 }
 
-const ButtonDefaultProps = {
+const ButtonV2DefaultProps = {
   stopPropagation: true,
   onClick: () => {}
 }
 
 ButtonV2.propTypes = ButtonV2PropTypes
-ButtonV2.defaultProps = ButtonDefaultProps
+ButtonV2.defaultProps = ButtonV2DefaultProps
 
 /*
  * ButtonV2Link
@@ -119,6 +121,6 @@ ButtonV2Link.propTypes = {
 }
 
 ButtonV2Link.defaultProps = {
-  ...ButtonDefaultProps,
+  ...ButtonV2DefaultProps,
   ...SmartLink.defaultProps
 }
