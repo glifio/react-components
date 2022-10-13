@@ -1,11 +1,9 @@
 import { errors as walletProviderErrors } from '@glif/filecoin-wallet-provider'
 import {
   isMetamaskSnapsSupported,
-  hasMetaMask,
-  isSnapInstalled
+  hasMetaMask
 } from '@chainsafe/filsnap-adapter'
 import { MetaMaskState } from './state'
-import { FILSNAP } from '../../../constants'
 
 export const isUnlocked = async (): Promise<boolean> => {
   return window.ethereum._metamask.isUnlocked()
@@ -14,8 +12,7 @@ export const isUnlocked = async (): Promise<boolean> => {
 const {
   MetaMaskNotInstalledError,
   MetaMaskSnapsNotSupportedError,
-  MetaMaskLockedError,
-  MetaMaskFilSnapNotInstalledError
+  MetaMaskLockedError
 } = walletProviderErrors
 
 export const metaMaskEnable = async (): Promise<void> => {
@@ -33,10 +30,11 @@ export const metaMaskEnable = async (): Promise<void> => {
     throw new MetaMaskLockedError()
   }
 
-  const filSnapInstalled = await isSnapInstalled(FILSNAP)
-  if (!filSnapInstalled) {
-    throw new MetaMaskFilSnapNotInstalledError()
-  }
+  // TODO: fix when https://github.com/MetaMask/metamask-extension/issues/16176 is closed
+  // const filSnapInstalled = await isSnapInstalled(FILSNAP)
+  // if (!filSnapInstalled) {
+  //   throw new MetaMaskFilSnapNotInstalledError()
+  // }
 }
 
 export const reportMetaMaskError = (state: MetaMaskState): string => {
