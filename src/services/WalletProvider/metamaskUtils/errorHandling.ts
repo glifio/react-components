@@ -4,16 +4,33 @@ import {
   hasMetaMask
 } from '@chainsafe/filsnap-adapter'
 import { MetaMaskState } from './state'
+import { FILSNAP } from '../../../constants'
+
+const {
+  MetaMaskNotInstalledError,
+  MetaMaskSnapsNotSupportedError,
+  MetaMaskLockedError,
+  MetaMaskFilSnapNotInstalledError
+} = walletProviderErrors
 
 export const isUnlocked = async (): Promise<boolean> => {
   return window.ethereum._metamask.isUnlocked()
 }
 
-const {
-  MetaMaskNotInstalledError,
-  MetaMaskSnapsNotSupportedError,
-  MetaMaskLockedError
-} = walletProviderErrors
+export type Web3WalletPermission = {
+  date: number
+  id: string
+  invoker: string
+  parentCapability: string
+}
+
+export const isSnapInstalled = async (): Promise<boolean> => {
+  const perms: Web3WalletPermission[] = await window.ethereum.request({
+    method: 'wallet_getPermissions'
+  })
+
+  return perms.some(p => p.parentCapability.includes(FILSNAP))
+}
 
 export const metaMaskEnable = async (): Promise<void> => {
   const mmInstalled = await hasMetaMask()
@@ -30,11 +47,10 @@ export const metaMaskEnable = async (): Promise<void> => {
     throw new MetaMaskLockedError()
   }
 
-  // TODO: fix when https://github.com/MetaMask/metamask-extension/issues/16176 is closed
-  // const filSnapInstalled = await isSnapInstalled(FILSNAP)
-  // if (!filSnapInstalled) {
-  //   throw new MetaMaskFilSnapNotInstalledError()
-  // }
+  const filSnapInstalled = await isSnapInstalled()
+  if (!filSnapInstalled) {
+    throw new MetaMaskFilSnapNotInstalledError()
+  }
 }
 
 export const reportMetaMaskError = (state: MetaMaskState): string => {
