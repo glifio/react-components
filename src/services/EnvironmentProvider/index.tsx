@@ -22,17 +22,20 @@ export enum Network {
   WALLABY = 'wallabynet'
 }
 
-export type NetworkInfo = {
-  nodeStatusApiKey: string
-  graphUrl: string
-  lotusApiUrl: string
-  networkName: Network
-  coinType: CoinType
-}
+export type NetworkInfo = Pick<
+  EnvironmentContextType,
+  | 'nodeStatusApiKey'
+  | 'graphUrl'
+  | 'graphSecure'
+  | 'lotusApiUrl'
+  | 'networkName'
+  | 'coinType'
+>
 
-const networkInfoKeys = [
+const networkInfoKeys: Array<keyof NetworkInfo> = [
   'nodeStatusApiKey',
   'graphUrl',
+  'graphSecure',
   'lotusApiUrl',
   'networkName',
   'coinType'
@@ -48,6 +51,7 @@ export interface EnvironmentContextType {
   nodeStatusApiUrl: string
   nodeStatusApiKey: string
   graphUrl: string
+  graphSecure: boolean
   lotusApiUrl: string
   lotusApi: LotusRpcEngine
   coinType: CoinType
@@ -70,6 +74,7 @@ export const emptyEnvironmentContext = {
   nodeStatusApiUrl: 'https://api.uptimerobot.com/v2/getMonitors',
   nodeStatusApiKey: '',
   graphUrl: '',
+  graphSecure: true,
   lotusApiUrl: '',
   lotusApi: null,
   networkName: Network.CALIBRATION,
@@ -88,6 +93,7 @@ export const networks: Record<Network, NetworkInfo> = {
   [Network.MAINNET]: {
     nodeStatusApiKey: 'm786191525-b3192b91db66217a44f7d4be',
     graphUrl: 'graph.glif.link/query',
+    graphSecure: true,
     lotusApiUrl: 'https://mainnet.glif.host',
     networkName: Network.MAINNET,
     coinType: CoinType.MAIN
@@ -95,6 +101,7 @@ export const networks: Record<Network, NetworkInfo> = {
   [Network.CALIBRATION]: {
     nodeStatusApiKey: 'm787669344-2a9b90eb03dbff3e503c93c7',
     graphUrl: 'graph-calibration.glif.link/query',
+    graphSecure: true,
     lotusApiUrl: 'https://api.calibration.node.glif.io/',
     networkName: Network.CALIBRATION,
     coinType: CoinType.TEST
@@ -102,6 +109,7 @@ export const networks: Record<Network, NetworkInfo> = {
   [Network.WALLABY]: {
     nodeStatusApiKey: 'm792585234-2e992345ecb11cd5846f7161',
     graphUrl: 'graph-wallaby.glif.link/query',
+    graphSecure: true,
     lotusApiUrl: 'https://wallaby.node.glif.io',
     networkName: Network.WALLABY,
     coinType: CoinType.TEST
