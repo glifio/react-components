@@ -133,10 +133,7 @@ export const Environment = ({ children, ...environment }: EnvironmentProps) => {
 export const EnvironmentProvider = ({
   children,
   ...initialEnvironment
-}: Omit<
-  EnvironmentProps,
-  'nodeStatusApiKey' | 'graphUrl' | 'lotusApiUrl' | 'coinType' | 'networkName'
->) => {
+}: Omit<EnvironmentProps, keyof NetworkInfo>) => {
   const router = useRouter()
   const networkParam = getQueryParam.string(router, 'network') as Network
   const network =
