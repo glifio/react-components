@@ -18,7 +18,7 @@ const httpLink = (uri: string): HttpLink =>
   })
 
 const wsLink = (uri: string): WebSocketLink | null => {
-  return process.browser
+  return typeof window !== 'undefined'
     ? new WebSocketLink({
         uri: `wss://${uri}`,
         options: {
