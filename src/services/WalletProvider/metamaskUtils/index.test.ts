@@ -9,6 +9,7 @@ interface MetaMaskWindowProvider {
 
 interface Ethereum {
   _metamask: MetaMaskWindowProvider
+  request: any
 }
 
 declare global {
@@ -84,10 +85,7 @@ describe('metamask error handling', () => {
         .mockImplementation(() => true)
 
       window.ethereum._metamask.isUnlocked = jest.fn(() => true)
-
-      jest
-        .spyOn(require(adapterModule), 'isSnapInstalled')
-        .mockImplementation(() => false)
+      window.ethereum.request = jest.fn(() => [])
 
       try {
         await metaMaskEnable()

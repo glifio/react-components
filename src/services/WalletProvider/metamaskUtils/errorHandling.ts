@@ -1,15 +1,10 @@
 import { errors as walletProviderErrors } from '@glif/filecoin-wallet-provider'
 import {
   isMetamaskSnapsSupported,
-  hasMetaMask,
-  isSnapInstalled
+  hasMetaMask
 } from '@chainsafe/filsnap-adapter'
 import { MetaMaskState } from './state'
 import { FILSNAP } from '../../../constants'
-
-export const isUnlocked = async (): Promise<boolean> => {
-  return window.ethereum._metamask.isUnlocked()
-}
 
 const {
   MetaMaskNotInstalledError,
@@ -17,6 +12,25 @@ const {
   MetaMaskLockedError,
   MetaMaskFilSnapNotInstalledError
 } = walletProviderErrors
+
+export const isUnlocked = async (): Promise<boolean> => {
+  return window.ethereum._metamask.isUnlocked()
+}
+
+export type Web3WalletPermission = {
+  date: number
+  id: string
+  invoker: string
+  parentCapability: string
+}
+
+export const isSnapInstalled = async (snapID: string): Promise<boolean> => {
+  const perms: Web3WalletPermission[] = await window.ethereum.request({
+    method: 'wallet_getPermissions'
+  })
+
+  return perms.some(p => p.parentCapability.includes(snapID))
+}
 
 export const metaMaskEnable = async (): Promise<void> => {
   const mmInstalled = await hasMetaMask()
