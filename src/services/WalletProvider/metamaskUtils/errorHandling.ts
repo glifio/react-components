@@ -24,12 +24,12 @@ export type Web3WalletPermission = {
   parentCapability: string
 }
 
-export const isSnapInstalled = async (): Promise<boolean> => {
+export const isSnapInstalled = async (snapID: string): Promise<boolean> => {
   const perms: Web3WalletPermission[] = await window.ethereum.request({
     method: 'wallet_getPermissions'
   })
 
-  return perms.some(p => p.parentCapability.includes(FILSNAP))
+  return perms.some(p => p.parentCapability.includes(snapID))
 }
 
 export const metaMaskEnable = async (): Promise<void> => {
@@ -47,7 +47,7 @@ export const metaMaskEnable = async (): Promise<void> => {
     throw new MetaMaskLockedError()
   }
 
-  const filSnapInstalled = await isSnapInstalled()
+  const filSnapInstalled = await isSnapInstalled(FILSNAP)
   if (!filSnapInstalled) {
     throw new MetaMaskFilSnapNotInstalledError()
   }
