@@ -46,14 +46,12 @@ export const MessageConfirmedRow = ({
           hideCopy
         />
       </td>
-      {inspectingAddress && (
-        <td>
-          <Badge
-            color={toAddressIsInspecting ? 'green' : 'yellow'}
-            text={toAddressIsInspecting ? 'IN' : 'OUT'}
-          />
-        </td>
-      )}
+      <td>
+        <Badge
+          color={toAddressIsInspecting ? 'green' : 'yellow'}
+          text={toAddressIsInspecting ? 'IN' : 'OUT'}
+        />
+      </td>
       <td>
         <AddressLink
           id={message.to.id}
