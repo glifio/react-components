@@ -7,7 +7,7 @@ import * as relativeTime from 'dayjs/plugin/relativeTime'
 import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
-import { MESSAGE_PENDING_PROP_TYPE } from '../../../../customPropTypes'
+import { MESSAGE_PENDING_PROPTYPE } from '../../../../customPropTypes'
 import { MessagePending } from '../../../../generated/graphql'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
@@ -74,7 +74,7 @@ type PendingMessageHistoryRowProps = {
 }
 
 MessagePendingRow.propTypes = {
-  message: MESSAGE_PENDING_PROP_TYPE.isRequired,
+  message: MESSAGE_PENDING_PROPTYPE.isRequired,
   cidHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string.isRequired
 }
