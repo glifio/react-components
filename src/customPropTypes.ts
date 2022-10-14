@@ -151,12 +151,9 @@ export const GRAPHQL_MESSAGE_PROPTYPE = shape({
   method: number.isRequired,
   params: string.isRequired,
   value: string.isRequired,
-  gasCost: GRAPHQL_GAS_COST_PROPTYPE.isRequired,
   gasPremium: string.isRequired,
   gasFeeCap: string.isRequired,
-  gasLimit: number.isRequired,
-  version: number.isRequired,
-  receipt: GRAPHQL_MESSAGE_RECEIPT_PROPTYPE.isRequired
+  gasLimit: number.isRequired
 })
 
 export const GRAPHQL_MESSAGE_PENDING_PROPTYPE = shape({
@@ -170,8 +167,7 @@ export const GRAPHQL_MESSAGE_PENDING_PROPTYPE = shape({
   value: string.isRequired,
   gasPremium: string,
   gasFeeCap: string,
-  gasLimit: number,
-  version: number.isRequired
+  gasLimit: number
 })
 
 export const GRAPHQL_MSIG_TRANSACTION_PROPTYPE = shape({
