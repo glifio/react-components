@@ -15,12 +15,3 @@ export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   value: PropTypes.string.isRequired
 })
-
-export const PROPOSAL_ROW_PROP_TYPE = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  method: PropTypes.number.isRequired,
-  params: PropTypes.object,
-  to: GRAPHQL_ADDRESS_PROP_TYPE,
-  approved: PropTypes.arrayOf(GRAPHQL_ADDRESS_PROP_TYPE),
-  proposalHash: PropTypes.string.isRequired
-})
