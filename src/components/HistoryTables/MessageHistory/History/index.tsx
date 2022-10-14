@@ -15,7 +15,12 @@ const MissingDataWarning = styled.span`
   color: ${Colors.YELLOW_DARK};
 `
 
-export default function MessageHistoryTable(props: MessageHistoryTableProps) {
+export default function MessageHistoryTable({
+  address,
+  cidHref,
+  offset,
+  warnMissingData
+}: MessageHistoryTableProps) {
   const {
     messages,
     pendingMsgs,
@@ -24,7 +29,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     fetchMore,
     fetchingMore,
     lastPage
-  } = useAllMessages(props.address, props.offset)
+  } = useAllMessages(address, offset)
 
   const isEmpty = useMemo(
     () => !pendingMsgs?.length && !messages?.length,
@@ -35,7 +40,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     <div>
       <PageTitle
         sideContent={
-          props.warnMissingData && (
+          warnMissingData && (
             <>
               <IconWarn />
               <MissingDataWarning>Syncing data from Mainnet</MissingDataWarning>
@@ -58,16 +63,16 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
             <MessagePendingRow
               key={message.cid}
               message={message}
-              cidHref={props.cidHref}
-              inspectingAddress={props.address}
+              cidHref={cidHref}
+              inspectingAddress={address}
             />
           ))}
           {messages?.map(message => (
             <MessageConfirmedRow
               key={message.cid}
               message={message}
-              cidHref={props.cidHref}
-              inspectingAddress={props.address}
+              cidHref={cidHref}
+              inspectingAddress={address}
             />
           ))}
         </tbody>
