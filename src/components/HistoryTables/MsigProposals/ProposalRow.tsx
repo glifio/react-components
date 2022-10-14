@@ -12,8 +12,10 @@ import { IconCheck, IconCancel } from '../../Icons'
 import { Address, MsigTransaction } from '../../../generated/graphql'
 import { isAddrEqual } from '../../../utils/isAddrEqual'
 import { isAddressSigner } from '../../../utils/isAddressSigner'
-import { GRAPHQL_ADDRESS_PROP_TYPE } from '../../../customPropTypes'
-import { PROPOSAL_ROW_PROP_TYPE } from '../types'
+import {
+  GRAPHQL_ADDRESS_PROP_TYPE,
+  GRAPHQL_MSIG_TRANSACTION_PROPTYPE
+} from '../../../customPropTypes'
 import { navigate } from '../../../utils/urlParams'
 
 // add RelativeTime plugin to Day.js
@@ -89,7 +91,7 @@ type ProposalHistoryRowProps = {
 }
 
 ProposalHistoryRow.propTypes = {
-  proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
+  proposal: GRAPHQL_MSIG_TRANSACTION_PROPTYPE.isRequired,
   walletAddress: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   idHref: PropTypes.func.isRequired,
   approveHref: PropTypes.func.isRequired,
