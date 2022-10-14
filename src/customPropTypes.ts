@@ -1,11 +1,4 @@
-import {
-  shape,
-  string,
-  number,
-  oneOf,
-  Requireable,
-  any
-} from 'prop-types'
+import { shape, string, number, oneOf, Requireable, any } from 'prop-types'
 import { validateMnemonic } from 'bip39'
 import { validateAddressString, CoinType } from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
@@ -156,6 +149,21 @@ export const GRAPHQL_MESSAGE_PROPTYPE = shape({
   gasLimit: number.isRequired,
   version: number.isRequired,
   receipt: GRAPHQL_MESSAGE_RECEIPT_PROPTYPE.isRequired
+})
+
+export const GRAPHQL_MESSAGE_PENDING_PROPTYPE = shape({
+  cid: string.isRequired,
+  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  nonce: number.isRequired,
+  height: number.isRequired,
+  method: number.isRequired,
+  params: string.isRequired,
+  value: string.isRequired,
+  gasPremium: string,
+  gasFeeCap: string,
+  gasLimit: number,
+  version: number.isRequired
 })
 
 export const LOTUS_MESSAGE_PROPTYPE = shape({
