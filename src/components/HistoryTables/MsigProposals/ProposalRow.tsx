@@ -21,13 +21,13 @@ import { navigate } from '../../../utils/urlParams'
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
-export default function ProposalHistoryRow({
+export const ProposalRow = ({
   proposal,
   walletAddress,
   idHref,
   approveHref,
   cancelHref
-}: ProposalHistoryRowProps) {
+}: ProposalRowProps) => {
   const router = useRouter()
 
   const isProposer = useMemo<boolean>(
@@ -82,7 +82,7 @@ export default function ProposalHistoryRow({
   )
 }
 
-type ProposalHistoryRowProps = {
+type ProposalRowProps = {
   proposal: MsigTransaction
   walletAddress: Address
   idHref: (id: number) => string
@@ -90,7 +90,7 @@ type ProposalHistoryRowProps = {
   cancelHref: (id: number) => string
 }
 
-ProposalHistoryRow.propTypes = {
+ProposalRow.propTypes = {
   proposal: GRAPHQL_MSIG_TRANSACTION_PROPTYPE.isRequired,
   walletAddress: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   idHref: PropTypes.func.isRequired,

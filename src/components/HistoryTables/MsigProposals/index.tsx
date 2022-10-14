@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import ProposalRow from './ProposalRow'
+import { ProposalRow } from './ProposalRow'
 import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
 import {
   ADDRESS_PROPTYPE,
