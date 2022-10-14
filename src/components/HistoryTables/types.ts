@@ -11,13 +11,6 @@ export type MessagePendingRow = Pick<
   'cid' | 'method' | 'from' | 'to' | 'value'
 >
 
-export const BLOCK_PROP_TYPE = PropTypes.shape({
-  Cid: PropTypes.string.isRequired,
-  Height: PropTypes.number,
-  Miner: PropTypes.string,
-  Timestamp: PropTypes.number.isRequired
-})
-
 export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
   cid: PropTypes.string.isRequired,
   method: PropTypes.number.isRequired,
@@ -30,7 +23,6 @@ export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
 export const MESSAGE_PENDING_ROW_PROP_TYPE = PropTypes.shape({
   cid: PropTypes.string.isRequired,
   method: PropTypes.number.isRequired,
-  block: BLOCK_PROP_TYPE.isRequired,
   from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   value: PropTypes.string.isRequired
