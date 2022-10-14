@@ -20,7 +20,7 @@ export const MessagePendingRow = ({
   message,
   cidHref,
   inspectingAddress
-}: PendingMessageHistoryRowProps) => {
+}: MessagePendingRowProps) => {
   const fromAddressIsInspecting = useMemo(
     () => isAddrEqual(message.from, inspectingAddress),
     [message.from, inspectingAddress]
@@ -67,7 +67,7 @@ export const MessagePendingRow = ({
   )
 }
 
-type PendingMessageHistoryRowProps = {
+type MessagePendingRowProps = {
   message: MessagePending
   cidHref: (cid: string) => string
   inspectingAddress: string
