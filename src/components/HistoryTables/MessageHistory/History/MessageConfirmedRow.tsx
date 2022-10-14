@@ -13,8 +13,11 @@ import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
 import truncateAddress from '../../../../utils/truncateAddress'
 
-export default function MessageHistoryRow(props: MessageHistoryRowProps) {
-  const { message, cidHref, inspectingAddress } = props
+export default function MessageHistoryRow({
+  message,
+  cidHref,
+  inspectingAddress
+}: MessageHistoryRowProps) {
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
   const fromAddressIsInspecting = useMemo(
     () => isAddrEqual(message.from, inspectingAddress),
@@ -45,7 +48,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           hideCopy
         />
       </td>
-      {props.inspectingAddress && (
+      {inspectingAddress && (
         <td>
           <Badge
             color={toAddressIsInspecting ? 'green' : 'yellow'}
