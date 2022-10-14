@@ -3,21 +3,19 @@ import PropTypes from 'prop-types'
 import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
-import {
-  MessageConfirmedRow,
-  MESSAGE_CONFIRMED_ROW_PROP_TYPE
-} from '../../types'
+import { MESSAGE_CONFIRMED_ROW_PROP_TYPE } from '../../types'
+import { MessageConfirmed } from '../../../../generated/graphql'
 import { attoFilToFil } from '../../utils'
 import { useAge } from '../../../../utils/useAge'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
 import truncateAddress from '../../../../utils/truncateAddress'
 
-export default function MessageHistoryRow({
+export const MessageConfirmedRow = ({
   message,
   cidHref,
   inspectingAddress
-}: MessageHistoryRowProps) {
+}: MessageConfirmedRowProps) => {
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
   const fromAddressIsInspecting = useMemo(
     () => isAddrEqual(message.from, inspectingAddress),
@@ -69,18 +67,14 @@ export default function MessageHistoryRow({
   )
 }
 
-type MessageHistoryRowProps = {
-  message: MessageConfirmedRow
-  cidHref: (cid: string, height?: number) => string
+type MessageConfirmedRowProps = {
+  message: MessageConfirmed
+  cidHref: (cid: string) => string
   inspectingAddress: string
 }
 
-MessageHistoryRow.propTypes = {
-  message: MESSAGE_CONFIRMED_ROW_PROP_TYPE,
+MessageConfirmedRow.propTypes = {
+  message: MESSAGE_CONFIRMED_ROW_PROP_TYPE.isRequired,
   cidHref: PropTypes.func.isRequired,
-  inspectingAddress: PropTypes.string
-}
-
-MessageHistoryRow.defaultProps = {
-  inspectingAddress: ''
+  inspectingAddress: PropTypes.string.isRequired
 }
