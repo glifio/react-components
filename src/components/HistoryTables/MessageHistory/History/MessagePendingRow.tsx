@@ -3,10 +3,11 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
+
 import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
-import { MESSAGE_PENDING_ROW_PROP_TYPE } from '../../types'
+import { MESSAGE_PENDING_PROP_TYPE } from '../../../../customPropTypes'
 import { MessagePending } from '../../../../generated/graphql'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
@@ -36,7 +37,7 @@ export const MessagePendingRow = ({
           {truncateAddress(message.cid)}
         </SmartLink>
       </td>
-      {inspectingAddress && <td>{methodName}</td>}
+      <td>{methodName}</td>
       <td>(Pending)</td>
       <td>(Pending)</td>
       <td>
@@ -68,16 +69,12 @@ export const MessagePendingRow = ({
 
 type PendingMessageHistoryRowProps = {
   message: MessagePending
-  cidHref: (cid: string, height?: number) => string
+  cidHref: (cid: string) => string
   inspectingAddress: string
 }
 
 MessagePendingRow.propTypes = {
-  message: MESSAGE_PENDING_ROW_PROP_TYPE.isRequired,
+  message: MESSAGE_PENDING_PROP_TYPE.isRequired,
   cidHref: PropTypes.func.isRequired,
-  inspectingAddress: PropTypes.string
-}
-
-MessagePendingRow.defaultProps = {
-  inspectingAddress: ''
+  inspectingAddress: PropTypes.string.isRequired
 }
