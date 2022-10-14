@@ -15,12 +15,12 @@ const MissingDataWarning = styled.span`
   color: ${Colors.YELLOW_DARK};
 `
 
-export default function MessageHistoryTable({
+export const MessageHistoryTable = ({
   address,
   cidHref,
   offset,
   warnMissingData
-}: MessageHistoryTableProps) {
+}: MessageHistoryTableProps) => {
   const {
     messages,
     pendingMsgs,
