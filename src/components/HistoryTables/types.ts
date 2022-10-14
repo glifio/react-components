@@ -16,14 +16,6 @@ export const MESSAGE_CONFIRMED_ROW_PROP_TYPE = PropTypes.shape({
   value: PropTypes.string.isRequired
 })
 
-export const MESSAGE_PENDING_ROW_PROP_TYPE = PropTypes.shape({
-  cid: PropTypes.string.isRequired,
-  method: PropTypes.number.isRequired,
-  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
-  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
-  value: PropTypes.string.isRequired
-})
-
 export const PROPOSAL_ROW_PROP_TYPE = PropTypes.shape({
   id: PropTypes.number.isRequired,
   method: PropTypes.number.isRequired,
