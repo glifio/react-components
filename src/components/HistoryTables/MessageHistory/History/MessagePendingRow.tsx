@@ -14,10 +14,11 @@ import truncateAddress from '../../../../utils/truncateAddress'
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
-export default function PendingMessageHistoryRow(
-  props: PendingMessageHistoryRowProps
-) {
-  const { message, cidHref, inspectingAddress } = props
+export default function PendingMessageHistoryRow({
+  message,
+  cidHref,
+  inspectingAddress
+}: PendingMessageHistoryRowProps) {
   const fromAddressIsInspecting = useMemo(
     () => isAddrEqual(message.from, inspectingAddress),
     [message.from, inspectingAddress]
@@ -34,7 +35,7 @@ export default function PendingMessageHistoryRow(
           {truncateAddress(message.cid)}
         </SmartLink>
       </td>
-      {props.inspectingAddress && <td>{methodName}</td>}
+      {inspectingAddress && <td>{methodName}</td>}
       <td>(Pending)</td>
       <td>(Pending)</td>
       <td>
