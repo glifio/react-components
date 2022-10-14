@@ -84,10 +84,10 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 }
 
 type MessageHistoryTableProps = {
-  offset: number
   address: string
-  warnMissingData?: boolean
   cidHref: (cid: string) => string
+  offset?: number
+  warnMissingData?: boolean
 }
 
 MessageHistoryTable.propTypes = {
@@ -98,5 +98,6 @@ MessageHistoryTable.propTypes = {
 }
 
 MessageHistoryTable.defaultProps = {
-  offset: 0
+  offset: 0,
+  warnMissingData: false
 }
