@@ -28,6 +28,6 @@ export function uniqueifyMsgs(
       })
 
       // Sort messages by nonce, descending
-      .sort((a, b) => Number(b.nonce) - Number(a.nonce))
+      .sort((a, b) => b.nonce - a.nonce)
   )
 }
