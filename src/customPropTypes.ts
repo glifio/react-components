@@ -1,10 +1,8 @@
 import {
   shape,
   string,
-  oneOfType,
   number,
   oneOf,
-  arrayOf,
   Requireable,
   any
 } from 'prop-types'
