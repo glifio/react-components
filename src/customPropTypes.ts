@@ -94,6 +94,32 @@ export const FILECOIN_NUMBER_PROPTYPE: Requireable<any> = Object.assign(
 )
 
 /**
+ * Gas Params
+ */
+
+export interface GasParams {
+  gasFeeCap: FilecoinNumber
+  gasPremium: FilecoinNumber
+  gasLimit: FilecoinNumber
+}
+
+export const GAS_PARAMS_PROPTYPE = shape({
+  gasFeeCap: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  gasPremium: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  gasLimit: FILECOIN_NUMBER_PROPTYPE.isRequired
+})
+
+export const GRAPHQL_GAS_COST_PROPTYPE = shape({
+  baseFeeBurn: string.isRequired,
+  minerPenalty: string.isRequired,
+  minerTip: string.isRequired,
+  overEstimationBurn: string.isRequired,
+  refund: string.isRequired,
+  totalCost: string.isRequired,
+  gasUsed: number.isRequired
+})
+
+/**
  * Message
  */
 
@@ -156,32 +182,6 @@ export const EXECUTION_TRACE_PROPTYPE = shape({
   GasCharges: number,
   Error: string,
   Subcalls: any
-})
-
-/**
- * Gas Params
- */
-
-export interface GasParams {
-  gasFeeCap: FilecoinNumber
-  gasPremium: FilecoinNumber
-  gasLimit: FilecoinNumber
-}
-
-export const GAS_PARAMS_PROPTYPE = shape({
-  gasFeeCap: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  gasPremium: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  gasLimit: FILECOIN_NUMBER_PROPTYPE.isRequired
-})
-
-export const GRAPHQL_GAS_COST_PROPTYPE = shape({
-  baseFeeBurn: string.isRequired,
-  minerPenalty: string.isRequired,
-  minerTip: string.isRequired,
-  overEstimationBurn: string.isRequired,
-  refund: string.isRequired,
-  totalCost: string.isRequired,
-  gasUsed: number.isRequired
 })
 
 /**
