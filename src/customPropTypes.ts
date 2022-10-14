@@ -106,7 +106,7 @@ export const MESSAGE_PROPTYPE = shape({
   gasPremium: BIGNUMBER_PROPTYPE.isRequired,
   gasFeeCap: BIGNUMBER_PROPTYPE.isRequired,
   gasLimit: number.isRequired,
-  params: oneOfType([string, arrayOf(string)])
+  params: string.isRequired
 })
 
 export const GRAPHQL_MESSAGE_PROPTYPE = shape({
