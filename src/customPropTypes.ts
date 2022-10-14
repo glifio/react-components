@@ -135,22 +135,27 @@ export const MESSAGE_PROPTYPE = shape({
   params: string.isRequired
 })
 
-export const GRAPHQL_MESSAGE_PROPTYPE = shape({
-  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
-  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
-  nonce: number.isRequired,
-  method: number.isRequired,
-  value: string.isRequired,
-  gasPremium: string.isRequired,
-  gasFeeCap: string.isRequired,
-  gasLimit: number.isRequired,
-  params: oneOfType([string, arrayOf(string)])
-})
-
 export const GRAPHQL_MESSAGE_RECEIPT_PROPTYPE = shape({
   exitCode: number.isRequired,
   return: string.isRequired,
   gasUsed: number.isRequired
+})
+
+export const GRAPHQL_MESSAGE_PROPTYPE = shape({
+  cid: string.isRequired,
+  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  nonce: number.isRequired,
+  height: number.isRequired,
+  method: number.isRequired,
+  params: string.isRequired,
+  value: string.isRequired,
+  gasCost: GRAPHQL_GAS_COST_PROPTYPE.isRequired,
+  gasPremium: string.isRequired,
+  gasFeeCap: string.isRequired,
+  gasLimit: number.isRequired,
+  version: number.isRequired,
+  receipt: GRAPHQL_MESSAGE_RECEIPT_PROPTYPE.isRequired
 })
 
 export const LOTUS_MESSAGE_PROPTYPE = shape({
