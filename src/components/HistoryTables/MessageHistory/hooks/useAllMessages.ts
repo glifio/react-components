@@ -161,8 +161,8 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
         pendingMsgList
           // Remove confirmed messages
           .filter(msg => !confirmedCids.has(msg.cid))
-          // Sort messages by nonce
-          .sort((a, b) => Number(b.nonce) - Number(a.nonce))
+          // Sort messages by nonce, descending
+          .sort((a, b) => b.nonce - a.nonce)
       )
     } else {
       return []
