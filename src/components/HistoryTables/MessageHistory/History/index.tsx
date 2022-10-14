@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import MessageConfirmedRow from './MessageConfirmedRow'
+import { MessageConfirmedRow } from './MessageConfirmedRow'
 import { MessagePendingRow } from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../../customPropTypes'
