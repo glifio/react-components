@@ -115,7 +115,7 @@ export const GRAPHQL_MESSAGE_PROPTYPE = shape({
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   nonce: number.isRequired,
-  method: string.isRequired,
+  method: number.isRequired,
   value: string.isRequired,
   gasPremium: string.isRequired,
   gasFeeCap: string.isRequired,
