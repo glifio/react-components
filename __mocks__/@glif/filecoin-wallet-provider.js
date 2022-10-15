@@ -33,7 +33,7 @@ const mockSuprovider = {
 const mockRequest = jest.fn().mockImplementation(method => {
   switch (method) {
     case 'ChainHead': {
-      return { Height: '1000' }
+      return { Height: 1000 }
     }
     default: {
       return
