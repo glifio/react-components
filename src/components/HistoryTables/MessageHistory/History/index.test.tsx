@@ -1,13 +1,13 @@
 import React from 'react'
 import { render, act, screen } from '@testing-library/react'
-import MessageHistory from '.'
+import { MessageHistoryTable } from '.'
 import {
   WALLET_ADDRESS,
   WALLET_ADDRESS_2,
   WALLET_ID,
   WALLET_ID_2
 } from '../../../../test-utils/constants'
-import { MessageConfirmedRow } from '../../types'
+import { MessagesMsg } from '../../../../customPropTypes'
 import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
 jest
@@ -43,7 +43,7 @@ describe('Message history', () => {
     act(() => {
       const res = render(
         <TestEnvironment withApollo>
-          <MessageHistory
+          <MessageHistoryTable
             offset={0}
             address={WALLET_ADDRESS}
             cidHref={cid => `/message/?cid=${cid}`}
@@ -60,22 +60,24 @@ describe('Message history', () => {
   })
 
   test('it renders messages', async () => {
-    const makeMessages = (count: number): MessageConfirmedRow[] => {
-      const messages = [] as MessageConfirmedRow[]
+    const makeMessages = (count: number): MessagesMsg[] => {
+      const messages: MessagesMsg[] = []
       for (let i = 0; i < count; i++) {
         messages.push({
           cid: `bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk${i}qmchbhjx7q747jghal3l4g`,
-          from: {
-            id: WALLET_ID,
-            robust: WALLET_ADDRESS
-          },
           to: {
             id: WALLET_ID_2,
             robust: WALLET_ADDRESS_2
           },
+          from: {
+            id: WALLET_ID,
+            robust: WALLET_ADDRESS
+          },
+          nonce: i,
           height: 1020,
-          value: '1000',
-          method: '0'
+          method: 0,
+          params: '',
+          value: '1000'
         })
       }
       return messages
@@ -99,7 +101,7 @@ describe('Message history', () => {
     act(() => {
       const res = render(
         <TestEnvironment withApollo>
-          <MessageHistory
+          <MessageHistoryTable
             offset={0}
             address={WALLET_ADDRESS}
             cidHref={cid => `/message/?cid=${cid}`}
