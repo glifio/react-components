@@ -1,18 +1,18 @@
 query Messages($address: String!, $limit: Int!, $offset: Int!) {
   messages(address: $address, limit: $limit, offset: $offset) {
     cid
-    height
-    from {
-      id
-      robust
-    }
     to {
       id
       robust
     }
-    value
-    method
+    from {
+      id
+      robust
+    }
     nonce
+    height
+    method
     params
+    value
   }
 }
