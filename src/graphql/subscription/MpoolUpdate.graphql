@@ -3,22 +3,22 @@ subscription MpoolUpdate($address: String!) {
     type
     message {
       cid
-      from {
-        id
-        robust
-      }
       to {
         id
         robust
       }
-      method
+      from {
+        id
+        robust
+      }
       nonce
+      height
+      method
+      params
       value
-      version
-      gasLimit
       gasFeeCap
       gasPremium
-      params
+      gasLimit
     }
   }
 }
