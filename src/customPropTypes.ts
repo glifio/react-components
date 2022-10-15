@@ -184,9 +184,9 @@ export const GRAPHQL_MESSAGE_PENDING_PROPTYPE = shape({
 export const GRAPHQL_MSIG_TRANSACTION_PROPTYPE = shape({
   id: number.isRequired,
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  value: string.isRequired,
   method: number.isRequired,
   params: string.isRequired,
-  value: string.isRequired,
   proposalHash: string.isRequired,
   approved: arrayOf(GRAPHQL_ADDRESS_PROP_TYPE)
 })
