@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
-import { GRAPHQL_MESSAGES_MSG_PROPTYPE } from '../../../../customPropTypes'
-import { MessageConfirmed } from '../../../../generated/graphql'
+import {
+  MessagesMsg,
+  GRAPHQL_MESSAGES_MSG_PROPTYPE
+} from '../../../../customPropTypes'
 import { attoFilToFil } from '../../utils'
 import { useAge } from '../../../../utils/useAge'
 import { useMethodName } from '../hooks/useMethodName'
@@ -26,7 +28,7 @@ export const MessageConfirmedRow = ({
     [message.to, inspectingAddress]
   )
   const methodName = useMethodName(message.to, message.method)
-  const { age } = useAge(message?.height)
+  const { age } = useAge(message.height)
 
   return (
     <tr>
@@ -66,7 +68,7 @@ export const MessageConfirmedRow = ({
 }
 
 type MessageConfirmedRowProps = {
-  message: MessageConfirmed
+  message: MessagesMsg
   cidHref: (cid: string) => string
   inspectingAddress: string
 }
