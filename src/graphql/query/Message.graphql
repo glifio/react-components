@@ -1,19 +1,19 @@
 query Message($cid: String!) {
   message(cid: $cid) {
     cid
-    height
-    from {
-      id
-      robust
-    }
     to {
       id
       robust
     }
-    value
-    method
+    from {
+      id
+      robust
+    }
     nonce
+    height
+    method
     params
+    value
     gasFeeCap
     gasPremium
     gasLimit
