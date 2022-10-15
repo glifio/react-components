@@ -1,13 +1,13 @@
 query PendingMessages($address: String!) {
   pendingMessages(address: $address) {
     cid
-    from {
-      id
-      robust
-    }
     to {
-      id
       robust
+      id
+    }
+    from {
+      robust
+      id
     }
     nonce
     value
@@ -15,6 +15,7 @@ query PendingMessages($address: String!) {
     gasFeeCap
     gasPremium
     method
+    height
     params
   }
 }
