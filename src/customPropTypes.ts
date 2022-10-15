@@ -15,6 +15,7 @@ import { CID } from 'multiformats/cid'
 import BigNumber from 'bignumber.js'
 
 import { Network } from './services/EnvironmentProvider'
+import { Message } from './generated/graphql'
 
 /**
  * ADDRESS_PROPTYPE
@@ -155,6 +156,8 @@ export const GRAPHQL_MESSAGE_PROPTYPE = shape({
   gasFeeCap: string.isRequired,
   gasLimit: number.isRequired
 })
+
+export type MessagesMsg = Omit<Message, 'gasFeeCap' | 'gasPremium' | 'gasLimit'>
 
 export const GRAPHQL_MESSAGES_MSG_PROPTYPE = shape({
   cid: string.isRequired,
