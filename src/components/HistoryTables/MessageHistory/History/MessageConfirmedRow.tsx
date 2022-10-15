@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
-import { GRAPHQL_MESSAGES_PROPTYPE } from '../../../../customPropTypes'
+import { GRAPHQL_MESSAGES_MSG_PROPTYPE } from '../../../../customPropTypes'
 import { MessageConfirmed } from '../../../../generated/graphql'
 import { attoFilToFil } from '../../utils'
 import { useAge } from '../../../../utils/useAge'
@@ -72,7 +72,7 @@ type MessageConfirmedRowProps = {
 }
 
 MessageConfirmedRow.propTypes = {
-  message: GRAPHQL_MESSAGES_PROPTYPE.isRequired,
+  message: GRAPHQL_MESSAGES_MSG_PROPTYPE.isRequired,
   cidHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string.isRequired
 }

@@ -156,7 +156,7 @@ export const GRAPHQL_MESSAGE_PROPTYPE = shape({
   gasLimit: number.isRequired
 })
 
-export const GRAPHQL_MESSAGES_PROPTYPE = shape({
+export const GRAPHQL_MESSAGES_MSG_PROPTYPE = shape({
   cid: string.isRequired,
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
