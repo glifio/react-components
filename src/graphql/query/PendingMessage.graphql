@@ -1,7 +1,6 @@
 query PendingMessage($cid: String!) {
   pendingMessage(cid: $cid) {
     cid
-    version
     to {
       robust
       id
