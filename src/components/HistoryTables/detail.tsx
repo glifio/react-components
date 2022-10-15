@@ -140,7 +140,7 @@ export const MessageDetailBase = ({
   methodName,
   confirmations
 }: MessageDetailBaseProps) => {
-  const { age } = useAge(message?.height)
+  const { age } = useAge(message.height)
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -150,10 +150,10 @@ export const MessageDetailBase = ({
 
   const confirmationCount = useMemo<number>(
     () =>
-      chainHeadSubscription.data?.chainHead.height && !!message?.height
-        ? chainHeadSubscription.data.chainHead.height - Number(message.height)
+      chainHeadSubscription.data?.chainHead.height && message.height
+        ? chainHeadSubscription.data.chainHead.height - message.height
         : 0,
-    [message?.height, chainHeadSubscription.data?.chainHead.height]
+    [message.height, chainHeadSubscription.data?.chainHead.height]
   )
 
   return (
