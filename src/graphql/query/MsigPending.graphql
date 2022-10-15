@@ -5,9 +5,9 @@ query MsigPending($address: String!) {
       id
       robust
     }
-    value
     method
     params
+    value
     proposalHash
     approved {
       id
