@@ -40,6 +40,7 @@ describe('potentialDupMsg', () => {
       from: WALLET_ADDRESS,
       value: '0',
       method: 0,
+      params: '',
       nonce: 0
     })
 
