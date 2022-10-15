@@ -1,15 +1,10 @@
 import { Message } from '@glif/filecoin-message'
 import BigNumber from 'bignumber.js'
-import { Message as GQLMessage } from '../../generated/graphql'
+import { MessagePending } from '../../generated/graphql'
 import { isAddrEqual } from '../isAddrEqual'
 
-export type ComparisonMessage = Pick<
-  GQLMessage,
-  'cid' | 'from' | 'to' | 'value' | 'params' | 'method'
-> & { height: string | number }
-
 export const potentialDupMsg = (
-  msg1: ComparisonMessage,
+  msg1: Omit<MessagePending, '__typename'>,
   msg2: Message,
   currentHeight: number,
   isPending: boolean = false
@@ -24,7 +19,7 @@ export const potentialDupMsg = (
     !msg1.params && !msg2.params ? true : msg1.params === msg2.params
   // if the message is pending or occurred in the last 900 epochs, it's considered "recent"
   const isRecent =
-    isPending || (msg1.height > 0 && currentHeight - Number(msg1.height) < 900)
+    isPending || (msg1.height > 0 && currentHeight - msg1.height < 900)
 
   if (fromAddrEq && toAddrEq && methodEq && valueEq && paramsEq && isRecent)
     return msg1.cid
