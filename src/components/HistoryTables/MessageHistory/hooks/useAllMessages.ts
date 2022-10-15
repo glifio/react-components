@@ -47,7 +47,7 @@ export const usePendingMessages = (
   const { messages: submittedMessages } = useSubmittedMessages()
 
   const pendingMsgList = useMemo<MessagePending[]>(() => {
-    const msgs = [
+    const msgs: MessagePending[] = [
       ...submittedMessages,
       ...(pendingMsgs?.data?.pendingMessages || [])
     ]
@@ -56,7 +56,7 @@ export const usePendingMessages = (
       msgs.push(pendingMsgSub?.data?.mpoolUpdate?.message)
     }
 
-    return uniqueifyMsgs(msgs as MessagePending[])
+    return uniqueifyMsgs(msgs) as MessagePending[]
   }, [pendingMsgs?.data, submittedMessages, pendingMsgSub?.data?.mpoolUpdate])
 
   // should refresh returns true after a few epochs have past since a message left the mpool
