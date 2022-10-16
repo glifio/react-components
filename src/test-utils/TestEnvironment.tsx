@@ -21,6 +21,7 @@ export const TestEnvironment = ({
     networkName={Network.CALIBRATION}
     nodeStatusApiKey={networks[Network.CALIBRATION].nodeStatusApiKey}
     graphUrl={networks[Network.CALIBRATION].graphUrl}
+    graphSecure={networks[Network.CALIBRATION].graphSecure}
     lotusApiUrl={networks[Network.CALIBRATION].lotusApiUrl}
     explorerUrl='https://explorer-calibration.glif.link'
     lotusApi={
