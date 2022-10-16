@@ -166,7 +166,7 @@ export const MessageDetailBase = ({
           shouldTruncate={false}
         />
       </Line>
-      {Number(exitCode) >= 0 && (
+      {exitCode >= 0 && (
         <Line label='Status and Confirmations'>
           <Status exitCode={exitCode} pending={pending} />
           {!pending && (
@@ -175,7 +175,7 @@ export const MessageDetailBase = ({
         </Line>
       )}
       <Line label='Height'>
-        {Number(message.height) > 0 ? message.height : 'Pending'}
+        {message.height > 0 ? message.height : 'Pending'}
       </Line>
       <Line label='Timestamp'>
         {pending ? (
@@ -290,13 +290,13 @@ export const SeeMoreContent = ({
       <hr />
       <LinesParams
         address={message.to.robust || message.to.id}
-        method={Number(message.method)}
+        method={message.method}
         params={message.params}
       />
       <hr />
       <LinesReturn
         address={message.to.robust || message.to.id}
-        method={Number(message.method)}
+        method={message.method}
         returnVal={executionTrace.MsgRct.Return}
       />
     </>
