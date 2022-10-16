@@ -78,9 +78,7 @@ export const usePendingMessages = (
         ref?.current.cid !== pendingMsgSub.data.mpoolUpdate.message.cid
       ) {
         ref.current.cid = pendingMsgSub.data?.mpoolUpdate.message.cid
-        ref.current.height = Number(
-          chainHeadSubscription?.data?.chainHead.height
-        )
+        ref.current.height = chainHeadSubscription?.data?.chainHead.height
       }
     }
   }, [chainHeadSubscription, pendingMsgSub])
@@ -92,7 +90,7 @@ export const usePendingMessages = (
       // wait the number of confirmations before refreshing low conf query
       if (
         ref.current.height + WAIT_EPOCHS_BEFORE_REFRESH <
-        Number(chainHeadSubscription?.data?.chainHead.height)
+        chainHeadSubscription?.data?.chainHead.height
       ) {
         setShouldRefresh(true)
         ref.current.height = 0
