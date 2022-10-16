@@ -1,5 +1,4 @@
 import { Message } from '@glif/filecoin-message'
-import BigNumber from 'bignumber.js'
 import { MessagePending } from '../../generated/graphql'
 import { isAddrEqual } from '../isAddrEqual'
 
