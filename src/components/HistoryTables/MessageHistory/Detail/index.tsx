@@ -79,7 +79,7 @@ export default function MessageDetail(props: MessageDetailProps) {
   const execReturn = useMemo<ExecReturn | null>(() => {
     if (!message) return null
     const isToExec = isAddrEqual(message?.to, 'f01')
-    const isInitTx = Number(message?.method) === 2
+    const isInitTx = message?.method === 2
     const receiptReturn = stateReplayQuery?.stateReplay?.receipt?.return
     return isToExec && isInitTx && receiptReturn
       ? getAddrFromReceipt(receiptReturn, coinType)
