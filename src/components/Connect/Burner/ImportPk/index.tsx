@@ -34,13 +34,12 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
           setLoading(true)
           if (isValid) {
             try {
-              const key = isHex
-                ? Buffer.from(privateKey, 'hex').toString('base64')
-                : privateKey
-
-              const provider = new Filecoin(new SECP256K1KeyProvider(key), {
-                apiAddress: lotusApiAddr
-              })
+              const provider = new Filecoin(
+                new SECP256K1KeyProvider(privateKey, isHex ? 'hex' : 'base64'),
+                {
+                  apiAddress: lotusApiAddr
+                }
+              )
               dispatch(
                 createWalletProvider(provider, LoginOption.IMPORT_SINGLE_KEY)
               )
