@@ -53,7 +53,6 @@ export interface EnvironmentContextType {
   discordUrl: string
   twitterUrl: string
   contactEmail: string
-  nodesDocsUrl: string
   nodeStatusApiUrl: string
   nodeStatusApiKey: string
   graphUrl: string
@@ -82,7 +81,6 @@ export const emptyEnvironmentContext = {
   discordUrl: 'https://discord.gg/B9ju5Eu4Rq',
   twitterUrl: 'https://twitter.com/glifio',
   contactEmail: 'squad@infinitescroll.org',
-  nodesDocsUrl: 'https://lotus.filecoin.io/docs/developers/hosted-lotus/',
   nodeStatusApiUrl: 'https://api.uptimerobot.com/v2/getMonitors',
   nodeStatusApiKey: '',
   graphUrl: '',

@@ -28,7 +28,6 @@ describe('EnvironmentProvider', () => {
     expect(result.current.discordUrl).toBeTruthy()
     expect(result.current.twitterUrl).toBeTruthy()
     expect(result.current.contactEmail).toBeTruthy()
-    expect(result.current.nodesDocsUrl).toBeTruthy()
     expect(result.current.nodeStatusApiUrl).toBeTruthy()
     expect(result.current.nodeStatusApiKey).toBeTruthy()
     expect(result.current.graphUrl).toBeTruthy()

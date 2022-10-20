@@ -1,3 +1,7 @@
+/* URLS */
+export const NODES_DOCS_URL =
+  'https://lotus.filecoin.io/docs/developers/hosted-lotus/'
+
 /* WALLET TYPES */
 export const HD_WALLET = 'HD_WALLET'
 export const SINGLE_KEY = 'SINGLE_KEY'

@@ -3,6 +3,7 @@ import { SmartLink } from '../SmartLink'
 import { Colors, devices, Spaces } from '../theme'
 import { IconGlif } from '../Icons'
 import { useEnvironment } from '../../services/EnvironmentProvider'
+import { NODES_DOCS_URL } from '../../constants'
 
 const Ul = styled.ul`
   list-style-type: none;
@@ -86,8 +87,7 @@ export const Footer = () => {
     blogUrl,
     githubUrl,
     discordUrl,
-    contactEmail,
-    nodesDocsUrl
+    contactEmail
   } = useEnvironment()
   return (
     <>
@@ -107,7 +107,7 @@ export const Footer = () => {
               <SmartLink href={githubUrl}>Code</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={nodesDocsUrl}>Nodes</SmartLink>
+              <SmartLink href={NODES_DOCS_URL}>Nodes</SmartLink>
             </Li>
             <Li>
               <SmartLink href={`mailto:${contactEmail}`}>Contact</SmartLink>
