@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { ButtonV2 } from '../Button/V2'
 import { ButtonRow, Dialog, ErrorBox } from '../Layout'
 import { SmartLink } from '../SmartLink'
-import { GLIF_DISCORD, GLIF_TWITTER } from '../../constants'
+import { useEnvironment } from '../../services'
 
 export const ErrorView = ({
   description,
@@ -11,12 +11,9 @@ export const ErrorView = ({
   title,
   sendHome
 }) => {
-  let sendHomeCB = sendHome
-  if (!sendHome) {
-    sendHomeCB = () => {
-      window.location.href = window.location.origin
-    }
-  }
+  const { discordUrl, twitterUrl } = useEnvironment()
+  const onClickBack =
+    sendHome || (() => (window.location.href = window.location.origin))
   return (
     <Dialog>
       <ErrorBox>
@@ -30,12 +27,12 @@ export const ErrorView = ({
         )}
         <hr />
         <p>
-          Get help in <SmartLink href={GLIF_DISCORD}>Discord</SmartLink> or hit
-          us up on <SmartLink href={GLIF_TWITTER}>Twitter</SmartLink>
+          Get help in <SmartLink href={discordUrl}>Discord</SmartLink> or hit us
+          up on <SmartLink href={twitterUrl}>Twitter</SmartLink>
         </p>
       </ErrorBox>
       <ButtonRow>
-        <ButtonV2 onClick={sendHomeCB}>Back</ButtonV2>
+        <ButtonV2 onClick={onClickBack}>Back</ButtonV2>
       </ButtonRow>
     </Dialog>
   )

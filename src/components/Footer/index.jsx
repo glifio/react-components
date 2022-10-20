@@ -2,14 +2,8 @@ import styled from 'styled-components'
 import { SmartLink } from '../SmartLink'
 import { Colors, devices, Spaces } from '../theme'
 import { IconGlif } from '../Icons'
-import {
-  GLIF_EMAIL,
-  GLIF_CODE,
-  GLIF_NODES,
-  GLIF_DISCORD,
-  GLIF_BLOG
-} from '../../constants'
 import { useEnvironment } from '../../services/EnvironmentProvider'
+import { NODES_DOCS_URL } from '../../constants'
 
 const Ul = styled.ul`
   list-style-type: none;
@@ -85,7 +79,16 @@ const AppIconWrapper = styled.span`
 `
 
 export const Footer = () => {
-  const { walletUrl, safeUrl, explorerUrl, verifierUrl } = useEnvironment()
+  const {
+    walletUrl,
+    safeUrl,
+    explorerUrl,
+    verifierUrl,
+    blogUrl,
+    githubUrl,
+    discordUrl,
+    contactEmail
+  } = useEnvironment()
   return (
     <>
       <FooterWrapper>
@@ -95,19 +98,19 @@ export const Footer = () => {
         <FooterContent>
           <Ul>
             <Li>
-              <SmartLink href={GLIF_DISCORD}>Discord</SmartLink>
+              <SmartLink href={discordUrl}>Discord</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={GLIF_BLOG}>Blog</SmartLink>
+              <SmartLink href={blogUrl}>Blog</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={GLIF_CODE}>Code</SmartLink>
+              <SmartLink href={githubUrl}>Code</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={GLIF_NODES}>Nodes</SmartLink>
+              <SmartLink href={NODES_DOCS_URL}>Nodes</SmartLink>
             </Li>
             <Li>
-              <SmartLink href={`mailto:${GLIF_EMAIL}`}>Contact</SmartLink>
+              <SmartLink href={`mailto:${contactEmail}`}>Contact</SmartLink>
             </Li>
           </Ul>
 
