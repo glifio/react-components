@@ -40,7 +40,8 @@ describe('potentialDupMsg', () => {
       from: WALLET_ADDRESS,
       value: '0',
       method: 0,
-      nonce: 0
+      nonce: 0,
+      params: ''
     })
 
     expect(potentialDupMsg(comparisonMessage, message, 1200)).toBe(null)
