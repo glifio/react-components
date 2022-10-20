@@ -10,6 +10,7 @@ export const PrivateKeyInput = ({
   onChange,
   onFocus,
   onBlur,
+  isHex,
   setIsValid,
   ...baseProps
 }: PrivateKeyInputProps) => {
@@ -20,14 +21,14 @@ export const PrivateKeyInput = ({
   const error = useMemo<string>(() => {
     if (!value) return 'Cannot be empty'
     try {
-      const buffer = Buffer.from(value, 'base64')
-      const result = buffer.toString('base64')
+      const buffer = Buffer.from(value, isHex ? 'hex' : 'base64')
+      const result = buffer.toString(isHex ? 'hex' : 'base64')
       if (result !== value) throw new Error()
     } catch (e) {
-      return 'Needs to be valid Base64'
+      return `Needs to be valid ${isHex ? 'Hex' : 'Base64'}`
     }
     return ''
-  }, [value])
+  }, [value, isHex])
 
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
@@ -76,6 +77,7 @@ export const PrivateKeyInput = ({
 
 export type PrivateKeyInputProps = {
   setIsValid?: (isValid: boolean) => void
+  isHex?: boolean
 } & Omit<BaseInputProps, 'error' | 'type' | 'autoComplete' | 'placeholder'>
 
 const { error, type, autoComplete, placeholder, ...privateKeyProps } =
@@ -83,6 +85,7 @@ const { error, type, autoComplete, placeholder, ...privateKeyProps } =
 
 PrivateKeyInput.propTypes = {
   setIsValid: PropTypes.func,
+  isHex: PropTypes.bool,
   ...privateKeyProps
 }
 

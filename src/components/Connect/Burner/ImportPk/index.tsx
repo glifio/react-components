@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import Filecoin, { SECP256K1KeyProvider } from '@glif/filecoin-wallet-provider'
 import { useState } from 'react'
 import { LoginOption } from '../../../../customPropTypes'
@@ -9,6 +10,12 @@ import { Dialog, ShadowBox, ButtonRowSpaced, ErrorBox } from '../../../Layout'
 import { LoadingIcon } from '../../../Loading/LoadingIcon'
 import { Loading } from '../../Loading'
 
+const InputsWrapper = styled.span`
+  > *:last-child {
+    justify-content: center;
+  }
+`
+
 export const ImportPk = ({ back, next }: ImportPkProps) => {
   const { dispatch, fetchDefaultWallet, lotusApiAddr, walletList } =
     useWalletProvider()
@@ -16,6 +23,7 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
   const [isValid, setIsValid] = useState(false)
   const [loading, setLoading] = useState(false)
   const [importError, setImportError] = useState('')
+  const [isHex, setIsHex] = useState(false)
   return (
     <Dialog>
       <form
@@ -26,12 +34,13 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
           setLoading(true)
           if (isValid) {
             try {
-              const provider = new Filecoin(
-                new SECP256K1KeyProvider(privateKey),
-                {
-                  apiAddress: lotusApiAddr
-                }
-              )
+              const key = isHex
+                ? Buffer.from(privateKey, 'hex').toString('base64')
+                : privateKey
+
+              const provider = new Filecoin(new SECP256K1KeyProvider(key), {
+                apiAddress: lotusApiAddr
+              })
               dispatch(
                 createWalletProvider(provider, LoginOption.IMPORT_SINGLE_KEY)
               )
@@ -55,16 +64,25 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
               <p>Loading...</p>
             </Loading>
           ) : (
-            <InputV2.PrivateKey
-              name='private-key'
-              label='Please enter your private key below to continue'
-              vertical={true}
-              centered={true}
-              autoFocus={true}
-              value={privateKey}
-              onChange={setPrivateKey}
-              setIsValid={setIsValid}
-            />
+            <InputsWrapper>
+              <InputV2.PrivateKey
+                name='private-key'
+                label='Please enter your private key below to continue'
+                vertical={true}
+                centered={true}
+                autoFocus={true}
+                value={privateKey}
+                onChange={setPrivateKey}
+                setIsValid={setIsValid}
+                isHex={isHex}
+              />
+              <br />
+              <InputV2.Toggle
+                label='Hex'
+                onChange={() => setIsHex(!isHex)}
+                checked={isHex}
+              />
+            </InputsWrapper>
           )}
         </ShadowBox>
         <ButtonRowSpaced>
