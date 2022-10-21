@@ -6,14 +6,20 @@ import { LoginOption } from '../../../../customPropTypes'
 import { createWalletProvider, useWalletProvider } from '../../../../services'
 import { ButtonV2 } from '../../../Button/V2'
 import { InputV2 } from '../../../InputV2'
-import { Dialog, ShadowBox, ButtonRowSpaced, ErrorBox } from '../../../Layout'
+import {
+  Dialog,
+  ShadowBox,
+  ButtonRowSpaced,
+  ErrorBox,
+  Lines
+} from '../../../Layout'
 import { LoadingIcon } from '../../../Loading/LoadingIcon'
 import { Loading } from '../../Loading'
 
-const InputsWrapper = styled.span`
-  > *:last-child {
-    justify-content: center;
-  }
+const LabelWrapper = styled.span`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 export const ImportPk = ({ back, next }: ImportPkProps) => {
@@ -63,10 +69,17 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
               <p>Loading...</p>
             </Loading>
           ) : (
-            <InputsWrapper>
+            <Lines>
+              <LabelWrapper>
+                <span>Please enter your private key below to continue</span>
+                <InputV2.Toggle
+                  label='Hex'
+                  onChange={setIsHex}
+                  checked={isHex}
+                />
+              </LabelWrapper>
               <InputV2.PrivateKey
                 name='private-key'
-                label='Please enter your private key below to continue'
                 vertical={true}
                 centered={true}
                 autoFocus={true}
@@ -75,13 +88,7 @@ export const ImportPk = ({ back, next }: ImportPkProps) => {
                 setIsValid={setIsValid}
                 isHex={isHex}
               />
-              <br />
-              <InputV2.Toggle
-                label='Hex'
-                onChange={() => setIsHex(!isHex)}
-                checked={isHex}
-              />
-            </InputsWrapper>
+            </Lines>
           )}
         </ShadowBox>
         <ButtonRowSpaced>
