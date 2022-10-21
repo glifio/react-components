@@ -16,7 +16,7 @@ export const getAddrFromReceipt = (
   base64Return: string,
   coinType: CoinType
 ): ExecReturn => {
-  const [cborBytesID, cborBytesRobust] = decode(
+  const [cborBytesID, cborBytesRobust] = decode<[Uint8Array, Uint8Array]>(
     fromString(base64Return, 'base64')
   )
   return {
