@@ -8,7 +8,7 @@ import {
 
 import { BaseTypeObjLines, DataTypeLines } from './DataTypes'
 import { Line, NullishLine } from './Lines'
-import { useEnvironment, useLogger } from '../../services'
+import { useEnvironment, useLogger } from '../../services/EnvironmentProvider'
 import { useActorQuery } from '../../generated/graphql'
 import { convertAddrToPrefix, useStateDecodeParams } from '../../utils'
 

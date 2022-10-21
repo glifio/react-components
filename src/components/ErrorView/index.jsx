@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { ButtonV2 } from '../Button/V2'
 import { ButtonRow, Dialog, ErrorBox } from '../Layout'
 import { SmartLink } from '../SmartLink'
-import { useEnvironment } from '../../services'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 export const ErrorView = ({
   description,
