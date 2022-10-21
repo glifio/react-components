@@ -10,8 +10,8 @@ export const PrivateKeyInput = ({
   onChange,
   onFocus,
   onBlur,
-  isHex,
   setIsValid,
+  isHex,
   ...baseProps
 }: PrivateKeyInputProps) => {
   const [hasFocus, setHasFocus] = useState<boolean>(false)
@@ -35,7 +35,12 @@ export const PrivateKeyInput = ({
 
   const onChangeBase = (newValue: string) => {
     setHasChanged(true)
-    onChange(newValue.trim())
+    onChange(
+      isHex
+        ? // Ensure hex is lowercase and strip the 0x prefix
+          newValue.trim().toLocaleLowerCase().replace(/^0x/, '')
+        : newValue.trim()
+    )
   }
 
   const onFocusBase = () => {
@@ -53,7 +58,7 @@ export const PrivateKeyInput = ({
       error={!hasFocus && hasChanged ? error : ''}
       type='text'
       autoComplete='off'
-      placeholder='Enter your private key'
+      placeholder={`Enter your ${isHex ? 'Hex' : 'Base64'} private key`}
       value={value}
       onChange={onChangeBase}
       onFocus={onFocusBase}
@@ -72,7 +77,7 @@ export const PrivateKeyInput = ({
  * autoComplete: always "off" for private key
  * placeholder: always "Enter your private key"
  *
- * We add "setIsValid"
+ * We add "setIsValid" and "isHex"
  */
 
 export type PrivateKeyInputProps = {
@@ -98,5 +103,6 @@ PrivateKeyInput.defaultProps = {
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
-  setIsValid: () => {}
+  setIsValid: () => {},
+  isHex: false
 }
