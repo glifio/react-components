@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Import private key configuration it renders correctly 1`] = `
-.c10 {
+.c11 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -28,30 +28,30 @@ exports[`Import private key configuration it renders correctly 1`] = `
   font-size: 1.25em;
 }
 
-.c10 svg path {
+.c11 svg path {
   stroke: var(--black);
 }
 
-.c10:hover {
+.c11:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c10:hover svg path {
+.c11:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c10:active {
+.c11:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c10:active svg path {
+.c11:active svg path {
   stroke: var(--white) !important;
 }
 
-.c11 {
+.c12 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -85,73 +85,48 @@ exports[`Import private key configuration it renders correctly 1`] = `
   background: transparent;
 }
 
-.c11 svg path {
+.c12 svg path {
   stroke: var(--black);
 }
 
-.c11:hover {
+.c12:hover {
   color: var(--purple-medium);
   border-color: var(--purple-medium);
 }
 
-.c11:hover svg path {
+.c12:hover svg path {
   stroke: var(--purple-medium);
 }
 
-.c11:active {
+.c12:active {
   color: var(--white) !important;
   border-color: var(--purple-medium) !important;
   background: var(--purple-medium) !important;
 }
 
-.c11:active svg path {
+.c12:active svg path {
   stroke: var(--white) !important;
 }
 
-.c11 svg path {
+.c12 svg path {
   stroke: var(--white);
 }
 
-.c11:hover {
+.c12:hover {
   color: var(--green-medium);
   border-color: var(--green-medium);
   background: var(--white);
 }
 
-.c11:hover svg path {
+.c12:hover svg path {
   stroke: var(--green-medium);
 }
 
-.c11 svg path {
+.c12 svg path {
   stroke: var(--gray-medium);
 }
 
-.c4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  gap: var(--space-m);
-  text-align: left;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-}
-
-.c4 * {
-  text-align: center;
-}
-
-.c4 span.info,
-.c4 span.error {
-  font-size: 0.875rem;
-}
-
-.c4 span.error {
-  color: var(--red-medium);
-}
-
-.c6 {
+.c5 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -168,7 +143,7 @@ exports[`Import private key configuration it renders correctly 1`] = `
   justify-content: space-between;
 }
 
-.c6 > *:first-child {
+.c5 > *:first-child {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -178,22 +153,47 @@ exports[`Import private key configuration it renders correctly 1`] = `
   flex-direction: column;
 }
 
-.c6 > *:last-child:not(.toggle-wrapper) {
+.c5 > *:last-child:not(.toggle-wrapper) {
   -webkit-flex: 0 0 65%;
   -ms-flex: 0 0 65%;
   flex: 0 0 65%;
 }
 
-.c6 span.info,
-.c6 span.error {
+.c5 span.info,
+.c5 span.error {
   font-size: 0.875rem;
 }
 
-.c6 span.error {
+.c5 span.error {
   color: var(--red-medium);
 }
 
-.c5 .button-wrapper {
+.c7 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--space-m);
+  text-align: left;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c7 * {
+  text-align: center;
+}
+
+.c7 span.info,
+.c7 span.error {
+  font-size: 0.875rem;
+}
+
+.c7 span.error {
+  color: var(--red-medium);
+}
+
+.c8 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -205,13 +205,13 @@ exports[`Import private key configuration it renders correctly 1`] = `
   gap: var(--space-m);
 }
 
-.c5 .button-wrapper > *:first-child {
+.c8 .button-wrapper > *:first-child {
   -webkit-flex: 1 0 auto;
   -ms-flex: 1 0 auto;
   flex: 1 0 auto;
 }
 
-.c5 .button-wrapper > *:not(:first-child) {
+.c8 .button-wrapper > *:not(:first-child) {
   -webkit-flex: 0 0 auto;
   -ms-flex: 0 0 auto;
   flex: 0 0 auto;
@@ -220,26 +220,26 @@ exports[`Import private key configuration it renders correctly 1`] = `
   transition: transform 0.1s ease-out;
 }
 
-.c5 .button-wrapper > *:not(:first-child):hover:not(:active) {
+.c8 .button-wrapper > *:not(:first-child):hover:not(:active) {
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
-.c5 .button-wrapper > *:not(:first-child):active {
+.c8 .button-wrapper > *:not(:first-child):active {
   -webkit-transition: none;
   transition: none;
 }
 
-.c5 .unit-wrapper {
+.c8 .unit-wrapper {
   position: relative;
 }
 
-.c5 .unit-wrapper input {
+.c8 .unit-wrapper input {
   width: 100%;
 }
 
-.c5 .unit-wrapper .unit {
+.c8 .unit-wrapper .unit {
   position: absolute;
   top: 50%;
   right: 1em;
@@ -249,11 +249,11 @@ exports[`Import private key configuration it renders correctly 1`] = `
   color: var(--purple-medium);
 }
 
-.c7 .toggle-wrapper {
+.c6 .toggle-wrapper {
   position: relative;
 }
 
-.c7 input {
+.c6 input {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -262,7 +262,7 @@ exports[`Import private key configuration it renders correctly 1`] = `
   opacity: 0;
 }
 
-.c7 .toggle {
+.c6 .toggle {
   display: inline-block;
   position: relative;
   width: 2.25em;
@@ -272,7 +272,7 @@ exports[`Import private key configuration it renders correctly 1`] = `
   background-color: var(--blue-medium);
 }
 
-.c7 .toggle::after {
+.c6 .toggle::after {
   content: '';
   position: absolute;
   top: 0;
@@ -283,12 +283,12 @@ exports[`Import private key configuration it renders correctly 1`] = `
   background-color: var(--white);
 }
 
-.c7 input:checked ~ .toggle {
+.c6 input:checked ~ .toggle {
   border-color: var(--blue-dark);
   background-color: var(--blue-dark);
 }
 
-.c7 input:checked ~ .toggle::after {
+.c6 input:checked ~ .toggle::after {
   left: auto;
   right: 0;
 }
@@ -330,7 +330,7 @@ exports[`Import private key configuration it renders correctly 1`] = `
   box-shadow: 0 0 0.5em var(--gray-light);
 }
 
-.c8 {
+.c9 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -339,11 +339,31 @@ exports[`Import private key configuration it renders correctly 1`] = `
   margin: 1.5em 0;
 }
 
-.c9 {
+.c10 {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -ms-flex-pack: justify;
   justify-content: space-between;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.c3 > p,
+.c3 > hr {
+  margin: 0.5em 0;
+}
+
+.c3 > p[role='button'] {
+  margin: 0;
 }
 
 .c0 {
@@ -371,11 +391,19 @@ exports[`Import private key configuration it renders correctly 1`] = `
   gap: var(--space-m);
 }
 
-.c3 > *:last-child {
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 <div
@@ -392,15 +420,40 @@ exports[`Import private key configuration it renders correctly 1`] = `
         Import private key
       </h2>
       <hr />
-      <span
+      <div
         class="c3"
       >
-        <label
-          class="c4 c5"
+        <span
+          class="c4"
         >
           <span>
             Please enter your private key below to continue
           </span>
+          <label
+            class="c5 c6"
+          >
+            <div>
+              <span>
+                Hex
+              </span>
+              
+            </div>
+            <div
+              class="toggle-wrapper"
+            >
+              <input
+                type="checkbox"
+              />
+              <span
+                class="toggle"
+              />
+            </div>
+          </label>
+        </span>
+        <label
+          class="c7 c8"
+        >
+          
           
           <div
             class="button-wrapper"
@@ -414,7 +467,7 @@ exports[`Import private key configuration it renders correctly 1`] = `
                 max=""
                 min=""
                 name="private-key"
-                placeholder="Enter your private key"
+                placeholder="Enter your Base64 private key"
                 step="any"
                 style="padding-right: 1em;"
                 type="text"
@@ -425,40 +478,19 @@ exports[`Import private key configuration it renders correctly 1`] = `
           </div>
           
         </label>
-        <br />
-        <label
-          class="c6 c7"
-        >
-          <div>
-            <span>
-              Hex
-            </span>
-            
-          </div>
-          <div
-            class="toggle-wrapper"
-          >
-            <input
-              type="checkbox"
-            />
-            <span
-              class="toggle"
-            />
-          </div>
-        </label>
-      </span>
+      </div>
     </div>
     <div
-      class="c8 c9"
+      class="c9 c10"
     >
       <button
-        class="c10"
+        class="c11"
         type="button"
       >
         Back
       </button>
       <button
-        class="c11"
+        class="c12"
         disabled=""
         type="submit"
       >
