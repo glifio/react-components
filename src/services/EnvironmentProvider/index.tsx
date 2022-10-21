@@ -43,11 +43,16 @@ const networkInfoKeys: Array<keyof NetworkInfo> = [
 
 export interface EnvironmentContextType {
   homeUrl: string
-  blogUrl: string
   walletUrl: string
   safeUrl: string
   explorerUrl: string
   verifierUrl: string
+  nodesUrl: string
+  blogUrl: string
+  githubUrl: string
+  discordUrl: string
+  twitterUrl: string
+  contactEmail: string
   nodeStatusApiUrl: string
   nodeStatusApiKey: string
   graphUrl: string
@@ -66,11 +71,16 @@ export interface EnvironmentContextType {
 
 export const emptyEnvironmentContext = {
   homeUrl: 'https://apps.glif.io',
-  blogUrl: 'https://blog.glif.io',
   walletUrl: 'https://wallet.glif.io',
   safeUrl: 'https://safe.glif.io',
   explorerUrl: 'https://explorer.glif.io',
   verifierUrl: 'https://verify.glif.io',
+  nodesUrl: 'https://node.glif.io',
+  blogUrl: 'https://blog.glif.io',
+  githubUrl: 'https://github.com/glifio',
+  discordUrl: 'https://discord.gg/B9ju5Eu4Rq',
+  twitterUrl: 'https://twitter.com/glifio',
+  contactEmail: 'squad@infinitescroll.org',
   nodeStatusApiUrl: 'https://api.uptimerobot.com/v2/getMonitors',
   nodeStatusApiKey: '',
   graphUrl: '',
