@@ -2,8 +2,8 @@ import { BigNumber } from '@glif/filecoin-number'
 import { GqlMessagePending } from '../../customPropTypes'
 
 export function uniqueifyMsgs(
-  messages: (GqlMessagePending)[]
-): (GqlMessagePending)[] {
+  messages: GqlMessagePending[]
+): GqlMessagePending[] {
   const cids = new Set([])
   return (
     messages
@@ -15,7 +15,7 @@ export function uniqueifyMsgs(
           uniqueMessageArr.push(message)
         }
         return uniqueMessageArr
-      }, [] as (GqlMessagePending)[])
+      }, [] as GqlMessagePending[])
 
       // Remove replaced messages
       .filter((msg, i, arr) => {

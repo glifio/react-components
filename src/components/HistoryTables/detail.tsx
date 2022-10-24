@@ -3,10 +3,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {
-  GasCost,
-  useChainHeadSubscription
-} from '../../generated/graphql'
+import { GasCost, useChainHeadSubscription } from '../../generated/graphql'
 import { IconCheck, IconPending, IconClock } from '../Icons'
 import { Badge, Line } from '../Layout'
 import { useAge } from '../../utils/useAge'
