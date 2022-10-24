@@ -7,7 +7,7 @@ import {
   WALLET_ID,
   WALLET_ID_2
 } from '../../../../test-utils/constants'
-import { MessagesMsg } from '../../../../customPropTypes'
+import { GqlMessagesMsg } from '../../../../customPropTypes'
 import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
 jest
@@ -60,8 +60,8 @@ describe('Message history', () => {
   })
 
   test('it renders messages', async () => {
-    const makeMessages = (count: number): MessagesMsg[] => {
-      const messages: MessagesMsg[] = []
+    const makeMessages = (count: number): GqlMessagesMsg[] => {
+      const messages: GqlMessagesMsg[] = []
       for (let i = 0; i < count; i++) {
         messages.push({
           cid: `bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk${i}qmchbhjx7q747jghal3l4g`,

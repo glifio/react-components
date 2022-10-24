@@ -1,9 +1,9 @@
 import { Message } from '@glif/filecoin-message'
-import { MessagePending } from '../../generated/graphql'
+import { GqlMessagePending } from '../../customPropTypes'
 import { isAddrEqual } from '../isAddrEqual'
 
 export const potentialDupMsg = (
-  msg1: Omit<MessagePending, '__typename'>,
+  msg1: Omit<GqlMessagePending, '__typename'>,
   msg2: Message,
   currentHeight: number,
   isPending: boolean = false

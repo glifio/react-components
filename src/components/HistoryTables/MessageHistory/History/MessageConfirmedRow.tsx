@@ -4,7 +4,7 @@ import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import {
-  MessagesMsg,
+  GqlMessagesMsg,
   GRAPHQL_MESSAGES_MSG_PROPTYPE
 } from '../../../../customPropTypes'
 import { attoFilToFil } from '../../utils'
@@ -68,7 +68,7 @@ export const MessageConfirmedRow = ({
 }
 
 type MessageConfirmedRowProps = {
-  message: MessagesMsg
+  message: GqlMessagesMsg
   cidHref: (cid: string) => string
   inspectingAddress: string
 }

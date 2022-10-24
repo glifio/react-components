@@ -15,7 +15,11 @@ import { CID } from 'multiformats/cid'
 import BigNumber from 'bignumber.js'
 
 import { Network } from './services/EnvironmentProvider'
-import { Message } from './generated/graphql'
+import {
+  MessageQuery,
+  MessagesQuery,
+  PendingMessageQuery
+} from './generated/graphql'
 
 /**
  * ADDRESS_PROPTYPE
@@ -143,6 +147,8 @@ export const GRAPHQL_MESSAGE_RECEIPT_PROPTYPE = shape({
   gasUsed: number.isRequired
 })
 
+export type GqlMessage = MessageQuery['message']
+
 export const GRAPHQL_MESSAGE_PROPTYPE = shape({
   cid: string.isRequired,
   to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
@@ -157,7 +163,7 @@ export const GRAPHQL_MESSAGE_PROPTYPE = shape({
   gasLimit: number.isRequired
 })
 
-export type MessagesMsg = Omit<Message, 'gasFeeCap' | 'gasPremium' | 'gasLimit'>
+export type GqlMessagesMsg = MessagesQuery['messages'][number]
 
 export const GRAPHQL_MESSAGES_MSG_PROPTYPE = shape({
   cid: string.isRequired,
@@ -169,6 +175,8 @@ export const GRAPHQL_MESSAGES_MSG_PROPTYPE = shape({
   params: string.isRequired,
   value: string.isRequired
 })
+
+export type GqlMessagePending = PendingMessageQuery['pendingMessage']
 
 export const GRAPHQL_MESSAGE_PENDING_PROPTYPE = shape({
   cid: string.isRequired,

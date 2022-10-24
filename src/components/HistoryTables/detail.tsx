@@ -5,8 +5,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   GasCost,
-  Message,
-  MessagePending,
   useChainHeadSubscription
 } from '../../generated/graphql'
 import { IconCheck, IconPending, IconClock } from '../Icons'
@@ -16,6 +14,8 @@ import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
 import { Colors } from '../theme'
 import {
+  GqlMessage,
+  GqlMessagePending,
   EXECUTION_TRACE_PROPTYPE,
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
@@ -215,7 +215,7 @@ export const MessageDetailBase = ({
 
 type MessageDetailBaseProps = {
   cid: string
-  message: Message | MessagePending
+  message: GqlMessage | GqlMessagePending
   methodName: string
   time: number
   confirmations?: number
@@ -304,7 +304,7 @@ export const SeeMoreContent = ({
 }
 
 type SeeMoreContentProps = {
-  message: Message
+  message: GqlMessage
   gasUsed: number
   gasCost: GasCost
   executionTrace: ExecutionTrace

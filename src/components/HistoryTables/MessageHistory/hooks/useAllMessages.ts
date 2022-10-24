@@ -2,16 +2,15 @@ import { SubscriptionResult } from '@apollo/client'
 import { CoinType } from '@glif/filecoin-address'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import {
-  MessagePending,
   useMpoolUpdateSubscription,
   usePendingMessagesQuery,
   ChainHeadSubscription,
   useChainHeadSubscription,
   useMessageQuery,
   usePendingMessageQuery,
-  useMessagesQuery,
-  Message
+  useMessagesQuery
 } from '../../../../generated/graphql'
+import { GqlMessage, GqlMessagePending } from '../../../../customPropTypes'
 import { useEnvironment } from '../../../../services/EnvironmentProvider'
 import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
 import { uniqueifyMsgs } from '../../../../utils/uniqueifyMsgs'
@@ -46,8 +45,8 @@ export const usePendingMessages = (
   // pending messages submitted messages from wallet or safe
   const { messages: submittedMessages } = useSubmittedMessages()
 
-  const pendingMsgList = useMemo<MessagePending[]>(() => {
-    const msgs: MessagePending[] = [
+  const pendingMsgList = useMemo<GqlMessagePending[]>(() => {
+    const msgs: GqlMessagePending[] = [
       ...submittedMessages,
       ...(pendingMsgs?.data?.pendingMessages || [])
     ]
@@ -56,7 +55,7 @@ export const usePendingMessages = (
       msgs.push(pendingMsgSub?.data?.mpoolUpdate?.message)
     }
 
-    return uniqueifyMsgs(msgs) as MessagePending[]
+    return uniqueifyMsgs(msgs) as GqlMessagePending[]
   }, [pendingMsgs?.data, submittedMessages, pendingMsgSub?.data?.mpoolUpdate])
 
   // should refresh returns true after a few epochs have past since a message left the mpool
@@ -165,7 +164,7 @@ export const useAllMessages = (address: string, _offset: number = 0) => {
     } else {
       return []
     }
-  }, [pendingMsgList, allMessages]) as MessagePending[]
+  }, [pendingMsgList, allMessages]) as GqlMessagePending[]
 
   const [fetchingMore, setFetchingMore] = useState(false)
   const [lastPage, setLastPage] = useState(false)
@@ -324,14 +323,14 @@ export const useMessage = (cid: string) => {
 
   const error = useMemo(() => msgErr || pendingMsgErr, [msgErr, pendingMsgErr])
 
-  const message = useMemo<Message | MessagePending | null>(() => {
+  const message = useMemo<GqlMessage | GqlMessagePending | null>(() => {
     const ready = !error && !loading
     if (ready && pendingFound) {
-      return msgData?.message as Message
+      return msgData?.message as GqlMessage
     } else if (ready && pendingMsg) {
       return pendingMsg
     } else if (ready && msgData?.message) {
-      return msgData.message as Message
+      return msgData.message as GqlMessage
     } else return null
   }, [msgData, loading, error, pendingMsg, pendingFound])
 

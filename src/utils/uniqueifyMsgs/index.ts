@@ -1,9 +1,9 @@
 import { BigNumber } from '@glif/filecoin-number'
-import { MessageConfirmed, MessagePending } from '../../generated/graphql'
+import { GqlMessagePending } from '../../customPropTypes'
 
 export function uniqueifyMsgs(
-  messages: (MessagePending | MessageConfirmed)[]
-): (MessagePending | MessageConfirmed)[] {
+  messages: (GqlMessagePending)[]
+): (GqlMessagePending)[] {
   const cids = new Set([])
   return (
     messages
@@ -15,7 +15,7 @@ export function uniqueifyMsgs(
           uniqueMessageArr.push(message)
         }
         return uniqueMessageArr
-      }, [] as (MessagePending | MessageConfirmed)[])
+      }, [] as (GqlMessagePending)[])
 
       // Remove replaced messages
       .filter((msg, i, arr) => {

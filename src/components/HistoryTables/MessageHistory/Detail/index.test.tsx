@@ -7,7 +7,8 @@ import {
   WALLET_ID,
   WALLET_ID_2
 } from '../../../../test-utils/constants'
-import { Message, StateReplayDocument } from '../../../../generated/graphql'
+import { GqlMessage } from '../../../../customPropTypes'
+import { StateReplayDocument } from '../../../../generated/graphql'
 import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
 jest
@@ -20,7 +21,7 @@ const seeMoreBtnText = 'Click to see more ↓'
 const statusLabelText = 'Status and Confirmations'
 const cid = 'bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g'
 
-const message: Message = {
+const message: GqlMessage = {
   cid,
   from: {
     id: WALLET_ID,
