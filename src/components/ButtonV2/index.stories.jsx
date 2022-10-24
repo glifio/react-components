@@ -1,4 +1,4 @@
-import { ButtonV2, ButtonV2Link } from '.'
+import { ButtonV2 } from '.'
 import { IconSpeedUp } from '../Icons'
 
 export default {
@@ -18,7 +18,6 @@ const TemplateIcon = args => (
     Click me
   </ButtonV2>
 )
-const TemplateLink = args => <ButtonV2Link {...args}>Click me</ButtonV2Link>
 
 export const Base = Template.bind({})
 Base.args = {}
@@ -78,40 +77,5 @@ IconRed.args = {
 
 export const IconDisabled = TemplateIcon.bind({})
 IconDisabled.args = {
-  disabled: true
-}
-
-export const LinkBase = TemplateLink.bind({})
-LinkBase.args = {
-  href: 'https://glif.io'
-}
-
-export const LinkLarge = TemplateLink.bind({})
-LinkLarge.args = {
-  href: 'https://glif.io',
-  large: true
-}
-
-export const LinkWhite = TemplateLink.bind({})
-LinkWhite.args = {
-  href: 'https://glif.io',
-  white: true
-}
-
-export const LinkGreen = TemplateLink.bind({})
-LinkGreen.args = {
-  href: 'https://glif.io',
-  green: true
-}
-
-export const LinkRed = TemplateLink.bind({})
-LinkRed.args = {
-  href: 'https://glif.io',
-  red: true
-}
-
-export const LinkDisabled = TemplateLink.bind({})
-LinkDisabled.args = {
-  href: 'https://glif.io',
   disabled: true
 }
