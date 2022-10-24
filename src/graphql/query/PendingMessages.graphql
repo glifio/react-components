@@ -1,20 +1,21 @@
 query PendingMessages($address: String!) {
   pendingMessages(address: $address) {
     cid
-    from {
-      id
-      robust
-    }
     to {
       id
       robust
     }
+    from {
+      id
+      robust
+    }
     nonce
-    value
-    gasLimit
-    gasFeeCap
-    gasPremium
+    height
     method
     params
+    value
+    gasFeeCap
+    gasPremium
+    gasLimit
   }
 }

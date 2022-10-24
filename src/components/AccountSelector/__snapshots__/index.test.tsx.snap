@@ -84,7 +84,7 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
 
 .c6 .copy-text {
   position: absolute;
-  top: calc(50% - 0.2em);
+  top: calc(50%);
   left: calc(100%);
   padding-left: 0.5em;
   color: var(--purple-medium);
@@ -839,7 +839,7 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
 
 .c8 .copy-text {
   position: absolute;
-  top: calc(50% - 0.2em);
+  top: calc(50%);
   left: calc(100%);
   padding-left: 0.5em;
   color: var(--purple-medium);

@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
-import { Message, useStateReplayQuery } from '../../../../generated/graphql'
+import { useStateReplayQuery } from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
 import { useMessage } from '../hooks/useAllMessages'
@@ -21,6 +21,7 @@ import {
   useEnvironment,
   useLogger
 } from '../../../../services/EnvironmentProvider'
+import { GqlMessage } from '../../../../customPropTypes'
 
 enum MessageState {
   Loading,
@@ -79,7 +80,7 @@ export default function MessageDetail(props: MessageDetailProps) {
   const execReturn = useMemo<ExecReturn | null>(() => {
     if (!message) return null
     const isToExec = isAddrEqual(message?.to, 'f01')
-    const isInitTx = Number(message?.method) === 2
+    const isInitTx = message?.method === 2
     const receiptReturn = stateReplayQuery?.stateReplay?.receipt?.return
     return isToExec && isInitTx && receiptReturn
       ? getAddrFromReceipt(receiptReturn, coinType)
@@ -199,7 +200,7 @@ export default function MessageDetail(props: MessageDetailProps) {
             )}
             {seeMore && (
               <SeeMoreContent
-                message={message as Message}
+                message={message as GqlMessage}
                 gasUsed={gasUsed}
                 gasCost={stateReplayQuery?.stateReplay?.gasCost}
                 executionTrace={executionTrace}

@@ -6,12 +6,12 @@ import {
   Context
 } from 'react'
 import PropTypes from 'prop-types'
-import { MessagePending } from '../../../generated/graphql'
+import { GqlMessagePending } from '../../../customPropTypes'
 import { useWallet } from '../../../services/WalletProvider/useWallet'
 
 export type PendingMsgContextType = {
-  messages: MessagePending[]
-  pushPendingMessage: (msg: MessagePending) => void
+  messages: GqlMessagePending[]
+  pushPendingMessage: (msg: GqlMessagePending) => void
   clearPendingMessage: (cid: string) => void
 }
 
@@ -28,9 +28,9 @@ export const PendingMessageProvider = ({
 }: {
   children: ReactElement
 }) => {
-  const [messages, setMessages] = useState<Record<Address, MessagePending[]>>(
-    {}
-  )
+  const [messages, setMessages] = useState<
+    Record<Address, GqlMessagePending[]>
+  >({})
 
   const { address } = useWallet() as { address: Address }
 
@@ -39,7 +39,7 @@ export const PendingMessageProvider = ({
     <PendingMsgContext.Provider
       value={{
         messages: messagesByAddress,
-        pushPendingMessage: (msg: MessagePending) => {
+        pushPendingMessage: (msg: GqlMessagePending) => {
           setMessages(msgs => ({
             ...msgs,
             [address]: [...messagesByAddress, msg]

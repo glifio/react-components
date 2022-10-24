@@ -28,7 +28,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
 
 .c6 .copy-text {
   position: absolute;
-  top: calc(50% - 0.2em);
+  top: calc(50%);
   left: calc(100%);
   padding-left: 0.5em;
   color: var(--purple-medium);
@@ -502,7 +502,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
 
 .c6 .copy-text {
   position: absolute;
-  top: calc(50% - 0.2em);
+  top: calc(50%);
   left: calc(100%);
   padding-left: 0.5em;
   color: var(--purple-medium);
@@ -1469,7 +1469,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
 
 .c9 .copy-text {
   position: absolute;
-  top: calc(50% - 0.2em);
+  top: calc(50%);
   left: calc(100%);
   padding-left: 0.5em;
   color: var(--purple-medium);

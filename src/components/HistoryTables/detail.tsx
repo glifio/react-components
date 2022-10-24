@@ -3,12 +3,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {
-  GasCost,
-  Message,
-  MessagePending,
-  useChainHeadSubscription
-} from '../../generated/graphql'
+import { GasCost, useChainHeadSubscription } from '../../generated/graphql'
 import { IconCheck, IconPending, IconClock } from '../Icons'
 import { Badge, Line } from '../Layout'
 import { useAge } from '../../utils/useAge'
@@ -16,6 +11,8 @@ import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
 import { Colors } from '../theme'
 import {
+  GqlMessage,
+  GqlMessagePending,
   EXECUTION_TRACE_PROPTYPE,
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
@@ -140,7 +137,7 @@ export const MessageDetailBase = ({
   methodName,
   confirmations
 }: MessageDetailBaseProps) => {
-  const { age } = useAge(message?.height)
+  const { age } = useAge(message.height)
 
   const chainHeadSubscription = useChainHeadSubscription({
     variables: {},
@@ -150,10 +147,10 @@ export const MessageDetailBase = ({
 
   const confirmationCount = useMemo<number>(
     () =>
-      chainHeadSubscription.data?.chainHead.height && !!message?.height
-        ? chainHeadSubscription.data.chainHead.height - Number(message.height)
+      chainHeadSubscription.data?.chainHead.height && message.height
+        ? chainHeadSubscription.data.chainHead.height - message.height
         : 0,
-    [message?.height, chainHeadSubscription.data?.chainHead.height]
+    [message.height, chainHeadSubscription.data?.chainHead.height]
   )
 
   return (
@@ -166,7 +163,7 @@ export const MessageDetailBase = ({
           shouldTruncate={false}
         />
       </Line>
-      {Number(exitCode) >= 0 && (
+      {exitCode >= 0 && (
         <Line label='Status and Confirmations'>
           <Status exitCode={exitCode} pending={pending} />
           {!pending && (
@@ -175,7 +172,7 @@ export const MessageDetailBase = ({
         </Line>
       )}
       <Line label='Height'>
-        {Number(message.height) > 0 ? message.height : 'Pending'}
+        {message.height > 0 ? message.height : 'Pending'}
       </Line>
       <Line label='Timestamp'>
         {pending ? (
@@ -215,7 +212,7 @@ export const MessageDetailBase = ({
 
 type MessageDetailBaseProps = {
   cid: string
-  message: Message | MessagePending
+  message: GqlMessage | GqlMessagePending
   methodName: string
   time: number
   confirmations?: number
@@ -290,13 +287,13 @@ export const SeeMoreContent = ({
       <hr />
       <LinesParams
         address={message.to.robust || message.to.id}
-        method={Number(message.method)}
+        method={message.method}
         params={message.params}
       />
       <hr />
       <LinesReturn
         address={message.to.robust || message.to.id}
-        method={Number(message.method)}
+        method={message.method}
         returnVal={executionTrace.MsgRct.Return}
       />
     </>
@@ -304,7 +301,7 @@ export const SeeMoreContent = ({
 }
 
 type SeeMoreContentProps = {
-  message: Message
+  message: GqlMessage
   gasUsed: number
   gasCost: GasCost
   executionTrace: ExecutionTrace

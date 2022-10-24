@@ -3,10 +3,14 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 import * as dayjs from 'dayjs'
 import * as relativeTime from 'dayjs/plugin/relativeTime'
+
 import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
-import { MessagePendingRow, MESSAGE_PENDING_ROW_PROP_TYPE } from '../../types'
+import {
+  GqlMessagePending,
+  GRAPHQL_MESSAGE_PENDING_PROPTYPE
+} from '../../../../customPropTypes'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
 import truncateAddress from '../../../../utils/truncateAddress'
@@ -14,10 +18,11 @@ import truncateAddress from '../../../../utils/truncateAddress'
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
-export default function PendingMessageHistoryRow(
-  props: PendingMessageHistoryRowProps
-) {
-  const { message, cidHref, inspectingAddress } = props
+export const MessagePendingRow = ({
+  message,
+  cidHref,
+  inspectingAddress
+}: MessagePendingRowProps) => {
   const fromAddressIsInspecting = useMemo(
     () => isAddrEqual(message.from, inspectingAddress),
     [message.from, inspectingAddress]
@@ -34,7 +39,7 @@ export default function PendingMessageHistoryRow(
           {truncateAddress(message.cid)}
         </SmartLink>
       </td>
-      {props.inspectingAddress && <td>{methodName}</td>}
+      <td>{methodName}</td>
       <td>(Pending)</td>
       <td>(Pending)</td>
       <td>
@@ -64,18 +69,14 @@ export default function PendingMessageHistoryRow(
   )
 }
 
-type PendingMessageHistoryRowProps = {
-  message: MessagePendingRow
-  cidHref: (cid: string, height?: number) => string
+type MessagePendingRowProps = {
+  message: GqlMessagePending
+  cidHref: (cid: string) => string
   inspectingAddress: string
 }
 
-PendingMessageHistoryRow.propTypes = {
-  message: MESSAGE_PENDING_ROW_PROP_TYPE.isRequired,
+MessagePendingRow.propTypes = {
+  message: GRAPHQL_MESSAGE_PENDING_PROPTYPE.isRequired,
   cidHref: PropTypes.func.isRequired,
-  inspectingAddress: PropTypes.string
-}
-
-PendingMessageHistoryRow.defaultProps = {
-  inspectingAddress: ''
+  inspectingAddress: PropTypes.string.isRequired
 }

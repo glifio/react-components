@@ -12,20 +12,22 @@ import { IconCheck, IconCancel } from '../../Icons'
 import { Address, MsigTransaction } from '../../../generated/graphql'
 import { isAddrEqual } from '../../../utils/isAddrEqual'
 import { isAddressSigner } from '../../../utils/isAddressSigner'
-import { GRAPHQL_ADDRESS_PROP_TYPE } from '../../../customPropTypes'
-import { PROPOSAL_ROW_PROP_TYPE } from '../types'
+import {
+  GRAPHQL_ADDRESS_PROP_TYPE,
+  GRAPHQL_MSIG_TRANSACTION_PROPTYPE
+} from '../../../customPropTypes'
 import { navigate } from '../../../utils/urlParams'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
-export default function ProposalHistoryRow({
+export const ProposalRow = ({
   proposal,
   walletAddress,
   idHref,
   approveHref,
   cancelHref
-}: ProposalHistoryRowProps) {
+}: ProposalRowProps) => {
   const router = useRouter()
 
   const isProposer = useMemo<boolean>(
@@ -80,7 +82,7 @@ export default function ProposalHistoryRow({
   )
 }
 
-type ProposalHistoryRowProps = {
+type ProposalRowProps = {
   proposal: MsigTransaction
   walletAddress: Address
   idHref: (id: number) => string
@@ -88,8 +90,8 @@ type ProposalHistoryRowProps = {
   cancelHref: (id: number) => string
 }
 
-ProposalHistoryRow.propTypes = {
-  proposal: PROPOSAL_ROW_PROP_TYPE.isRequired,
+ProposalRow.propTypes = {
+  proposal: GRAPHQL_MSIG_TRANSACTION_PROPTYPE.isRequired,
   walletAddress: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
   idHref: PropTypes.func.isRequired,
   approveHref: PropTypes.func.isRequired,
