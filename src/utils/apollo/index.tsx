@@ -9,33 +9,32 @@ import {
 import { getMainDefinition } from '@apollo/client/utilities'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { defaultMessageHistoryClientCacheConfig } from './defaultCacheConfig'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
-import { useEnvironment } from '../../services'
-
-const httpLink = (uri: string): HttpLink =>
+const httpLink = (uri: string, secure: boolean): HttpLink =>
   new HttpLink({
-    uri: `https://${uri}`
+    uri: `http${secure ? 's' : ''}://${uri}`
   })
 
-const wsLink = (uri: string): WebSocketLink | null => {
-  return process.browser
-    ? new WebSocketLink({
-        uri: `wss://${uri}`,
-        options: {
-          reconnect: true,
-          lazy: true
-        }
-      })
-    : null
-}
+const wsLink = (uri: string, secure: boolean): WebSocketLink =>
+  new WebSocketLink({
+    uri: `ws${secure ? 's' : ''}://${uri}`,
+    options: {
+      reconnect: true,
+      lazy: true
+    }
+  })
 
-export function createApolloClient(uri: string) {
+export function createApolloClient(uri: string, secure: boolean) {
   // The split function takes three parameters:
   //
   // * A function that's called for each operation to execute
   // * The Link to use for an operation if the function returns a "truthy" value
   // * The Link to use for an operation if the function returns a "falsy" value
-  const link = process.browser //only create the split in the browser
+
+  // Only create the split in the browser
+  const isBrowser = typeof window !== 'undefined'
+  const link = isBrowser
     ? split(
         ({ query }) => {
           const definition = getMainDefinition(query)
@@ -44,10 +43,10 @@ export function createApolloClient(uri: string) {
             definition.operation === 'subscription'
           )
         },
-        wsLink(uri),
-        httpLink(uri)
+        wsLink(uri, secure),
+        httpLink(uri, secure)
       )
-    : httpLink(uri)
+    : httpLink(uri, secure)
 
   return new ApolloClient({
     link,
@@ -56,7 +55,8 @@ export function createApolloClient(uri: string) {
 }
 
 export function ApolloWrapper({ children }: { children: ReactNode }) {
-  const client = createApolloClient(useEnvironment().graphUrl)
+  const { graphUrl, graphSecure } = useEnvironment()
+  const client = createApolloClient(graphUrl, graphSecure)
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
 

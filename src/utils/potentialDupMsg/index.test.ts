@@ -1,4 +1,4 @@
-import { potentialDupMsg, ComparisonMessage } from './'
+import { potentialDupMsg } from './'
 import {
   WALLET_ADDRESS,
   WALLET_ADDRESS_2,
@@ -11,14 +11,15 @@ import { Message } from '@glif/filecoin-message'
 describe('potentialDupMsg', () => {
   const CID = 'QmzXYZ'
 
-  const comparisonMessage: ComparisonMessage = {
+  const comparisonMessage = {
     cid: CID,
     from: { id: WALLET_ID, robust: WALLET_ADDRESS },
     to: { id: WALLET_ID_2, robust: WALLET_ADDRESS_2 },
-    value: '0',
-    method: '0',
+    nonce: 0,
+    height: 1000,
+    method: 0,
     params: 'test',
-    height: 1000
+    value: '0'
   }
 
   test('it returns the cid of an identical message within the last 900 epochs', () => {
@@ -40,6 +41,7 @@ describe('potentialDupMsg', () => {
       from: WALLET_ADDRESS,
       value: '0',
       method: 0,
+      params: '',
       nonce: 0
     })
 

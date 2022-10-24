@@ -7,6 +7,7 @@ import {
   WALLET_ID,
   WALLET_ID_2
 } from '../../../../test-utils/constants'
+import { GqlMessage } from '../../../../customPropTypes'
 import { StateReplayDocument } from '../../../../generated/graphql'
 import { TestEnvironment } from '../../../../test-utils/TestEnvironment'
 
@@ -20,7 +21,7 @@ const seeMoreBtnText = 'Click to see more ↓'
 const statusLabelText = 'Status and Confirmations'
 const cid = 'bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g'
 
-const message = {
+const message: GqlMessage = {
   cid,
   from: {
     id: WALLET_ID,
@@ -30,15 +31,14 @@ const message = {
     id: WALLET_ID_2,
     robust: WALLET_ADDRESS_2
   },
-  gasFeeCap: '100',
-  gasLimit: 1000,
-  gasPremium: '1',
-  height: 0,
   nonce: 1,
+  height: 0,
+  method: 0,
   params: '',
   value: '1000',
-  version: '1',
-  method: '0'
+  gasFeeCap: '100',
+  gasLimit: 1000,
+  gasPremium: '1'
 }
 
 describe('Message detail view', () => {

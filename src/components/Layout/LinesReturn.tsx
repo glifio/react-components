@@ -10,7 +10,7 @@ import { fromString } from 'uint8arrays'
 
 import { DataTypeLines } from './DataTypes'
 import { Line, NullishLine } from './Lines'
-import { useEnvironment, useLogger } from '../../services'
+import { useEnvironment, useLogger } from '../../services/EnvironmentProvider'
 import { useActorQuery } from '../../generated/graphql'
 import { convertAddrToPrefix } from '../../utils'
 

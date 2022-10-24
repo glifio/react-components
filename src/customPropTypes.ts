@@ -1,10 +1,9 @@
 import {
   shape,
   string,
-  oneOfType,
   number,
-  oneOf,
   arrayOf,
+  oneOf,
   Requireable,
   any
 } from 'prop-types'
@@ -16,6 +15,11 @@ import { CID } from 'multiformats/cid'
 import BigNumber from 'bignumber.js'
 
 import { Network } from './services/EnvironmentProvider'
+import {
+  MessageQuery,
+  MessagesQuery,
+  PendingMessageQuery
+} from './generated/graphql'
 
 /**
  * ADDRESS_PROPTYPE
@@ -96,6 +100,32 @@ export const FILECOIN_NUMBER_PROPTYPE: Requireable<any> = Object.assign(
 )
 
 /**
+ * Gas Params
+ */
+
+export interface GasParams {
+  gasFeeCap: FilecoinNumber
+  gasPremium: FilecoinNumber
+  gasLimit: FilecoinNumber
+}
+
+export const GAS_PARAMS_PROPTYPE = shape({
+  gasFeeCap: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  gasPremium: FILECOIN_NUMBER_PROPTYPE.isRequired,
+  gasLimit: FILECOIN_NUMBER_PROPTYPE.isRequired
+})
+
+export const GRAPHQL_GAS_COST_PROPTYPE = shape({
+  baseFeeBurn: string.isRequired,
+  minerPenalty: string.isRequired,
+  minerTip: string.isRequired,
+  overEstimationBurn: string.isRequired,
+  refund: string.isRequired,
+  totalCost: string.isRequired,
+  gasUsed: number.isRequired
+})
+
+/**
  * Message
  */
 
@@ -108,25 +138,68 @@ export const MESSAGE_PROPTYPE = shape({
   gasPremium: BIGNUMBER_PROPTYPE.isRequired,
   gasFeeCap: BIGNUMBER_PROPTYPE.isRequired,
   gasLimit: number.isRequired,
-  params: oneOfType([string, arrayOf(string)])
-})
-
-export const GRAPHQL_MESSAGE_PROPTYPE = shape({
-  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
-  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
-  nonce: number.isRequired,
-  method: string.isRequired,
-  value: string.isRequired,
-  gasPremium: string.isRequired,
-  gasFeeCap: string.isRequired,
-  gasLimit: number.isRequired,
-  params: oneOfType([string, arrayOf(string)])
+  params: string.isRequired
 })
 
 export const GRAPHQL_MESSAGE_RECEIPT_PROPTYPE = shape({
   exitCode: number.isRequired,
   return: string.isRequired,
   gasUsed: number.isRequired
+})
+
+export type GqlMessage = MessageQuery['message']
+
+export const GRAPHQL_MESSAGE_PROPTYPE = shape({
+  cid: string.isRequired,
+  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  nonce: number.isRequired,
+  height: number.isRequired,
+  method: number.isRequired,
+  params: string.isRequired,
+  value: string.isRequired,
+  gasPremium: string.isRequired,
+  gasFeeCap: string.isRequired,
+  gasLimit: number.isRequired
+})
+
+export type GqlMessagesMsg = MessagesQuery['messages'][number]
+
+export const GRAPHQL_MESSAGES_MSG_PROPTYPE = shape({
+  cid: string.isRequired,
+  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  nonce: number.isRequired,
+  height: number.isRequired,
+  method: number.isRequired,
+  params: string.isRequired,
+  value: string.isRequired
+})
+
+export type GqlMessagePending = PendingMessageQuery['pendingMessage']
+
+export const GRAPHQL_MESSAGE_PENDING_PROPTYPE = shape({
+  cid: string.isRequired,
+  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  from: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  nonce: number.isRequired,
+  height: number.isRequired,
+  method: number.isRequired,
+  params: string.isRequired,
+  value: string.isRequired,
+  gasPremium: string,
+  gasFeeCap: string,
+  gasLimit: number
+})
+
+export const GRAPHQL_MSIG_TRANSACTION_PROPTYPE = shape({
+  id: number.isRequired,
+  to: GRAPHQL_ADDRESS_PROP_TYPE.isRequired,
+  method: number.isRequired,
+  params: string.isRequired,
+  value: string.isRequired,
+  proposalHash: string.isRequired,
+  approved: arrayOf(GRAPHQL_ADDRESS_PROP_TYPE)
 })
 
 export const LOTUS_MESSAGE_PROPTYPE = shape({
@@ -158,32 +231,6 @@ export const EXECUTION_TRACE_PROPTYPE = shape({
   GasCharges: number,
   Error: string,
   Subcalls: any
-})
-
-/**
- * Gas Params
- */
-
-export interface GasParams {
-  gasFeeCap: FilecoinNumber
-  gasPremium: FilecoinNumber
-  gasLimit: FilecoinNumber
-}
-
-export const GAS_PARAMS_PROPTYPE = shape({
-  gasFeeCap: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  gasPremium: FILECOIN_NUMBER_PROPTYPE.isRequired,
-  gasLimit: FILECOIN_NUMBER_PROPTYPE.isRequired
-})
-
-export const GRAPHQL_GAS_COST_PROPTYPE = shape({
-  baseFeeBurn: string.isRequired,
-  minerPenalty: string.isRequired,
-  minerTip: string.isRequired,
-  overEstimationBurn: string.isRequired,
-  refund: string.isRequired,
-  totalCost: string.isRequired,
-  gasUsed: number.isRequired
 })
 
 /**

@@ -6,7 +6,7 @@ import { useEnvironment } from '../../../../services/EnvironmentProvider'
 
 export const useMethodName = (
   address: Address,
-  method: string
+  method: number
 ): string | null => {
   const { coinType, networkName } = useEnvironment()
 
@@ -21,5 +21,5 @@ export const useMethodName = (
   // Resolve actor code, name and message name
   const actorCode = data?.actor?.Code
   const actorName = actorCode ? getActorName(actorCode, networkName) : null
-  return actorName ? getMethodName(actorName, Number(method)) : null
+  return actorName ? getMethodName(actorName, method) : null
 }

@@ -1,11 +1,11 @@
-import MessageHistory from './index'
+import { MessageHistoryTable } from '.'
 
 export default {
   title: 'MessageHistory/Table',
-  component: MessageHistory
+  component: MessageHistoryTable
 }
 
-const Template = args => <MessageHistory {...args} />
+const Template = args => <MessageHistoryTable {...args} />
 
 export const Base = Template.bind({})
 Base.args = {

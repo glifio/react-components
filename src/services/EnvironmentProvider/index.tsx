@@ -22,17 +22,20 @@ export enum Network {
   WALLABY = 'wallabynet'
 }
 
-export type NetworkInfo = {
-  nodeStatusApiKey: string
-  graphUrl: string
-  lotusApiUrl: string
-  networkName: Network
-  coinType: CoinType
-}
+export type NetworkInfo = Pick<
+  EnvironmentContextType,
+  | 'nodeStatusApiKey'
+  | 'graphUrl'
+  | 'graphSecure'
+  | 'lotusApiUrl'
+  | 'networkName'
+  | 'coinType'
+>
 
-const networkInfoKeys = [
+const networkInfoKeys: Array<keyof NetworkInfo> = [
   'nodeStatusApiKey',
   'graphUrl',
+  'graphSecure',
   'lotusApiUrl',
   'networkName',
   'coinType'
@@ -40,14 +43,20 @@ const networkInfoKeys = [
 
 export interface EnvironmentContextType {
   homeUrl: string
-  blogUrl: string
   walletUrl: string
   safeUrl: string
   explorerUrl: string
   verifierUrl: string
+  nodesUrl: string
+  blogUrl: string
+  githubUrl: string
+  discordUrl: string
+  twitterUrl: string
+  contactEmail: string
   nodeStatusApiUrl: string
   nodeStatusApiKey: string
   graphUrl: string
+  graphSecure: boolean
   lotusApiUrl: string
   lotusApi: LotusRpcEngine
   coinType: CoinType
@@ -62,14 +71,20 @@ export interface EnvironmentContextType {
 
 export const emptyEnvironmentContext = {
   homeUrl: 'https://apps.glif.io',
-  blogUrl: 'https://blog.glif.io',
   walletUrl: 'https://wallet.glif.io',
   safeUrl: 'https://safe.glif.io',
   explorerUrl: 'https://explorer.glif.io',
   verifierUrl: 'https://verify.glif.io',
+  nodesUrl: 'https://node.glif.io',
+  blogUrl: 'https://blog.glif.io',
+  githubUrl: 'https://github.com/glifio',
+  discordUrl: 'https://discord.gg/B9ju5Eu4Rq',
+  twitterUrl: 'https://twitter.com/glifio',
+  contactEmail: 'squad@infinitescroll.org',
   nodeStatusApiUrl: 'https://api.uptimerobot.com/v2/getMonitors',
   nodeStatusApiKey: '',
   graphUrl: '',
+  graphSecure: true,
   lotusApiUrl: '',
   lotusApi: null,
   networkName: Network.CALIBRATION,
@@ -88,6 +103,7 @@ export const networks: Record<Network, NetworkInfo> = {
   [Network.MAINNET]: {
     nodeStatusApiKey: 'm786191525-b3192b91db66217a44f7d4be',
     graphUrl: 'graph.glif.link/query',
+    graphSecure: true,
     lotusApiUrl: 'https://mainnet.glif.host',
     networkName: Network.MAINNET,
     coinType: CoinType.MAIN
@@ -95,6 +111,7 @@ export const networks: Record<Network, NetworkInfo> = {
   [Network.CALIBRATION]: {
     nodeStatusApiKey: 'm787669344-2a9b90eb03dbff3e503c93c7',
     graphUrl: 'graph-calibration.glif.link/query',
+    graphSecure: true,
     lotusApiUrl: 'https://api.calibration.node.glif.io/',
     networkName: Network.CALIBRATION,
     coinType: CoinType.TEST
@@ -102,6 +119,7 @@ export const networks: Record<Network, NetworkInfo> = {
   [Network.WALLABY]: {
     nodeStatusApiKey: 'm792585234-2e992345ecb11cd5846f7161',
     graphUrl: 'graph-wallaby.glif.link/query',
+    graphSecure: true,
     lotusApiUrl: 'https://wallaby.node.glif.io',
     networkName: Network.WALLABY,
     coinType: CoinType.TEST
@@ -125,10 +143,7 @@ export const Environment = ({ children, ...environment }: EnvironmentProps) => {
 export const EnvironmentProvider = ({
   children,
   ...initialEnvironment
-}: Omit<
-  EnvironmentProps,
-  'nodeStatusApiKey' | 'graphUrl' | 'lotusApiUrl' | 'coinType' | 'networkName'
->) => {
+}: Omit<EnvironmentProps, keyof NetworkInfo>) => {
   const router = useRouter()
   const networkParam = getQueryParam.string(router, 'network') as Network
   const network =

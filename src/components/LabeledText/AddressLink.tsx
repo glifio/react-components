@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { useMemo } from 'react'
 import { useAddressQuery } from '../../generated/graphql'
-import { useEnvironment } from '../../services'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 import truncateAddress from '../../utils/truncateAddress'
 import {

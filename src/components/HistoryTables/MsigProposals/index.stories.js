@@ -1,11 +1,11 @@
-import ProposalHistory from './index'
+import { ProposalHistoryTable } from '.'
 
 export default {
   title: 'ProposalHistory/Table',
-  component: ProposalHistory
+  component: ProposalHistoryTable
 }
 
-const Template = args => <ProposalHistory {...args} />
+const Template = args => <ProposalHistoryTable {...args} />
 
 export const Base = Template.bind({})
 Base.args = {

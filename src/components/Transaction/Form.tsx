@@ -5,13 +5,13 @@ import { Message } from '@glif/filecoin-message'
 import { FilecoinNumber, BigNumber } from '@glif/filecoin-number'
 import {
   FILECOIN_NUMBER_PROPTYPE,
+  GqlMessagePending,
   MESSAGE_PROPTYPE,
   MsigMethod,
   MSIG_METHOD_PROPTYPE,
   TxState,
   TX_STATE_PROPTYPE
 } from '../../customPropTypes'
-import { MessagePending } from '../../generated/graphql'
 import { TransactionButtons } from './Buttons'
 import { TransactionFee } from './Fee'
 import { TransactionHeader } from './Header'
@@ -124,7 +124,7 @@ export const TransactionForm = ({
       const msgCid = await provider.sendMessage(signedMessage)
       if (pushPending) {
         pushPendingMessage(
-          newMessage.toPendingMessage(msgCid['/']) as MessagePending
+          newMessage.toPendingMessage(msgCid['/']) as GqlMessagePending
         )
       }
       onComplete(msgCid['/'], newMessage)

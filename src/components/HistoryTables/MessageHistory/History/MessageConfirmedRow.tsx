@@ -4,17 +4,20 @@ import { Badge } from '../../../Layout'
 import { SmartLink } from '../../../SmartLink'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import {
-  MessageConfirmedRow,
-  MESSAGE_CONFIRMED_ROW_PROP_TYPE
-} from '../../types'
+  GqlMessagesMsg,
+  GRAPHQL_MESSAGES_MSG_PROPTYPE
+} from '../../../../customPropTypes'
 import { attoFilToFil } from '../../utils'
 import { useAge } from '../../../../utils/useAge'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
 import truncateAddress from '../../../../utils/truncateAddress'
 
-export default function MessageHistoryRow(props: MessageHistoryRowProps) {
-  const { message, cidHref, inspectingAddress } = props
+export const MessageConfirmedRow = ({
+  message,
+  cidHref,
+  inspectingAddress
+}: MessageConfirmedRowProps) => {
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
   const fromAddressIsInspecting = useMemo(
     () => isAddrEqual(message.from, inspectingAddress),
@@ -25,7 +28,7 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
     [message.to, inspectingAddress]
   )
   const methodName = useMethodName(message.to, message.method)
-  const { age } = useAge(message?.height)
+  const { age } = useAge(message.height)
 
   return (
     <tr>
@@ -45,14 +48,12 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
           hideCopy
         />
       </td>
-      {props.inspectingAddress && (
-        <td>
-          <Badge
-            color={toAddressIsInspecting ? 'green' : 'yellow'}
-            text={toAddressIsInspecting ? 'IN' : 'OUT'}
-          />
-        </td>
-      )}
+      <td>
+        <Badge
+          color={toAddressIsInspecting ? 'green' : 'yellow'}
+          text={toAddressIsInspecting ? 'IN' : 'OUT'}
+        />
+      </td>
       <td>
         <AddressLink
           id={message.to.id}
@@ -66,18 +67,14 @@ export default function MessageHistoryRow(props: MessageHistoryRowProps) {
   )
 }
 
-type MessageHistoryRowProps = {
-  message: MessageConfirmedRow
-  cidHref: (cid: string, height?: number) => string
+type MessageConfirmedRowProps = {
+  message: GqlMessagesMsg
+  cidHref: (cid: string) => string
   inspectingAddress: string
 }
 
-MessageHistoryRow.propTypes = {
-  message: MESSAGE_CONFIRMED_ROW_PROP_TYPE,
+MessageConfirmedRow.propTypes = {
+  message: GRAPHQL_MESSAGES_MSG_PROPTYPE.isRequired,
   cidHref: PropTypes.func.isRequired,
-  inspectingAddress: PropTypes.string
-}
-
-MessageHistoryRow.defaultProps = {
-  inspectingAddress: ''
+  inspectingAddress: PropTypes.string.isRequired
 }

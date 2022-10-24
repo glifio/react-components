@@ -2,16 +2,20 @@ import { ApolloError } from '@apollo/client'
 import dayjs from 'dayjs'
 import { useTipsetQuery } from '../generated/graphql'
 
-export const useAge = (
-  height: number | string
-): { age: string; loading: boolean; error: ApolloError } => {
+interface UseAgeResult {
+  age: string
+  loading: boolean
+  error?: ApolloError
+}
+
+export const useAge = (height: number): UseAgeResult => {
   const {
     data: tipsetData,
     loading,
     error
   } = useTipsetQuery({
     variables: {
-      height: Number(height)
+      height
     },
     skip: !height
   })

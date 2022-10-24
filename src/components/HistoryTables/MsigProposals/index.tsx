@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import PropTypes from 'prop-types'
-import ProposalRow from './ProposalRow'
+import { ProposalRow } from './ProposalRow'
 import { ProposalRowColumnTitles } from './ProposalRowColumnTitles'
 import {
   ADDRESS_PROPTYPE,
@@ -15,13 +15,13 @@ import { Caption, PageTitle } from '../../Layout'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import { useEnvironment } from '../../../services/EnvironmentProvider'
 
-export default function ProposalHistoryTable({
+export const ProposalHistoryTable = ({
   msigAddress,
   walletAddress,
   idHref,
   approveHref,
   cancelHref
-}: ProposalHistoryTableProps) {
+}: ProposalHistoryTableProps) => {
   const { coinType } = useEnvironment()
   const { data, loading, error } = useMsigPendingQuery({
     variables: {

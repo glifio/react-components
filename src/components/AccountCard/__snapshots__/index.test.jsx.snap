@@ -124,7 +124,7 @@ exports[`AccountCard renders the card 1`] = `
 
 .c5 .copy-text {
   position: absolute;
-  top: calc(50% - 0.2em);
+  top: calc(50%);
   left: calc(100%);
   padding-left: 0.5em;
   color: var(--white);
@@ -446,7 +446,7 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
 
 .c5 .copy-text {
   position: absolute;
-  top: calc(50% - 0.2em);
+  top: calc(50%);
   left: calc(100%);
   padding-left: 0.5em;
   color: var(--white);
@@ -763,7 +763,7 @@ exports[`AccountCard renders the story 1`] = `
 
 .c5 .copy-text {
   position: absolute;
-  top: calc(50% - 0.2em);
+  top: calc(50%);
   left: calc(100%);
   padding-left: 0.5em;
   color: var(--white);

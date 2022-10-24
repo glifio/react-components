@@ -1,11 +1,6 @@
-/* GLIF */
-export const GLIF_EMAIL = 'squad@infinitescroll.org'
-export const GLIF_CODE = 'https://github.com/glifio'
-export const GLIF_NODES =
+/* URLS */
+export const NODES_DOCS_URL =
   'https://lotus.filecoin.io/docs/developers/hosted-lotus/'
-export const GLIF_DISCORD = 'https://discord.gg/B9ju5Eu4Rq'
-export const GLIF_TWITTER = 'https://twitter.com/glifio'
-export const GLIF_BLOG = 'https://blog.glif.io'
 
 /* WALLET TYPES */
 export const HD_WALLET = 'HD_WALLET'

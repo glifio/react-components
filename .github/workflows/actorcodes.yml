@@ -36,6 +36,7 @@ jobs:
         run: |
           npm ci --ignore-scripts
           npm i @glif/filecoin-actor-utils@latest
+          npm run build
 
       - name: Test
         run: npm run test

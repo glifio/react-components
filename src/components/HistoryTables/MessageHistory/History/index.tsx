@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import MessageConfirmedRow from './MessageConfirmedRow'
-import MessagePendingRow from './MessagePendingRow'
+import { MessageConfirmedRow } from './MessageConfirmedRow'
+import { MessagePendingRow } from './MessagePendingRow'
 import { MessageRowColumnTitles } from './MessageRowColumnTitles'
 import { ADDRESS_PROPTYPE } from '../../../../customPropTypes'
 import { ButtonV2 } from '../../../ButtonV2'
@@ -15,7 +15,12 @@ const MissingDataWarning = styled.span`
   color: ${Colors.YELLOW_DARK};
 `
 
-export default function MessageHistoryTable(props: MessageHistoryTableProps) {
+export const MessageHistoryTable = ({
+  address,
+  cidHref,
+  offset,
+  warnMissingData
+}: MessageHistoryTableProps) => {
   const {
     messages,
     pendingMsgs,
@@ -24,7 +29,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     fetchMore,
     fetchingMore,
     lastPage
-  } = useAllMessages(props.address, props.offset)
+  } = useAllMessages(address, offset)
 
   const isEmpty = useMemo(
     () => !pendingMsgs?.length && !messages?.length,
@@ -35,7 +40,7 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
     <div>
       <PageTitle
         sideContent={
-          props.warnMissingData && (
+          warnMissingData && (
             <>
               <IconWarn />
               <MissingDataWarning>Syncing data from Mainnet</MissingDataWarning>
@@ -58,16 +63,16 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
             <MessagePendingRow
               key={message.cid}
               message={message}
-              cidHref={props.cidHref}
-              inspectingAddress={props.address}
+              cidHref={cidHref}
+              inspectingAddress={address}
             />
           ))}
           {messages?.map(message => (
             <MessageConfirmedRow
               key={message.cid}
               message={message}
-              cidHref={props.cidHref}
-              inspectingAddress={props.address}
+              cidHref={cidHref}
+              inspectingAddress={address}
             />
           ))}
         </tbody>
@@ -84,10 +89,10 @@ export default function MessageHistoryTable(props: MessageHistoryTableProps) {
 }
 
 type MessageHistoryTableProps = {
-  offset: number
   address: string
-  warnMissingData?: boolean
   cidHref: (cid: string) => string
+  offset?: number
+  warnMissingData?: boolean
 }
 
 MessageHistoryTable.propTypes = {
@@ -98,5 +103,6 @@ MessageHistoryTable.propTypes = {
 }
 
 MessageHistoryTable.defaultProps = {
-  offset: 0
+  offset: 0,
+  warnMissingData: false
 }

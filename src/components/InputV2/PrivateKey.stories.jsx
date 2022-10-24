@@ -31,7 +31,14 @@ export default {
 
 const Template = args => <StoryComponent {...args} />
 
-export const Base = Template.bind({})
-Base.args = {
-  label: 'Enter a private key'
+export const Base64 = Template.bind({})
+Base64.args = {
+  label: 'Enter a base64 private key',
+  isHex: false
+}
+
+export const Hex = Template.bind({})
+Hex.args = {
+  label: 'Enter a hex private key',
+  isHex: true
 }
