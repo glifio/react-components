@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useMemo } from 'react'
-import { useEnvironment } from '../../services'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 import truncateAddress from '../../utils/truncateAddress'
 import {

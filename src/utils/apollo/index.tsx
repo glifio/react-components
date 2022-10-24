@@ -9,8 +9,7 @@ import {
 import { getMainDefinition } from '@apollo/client/utilities'
 import { WebSocketLink } from '@apollo/client/link/ws'
 import { defaultMessageHistoryClientCacheConfig } from './defaultCacheConfig'
-
-import { useEnvironment } from '../../services'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 
 const httpLink = (uri: string, secure: boolean): HttpLink =>
   new HttpLink({

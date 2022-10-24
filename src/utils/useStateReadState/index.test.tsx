@@ -17,9 +17,7 @@ jest
         if (isAddrEqual(address, MULTISIG_ACTOR_ADDRESS))
           return {
             Balance: '1000000000000000000',
-            Code: {
-              '/': 'bafk2bzacec66wmb4kohuzvuxsulhcgiwju7sqkldwfpmmgw7dbbwgm5l2574q'
-            },
+            Code: { '/': getActorCode('multisig', 'calibrationnet') },
             State: {
               Signers: ['t014278'],
               NumApprovalsThreshold: 1,

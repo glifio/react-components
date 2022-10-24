@@ -67,4 +67,45 @@ describe('Import private key configuration', () => {
     expect(wallet.path).toBe(createPath(TESTNET_PATH_CODE, 0))
     expect(result.container.firstChild).toMatchSnapshot()
   })
+
+  test('it works with hex keys', async () => {
+    const { Tree, getWalletProviderState } = composeMockAppTree('preOnboard')
+    let result = null
+
+    await act(async () => {
+      result = render(
+        <Tree>
+          <ImportPk next={nextSpy} back={backSpy} />
+        </Tree>
+      )
+
+      // Get HTML elements
+      const pk = getByRole(result.container, 'textbox')
+      const connect = getByText(result.container, 'Connect')
+      const toggle = getByRole(result.container, 'checkbox')
+      fireEvent.click(toggle)
+
+      // Enter private key
+      fireEvent.change(pk, {
+        target: {
+          value:
+            '8182b5bf5b9c966e001934ebaf008f65516290cef6e3069d11e718cbd4336aae'
+        }
+      })
+      jest.runAllTimers()
+
+      // Connect should now be enabled
+      expect(connect).toBeEnabled()
+
+      // Click Connect
+      fireEvent.click(connect)
+    })
+
+    expect(nextSpy).toHaveBeenCalled()
+    expect(mockFetchDefaultWallet).toHaveBeenCalled()
+    const wallet = getWalletProviderState().wallets[0]
+    expect(wallet.address).toBeTruthy()
+    expect(wallet.path).toBe(createPath(TESTNET_PATH_CODE, 0))
+    expect(result.container.firstChild).toMatchSnapshot()
+  })
 })

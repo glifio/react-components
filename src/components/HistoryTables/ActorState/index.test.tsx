@@ -15,6 +15,7 @@ import {
 import { TestEnvironment } from '../../../test-utils/TestEnvironment'
 import { isAddrEqual } from '../../../utils/isAddrEqual'
 import { ActorState } from '.'
+import { getActorCode } from '@glif/filecoin-actor-utils'
 
 jest
   .spyOn(require('@glif/filecoin-rpc-client'), 'default')
@@ -29,7 +30,7 @@ jest
             return {
               Balance: '1000000000000000000',
               Code: {
-                '/': 'bafk2bzacec66wmb4kohuzvuxsulhcgiwju7sqkldwfpmmgw7dbbwgm5l2574q'
+                '/': getActorCode('multisig', 'calibrationnet')
               },
               State: {
                 Signers: ['t014278'],
