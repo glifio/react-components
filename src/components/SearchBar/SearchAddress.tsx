@@ -1,6 +1,6 @@
-import { validateAddressString } from '@glif/filecoin-address'
 import PropTypes from 'prop-types'
 import { useCallback, useState } from 'react'
+import { isAddress } from '../../utils/isAddress'
 import { SearchBar } from '.'
 
 /**
@@ -15,7 +15,7 @@ export const SearchAddress = ({
   const [inputError, setInputError] = useState<string>('')
 
   const onInput = useCallback((value: string) => {
-    setInputError(validateAddressString(value) ? '' : 'Invalid address')
+    setInputError(isAddress(value) ? '' : 'Invalid address')
   }, [])
 
   return (

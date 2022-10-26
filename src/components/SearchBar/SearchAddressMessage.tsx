@@ -1,8 +1,8 @@
-import { validateAddressString } from '@glif/filecoin-address'
 import PropTypes from 'prop-types'
 import { useCallback, useState } from 'react'
 import { SearchBar } from '.'
-import { validateCID } from '../../utils'
+import { isAddress } from '../../utils/isAddress'
+import { validateCID } from '../../utils/validateCID'
 
 /**
  * SearchAddressMessage
@@ -18,7 +18,7 @@ export const SearchAddressMessage = ({
 
   const onInput = useCallback((value: string) => {
     setInputError(
-      validateAddressString(value) || validateCID(value)
+      isAddress(value) || validateCID(value)
         ? ''
         : 'Invalid address or message CID'
     )
@@ -26,7 +26,7 @@ export const SearchAddressMessage = ({
 
   const onSearch = useCallback(
     (value: string) => {
-      if (validateAddressString(value)) return onSearchAddress(value)
+      if (isAddress(value)) return onSearchAddress(value)
       if (validateCID(value)) return onSearchMessage(value)
     },
     [onSearchAddress, onSearchMessage]
