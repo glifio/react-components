@@ -54,7 +54,7 @@ export type SearchAddressMessageProps = {
   buttonText?: string
   hideErrorMessage?: boolean
   onSearchAddress?: (address: string) => void
-  onSearchMessage?: (cid: string) => void
+  onSearchMessage?: (txID: string) => void
 }
 
 SearchAddressMessage.propTypes = {
