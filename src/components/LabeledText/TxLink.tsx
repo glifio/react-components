@@ -19,7 +19,7 @@ export const TxLink = ({
     () => (shouldTruncate ? truncateString(txID) : txID),
     [txID, shouldTruncate]
   )
-  const href = `${explorerUrl}/message/?txID=${txID}`
+  const href = `${explorerUrl}/tx/${txID}`
   return (
     <LabeledLink
       href={href}

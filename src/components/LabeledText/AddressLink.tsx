@@ -39,7 +39,7 @@ export const AddressLink = ({
   }, [gqlAddress, address, id, shouldTruncate])
 
   const copyText = gqlAddress?.address?.robust || address || id
-  const href = `${explorerUrl}/actor/?address=${copyText}`
+  const href = `${explorerUrl}/address/${copyText}`
 
   return (
     <LabeledLink

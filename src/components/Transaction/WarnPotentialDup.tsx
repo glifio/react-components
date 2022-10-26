@@ -27,7 +27,7 @@ export const WarnPotentialDup = ({
           </span>
           <p>
             You&apos;re about to send a message identical to{' '}
-            <SmartLink href={`${explorerUrl}/message/`} params={{ cid }}>
+            <SmartLink href={`${explorerUrl}/tx/${cid}`}>
               one you recently sent
             </SmartLink>
             .
