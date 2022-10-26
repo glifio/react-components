@@ -2,10 +2,10 @@ import useSWR, { SWRConfiguration } from 'swr'
 import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { useWallet } from '../WalletProvider/useWallet'
 import { FilecoinNumber } from '@glif/filecoin-number'
-import { validateAddressString } from '@glif/filecoin-address'
 
 import { useWalletProvider } from '../WalletProvider'
 import { useEnvironment, useLogger } from '../EnvironmentProvider'
+import { isFilAddress } from '../../utils/isAddress'
 
 interface UseBalancePollerResult {
   balance: FilecoinNumber | null
@@ -20,7 +20,7 @@ const fetcher = async (
 ): Promise<FilecoinNumber | null> => {
   if (!apiAddress || !actorAddress) return null
 
-  if (!validateAddressString(actorAddress))
+  if (!isFilAddress(actorAddress))
     throw new Error('Invalid actor address')
 
   const lotusApi = new LotusRpcEngine({ apiAddress })
