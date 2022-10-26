@@ -16,6 +16,7 @@ export const Info = ({
   label,
   info,
   address,
+  truncate,
   value
 }: InfoProps) => (
   <InfoLabel vertical={vertical} centered={centered}>
@@ -32,7 +33,7 @@ export const Info = ({
     )}
     <div className='info-wrapper'>
       {address && typeof value === 'string' ? (
-        <AddressLink address={value} />
+        <AddressLink address={value} shouldTruncate={truncate} />
       ) : (
         value
       )}
@@ -46,6 +47,7 @@ export interface InfoProps {
   label?: string
   info?: string
   address?: boolean
+  truncate?: boolean
   value?: string | number
 }
 
@@ -55,6 +57,7 @@ Info.propTypes = {
   label: PropTypes.string,
   info: PropTypes.string,
   address: PropTypes.bool,
+  truncate: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
 
@@ -64,5 +67,6 @@ Info.defaultProps = {
   label: '',
   info: '',
   address: false,
+  truncate: true,
   value: ''
 }
