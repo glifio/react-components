@@ -129,6 +129,6 @@ describe('ActorState', () => {
     expect(getByText(result!.container, 'StartEpoch')).toBeInTheDocument()
     expect(getByText(result!.container, 'UnlockDuration')).toBeInTheDocument()
 
-    expect(result!.container.firstChild).toMatchSnapshot()
+    expect(result!.container).toMatchSnapshot()
   })
 })
