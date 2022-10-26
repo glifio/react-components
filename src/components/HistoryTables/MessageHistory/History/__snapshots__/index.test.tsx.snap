@@ -183,7 +183,7 @@ exports[`Message history it renders messages 1`] = `
         <tr>
           <td>
             <a
-              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk0qmchbhjx7q747jghal3l4g"
+              href="/message?txID=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk0qmchbhjx7q747jghal3l4g"
             >
               bafy2b ... al3l4g
             </a>
@@ -246,7 +246,7 @@ exports[`Message history it renders messages 1`] = `
         <tr>
           <td>
             <a
-              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk1qmchbhjx7q747jghal3l4g"
+              href="/message?txID=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk1qmchbhjx7q747jghal3l4g"
             >
               bafy2b ... al3l4g
             </a>
@@ -309,7 +309,7 @@ exports[`Message history it renders messages 1`] = `
         <tr>
           <td>
             <a
-              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk2qmchbhjx7q747jghal3l4g"
+              href="/message?txID=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk2qmchbhjx7q747jghal3l4g"
             >
               bafy2b ... al3l4g
             </a>
@@ -372,7 +372,7 @@ exports[`Message history it renders messages 1`] = `
         <tr>
           <td>
             <a
-              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk3qmchbhjx7q747jghal3l4g"
+              href="/message?txID=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk3qmchbhjx7q747jghal3l4g"
             >
               bafy2b ... al3l4g
             </a>
@@ -435,7 +435,7 @@ exports[`Message history it renders messages 1`] = `
         <tr>
           <td>
             <a
-              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
+              href="/message?txID=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
             >
               bafy2b ... al3l4g
             </a>

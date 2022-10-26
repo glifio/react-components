@@ -243,7 +243,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/message/?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
+              href="https://explorer-calibration.glif.link/message/?txID=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -777,7 +777,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/message/?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
+              href="https://explorer-calibration.glif.link/message/?txID=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -1881,7 +1881,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/message/?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
+              href="https://explorer-calibration.glif.link/message/?txID=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
               rel="noreferrer noopener"
               target="_blank"
             >

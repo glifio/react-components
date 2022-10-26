@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MessageLink it renders correctly 1`] = `
+exports[`TxLink it renders correctly 1`] = `
 .c0 h4 {
   margin: 0;
   color: var(--gray-dark);
@@ -97,7 +97,7 @@ exports[`MessageLink it renders correctly 1`] = `
     color="var(--purple-medium)"
   >
     <a
-      href="https://explorer-calibration.glif.link/message/?cid=bafy2bzacebgtugc5fzoyyit3cis4emhuapnbq43lttiubvh6ubn5mt7o7eja6"
+      href="https://explorer-calibration.glif.link/message/?txID=bafy2bzacebgtugc5fzoyyit3cis4emhuapnbq43lttiubvh6ubn5mt7o7eja6"
       rel="noreferrer noopener"
       target="_blank"
     >
