@@ -1,9 +1,9 @@
 import useSWR, { SWRConfiguration } from 'swr'
 import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { LotusActorState } from '@glif/filecoin-actor-utils'
-import { validateAddressString } from '@glif/filecoin-address'
 
 import { useEnvironment } from '../../services/EnvironmentProvider'
+import { isFilAddress } from '../isAddress'
 
 interface UseStateReadStateResult<T> {
   data: LotusActorState<T> | null
@@ -19,7 +19,7 @@ const fetcher = async <T>(
 ): Promise<LotusActorState<T> | null> => {
   if (!apiAddress || !actorAddress) return null
 
-  if (!validateAddressString(actorAddress))
+  if (!isFilAddress(actorAddress))
     throw new Error('Invalid actor address')
 
   const lotusApi = new LotusRpcEngine({ apiAddress })
