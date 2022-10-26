@@ -49,6 +49,19 @@ NotTruncated.args = {
   truncate: false
 }
 
+export const Eth = Template.bind({})
+Eth.args = {
+  label: 'Ethereum address',
+  value: '0x8ba1f109551bd432803012645ac136ddd64dba72'
+}
+
+export const EthNotTruncated = Template.bind({})
+EthNotTruncated.args = {
+  label: 'Ethereum address',
+  value: '0x8ba1f109551bd432803012645ac136ddd64dba72',
+  truncate: false
+}
+
 export const Disabled = Template.bind({})
 Disabled.args = {
   label: 'Receipient',
