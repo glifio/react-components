@@ -8,12 +8,13 @@ import {
   any
 } from 'prop-types'
 import { validateMnemonic } from 'bip39'
-import { validateAddressString, CoinType } from '@glif/filecoin-address'
+import { CoinType } from '@glif/filecoin-address'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { LotusCID } from '@glif/filecoin-actor-utils'
 import { CID } from 'multiformats/cid'
 import BigNumber from 'bignumber.js'
 
+import { isAddress } from './utils/isAddress'
 import { Network } from './services/EnvironmentProvider'
 import {
   MessageQuery,
@@ -32,7 +33,7 @@ const createAddressPropType =
       if (isRequired) {
         return new Error(`Missing prop "${propName}" in "${componentName}"`)
       }
-    } else if (!validateAddressString(prop)) {
+    } else if (!isAddress(prop)) {
       return new Error(
         `Invalid prop "${propName}" supplied to "${componentName}"`
       )
