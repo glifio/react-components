@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useEffect, useState, useMemo } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 import { isAddress } from '../../utils/isAddress'
-import truncateAddress from '../../utils/truncateAddress'
+import { truncateString } from '../../utils/truncateString'
 
 /**
  * AddressInput
@@ -30,7 +30,7 @@ export const AddressInput = ({
 
   // Truncate address if valid
   const truncated = useMemo<string>(
-    () => (error ? value : truncateAddress(value)),
+    () => (error ? value : truncateString(value)),
     [error, value]
   )
 

@@ -11,7 +11,7 @@ import { attoFilToFil } from '../../utils'
 import { useAge } from '../../../../utils/useAge'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
-import truncateAddress from '../../../../utils/truncateAddress'
+import { truncateString } from '../../../../utils/truncateString'
 
 export const MessageConfirmedRow = ({
   message,
@@ -34,7 +34,7 @@ export const MessageConfirmedRow = ({
     <tr>
       <td>
         <SmartLink href={cidHref(message.cid)}>
-          {truncateAddress(message.cid)}
+          {truncateString(message.cid)}
         </SmartLink>
       </td>
       <td>{methodName}</td>

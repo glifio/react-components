@@ -13,7 +13,7 @@ import {
 } from '../../../../customPropTypes'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
-import truncateAddress from '../../../../utils/truncateAddress'
+import { truncateString } from '../../../../utils/truncateString'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
@@ -36,7 +36,7 @@ export const MessagePendingRow = ({
     <tr>
       <td>
         <SmartLink href={cidHref(message.cid)}>
-          {truncateAddress(message.cid)}
+          {truncateString(message.cid)}
         </SmartLink>
       </td>
       <td>{methodName}</td>

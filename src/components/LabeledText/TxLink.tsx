@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useMemo } from 'react'
 import { useEnvironment } from '../../services/EnvironmentProvider'
 
-import truncateAddress from '../../utils/truncateAddress'
+import { truncateString } from '../../utils/truncateString'
 import {
   LabeledLink,
   LabeledLinkProps,
@@ -16,7 +16,7 @@ export const TxLink = ({
 }: TxLinkProps) => {
   const { explorerUrl } = useEnvironment()
   const linkText = useMemo(
-    () => (shouldTruncate ? truncateAddress(txID) : txID),
+    () => (shouldTruncate ? truncateString(txID) : txID),
     [txID, shouldTruncate]
   )
   const href = `${explorerUrl}/message/?txID=${txID}`
