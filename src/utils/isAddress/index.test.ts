@@ -8,7 +8,9 @@ const t3 =
 const t4 = 't410fkkld55ioe7qg24wvt7fu6pbknb56ht7pt4zamxa'
 const eth1 = '0x52963EF50e27e06D72D59fcB4F3c2a687BE3cfEf'
 const eth2 = '0x8ba1f109551bd432803012645ac136ddd64dba72'
-const eth3 = 'XE65GB6LDNXYOFTX0NSV3FUWKOWIXAMJK36'
+const eth3 = '52963EF50e27e06D72D59fcB4F3c2a687BE3cfEf'
+const eth4 = '8ba1f109551bd432803012645ac136ddd64dba72'
+const eth5 = 'XE65GB6LDNXYOFTX0NSV3FUWKOWIXAMJK36'
 
 describe('isAddress', () => {
   test('it should validate correct filecoin addresses', () => {
@@ -30,18 +32,24 @@ describe('isAddress', () => {
     expect(isAddress(eth1)).toBe(true)
     expect(isAddress(eth2)).toBe(true)
     expect(isAddress(eth3)).toBe(true)
+    expect(isAddress(eth4)).toBe(true)
+    expect(isAddress(eth5)).toBe(true)
   })
 
   test('it should invalidate incorrect ethereum addresses', () => {
     expect(isAddress(eth1.slice(0, -1))).toBe(false)
     expect(isAddress(eth2.slice(0, -1))).toBe(false)
     expect(isAddress(eth3.slice(0, -1))).toBe(false)
+    expect(isAddress(eth4.slice(0, -1))).toBe(false)
+    expect(isAddress(eth5.slice(0, -1))).toBe(false)
   })
 
   test('it should invalidate eth addresses as fil addresses', () => {
     expect(isFilAddress(eth1)).toBe(false)
     expect(isFilAddress(eth2)).toBe(false)
     expect(isFilAddress(eth3)).toBe(false)
+    expect(isFilAddress(eth4)).toBe(false)
+    expect(isFilAddress(eth5)).toBe(false)
   })
 
   test('it should invalidate fil addresses as eth addresses', () => {
