@@ -17,7 +17,7 @@ import {
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
 } from '../../customPropTypes'
-import { MessageLink } from '../LabeledText/MessageLink'
+import { TxLink } from '../LabeledText/TxLink'
 import { LinesParams } from '../Layout/LinesParams'
 import { LinesReturn } from '../Layout/LinesReturn'
 
@@ -156,8 +156,8 @@ export const MessageDetailBase = ({
   return (
     <>
       <Line label='CID'>
-        <MessageLink
-          cid={txID}
+        <TxLink
+          txID={txID}
           hideCopyText={false}
           hideCopy={false}
           shouldTruncate={false}
