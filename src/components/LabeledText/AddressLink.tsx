@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useAddressQuery } from '../../generated/graphql'
 import { useEnvironment } from '../../services/EnvironmentProvider'
 
-import truncateAddress from '../../utils/truncateAddress'
+import { truncateString } from '../../utils/truncateString'
 import {
   LabeledLink,
   LabeledLinkProps,
@@ -35,11 +35,11 @@ export const AddressLink = ({
   // prioritize robust > id
   const linkText = useMemo<string>(() => {
     const robust = gqlAddress?.address?.robust || address
-    return robust ? (shouldTruncate ? truncateAddress(robust) : robust) : id
+    return robust ? (shouldTruncate ? truncateString(robust) : robust) : id
   }, [gqlAddress, address, id, shouldTruncate])
 
   const copyText = gqlAddress?.address?.robust || address || id
-  const href = `${explorerUrl}/actor/?address=${copyText}`
+  const href = `${explorerUrl}/address/${copyText}`
 
   return (
     <LabeledLink

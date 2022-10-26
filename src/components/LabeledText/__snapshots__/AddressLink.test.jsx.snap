@@ -97,7 +97,7 @@ exports[`AddressLink it renders correctly 1`] = `
     color="var(--purple-medium)"
   >
     <a
-      href="https://explorer-calibration.glif.link/actor/?address=t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy"
+      href="https://explorer-calibration.glif.link/address/t137sjdbgunloi7couiy4l5nc7pd6k2jmq32vizpy"
       rel="noreferrer noopener"
       target="_blank"
     >

@@ -13,14 +13,14 @@ import {
 } from '../../../../customPropTypes'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
-import truncateAddress from '../../../../utils/truncateAddress'
+import { truncateString } from '../../../../utils/truncateString'
 
 // add RelativeTime plugin to Day.js
 dayjs.extend(relativeTime.default)
 
 export const MessagePendingRow = ({
   message,
-  cidHref,
+  txIDHref,
   inspectingAddress
 }: MessagePendingRowProps) => {
   const fromAddressIsInspecting = useMemo(
@@ -35,8 +35,8 @@ export const MessagePendingRow = ({
   return (
     <tr>
       <td>
-        <SmartLink href={cidHref(message.cid)}>
-          {truncateAddress(message.cid)}
+        <SmartLink href={txIDHref(message.cid)}>
+          {truncateString(message.cid)}
         </SmartLink>
       </td>
       <td>{methodName}</td>
@@ -71,12 +71,12 @@ export const MessagePendingRow = ({
 
 type MessagePendingRowProps = {
   message: GqlMessagePending
-  cidHref: (cid: string) => string
+  txIDHref: (txID: string) => string
   inspectingAddress: string
 }
 
 MessagePendingRow.propTypes = {
   message: GRAPHQL_MESSAGE_PENDING_PROPTYPE.isRequired,
-  cidHref: PropTypes.func.isRequired,
+  txIDHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string.isRequired
 }

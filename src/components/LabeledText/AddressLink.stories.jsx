@@ -19,6 +19,26 @@ Base.args = {
   address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy'
 }
 
+export const Full = Template.bind({})
+Full.args = {
+  label: 'Safe Address',
+  address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy',
+  shouldTruncate: false
+}
+
+export const Hex = Template.bind({})
+Hex.args = {
+  label: 'Ethereum Address',
+  address: '0x79b071dd2170fee5f503c99ace562114c5ff1efb'
+}
+
+export const HexFull = Template.bind({})
+HexFull.args = {
+  label: 'Ethereum Address',
+  address: '0x79b071dd2170fee5f503c99ace562114c5ff1efb',
+  shouldTruncate: false
+}
+
 export const Black = Template.bind({})
 Black.args = {
   address: 'f17uoq6tp427uzv7fztkbsnn64iwotfrristwpryy',

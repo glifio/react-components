@@ -17,7 +17,7 @@ const MissingDataWarning = styled.span`
 
 export const MessageHistoryTable = ({
   address,
-  cidHref,
+  txIDHref,
   offset,
   warnMissingData
 }: MessageHistoryTableProps) => {
@@ -63,7 +63,7 @@ export const MessageHistoryTable = ({
             <MessagePendingRow
               key={message.cid}
               message={message}
-              cidHref={cidHref}
+              txIDHref={txIDHref}
               inspectingAddress={address}
             />
           ))}
@@ -71,7 +71,7 @@ export const MessageHistoryTable = ({
             <MessageConfirmedRow
               key={message.cid}
               message={message}
-              cidHref={cidHref}
+              txIDHref={txIDHref}
               inspectingAddress={address}
             />
           ))}
@@ -90,14 +90,14 @@ export const MessageHistoryTable = ({
 
 type MessageHistoryTableProps = {
   address: string
-  cidHref: (cid: string) => string
+  txIDHref: (txID: string) => string
   offset?: number
   warnMissingData?: boolean
 }
 
 MessageHistoryTable.propTypes = {
   address: ADDRESS_PROPTYPE.isRequired,
-  cidHref: PropTypes.func.isRequired,
+  txIDHref: PropTypes.func.isRequired,
   offset: PropTypes.number,
   warnMissingData: PropTypes.bool
 }

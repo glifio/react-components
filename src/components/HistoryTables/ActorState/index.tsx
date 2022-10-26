@@ -121,7 +121,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   }, [actorError, addressError])
 
   return (
-    <div>
+    <>
       <PageTitle>Actor Overview</PageTitle>
       <hr />
       <DetailCaption
@@ -168,7 +168,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
           )}
         </Lines>
       )}
-    </div>
+    </>
   )
 }
 

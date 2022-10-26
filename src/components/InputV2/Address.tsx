@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types'
 import { useEffect, useState, useMemo } from 'react'
-import { validateAddressString } from '@glif/filecoin-address'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
-import truncateAddress from '../../utils/truncateAddress'
+import { isAddress } from '../../utils/isAddress'
+import { truncateString } from '../../utils/truncateString'
 
 /**
  * AddressInput
@@ -22,7 +22,7 @@ export const AddressInput = ({
 
   // Check for input errors
   const error = useMemo<string>(() => {
-    if (!validateAddressString(value)) return 'Needs to be a valid address'
+    if (!isAddress(value)) return 'Needs to be a valid address'
     if (actor && value[1] !== '0' && value[1] !== '2')
       return 'Second character must be 0 or 2'
     return ''
@@ -30,7 +30,7 @@ export const AddressInput = ({
 
   // Truncate address if valid
   const truncated = useMemo<string>(
-    () => (error ? value : truncateAddress(value)),
+    () => (error ? value : truncateString(value)),
     [error, value]
   )
 

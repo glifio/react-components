@@ -11,11 +11,11 @@ import { attoFilToFil } from '../../utils'
 import { useAge } from '../../../../utils/useAge'
 import { useMethodName } from '../hooks/useMethodName'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
-import truncateAddress from '../../../../utils/truncateAddress'
+import { truncateString } from '../../../../utils/truncateString'
 
 export const MessageConfirmedRow = ({
   message,
-  cidHref,
+  txIDHref,
   inspectingAddress
 }: MessageConfirmedRowProps) => {
   const value = useMemo(() => attoFilToFil(message.value), [message.value])
@@ -33,8 +33,8 @@ export const MessageConfirmedRow = ({
   return (
     <tr>
       <td>
-        <SmartLink href={cidHref(message.cid)}>
-          {truncateAddress(message.cid)}
+        <SmartLink href={txIDHref(message.cid)}>
+          {truncateString(message.cid)}
         </SmartLink>
       </td>
       <td>{methodName}</td>
@@ -69,12 +69,12 @@ export const MessageConfirmedRow = ({
 
 type MessageConfirmedRowProps = {
   message: GqlMessagesMsg
-  cidHref: (cid: string) => string
+  txIDHref: (txID: string) => string
   inspectingAddress: string
 }
 
 MessageConfirmedRow.propTypes = {
   message: GRAPHQL_MESSAGES_MSG_PROPTYPE.isRequired,
-  cidHref: PropTypes.func.isRequired,
+  txIDHref: PropTypes.func.isRequired,
   inspectingAddress: PropTypes.string.isRequired
 }

@@ -183,7 +183,7 @@ exports[`Message history it renders messages 1`] = `
         <tr>
           <td>
             <a
-              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk0qmchbhjx7q747jghal3l4g"
+              href="/tx/bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk0qmchbhjx7q747jghal3l4g"
             >
               bafy2b ... al3l4g
             </a>
@@ -230,7 +230,7 @@ exports[`Message history it renders messages 1`] = `
                 color="var(--purple-medium)"
               >
                 <a
-                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  href="https://explorer-calibration.glif.link/address/t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -246,7 +246,7 @@ exports[`Message history it renders messages 1`] = `
         <tr>
           <td>
             <a
-              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk1qmchbhjx7q747jghal3l4g"
+              href="/tx/bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk1qmchbhjx7q747jghal3l4g"
             >
               bafy2b ... al3l4g
             </a>
@@ -293,7 +293,7 @@ exports[`Message history it renders messages 1`] = `
                 color="var(--purple-medium)"
               >
                 <a
-                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  href="https://explorer-calibration.glif.link/address/t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -309,7 +309,7 @@ exports[`Message history it renders messages 1`] = `
         <tr>
           <td>
             <a
-              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk2qmchbhjx7q747jghal3l4g"
+              href="/tx/bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk2qmchbhjx7q747jghal3l4g"
             >
               bafy2b ... al3l4g
             </a>
@@ -356,7 +356,7 @@ exports[`Message history it renders messages 1`] = `
                 color="var(--purple-medium)"
               >
                 <a
-                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  href="https://explorer-calibration.glif.link/address/t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -372,7 +372,7 @@ exports[`Message history it renders messages 1`] = `
         <tr>
           <td>
             <a
-              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk3qmchbhjx7q747jghal3l4g"
+              href="/tx/bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk3qmchbhjx7q747jghal3l4g"
             >
               bafy2b ... al3l4g
             </a>
@@ -419,7 +419,7 @@ exports[`Message history it renders messages 1`] = `
                 color="var(--purple-medium)"
               >
                 <a
-                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  href="https://explorer-calibration.glif.link/address/t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
                   rel="noreferrer noopener"
                   target="_blank"
                 >
@@ -435,7 +435,7 @@ exports[`Message history it renders messages 1`] = `
         <tr>
           <td>
             <a
-              href="/message?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
+              href="/tx/bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
             >
               bafy2b ... al3l4g
             </a>
@@ -482,7 +482,7 @@ exports[`Message history it renders messages 1`] = `
                 color="var(--purple-medium)"
               >
                 <a
-                  href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+                  href="https://explorer-calibration.glif.link/address/t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
                   rel="noreferrer noopener"
                   target="_blank"
                 >

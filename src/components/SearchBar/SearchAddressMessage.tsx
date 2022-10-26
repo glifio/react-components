@@ -1,8 +1,8 @@
-import { validateAddressString } from '@glif/filecoin-address'
 import PropTypes from 'prop-types'
 import { useCallback, useState } from 'react'
 import { SearchBar } from '.'
-import { validateCID } from '../../utils'
+import { isAddress } from '../../utils/isAddress'
+import { isTxID } from '../../utils/isTxID'
 
 /**
  * SearchAddressMessage
@@ -18,16 +18,16 @@ export const SearchAddressMessage = ({
 
   const onInput = useCallback((value: string) => {
     setInputError(
-      validateAddressString(value) || validateCID(value)
+      isAddress(value) || isTxID(value)
         ? ''
-        : 'Invalid address or message CID'
+        : 'Invalid address, message CID or transaction hash'
     )
   }, [])
 
   const onSearch = useCallback(
     (value: string) => {
-      if (validateAddressString(value)) return onSearchAddress(value)
-      if (validateCID(value)) return onSearchMessage(value)
+      if (isAddress(value)) return onSearchAddress(value)
+      if (isTxID(value)) return onSearchMessage(value)
     },
     [onSearchAddress, onSearchMessage]
   )
@@ -38,7 +38,7 @@ export const SearchAddressMessage = ({
       name='search-address-message'
       autoFocus={true}
       autoComplete='on'
-      placeholder={'Enter an address or message CID'}
+      placeholder={'Enter an address, message CID or tx hash'}
       buttonText={buttonText}
       hideErrorMessage={hideErrorMessage}
       inputError={inputError}
@@ -54,7 +54,7 @@ export type SearchAddressMessageProps = {
   buttonText?: string
   hideErrorMessage?: boolean
   onSearchAddress?: (address: string) => void
-  onSearchMessage?: (cid: string) => void
+  onSearchMessage?: (txID: string) => void
 }
 
 SearchAddressMessage.propTypes = {

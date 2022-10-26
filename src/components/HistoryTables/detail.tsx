@@ -17,7 +17,7 @@ import {
   GRAPHQL_GAS_COST_PROPTYPE,
   GRAPHQL_MESSAGE_PROPTYPE
 } from '../../customPropTypes'
-import { MessageLink } from '../LabeledText/MessageLink'
+import { TxLink } from '../LabeledText/TxLink'
 import { LinesParams } from '../Layout/LinesParams'
 import { LinesReturn } from '../Layout/LinesReturn'
 
@@ -133,7 +133,7 @@ export const MessageDetailBase = ({
   message,
   pending,
   exitCode,
-  cid,
+  txID,
   methodName,
   confirmations
 }: MessageDetailBaseProps) => {
@@ -156,8 +156,8 @@ export const MessageDetailBase = ({
   return (
     <>
       <Line label='CID'>
-        <MessageLink
-          cid={cid}
+        <TxLink
+          txID={txID}
           hideCopyText={false}
           hideCopy={false}
           shouldTruncate={false}
@@ -211,7 +211,7 @@ export const MessageDetailBase = ({
 }
 
 type MessageDetailBaseProps = {
-  cid: string
+  txID: string
   message: GqlMessage | GqlMessagePending
   methodName: string
   time: number
@@ -221,7 +221,7 @@ type MessageDetailBaseProps = {
 }
 
 MessageDetailBase.propTypes = {
-  cid: PropTypes.string.isRequired,
+  txID: PropTypes.string.isRequired,
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   time: PropTypes.number.isRequired,
   pending: PropTypes.bool,

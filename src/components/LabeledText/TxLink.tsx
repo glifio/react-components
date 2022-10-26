@@ -2,48 +2,47 @@ import PropTypes from 'prop-types'
 import { useMemo } from 'react'
 import { useEnvironment } from '../../services/EnvironmentProvider'
 
-import truncateAddress from '../../utils/truncateAddress'
+import { truncateString } from '../../utils/truncateString'
 import {
   LabeledLink,
   LabeledLinkProps,
   LabeledLinkPropTypes
 } from './LabeledLink'
 
-export const MessageLink = ({
-  cid,
+export const TxLink = ({
+  txID,
   shouldTruncate,
   ...labeledLinkProps
-}: MessageLinkProps) => {
+}: TxLinkProps) => {
   const { explorerUrl } = useEnvironment()
   const linkText = useMemo(
-    () => (shouldTruncate ? truncateAddress(cid) : cid),
-    [cid, shouldTruncate]
+    () => (shouldTruncate ? truncateString(txID) : txID),
+    [txID, shouldTruncate]
   )
-  const href = `${explorerUrl}/message/?cid=${cid}`
+  const href = `${explorerUrl}/tx/${txID}`
   return (
     <LabeledLink
       href={href}
       linkText={linkText}
-      copyText={cid}
+      copyText={txID}
       {...labeledLinkProps}
     />
   )
 }
 
-export type MessageLinkProps = {
-  cid?: string
+export type TxLinkProps = {
+  txID: string
   shouldTruncate?: boolean
 } & Omit<LabeledLinkProps, 'href' | 'linkText' | 'copyText'>
 
-const { href, linkText, copyText, ...messageLinkPropTypes } =
-  LabeledLinkPropTypes
+const { href, linkText, copyText, ...txLinkPropTypes } = LabeledLinkPropTypes
 
-MessageLink.propTypes = {
-  cid: PropTypes.string,
+TxLink.propTypes = {
+  txID: PropTypes.string.isRequired,
   shouldTruncate: PropTypes.bool,
-  ...messageLinkPropTypes
+  ...txLinkPropTypes
 }
 
-MessageLink.defaultProps = {
+TxLink.defaultProps = {
   shouldTruncate: true
 }

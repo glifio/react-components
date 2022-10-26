@@ -4,7 +4,7 @@ import {
   ADDRESS_PROPTYPE,
   FILECOIN_NUMBER_PROPTYPE
 } from '../../customPropTypes'
-import truncateAddress from '../../utils/truncateAddress'
+import { truncateString } from '../../utils/truncateString'
 import { makeFriendlyBalance } from '../../utils/makeFriendlyBalance'
 import { Spaces } from '../theme'
 
@@ -36,7 +36,7 @@ export const TransactionBalance = ({
     <Header>
       <div>
         <span>From</span>
-        <span>{truncateAddress(address)}</span>
+        <span>{truncateString(address)}</span>
       </div>
       <div>
         <span>{msigBalance && 'Signer '}Balance</span>

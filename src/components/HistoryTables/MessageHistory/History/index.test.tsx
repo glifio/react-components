@@ -46,7 +46,7 @@ describe('Message history', () => {
           <MessageHistoryTable
             offset={0}
             address={WALLET_ADDRESS}
-            cidHref={cid => `/message/?cid=${cid}`}
+            txIDHref={txID => `/tx/${txID}`}
             warnMissingData
           />
         </TestEnvironment>
@@ -104,7 +104,7 @@ describe('Message history', () => {
           <MessageHistoryTable
             offset={0}
             address={WALLET_ADDRESS}
-            cidHref={cid => `/message/?cid=${cid}`}
+            txIDHref={txID => `/tx/${txID}`}
             warnMissingData
           />
         </TestEnvironment>

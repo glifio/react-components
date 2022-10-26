@@ -243,7 +243,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/message/?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
+              href="https://explorer-calibration.glif.link/tx/bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -338,7 +338,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/actor/?address=t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
+              href="https://explorer-calibration.glif.link/address/t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -396,7 +396,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+              href="https://explorer-calibration.glif.link/address/t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -777,7 +777,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/message/?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
+              href="https://explorer-calibration.glif.link/tx/bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -913,7 +913,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/actor/?address=t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
+              href="https://explorer-calibration.glif.link/address/t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -971,7 +971,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+              href="https://explorer-calibration.glif.link/address/t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -1881,7 +1881,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/message/?cid=bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
+              href="https://explorer-calibration.glif.link/tx/bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -1960,7 +1960,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/actor/?address=t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
+              href="https://explorer-calibration.glif.link/address/t1z225tguggx4onbauimqvxzutopzdr2m4s6z6wgi"
               rel="noreferrer noopener"
               target="_blank"
             >
@@ -2018,7 +2018,7 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/actor/?address=t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
+              href="https://explorer-calibration.glif.link/address/t1nq5k2mps5umtebdovlyo7y6a3ywc7u4tobtuo3a"
               rel="noreferrer noopener"
               target="_blank"
             >

@@ -1,8 +1,8 @@
 import useSWRImmutable from 'swr/immutable'
 import LotusRpcEngine from '@glif/filecoin-rpc-client'
-import { validateAddressString } from '@glif/filecoin-address'
 
 import { useEnvironment } from '../../services/EnvironmentProvider'
+import { isFilAddress } from '../isAddress'
 
 interface UseStateDecodeParamsResult<T> {
   params: T | null
@@ -19,8 +19,7 @@ const fetcher = async <T>(
 ): Promise<T | null> => {
   if (!apiAddress || !actorAddress || !base64Params) return null
 
-  if (!validateAddressString(actorAddress))
-    throw new Error('Invalid actor address')
+  if (!isFilAddress(actorAddress)) throw new Error('Invalid actor address')
 
   // Temporarily attempt to parse as JSON string,
   // until StateDecodeParams is removed from graph

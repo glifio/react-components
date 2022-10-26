@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { Label } from './Label'
-import truncateAddress from '../../utils/truncateAddress'
+import { truncateString } from '../../utils/truncateString'
 import { Colors } from '../theme'
 
 const SelectLabel = styled(Label)`
@@ -95,7 +95,7 @@ export const Select = ({
           )}
           {options.map(option => (
             <option key={option} value={option}>
-              {address ? truncateAddress(option) : option}
+              {address ? truncateString(option) : option}
             </option>
           ))}
         </select>
