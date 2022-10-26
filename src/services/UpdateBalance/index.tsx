@@ -20,8 +20,7 @@ const fetcher = async (
 ): Promise<FilecoinNumber | null> => {
   if (!apiAddress || !actorAddress) return null
 
-  if (!isFilAddress(actorAddress))
-    throw new Error('Invalid actor address')
+  if (!isFilAddress(actorAddress)) throw new Error('Invalid actor address')
 
   const lotusApi = new LotusRpcEngine({ apiAddress })
   return new FilecoinNumber(

@@ -19,8 +19,7 @@ const fetcher = async <T>(
 ): Promise<LotusActorState<T> | null> => {
   if (!apiAddress || !actorAddress) return null
 
-  if (!isFilAddress(actorAddress))
-    throw new Error('Invalid actor address')
+  if (!isFilAddress(actorAddress)) throw new Error('Invalid actor address')
 
   const lotusApi = new LotusRpcEngine({ apiAddress })
   return await lotusApi.request<LotusActorState<T>>(
