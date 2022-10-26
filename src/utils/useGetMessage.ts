@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Message, LotusMessage } from '@glif/filecoin-message'
 
-import { validateCID } from './validateCID'
+import { isMsgCID } from './isTxID'
 import { useEnvironment } from '../services/EnvironmentProvider'
 
 interface UseGetMessageResult {
@@ -19,7 +19,7 @@ export const useGetMessage = (cid: string): UseGetMessageResult => {
   useEffect(() => {
     setMessage(null)
     setError(null)
-    if (validateCID(cid)) {
+    if (isMsgCID(cid)) {
       setLoading(true)
       lotusApi
         .request<LotusMessage>('ChainGetMessage', { '/': cid })

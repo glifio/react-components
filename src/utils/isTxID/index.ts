@@ -1,9 +1,9 @@
 import { CID } from 'multiformats/cid'
 import { utils } from 'ethers'
 
-export const isTxID = (id: string): boolean => isTxCID(id) || isTxHash(id)
+export const isTxID = (id: string): boolean => isMsgCID(id) || isTxHash(id)
 
-export const isTxCID = (cid: string): boolean => {
+export const isMsgCID = (cid: string): boolean => {
   try {
     CID.parse(cid)
     return true

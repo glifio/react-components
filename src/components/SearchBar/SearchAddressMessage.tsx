@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import { useCallback, useState } from 'react'
 import { SearchBar } from '.'
 import { isAddress } from '../../utils/isAddress'
-import { validateCID } from '../../utils/validateCID'
+import { isTxID } from '../../utils/isTxID'
 
 /**
  * SearchAddressMessage
@@ -18,16 +18,16 @@ export const SearchAddressMessage = ({
 
   const onInput = useCallback((value: string) => {
     setInputError(
-      isAddress(value) || validateCID(value)
+      isAddress(value) || isTxID(value)
         ? ''
-        : 'Invalid address or message CID'
+        : 'Invalid address, message CID or transaction hash'
     )
   }, [])
 
   const onSearch = useCallback(
     (value: string) => {
       if (isAddress(value)) return onSearchAddress(value)
-      if (validateCID(value)) return onSearchMessage(value)
+      if (isTxID(value)) return onSearchMessage(value)
     },
     [onSearchAddress, onSearchMessage]
   )
@@ -38,7 +38,7 @@ export const SearchAddressMessage = ({
       name='search-address-message'
       autoFocus={true}
       autoComplete='on'
-      placeholder={'Enter an address or message CID'}
+      placeholder={'Enter an address, message CID or tx hash'}
       buttonText={buttonText}
       hideErrorMessage={hideErrorMessage}
       inputError={inputError}
