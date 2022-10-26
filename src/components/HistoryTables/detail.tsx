@@ -133,7 +133,7 @@ export const MessageDetailBase = ({
   message,
   pending,
   exitCode,
-  cid,
+  txID,
   methodName,
   confirmations
 }: MessageDetailBaseProps) => {
@@ -157,7 +157,7 @@ export const MessageDetailBase = ({
     <>
       <Line label='CID'>
         <MessageLink
-          cid={cid}
+          cid={txID}
           hideCopyText={false}
           hideCopy={false}
           shouldTruncate={false}
@@ -211,7 +211,7 @@ export const MessageDetailBase = ({
 }
 
 type MessageDetailBaseProps = {
-  cid: string
+  txID: string
   message: GqlMessage | GqlMessagePending
   methodName: string
   time: number
@@ -221,7 +221,7 @@ type MessageDetailBaseProps = {
 }
 
 MessageDetailBase.propTypes = {
-  cid: PropTypes.string.isRequired,
+  txID: PropTypes.string.isRequired,
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   time: PropTypes.number.isRequired,
   pending: PropTypes.bool,

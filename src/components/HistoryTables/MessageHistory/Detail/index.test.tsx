@@ -19,10 +19,10 @@ const speedUpBtnText = 'Speed up'
 const cancelBtnText = 'Cancel'
 const seeMoreBtnText = 'Click to see more ↓'
 const statusLabelText = 'Status and Confirmations'
-const cid = 'bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g'
+const txID = 'bafy2bzaced3ub5g4v35tj7n74zsog3dmcum4tk4qmchbhjx7q747jghal3l4g'
 
 const message: GqlMessage = {
-  cid,
+  cid: txID,
   from: {
     id: WALLET_ID,
     robust: WALLET_ADDRESS
@@ -60,7 +60,7 @@ describe('Message detail view', () => {
       const res = render(
         <TestEnvironment withApollo>
           <MessageDetail
-            cid={cid}
+            txID={txID}
             speedUpHref='/speed-up'
             cancelHref='/cancel'
           />
@@ -70,7 +70,7 @@ describe('Message detail view', () => {
     })
 
     expect(
-      screen.getByText(`Searching for ${cid}... Give us a moment`)
+      screen.getByText(`Searching for ${txID}... Give us a moment`)
     ).toBeInTheDocument()
 
     // The document should not contain
@@ -98,7 +98,7 @@ describe('Message detail view', () => {
       const res = render(
         <TestEnvironment withApollo>
           <MessageDetail
-            cid={cid}
+            txID={txID}
             speedUpHref='/speed-up'
             cancelHref='/cancel'
           />
@@ -107,7 +107,7 @@ describe('Message detail view', () => {
       container = res.container
     })
 
-    expect(screen.getByText(`Message ${cid} not found.`)).toBeInTheDocument()
+    expect(screen.getByText(`Message ${txID} not found.`)).toBeInTheDocument()
 
     // The document should not contain
     expect(screen.queryByText(speedUpBtnText)).toBeNull()
@@ -134,7 +134,7 @@ describe('Message detail view', () => {
       const res = render(
         <TestEnvironment withApollo>
           <MessageDetail
-            cid={cid}
+            txID={txID}
             speedUpHref='/speed-up'
             cancelHref='/cancel'
           />
@@ -184,7 +184,7 @@ describe('Message detail view', () => {
       const res = render(
         <TestEnvironment withApollo>
           <MessageDetail
-            cid={cid}
+            txID={txID}
             speedUpHref='/speed-up'
             cancelHref='/cancel'
             confirmations={50}
@@ -237,7 +237,7 @@ describe('Message detail view', () => {
               request: {
                 query: StateReplayDocument,
                 variables: {
-                  cid
+                  cid: txID
                 }
               },
               result: {
@@ -295,7 +295,7 @@ describe('Message detail view', () => {
           ]}
         >
           <MessageDetail
-            cid={cid}
+            txID={txID}
             speedUpHref='/speed-up'
             cancelHref='/cancel'
             confirmations={50}

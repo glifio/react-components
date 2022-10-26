@@ -36,21 +36,25 @@ enum MessageState {
   NotFound
 }
 
-export default function MessageDetail(props: MessageDetailProps) {
-  const { cid, speedUpHref, cancelHref, confirmations } = props
+export default function MessageDetail({
+  txID,
+  speedUpHref,
+  cancelHref,
+  confirmations
+}: MessageDetailProps) {
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
-  const { message, error, loading, pending } = useMessage(cid)
+  const { message, error, loading, pending } = useMessage(txID)
   const { isProd } = useEnvironment()
   const logger = useLogger()
 
   const { data: stateReplayQuery, error: stateReplayError } =
     useStateReplayQuery({
-      variables: { cid: props.cid },
+      variables: { cid: txID },
       pollInterval: 30000,
       fetchPolicy: 'cache-first',
       // give the message time to execute on-chain before fetching
-      skip: !props.cid || props.confirmations < 2
+      skip: !txID || confirmations < 2
     })
 
   const transactionFee = useMemo<string>(() => {
@@ -134,7 +138,7 @@ export default function MessageDetail(props: MessageDetailProps) {
         )}
         {messageState === MessageState.NotFound && (
           <StandardBox>
-            <p>Message {cid} not found.</p>
+            <p>Message {txID} not found.</p>
             <p>
               Note - it may take 1-2 minutes for a recently confirmed message to
               show up here.
@@ -144,12 +148,12 @@ export default function MessageDetail(props: MessageDetailProps) {
         {messageState === MessageState.Loading && (
           <StandardBox>
             <LoadingIcon />
-            <p>Searching for {cid}... Give us a moment</p>
+            <p>Searching for {txID}... Give us a moment</p>
           </StandardBox>
         )}
         {messageState === MessageState.Pending && (
           <MessageDetailBase
-            cid={cid}
+            txID={txID}
             methodName={methodName}
             message={message}
             time={time}
@@ -159,7 +163,7 @@ export default function MessageDetail(props: MessageDetailProps) {
         {messageState === MessageState.Confirmed && (
           <>
             <MessageDetailBase
-              cid={cid}
+              txID={txID}
               methodName={methodName}
               confirmations={confirmations}
               time={time}
@@ -171,7 +175,7 @@ export default function MessageDetail(props: MessageDetailProps) {
         {messageState === MessageState.Executed && (
           <>
             <MessageDetailBase
-              cid={cid}
+              txID={txID}
               exitCode={stateReplayQuery?.stateReplay?.receipt?.exitCode}
               methodName={methodName}
               confirmations={confirmations}
@@ -214,14 +218,14 @@ export default function MessageDetail(props: MessageDetailProps) {
 }
 
 type MessageDetailProps = {
-  cid: string
+  txID: string
   speedUpHref?: string
   cancelHref?: string
   confirmations: number
 }
 
 MessageDetail.propTypes = {
-  cid: PropTypes.string.isRequired,
+  txID: PropTypes.string.isRequired,
   speedUpHref: PropTypes.string,
   cancelHref: PropTypes.string,
   confirmations: PropTypes.number
