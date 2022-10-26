@@ -31,7 +31,7 @@ export const MessageLink = ({
 }
 
 export type MessageLinkProps = {
-  cid?: string
+  cid: string
   shouldTruncate?: boolean
 } & Omit<LabeledLinkProps, 'href' | 'linkText' | 'copyText'>
 
@@ -39,7 +39,7 @@ const { href, linkText, copyText, ...messageLinkPropTypes } =
   LabeledLinkPropTypes
 
 MessageLink.propTypes = {
-  cid: PropTypes.string,
+  cid: PropTypes.string.isRequired,
   shouldTruncate: PropTypes.bool,
   ...messageLinkPropTypes
 }
