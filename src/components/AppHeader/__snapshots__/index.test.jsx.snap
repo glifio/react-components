@@ -123,9 +123,7 @@ exports[`AppHeader renders the box 1`] = `
           clip-rule="evenodd"
           fill="var(--black)"
           fill-rule="evenodd"
-          height="71"
           viewBox="0 0 51 71"
-          width="51"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
