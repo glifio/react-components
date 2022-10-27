@@ -42,7 +42,7 @@ export const MessageHistoryTable = ({
         sideContent={
           warnMissingData && (
             <>
-              <IconWarn />
+              <IconWarn height='1em' />
               <MissingDataWarning>Syncing data from Mainnet</MissingDataWarning>
             </>
           )

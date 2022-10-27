@@ -29,103 +29,99 @@ import {
 
 describe('Icons', () => {
   test('renders IconGitHub', () => {
-    const { container } = render(<IconGitHub {...IconGitHub.args} />)
+    const { container } = render(<IconGitHub height='2em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconSuccess', () => {
-    const { container } = render(<IconSuccess {...IconSuccess.args} />)
+    const { container } = render(<IconSuccess height='1.5em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconFail', () => {
-    const { container } = render(<IconFail {...IconFail.args} />)
+    const { container } = render(<IconFail height='1.5em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconPending', () => {
-    const { container } = render(<IconPending {...IconPending.args} />)
+    const { container } = render(<IconPending height='1.5em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconClose', () => {
-    const { container } = render(<IconClose {...IconClose.args} />)
+    const { container } = render(<IconClose height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconApproximatelyEquals', () => {
-    const { container } = render(
-      <IconApproximatelyEquals {...IconApproximatelyEquals.args} />
-    )
+    const { container } = render(<IconApproximatelyEquals height='1.5em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconCopyAccountAddress', () => {
-    const { container } = render(
-      <IconCopyAccountAddress {...IconCopyAccountAddress.args} />
-    )
+    const { container } = render(<IconCopyAccountAddress height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconLedger', () => {
-    const { container } = render(<IconLedger {...IconLedger.args} />)
+    const { container } = render(<IconLedger height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconEdit', () => {
-    const { container } = render(<IconEdit {...IconEdit.args} />)
+    const { container } = render(<IconEdit height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconGlif', () => {
-    const { container } = render(<IconGlif {...IconGlif.args} />)
+    const { container } = render(<IconGlif width='2em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconSafe', () => {
-    const { container } = render(<IconSafe {...IconSafe.args} />)
+    const { container } = render(<IconSafe width='2em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconExplorer', () => {
-    const { container } = render(<IconExplorer {...IconExplorer.args} />)
+    const { container } = render(<IconExplorer width='2em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconVerifier', () => {
-    const { container } = render(<IconVerifier {...IconVerifier.args} />)
+    const { container } = render(<IconVerifier width='2em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconWallet', () => {
-    const { container } = render(<IconWallet {...IconWallet.args} />)
+    const { container } = render(<IconWallet width='2em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconNode', () => {
-    const { container } = render(<IconNode {...IconNode.args} />)
+    const { container } = render(<IconNode width='2em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconMetaMask', () => {
-    const { container } = render(<IconMetaMask {...IconMetaMask.args} />)
+    const { container } = render(<IconMetaMask width='10em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconSpeedUp', () => {
-    const { container } = render(<IconSpeedUp {...IconSpeedUp.args} />)
+    const { container } = render(<IconSpeedUp height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconCancel', () => {
-    const { container } = render(<IconCancel {...IconCancel.args} />)
+    const { container } = render(<IconCancel height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconCheck', () => {
-    const { container } = render(<IconCheck {...IconCheck.args} />)
+    const { container } = render(<IconCheck height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconClock', () => {
-    const { container } = render(<IconClock {...IconClock.args} />)
+    const { container } = render(<IconClock height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconSearch', () => {
-    const { container } = render(<IconSearch {...IconSearch.args} />)
+    const { container } = render(<IconSearch height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconWarn', () => {
-    const { container } = render(<IconWarn {...IconWarn.args} />)
+    const { container } = render(<IconWarn height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconError', () => {
-    const { container } = render(<IconError {...IconError.args} />)
+    const { container } = render(<IconError height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
   test('renders IconNewTab', () => {
-    const { container } = render(<IconNewTab {...IconNewTab.args} />)
+    const { container } = render(<IconNewTab height='1em' />)
     expect(container.firstChild).toMatchSnapshot()
   })
 })

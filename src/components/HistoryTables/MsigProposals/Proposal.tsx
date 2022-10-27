@@ -146,13 +146,13 @@ export default function ProposalDetail({
           <>
             {canApprove && (
               <ButtonV2Link green href={approveHref(proposal.id)}>
-                <IconCheck width='auto' height='1em' />
+                <IconCheck height='1em' />
                 Approve
               </ButtonV2Link>
             )}
             {isProposer && (
               <ButtonV2Link red href={cancelHref(proposal.id)}>
-                <IconCancel width='auto' height='1em' />
+                <IconCancel height='1em' />
                 Cancel
               </ButtonV2Link>
             )}

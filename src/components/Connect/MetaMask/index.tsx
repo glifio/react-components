@@ -92,7 +92,7 @@ export const MetaMask = ({ next, back }: MetamaskProps) => {
     <TwoColumns>
       <OneColumnCentered>
         <MMFadeIn>
-          <IconMetaMask height='231' width='245' />
+          <IconMetaMask width='10em' />
         </MMFadeIn>
       </OneColumnCentered>
       <OneColumnCentered>

@@ -115,13 +115,13 @@ export default function MessageDetail({
             <>
               {speedUpHref && !isProd && (
                 <ButtonV2Link green href={speedUpHref} retainParams>
-                  <IconSpeedUp width='auto' height='1em' />
+                  <IconSpeedUp height='1em' />
                   Speed up
                 </ButtonV2Link>
               )}
               {cancelHref && !isProd && (
                 <ButtonV2Link red href={cancelHref} retainParams>
-                  <IconCancel width='auto' height='1em' />
+                  <IconCancel height='1em' />
                   Cancel
                 </ButtonV2Link>
               )}
