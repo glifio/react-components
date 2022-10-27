@@ -87,6 +87,8 @@ IconBase.propTypes = {
 }
 
 IconBase.defaultProps = {
+  rotate: false,
+  rotateStepped: false,
   rotateEase: 'ease',
   rotateDuration: '4s'
 }
@@ -105,17 +107,16 @@ export interface IconProps {
 export const IconPropTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  color: PropTypes.string
+  color: PropTypes.string,
+  onClick: PropTypes.func
 }
 
 /**
  * GitHub
  */
 
-export const IconGitHub = ({ width, height, color, ...props }: IconProps) => (
+export const IconGitHub = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 42}
-    height={height ?? 42}
     viewBox='3 3 42 42'
     fill='none'
     stroke={color ?? Colors.BLACK}
@@ -135,14 +136,8 @@ IconGitHub.propTypes = IconPropTypes
  * Success
  */
 
-export const IconSuccess = ({ width, height, color, ...props }: IconProps) => (
-  <IconBase
-    width={width ?? 24}
-    height={height ?? 24}
-    viewBox='0 0 24 24'
-    fill={color ?? Colors.GREEN_MEDIUM}
-    {...props}
-  >
+export const IconSuccess = ({ color, ...props }: IconProps) => (
+  <IconBase viewBox='0 0 24 24' fill={color ?? Colors.GREEN_MEDIUM} {...props}>
     <mask id='iconSuccessMask'>
       <rect x='0' y='0' width='24' height='24' fill='white' />
       <path
@@ -162,14 +157,8 @@ IconSuccess.propTypes = IconPropTypes
  * Fail
  */
 
-export const IconFail = ({ width, height, color, ...props }: IconProps) => (
-  <IconBase
-    width={width ?? 24}
-    height={height ?? 24}
-    viewBox='0 0 24 24'
-    fill={color ?? Colors.RED_MEDIUM}
-    {...props}
-  >
+export const IconFail = ({ color, ...props }: IconProps) => (
+  <IconBase viewBox='0 0 24 24' fill={color ?? Colors.RED_MEDIUM} {...props}>
     <mask id='iconFailMask'>
       <rect x='0' y='0' width='24' height='24' fill='white' />
       <path
@@ -189,11 +178,9 @@ IconFail.propTypes = IconPropTypes
  * Pending
  */
 
-export const IconPending = ({ width, height, color, ...props }: IconProps) => (
+export const IconPending = ({ color, ...props }: IconProps) => (
   <IconBase
     rotateStepped
-    width={width ?? 24}
-    height={height ?? 24}
     viewBox='0 0 24 24'
     fill={color ?? Colors.YELLOW_DARK}
     {...props}
@@ -221,10 +208,8 @@ IconPending.propTypes = IconPropTypes
  * Close
  */
 
-export const IconClose = ({ width, height, color, ...props }: IconProps) => (
+export const IconClose = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 16}
-    height={height ?? 16}
     viewBox='4 4 16 16'
     fill={color ?? Colors.PURPLE_MEDIUM}
     fillRule='evenodd'
@@ -241,19 +226,8 @@ IconClose.propTypes = IconPropTypes
  * ApproximatelyEquals
  */
 
-export const IconApproximatelyEquals = ({
-  width,
-  height,
-  color,
-  ...props
-}: IconProps) => (
-  <IconBase
-    width={width ?? 20}
-    height={height ?? 20}
-    viewBox='2 2 20 20'
-    fill={color ?? Colors.BLACK}
-    {...props}
-  >
+export const IconApproximatelyEquals = ({ color, ...props }: IconProps) => (
+  <IconBase viewBox='2 2 20 20' fill={color ?? Colors.BLACK} {...props}>
     <path d='M8.93342 11.6614C9.19742 11.0179 9.50267 10.56 9.84917 10.2877C10.1957 10.0072 10.5628 9.867 10.9505 9.867C11.2063 9.867 11.429 9.9165 11.6188 10.0155C11.8085 10.1145 11.9818 10.2217 12.1385 10.3372C12.3035 10.4527 12.4562 10.56 12.5964 10.659C12.7449 10.758 12.9058 10.8075 13.079 10.8075C13.2523 10.8075 13.4173 10.725 13.574 10.56C13.7308 10.395 13.8669 10.1392 13.9824 9.79275L15.0714 10.3001C14.8074 10.9436 14.5022 11.4056 14.1557 11.6861C13.8092 11.9584 13.442 12.0945 13.0543 12.0945C12.7985 12.0945 12.5758 12.045 12.386 11.946C12.1963 11.847 12.0189 11.7397 11.8539 11.6242C11.6972 11.5087 11.5445 11.4015 11.396 11.3025C11.2558 11.2035 11.099 11.154 10.9258 11.154C10.7608 11.154 10.5958 11.2365 10.4308 11.4015C10.274 11.5665 10.1379 11.8222 10.0224 12.1687L8.93342 11.6614ZM8.93342 14.52C9.19742 13.8765 9.50267 13.4186 9.84917 13.1464C10.1957 12.8659 10.5628 12.7256 10.9505 12.7256C11.2063 12.7256 11.429 12.7751 11.6188 12.8741C11.8085 12.9731 11.9818 13.0804 12.1385 13.1959C12.3035 13.3114 12.4562 13.4186 12.5964 13.5176C12.7449 13.6166 12.9058 13.6661 13.079 13.6661C13.2523 13.6661 13.4173 13.5836 13.574 13.4186C13.7308 13.2536 13.8669 12.9979 13.9824 12.6514L15.0714 13.1587C14.8074 13.8022 14.5022 14.2642 14.1557 14.5447C13.8092 14.817 13.442 14.9531 13.0543 14.9531C12.7985 14.9531 12.5758 14.9036 12.386 14.8046C12.1963 14.7056 12.0189 14.5984 11.8539 14.4829C11.6972 14.3674 11.5445 14.2601 11.396 14.1611C11.2558 14.0621 11.099 14.0126 10.9258 14.0126C10.7608 14.0126 10.5958 14.0951 10.4308 14.2601C10.274 14.4251 10.1379 14.6809 10.0224 15.0274L8.93342 14.52Z' />
     <path d='M12 20.4375C7.3401 20.4375 3.5625 16.6599 3.5625 12H2.4375C2.4375 17.2812 6.71878 21.5625 12 21.5625V20.4375ZM20.4375 12C20.4375 16.6599 16.6599 20.4375 12 20.4375V21.5625C17.2812 21.5625 21.5625 17.2812 21.5625 12H20.4375ZM12 3.5625C16.6599 3.5625 20.4375 7.3401 20.4375 12H21.5625C21.5625 6.71878 17.2812 2.4375 12 2.4375V3.5625ZM12 2.4375C6.71878 2.4375 2.4375 6.71878 2.4375 12H3.5625C3.5625 7.3401 7.3401 3.5625 12 3.5625V2.4375Z' />
   </IconBase>
@@ -265,18 +239,8 @@ IconApproximatelyEquals.propTypes = IconPropTypes
  * CopyAccountAddress
  */
 
-export const IconCopyAccountAddress = ({
-  width,
-  height,
-  color,
-  ...props
-}: IconProps) => (
-  <IconBase
-    width={width ?? 16}
-    height={height ?? 16}
-    viewBox='0 0 16 16'
-    {...props}
-  >
+export const IconCopyAccountAddress = ({ color, ...props }: IconProps) => (
+  <IconBase viewBox='0 0 16 16' {...props}>
     <rect x='4' y='0' width='12' height='12' fill='#1A0066' />
     <rect x='0' y='4' width='12' height='12' fill='#E0D7FE' />
   </IconBase>
@@ -288,10 +252,8 @@ IconCopyAccountAddress.propTypes = IconPropTypes
  * Ledger
  */
 
-export const IconLedger = ({ width, height, color, ...props }: IconProps) => (
+export const IconLedger = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 16}
-    height={height ?? 16}
     viewBox='4 4 16 16'
     fill={color ?? Colors.BLACK}
     fillRule='evenodd'
@@ -308,10 +270,8 @@ IconLedger.propTypes = IconPropTypes
  * Edit
  */
 
-export const IconEdit = ({ width, height, color, ...props }: IconProps) => (
+export const IconEdit = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 20}
-    height={height ?? 20}
     viewBox='2 2 20 20'
     fill='none'
     stroke={color ?? Colors.PURPLE_MEDIUM}
@@ -328,10 +288,8 @@ IconEdit.propTypes = IconPropTypes
  * Glif
  */
 
-export const IconGlif = ({ width, height, color, ...props }: IconProps) => (
+export const IconGlif = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 51}
-    height={height ?? 71}
     viewBox='0 0 51 71'
     fill={color ?? Colors.BLACK}
     fillRule='evenodd'
@@ -351,10 +309,8 @@ IconGlif.propTypes = IconPropTypes
  * Safe
  */
 
-export const IconSafe = ({ width, height, color, ...props }: IconProps) => (
+export const IconSafe = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 51}
-    height={height ?? 'auto'}
     viewBox='0 0 680 960'
     fill={color ?? Colors.BLACK}
     fillRule='evenodd'
@@ -371,10 +327,8 @@ IconSafe.propTypes = IconPropTypes
  * Explorer
  */
 
-export const IconExplorer = ({ width, height, color, ...props }: IconProps) => (
+export const IconExplorer = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 51}
-    height={height ?? 'auto'}
     viewBox='0 0 720 966'
     fill={color ?? Colors.BLACK}
     fillRule='evenodd'
@@ -391,10 +345,8 @@ IconExplorer.propTypes = IconPropTypes
  * Verifier
  */
 
-export const IconVerifier = ({ width, height, color, ...props }: IconProps) => (
+export const IconVerifier = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 51}
-    height={height ?? 'auto'}
     viewBox='0 0 680 960'
     fill={color ?? Colors.BLACK}
     fillRule='evenodd'
@@ -411,10 +363,8 @@ IconVerifier.propTypes = IconPropTypes
  * Wallet
  */
 
-export const IconWallet = ({ width, height, color, ...props }: IconProps) => (
+export const IconWallet = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 51}
-    height={height ?? 'auto'}
     viewBox='0 0 640 960'
     fill={color ?? Colors.BLACK}
     fillRule='evenodd'
@@ -431,10 +381,8 @@ IconWallet.propTypes = IconPropTypes
  * Node
  */
 
-export const IconNode = ({ width, height, color, ...props }: IconProps) => (
+export const IconNode = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 51}
-    height={height ?? 'auto'}
     viewBox='0 0 680 960'
     fill={color ?? Colors.BLACK}
     fillRule='evenodd'
@@ -451,14 +399,8 @@ IconNode.propTypes = IconPropTypes
  * MetaMaskFlask
  */
 
-export const IconMetaMask = ({ width, height, color, ...props }: IconProps) => (
-  <IconBase
-    width={width ?? 175}
-    height={height ?? 'auto'}
-    viewBox='0 0 35 33'
-    fill='none'
-    {...props}
-  >
+export const IconMetaMask = ({ color, ...props }: IconProps) => (
+  <IconBase viewBox='0 0 35 33' fill='none' {...props}>
     <g clipPath='url(#clip0)'>
       <path
         d='M19.5935 17.7525L20.1702 9.81845L22.5182 4.16699H12.481L14.8289 9.81845L15.4056 17.7525L15.5841 20.2551L15.5979 26.4153H19.4013L19.415 20.2551L19.5935 17.7525Z'
@@ -785,10 +727,8 @@ IconMetaMask.propTypes = IconPropTypes
  * Speed Up
  */
 
-export const IconSpeedUp = ({ width, height, color, ...props }: IconProps) => (
+export const IconSpeedUp = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 30}
-    height={height ?? 25}
     viewBox='0 0 30 25'
     fill='none'
     stroke={color ?? Colors.BLACK}
@@ -808,10 +748,8 @@ IconSpeedUp.propTypes = IconPropTypes
  * Cancel
  */
 
-export const IconCancel = ({ width, height, color, ...props }: IconProps) => (
+export const IconCancel = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 22}
-    height={height ?? 28}
     viewBox='0 0 22 28'
     fill='none'
     stroke={color ?? Colors.BLACK}
@@ -830,10 +768,8 @@ IconCancel.propTypes = IconPropTypes
  * Check
  */
 
-export const IconCheck = ({ width, height, color, ...props }: IconProps) => (
+export const IconCheck = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 23}
-    height={height ?? 22}
     viewBox='0 0 23 22'
     fill='none'
     stroke={color ?? Colors.BLACK}
@@ -852,10 +788,8 @@ IconCheck.propTypes = IconPropTypes
  * Clock
  */
 
-export const IconClock = ({ width, height, color, ...props }: IconProps) => (
+export const IconClock = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 20}
-    height={height ?? 20}
     viewBox='0 0 20 20'
     fill='none'
     stroke={color ?? Colors.BLACK}
@@ -874,10 +808,8 @@ IconClock.propTypes = IconPropTypes
  * Search
  */
 
-export const IconSearch = ({ width, height, color, ...props }: IconProps) => (
+export const IconSearch = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 24}
-    height={height ?? 24}
     viewBox='0 0 24 24'
     fill='none'
     stroke={color ?? Colors.BLACK}
@@ -896,10 +828,8 @@ IconSearch.propTypes = IconPropTypes
  * Caution
  */
 
-export const IconCaution = ({ width, height, color, ...props }: IconProps) => (
+export const IconCaution = ({ color, ...props }: IconProps) => (
   <IconBase
-    width={width ?? 22}
-    height={height ?? 20}
     viewBox='0 0 22 20'
     fill='none'
     stroke={color ?? Colors.YELLOW_DARK}
@@ -918,26 +848,22 @@ IconCaution.propTypes = IconPropTypes
  * Warn
  */
 
-export const IconWarn = () => <IconCaution />
+export const IconWarn = (props: IconProps) => <IconCaution {...props} />
 
 /**
  * Error
  */
 
-export const IconError = () => <IconCaution color={Colors.RED_DARK} />
+export const IconError = ({ color, ...props }: IconProps) => (
+  <IconCaution color={color ?? Colors.RED_DARK} {...props} />
+)
 
 /**
  * New Tab
  */
 
-export const IconNewTab = ({ width, height, color, ...props }: IconProps) => (
-  <IconBase
-    width={width ?? 18}
-    height={height ?? 18}
-    viewBox='0 0 24 24'
-    fill={color ?? Colors.BLACK}
-    {...props}
-  >
+export const IconNewTab = ({ color, ...props }: IconProps) => (
+  <IconBase viewBox='0 0 24 24' fill={color ?? Colors.BLACK} {...props}>
     <path d='M19,21H5c-1.1,0-2-0.9-2-2V5c0-1.1,0.9-2,2-2h7v2H5v14h14v-7h2v7C21,20.1,20.1,21,19,21z' />
     <path d='M21 10L19 10 19 5 14 5 14 3 21 3z' />
     <path d='M6.7 8.5H22.3V10.5H6.7z' transform='rotate(-45.001 14.5 9.5)' />

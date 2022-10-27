@@ -115,7 +115,7 @@ const WarningBoxEl = styled(BoxBase)`
 
 export const WarningBox = ({ children }) => (
   <WarningBoxEl>
-    <IconWarn />
+    <IconWarn height='1em' />
     {children}
   </WarningBoxEl>
 )
@@ -133,7 +133,7 @@ const ErrorBoxEl = styled(BoxBase)`
 
 export const ErrorBox = ({ children }) => (
   <ErrorBoxEl>
-    <IconError />
+    <IconError height='1em' />
     {children}
   </ErrorBoxEl>
 )

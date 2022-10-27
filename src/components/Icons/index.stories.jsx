@@ -34,54 +34,54 @@ export default {
   ]
 }
 
-export const IconGitHub = args => <IconGitHubComp {...args} />
+export const IconGitHub = args => <IconGitHubComp height='2em' {...args} />
 
-export const IconSuccess = args => <IconSuccessComp {...args} />
+export const IconSuccess = args => <IconSuccessComp height='1.5em' {...args} />
 
-export const IconFail = args => <IconFailComp {...args} />
+export const IconFail = args => <IconFailComp height='1.5em' {...args} />
 
-export const IconPending = args => <IconPendingComp {...args} />
+export const IconPending = args => <IconPendingComp height='1.5em' {...args} />
 
-export const IconClose = args => <IconCloseComp {...args} />
+export const IconClose = args => <IconCloseComp height='1em' {...args} />
 
 export const IconApproximatelyEquals = args => (
-  <IconApproximatelyEqualsComp {...args} />
+  <IconApproximatelyEqualsComp height='1.5em' {...args} />
 )
 
 export const IconCopyAccountAddress = args => (
-  <IconCopyAccountAddressComp {...args} />
+  <IconCopyAccountAddressComp height='1em' {...args} />
 )
 
-export const IconLedger = args => <IconLedgerComp {...args} />
+export const IconLedger = args => <IconLedgerComp height='1em' {...args} />
 
-export const IconEdit = args => <IconEditComp {...args} />
+export const IconEdit = args => <IconEditComp height='1em' {...args} />
 
-export const IconGlif = args => <IconGlifComp {...args} />
+export const IconGlif = args => <IconGlifComp width='2em' {...args} />
 
-export const IconSafe = args => <IconSafeComp {...args} />
+export const IconSafe = args => <IconSafeComp width='2em' {...args} />
 
-export const IconExplorer = args => <IconExplorerComp {...args} />
+export const IconExplorer = args => <IconExplorerComp width='2em' {...args} />
 
-export const IconVerifier = args => <IconVerifierComp {...args} />
+export const IconVerifier = args => <IconVerifierComp width='2em' {...args} />
 
-export const IconWallet = args => <IconWalletComp {...args} />
+export const IconWallet = args => <IconWalletComp width='2em' {...args} />
 
-export const IconNode = args => <IconNodeComp {...args} />
+export const IconNode = args => <IconNodeComp width='2em' {...args} />
 
-export const IconMetaMask = args => <IconMetaMaskComp {...args} />
+export const IconMetaMask = args => <IconMetaMaskComp width='10em' {...args} />
 
-export const IconSpeedUp = args => <IconSpeedUpComp {...args} />
+export const IconSpeedUp = args => <IconSpeedUpComp height='1em' {...args} />
 
-export const IconCancel = args => <IconCancelComp {...args} />
+export const IconCancel = args => <IconCancelComp height='1em' {...args} />
 
-export const IconCheck = args => <IconCheckComp {...args} />
+export const IconCheck = args => <IconCheckComp height='1em' {...args} />
 
-export const IconClock = args => <IconClockComp {...args} />
+export const IconClock = args => <IconClockComp height='1em' {...args} />
 
-export const IconSearch = args => <IconSearchComp {...args} />
+export const IconSearch = args => <IconSearchComp height='1em' {...args} />
 
-export const IconWarn = args => <IconWarnComp {...args} />
+export const IconWarn = args => <IconWarnComp height='1em' {...args} />
 
-export const IconError = args => <IconErrorComp {...args} />
+export const IconError = args => <IconErrorComp height='1em' {...args} />
 
-export const IconNewTab = args => <IconNewTabComp {...args} />
+export const IconNewTab = args => <IconNewTabComp height='1em' {...args} />

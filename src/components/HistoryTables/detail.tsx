@@ -86,8 +86,8 @@ export const Status = ({ exitCode, pending }: StatusProps) => {
   }, [success, pending])
 
   const icon = useMemo(() => {
-    if (pending) return <IconPending />
-    if (success) return <IconCheck width='auto' height='1em' />
+    if (pending) return <IconPending height='1em' />
+    if (success) return <IconCheck height='1em' />
     return null
   }, [success, pending])
 
@@ -113,7 +113,7 @@ export const Confirmations = ({ count, total }: ConfirmationsProps) => {
     <Badge
       color={confirmed ? 'green' : 'yellow'}
       text={`${Math.min(count, total)} / ${total} Confirmations`}
-      icon={confirmed ? <IconCheck width='auto' height='1em' /> : null}
+      icon={confirmed ? <IconCheck height='1em' /> : null}
       uppercase={false}
     />
   )
@@ -179,7 +179,7 @@ export const MessageDetailBase = ({
           'Pending'
         ) : (
           <>
-            <IconClock width='1em' height='auto' />
+            <IconClock width='1em' />
             {age}
           </>
         )}

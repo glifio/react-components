@@ -381,9 +381,8 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   <svg
                     class="c5 has-fill"
                     fill="var(--black)"
-                    height="18"
+                    height="1em"
                     viewBox="0 0 24 24"
-                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -405,9 +404,8 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                 >
                   <svg
                     class="c5"
-                    height="16"
+                    height="1em"
                     viewBox="0 0 16 16"
-                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
@@ -474,9 +472,8 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   <svg
                     class="c5 has-fill"
                     fill="var(--black)"
-                    height="18"
+                    height="1em"
                     viewBox="0 0 24 24"
-                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -498,9 +495,8 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                 >
                   <svg
                     class="c5"
-                    height="16"
+                    height="1em"
                     viewBox="0 0 16 16"
-                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
@@ -567,9 +563,8 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                   <svg
                     class="c5 has-fill"
                     fill="var(--black)"
-                    height="18"
+                    height="1em"
                     viewBox="0 0 24 24"
-                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -591,9 +586,8 @@ exports[`AccountSelector it displays the accounts in a table view and option to 
                 >
                   <svg
                     class="c5"
-                    height="16"
+                    height="1em"
                     viewBox="0 0 16 16"
-                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
@@ -1012,9 +1006,8 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   <svg
                     class="c7 has-fill"
                     fill="var(--black)"
-                    height="18"
+                    height="1em"
                     viewBox="0 0 24 24"
-                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -1036,9 +1029,8 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                 >
                   <svg
                     class="c7"
-                    height="16"
+                    height="1em"
                     viewBox="0 0 16 16"
-                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
@@ -1105,9 +1097,8 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   <svg
                     class="c7 has-fill"
                     fill="var(--black)"
-                    height="18"
+                    height="1em"
                     viewBox="0 0 24 24"
-                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -1129,9 +1120,8 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                 >
                   <svg
                     class="c7"
-                    height="16"
+                    height="1em"
                     viewBox="0 0 16 16"
-                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect
@@ -1198,9 +1188,8 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                   <svg
                     class="c7 has-fill"
                     fill="var(--black)"
-                    height="18"
+                    height="1em"
                     viewBox="0 0 24 24"
-                    width="18"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -1222,9 +1211,8 @@ exports[`AccountSelector it displays the selected account when showSelectedACcou
                 >
                   <svg
                     class="c7"
-                    height="16"
+                    height="1em"
                     viewBox="0 0 16 16"
-                    width="16"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <rect

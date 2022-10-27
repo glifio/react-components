@@ -256,9 +256,8 @@ exports[`Message detail view it renders the confirmed but not executed msg state
             >
               <svg
                 class="c7"
-                height="16"
+                height="1em"
                 viewBox="0 0 16 16"
-                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
@@ -306,7 +305,6 @@ exports[`Message detail view it renders the confirmed but not executed msg state
         <svg
           class="c7 has-stroke"
           fill="none"
-          height="auto"
           stroke="var(--black)"
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -351,9 +349,8 @@ exports[`Message detail view it renders the confirmed but not executed msg state
             >
               <svg
                 class="c7"
-                height="16"
+                height="1em"
                 viewBox="0 0 16 16"
-                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
@@ -409,9 +406,8 @@ exports[`Message detail view it renders the confirmed but not executed msg state
             >
               <svg
                 class="c7"
-                height="16"
+                height="1em"
                 viewBox="0 0 16 16"
-                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
@@ -790,9 +786,8 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             >
               <svg
                 class="c7"
-                height="16"
+                height="1em"
                 viewBox="0 0 16 16"
-                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
@@ -840,7 +835,6 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             stroke-linejoin="round"
             stroke-width="3"
             viewBox="0 0 23 22"
-            width="auto"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -881,7 +875,6 @@ exports[`Message detail view it renders the executed msg state correctly (with n
         <svg
           class="c7 has-stroke"
           fill="none"
-          height="auto"
           stroke="var(--black)"
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -926,9 +919,8 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             >
               <svg
                 class="c7"
-                height="16"
+                height="1em"
                 viewBox="0 0 16 16"
-                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
@@ -984,9 +976,8 @@ exports[`Message detail view it renders the executed msg state correctly (with n
             >
               <svg
                 class="c7"
-                height="16"
+                height="1em"
                 viewBox="0 0 16 16"
-                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
@@ -1826,7 +1817,6 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
           stroke-linejoin="round"
           stroke-width="2"
           viewBox="0 0 30 25"
-          width="auto"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -1851,7 +1841,6 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
           stroke-linejoin="round"
           stroke-width="3"
           viewBox="0 0 22 28"
-          width="auto"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
@@ -1894,9 +1883,8 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             >
               <svg
                 class="c3"
-                height="16"
+                height="1em"
                 viewBox="0 0 16 16"
-                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
@@ -1973,9 +1961,8 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             >
               <svg
                 class="c3"
-                height="16"
+                height="1em"
                 viewBox="0 0 16 16"
-                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect
@@ -2031,9 +2018,8 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             >
               <svg
                 class="c3"
-                height="16"
+                height="1em"
                 viewBox="0 0 16 16"
-                width="16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <rect

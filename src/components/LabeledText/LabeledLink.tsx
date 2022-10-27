@@ -53,7 +53,7 @@ export const LabeledLink = ({
         )}
         {useNewTabIcon && (
           <SmartLink href={href}>
-            <IconNewTab />
+            <IconNewTab height='1em' />
           </SmartLink>
         )}
         {!hideCopy && copyText && (

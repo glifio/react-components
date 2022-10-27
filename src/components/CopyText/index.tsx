@@ -55,7 +55,7 @@ export const CopyText = ({
         setCopied(true)
       }}
     >
-      <IconCopyAccountAddress />
+      <IconCopyAccountAddress height='1em' />
       {!hideCopyText && (
         <span className='copy-text'>{copied ? 'Copied' : 'Copy'}</span>
       )}

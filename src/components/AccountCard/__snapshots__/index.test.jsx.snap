@@ -272,9 +272,8 @@ exports[`AccountCard renders the card 1`] = `
         >
           <svg
             class="c6"
-            height="16"
+            height="1em"
             viewBox="0 0 16 16"
-            width="16"
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect
@@ -594,9 +593,8 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
         >
           <svg
             class="c6"
-            height="16"
+            height="1em"
             viewBox="0 0 16 16"
-            width="16"
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect
@@ -911,9 +909,8 @@ exports[`AccountCard renders the story 1`] = `
         >
           <svg
             class="c6"
-            height="16"
+            height="1em"
             viewBox="0 0 16 16"
-            width="16"
             xmlns="http://www.w3.org/2000/svg"
           >
             <rect
