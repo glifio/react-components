@@ -25,12 +25,10 @@ import {
   useLogger
 } from '../../../services/EnvironmentProvider'
 import { BaseTypeObjLines, DataTypeMapLines } from '../../Layout/DataTypes'
-import { isEthAddress, isFilAddress } from '../../../utils/isAddress'
+import { isDelegatedAddress, isEthAddress } from '../../../utils/isAddress'
 import {
-  decode,
-  ethAddressFromDelegated,
-  newDelegatedEthAddress,
-  Protocol
+  delegatedFromEthAddress,
+  ethAddressFromDelegated
 } from '@glif/filecoin-address'
 
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
@@ -38,22 +36,20 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const { coinType, networkName } = useEnvironment()
 
   // Ensure network cointype and address type for address
-  const address = useMemo<string>(() => {
-    if (isFilAddress(addressProp)) {
-      return convertAddrToPrefix(addressProp, coinType)
-    } else if (isEthAddress(addressProp)) {
-      return newDelegatedEthAddress(addressProp, coinType).toString()
-    }
-    return ''
-  }, [addressProp, coinType])
+  const address = useMemo<string>(
+    () =>
+      isEthAddress(addressProp)
+        ? delegatedFromEthAddress(addressProp)
+        : convertAddrToPrefix(addressProp, coinType),
+    [addressProp, coinType]
+  )
 
-  const subAddr = useMemo<string | null>(() => {
-    if (address && decode(address).protocol() === Protocol.DELEGATED) {
-      return ethAddressFromDelegated(address)
-    }
-
-    return null
-  }, [address])
+  // Convert address to eth address if delegated
+  const ethAddress = useMemo<string | null>(
+    () =>
+      isDelegatedAddress(address) ? ethAddressFromDelegated(address) : null,
+    [address]
+  )
 
   // Load the actor state
   const {
@@ -155,7 +151,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
           )}
-          {!!subAddr && <Line label='ETH address'>{subAddr}</Line>}
+          {ethAddress && <Line label='ETH address'>{ethAddress}</Line>}
           {addressData?.address.id && (
             <Line label='ID address'>{addressData?.address.id}</Line>
           )}
