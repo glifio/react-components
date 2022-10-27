@@ -1,10 +1,17 @@
 import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
+import { ReactNode } from 'react'
 import { Label } from './Label'
 import { IconClose } from '../Icons'
 import { Colors, Spaces } from '../theme'
 
 const BaseLabel = styled(Label)`
+  .suffix-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: ${Spaces.MEDIUM};
+  }
+
   .button-wrapper {
     display: flex;
     align-items: center;
@@ -76,6 +83,7 @@ export const BaseInput = ({
   step,
   value,
   unit,
+  suffix,
   onChange,
   onFocus,
   onBlur,
@@ -101,33 +109,36 @@ export const BaseInput = ({
         {error && <span className='error'>{error}</span>}
       </div>
     )}
-    <div className='button-wrapper'>
-      <div className='unit-wrapper'>
-        <input
-          className={[
-            ...(className ? [className] : []),
-            ...(error ? ['error'] : [])
-          ].join(' ')}
-          name={name}
-          type={type}
-          autoFocus={autoFocus}
-          autoComplete={autoComplete}
-          disabled={disabled}
-          placeholder={placeholder}
-          min={min}
-          max={max}
-          step={step}
-          value={value}
-          onChange={e => onChange(e.target.value)}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          onClick={onClick}
-          onKeyDown={e => e.key === 'Enter' && onEnter()}
-          style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
-        />
-        {unit && <span className='unit'>{unit}</span>}
+    <div className='suffix-wrapper'>
+      <div className='button-wrapper'>
+        <div className='unit-wrapper'>
+          <input
+            className={[
+              ...(className ? [className] : []),
+              ...(error ? ['error'] : [])
+            ].join(' ')}
+            name={name}
+            type={type}
+            autoFocus={autoFocus}
+            autoComplete={autoComplete}
+            disabled={disabled}
+            placeholder={placeholder}
+            min={min}
+            max={max}
+            step={step}
+            value={value}
+            onChange={e => onChange(e.target.value)}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            onClick={onClick}
+            onKeyDown={e => e.key === 'Enter' && onEnter()}
+            style={{ paddingRight: `${1 + 0.75 * unit.length}em` }}
+          />
+          {unit && <span className='unit'>{unit}</span>}
+        </div>
+        {deletable && <IconClose height='1em' onClick={onDelete} />}
       </div>
-      {deletable && <IconClose height='1em' onClick={onDelete} />}
+      {suffix && <div>{suffix}</div>}
     </div>
     {vertical && error && <span className='error'>{error}</span>}
   </BaseLabel>
@@ -152,6 +163,7 @@ export interface BaseInputProps {
   step?: number | string
   value?: string
   unit?: string
+  suffix?: ReactNode
   onChange?: (value: string) => void
   onFocus?: () => void
   onBlur?: () => void
@@ -179,6 +191,10 @@ export const BaseInputPropTypes = {
   step: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   value: PropTypes.string,
   unit: PropTypes.string,
+  suffix: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]),
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
@@ -207,6 +223,7 @@ BaseInput.defaultProps = {
   step: 'any',
   value: '',
   unit: '',
+  suffix: null,
   onChange: () => {},
   onFocus: () => {},
   onBlur: () => {},
