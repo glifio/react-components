@@ -25,15 +25,30 @@ import {
   useLogger
 } from '../../../services/EnvironmentProvider'
 import { BaseTypeObjLines, DataTypeMapLines } from '../../Layout/DataTypes'
+import { isDelegatedAddress, isEthAddress } from '../../../utils/isAddress'
+import {
+  delegatedFromEthAddress,
+  ethAddressFromDelegated
+} from '@glif/filecoin-address'
 
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const logger = useLogger()
   const { coinType, networkName } = useEnvironment()
 
-  // Ensure network cointype for address
+  // Ensure network cointype and address type for address
   const address = useMemo<string>(
-    () => convertAddrToPrefix(addressProp, coinType),
+    () =>
+      isEthAddress(addressProp)
+        ? delegatedFromEthAddress(addressProp)
+        : convertAddrToPrefix(addressProp, coinType),
     [addressProp, coinType]
+  )
+
+  // Convert address to eth address if delegated
+  const ethAddress = useMemo<string | null>(
+    () =>
+      isDelegatedAddress(address) ? ethAddressFromDelegated(address) : null,
+    [address]
   )
 
   // Load the actor state
@@ -136,6 +151,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
           )}
+          {ethAddress && <Line label='ETH address'>{ethAddress}</Line>}
           {addressData?.address.id && (
             <Line label='ID address'>{addressData?.address.id}</Line>
           )}

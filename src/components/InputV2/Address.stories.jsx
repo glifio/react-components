@@ -1,7 +1,5 @@
 import { useState } from 'react'
-import { CoinType, newDelegatedEthAddress } from '@glif/filecoin-address'
 
-import { isEthAddress } from '../../utils/isAddress'
 import { ButtonV2 } from '../Button/V2'
 import { WideDialog, ButtonRowRight, ShadowBox } from '../Layout'
 import { AddressInput } from './Address'
@@ -10,6 +8,7 @@ import { Info } from './Info'
 const StoryComponent = ({ value: defaultValue, ...props }) => {
   const [value, setValue] = useState(defaultValue)
   const [isValid, setIsValid] = useState(false)
+  const [delegated, setDelegated] = useState('')
   return (
     <WideDialog>
       <ShadowBox>
@@ -17,15 +16,14 @@ const StoryComponent = ({ value: defaultValue, ...props }) => {
           value={value}
           onChange={setValue}
           setIsValid={setIsValid}
+          setDelegated={setDelegated}
           autoFocus={true}
           {...props}
         />
-        {isValid && isEthAddress(value) && (
+        {delegated && (
           <Info
-            label='Filecoin address'
-            address
-            truncate={props.truncate}
-            value={newDelegatedEthAddress(value, CoinType.TEST).toString()}
+            label='FYI'
+            value='The delegated address will be used for sending funds'
           />
         )}
       </ShadowBox>

@@ -43,6 +43,17 @@ exports[`Address input it renders correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -114,24 +125,28 @@ exports[`Address input it renders correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        max=""
-        min=""
-        name=""
-        placeholder="f1..."
-        step="any"
-        style="padding-right: 1em;"
-        type="text"
-        value="t1iury ... xaucza"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          max=""
+          min=""
+          name=""
+          placeholder="f1..."
+          step="any"
+          style="padding-right: 1em;"
+          type="text"
+          value="t1iury ... xaucza"
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -179,6 +194,17 @@ exports[`Address input it renders the disabled state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -254,25 +280,29 @@ exports[`Address input it renders the disabled state correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        disabled=""
-        max=""
-        min=""
-        name=""
-        placeholder="f1..."
-        step="any"
-        style="padding-right: 1em;"
-        type="text"
-        value=""
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          disabled=""
+          max=""
+          min=""
+          name=""
+          placeholder="f1..."
+          step="any"
+          style="padding-right: 1em;"
+          type="text"
+          value=""
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -319,6 +349,17 @@ exports[`Address input it renders the invalid state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -397,24 +438,28 @@ exports[`Address input it renders the invalid state correctly 1`] = `
     </span>
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class="error"
-        max=""
-        min=""
-        name=""
-        placeholder="f1..."
-        step="any"
-        style="padding-right: 1em;"
-        type="text"
-        value="t1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucz"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class="error"
+          max=""
+          min=""
+          name=""
+          placeholder="f1..."
+          step="any"
+          style="padding-right: 1em;"
+          type="text"
+          value="t1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucz"
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -461,6 +506,17 @@ exports[`Address input it renders the not-truncated state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -534,24 +590,28 @@ exports[`Address input it renders the not-truncated state correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        max=""
-        min=""
-        name=""
-        placeholder="f1..."
-        step="any"
-        style="padding-right: 1em;"
-        type="text"
-        value="t1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          max=""
+          min=""
+          name=""
+          placeholder="f1..."
+          step="any"
+          style="padding-right: 1em;"
+          type="text"
+          value="t1iuryu3ke2hewrcxp4ezhmr5cmfeq3wjhpxaucza"
+        />
+        
+      </div>
     </div>
   </div>
 </label>

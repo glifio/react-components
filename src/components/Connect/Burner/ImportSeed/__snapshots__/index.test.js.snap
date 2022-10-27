@@ -151,6 +151,17 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c4 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c4 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -307,24 +318,28 @@ exports[`Import seed phrase configuration it renders correctly 1`] = `
         </span>
         
         <div
-          class="button-wrapper"
+          class="suffix-wrapper"
         >
           <div
-            class="unit-wrapper"
+            class="button-wrapper"
           >
-            <input
-              autocomplete="off"
-              class=""
-              max=""
-              min=""
-              name="seed-phrase"
-              placeholder="talk online harbor bulb duty athlete short follow fitness basket calm zero cabbage donkey base"
-              step="any"
-              style="padding-right: 1em;"
-              type="text"
-              value=""
-            />
-            
+            <div
+              class="unit-wrapper"
+            >
+              <input
+                autocomplete="off"
+                class=""
+                max=""
+                min=""
+                name="seed-phrase"
+                placeholder="talk online harbor bulb duty athlete short follow fitness basket calm zero cabbage donkey base"
+                step="any"
+                style="padding-right: 1em;"
+                type="text"
+                value=""
+              />
+              
+            </div>
           </div>
         </div>
         

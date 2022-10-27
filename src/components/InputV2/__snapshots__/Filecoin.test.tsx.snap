@@ -43,6 +43,17 @@ exports[`Filecoin input it renders attofil correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -114,28 +125,32 @@ exports[`Filecoin input it renders attofil correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        max=""
-        min="0"
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 4em;"
-        type="number"
-        value="100"
-      />
-      <span
-        class="unit"
+      <div
+        class="unit-wrapper"
       >
-        aFIL
-      </span>
+        <input
+          autocomplete="on"
+          class=""
+          max=""
+          min="0"
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 4em;"
+          type="number"
+          value="100"
+        />
+        <span
+          class="unit"
+        >
+          aFIL
+        </span>
+      </div>
     </div>
   </div>
 </label>
@@ -184,6 +199,17 @@ exports[`Filecoin input it renders fil correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -255,28 +281,32 @@ exports[`Filecoin input it renders fil correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        max=""
-        min="0"
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 3.25em;"
-        type="number"
-        value="100"
-      />
-      <span
-        class="unit"
+      <div
+        class="unit-wrapper"
       >
-        FIL
-      </span>
+        <input
+          autocomplete="on"
+          class=""
+          max=""
+          min="0"
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 3.25em;"
+          type="number"
+          value="100"
+        />
+        <span
+          class="unit"
+        >
+          FIL
+        </span>
+      </div>
     </div>
   </div>
 </label>
@@ -325,6 +355,17 @@ exports[`Filecoin input it renders picofil correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -396,28 +437,32 @@ exports[`Filecoin input it renders picofil correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        max=""
-        min="0"
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 4em;"
-        type="number"
-        value="100"
-      />
-      <span
-        class="unit"
+      <div
+        class="unit-wrapper"
       >
-        pFIL
-      </span>
+        <input
+          autocomplete="on"
+          class=""
+          max=""
+          min="0"
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 4em;"
+          type="number"
+          value="100"
+        />
+        <span
+          class="unit"
+        >
+          pFIL
+        </span>
+      </div>
     </div>
   </div>
 </label>
@@ -465,6 +510,17 @@ exports[`Filecoin input it renders the disabled state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -540,29 +596,33 @@ exports[`Filecoin input it renders the disabled state correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        disabled=""
-        max=""
-        min="0"
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 3.25em;"
-        type="number"
-        value=""
-      />
-      <span
-        class="unit"
+      <div
+        class="unit-wrapper"
       >
-        FIL
-      </span>
+        <input
+          autocomplete="on"
+          class=""
+          disabled=""
+          max=""
+          min="0"
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 3.25em;"
+          type="number"
+          value=""
+        />
+        <span
+          class="unit"
+        >
+          FIL
+        </span>
+      </div>
     </div>
   </div>
 </label>
@@ -609,6 +669,17 @@ exports[`Filecoin input it renders the value too high state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -687,28 +758,32 @@ exports[`Filecoin input it renders the value too high state correctly 1`] = `
     </span>
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class="error"
-        max="10"
-        min="0"
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 3.25em;"
-        type="number"
-        value="100"
-      />
-      <span
-        class="unit"
+      <div
+        class="unit-wrapper"
       >
-        FIL
-      </span>
+        <input
+          autocomplete="on"
+          class="error"
+          max="10"
+          min="0"
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 3.25em;"
+          type="number"
+          value="100"
+        />
+        <span
+          class="unit"
+        >
+          FIL
+        </span>
+      </div>
     </div>
   </div>
 </label>
@@ -755,6 +830,17 @@ exports[`Filecoin input it renders the value too low state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -833,28 +919,32 @@ exports[`Filecoin input it renders the value too low state correctly 1`] = `
     </span>
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class="error"
-        max=""
-        min="100"
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 3.25em;"
-        type="number"
-        value="10"
-      />
-      <span
-        class="unit"
+      <div
+        class="unit-wrapper"
       >
-        FIL
-      </span>
+        <input
+          autocomplete="on"
+          class="error"
+          max=""
+          min="100"
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 3.25em;"
+          type="number"
+          value="10"
+        />
+        <span
+          class="unit"
+        >
+          FIL
+        </span>
+      </div>
     </div>
   </div>
 </label>

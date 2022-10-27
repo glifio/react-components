@@ -47,6 +47,17 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
   vertical-align: middle;
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -118,38 +129,42 @@ exports[`Text input it calls onDelete when the delete button is clicked 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="text"
-        value="My name is Glif"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="text"
+          value="My name is Glif"
+        />
+        
+      </div>
+      <svg
+        class="c2 has-fill"
+        clip-rule="evenodd"
+        fill="var(--purple-medium)"
+        fill-rule="evenodd"
+        height="1em"
+        viewBox="4 4 16 16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.7333 4.2669C19.3776 3.91103 18.801 3.91103 18.4453 4.2669L11.9994 10.7166L5.55552 4.26885C5.19986 3.91299 4.62323 3.91299 4.26757 4.26885C3.91191 4.62472 3.91191 5.20169 4.26757 5.55756L10.7115 12.0053L4.27793 18.4426C3.92228 18.7985 3.92228 19.3755 4.27793 19.7313C4.63359 20.0872 5.21022 20.0872 5.56587 19.7313L11.9994 13.294L18.435 19.7333C18.7906 20.0892 19.3672 20.0892 19.7229 19.7333C20.0786 19.3774 20.0786 18.8005 19.7229 18.4446L13.2874 12.0053L19.7333 5.5556C20.0889 5.19974 20.0889 4.62276 19.7333 4.2669Z"
+        />
+      </svg>
     </div>
-    <svg
-      class="c2 has-fill"
-      clip-rule="evenodd"
-      fill="var(--purple-medium)"
-      fill-rule="evenodd"
-      height="1em"
-      viewBox="4 4 16 16"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M19.7333 4.2669C19.3776 3.91103 18.801 3.91103 18.4453 4.2669L11.9994 10.7166L5.55552 4.26885C5.19986 3.91299 4.62323 3.91299 4.26757 4.26885C3.91191 4.62472 3.91191 5.20169 4.26757 5.55756L10.7115 12.0053L4.27793 18.4426C3.92228 18.7985 3.92228 19.3755 4.27793 19.7313C4.63359 20.0872 5.21022 20.0872 5.56587 19.7313L11.9994 13.294L18.435 19.7333C18.7906 20.0892 19.3672 20.0892 19.7229 19.7333C20.0786 19.3774 20.0786 18.8005 19.7229 18.4446L13.2874 12.0053L19.7333 5.5556C20.0889 5.19974 20.0889 4.62276 19.7333 4.2669Z"
-      />
-    </svg>
   </div>
 </label>
 `;
@@ -197,6 +212,17 @@ exports[`Text input it renders correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -268,24 +294,28 @@ exports[`Text input it renders correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="text"
-        value="My name is Glif"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="text"
+          value="My name is Glif"
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -333,6 +363,17 @@ exports[`Text input it renders the disabled state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -408,25 +449,29 @@ exports[`Text input it renders the disabled state correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        disabled=""
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="text"
-        value=""
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          disabled=""
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="text"
+          value=""
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -473,6 +518,17 @@ exports[`Text input it renders the required state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -551,24 +607,28 @@ exports[`Text input it renders the required state correctly 1`] = `
     </span>
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class="error"
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="text"
-        value=""
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class="error"
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="text"
+          value=""
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -594,6 +654,17 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -665,24 +736,28 @@ exports[`Text input it renders the vertical required state correctly 1`] = `
     Nice to meet you
   </span>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class="error"
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="text"
-        value=""
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class="error"
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="text"
+          value=""
+        />
+        
+      </div>
     </div>
   </div>
   <span

@@ -34,6 +34,7 @@ const LabeledLinkEl = styled.div`
 
 export const LabeledLink = ({
   label,
+  inline,
   color,
   href,
   linkText,
@@ -44,7 +45,7 @@ export const LabeledLink = ({
   useNewTabIcon
 }: LabeledLinkProps) => {
   return (
-    <LabeledText label={label}>
+    <LabeledText label={label} inline={inline}>
       <LabeledLinkEl color={color}>
         {disableLink || useNewTabIcon ? (
           <span>{linkText}</span>
@@ -66,6 +67,7 @@ export const LabeledLink = ({
 
 export interface LabeledLinkProps {
   label?: string
+  inline?: boolean
   color?: string
   href: string
   linkText?: string
@@ -78,6 +80,7 @@ export interface LabeledLinkProps {
 
 export const LabeledLinkPropTypes = {
   label: PropTypes.string,
+  inline: PropTypes.bool,
   color: PropTypes.string,
   href: PropTypes.string.isRequired,
   linkText: PropTypes.string,
