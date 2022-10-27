@@ -1,4 +1,4 @@
-import { isAddress, isEthAddress, isFilAddress } from '.'
+import { isAddress, isDelegatedAddress, isEthAddress, isFilAddress } from '.'
 
 const t0 = 't01'
 const t1 = 't15ihq5ibzwki2b4ep2f46avlkrqzhpqgtga7pdrq'
@@ -42,6 +42,14 @@ describe('isAddress', () => {
     expect(isAddress(eth3.slice(0, -1))).toBe(false)
     expect(isAddress(eth4.slice(0, -1))).toBe(false)
     expect(isAddress(eth5.slice(0, -1))).toBe(false)
+  })
+
+  test('it should validate delegated addresses', () => {
+    expect(isDelegatedAddress(t0)).toBe(false)
+    expect(isDelegatedAddress(t1)).toBe(false)
+    expect(isDelegatedAddress(t2)).toBe(false)
+    expect(isDelegatedAddress(t3)).toBe(false)
+    expect(isDelegatedAddress(t4)).toBe(true)
   })
 
   test('it should invalidate eth addresses as fil addresses', () => {
