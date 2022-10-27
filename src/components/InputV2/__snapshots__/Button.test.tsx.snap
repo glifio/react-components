@@ -43,6 +43,17 @@ exports[`Button input it renders correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -114,24 +125,28 @@ exports[`Button input it renders correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="button"
-        value="Click here"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="button"
+          value="Click here"
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -179,6 +194,17 @@ exports[`Button input it renders the disabled state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -254,25 +280,29 @@ exports[`Button input it renders the disabled state correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        disabled=""
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="button"
-        value="Click here"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          disabled=""
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="button"
+          value="Click here"
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -321,6 +351,17 @@ exports[`Button input it renders the green state correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -392,24 +433,28 @@ exports[`Button input it renders the green state correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class="green"
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="button"
-        value="Click here"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class="green"
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="button"
+          value="Click here"
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -458,6 +503,17 @@ exports[`Button input it renders the red state correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -529,24 +585,28 @@ exports[`Button input it renders the red state correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class="red"
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="button"
-        value="Click here"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class="red"
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="button"
+          value="Click here"
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -595,6 +655,17 @@ exports[`Button input it renders the submit button correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -666,24 +737,28 @@ exports[`Button input it renders the submit button correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="submit"
-        value="Click here"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="submit"
+          value="Click here"
+        />
+        
+      </div>
     </div>
   </div>
 </label>

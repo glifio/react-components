@@ -1,9 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import PropTypes from 'prop-types'
 import { Colors } from '../theme'
 
 const LabeledTextEl = styled.div`
-  display: ${({ inline }) => (inline ? 'inline-block' : 'block')};
+  ${({ inline }) => (inline && css`
+    display: inline-block;
+  `)}
 
   h4 {
     margin: 0;

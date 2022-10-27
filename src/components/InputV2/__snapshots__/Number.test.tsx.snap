@@ -43,6 +43,17 @@ exports[`Number input it renders correctly 1`] = `
   color: var(--red-medium);
 }
 
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
 .c1 .button-wrapper {
   display: -webkit-box;
   display: -webkit-flex;
@@ -114,24 +125,28 @@ exports[`Number input it renders correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="number"
-        value="500"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="number"
+          value="500"
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -179,6 +194,17 @@ exports[`Number input it renders the disabled state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -254,25 +280,29 @@ exports[`Number input it renders the disabled state correctly 1`] = `
     
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class=""
-        disabled=""
-        max=""
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="number"
-        value=""
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class=""
+          disabled=""
+          max=""
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="number"
+          value=""
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -319,6 +349,17 @@ exports[`Number input it renders the value too high state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -397,24 +438,28 @@ exports[`Number input it renders the value too high state correctly 1`] = `
     </span>
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class="error"
-        max="100"
-        min=""
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="number"
-        value="500"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class="error"
+          max="100"
+          min=""
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="number"
+          value="500"
+        />
+        
+      </div>
     </div>
   </div>
 </label>
@@ -461,6 +506,17 @@ exports[`Number input it renders the value too low state correctly 1`] = `
 
 .c0 span.error {
   color: var(--red-medium);
+}
+
+.c1 .suffix-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
 }
 
 .c1 .button-wrapper {
@@ -539,24 +595,28 @@ exports[`Number input it renders the value too low state correctly 1`] = `
     </span>
   </div>
   <div
-    class="button-wrapper"
+    class="suffix-wrapper"
   >
     <div
-      class="unit-wrapper"
+      class="button-wrapper"
     >
-      <input
-        autocomplete="on"
-        class="error"
-        max=""
-        min="-100"
-        name=""
-        placeholder=""
-        step="any"
-        style="padding-right: 1em;"
-        type="number"
-        value="-500"
-      />
-      
+      <div
+        class="unit-wrapper"
+      >
+        <input
+          autocomplete="on"
+          class="error"
+          max=""
+          min="-100"
+          name=""
+          placeholder=""
+          step="any"
+          style="padding-right: 1em;"
+          type="number"
+          value="-500"
+        />
+        
+      </div>
     </div>
   </div>
 </label>
