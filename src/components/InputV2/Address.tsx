@@ -1,8 +1,16 @@
 import PropTypes from 'prop-types'
+import {
+  delegatedFromEthAddress,
+  ethAddressFromDelegated
+} from '@glif/filecoin-address'
 import { useEffect, useState, useMemo } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
-import { isAddress } from '../../utils/isAddress'
 import { truncateString } from '../../utils/truncateString'
+import {
+  isAddress,
+  isDelegatedAddress,
+  isEthAddress
+} from '../../utils/isAddress'
 
 /**
  * AddressInput
@@ -35,6 +43,28 @@ export const AddressInput = ({
     [error, value]
   )
 
+  // Convert to delegated if eth
+  const delegatedFromEth = useMemo(
+    () => (!error && isEthAddress(value) ? delegatedFromEthAddress(value) : ''),
+    [error, value]
+  )
+
+  // Convert to eth if delegated
+  const ethFromDelegated = useMemo(
+    () =>
+      !error && isDelegatedAddress(value) ? ethAddressFromDelegated(value) : '',
+    [error, value]
+  )
+
+  // Communicate delegated address to parent component
+  useEffect(
+    () => setDelegated(delegatedFromEth),
+    [setDelegated, delegatedFromEth]
+  )
+
+  // Store any converted value for display
+  const converted = delegatedFromEth || ethFromDelegated
+
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
 
@@ -59,6 +89,7 @@ export const AddressInput = ({
       type='text'
       placeholder={actor ? 'f2...' : 'f1...'}
       value={hasFocus || !truncate ? value : truncated}
+      suffix={converted ? `Converts into: ${converted}` : ''}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
