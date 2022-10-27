@@ -3,8 +3,9 @@ import {
   delegatedFromEthAddress,
   ethAddressFromDelegated
 } from '@glif/filecoin-address'
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, ReactNode } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
+import { AddressLink } from '../LabeledText/AddressLink'
 import { truncateString } from '../../utils/truncateString'
 import {
   isAddress,
@@ -66,9 +67,31 @@ export const AddressInput = ({
   )
 
   // Determine suffix
-  const suffix = useMemo<string | null>(() => {
-    if (delegatedFromEth) return `Converts into ${delegatedFromEth}`
-    if (ethFromDelegated) return `Represented by ${ethFromDelegated}`
+  const suffix = useMemo<ReactNode>(() => {
+    if (delegatedFromEth)
+      return (
+        <>
+          Converts into{' '}
+          <AddressLink
+            inline
+            address={delegatedFromEth}
+            shouldTruncate={false}
+            fetchAddress={false}
+          />
+        </>
+      )
+    if (ethFromDelegated)
+      return (
+        <>
+          Represented by{' '}
+          <AddressLink
+            inline
+            address={ethFromDelegated}
+            shouldTruncate={false}
+            fetchAddress={false}
+          />
+        </>
+      )
     return null
   }, [delegatedFromEth, ethFromDelegated])
 
