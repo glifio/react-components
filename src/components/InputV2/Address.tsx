@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import {
   delegatedFromEthAddress,
   ethAddressFromDelegated
@@ -12,6 +13,10 @@ import {
   isDelegatedAddress,
   isEthAddress
 } from '../../utils/isAddress'
+
+const Suffix = styled.div`
+  font-size: 0.875rem;
+`
 
 /**
  * AddressInput
@@ -67,33 +72,20 @@ export const AddressInput = ({
   )
 
   // Determine suffix
-  const suffix = useMemo<ReactNode>(() => {
-    if (delegatedFromEth)
-      return (
-        <>
+  const suffix = useMemo<ReactNode>(
+    () =>
+      delegatedFromEth || ethFromDelegated ? (
+        <Suffix>
           Converts into{' '}
           <AddressLink
             inline
-            address={delegatedFromEth}
-            shouldTruncate={false}
+            address={delegatedFromEth || ethFromDelegated}
             fetchAddress={false}
           />
-        </>
-      )
-    if (ethFromDelegated)
-      return (
-        <>
-          Represented by{' '}
-          <AddressLink
-            inline
-            address={ethFromDelegated}
-            shouldTruncate={false}
-            fetchAddress={false}
-          />
-        </>
-      )
-    return null
-  }, [delegatedFromEth, ethFromDelegated])
+        </Suffix>
+      ) : null,
+    [delegatedFromEth, ethFromDelegated]
+  )
 
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
