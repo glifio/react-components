@@ -12,8 +12,12 @@ export const isFilAddress = (address: string): boolean =>
   validateAddressString(address)
 
 export const isDelegatedAddress = (address: string): boolean => {
-  const { protocol } = checkAddressString(address)
-  return protocol === Protocol.DELEGATED
+  try {
+    const { protocol } = checkAddressString(address)
+    return protocol === Protocol.DELEGATED
+  } catch {
+    return false
+  }
 }
 
 export const isEthAddress = (address: string): boolean =>
