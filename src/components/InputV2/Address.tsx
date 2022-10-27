@@ -44,15 +44,18 @@ export const AddressInput = ({
   )
 
   // Convert to delegated if eth
-  const delegatedFromEth = useMemo(
-    () => (!error && isEthAddress(value) ? delegatedFromEthAddress(value) : ''),
+  const delegatedFromEth = useMemo<string | null>(
+    () =>
+      !error && isEthAddress(value) ? delegatedFromEthAddress(value) : null,
     [error, value]
   )
 
   // Convert to eth if delegated
-  const ethFromDelegated = useMemo(
+  const ethFromDelegated = useMemo<string | null>(
     () =>
-      !error && isDelegatedAddress(value) ? ethAddressFromDelegated(value) : '',
+      !error && isDelegatedAddress(value)
+        ? ethAddressFromDelegated(value)
+        : null,
     [error, value]
   )
 
@@ -62,8 +65,12 @@ export const AddressInput = ({
     [setDelegated, delegatedFromEth]
   )
 
-  // Store any converted value for display
-  const converted = delegatedFromEth || ethFromDelegated
+  // Determine suffix
+  const suffix = useMemo<string | null>(() => {
+    if (delegatedFromEth) return `Converts into ${delegatedFromEth}`
+    if (ethFromDelegated) return `Represented by ${ethFromDelegated}`
+    return null
+  }, [delegatedFromEth, ethFromDelegated])
 
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
@@ -89,7 +96,7 @@ export const AddressInput = ({
       type='text'
       placeholder={actor ? 'f2...' : 'f1...'}
       value={hasFocus || !truncate ? value : truncated}
-      suffix={converted ? `Converts into: ${converted}` : ''}
+      suffix={suffix}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
@@ -112,7 +119,7 @@ export const AddressInput = ({
 
 export type AddressInputProps = {
   setIsValid?: (isValid: boolean) => void
-  setDelegated?: (delegated: string) => void
+  setDelegated?: (delegated: string | null) => void
   truncate?: boolean
   actor?: boolean
 } & Omit<BaseInputProps, 'error' | 'type' | 'placeholder' | 'suffix'>
