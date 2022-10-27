@@ -13,6 +13,7 @@ export const AddressInput = ({
   onFocus,
   onBlur,
   setIsValid,
+  setDelegated,
   truncate,
   actor,
   ...baseProps
@@ -75,11 +76,12 @@ export const AddressInput = ({
  * placeholder: always "f1..." for address input
  * suffix: displays converted address if eth or delegated
  *
- * We add "setIsValid", "truncate" and "actor"
+ * We add "setIsValid", "setDelegated", "truncate" and "actor"
  */
 
 export type AddressInputProps = {
   setIsValid?: (isValid: boolean) => void
+  setDelegated?: (delegated: string) => void
   truncate?: boolean
   actor?: boolean
 } & Omit<BaseInputProps, 'error' | 'type' | 'placeholder' | 'suffix'>
@@ -88,6 +90,7 @@ const { error, type, placeholder, suffix, ...addressProps } = BaseInputPropTypes
 
 AddressInput.propTypes = {
   setIsValid: PropTypes.func,
+  setDelegated: PropTypes.func,
   truncate: PropTypes.bool,
   actor: PropTypes.bool,
   ...addressProps
@@ -103,6 +106,7 @@ AddressInput.defaultProps = {
   onFocus: () => {},
   onBlur: () => {},
   setIsValid: () => {},
+  setDelegated: () => {},
   truncate: true,
   actor: false
 }
