@@ -1,5 +1,6 @@
 import { NextRouter } from 'next/router'
 import pick from 'lodash.pick'
+import { Network } from '../../services/EnvironmentProvider'
 
 export const getQueryParam = {
   string: (router: NextRouter, key: string): string => {
@@ -117,4 +118,39 @@ export function navigate(
 export const resetWallet = () => {
   // A full page reload resets the wallet
   window?.location?.reload()
+}
+
+// note - we prefer to use network as query param > network as a path param
+// all apps support network as a query param, but not all apps support network as a path param
+export const switchNetworkUrl = (asPath: string, network: Network) => {
+  // our apps can support both glif.io/<network>/address/<address> AND glif.io/address/<address>/?network=<network>
+  // when we switch networks, we want to make sure we stick with the same routing protocol
+  const supposedNetwork = asPath.split('/')[1]
+  // if the network name was encoded in path we have to rebuild the URL without query params
+  const networkInPath = Object.values(Network).some(
+    net => net === supposedNetwork || net === `${supposedNetwork}net`
+  )
+
+  let url = ''
+
+  if (networkInPath) {
+    // add the prefix slash which gets chopped off in our splitting of path params
+    url += '/'
+
+    const endPath = asPath.split('/').slice(2)
+    // either get rid of the network name if switching to mainnet, or replace the network name with the new network
+    url +=
+      network === Network.MAINNET
+        ? endPath.join('/')
+        : [network, ...endPath].join('/')
+  } else {
+    url =
+      network === Network.MAINNET
+        ? removeQueryParam(asPath, 'network')
+        : appendQueryParams(asPath, {
+            network
+          })
+  }
+
+  return url
 }

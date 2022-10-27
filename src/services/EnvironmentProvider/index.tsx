@@ -13,8 +13,7 @@ import {
 } from 'react'
 import pick from 'lodash.pick'
 import isEqual from 'lodash.isequal'
-
-import { appendQueryParams, getQueryParam, removeQueryParam } from '../../utils'
+import { getQueryParam, switchNetworkUrl } from '../../utils/urlParams'
 
 export enum Network {
   MAINNET = 'mainnet',
@@ -164,12 +163,7 @@ export const EnvironmentProvider = ({
   const [environment, setEnvironment] = useState({ ...env })
   const setNetwork = useCallback(
     async (n: NetworkInfo) => {
-      const url =
-        n.networkName === Network.MAINNET
-          ? removeQueryParam(router.asPath, 'network')
-          : appendQueryParams(router.asPath, {
-              network: n.networkName
-            })
+      const url = switchNetworkUrl(router.asPath, n.networkName)
       window?.location?.assign(url)
     },
     [router]
