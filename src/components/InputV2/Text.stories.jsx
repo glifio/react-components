@@ -26,6 +26,13 @@ Text.args = {
   label: 'Enter your name'
 }
 
+export const Suffix = Template.bind({})
+Suffix.args = {
+  Comp: TextInput,
+  label: 'Enter your name',
+  suffix: 'This will show below the input field'
+}
+
 export const Password = Template.bind({})
 Password.args = {
   Comp: PasswordInput,

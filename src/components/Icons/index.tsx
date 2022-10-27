@@ -8,12 +8,12 @@ import { Colors } from '../theme'
  * IconBase
  */
 
-const rotate = keyframes`
+const rotateFull = keyframes`
 0% { transform: rotate(0deg); }
 100% { transform: rotate(360deg); }
 `
 
-const rotateStepped = keyframes`
+const rotateQuart = keyframes`
 0% { transform: rotate(0deg); }
 25% { transform: rotate(90deg); }
 50% { transform: rotate(180deg); }
@@ -25,16 +25,16 @@ const IconBaseEl = styled.svg`
   vertical-align: middle;
 
   ${props => css`
-    ${props.rotate &&
+    ${props.rotateFull &&
     css`
-      animation-name: ${rotate};
+      animation-name: ${rotateFull};
       animation-duration: ${props.rotateDuration};
       animation-timing-function: ${props.rotateEase};
       animation-iteration-count: infinite;
     `}
-    ${props.rotateStepped &&
+    ${props.rotateQuart &&
     css`
-      animation-name: ${rotateStepped};
+      animation-name: ${rotateQuart};
       animation-duration: ${props.rotateDuration};
       animation-timing-function: ${props.rotateEase};
       animation-iteration-count: infinite;
@@ -64,13 +64,10 @@ export const IconBase = ({ children, ...props }: IconBaseProps) => {
   )
 }
 
-export type IconBaseProps = Omit<
-  SVGProps<SVGSVGElement>,
-  'xmlns' | 'rotate'
-> & {
+export type IconBaseProps = Omit<SVGProps<SVGSVGElement>, 'xmlns'> & {
   children: ReactNode
-  rotate?: boolean
-  rotateStepped?: boolean
+  rotateFull?: boolean
+  rotateQuart?: boolean
   rotateEase?: string
   rotateDuration?: string
 }
@@ -80,15 +77,15 @@ IconBase.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]).isRequired,
-  rotate: PropTypes.bool,
-  rotateStepped: PropTypes.bool,
+  rotateFull: PropTypes.bool,
+  rotateQuart: PropTypes.bool,
   rotateEase: PropTypes.string,
   rotateDuration: PropTypes.string
 }
 
 IconBase.defaultProps = {
-  rotate: false,
-  rotateStepped: false,
+  rotateFull: false,
+  rotateQuart: false,
   rotateEase: 'ease',
   rotateDuration: '4s'
 }
@@ -180,7 +177,7 @@ IconFail.propTypes = IconPropTypes
 
 export const IconPending = ({ color, ...props }: IconProps) => (
   <IconBase
-    rotateStepped
+    rotateQuart
     viewBox='0 0 24 24'
     fill={color ?? Colors.YELLOW_DARK}
     {...props}

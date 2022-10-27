@@ -1,8 +1,16 @@
 import PropTypes from 'prop-types'
+import {
+  delegatedFromEthAddress,
+  ethAddressFromDelegated
+} from '@glif/filecoin-address'
 import { useEffect, useState, useMemo } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
-import { isAddress } from '../../utils/isAddress'
 import { truncateString } from '../../utils/truncateString'
+import {
+  isAddress,
+  isDelegatedAddress,
+  isEthAddress
+} from '../../utils/isAddress'
 
 /**
  * AddressInput
@@ -13,6 +21,7 @@ export const AddressInput = ({
   onFocus,
   onBlur,
   setIsValid,
+  setDelegated,
   truncate,
   actor,
   ...baseProps
@@ -33,6 +42,28 @@ export const AddressInput = ({
     () => (error ? value : truncateString(value)),
     [error, value]
   )
+
+  // Convert to delegated if eth
+  const delegatedFromEth = useMemo(
+    () => (!error && isEthAddress(value) ? delegatedFromEthAddress(value) : ''),
+    [error, value]
+  )
+
+  // Convert to eth if delegated
+  const ethFromDelegated = useMemo(
+    () =>
+      !error && isDelegatedAddress(value) ? ethAddressFromDelegated(value) : '',
+    [error, value]
+  )
+
+  // Communicate delegated address to parent component
+  useEffect(
+    () => setDelegated(delegatedFromEth),
+    [setDelegated, delegatedFromEth]
+  )
+
+  // Store any converted value for display
+  const converted = delegatedFromEth || ethFromDelegated
 
   // Communicate validity to parent component
   useEffect(() => setIsValid(!error), [setIsValid, error])
@@ -58,6 +89,7 @@ export const AddressInput = ({
       type='text'
       placeholder={actor ? 'f2...' : 'f1...'}
       value={hasFocus || !truncate ? value : truncated}
+      suffix={converted ? `Converts into: ${converted}` : ''}
       onChange={onChangeBase}
       onFocus={onFocusBase}
       onBlur={onBlurBase}
@@ -73,20 +105,23 @@ export const AddressInput = ({
  * error: set by address input validation
  * type: always "text" for address input
  * placeholder: always "f1..." for address input
+ * suffix: displays converted address if eth or delegated
  *
- * We add "setIsValid", "truncate" and "actor"
+ * We add "setIsValid", "setDelegated", "truncate" and "actor"
  */
 
 export type AddressInputProps = {
   setIsValid?: (isValid: boolean) => void
+  setDelegated?: (delegated: string) => void
   truncate?: boolean
   actor?: boolean
-} & Omit<BaseInputProps, 'error' | 'type' | 'placeholder'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'placeholder' | 'suffix'>
 
-const { error, type, placeholder, ...addressProps } = BaseInputPropTypes
+const { error, type, placeholder, suffix, ...addressProps } = BaseInputPropTypes
 
 AddressInput.propTypes = {
   setIsValid: PropTypes.func,
+  setDelegated: PropTypes.func,
   truncate: PropTypes.bool,
   actor: PropTypes.bool,
   ...addressProps
@@ -102,6 +137,7 @@ AddressInput.defaultProps = {
   onFocus: () => {},
   onBlur: () => {},
   setIsValid: () => {},
+  setDelegated: () => {},
   truncate: true,
   actor: false
 }
