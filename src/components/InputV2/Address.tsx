@@ -73,6 +73,7 @@ export const AddressInput = ({
  * error: set by address input validation
  * type: always "text" for address input
  * placeholder: always "f1..." for address input
+ * suffix: displays converted address if eth or delegated
  *
  * We add "setIsValid", "truncate" and "actor"
  */
@@ -81,9 +82,9 @@ export type AddressInputProps = {
   setIsValid?: (isValid: boolean) => void
   truncate?: boolean
   actor?: boolean
-} & Omit<BaseInputProps, 'error' | 'type' | 'placeholder'>
+} & Omit<BaseInputProps, 'error' | 'type' | 'placeholder' | 'suffix'>
 
-const { error, type, placeholder, ...addressProps } = BaseInputPropTypes
+const { error, type, placeholder, suffix, ...addressProps } = BaseInputPropTypes
 
 AddressInput.propTypes = {
   setIsValid: PropTypes.func,
