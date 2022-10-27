@@ -3,9 +3,11 @@ import PropTypes from 'prop-types'
 import { Colors } from '../theme'
 
 const LabeledTextEl = styled.div`
-  ${({ inline }) => (inline && css`
-    display: inline-block;
-  `)}
+  ${props =>
+    props.inline &&
+    css`
+      display: inline-block;
+    `}
 
   h4 {
     margin: 0;
