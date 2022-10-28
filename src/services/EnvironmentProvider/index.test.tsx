@@ -3,7 +3,6 @@ import { act } from 'react-dom/test-utils'
 import { TestEnvironment } from '../../test-utils/TestEnvironment'
 import { EnvironmentProvider, Network, networks, useEnvironment } from '.'
 import { CoinType } from '@glif/filecoin-address'
-import { switchNetworkUrl } from '../../utils/urlParams'
 
 const mockRouterPush = jest.fn()
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
@@ -85,32 +84,6 @@ describe('EnvironmentProvider', () => {
           'https://wallet.glif.io/'
         )
       })
-    })
-  })
-
-  describe('switchNetworkUrl', () => {
-    test('it can switch from mainnet to another network via query params', () => {
-      const url = '/address/t0100/'
-      expect(switchNetworkUrl(url, Network.WALLABY)).toBe(
-        '/address/t0100/?network=wallabynet'
-      )
-    })
-    test('it can switch from another network to mainnet via query params', () => {
-      const url = '/address/t0100/?network=wallaby'
-      expect(switchNetworkUrl(url, Network.MAINNET)).toBe('/address/t0100/')
-    })
-    test('it can switch from another network to mainnet via path params', () => {
-      const expected = '/address/t0100/'
-      const url = '/wallabynet/address/t0100/'
-      const url2 = '/wallaby/address/t0100/'
-      expect(switchNetworkUrl(url, Network.MAINNET)).toBe(expected)
-      expect(switchNetworkUrl(url2, Network.MAINNET)).toBe(expected)
-    })
-    test('it can switch from one non mainnet network to another non mainnet network via path params', () => {
-      const url = '/calibration/address/t0100/'
-      expect(switchNetworkUrl(url, Network.WALLABY)).toBe(
-        '/wallabynet/address/t0100/'
-      )
     })
   })
 })

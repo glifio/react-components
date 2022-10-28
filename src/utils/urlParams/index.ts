@@ -131,26 +131,15 @@ export const switchNetworkUrl = (asPath: string, network: Network) => {
     net => net === supposedNetwork || net === `${supposedNetwork}net`
   )
 
-  let url = ''
-
   if (networkInPath) {
-    // add the prefix slash which gets chopped off in our splitting of path params
-    url += '/'
-
-    const endPath = asPath.split('/').slice(2)
     // either get rid of the network name if switching to mainnet, or replace the network name with the new network
-    url +=
-      network === Network.MAINNET
-        ? endPath.join('/')
-        : [network, ...endPath].join('/')
-  } else {
-    url =
-      network === Network.MAINNET
-        ? removeQueryParam(asPath, 'network')
-        : appendQueryParams(asPath, {
-            network
-          })
+    const endPath = asPath.split('/').slice(2)
+    return network === Network.MAINNET
+      ? ['', ...endPath].join('/')
+      : ['', network, ...endPath].join('/')
   }
 
-  return url
+  return network === Network.MAINNET
+    ? removeQueryParam(asPath, 'network')
+    : appendQueryParams(asPath, { network })
 }
