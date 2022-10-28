@@ -21,7 +21,7 @@
     "build": "run-s clean codegen build:*",
     "build:babel": "babel src --out-dir dist --extensions \".ts,.tsx,.js,.jsx\" --source-maps --ignore 'src/**/*.stories.jsx','src/**/*.test.jsx','src/**/*.test.js','src/**/*.test.tsx','src/**/*.test.ts'",
     "build:types": "tsc --emitDeclarationOnly",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "build-storybook -s ./src/public",
     "watch": "npm run clean && run-p watch:*",
     "watch:babel": "npm run codegen && npm run build:babel -- --watch",
     "start": "npm run watch",
