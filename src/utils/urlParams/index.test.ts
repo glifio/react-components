@@ -1,5 +1,6 @@
 import { NextRouter } from 'next/router'
-import { getQueryParam, navigate, removeQueryParam } from '.'
+import { getQueryParam, navigate, removeQueryParam, switchNetworkUrl } from '.'
+import { Network } from '../../services/EnvironmentProvider'
 
 enum PAGE {
   LANDING = '/',
@@ -199,5 +200,30 @@ describe('navigate', () => {
     expect(routerWithQuery2.push).toHaveBeenCalledWith(
       `${PAGE.HOME}?glif=ftw&foo=baz&test1=a&test1=b&test1=c&test2=1&test2=2&test2=3&test3=xyz&test4=789`
     )
+  })
+  describe('switchNetworkUrl', () => {
+    test('it can switch from mainnet to another network via query params', () => {
+      const url = '/address/t0100/'
+      expect(switchNetworkUrl(url, Network.WALLABY)).toBe(
+        '/address/t0100/?network=wallabynet'
+      )
+    })
+    test('it can switch from another network to mainnet via query params', () => {
+      const url = '/address/t0100/?network=wallaby'
+      expect(switchNetworkUrl(url, Network.MAINNET)).toBe('/address/t0100/')
+    })
+    test('it can switch from another network to mainnet via path params', () => {
+      const expected = '/address/t0100/'
+      const url = '/wallabynet/address/t0100/'
+      const url2 = '/wallaby/address/t0100/'
+      expect(switchNetworkUrl(url, Network.MAINNET)).toBe(expected)
+      expect(switchNetworkUrl(url2, Network.MAINNET)).toBe(expected)
+    })
+    test('it can switch from one non mainnet network to another non mainnet network via path params', () => {
+      const url = '/calibration/address/t0100/'
+      expect(switchNetworkUrl(url, Network.WALLABY)).toBe(
+        '/wallabynet/address/t0100/'
+      )
+    })
   })
 })
