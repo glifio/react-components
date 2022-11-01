@@ -228,6 +228,19 @@ describe('navigate', () => {
     )
   })
 
+  test('it adds query params when network is encoded as a path param', () => {
+    navigate(routerWithNetworkInPath, {
+      pageUrl: PAGE.HOME,
+      params: {
+        test2: 'extra-fishy-fish'
+      }
+    })
+    expect(routerWithNetworkInPath.push).toHaveBeenCalledTimes(1)
+    expect(routerWithNetworkInPath.push).toHaveBeenCalledWith(
+      `${PAGE.HOME}/wallaby?test2=extra-fishy-fish`
+    )
+  })
+
   test('it handles retaining params, overwriting params and adding all new types at the same time', () => {
     navigate(routerWithQuery2, {
       pageUrl: PAGE.HOME,
@@ -245,6 +258,7 @@ describe('navigate', () => {
       `${PAGE.HOME}?glif=ftw&foo=baz&test1=a&test1=b&test1=c&test2=1&test2=2&test2=3&test3=xyz&test4=789`
     )
   })
+
   describe('switchNetworkUrl', () => {
     test('it can switch from mainnet to another network via query params', () => {
       const url = '/address/t0100/'
