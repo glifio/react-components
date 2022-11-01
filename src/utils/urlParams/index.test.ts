@@ -8,17 +8,20 @@ enum PAGE {
 }
 
 const router = {
-  push: jest.fn()
+  push: jest.fn(),
+  asPath: PAGE.LANDING
 } as unknown as NextRouter
 
 const routerWithQuery = {
   query: { foo: 'bar' },
+  asPath: PAGE.LANDING,
   push: jest.fn()
 } as unknown as NextRouter
 
 const routerWithQuery2 = {
   query: { foo: 'bar', glif: 'ftw' },
-  push: jest.fn()
+  push: jest.fn(),
+  asPath: PAGE.LANDING
 } as unknown as NextRouter
 
 const routerWithQuery3 = {
@@ -28,6 +31,26 @@ const routerWithQuery3 = {
     test3: 'xyz',
     test4: '789'
   },
+  push: jest.fn(),
+  asPath: PAGE.LANDING
+} as unknown as NextRouter
+
+const routerWithNetworkInPath = {
+  query: {
+    network: 'wallaby'
+  },
+  // confusing, since LANDING already includes the slash
+  asPath: `${PAGE.LANDING}wallaby/`,
+  push: jest.fn()
+} as unknown as NextRouter
+
+const routerWithNetworkInPath2 = {
+  query: {
+    network: 'wallaby',
+    test1: 'fish'
+  },
+  // confusing, since LANDING already includes the slash
+  asPath: `${PAGE.LANDING}wallaby/`,
   push: jest.fn()
 } as unknown as NextRouter
 
@@ -182,6 +205,27 @@ describe('navigate', () => {
     })
     expect(router.push).toHaveBeenCalledTimes(1)
     expect(router.push).toHaveBeenCalledWith(`${PAGE.HOME}?test2=abc`)
+  })
+
+  test('it handles network as a path param', () => {
+    navigate(routerWithNetworkInPath, {
+      pageUrl: PAGE.HOME
+    })
+    expect(routerWithNetworkInPath.push).toHaveBeenCalledTimes(1)
+    expect(routerWithNetworkInPath.push).toHaveBeenCalledWith(
+      `${PAGE.HOME}/wallaby`
+    )
+  })
+
+  test('it retains query params when network is encoded as a path param', () => {
+    navigate(routerWithNetworkInPath2, {
+      pageUrl: PAGE.HOME,
+      retainParams: true
+    })
+    expect(routerWithNetworkInPath2.push).toHaveBeenCalledTimes(1)
+    expect(routerWithNetworkInPath2.push).toHaveBeenCalledWith(
+      `${PAGE.HOME}/wallaby?test1=fish`
+    )
   })
 
   test('it handles retaining params, overwriting params and adding all new types at the same time', () => {

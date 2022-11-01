@@ -96,6 +96,16 @@ interface NavigateOptions {
 
 export const glifParams = ['network']
 
+export const isNetworkInPath = (asPath: string) => {
+  // our apps can support both glif.io/<network>/address/<address> AND glif.io/address/<address>/?network=<network>
+  // when we switch networks, we want to make sure we stick with the same routing protocol
+  const supposedNetwork = asPath.split('/')[1]
+  // if the network name was encoded in path we have to rebuild the URL without query params
+  return Object.values(Network).some(
+    net => net === supposedNetwork || net === `${supposedNetwork}net`
+  )
+}
+
 export function navigate(
   router: NextRouter,
   { pageUrl, params, retainParams }: NavigateOptions
@@ -103,7 +113,16 @@ export function navigate(
   const query = router?.query
   let updatedUrl = pageUrl
 
-  if (query) {
+  if (query && isNetworkInPath(router.asPath)) {
+    updatedUrl += `/${query.network}`
+
+    if (retainParams) {
+      // if the network is already encoded in the url's path, we don't want to add it as a query param
+      const cloned = { ...query }
+      delete cloned.network
+      updatedUrl = appendQueryParams(updatedUrl, cloned)
+    }
+  } else if (query) {
     // Retain all query parameters or just the glifParams
     const retainedParams = retainParams ? query : pick(query, glifParams)
     updatedUrl = appendQueryParams(updatedUrl, retainedParams)
@@ -123,15 +142,7 @@ export const resetWallet = () => {
 // note - we prefer to use network as query param > network as a path param
 // all apps support network as a query param, but not all apps support network as a path param
 export const switchNetworkUrl = (asPath: string, network: Network) => {
-  // our apps can support both glif.io/<network>/address/<address> AND glif.io/address/<address>/?network=<network>
-  // when we switch networks, we want to make sure we stick with the same routing protocol
-  const supposedNetwork = asPath.split('/')[1]
-  // if the network name was encoded in path we have to rebuild the URL without query params
-  const networkInPath = Object.values(Network).some(
-    net => net === supposedNetwork || net === `${supposedNetwork}net`
-  )
-
-  if (networkInPath) {
+  if (isNetworkInPath(asPath)) {
     // either get rid of the network name if switching to mainnet, or replace the network name with the new network
     const endPath = asPath.split('/').slice(2)
     return network === Network.MAINNET
