@@ -6,7 +6,10 @@ import {
 
 import { Address, useActorQuery } from '../../../../generated/graphql'
 import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
-import { useEnvironment } from '../../../../services/EnvironmentProvider'
+import {
+  useEnvironment,
+  useLogger
+} from '../../../../services/EnvironmentProvider'
 import { isDelegatedAddress, useAbi } from '../../../../utils'
 
 export const useMethodName = (
@@ -14,6 +17,7 @@ export const useMethodName = (
   method: number,
   params: string
 ): string | null => {
+  const logger = useLogger()
   const { coinType, networkName } = useEnvironment()
 
   // Get actor data from GraphQL
@@ -24,15 +28,20 @@ export const useMethodName = (
     skip: !address
   })
 
-  const [abi] = useAbi(address?.robust)
-  if (isDelegatedAddress(address?.robust) && !!abi) {
-    return getFEVMMethodName(params, abi)
-  } else if (isDelegatedAddress(address?.robust)) {
+  try {
+    const [abi] = useAbi(address?.robust)
+    if (isDelegatedAddress(address?.robust) && !!abi) {
+      return getFEVMMethodName(params, abi)
+    } else if (isDelegatedAddress(address?.robust)) {
+      return 'Unknown'
+    }
+
+    // Resolve actor code, name and message name
+    const actorCode = data?.actor?.Code
+    const actorName = actorCode ? getActorName(actorCode, networkName) : null
+    return actorName ? getMethodName(actorName, method) : null
+  } catch (err) {
+    logger.error(err)
     return 'Unknown'
   }
-
-  // Resolve actor code, name and message name
-  const actorCode = data?.actor?.Code
-  const actorName = actorCode ? getActorName(actorCode, networkName) : null
-  return actorName ? getMethodName(actorName, method) : null
 }
