@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react'
+import { ABI } from '@glif/filecoin-actor-utils'
 import { useLogger } from '../../services'
 import { useAbi } from '../../utils/useAbi'
 import { ButtonV2 } from '../Button/V2'
 import { FileInput } from '../InputV2/File'
-import { ABI } from '../Layout'
 
 export const AbiInput = ({ actorAddress }: UploadABIProps) => {
   const [abi, setAbi] = useAbi(actorAddress)
