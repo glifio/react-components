@@ -63,7 +63,7 @@ export const DataTypeLines = ({
       )
 
     default:
-      throw new Error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
+      return <Line label={dataType.Name}>{dataType.Value.toString()}</Line>
   }
 }
 
@@ -96,7 +96,7 @@ export const DataTypeMapLines = ({
         key={key}
         label={key}
         depth={label ? (depth ?? 0) + 1 : depth}
-        dataType={dt}
+        dataType={dt as DataType}
       />
     ))}
   </>

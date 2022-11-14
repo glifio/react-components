@@ -6,7 +6,6 @@ import { useStateReplayQuery } from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
 import { useMessage } from '../hooks/useAllMessages'
-import { useMethodName } from '../hooks/useMethodName'
 import { Lines, Line, StandardBox, PageTitle } from '../../../Layout'
 import { makeFriendlyBalance } from '../../../../utils/makeFriendlyBalance'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
@@ -22,6 +21,8 @@ import {
   useLogger
 } from '../../../../services/EnvironmentProvider'
 import { GqlMessage } from '../../../../customPropTypes'
+import { isFEVMTx } from '../../../../utils/isFEVMTx'
+import { AbiInput } from '../../../InputV2/Abi'
 
 enum MessageState {
   Loading,
@@ -47,6 +48,8 @@ export default function MessageDetail({
   const { message, error, loading, pending } = useMessage(txID)
   const { isProd } = useEnvironment()
   const logger = useLogger()
+
+  const fevmTx = useMemo(() => isFEVMTx(message), [message])
 
   const { data: stateReplayQuery, error: stateReplayError } =
     useStateReplayQuery({
@@ -76,8 +79,6 @@ export default function MessageDetail({
         ?.executionTrace as unknown as ExecutionTrace) || null,
     [stateReplayQuery]
   )
-
-  const methodName = useMethodName(message?.to, message?.method)
 
   const { coinType } = useEnvironment()
 
@@ -152,24 +153,39 @@ export default function MessageDetail({
           </StandardBox>
         )}
         {messageState === MessageState.Pending && (
-          <MessageDetailBase
-            txID={txID}
-            methodName={methodName}
-            message={message}
-            time={time}
-            pending
-          />
+          <>
+            <MessageDetailBase
+              txID={txID}
+              message={message}
+              time={time}
+              pending
+            />
+            <hr />
+            {fevmTx && (
+              <Line label='Upload ABI'>
+                <AbiInput actorAddress={message.to.robust} />
+              </Line>
+            )}
+          </>
         )}
         {messageState === MessageState.Confirmed && (
           <>
             <MessageDetailBase
               txID={txID}
-              methodName={methodName}
               confirmations={confirmations}
               time={time}
               message={message}
             />
-            <p>Loading more details...</p>
+            <p>
+              Your transaction has made it on to the Filecoin Network! Once it
+              executes, we&apos;ll show more details below.{' '}
+            </p>
+            <hr />
+            {fevmTx && (
+              <Line label='Upload ABI'>
+                <AbiInput actorAddress={message.to.robust} />
+              </Line>
+            )}
           </>
         )}
         {messageState === MessageState.Executed && (
@@ -177,22 +193,30 @@ export default function MessageDetail({
             <MessageDetailBase
               txID={txID}
               exitCode={stateReplayQuery?.stateReplay?.receipt?.exitCode}
-              methodName={methodName}
               confirmations={confirmations}
               time={time}
               message={message}
             />
             <Line label='Transaction Fee'>{transactionFee}</Line>
+            <hr />
             {!!execReturn && (
-              <Line label='New actor created: '>
-                <AddressLink
-                  id={execReturn.id}
-                  address={execReturn.robust}
-                  hideCopyText={false}
-                />
+              <>
+                <Line label='New actor created: '>
+                  <AddressLink
+                    id={execReturn.id}
+                    address={execReturn.robust}
+                    hideCopyText={false}
+                  />
+                </Line>
+                <hr />
+              </>
+            )}
+            {fevmTx && (
+              <Line label='Upload ABI'>
+                <AbiInput actorAddress={message.to.robust} />
               </Line>
             )}
-            <hr />
+
             {seeMore ? (
               <p role='button' onClick={() => setSeeMore(false)}>
                 Click to see less ↑

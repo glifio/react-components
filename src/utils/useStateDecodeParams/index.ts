@@ -3,6 +3,7 @@ import LotusRpcEngine from '@glif/filecoin-rpc-client'
 
 import { useEnvironment } from '../../services/EnvironmentProvider'
 import { isFilAddress } from '../isAddress'
+import { decode, Protocol } from '@glif/filecoin-address'
 
 interface UseStateDecodeParamsResult<T> {
   params: T | null
@@ -18,6 +19,8 @@ const fetcher = async <T>(
   base64Params: string
 ): Promise<T | null> => {
   if (!apiAddress || !actorAddress || !base64Params) return null
+  // StateDecodeParams will not accept FEVM actors
+  else if (decode(actorAddress).protocol() === Protocol.DELEGATED) return null
 
   if (!isFilAddress(actorAddress)) throw new Error('Invalid actor address')
 

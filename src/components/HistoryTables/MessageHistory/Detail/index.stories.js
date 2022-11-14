@@ -16,5 +16,5 @@ const Template = args => (
 
 export const Detail = Template.bind({})
 Detail.args = {
-  txID: 'bafy2bzacebt5tgzzvjgnlciu5zilc2w2ybsjhxkln6k4lg5ijrjs2x37bdtos'
+  txID: '0xa90cfc87fe39b5046aaf6809a7b73e28c0a5136981f4f06b7f502bac16f98ca5'
 }

@@ -21,6 +21,7 @@ import {
 } from '../../Layout'
 import { DetailCaption } from '../detail'
 import {
+  Network,
   useEnvironment,
   useLogger
 } from '../../../services/EnvironmentProvider'
@@ -30,6 +31,7 @@ import {
   delegatedFromEthAddress,
   ethAddressFromDelegated
 } from '@glif/filecoin-address'
+import { AbiInput } from '../../InputV2/Abi'
 
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const logger = useLogger()
@@ -137,7 +139,14 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
 
   return (
     <>
-      <PageTitle>Actor Overview</PageTitle>
+      <PageTitle
+        sideContent={
+          networkName === Network.WALLABY &&
+          ethAddress && <AbiInput actorAddress={address} />
+        }
+      >
+        Actor Overview
+      </PageTitle>
       <hr />
       <DetailCaption
         name='Actor Overview'

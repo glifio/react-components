@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 import { CoinType } from '@glif/filecoin-address'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
@@ -18,15 +18,15 @@ export const TestEnvironment = ({
 }: TestEnvironmentProps) => (
   <Environment
     coinType={CoinType.TEST}
-    networkName={Network.CALIBRATION}
-    nodeStatusApiKey={networks[Network.CALIBRATION].nodeStatusApiKey}
-    graphUrl={networks[Network.CALIBRATION].graphUrl}
-    graphSecure={networks[Network.CALIBRATION].graphSecure}
-    lotusApiUrl={networks[Network.CALIBRATION].lotusApiUrl}
-    explorerUrl='https://explorer-calibration.glif.link'
+    networkName={Network.WALLABY}
+    nodeStatusApiKey={networks[Network.WALLABY].nodeStatusApiKey}
+    graphUrl={networks[Network.WALLABY].graphUrl}
+    graphSecure={networks[Network.WALLABY].graphSecure}
+    lotusApiUrl={networks[Network.WALLABY].lotusApiUrl}
+    explorerUrl='https://explorer.glif.io/wallaby'
     lotusApi={
       new LotusRPCEngine({
-        apiAddress: networks[Network.CALIBRATION].lotusApiUrl
+        apiAddress: networks[Network.WALLABY].lotusApiUrl
       })
     }
   >

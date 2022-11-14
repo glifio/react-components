@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react'
 import {
   DataType,
   describeMessageParams,
+  describeFEVMMessageParams,
   getActorName
 } from '@glif/filecoin-actor-utils'
 
@@ -10,7 +11,8 @@ import { BaseTypeObjLines, DataTypeLines } from './DataTypes'
 import { Line, NullishLine } from './Lines'
 import { useEnvironment, useLogger } from '../../services/EnvironmentProvider'
 import { useActorQuery } from '../../generated/graphql'
-import { convertAddrToPrefix, useStateDecodeParams } from '../../utils'
+import { convertAddrToPrefix, useAbi, useStateDecodeParams } from '../../utils'
+import { decode, Protocol } from '@glif/filecoin-address'
 
 export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
   const { coinType, networkName } = useEnvironment()
@@ -48,9 +50,19 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
     return null
   }, [actorCode, networkName, logger])
 
+  const [abi] = useAbi(address)
+
   // Get described parameters
   const describedParams = useMemo<DataType | null>(() => {
-    if (actorName && decodedParams) {
+    if (decode(address).protocol() === Protocol.DELEGATED && !!abi) {
+      try {
+        return describeFEVMMessageParams(params, abi)
+      } catch (e) {
+        logger.error(
+          `Failed to describe message params for network: ${networkName}, address: ${address}, method: ${method}, params: ${params}, with message: ${e.message}`
+        )
+      }
+    } else if (actorName && decodedParams) {
       try {
         return describeMessageParams(actorName, method, decodedParams)
       } catch (e) {
@@ -60,7 +72,16 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
       }
     }
     return null
-  }, [address, method, params, actorName, decodedParams, networkName, logger])
+  }, [
+    address,
+    method,
+    params,
+    actorName,
+    decodedParams,
+    networkName,
+    logger,
+    abi
+  ])
 
   // Return most verbose params first
   return describedParams ? (
