@@ -24,9 +24,11 @@ export const useMethodName = (
     skip: !address
   })
 
-  const [abi] = useAbi(address.robust)
-  if (!!address && isDelegatedAddress(address?.robust) && !!abi) {
+  const [abi] = useAbi(address?.robust)
+  if (isDelegatedAddress(address?.robust) && !!abi) {
     return getFEVMMethodName(params, abi)
+  } else if (isDelegatedAddress(address?.robust)) {
+    return 'Unknown'
   }
 
   // Resolve actor code, name and message name
