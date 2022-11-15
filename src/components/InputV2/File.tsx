@@ -92,6 +92,7 @@ export const FileInput = ({
   label,
   info,
   error,
+  dropText,
   vertical,
   centered,
   autoFocus,
@@ -171,7 +172,9 @@ export const FileInput = ({
             </div>
           ) : (
             <span className='drop-text'>
-              Drop {multiple ? 'files' : 'a file'} or click to browse
+              {dropText
+                ? dropText
+                : `Drop ${multiple ? 'files' : 'a file'} or click to browse`}
             </span>
           )}
         </div>
@@ -185,6 +188,7 @@ interface FileProps {
   label?: string
   info?: string
   error?: string
+  dropText?: string
   vertical?: boolean
   centered?: boolean
   autoFocus?: boolean
@@ -198,6 +202,7 @@ FileInput.propTypes = {
   label: PropTypes.string,
   info: PropTypes.string,
   error: PropTypes.string,
+  dropText: PropTypes.string,
   vertical: PropTypes.bool,
   centered: PropTypes.bool,
   autoFocus: PropTypes.bool,
@@ -211,6 +216,7 @@ FileInput.defaultProps = {
   label: '',
   info: '',
   error: '',
+  dropText: '',
   vertical: false,
   centered: false,
   autoFocus: false,

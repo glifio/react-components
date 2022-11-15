@@ -30,6 +30,13 @@ Base.args = {
   label: 'Any file'
 }
 
+export const DropText = Template.bind({})
+DropText.args = {
+  label: 'JSON file',
+  accept: 'application/json',
+  dropText: 'Drop a JSON file or click to browse'
+}
+
 export const Disabled = Template.bind({})
 Disabled.args = {
   label: 'Any file',
