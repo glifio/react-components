@@ -43,7 +43,7 @@ export const AbiInput = ({ actorAddress }: UploadABIProps) => {
   return !abi ? (
     <FileInput
       handleFileUpload={handleFileUpload}
-      accept='application/JSON'
+      accept='application/json'
       error={abiErr}
     />
   ) : (
