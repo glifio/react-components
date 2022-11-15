@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`File input it renders correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--space-m);
+  text-align: left;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.c0 > *:first-child {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 > *:last-child:not(.toggle-wrapper) {
+  -webkit-flex: 0 0 65%;
+  -ms-flex: 0 0 65%;
+  flex: 0 0 65%;
+}
+
+.c0 span.info,
+.c0 span.error {
+  font-size: 0.875rem;
+}
+
+.c0 span.error {
+  color: var(--red-medium);
+}
+
+.c1 .file-wrapper {
+  position: relative;
+}
+
+.c1 input {
+  position: absolute;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.c1 .overlay {
+  position: relative;
+  padding: var(--space-l) var(--space-m);
+  text-align: center;
+  color: var(--black);
+  background-color: var(--blue-light);
+  -webkit-transition: color 0.1s ease-out,background-color 0.1s ease-out;
+  transition: color 0.1s ease-out,background-color 0.1s ease-out;
+}
+
+.c1 .overlay .files {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: var(--space-m);
+}
+
+.c1 .overlay .files .list {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: var(--space-m);
+  pointer-events: none;
+}
+
+.c1 .overlay .files .clear {
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 var(--space-m);
+  -webkit-transition: -webkit-transform 0.1s ease-out;
+  -webkit-transition: transform 0.1s ease-out;
+  transition: transform 0.1s ease-out;
+}
+
+.c1 .overlay .files .clear:hover {
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+}
+
+.c1 .overlay .drop-text {
+  pointer-events: none;
+}
+
+.c1 .overlay:hover,
+.c1 .overlay:focus {
+  color: var(--black);
+  background-color: var(--blue-medium);
+}
+
+<label
+  class="c0 c1"
+>
+  <div>
+    <span>
+      Any file
+    </span>
+    
+  </div>
+  <div
+    class="file-wrapper"
+  >
+    <input
+      accept="*"
+      type="file"
+    />
+    <div
+      class="overlay"
+    >
+      <span
+        class="drop-text"
+      >
+        Drop 
+        a file
+         or click to browse
+      </span>
+    </div>
+  </div>
+</label>
+`;
