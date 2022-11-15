@@ -12,9 +12,9 @@ import { fromString } from 'uint8arrays'
 
 import { DataTypeLines } from './DataTypes'
 import { Line, NullishLine } from './Lines'
-import { useEnvironment, useLogger } from '../../services/EnvironmentProvider'
+import { useEnvironment, useLogger, useAbi } from '../../services'
 import { useActorQuery } from '../../generated/graphql'
-import { convertAddrToPrefix, useAbi } from '../../utils'
+import { convertAddrToPrefix } from '../../utils'
 
 export const LinesReturn = ({
   address,

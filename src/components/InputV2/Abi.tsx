@@ -1,12 +1,11 @@
 import { useCallback, useState } from 'react'
 import { ABI } from '@glif/filecoin-actor-utils'
-import { useLogger } from '../../services'
-import { useAbi } from '../../utils/useAbi'
+import { useAbi, useLogger } from '../../services'
 import { ButtonV2 } from '../Button/V2'
 import { FileInput } from '../InputV2/File'
 
 export const AbiInput = ({ actorAddress }: UploadABIProps) => {
-  const [abi, setAbi] = useAbi(actorAddress)
+  const [abi, setAbi, rmAbi] = useAbi(actorAddress)
   const [abiErr, setAbiErr] = useState<DOMException | Error | null>(null)
   const logger = useLogger()
 
@@ -22,9 +21,9 @@ export const AbiInput = ({ actorAddress }: UploadABIProps) => {
           // handle both json files of _only_ abi, and files with the abi nested under an 'abi' key
           // file is _only_ ABI
           if (Array.isArray(parsedABI)) {
-            setAbi(parsedABI as ABI)
+            setAbi(actorAddress, parsedABI as ABI)
           } else if (parsedABI.abi && Array.isArray(parsedABI.abi)) {
-            setAbi(parsedABI.abi)
+            setAbi(actorAddress, parsedABI.abi)
           } else {
             setAbiErr(new Error('Error parsing ABI from uploaded file.'))
           }
@@ -34,11 +33,11 @@ export const AbiInput = ({ actorAddress }: UploadABIProps) => {
         }
       }
       reader.onerror = () => {
-        setAbi(null)
+        rmAbi(actorAddress)
         setAbiErr(reader.error)
       }
     },
-    [setAbi, setAbiErr, logger]
+    [actorAddress, setAbi, rmAbi, setAbiErr, logger]
   )
 
   return !abi ? (
@@ -48,7 +47,7 @@ export const AbiInput = ({ actorAddress }: UploadABIProps) => {
       error={abiErr}
     />
   ) : (
-    <ButtonV2 onClick={() => setAbi(null)}>Reset abi</ButtonV2>
+    <ButtonV2 onClick={() => rmAbi(actorAddress)}>Reset abi</ButtonV2>
   )
 }
 

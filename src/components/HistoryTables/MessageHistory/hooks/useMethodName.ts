@@ -5,12 +5,8 @@ import {
 } from '@glif/filecoin-actor-utils'
 
 import { Address, useActorQuery } from '../../../../generated/graphql'
-import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
-import {
-  useEnvironment,
-  useLogger
-} from '../../../../services/EnvironmentProvider'
-import { isDelegatedAddress, useAbi } from '../../../../utils'
+import { isDelegatedAddress, convertAddrToPrefix } from '../../../../utils'
+import { useAbi, useEnvironment, useLogger } from '../../../../services'
 
 export const useMethodName = (
   address: Address,
