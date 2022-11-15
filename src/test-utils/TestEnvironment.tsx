@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 import { CoinType } from '@glif/filecoin-address'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'
+import { AbiProvider } from '../services/AbiProvider'
 import { Environment, Network, networks } from '../services/EnvironmentProvider'
 
 const OptionalApolloMockProvider = ({ children, mocks, withApollo }) => {
@@ -30,9 +31,11 @@ export const TestEnvironment = ({
       })
     }
   >
-    <OptionalApolloMockProvider withApollo={withApollo} mocks={apolloMocks}>
-      {children}
-    </OptionalApolloMockProvider>
+    <AbiProvider>
+      <OptionalApolloMockProvider withApollo={withApollo} mocks={apolloMocks}>
+        {children}
+      </OptionalApolloMockProvider>
+    </AbiProvider>
   </Environment>
 )
 

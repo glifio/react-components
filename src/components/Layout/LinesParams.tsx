@@ -7,11 +7,11 @@ import {
   getActorName
 } from '@glif/filecoin-actor-utils'
 
+import { useEnvironment, useLogger, useAbi } from '../../services'
 import { BaseTypeObjLines, DataTypeLines } from './DataTypes'
 import { Line, NullishLine } from './Lines'
-import { useEnvironment, useLogger } from '../../services/EnvironmentProvider'
 import { useActorQuery } from '../../generated/graphql'
-import { convertAddrToPrefix, useAbi, useStateDecodeParams } from '../../utils'
+import { convertAddrToPrefix, useStateDecodeParams } from '../../utils'
 import { decode, Protocol } from '@glif/filecoin-address'
 
 export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
