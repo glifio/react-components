@@ -1,4 +1,5 @@
 export * from './theme'
+export * from './AbiSelector'
 export * from './AccountCard'
 export * from './AccountCard/Error'
 export * from './AppTile'

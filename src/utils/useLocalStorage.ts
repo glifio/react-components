@@ -1,70 +1,170 @@
-import { useEffect, useState } from 'react'
-import clonedeep from 'lodash.clonedeep'
+import { useEffect, useState, useMemo } from 'react'
 import { useLogger } from '../services'
 
-const loadFromStorage = <T>(namespace: string): Record<string, T> | null => {
-  const kvPairs = window.localStorage.getItem(namespace)
-  if (kvPairs) {
-    const parsedKVPairs = JSON.parse(kvPairs) as Record<string, T>
-    return parsedKVPairs
-  }
-
-  return null
+class StorageMock {
+  readonly store: Map<string, string> = new Map()
+  clear = () => this.store.clear()
+  getItem = (key: string) => this.store.get(key)
+  setItem = (key: string, value: string) => this.store.set(key, value)
+  removeItem = (key: string) => this.store.delete(key)
 }
 
-export function useLocalStorage<T>(namespace: string) {
+enum StorageEvent {
+  CLEAR_ALL = 'ClearAll',
+  CLEAR_ITEM = 'ClearItem',
+  SET_ITEM = 'SetItem'
+}
+
+type StorageEventDetail<T> = {
+  event: StorageEvent
+  key: string
+  valStr?: string | null
+  valObj?: T | null
+}
+
+const getStorageEvent = <T>({ event, ...props }: StorageEventDetail<T>) =>
+  new CustomEvent<StorageEventDetail<T>>(event, {
+    detail: { event, ...props }
+  })
+
+const storageMock = new StorageMock()
+const eventTarget = new EventTarget()
+
+const useStorage = (): Storage | StorageMock => {
+  const hasWindow = typeof window !== 'undefined'
+  return useMemo<Storage | StorageMock>(
+    () => (hasWindow ? window.localStorage : storageMock),
+    [hasWindow]
+  )
+}
+
+interface UseLocalStorageProps {
+  key: string
+  isObject?: boolean
+  namespace?: string
+}
+
+export const useLocalStorage = <T = object>({
+  key,
+  isObject,
+  namespace
+}: UseLocalStorageProps) => {
   const logger = useLogger()
-  // This isn't the most efficient, but it works
-  const [valueMap, setValueMap] = useState<Record<string, T>>({})
-  const [loaded, setLoaded] = useState(false)
+  const storage = useStorage()
+  const storageKey = useMemo<string>(
+    () => `${namespace || ''}:${key}`,
+    [namespace, key]
+  )
 
-  // hydrate state from local storage on page load
+  /*
+   * Returned values
+   */
+
+  const [error, setError] = useState<string | null>(null)
+  const [valStr, setValStr] = useState<string | null>(null)
+  const [valObj, setValObj] = useState<T | null>(null)
+
+  const clear = () => {
+    storage.removeItem(storageKey)
+    eventTarget.dispatchEvent(
+      getStorageEvent<T>({ event: StorageEvent.CLEAR_ITEM, key: storageKey })
+    )
+  }
+
+  const clearAll = () => {
+    storage.clear()
+    eventTarget.dispatchEvent(new Event(StorageEvent.CLEAR_ALL))
+  }
+
+  const setString = (value: string) => {
+    if (!key) return setError('Missing key for storage')
+    storage.setItem(storageKey, value)
+    eventTarget.dispatchEvent(
+      getStorageEvent<T>({
+        event: StorageEvent.SET_ITEM,
+        key: storageKey,
+        valStr: value,
+        valObj: null
+      })
+    )
+  }
+
+  const setObject = (value: T) => {
+    if (!key) return setError('Missing key for storage')
+    try {
+      const valueStr = JSON.stringify(value)
+      storage.setItem(storageKey, valueStr)
+      eventTarget.dispatchEvent(
+        getStorageEvent<T>({
+          event: StorageEvent.SET_ITEM,
+          key: storageKey,
+          valStr: valueStr,
+          valObj: value
+        })
+      )
+    } catch (e) {
+      logger.error(e)
+      setError(`Failed to store JSON value for key: ${storageKey}`)
+    }
+  }
+
+  /*
+   * Get initial value from store
+   */
+
   useEffect(() => {
+    setError(null)
     try {
-      if (typeof window !== 'undefined' && !loaded) {
-        const kvPairs = loadFromStorage<T>(namespace)
-        if (kvPairs) {
-          if (
-            Object.keys(valueMap).length === 0 &&
-            Object.keys(kvPairs).length > 0
-          ) {
-            setLoaded(true)
-            setValueMap(kvPairs)
-          }
-        }
+      const item = storage.getItem(storageKey)
+      setValStr(item || null)
+      setValObj(item && isObject ? JSON.parse(item) : null)
+    } catch (e) {
+      logger.error(e)
+      setError(`Failed to load JSON value for key: ${storageKey}`)
+    }
+  }, [logger, storage, storageKey, isObject])
+
+  /*
+   * Storage event listeners
+   */
+
+  useEffect(() => {
+    const onClearAll = () => {
+      setError(null)
+      setValStr(null)
+      setValObj(null)
+    }
+    const onClearItem = (event: CustomEvent<StorageEventDetail<T>>) => {
+      if (storageKey === event.detail.key) {
+        setError(null)
+        setValStr(null)
+        setValObj(null)
       }
-    } catch (error) {
-      logger.error(error)
     }
-  }, [namespace, valueMap, setValueMap, logger, loaded, setLoaded])
-
-  // Return a wrapped version of useState's setter function that ...
-  // ... persists the new value to localStorage.
-  const setKV = (key: string, value: T) => {
-    try {
-      const kvPairs = loadFromStorage<T>(namespace) ?? {}
-      const clone = clonedeep(kvPairs)
-      clone[key] = value
-      window.localStorage.setItem(namespace, JSON.stringify(clone))
-      setValueMap(clone)
-    } catch (error) {
-      logger.error(error)
-    }
-  }
-
-  const rmKey = (key: string) => {
-    try {
-      const kvPairs = loadFromStorage<T>(namespace)
-      if (kvPairs) {
-        const clone = clonedeep(kvPairs)
-        clone[key] = null
-        window.localStorage.setItem(namespace, JSON.stringify(clone))
-        setValueMap(clone)
+    const onSetItem = (event: CustomEvent<StorageEventDetail<T>>) => {
+      if (storageKey === event.detail.key) {
+        setError(null)
+        setValStr(event.detail.valStr)
+        setValObj(event.detail.valObj)
       }
-    } catch (error) {
-      logger.error(error)
     }
-  }
+    eventTarget.addEventListener(StorageEvent.CLEAR_ALL, onClearAll)
+    eventTarget.addEventListener(StorageEvent.CLEAR_ITEM, onClearItem)
+    eventTarget.addEventListener(StorageEvent.SET_ITEM, onSetItem)
+    return () => {
+      eventTarget.removeEventListener(StorageEvent.CLEAR_ALL, onClearAll)
+      eventTarget.removeEventListener(StorageEvent.CLEAR_ITEM, onClearItem)
+      eventTarget.removeEventListener(StorageEvent.SET_ITEM, onSetItem)
+    }
+  }, [storageKey])
 
-  return [valueMap, setKV, rmKey] as const
+  return {
+    error,
+    valStr,
+    valObj,
+    clear,
+    clearAll,
+    setString,
+    setObject
+  }
 }

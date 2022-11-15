@@ -1,4 +1,3 @@
-export * from './AbiProvider'
 export * from './WalletProvider/useWallet'
 export * from './WalletProvider'
 export * from './WalletProvider/state'

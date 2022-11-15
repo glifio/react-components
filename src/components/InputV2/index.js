@@ -1,4 +1,3 @@
-import { AbiInput } from './Abi'
 import { AddressInput } from './Address'
 import { BigIntInput } from './BigInt'
 import { ButtonInput } from './Button'
@@ -16,7 +15,6 @@ import { TextInput, EmailInput, PasswordInput, SearchInput } from './Text'
 import { Toggle } from './Toggle'
 
 export const InputV2 = {
-  Abi: AbiInput,
   Address: AddressInput,
   BigInt: BigIntInput,
   Button: ButtonInput,

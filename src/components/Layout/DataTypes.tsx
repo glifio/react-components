@@ -63,7 +63,7 @@ export const DataTypeLines = ({
       )
 
     default:
-      return <Line label={dataType.Name}>{dataType.Value.toString()}</Line>
+      throw new Error(`Unexpected DataType: ${JSON.stringify(dataType)}`)
   }
 }
 

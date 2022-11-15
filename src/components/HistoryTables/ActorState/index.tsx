@@ -6,11 +6,16 @@ import {
   getActorName,
   describeActorState
 } from '@glif/filecoin-actor-utils'
+import {
+  delegatedFromEthAddress,
+  ethAddressFromDelegated
+} from '@glif/filecoin-address'
 
 import { useAddressQuery } from '../../../generated/graphql'
 import { makeFriendlyBalance } from '../../../utils/makeFriendlyBalance'
 import { useStateReadState } from '../../../utils/useStateReadState'
 import { useMsigGetAvailableBalance } from '../../../utils/useMsigGetAvailableBalance'
+import { isDelegatedAddress, isEthAddress } from '../../../utils/isAddress'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import {
   Lines,
@@ -21,17 +26,10 @@ import {
 } from '../../Layout'
 import { DetailCaption } from '../detail'
 import {
-  Network,
   useEnvironment,
   useLogger
 } from '../../../services/EnvironmentProvider'
 import { BaseTypeObjLines, DataTypeMapLines } from '../../Layout/DataTypes'
-import { isDelegatedAddress, isEthAddress } from '../../../utils/isAddress'
-import {
-  delegatedFromEthAddress,
-  ethAddressFromDelegated
-} from '@glif/filecoin-address'
-import { AbiInput } from '../../InputV2/Abi'
 
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const logger = useLogger()
@@ -139,14 +137,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
 
   return (
     <>
-      <PageTitle
-        sideContent={
-          networkName === Network.WALLABY &&
-          ethAddress && <AbiInput actorAddress={address} />
-        }
-      >
-        Actor Overview
-      </PageTitle>
+      <PageTitle>Actor Overview</PageTitle>
       <hr />
       <DetailCaption
         name='Actor Overview'

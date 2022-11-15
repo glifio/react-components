@@ -22,7 +22,7 @@ import {
 } from '../../../../services/EnvironmentProvider'
 import { GqlMessage } from '../../../../customPropTypes'
 import { isFEVMTx } from '../../../../utils/isFEVMTx'
-import { AbiInput } from '../../../InputV2/Abi'
+import { AbiSelector } from '../../../AbiSelector'
 
 enum MessageState {
   Loading,
@@ -163,7 +163,7 @@ export default function MessageDetail({
             <hr />
             {fevmTx && (
               <Line label='Upload ABI'>
-                <AbiInput actorAddress={message.to.robust} />
+                <AbiSelector address={message.to.robust} />
               </Line>
             )}
           </>
@@ -183,7 +183,7 @@ export default function MessageDetail({
             <hr />
             {fevmTx && (
               <Line label='Upload ABI'>
-                <AbiInput actorAddress={message.to.robust} />
+                <AbiSelector address={message.to.robust} />
               </Line>
             )}
           </>
@@ -213,7 +213,7 @@ export default function MessageDetail({
             )}
             {fevmTx && (
               <Line label='Upload ABI'>
-                <AbiInput actorAddress={message.to.robust} />
+                <AbiSelector address={message.to.robust} />
               </Line>
             )}
 
