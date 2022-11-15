@@ -155,7 +155,7 @@ export const FileInput = ({
           {files ? (
             <div className='files'>
               <div className='list'>
-                {Array.from(files).map(file => (
+                {Array.from(files).map((file: File) => (
                   <span key={file.name}>{file.name}</span>
                 ))}
               </div>
