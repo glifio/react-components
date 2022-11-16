@@ -5,39 +5,38 @@ import {
 } from '@glif/filecoin-actor-utils'
 
 import { Address, useActorQuery } from '../../../../generated/graphql'
-import { isDelegatedAddress, convertAddrToPrefix } from '../../../../utils'
-import { useAbi, useEnvironment, useLogger } from '../../../../services'
+import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
+import { isDelegatedAddress } from '../../../../utils/isAddress'
+import { useEnvironment } from '../../../../services'
+import { useAbi } from '../../../../utils/useAbi'
 
 export const useMethodName = (
   address: Address,
   method: number,
   params: string
-): string | null => {
-  const logger = useLogger()
+): string => {
   const { coinType, networkName } = useEnvironment()
+  const { abi } = useAbi(address?.robust)
+  const isDelegated = isDelegatedAddress(address?.robust)
+  const defaultName = 'Unknown'
 
   // Get actor data from GraphQL
   const { data } = useActorQuery({
     variables: {
       address: convertAddrToPrefix(address?.robust || address?.id, coinType)
     },
-    skip: !address
+    skip: !address || isDelegated
   })
 
-  try {
-    const [abi] = useAbi(address?.robust)
-    if (isDelegatedAddress(address?.robust) && !!abi) {
-      return getFEVMMethodName(params, abi)
-    } else if (isDelegatedAddress(address?.robust)) {
-      return 'Unknown'
-    }
-
-    // Resolve actor code, name and message name
-    const actorCode = data?.actor?.Code
-    const actorName = actorCode ? getActorName(actorCode, networkName) : null
-    return actorName ? getMethodName(actorName, method) : null
-  } catch (err) {
-    logger.error(err)
-    return 'Unknown'
+  if (isDelegated) {
+    // Resolve method name from actor ABI
+    const name = getFEVMMethodName(params, abi)
+    return name || defaultName
   }
+
+  // Resolve method name from actor code
+  const actorCode = data?.actor?.Code
+  const actorName = actorCode ? getActorName(actorCode, networkName) : null
+  const methodName = actorName ? getMethodName(actorName, method) : null
+  return methodName || defaultName
 }
