@@ -9,22 +9,22 @@ class StorageMock {
   removeItem = (key: string) => this.store.delete(key)
 }
 
-enum StorageEvent {
+enum StorageEventType {
   CLEAR_ALL = 'ClearAll',
   CLEAR_ITEM = 'ClearItem',
   SET_ITEM = 'SetItem'
 }
 
 type StorageEventDetail<T> = {
-  event: StorageEvent
+  type: StorageEventType
   key: string
   valStr?: string | null
   valObj?: T | null
 }
 
-const getStorageEvent = <T>({ event, ...props }: StorageEventDetail<T>) =>
-  new CustomEvent<StorageEventDetail<T>>(event, {
-    detail: { event, ...props }
+const getStorageEvent = <T>({ type, ...props }: StorageEventDetail<T>) =>
+  new CustomEvent<StorageEventDetail<T>>(type, {
+    detail: { type, ...props }
   })
 
 const storageMock = new StorageMock()
@@ -67,13 +67,13 @@ export const useLocalStorage = <T = object>({
   const clear = () => {
     storage.removeItem(storageKey)
     eventTarget.dispatchEvent(
-      getStorageEvent<T>({ event: StorageEvent.CLEAR_ITEM, key: storageKey })
+      getStorageEvent<T>({ type: StorageEventType.CLEAR_ITEM, key: storageKey })
     )
   }
 
   const clearAll = () => {
     storage.clear()
-    eventTarget.dispatchEvent(new Event(StorageEvent.CLEAR_ALL))
+    eventTarget.dispatchEvent(new Event(StorageEventType.CLEAR_ALL))
   }
 
   const setString = (value: string) => {
@@ -81,7 +81,7 @@ export const useLocalStorage = <T = object>({
     storage.setItem(storageKey, value)
     eventTarget.dispatchEvent(
       getStorageEvent<T>({
-        event: StorageEvent.SET_ITEM,
+        type: StorageEventType.SET_ITEM,
         key: storageKey,
         valStr: value,
         valObj: null
@@ -96,7 +96,7 @@ export const useLocalStorage = <T = object>({
       storage.setItem(storageKey, valueStr)
       eventTarget.dispatchEvent(
         getStorageEvent<T>({
-          event: StorageEvent.SET_ITEM,
+          type: StorageEventType.SET_ITEM,
           key: storageKey,
           valStr: valueStr,
           valObj: value
@@ -148,13 +148,13 @@ export const useLocalStorage = <T = object>({
         setValObj(event.detail.valObj)
       }
     }
-    eventTarget.addEventListener(StorageEvent.CLEAR_ALL, onClearAll)
-    eventTarget.addEventListener(StorageEvent.CLEAR_ITEM, onClearItem)
-    eventTarget.addEventListener(StorageEvent.SET_ITEM, onSetItem)
+    eventTarget.addEventListener(StorageEventType.CLEAR_ALL, onClearAll)
+    eventTarget.addEventListener(StorageEventType.CLEAR_ITEM, onClearItem)
+    eventTarget.addEventListener(StorageEventType.SET_ITEM, onSetItem)
     return () => {
-      eventTarget.removeEventListener(StorageEvent.CLEAR_ALL, onClearAll)
-      eventTarget.removeEventListener(StorageEvent.CLEAR_ITEM, onClearItem)
-      eventTarget.removeEventListener(StorageEvent.SET_ITEM, onSetItem)
+      eventTarget.removeEventListener(StorageEventType.CLEAR_ALL, onClearAll)
+      eventTarget.removeEventListener(StorageEventType.CLEAR_ITEM, onClearItem)
+      eventTarget.removeEventListener(StorageEventType.SET_ITEM, onSetItem)
     }
   }, [storageKey])
 

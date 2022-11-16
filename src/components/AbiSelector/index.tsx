@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ButtonV2 } from '../Button/V2'
 import { FileInput } from '../InputV2/File'
-import { useAbi } from '../../utils'
+import { useAbi } from '../../utils/useAbi'
 
 export const AbiSelector = ({ address }: AbiSelectorProps) => {
   const { abi, clear, setAbi, error } = useAbi(address)
@@ -17,7 +17,7 @@ export const AbiSelector = ({ address }: AbiSelectorProps) => {
       reader.onload = () => {
         try {
           const parsed = JSON.parse(reader.result as string)
-          const parsedAbi = parsed.abi ?? abi
+          const parsedAbi = parsed.abi ?? parsed
           Array.isArray(parsedAbi)
             ? setAbi(parsedAbi)
             : setReadError('Failed to interpret JSON file as ABI')

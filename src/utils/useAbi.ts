@@ -5,11 +5,11 @@ export const useAbi = (address: string) => {
   const {
     valObj: abi,
     setObject: setAbi,
-    ...props
+    ...rest
   } = useLocalStorage<ABI>({
     key: address,
     isObject: true,
     namespace: 'ABI'
   })
-  return { abi, setAbi, ...props }
+  return { abi, setAbi, ...rest }
 }
