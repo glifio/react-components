@@ -151,10 +151,10 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
           )}
-          {ethAddress && <Line label='ETH address'>{ethAddress}</Line>}
           {addressData?.address.id && (
             <Line label='ID address'>{addressData?.address.id}</Line>
           )}
+          {ethAddress && <Line label='ETH address'>{ethAddress}</Line>}
           <Line label='Actor name'>{actorNameCapitalized || 'Unknown'}</Line>
           <Line label='Actor code'>{actorData.Code['/']}</Line>
           <Line label='Balance'>{friendlyBalance} FIL</Line>
