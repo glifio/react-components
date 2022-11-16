@@ -6,6 +6,7 @@ import { useStateReplayQuery } from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
 import { useMessage } from '../hooks/useAllMessages'
+import { useMethodName } from '../hooks/useMethodName'
 import { Lines, Line, StandardBox, PageTitle } from '../../../Layout'
 import { makeFriendlyBalance } from '../../../../utils/makeFriendlyBalance'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
@@ -78,6 +79,12 @@ export default function MessageDetail({
       (stateReplayQuery?.stateReplay?.executionTrace
         ?.executionTrace as unknown as ExecutionTrace) || null,
     [stateReplayQuery]
+  )
+
+  const methodName = useMethodName(
+    message?.to,
+    message?.method,
+    message?.params
   )
 
   const { coinType } = useEnvironment()
@@ -156,6 +163,7 @@ export default function MessageDetail({
           <>
             <MessageDetailBase
               txID={txID}
+              methodName={methodName}
               message={message}
               time={time}
               pending
@@ -172,6 +180,7 @@ export default function MessageDetail({
           <>
             <MessageDetailBase
               txID={txID}
+              methodName={methodName}
               confirmations={confirmations}
               time={time}
               message={message}
@@ -192,6 +201,7 @@ export default function MessageDetail({
           <>
             <MessageDetailBase
               txID={txID}
+              methodName={methodName}
               exitCode={stateReplayQuery?.stateReplay?.receipt?.exitCode}
               confirmations={confirmations}
               time={time}
