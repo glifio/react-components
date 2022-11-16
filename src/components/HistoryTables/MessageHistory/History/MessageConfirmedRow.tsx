@@ -27,7 +27,7 @@ export const MessageConfirmedRow = ({
     () => isAddrEqual(message.to, inspectingAddress),
     [message.to, inspectingAddress]
   )
-  const methodName = useMethodName(message.to, message.method)
+  const methodName = useMethodName(message.to, message.method, message.params)
   const { age } = useAge(message.height)
 
   return (

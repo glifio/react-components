@@ -31,7 +31,7 @@ export const MessagePendingRow = ({
     () => isAddrEqual(message.to, inspectingAddress),
     [message.to, inspectingAddress]
   )
-  const methodName = useMethodName(message.to, message.method)
+  const methodName = useMethodName(message.to, message.method, message.params)
   return (
     <tr>
       <td>
