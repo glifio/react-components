@@ -24,6 +24,7 @@ import {
   PageTitle,
   CollapsableLines
 } from '../../Layout'
+import { AbiSelector } from '../../AbiSelector'
 import { DetailCaption } from '../detail'
 import {
   useEnvironment,
@@ -181,6 +182,11 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
             </CollapsableLines>
           ) : (
             <NullishLine label='State' />
+          )}
+          {ethAddress && (
+            <Line label='ABI'>
+              <AbiSelector address={address} />
+            </Line>
           )}
         </Lines>
       )}
