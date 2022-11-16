@@ -17,7 +17,7 @@ export const AbiSelector = ({ address }: AbiSelectorProps) => {
       reader.onload = () => {
         try {
           const parsed = JSON.parse(reader.result as string)
-          const parsedAbi = parsed.abi ?? abi
+          const parsedAbi = parsed.abi ?? parsed
           Array.isArray(parsedAbi)
             ? setAbi(parsedAbi)
             : setReadError('Failed to interpret JSON file as ABI')
