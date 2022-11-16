@@ -7,7 +7,7 @@ import {
 import { Address, useActorQuery } from '../../../../generated/graphql'
 import convertAddrToPrefix from '../../../../utils/convertAddrToPrefix'
 import { isDelegatedAddress } from '../../../../utils/isAddress'
-import { useEnvironment } from '../../../../services'
+import { useEnvironment } from '../../../../services/EnvironmentProvider'
 import { useAbi } from '../../../../utils/useAbi'
 
 export const useMethodName = (
