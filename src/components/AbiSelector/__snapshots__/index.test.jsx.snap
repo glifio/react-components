@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`File input it renders correctly 1`] = `
+exports[`AbiSelector renders the story 1`] = `
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -8,30 +8,13 @@ exports[`File input it renders correctly 1`] = `
   display: flex;
   gap: var(--space-m);
   text-align: left;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.c0 > *:first-child {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
 }
 
-.c0 > *:last-child:not(.toggle-wrapper) {
-  -webkit-flex: 0 0 65%;
-  -ms-flex: 0 0 65%;
-  flex: 0 0 65%;
+.c0 * {
+  text-align: center;
 }
 
 .c0 span.info,
@@ -123,18 +106,13 @@ exports[`File input it renders correctly 1`] = `
 <label
   class="c0 c1"
 >
-  <div>
-    <span>
-      Any file
-    </span>
-    
-    
-  </div>
+  
+  
   <div
     class="file-wrapper"
   >
     <input
-      accept="*"
+      accept="application/json"
       type="file"
     />
     <div
