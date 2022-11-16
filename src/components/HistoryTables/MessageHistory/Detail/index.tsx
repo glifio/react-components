@@ -77,7 +77,11 @@ export default function MessageDetail({
     [stateReplayQuery]
   )
 
-  const methodName = useMethodName(message?.to, message?.method, message?.params)
+  const methodName = useMethodName(
+    message?.to,
+    message?.method,
+    message?.params
+  )
 
   const { coinType } = useEnvironment()
 
