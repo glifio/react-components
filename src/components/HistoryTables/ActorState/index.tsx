@@ -6,11 +6,16 @@ import {
   getActorName,
   describeActorState
 } from '@glif/filecoin-actor-utils'
+import {
+  delegatedFromEthAddress,
+  ethAddressFromDelegated
+} from '@glif/filecoin-address'
 
 import { useAddressQuery } from '../../../generated/graphql'
 import { makeFriendlyBalance } from '../../../utils/makeFriendlyBalance'
 import { useStateReadState } from '../../../utils/useStateReadState'
 import { useMsigGetAvailableBalance } from '../../../utils/useMsigGetAvailableBalance'
+import { isDelegatedAddress, isEthAddress } from '../../../utils/isAddress'
 import convertAddrToPrefix from '../../../utils/convertAddrToPrefix'
 import {
   Lines,
@@ -19,17 +24,13 @@ import {
   PageTitle,
   CollapsableLines
 } from '../../Layout'
+import { AbiSelector } from '../../AbiSelector'
 import { DetailCaption } from '../detail'
 import {
   useEnvironment,
   useLogger
 } from '../../../services/EnvironmentProvider'
 import { BaseTypeObjLines, DataTypeMapLines } from '../../Layout/DataTypes'
-import { isDelegatedAddress, isEthAddress } from '../../../utils/isAddress'
-import {
-  delegatedFromEthAddress,
-  ethAddressFromDelegated
-} from '@glif/filecoin-address'
 
 export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const logger = useLogger()
@@ -151,10 +152,10 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
           {addressData?.address.robust && (
             <Line label='Robust address'>{addressData?.address.robust}</Line>
           )}
-          {ethAddress && <Line label='ETH address'>{ethAddress}</Line>}
           {addressData?.address.id && (
             <Line label='ID address'>{addressData?.address.id}</Line>
           )}
+          {ethAddress && <Line label='ETH address'>{ethAddress}</Line>}
           <Line label='Actor name'>{actorNameCapitalized || 'Unknown'}</Line>
           <Line label='Actor code'>{actorData.Code['/']}</Line>
           <Line label='Balance'>{friendlyBalance} FIL</Line>
@@ -181,6 +182,11 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
             </CollapsableLines>
           ) : (
             <NullishLine label='State' />
+          )}
+          {ethAddress && (
+            <Line label='ABI'>
+              <AbiSelector address={address} />
+            </Line>
           )}
         </Lines>
       )}
