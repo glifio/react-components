@@ -1,22 +1,24 @@
 import { AddressInput } from './Address'
 import { BigIntInput } from './BigInt'
 import { ButtonInput } from './Button'
+import { FileInput } from './File'
 import { FilecoinInput } from './Filecoin'
 import { Info } from './Info'
 import { NumberInput } from './Number'
 import { ParamsInput } from './Params'
-import { TextInput, EmailInput, PasswordInput, SearchInput } from './Text'
+import { PrivateKeyInput } from './PrivateKey'
+import { SeedPhraseInput } from './SeedPhrase'
 import { Select } from './Select'
 import { SelectNumber } from './SelectNumber'
 import { SelectRange } from './SelectRange'
+import { TextInput, EmailInput, PasswordInput, SearchInput } from './Text'
 import { Toggle } from './Toggle'
-import { SeedPhraseInput } from './SeedPhrase'
-import { PrivateKeyInput } from './PrivateKey'
 
 export const InputV2 = {
   Address: AddressInput,
   BigInt: BigIntInput,
   Button: ButtonInput,
+  File: FileInput,
   Filecoin: FilecoinInput,
   Number: NumberInput,
   Params: ParamsInput,
