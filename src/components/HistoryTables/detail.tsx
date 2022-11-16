@@ -20,7 +20,6 @@ import {
 import { TxLink } from '../LabeledText/TxLink'
 import { LinesParams } from '../Layout/LinesParams'
 import { LinesReturn } from '../Layout/LinesReturn'
-import { MethodName } from './MessageHistory/Detail/MethodName'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -135,6 +134,7 @@ export const MessageDetailBase = ({
   pending,
   exitCode,
   txID,
+  methodName,
   confirmations
 }: MessageDetailBaseProps) => {
   const { age } = useAge(message.height)
@@ -201,12 +201,10 @@ export const MessageDetailBase = ({
       </Line>
       <hr />
       <Line label='Value'>{attoFilToFil(message.value)}</Line>
-      {!!message && (
-        <MethodName
-          address={message.to}
-          methodNum={message.method}
-          params={message.params}
-        />
+      {methodName && (
+        <Line label='Method'>
+          <Badge color='purple' text={methodName} />
+        </Line>
       )}
     </>
   )
@@ -215,6 +213,7 @@ export const MessageDetailBase = ({
 type MessageDetailBaseProps = {
   txID: string
   message: GqlMessage | GqlMessagePending
+  methodName: string
   time: number
   confirmations?: number
   pending?: boolean
