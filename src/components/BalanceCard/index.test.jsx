@@ -1,7 +1,6 @@
 import { FilecoinNumber } from '@glif/filecoin-number'
 import { fireEvent, render, act } from '@testing-library/react'
 import { BalanceCard } from '.'
-import noop from '../../utils/noop'
 import { Base } from './index.stories'
 
 describe('BalanceCard', () => {
@@ -13,7 +12,10 @@ describe('BalanceCard', () => {
 
   test('it renders correctly', () => {
     const { container } = render(
-      <BalanceCard balance={new FilecoinNumber('100', 'fil')} onSend={noop} />
+      <BalanceCard
+        balance={new FilecoinNumber('100', 'fil')}
+        onSend={() => {}}
+      />
     )
     expect(container.firstChild).toMatchSnapshot()
   })
@@ -22,7 +24,7 @@ describe('BalanceCard', () => {
     const { container } = render(
       <BalanceCard
         balance={new FilecoinNumber('10023324902.1241', 'fil')}
-        onSend={noop}
+        onSend={() => {}}
       />
     )
     expect(container.firstChild).toMatchSnapshot()
@@ -32,7 +34,7 @@ describe('BalanceCard', () => {
     const { container } = render(
       <BalanceCard
         balance={new FilecoinNumber('10022324.1241', 'fil')}
-        onSend={noop}
+        onSend={() => {}}
       />
     )
     expect(container.firstChild).toMatchSnapshot()
@@ -42,7 +44,7 @@ describe('BalanceCard', () => {
     const { container } = render(
       <BalanceCard
         balance={new FilecoinNumber('10021.1241', 'fil')}
-        onSend={noop}
+        onSend={() => {}}
       />
     )
     expect(container.firstChild).toMatchSnapshot()
@@ -52,7 +54,7 @@ describe('BalanceCard', () => {
     const { container } = render(
       <BalanceCard
         balance={new FilecoinNumber('999.1241', 'fil')}
-        onSend={noop}
+        onSend={() => {}}
       />
     )
     expect(container.firstChild).toMatchSnapshot()
@@ -62,7 +64,7 @@ describe('BalanceCard', () => {
     const { container } = render(
       <BalanceCard
         balance={new FilecoinNumber('.00001', 'fil')}
-        onSend={noop}
+        onSend={() => {}}
       />
     )
     expect(container.firstChild).toMatchSnapshot()
@@ -72,7 +74,7 @@ describe('BalanceCard', () => {
     const { container, getByText } = render(
       <BalanceCard
         balance={new FilecoinNumber('23488219.00001', 'fil')}
-        onSend={noop}
+        onSend={() => {}}
       />
     )
 
