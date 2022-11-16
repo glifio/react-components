@@ -17,7 +17,8 @@ const FileLabel = styled(Label)`
 
   .overlay {
     position: relative;
-    padding: ${Spaces.LARGE};
+    padding: ${Spaces.LARGE} ${Spaces.XLARGE};
+    border-radius: 4px;
     text-align: center;
     color: ${Colors.BLACK};
     background-color: ${Colors.BLUE_LIGHT};
