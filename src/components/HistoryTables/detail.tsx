@@ -20,6 +20,8 @@ import {
 import { TxLink } from '../LabeledText/TxLink'
 import { LinesParams } from '../Layout/LinesParams'
 import { LinesReturn } from '../Layout/LinesReturn'
+import { AbiSelector } from '../AbiSelector'
+import { isFEVMTx } from '../../utils/isFEVMTx'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -240,9 +242,9 @@ export const SeeMoreContent = ({
   gasCost,
   executionTrace
 }: SeeMoreContentProps) => {
+  const isFEVM = useMemo(() => isFEVMTx(message), [message])
   const gasPercentage = useMemo<string>(() => {
     const gasLimit = new FilecoinNumber(message.gasLimit, 'attofil')
-
     return (
       new FilecoinNumber(gasUsed, 'attofil')
         .dividedBy(gasLimit)
@@ -285,6 +287,16 @@ export const SeeMoreContent = ({
       </Line>
       <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
       <hr />
+      <Line label='Exit code'>{executionTrace.MsgRct.ExitCode}</Line>
+      <hr />
+      {isFEVM && (
+        <>
+          <Line label='ABI'>
+            <AbiSelector address={message.to.robust} />
+          </Line>
+          <hr />
+        </>
+      )}
       <LinesParams
         address={message.to.robust || message.to.id}
         method={message.method}
@@ -294,11 +306,9 @@ export const SeeMoreContent = ({
       <LinesReturn
         address={message.to.robust || message.to.id}
         method={message.method}
+        params={message.params}
         returnVal={executionTrace.MsgRct.Return}
-        inputParams={message.params}
       />
-      <hr />
-      <Line label='Exit code'>{executionTrace.MsgRct.ExitCode}</Line>
     </>
   )
 }

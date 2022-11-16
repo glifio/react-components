@@ -96,7 +96,7 @@ export const DataTypeMapLines = ({
         key={key}
         label={key}
         depth={label ? (depth ?? 0) + 1 : depth}
-        dataType={dt as DataType}
+        dataType={dt}
       />
     ))}
   </>

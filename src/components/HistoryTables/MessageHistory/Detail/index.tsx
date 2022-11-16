@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
+
 import { useStateReplayQuery } from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
@@ -22,8 +23,6 @@ import {
   useLogger
 } from '../../../../services/EnvironmentProvider'
 import { GqlMessage } from '../../../../customPropTypes'
-import { isFEVMTx } from '../../../../utils/isFEVMTx'
-import { AbiSelector } from '../../../AbiSelector'
 
 enum MessageState {
   Loading,
@@ -49,8 +48,6 @@ export default function MessageDetail({
   const { message, error, loading, pending } = useMessage(txID)
   const { isProd } = useEnvironment()
   const logger = useLogger()
-
-  const fevmTx = useMemo(() => isFEVMTx(message), [message])
 
   const { data: stateReplayQuery, error: stateReplayError } =
     useStateReplayQuery({
@@ -160,21 +157,13 @@ export default function MessageDetail({
           </StandardBox>
         )}
         {messageState === MessageState.Pending && (
-          <>
-            <MessageDetailBase
-              txID={txID}
-              methodName={methodName}
-              message={message}
-              time={time}
-              pending
-            />
-            <hr />
-            {fevmTx && (
-              <Line label='Upload ABI'>
-                <AbiSelector address={message.to.robust} />
-              </Line>
-            )}
-          </>
+          <MessageDetailBase
+            txID={txID}
+            methodName={methodName}
+            message={message}
+            time={time}
+            pending
+          />
         )}
         {messageState === MessageState.Confirmed && (
           <>
@@ -189,12 +178,6 @@ export default function MessageDetail({
               Your transaction has made it on to the Filecoin Network! Once it
               executes, we&apos;ll show more details below.{' '}
             </p>
-            <hr />
-            {fevmTx && (
-              <Line label='Upload ABI'>
-                <AbiSelector address={message.to.robust} />
-              </Line>
-            )}
           </>
         )}
         {messageState === MessageState.Executed && (
@@ -210,20 +193,12 @@ export default function MessageDetail({
             <Line label='Transaction Fee'>{transactionFee}</Line>
             <hr />
             {!!execReturn && (
-              <>
-                <Line label='New actor created: '>
-                  <AddressLink
-                    id={execReturn.id}
-                    address={execReturn.robust}
-                    hideCopyText={false}
-                  />
-                </Line>
-                <hr />
-              </>
-            )}
-            {fevmTx && (
-              <Line label='Upload ABI'>
-                <AbiSelector address={message.to.robust} />
+              <Line label='New actor created: '>
+                <AddressLink
+                  id={execReturn.id}
+                  address={execReturn.robust}
+                  hideCopyText={false}
+                />
               </Line>
             )}
 

@@ -1,29 +1,35 @@
 import PropTypes from 'prop-types'
 import { useEffect, useMemo } from 'react'
-import { decode as decodeAddr, Protocol } from '@glif/filecoin-address'
 import {
   DataType,
   describeMessageReturn,
-  getActorName,
-  describeFEVMMessageReturn
+  describeFEVMTxReturn,
+  getActorName
 } from '@glif/filecoin-actor-utils'
 import { decode } from '@ipld/dag-cbor'
 import { fromString } from 'uint8arrays'
 
 import { DataTypeLines } from './DataTypes'
 import { Line, NullishLine } from './Lines'
-import { useEnvironment, useLogger, useAbi } from '../../services'
+import { useEnvironment, useLogger } from '../../services/EnvironmentProvider'
 import { useActorQuery } from '../../generated/graphql'
-import { convertAddrToPrefix } from '../../utils'
+import convertAddrToPrefix from '../../utils/convertAddrToPrefix'
+import { isDelegatedAddress } from '../../utils/isAddress'
+import { useAbi } from '../../utils/useAbi'
 
 export const LinesReturn = ({
   address,
   method,
-  returnVal,
-  inputParams
+  params,
+  returnVal
 }: LinesReturnProps) => {
   const { coinType, networkName } = useEnvironment()
+  const { abi } = useAbi(address)
   const logger = useLogger()
+  const isDelegated = useMemo<boolean>(
+    () => isDelegatedAddress(address),
+    [address]
+  )
 
   // Get actor data
   const { data: actorData, error: actorDataError } = useActorQuery({
@@ -38,8 +44,11 @@ export const LinesReturn = ({
 
   // Decode return value
   const decodedReturnVal = useMemo<Record<string, any> | null>(
-    () => (returnVal ? decode(fromString(returnVal, 'base64')) : null),
-    [returnVal]
+    () =>
+      !isDelegated && returnVal
+        ? decode(fromString(returnVal, 'base64'))
+        : null,
+    [isDelegated, returnVal]
   )
 
   // Get actor code and name
@@ -53,25 +62,22 @@ export const LinesReturn = ({
     return null
   }, [actorCode, networkName, logger])
 
-  const [abi] = useAbi(address)
-
   // Get described return value
   const describedReturnVal = useMemo<DataType | null>(() => {
-    if (
-      decodeAddr(address).protocol() === Protocol.DELEGATED &&
-      !!abi &&
-      !!inputParams
-    ) {
+    if (isDelegated) {
       try {
-        return describeFEVMMessageReturn(inputParams, returnVal, abi)
+        // Describe delegated actor message return
+        if (abi) return describeFEVMTxReturn(params, returnVal, abi)
       } catch (e) {
         logger.error(
-          `Failed to describe fevm message return for network: ${networkName}, address: ${address}, method: ${method}, return: ${returnVal} with message: ${e.message}`
+          `Failed to describe FEVM tx return for network: ${networkName}, address: ${address}, method: ${method}, params: ${params}, return: ${returnVal}, with message: ${e.message}`
         )
       }
-    } else if (actorName && decodedReturnVal) {
+    } else {
       try {
-        return describeMessageReturn(actorName, method, decodedReturnVal)
+        // Describe built-in actor message return
+        if (actorName && decodedReturnVal)
+          return describeMessageReturn(actorName, method, decodedReturnVal)
       } catch (e) {
         logger.error(
           `Failed to describe message return for network: ${networkName}, address: ${address}, method: ${method}, return: ${returnVal}, with message: ${e.message}`
@@ -83,8 +89,9 @@ export const LinesReturn = ({
     abi,
     address,
     method,
-    inputParams,
+    params,
     returnVal,
+    isDelegated,
     actorName,
     decodedReturnVal,
     networkName,
@@ -94,6 +101,8 @@ export const LinesReturn = ({
   // Return most verbose return value first
   return describedReturnVal ? (
     <DataTypeLines label='Return' dataType={describedReturnVal} />
+  ) : isDelegated && !abi ? (
+    <Line label='Return (upload abi to decode)'>{returnVal}</Line>
   ) : returnVal ? (
     <Line label='Return (failed to decode)'>{returnVal}</Line>
   ) : (
@@ -104,13 +113,13 @@ export const LinesReturn = ({
 export interface LinesReturnProps {
   address: string
   method: number
+  params: string
   returnVal: string
-  inputParams?: string
 }
 
 LinesReturn.propTypes = {
   address: PropTypes.string.isRequired,
   method: PropTypes.number.isRequired,
-  returnVal: PropTypes.string.isRequired,
-  inputParams: PropTypes.string
+  params: PropTypes.string.isRequired,
+  returnVal: PropTypes.string.isRequired
 }

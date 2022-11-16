@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import {
   getActorName,
   getMethodName,
@@ -17,8 +18,11 @@ export const useMethodName = (
 ): string => {
   const { coinType, networkName } = useEnvironment()
   const { abi } = useAbi(address?.robust)
-  const isDelegated = isDelegatedAddress(address?.robust)
   const defaultName = 'Unknown'
+  const isDelegated = useMemo<boolean>(
+    () => isDelegatedAddress(address?.robust),
+    [address]
+  )
 
   // Get actor data from GraphQL
   const { data } = useActorQuery({
