@@ -28,11 +28,8 @@ export const useMethodName = (
     skip: !address || isDelegated
   })
 
-  if (isDelegated) {
-    // Resolve method name from actor ABI
-    const name = getFEVMMethodName(params, abi)
-    return name || defaultName
-  }
+  // Resolve method name from actor ABI
+  if (isDelegated) return getFEVMMethodName(params, abi) || defaultName
 
   // Resolve method name from actor code
   const actorCode = data?.actor?.Code
