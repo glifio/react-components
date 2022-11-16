@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ButtonV2 } from '../Button/V2'
 import { FileInput } from '../InputV2/File'
-import { useAbi } from '../../utils'
+import { useAbi } from '../../utils/useAbi'
 
 export const AbiSelector = ({ address }: AbiSelectorProps) => {
   const { abi, clear, setAbi, error } = useAbi(address)
