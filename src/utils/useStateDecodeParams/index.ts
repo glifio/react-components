@@ -2,8 +2,7 @@ import useSWRImmutable from 'swr/immutable'
 import LotusRpcEngine from '@glif/filecoin-rpc-client'
 
 import { useEnvironment } from '../../services/EnvironmentProvider'
-import { isFilAddress } from '../isAddress'
-import { decode, Protocol } from '@glif/filecoin-address'
+import { isFilAddress, isDelegatedAddress } from '../isAddress'
 
 interface UseStateDecodeParamsResult<T> {
   params: T | null
@@ -18,19 +17,17 @@ const fetcher = async <T>(
   methodNum: number,
   base64Params: string
 ): Promise<T | null> => {
-  if (!apiAddress || !actorAddress || !base64Params) return null
-  // StateDecodeParams will not accept FEVM actors
-  else if (decode(actorAddress).protocol() === Protocol.DELEGATED) return null
+  // Return null for missing input or delegated actors
+  if (
+    !apiAddress ||
+    !actorAddress ||
+    !base64Params ||
+    isDelegatedAddress(actorAddress)
+  )
+    return null
 
+  // Throw error for invalid Filecoin address formats
   if (!isFilAddress(actorAddress)) throw new Error('Invalid actor address')
-
-  // Temporarily attempt to parse as JSON string,
-  // until StateDecodeParams is removed from graph
-  try {
-    return JSON.parse(base64Params)
-  } catch {
-    // params are not a JSON string
-  }
 
   const lotusApi = new LotusRpcEngine({ apiAddress })
   return await lotusApi.request<T>(
