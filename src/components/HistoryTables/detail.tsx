@@ -147,11 +147,11 @@ export const MessageDetailBase = ({
     skip: pending
   })
 
-  const confirmationCount = useMemo<number>(
+  const confirmationCount = useMemo<number | null>(
     () =>
       chainHeadSubscription.data?.chainHead.height && message.height
         ? chainHeadSubscription.data.chainHead.height - message.height
-        : 0,
+        : null,
     [message.height, chainHeadSubscription.data?.chainHead.height]
   )
 
@@ -168,7 +168,7 @@ export const MessageDetailBase = ({
       {exitCode >= 0 && (
         <Line label='Status and Confirmations'>
           <Status exitCode={exitCode} pending={pending} />
-          {!pending && (
+          {!pending && confirmationCount !== null && (
             <Confirmations count={confirmationCount} total={confirmations} />
           )}
         </Line>
