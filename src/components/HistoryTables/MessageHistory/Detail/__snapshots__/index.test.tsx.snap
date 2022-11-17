@@ -568,7 +568,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   fill: var(--purple-medium);
 }
 
-.c10 {
+.c9 {
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -588,11 +588,11 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   background-color: var(--purple-light);
 }
 
-.c10 svg.has-fill {
+.c9 svg.has-fill {
   fill: var(--purple-medium);
 }
 
-.c10 svg.has-stroke {
+.c9 svg.has-stroke {
   stroke: var(--purple-medium);
 }
 
@@ -622,34 +622,6 @@ exports[`Message detail view it renders the executed msg state correctly (with n
 
 .c8 svg.has-stroke {
   stroke: var(--green-medium);
-}
-
-.c9 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: var(--space-m);
-  padding: 0 1em;
-  height: 2em;
-  line-height: 2em;
-  border-radius: 1em;
-  text-align: center;
-  white-space: nowrap;
-  color: var(--yellow-dark);
-  background-color: var(--yellow-light);
-}
-
-.c9 svg.has-fill {
-  fill: var(--yellow-dark);
-}
-
-.c9 svg.has-stroke {
-  stroke: var(--yellow-dark);
 }
 
 .c2 {
@@ -752,7 +724,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
   color: var(--purple-medium);
 }
 
-.c11 {
+.c10 {
   color: var(--gray-medium);
 }
 
@@ -855,14 +827,6 @@ exports[`Message detail view it renders the executed msg state correctly (with n
           </svg>
           <span>
             SUCCESS
-          </span>
-        </div>
-        <div
-          class="c9"
-          color="yellow"
-        >
-          <span>
-            0 / 50 Confirmations
           </span>
         </div>
       </div>
@@ -1036,7 +1000,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       </div>
       <div>
         <div
-          class="c10"
+          class="c9"
           color="purple"
         >
           <span>
@@ -1081,7 +1045,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       <div>
         1,000
         <span
-          class="c11"
+          class="c10"
         >
           |
         </span>
@@ -1102,7 +1066,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       </div>
       <div>
         <span
-          class="c11"
+          class="c10"
         >
           Premium
         </span>
@@ -1116,7 +1080,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       <div />
       <div>
         <span
-          class="c11"
+          class="c10"
         >
           Fee Cap
         </span>
@@ -1130,7 +1094,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       <div />
       <div>
         <span
-          class="c11"
+          class="c10"
         >
           Base
         </span>
