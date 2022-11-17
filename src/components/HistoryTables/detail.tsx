@@ -203,11 +203,9 @@ export const MessageDetailBase = ({
       </Line>
       <hr />
       <Line label='Value'>{attoFilToFil(message.value)}</Line>
-      {methodName && (
-        <Line label='Method'>
-          <Badge color='purple' text={methodName} />
-        </Line>
-      )}
+      <Line label='Method'>
+        <Badge color='purple' text={methodName} />
+      </Line>
       {typeof exitCode === 'number' ? (
         <Line label='Exit Code'>{exitCode}</Line>
       ) : (
