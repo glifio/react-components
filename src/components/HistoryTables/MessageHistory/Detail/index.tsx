@@ -201,7 +201,6 @@ export default function MessageDetail({
                 />
               </Line>
             )}
-
             {seeMore ? (
               <p role='button' onClick={() => setSeeMore(false)}>
                 Click to see less ↑
