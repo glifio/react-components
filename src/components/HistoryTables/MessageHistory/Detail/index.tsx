@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react'
 import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
+
 import { useStateReplayQuery } from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
@@ -173,22 +174,25 @@ export default function MessageDetail({
               time={time}
               message={message}
             />
-            <p>Loading more details...</p>
+            <p>
+              Your transaction has made it on to the Filecoin Network! Once it
+              executes, we&apos;ll show more details below.{' '}
+            </p>
           </>
         )}
         {messageState === MessageState.Executed && (
           <>
             <MessageDetailBase
               txID={txID}
-              exitCode={stateReplayQuery?.stateReplay?.receipt?.exitCode}
               methodName={methodName}
+              exitCode={stateReplayQuery?.stateReplay?.receipt?.exitCode}
               confirmations={confirmations}
               time={time}
               message={message}
             />
             <Line label='Transaction Fee'>{transactionFee}</Line>
             {!!execReturn && (
-              <Line label='New actor created: '>
+              <Line label='New actor created'>
                 <AddressLink
                   id={execReturn.id}
                   address={execReturn.robust}

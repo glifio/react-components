@@ -463,8 +463,19 @@ exports[`Message detail view it renders the confirmed but not executed msg state
         </div>
       </div>
     </div>
+    <div
+      class="c3"
+    >
+      <div>
+        Exit Code
+      </div>
+      <div>
+        –
+      </div>
+    </div>
     <p>
-      Loading more details...
+      Your transaction has made it on to the Filecoin Network! Once it executes, we'll show more details below.
+       
     </p>
   </div>
 </div>
@@ -1037,6 +1048,16 @@ exports[`Message detail view it renders the executed msg state correctly (with n
       class="c3"
     >
       <div>
+        Exit Code
+      </div>
+      <div>
+        0
+      </div>
+    </div>
+    <div
+      class="c3"
+    >
+      <div>
         Transaction Fee
       </div>
       <div>
@@ -1049,6 +1070,7 @@ exports[`Message detail view it renders the executed msg state correctly (with n
     >
       Click to see less ↑
     </p>
+    <hr />
     <div
       class="c3"
     >
@@ -2075,6 +2097,16 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
             SEND
           </span>
         </div>
+      </div>
+    </div>
+    <div
+      class="c6"
+    >
+      <div>
+        Exit Code
+      </div>
+      <div>
+        –
       </div>
     </div>
   </div>

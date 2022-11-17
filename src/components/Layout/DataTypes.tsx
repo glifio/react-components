@@ -96,7 +96,7 @@ export const DataTypeMapLines = ({
         key={key}
         label={key}
         depth={label ? (depth ?? 0) + 1 : depth}
-        dataType={dt}
+        dataType={dt as DataType}
       />
     ))}
   </>
@@ -153,7 +153,7 @@ export const DataTypeValue = ({ dataType, label }: DataTypeValueProps) => {
     case Type.String:
       const strVal = Value as string
 
-      if (Name === 'Address') {
+      if (Name.toLowerCase() === 'address') {
         // Here we handle special address cases for rendering
         // if the label is `IDAddress`, we want to show the ID address and not fetch the robust
         return label === 'IDAddress' ? (
@@ -171,7 +171,8 @@ export const DataTypeValue = ({ dataType, label }: DataTypeValueProps) => {
       return <>{Value}</>
 
     case Type.Number:
-      const numVal = Value as number
+      // BigNumber will be stored as a string
+      const numVal = Value as number | string
       return <>{numVal}</>
 
     case Type.Bytes:

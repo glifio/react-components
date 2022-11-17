@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { GasCost, useChainHeadSubscription } from '../../generated/graphql'
 import { IconCheck, IconPending, IconClock } from '../Icons'
-import { Badge, Line } from '../Layout'
+import { Badge, Line, NullishLine } from '../Layout'
 import { useAge } from '../../utils/useAge'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
@@ -20,6 +20,8 @@ import {
 import { TxLink } from '../LabeledText/TxLink'
 import { LinesParams } from '../Layout/LinesParams'
 import { LinesReturn } from '../Layout/LinesReturn'
+import { AbiSelector } from '../AbiSelector'
+import { isDelegatedAddress } from '../../utils/isAddress'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -206,6 +208,11 @@ export const MessageDetailBase = ({
           <Badge color='purple' text={methodName} />
         </Line>
       )}
+      {typeof exitCode === 'number' ? (
+        <Line label='Exit Code'>{exitCode}</Line>
+      ) : (
+        <NullishLine label='Exit Code' />
+      )}
     </>
   )
 }
@@ -240,9 +247,12 @@ export const SeeMoreContent = ({
   gasCost,
   executionTrace
 }: SeeMoreContentProps) => {
+  const isToDelegated = useMemo(
+    () => isDelegatedAddress(message.to.robust),
+    [message]
+  )
   const gasPercentage = useMemo<string>(() => {
     const gasLimit = new FilecoinNumber(message.gasLimit, 'attofil')
-
     return (
       new FilecoinNumber(gasUsed, 'attofil')
         .dividedBy(gasLimit)
@@ -265,6 +275,7 @@ export const SeeMoreContent = ({
 
   return (
     <>
+      <hr />
       <Line label='Gas Limit & Usage by Txn'>
         {formatNumber(message.gasLimit)}
         <SpanGray>|</SpanGray>
@@ -285,6 +296,14 @@ export const SeeMoreContent = ({
       </Line>
       <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
       <hr />
+      {isToDelegated && (
+        <>
+          <Line label='ABI'>
+            <AbiSelector address={message.to.robust} />
+          </Line>
+          <hr />
+        </>
+      )}
       <LinesParams
         address={message.to.robust || message.to.id}
         method={message.method}
@@ -294,6 +313,7 @@ export const SeeMoreContent = ({
       <LinesReturn
         address={message.to.robust || message.to.id}
         method={message.method}
+        params={message.params}
         returnVal={executionTrace.MsgRct.Return}
       />
     </>

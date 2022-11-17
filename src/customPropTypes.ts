@@ -226,12 +226,12 @@ export const MESSAGE_RECEIPT_PROPTYPE = shape({
 })
 
 export const EXECUTION_TRACE_PROPTYPE = shape({
-  Duration: number.isRequired,
   Msg: LOTUS_MESSAGE_PROPTYPE.isRequired,
   MsgRct: MESSAGE_RECEIPT_PROPTYPE.isRequired,
-  GasCharges: number,
-  Error: string,
-  Subcalls: any
+  Duration: number.isRequired,
+  GasCharges: any,
+  Subcalls: any,
+  Error: string
 })
 
 /**

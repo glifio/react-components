@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import { MockedProvider, MockedResponse } from '@apollo/client/testing'
 import { CoinType } from '@glif/filecoin-address'
 import LotusRPCEngine from '@glif/filecoin-rpc-client'

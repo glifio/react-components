@@ -3,6 +3,7 @@ import { useEffect, useMemo } from 'react'
 import {
   DataType,
   describeMessageParams,
+  describeFEVMTxParams,
   getActorName
 } from '@glif/filecoin-actor-utils'
 
@@ -10,11 +11,19 @@ import { BaseTypeObjLines, DataTypeLines } from './DataTypes'
 import { Line, NullishLine } from './Lines'
 import { useEnvironment, useLogger } from '../../services/EnvironmentProvider'
 import { useActorQuery } from '../../generated/graphql'
-import { convertAddrToPrefix, useStateDecodeParams } from '../../utils'
+import convertAddrToPrefix from '../../utils/convertAddrToPrefix'
+import { useStateDecodeParams } from '../../utils/useStateDecodeParams'
+import { isDelegatedAddress } from '../../utils/isAddress'
+import { useAbi } from '../../utils/useAbi'
 
 export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
   const { coinType, networkName } = useEnvironment()
+  const { abi } = useAbi(address)
   const logger = useLogger()
+  const isDelegated = useMemo<boolean>(
+    () => isDelegatedAddress(address),
+    [address]
+  )
 
   // Get actor data
   const { data: actorData, error: actorDataError } = useActorQuery({
@@ -50,9 +59,20 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
 
   // Get described parameters
   const describedParams = useMemo<DataType | null>(() => {
-    if (actorName && decodedParams) {
+    if (isDelegated) {
       try {
-        return describeMessageParams(actorName, method, decodedParams)
+        // Describe delegated actor message params
+        if (abi) return describeFEVMTxParams(params, abi)
+      } catch (e) {
+        logger.error(
+          `Failed to describe FEVM tx params for network: ${networkName}, address: ${address}, method: ${method}, params: ${params}, with message: ${e.message}`
+        )
+      }
+    } else {
+      try {
+        // Describe built-in actor message params
+        if (actorName && decodedParams)
+          return describeMessageParams(actorName, method, decodedParams)
       } catch (e) {
         logger.error(
           `Failed to describe message params for network: ${networkName}, address: ${address}, method: ${method}, params: ${params}, with message: ${e.message}`
@@ -60,13 +80,25 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
       }
     }
     return null
-  }, [address, method, params, actorName, decodedParams, networkName, logger])
+  }, [
+    abi,
+    address,
+    method,
+    params,
+    isDelegated,
+    actorName,
+    decodedParams,
+    networkName,
+    logger
+  ])
 
   // Return most verbose params first
   return describedParams ? (
     <DataTypeLines label='Params' dataType={describedParams} />
   ) : decodedParams ? (
     <BaseTypeObjLines label='Params' data={decodedParams} />
+  ) : isDelegated && !abi ? (
+    <Line label='Params (upload abi to decode)'>{params}</Line>
   ) : params ? (
     <Line
       label={`Params (${
