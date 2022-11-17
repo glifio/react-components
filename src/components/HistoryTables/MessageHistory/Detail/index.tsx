@@ -174,6 +174,7 @@ export default function MessageDetail({
               time={time}
               message={message}
             />
+            <hr />
             <p>
               Your transaction has made it on to the Filecoin Network! Once it
               executes, we&apos;ll show more details below.{' '}

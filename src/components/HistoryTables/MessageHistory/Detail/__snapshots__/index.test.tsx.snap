@@ -473,6 +473,7 @@ exports[`Message detail view it renders the confirmed but not executed msg state
         –
       </div>
     </div>
+    <hr />
     <p>
       Your transaction has made it on to the Filecoin Network! Once it executes, we'll show more details below.
        
