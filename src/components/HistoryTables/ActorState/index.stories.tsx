@@ -9,5 +9,5 @@ const Template = args => <ActorState {...args} />
 
 export const Base = Template.bind({})
 Base.args = {
-  address: '0xA95e1567e73A126FC58cc078357fb0A13845AE0C'
+  address: 'f2i43oi6rnf2s6rp544rcegfbcdp5l62cayz2btmy'
 }
