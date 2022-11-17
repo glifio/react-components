@@ -200,14 +200,14 @@ exports[`NetworkSelector interactions it renders the network options 1`] = `
       mainnet
     </div>
     <div
-      class="c4"
+      class="c4 selected"
       role="button"
       tabindex="2"
     >
       calibrationnet
     </div>
     <div
-      class="c4 selected"
+      class="c4"
       role="button"
       tabindex="3"
     >
