@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { GasCost, useChainHeadSubscription } from '../../generated/graphql'
 import { IconCheck, IconPending, IconClock } from '../Icons'
-import { Badge, Line } from '../Layout'
+import { Badge, Line, NullishLine } from '../Layout'
 import { useAge } from '../../utils/useAge'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { attoFilToFil, formatNumber } from './utils'
@@ -208,6 +208,11 @@ export const MessageDetailBase = ({
           <Badge color='purple' text={methodName} />
         </Line>
       )}
+      {typeof exitCode === 'number' ? (
+        <Line label='Exit Code'>{exitCode}</Line>
+      ) : (
+        <NullishLine label='Exit Code' />
+      )}
     </>
   )
 }
@@ -270,6 +275,7 @@ export const SeeMoreContent = ({
 
   return (
     <>
+      <hr />
       <Line label='Gas Limit & Usage by Txn'>
         {formatNumber(message.gasLimit)}
         <SpanGray>|</SpanGray>
@@ -289,8 +295,6 @@ export const SeeMoreContent = ({
         {formatNumber(gasCost.baseFeeBurn)} attoFIL
       </Line>
       <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
-      <hr />
-      <Line label='Exit code'>{executionTrace.MsgRct.ExitCode}</Line>
       <hr />
       {isToDelegated && (
         <>

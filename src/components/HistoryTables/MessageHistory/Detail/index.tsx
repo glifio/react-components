@@ -191,9 +191,8 @@ export default function MessageDetail({
               message={message}
             />
             <Line label='Transaction Fee'>{transactionFee}</Line>
-            <hr />
             {!!execReturn && (
-              <Line label='New actor created: '>
+              <Line label='New actor created'>
                 <AddressLink
                   id={execReturn.id}
                   address={execReturn.robust}
@@ -201,6 +200,7 @@ export default function MessageDetail({
                 />
               </Line>
             )}
+            <hr />
             {seeMore ? (
               <p role='button' onClick={() => setSeeMore(false)}>
                 Click to see less ↑
