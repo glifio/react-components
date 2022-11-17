@@ -18,15 +18,15 @@ export const TestEnvironment = ({
 }: TestEnvironmentProps) => (
   <Environment
     coinType={CoinType.TEST}
-    networkName={Network.WALLABY}
-    nodeStatusApiKey={networks[Network.WALLABY].nodeStatusApiKey}
-    graphUrl={networks[Network.WALLABY].graphUrl}
-    graphSecure={networks[Network.WALLABY].graphSecure}
-    lotusApiUrl={networks[Network.WALLABY].lotusApiUrl}
-    explorerUrl='https://explorer.glif.io/wallaby'
+    networkName={Network.CALIBRATION}
+    nodeStatusApiKey={networks[Network.CALIBRATION].nodeStatusApiKey}
+    graphUrl={networks[Network.CALIBRATION].graphUrl}
+    graphSecure={networks[Network.CALIBRATION].graphSecure}
+    lotusApiUrl={networks[Network.CALIBRATION].lotusApiUrl}
+    explorerUrl='https://explorer-calibration.glif.link'
     lotusApi={
       new LotusRPCEngine({
-        apiAddress: networks[Network.WALLABY].lotusApiUrl
+        apiAddress: networks[Network.CALIBRATION].lotusApiUrl
       })
     }
   >
