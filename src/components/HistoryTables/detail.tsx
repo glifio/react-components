@@ -21,7 +21,7 @@ import { TxLink } from '../LabeledText/TxLink'
 import { LinesParams } from '../Layout/LinesParams'
 import { LinesReturn } from '../Layout/LinesReturn'
 import { AbiSelector } from '../AbiSelector'
-import { isFEVMTx } from '../../utils/isFEVMTx'
+import { isDelegatedAddress } from '../../utils/isAddress'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -242,7 +242,10 @@ export const SeeMoreContent = ({
   gasCost,
   executionTrace
 }: SeeMoreContentProps) => {
-  const isFEVM = useMemo(() => isFEVMTx(message), [message])
+  const isToDelegated = useMemo(
+    () => isDelegatedAddress(message.to.robust),
+    [message]
+  )
   const gasPercentage = useMemo<string>(() => {
     const gasLimit = new FilecoinNumber(message.gasLimit, 'attofil')
     return (
@@ -289,7 +292,7 @@ export const SeeMoreContent = ({
       <hr />
       <Line label='Exit code'>{executionTrace.MsgRct.ExitCode}</Line>
       <hr />
-      {isFEVM && (
+      {isToDelegated && (
         <>
           <Line label='ABI'>
             <AbiSelector address={message.to.robust} />
