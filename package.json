@@ -86,7 +86,7 @@
     "@chainsafe/filsnap-adapter": "^2.1.1",
     "@chainsafe/filsnap-types": "^2.1.2",
     "@glif/base-css": "^0.0.33",
-    "@glif/filecoin-actor-utils": "^2.0.23",
+    "@glif/filecoin-actor-utils": "^2.0.24-alpha.0",
     "@glif/filecoin-address": "^2.0.20",
     "@glif/filecoin-message": "^2.0.20",
     "@glif/filecoin-number": "^2.0.5",

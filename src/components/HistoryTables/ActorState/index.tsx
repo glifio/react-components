@@ -27,6 +27,7 @@ import {
 import { AbiSelector } from '../../AbiSelector'
 import { DetailCaption } from '../detail'
 import {
+  Network,
   useEnvironment,
   useLogger
 } from '../../../services/EnvironmentProvider'
@@ -57,8 +58,24 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
     data: actorData,
     loading: actorLoading,
     notFound: actorNotFound,
-    error: actorError
+    error: _actorError
   } = useStateReadState(address)
+
+  //
+  const { actorError, tmpPatchWlbyActorErr } = useMemo<{
+    actorError: Error
+    tmpPatchWlbyActorErr: boolean
+  }>(() => {
+    if (
+      _actorError &&
+      networkName === Network.WALLABY &&
+      _actorError.message.includes('dumping actor state')
+    ) {
+      return { actorError: null, tmpPatchWlbyActorErr: true }
+    }
+
+    return { actorError: _actorError, tmpPatchWlbyActorErr: false }
+  }, [_actorError, networkName])
 
   // Load the address
   const {
@@ -140,55 +157,76 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
     <>
       <PageTitle>Actor Overview</PageTitle>
       <hr />
-      <DetailCaption
-        name='Actor Overview'
-        infoMsg={actorNotFound ? `Actor not found: ${address}` : ''}
-        loadingMsg='Locating this actor on the blockchain...'
-        loading={loading}
-        error={error}
-      />
-      {!loading && !error && !actorNotFound && (
-        <Lines>
-          {addressData?.address.robust && (
-            <Line label='Robust address'>{addressData?.address.robust}</Line>
-          )}
-          {addressData?.address.id && (
-            <Line label='ID address'>{addressData?.address.id}</Line>
-          )}
-          {ethAddress && <Line label='ETH address'>{ethAddress}</Line>}
-          <Line label='Actor name'>{actorNameCapitalized || 'Unknown'}</Line>
-          <Line label='Actor code'>{actorData.Code['/']}</Line>
-          <Line label='Balance'>{friendlyBalance} FIL</Line>
-          {hasAvailableBalance && (
-            <Line label='Available Balance'>
-              {availableBalanceError ? (
-                <>Failed to load</>
-              ) : availableBalanceLoading ? (
-                <>Loading...</>
-              ) : availableBalance ? (
-                <>{availableBalance.toFil()} FIL</>
-              ) : (
-                <></>
+      {tmpPatchWlbyActorErr ? (
+        <>
+          <Lines>
+            {addressData?.address.robust && (
+              <Line label='Robust address'>{addressData?.address.robust}</Line>
+            )}
+            {addressData?.address.id && (
+              <Line label='ID address'>{addressData?.address.id}</Line>
+            )}
+            {ethAddress && <Line label='ETH address'>{ethAddress}</Line>}
+            <Line label='Actor name'>EVM</Line>
+          </Lines>
+        </>
+      ) : (
+        <>
+          <DetailCaption
+            name='Actor Overview'
+            infoMsg={actorNotFound ? `Actor not found: ${address}` : ''}
+            loadingMsg='Locating this actor on the blockchain...'
+            loading={loading}
+            error={error}
+          />
+          {!loading && !error && !actorNotFound && (
+            <Lines>
+              {addressData?.address.robust && (
+                <Line label='Robust address'>
+                  {addressData?.address.robust}
+                </Line>
               )}
-            </Line>
-          )}
-          {actorData.State ? (
-            <CollapsableLines label='State' toggleName='actor state'>
-              {describedState ? (
-                <DataTypeMapLines depth={1} dataTypeMap={describedState} />
-              ) : (
-                <BaseTypeObjLines depth={1} data={actorData.State} />
+              {addressData?.address.id && (
+                <Line label='ID address'>{addressData?.address.id}</Line>
               )}
-            </CollapsableLines>
-          ) : (
-            <NullishLine label='State' />
+              {ethAddress && <Line label='ETH address'>{ethAddress}</Line>}
+              <Line label='Actor name'>
+                {actorNameCapitalized || 'Unknown'}
+              </Line>
+              <Line label='Actor code'>{actorData.Code['/']}</Line>
+              <Line label='Balance'>{friendlyBalance} FIL</Line>
+              {hasAvailableBalance && (
+                <Line label='Available Balance'>
+                  {availableBalanceError ? (
+                    <>Failed to load</>
+                  ) : availableBalanceLoading ? (
+                    <>Loading...</>
+                  ) : availableBalance ? (
+                    <>{availableBalance.toFil()} FIL</>
+                  ) : (
+                    <></>
+                  )}
+                </Line>
+              )}
+              {actorData.State ? (
+                <CollapsableLines label='State' toggleName='actor state'>
+                  {describedState ? (
+                    <DataTypeMapLines depth={1} dataTypeMap={describedState} />
+                  ) : (
+                    <BaseTypeObjLines depth={1} data={actorData.State} />
+                  )}
+                </CollapsableLines>
+              ) : (
+                <NullishLine label='State' />
+              )}
+              {ethAddress && (
+                <Line label='ABI'>
+                  <AbiSelector address={address} />
+                </Line>
+              )}
+            </Lines>
           )}
-          {ethAddress && (
-            <Line label='ABI'>
-              <AbiSelector address={address} />
-            </Line>
-          )}
-        </Lines>
+        </>
       )}
     </>
   )

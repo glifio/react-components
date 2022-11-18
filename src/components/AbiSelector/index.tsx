@@ -1,10 +1,22 @@
 import { useState } from 'react'
-import { ButtonV2 } from '../Button/V2'
+import styled from 'styled-components'
 import { FileInput } from '../InputV2/File'
 import { useAbi } from '../../utils/useAbi'
+import { Badge } from '../Layout'
+import { IconClose } from '../Icons'
+import { Colors } from '../theme'
+
+const IconCloseStyled = styled(IconClose)`
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.25);
+    transition: 0.2s ease-in;
+  }
+`
 
 export const AbiSelector = ({ address }: AbiSelectorProps) => {
-  const { abi, clear, setAbi, error } = useAbi(address)
+  const { abi, abiName, clear, setAbi, setAbiName, error } = useAbi(address)
   const [readError, setReadError] = useState<string | null>(null)
 
   const onSetFiles = (files: FileList | null) => {
@@ -18,9 +30,13 @@ export const AbiSelector = ({ address }: AbiSelectorProps) => {
         try {
           const parsed = JSON.parse(reader.result as string)
           const parsedAbi = parsed.abi ?? parsed
-          Array.isArray(parsedAbi)
-            ? setAbi(parsedAbi)
-            : setReadError('Failed to interpret JSON file as ABI')
+
+          if (Array.isArray(parsedAbi)) {
+            setAbiName(files[0].name)
+            setAbi(parsedAbi)
+          } else {
+            setReadError('Failed to interpret JSON file as ABI')
+          }
         } catch (e) {
           setReadError('Failed to parse file as JSON')
         }
@@ -37,7 +53,10 @@ export const AbiSelector = ({ address }: AbiSelectorProps) => {
       onSetFiles={onSetFiles}
     />
   ) : (
-    <ButtonV2 onClick={clear}>Clear ABI</ButtonV2>
+    <>
+      <Badge color='blue' text={abiName} />
+      <IconCloseStyled height='1em' color={Colors.BLUE_DARK} onClick={clear} />
+    </>
   )
 }
 

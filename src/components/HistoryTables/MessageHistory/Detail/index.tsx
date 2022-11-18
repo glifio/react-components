@@ -213,6 +213,7 @@ export default function MessageDetail({
             )}
             {seeMore && (
               <SeeMoreContent
+                txID={txID}
                 message={message as GqlMessage}
                 gasUsed={gasUsed}
                 gasCost={stateReplayQuery?.stateReplay?.gasCost}

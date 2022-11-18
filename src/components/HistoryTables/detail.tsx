@@ -3,7 +3,11 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { GasCost, useChainHeadSubscription } from '../../generated/graphql'
+import {
+  GasCost,
+  useChainHeadSubscription,
+  useTxIdQuery
+} from '../../generated/graphql'
 import { IconCheck, IconPending, IconClock } from '../Icons'
 import { Badge, Line, NullishLine } from '../Layout'
 import { useAge } from '../../utils/useAge'
@@ -20,8 +24,11 @@ import {
 import { TxLink } from '../LabeledText/TxLink'
 import { LinesParams } from '../Layout/LinesParams'
 import { LinesReturn } from '../Layout/LinesReturn'
+import { LinesEventLogs } from '../Layout/LinesEventLogs'
 import { AbiSelector } from '../AbiSelector'
-import { isDelegatedAddress } from '../../utils/isAddress'
+import { useIsFEVMActor } from '../../utils/useIsFEVMActor'
+import { useAbi } from '../../utils'
+import { Network, useEnvironment } from '../../services'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -139,6 +146,26 @@ export const MessageDetailBase = ({
   methodName,
   confirmations
 }: MessageDetailBaseProps) => {
+  const { networkName } = useEnvironment()
+  // this is a hack until we get conversion from ethhash <> cid working in JS
+  const { data: txIDsData } = useTxIdQuery({
+    variables: {
+      txID
+    },
+    skip: networkName !== Network.WALLABY
+  })
+
+  const { cid, ethHash } = useMemo<{ cid: string; ethHash: string }>(() => {
+    // make sure we don't break mainnet
+    // this data only exists on wallaby
+    if (txIDsData) {
+      return txIDsData.txID
+    }
+
+    // otherwise were on a network that does not support eth hashes
+    return { cid: txID, ethHash: '' }
+  }, [txID, txIDsData])
+
   const { age } = useAge(message.height)
 
   const chainHeadSubscription = useChainHeadSubscription({
@@ -155,16 +182,27 @@ export const MessageDetailBase = ({
     [message.height, chainHeadSubscription.data?.chainHead.height]
   )
 
+  const isFEVMActor = useIsFEVMActor(message?.to?.robust)
+
+  const { abiName } = useAbi(message?.to?.robust)
+
+  const badgeText = useMemo<string | null>(() => {
+    if (isFEVMActor && abiName) return abiName
+    else if (isFEVMActor) return 'Smart contract'
+    return null
+  }, [abiName, isFEVMActor])
+
   return (
     <>
       <Line label='CID'>
         <TxLink
-          txID={txID}
+          txID={cid}
           hideCopyText={false}
           hideCopy={false}
           shouldTruncate={false}
         />
       </Line>
+      {ethHash && <Line label='EVM Transaction hash'>{ethHash}</Line>}
       {exitCode >= 0 && (
         <Line label='Status and Confirmations'>
           <Status exitCode={exitCode} pending={pending} />
@@ -198,8 +236,9 @@ export const MessageDetailBase = ({
         <AddressLink
           id={message.to.id}
           address={message.to.robust}
-          hideCopyText={false}
+          hideCopyText={!!badgeText}
         />
+        {badgeText && <Badge color='blue' text='Contract' />}
       </Line>
       <hr />
       <Line label='Value'>{attoFilToFil(message.value)}</Line>
@@ -240,15 +279,13 @@ const SpanGray = styled.span`
 `
 
 export const SeeMoreContent = ({
+  txID,
   message,
   gasUsed,
   gasCost,
   executionTrace
 }: SeeMoreContentProps) => {
-  const isToDelegated = useMemo(
-    () => isDelegatedAddress(message.to.robust),
-    [message]
-  )
+  const isFEVMActor = useIsFEVMActor(message?.to?.robust)
   const gasPercentage = useMemo<string>(() => {
     const gasLimit = new FilecoinNumber(message.gasLimit, 'attofil')
     return (
@@ -294,11 +331,13 @@ export const SeeMoreContent = ({
       </Line>
       <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
       <hr />
-      {isToDelegated && (
+      {isFEVMActor && (
         <>
           <Line label='ABI'>
             <AbiSelector address={message.to.robust} />
           </Line>
+          <hr />
+          <LinesEventLogs txID={txID} abiSelector={message.to.robust} />
           <hr />
         </>
       )}
@@ -319,6 +358,7 @@ export const SeeMoreContent = ({
 }
 
 type SeeMoreContentProps = {
+  txID: string
   message: GqlMessage
   gasUsed: number
   gasCost: GasCost

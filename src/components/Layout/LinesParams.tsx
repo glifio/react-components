@@ -99,14 +99,10 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
     <BaseTypeObjLines label='Params' data={decodedParams} />
   ) : isDelegated && !abi ? (
     <Line label='Params (upload abi to decode)'>{params}</Line>
-  ) : params ? (
-    <Line
-      label={`Params (${
-        decodeParamsError ? 'failed to decode' : 'decoding...'
-      })`}
-    >
-      {params}
-    </Line>
+  ) : params && decodeParamsError ? (
+    <Line label='Params (failed to decode)'>{params}</Line>
+  ) : params && !isDelegated ? (
+    <Line label='Params (decoding...)'>{params}</Line>
   ) : (
     <NullishLine label='Params' />
   )
