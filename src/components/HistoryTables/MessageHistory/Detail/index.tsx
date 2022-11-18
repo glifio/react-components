@@ -3,7 +3,10 @@ import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 
-import { useStateReplayQuery } from '../../../../generated/graphql'
+import {
+  useStateReplayQuery,
+  useTxIdQuery
+} from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
 import { useMessage } from '../hooks/useAllMessages'
@@ -19,6 +22,7 @@ import { LoadingIcon } from '../../../Loading/LoadingIcon'
 import { ButtonV2Link } from '../../../Button/V2'
 import { IconCancel, IconSpeedUp } from '../../../Icons'
 import {
+  Network,
   useEnvironment,
   useLogger
 } from '../../../../services/EnvironmentProvider'
@@ -46,7 +50,7 @@ export default function MessageDetail({
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(txID)
-  const { isProd } = useEnvironment()
+  const { isProd, networkName } = useEnvironment()
   const logger = useLogger()
 
   const { data: stateReplayQuery, error: stateReplayError } =
@@ -57,6 +61,25 @@ export default function MessageDetail({
       // give the message time to execute on-chain before fetching
       skip: !txID || confirmations < 2
     })
+
+  // this is a hack until we get conversion from ethhash <> cid working in JS
+  const { data: txIDsData } = useTxIdQuery({
+    variables: {
+      txID
+    },
+    skip: networkName !== Network.WALLABY
+  })
+
+  const txIDPair = useMemo<{ cid: string; ethHash: string }>(() => {
+    // make sure we don't break mainnet
+    // this data only exists on wallaby
+    if (txIDsData) {
+      return txIDsData.txID
+    }
+
+    // otherwise were on a network that does not support eth hashes
+    return { cid: txID, ethHash: '' }
+  }, [txID, txIDsData])
 
   const transactionFee = useMemo<string>(() => {
     if (pending) return 'Pending...'
@@ -158,7 +181,7 @@ export default function MessageDetail({
         )}
         {messageState === MessageState.Pending && (
           <MessageDetailBase
-            txID={txID}
+            txID={txIDPair}
             methodName={methodName}
             message={message}
             time={time}
@@ -168,7 +191,7 @@ export default function MessageDetail({
         {messageState === MessageState.Confirmed && (
           <>
             <MessageDetailBase
-              txID={txID}
+              txID={txIDPair}
               methodName={methodName}
               confirmations={confirmations}
               time={time}
@@ -184,7 +207,7 @@ export default function MessageDetail({
         {messageState === MessageState.Executed && (
           <>
             <MessageDetailBase
-              txID={txID}
+              txID={txIDPair}
               methodName={methodName}
               exitCode={stateReplayQuery?.stateReplay?.receipt?.exitCode}
               confirmations={confirmations}
@@ -213,7 +236,7 @@ export default function MessageDetail({
             )}
             {seeMore && (
               <SeeMoreContent
-                txID={txID}
+                txID={txIDPair}
                 message={message as GqlMessage}
                 gasUsed={gasUsed}
                 gasCost={stateReplayQuery?.stateReplay?.gasCost}

@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import {
   GasCost,
-  useChainHeadSubscription,
-  useTxIdQuery
+  TxId,
+  useChainHeadSubscription
 } from '../../generated/graphql'
 import { IconCheck, IconPending, IconClock } from '../Icons'
 import { Badge, Line, NullishLine } from '../Layout'
@@ -28,7 +28,6 @@ import { LinesEventLogs } from '../Layout/LinesEventLogs'
 import { AbiSelector } from '../AbiSelector'
 import { useIsFEVMActor } from '../../utils/useIsFEVMActor'
 import { useAbi } from '../../utils'
-import { Network, useEnvironment } from '../../services'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -138,6 +137,8 @@ Confirmations.propTypes = {
   total: PropTypes.number.isRequired
 }
 
+type TxID = Omit<TxId, '__typename'>
+
 export const MessageDetailBase = ({
   message,
   pending,
@@ -146,26 +147,6 @@ export const MessageDetailBase = ({
   methodName,
   confirmations
 }: MessageDetailBaseProps) => {
-  const { networkName } = useEnvironment()
-  // this is a hack until we get conversion from ethhash <> cid working in JS
-  const { data: txIDsData } = useTxIdQuery({
-    variables: {
-      txID
-    },
-    skip: networkName !== Network.WALLABY
-  })
-
-  const { cid, ethHash } = useMemo<{ cid: string; ethHash: string }>(() => {
-    // make sure we don't break mainnet
-    // this data only exists on wallaby
-    if (txIDsData) {
-      return txIDsData.txID
-    }
-
-    // otherwise were on a network that does not support eth hashes
-    return { cid: txID, ethHash: '' }
-  }, [txID, txIDsData])
-
   const { age } = useAge(message.height)
 
   const chainHeadSubscription = useChainHeadSubscription({
@@ -196,13 +177,13 @@ export const MessageDetailBase = ({
     <>
       <Line label='CID'>
         <TxLink
-          txID={cid}
+          txID={txID.cid}
           hideCopyText={false}
           hideCopy={false}
           shouldTruncate={false}
         />
       </Line>
-      {ethHash && <Line label='EVM Transaction hash'>{ethHash}</Line>}
+      {txID.ethHash && <Line label='EVM Transaction hash'>{txID.ethHash}</Line>}
       {exitCode >= 0 && (
         <Line label='Status and Confirmations'>
           <Status exitCode={exitCode} pending={pending} />
@@ -255,7 +236,7 @@ export const MessageDetailBase = ({
 }
 
 type MessageDetailBaseProps = {
-  txID: string
+  txID: TxID
   message: GqlMessage | GqlMessagePending
   methodName: string
   time: number
@@ -265,7 +246,7 @@ type MessageDetailBaseProps = {
 }
 
 MessageDetailBase.propTypes = {
-  txID: PropTypes.string.isRequired,
+  txID: PropTypes.shape({ ethHash: PropTypes.string, cid: PropTypes.string }),
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   time: PropTypes.number.isRequired,
   pending: PropTypes.bool,
@@ -337,7 +318,7 @@ export const SeeMoreContent = ({
             <AbiSelector address={message.to.robust} />
           </Line>
           <hr />
-          <LinesEventLogs txID={txID} abiSelector={message.to.robust} />
+          <LinesEventLogs txID={txID.ethHash} abiSelector={message.to.robust} />
           <hr />
         </>
       )}
@@ -358,7 +339,7 @@ export const SeeMoreContent = ({
 }
 
 type SeeMoreContentProps = {
-  txID: string
+  txID: TxID
   message: GqlMessage
   gasUsed: number
   gasCost: GasCost
@@ -366,8 +347,10 @@ type SeeMoreContentProps = {
 }
 
 SeeMoreContent.propTypes = {
+  txID: PropTypes.shape({ ethHash: PropTypes.string, cid: PropTypes.string }),
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   gasUsed: PropTypes.number.isRequired,
   gasCost: GRAPHQL_GAS_COST_PROPTYPE.isRequired,
-  executionTrace: EXECUTION_TRACE_PROPTYPE.isRequired
+  executionTrace: EXECUTION_TRACE_PROPTYPE.isRequired,
+  ethHash: PropTypes.string
 }
