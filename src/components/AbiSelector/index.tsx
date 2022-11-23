@@ -8,15 +8,15 @@ import { Colors } from '../theme'
 
 const IconCloseStyled = styled(IconClose)`
   cursor: pointer;
+  transition: transform 0.2s ease-out;
 
   &:hover {
     transform: scale(1.25);
-    transition: 0.2s ease-in;
   }
 `
 
 export const AbiSelector = ({ address }: AbiSelectorProps) => {
-  const { abi, abiName, clear, setAbi, setAbiName, error } = useAbi(address)
+  const { abi, abiName, error, setAbi, clearAbi } = useAbi(address)
   const [readError, setReadError] = useState<string | null>(null)
 
   const onSetFiles = (files: FileList | null) => {
@@ -30,13 +30,9 @@ export const AbiSelector = ({ address }: AbiSelectorProps) => {
         try {
           const parsed = JSON.parse(reader.result as string)
           const parsedAbi = parsed.abi ?? parsed
-
-          if (Array.isArray(parsedAbi)) {
-            setAbiName(files[0].name)
-            setAbi(parsedAbi)
-          } else {
-            setReadError('Failed to interpret JSON file as ABI')
-          }
+          Array.isArray(parsedAbi)
+            ? setAbi(parsedAbi, files[0].name)
+            : setReadError('Failed to interpret JSON file as ABI')
         } catch (e) {
           setReadError('Failed to parse file as JSON')
         }
@@ -55,7 +51,7 @@ export const AbiSelector = ({ address }: AbiSelectorProps) => {
   ) : (
     <>
       <Badge color='blue' text={abiName} />
-      <IconCloseStyled height='1em' color={Colors.BLUE_DARK} onClick={clear} />
+      <IconCloseStyled height='1em' color={Colors.BLUE_DARK} onClick={clearAbi} />
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { describeFEVMLogs } from '@glif/filecoin-actor-utils'
+import { DataType, describeFEVMLogs } from '@glif/filecoin-actor-utils'
 import { useAbi } from '../../utils'
 import { useChainGetMsgEvents } from '../../utils/useChainGetMsgEvents'
 import { BaseTypeLines, DataTypeLines } from './DataTypes'
@@ -11,9 +11,9 @@ export const LinesEventLogs = ({ txID, abiSelector }: LinesEventLogsProps) => {
   const { abi } = useAbi(abiSelector)
   const { logs } = useChainGetMsgEvents(txID, abi)
 
-  const events = useMemo(() => {
+  const events = useMemo<DataType | null>(() => {
     try {
-      return describeFEVMLogs(logs, abi)
+      if (abi) return describeFEVMLogs(logs, abi)
     } catch (err) {
       logger.error(
         `Failed to describe FEVM event logs: ${JSON.stringify(
@@ -21,19 +21,13 @@ export const LinesEventLogs = ({ txID, abiSelector }: LinesEventLogsProps) => {
         )}, ${JSON.stringify(abi)}, ${err.message}`
       )
     }
+    return null
   }, [logs, abi, logger])
 
-  // @navfoo related to https://github.com/glifio/modules/pull/258
-  // this seems like it could be cleaned up if we use 1 DataType to represent the event logs
   return (
     <>
-      {events?.length > 0 ? (
-        <div>
-          <Line label='Event logs' />
-          {events.map(e => (
-            <DataTypeLines key={e.Name} depth={1} label={e.Name} dataType={e} />
-          ))}
-        </div>
+      {events ? (
+        <DataTypeLines label='Event Logs' dataType={events} />
       ) : logs?.length > 0 ? (
         <>
           <Line label='Event logs' />

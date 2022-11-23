@@ -5,10 +5,10 @@ import { useLocalStorage } from './useLocalStorage'
 export const useAbi = (address: string) => {
   const {
     valObj: abi,
-    setObject: setAbi,
-    clear: clearAbi,
-    clearAll: clearAllAbis,
-    ...rest
+    error: abiError,
+    setObject: setAbiObject,
+    clear: clearAbiObject,
+    clearAll: clearAllAbiObjects
   } = useLocalStorage<ABI>({
     key: address,
     isObject: true,
@@ -17,24 +17,35 @@ export const useAbi = (address: string) => {
 
   const {
     valStr: abiName,
+    error: abiNameError,
     setString: setAbiName,
     clear: clearAbiName,
     clearAll: clearAllAbiNames
-  } = useLocalStorage<ABI>({
+  } = useLocalStorage({
     key: address,
     isObject: false,
     namespace: 'ABI-NAME'
   })
 
-  const clear = useCallback(() => {
-    clearAbi()
+  const error = abiError || abiNameError || null
+
+  const setAbi = useCallback(
+    (abi: ABI, name: string) => {
+      setAbiObject(abi)
+      setAbiName(name)
+    },
+    [setAbiObject, setAbiName]
+  )
+
+  const clearAbi = useCallback(() => {
+    clearAbiObject()
     clearAbiName()
-  }, [clearAbiName, clearAbi])
+  }, [clearAbiObject, clearAbiName])
 
-  const clearAll = useCallback(() => {
+  const clearAllAbis = useCallback(() => {
+    clearAllAbiObjects()
     clearAllAbiNames()
-    clearAllAbis()
-  }, [clearAllAbiNames, clearAllAbis])
+  }, [clearAllAbiObjects, clearAllAbiNames])
 
-  return { abi, abiName, setAbiName, setAbi, clear, clearAll, ...rest }
+  return { abi, abiName, error, setAbi, clearAbi, clearAllAbis }
 }

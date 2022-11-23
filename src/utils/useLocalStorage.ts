@@ -1,6 +1,9 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo, useCallback } from 'react'
 import { useLogger } from '../services'
 
+/**
+ * Mocks the `Storage` interface for environments that don't support the Web Storage API
+ */
 class StorageMock {
   readonly store: Map<string, string> = new Map()
   clear = () => this.store.clear()
@@ -27,9 +30,16 @@ const getStorageEvent = <T>({ type, ...props }: StorageEventDetail<T>) =>
     detail: { type, ...props }
   })
 
+// A shared `StorageMock` instance to be used instead of `window.localStorage` for Jest and SSR
 const storageMock = new StorageMock()
+
+// A shared `EventTarget` instance that `useLocalStorage` instances use for communicating storage changes
 const eventTarget = new EventTarget()
 
+/**
+ * @returns the `window.localStorage` object if `window` is defined,
+ * or a shared `StorageMock` instance otherwise, to support Jest and SSR
+ */
 const useStorage = (): Storage | StorageMock => {
   const hasWindow = typeof window !== 'undefined'
   return useMemo<Storage | StorageMock>(
@@ -64,49 +74,59 @@ export const useLocalStorage = <T = object>({
   const [valStr, setValStr] = useState<string | null>(null)
   const [valObj, setValObj] = useState<T | null>(null)
 
-  const clear = () => {
+  // Removes the item with the supplied key and namespace from local storage
+  const clear = useCallback(() => {
     storage.removeItem(storageKey)
     eventTarget.dispatchEvent(
       getStorageEvent<T>({ type: StorageEventType.CLEAR_ITEM, key: storageKey })
     )
-  }
+  }, [storage, storageKey])
 
-  const clearAll = () => {
+  // Removes all items from local storage
+  const clearAll = useCallback(() => {
     storage.clear()
     eventTarget.dispatchEvent(new Event(StorageEventType.CLEAR_ALL))
-  }
+  }, [storage])
 
-  const setString = (value: string) => {
-    if (!key) return setError('Missing key for storage')
-    storage.setItem(storageKey, value)
-    eventTarget.dispatchEvent(
-      getStorageEvent<T>({
-        type: StorageEventType.SET_ITEM,
-        key: storageKey,
-        valStr: value,
-        valObj: null
-      })
-    )
-  }
-
-  const setObject = (value: T) => {
-    if (!key) return setError('Missing key for storage')
-    try {
-      const valueStr = JSON.stringify(value)
-      storage.setItem(storageKey, valueStr)
+  // Stores the string value in local storage under the supplied key and namespace
+  const setString = useCallback(
+    (value: string) => {
+      if (!key) return setError('Missing key for storage')
+      storage.setItem(storageKey, value)
       eventTarget.dispatchEvent(
         getStorageEvent<T>({
           type: StorageEventType.SET_ITEM,
           key: storageKey,
-          valStr: valueStr,
-          valObj: value
+          valStr: value,
+          valObj: null
         })
       )
-    } catch (e) {
-      logger.error(e)
-      setError(`Failed to store JSON value for key: ${storageKey}`)
-    }
-  }
+    },
+    [key, storage, storageKey]
+  )
+
+  // Stores the object value in local storage under the supplied key and namespace
+  const setObject = useCallback(
+    (value: T) => {
+      if (!key) return setError('Missing key for storage')
+      try {
+        const valueStr = JSON.stringify(value)
+        storage.setItem(storageKey, valueStr)
+        eventTarget.dispatchEvent(
+          getStorageEvent<T>({
+            type: StorageEventType.SET_ITEM,
+            key: storageKey,
+            valStr: valueStr,
+            valObj: value
+          })
+        )
+      } catch (e) {
+        logger.error(e)
+        setError(`Failed to store JSON value for key: ${storageKey}`)
+      }
+    },
+    [key, storage, storageKey, logger]
+  )
 
   /*
    * Get initial value from store
