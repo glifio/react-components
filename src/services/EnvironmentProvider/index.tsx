@@ -74,7 +74,7 @@ export const emptyEnvironmentContext = {
   safeUrl: 'https://safe.glif.io',
   explorerUrl: 'https://explorer.glif.io',
   verifierUrl: 'https://verify.glif.io',
-  nodesUrl: 'https://node.glif.io',
+  nodesUrl: 'https://api.node.glif.io',
   blogUrl: 'https://blog.glif.io',
   githubUrl: 'https://github.com/glifio',
   discordUrl: 'https://discord.gg/B9ju5Eu4Rq',
