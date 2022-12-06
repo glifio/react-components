@@ -285,7 +285,6 @@ exports[`Message detail view it renders the confirmed but not executed msg state
         </div>
       </div>
     </div>
-    
     <div
       class="c3"
     >
@@ -800,7 +799,6 @@ exports[`Message detail view it renders the executed msg state correctly (with n
         </div>
       </div>
     </div>
-    
     <div
       class="c3"
     >
@@ -1903,7 +1901,6 @@ exports[`Message detail view it renders the pending msg state correctly 1`] = `
         </div>
       </div>
     </div>
-    
     <div
       class="c6"
     >
