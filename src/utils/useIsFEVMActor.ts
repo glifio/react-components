@@ -44,9 +44,7 @@ const fetcher = async (
 
 // given an address, return true if this represents an FEVM actor
 // TODO: we should just be able to match the actor's Code with the actorCode
-export const useIsFEVMActor = (
-  address: string
-): boolean => {
+export const useIsFEVMActor = (address: string): boolean => {
   const { lotusApiUrl } = useEnvironment()
   const { data } = useSWRImmutable<boolean, Error>(
     [lotusApiUrl, 'getCode', address, 'latest'],
