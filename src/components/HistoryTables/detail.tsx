@@ -3,11 +3,7 @@ import { FilecoinNumber } from '@glif/filecoin-number'
 import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {
-  GasCost,
-  TxId,
-  useChainHeadSubscription
-} from '../../generated/graphql'
+import { GasCost, useChainHeadSubscription } from '../../generated/graphql'
 import { IconCheck, IconPending, IconClock } from '../Icons'
 import { Badge, Line, NullishLine } from '../Layout'
 import { useAge } from '../../utils/useAge'
@@ -137,13 +133,12 @@ Confirmations.propTypes = {
   total: PropTypes.number.isRequired
 }
 
-type TxID = Omit<TxId, '__typename'>
-
 export const MessageDetailBase = ({
+  msgCID,
+  fevmHex,
   message,
   pending,
   exitCode,
-  txID,
   methodName,
   confirmations
 }: MessageDetailBaseProps) => {
@@ -177,13 +172,13 @@ export const MessageDetailBase = ({
     <>
       <Line label='CID'>
         <TxLink
-          txID={txID.cid}
+          txID={msgCID}
           hideCopyText={false}
           hideCopy={false}
           shouldTruncate={false}
         />
       </Line>
-      {txID.ethHash && <Line label='EVM Transaction hash'>{txID.ethHash}</Line>}
+      {fevmHex && <Line label='EVM Transaction hash'>{fevmHex}</Line>}
       {exitCode >= 0 && (
         <Line label='Status and Confirmations'>
           <Status exitCode={exitCode} pending={pending} />
@@ -236,7 +231,8 @@ export const MessageDetailBase = ({
 }
 
 type MessageDetailBaseProps = {
-  txID: TxID
+  msgCID: string
+  fevmHex?: string
   message: GqlMessage | GqlMessagePending
   methodName: string
   time: number
@@ -246,7 +242,8 @@ type MessageDetailBaseProps = {
 }
 
 MessageDetailBase.propTypes = {
-  txID: PropTypes.shape({ ethHash: PropTypes.string, cid: PropTypes.string }),
+  msgCID: PropTypes.string.isRequired,
+  fevmHex: PropTypes.string,
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   time: PropTypes.number.isRequired,
   pending: PropTypes.bool,
@@ -260,7 +257,7 @@ const SpanGray = styled.span`
 `
 
 export const SeeMoreContent = ({
-  txID,
+  fevmHex,
   message,
   gasUsed,
   gasCost,
@@ -312,13 +309,13 @@ export const SeeMoreContent = ({
       </Line>
       <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
       <hr />
-      {isFEVMActor && (
+      {isFEVMActor && fevmHex && (
         <>
           <Line label='ABI'>
             <AbiSelector address={message.to.robust} />
           </Line>
           <hr />
-          <LinesEventLogs txID={txID.ethHash} abiSelector={message.to.robust} />
+          <LinesEventLogs txID={fevmHex} abiSelector={message.to.robust} />
           <hr />
         </>
       )}
@@ -339,7 +336,7 @@ export const SeeMoreContent = ({
 }
 
 type SeeMoreContentProps = {
-  txID: TxID
+  fevmHex?: string
   message: GqlMessage
   gasUsed: number
   gasCost: GasCost
@@ -347,10 +344,9 @@ type SeeMoreContentProps = {
 }
 
 SeeMoreContent.propTypes = {
-  txID: PropTypes.shape({ ethHash: PropTypes.string, cid: PropTypes.string }),
+  fevmHex: PropTypes.string,
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   gasUsed: PropTypes.number.isRequired,
   gasCost: GRAPHQL_GAS_COST_PROPTYPE.isRequired,
-  executionTrace: EXECUTION_TRACE_PROPTYPE.isRequired,
-  ethHash: PropTypes.string
+  executionTrace: EXECUTION_TRACE_PROPTYPE.isRequired
 }

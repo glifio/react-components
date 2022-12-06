@@ -30,8 +30,8 @@ export const useAbi = (address: string) => {
   const error = abiError || abiNameError || null
 
   const setAbi = useCallback(
-    (abi: ABI, name: string) => {
-      setAbiObject(abi)
+    (abiObj: ABI, name: string) => {
+      setAbiObject(abiObj)
       setAbiName(name)
     },
     [setAbiObject, setAbiName]

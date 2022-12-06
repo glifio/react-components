@@ -3,10 +3,7 @@ import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 
-import {
-  useStateReplayQuery,
-  useTxIdQuery
-} from '../../../../generated/graphql'
+import { useStateReplayQuery } from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
 import { useMessage } from '../hooks/useAllMessages'
@@ -14,6 +11,8 @@ import { useMethodName } from '../hooks/useMethodName'
 import { Lines, Line, StandardBox, PageTitle } from '../../../Layout'
 import { makeFriendlyBalance } from '../../../../utils/makeFriendlyBalance'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
+import { txIDToMsgCID, txIDToTxHash } from '../../../../utils/isTxID'
+import { isFEVMTx } from '../../../../utils/isFEVMTx'
 import {
   ExecReturn,
   getAddrFromReceipt
@@ -22,7 +21,6 @@ import { LoadingIcon } from '../../../Loading/LoadingIcon'
 import { ButtonV2Link } from '../../../Button/V2'
 import { IconCancel, IconSpeedUp } from '../../../Icons'
 import {
-  Network,
   useEnvironment,
   useLogger
 } from '../../../../services/EnvironmentProvider'
@@ -50,7 +48,7 @@ export default function MessageDetail({
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(txID)
-  const { isProd, networkName } = useEnvironment()
+  const { isProd } = useEnvironment()
   const logger = useLogger()
 
   const { data: stateReplayQuery, error: stateReplayError } =
@@ -62,24 +60,17 @@ export default function MessageDetail({
       skip: !txID || confirmations < 2
     })
 
-  // this is a hack until we get conversion from ethhash <> cid working in JS
-  const { data: txIDsData } = useTxIdQuery({
-    variables: {
-      txID
-    },
-    skip: networkName !== Network.WALLABY
-  })
+  const isFEVM = useMemo<boolean>(
+    () => !!message && isFEVMTx(message),
+    [message]
+  )
 
-  const txIDPair = useMemo<{ cid: string; ethHash: string }>(() => {
-    // make sure we don't break mainnet
-    // this data only exists on wallaby
-    if (txIDsData) {
-      return txIDsData.txID
-    }
+  const msgCID = useMemo<string | null>(() => txIDToMsgCID(txID), [txID])
 
-    // otherwise were on a network that does not support eth hashes
-    return { cid: txID, ethHash: '' }
-  }, [txID, txIDsData])
+  const fevmHex = useMemo<string | null>(
+    () => (isFEVM ? txIDToTxHash(txID) : null),
+    [isFEVM, txID]
+  )
 
   const transactionFee = useMemo<string>(() => {
     if (pending) return 'Pending...'
@@ -181,7 +172,8 @@ export default function MessageDetail({
         )}
         {messageState === MessageState.Pending && (
           <MessageDetailBase
-            txID={txIDPair}
+            msgCID={msgCID}
+            fevmHex={fevmHex}
             methodName={methodName}
             message={message}
             time={time}
@@ -191,7 +183,8 @@ export default function MessageDetail({
         {messageState === MessageState.Confirmed && (
           <>
             <MessageDetailBase
-              txID={txIDPair}
+              msgCID={msgCID}
+              fevmHex={fevmHex}
               methodName={methodName}
               confirmations={confirmations}
               time={time}
@@ -207,7 +200,8 @@ export default function MessageDetail({
         {messageState === MessageState.Executed && (
           <>
             <MessageDetailBase
-              txID={txIDPair}
+              msgCID={msgCID}
+              fevmHex={fevmHex}
               methodName={methodName}
               exitCode={stateReplayQuery?.stateReplay?.receipt?.exitCode}
               confirmations={confirmations}
@@ -236,7 +230,7 @@ export default function MessageDetail({
             )}
             {seeMore && (
               <SeeMoreContent
-                txID={txIDPair}
+                fevmHex={fevmHex}
                 message={message as GqlMessage}
                 gasUsed={gasUsed}
                 gasCost={stateReplayQuery?.stateReplay?.gasCost}

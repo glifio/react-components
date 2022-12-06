@@ -1,6 +1,0 @@
-query TxID($txID: String!) {
-  txID(str: $txID) {
-    cid
-    ethHash
-  }
-}
