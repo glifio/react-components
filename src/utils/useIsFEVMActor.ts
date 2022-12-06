@@ -4,7 +4,6 @@ import {
   Protocol
 } from '@glif/filecoin-address'
 import useSWRImmutable from 'swr/immutable'
-import { SWRConfiguration } from 'swr'
 import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { useEnvironment } from '../services/EnvironmentProvider'
 import { isEthAddress } from './isAddress'
@@ -46,14 +45,12 @@ const fetcher = async (
 // given an address, return true if this represents an FEVM actor
 // TODO: we should just be able to match the actor's Code with the actorCode
 export const useIsFEVMActor = (
-  address: string,
-  swrConfig: SWRConfiguration = { refreshInterval: 10000 }
+  address: string
 ): boolean => {
   const { lotusApiUrl } = useEnvironment()
   const { data } = useSWRImmutable<boolean, Error>(
     [lotusApiUrl, 'getCode', address, 'latest'],
-    fetcher,
-    swrConfig
+    fetcher
   )
 
   return data || false
