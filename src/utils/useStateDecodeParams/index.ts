@@ -18,13 +18,11 @@ const fetcher = async <T>(
   base64Params: string
 ): Promise<T | null> => {
   // Return null for missing input or delegated actors
-  if (
-    !apiAddress ||
-    !actorAddress ||
-    !base64Params ||
-    isDelegatedAddress(actorAddress)
-  )
-    return null
+  if (!apiAddress || !actorAddress || !base64Params) return null
+
+  // Throw error for delegated actors
+  if (isDelegatedAddress(actorAddress))
+    throw new Error('Cannot decode parameters for delegated actors')
 
   // Throw error for invalid Filecoin address formats
   if (!isFilAddress(actorAddress)) throw new Error('Invalid actor address')
