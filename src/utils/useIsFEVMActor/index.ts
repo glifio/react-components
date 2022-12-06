@@ -2,8 +2,8 @@ import useSWRImmutable from 'swr/immutable'
 import LotusRpcEngine from '@glif/filecoin-rpc-client'
 import { ethAddressFromDelegated } from '@glif/filecoin-address'
 
-import { useEnvironment } from '../services/EnvironmentProvider'
-import { isEthAddress, isDelegatedAddress } from './isAddress'
+import { useEnvironment } from '../../services/EnvironmentProvider'
+import { isEthAddress, isDelegatedAddress } from '../isAddress'
 
 const fetcher = async (
   apiAddress: string,
