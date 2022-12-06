@@ -4,8 +4,8 @@ import { useLocalStorage } from './useLocalStorage'
 
 export const useAbi = (address: string) => {
   const {
-    valObj: abi,
-    error: abiError,
+    valObj: abiObject,
+    error: abiObjectError,
     setObject: setAbiObject,
     clear: clearAbiObject,
     clearAll: clearAllAbiObjects
@@ -27,11 +27,11 @@ export const useAbi = (address: string) => {
     namespace: 'ABI-NAME'
   })
 
-  const error = abiError || abiNameError || null
+  const error = abiObjectError || abiNameError || null
 
   const setAbi = useCallback(
-    (abiObj: ABI, name: string) => {
-      setAbiObject(abiObj)
+    (abi: ABI, name: string) => {
+      setAbiObject(abi)
       setAbiName(name)
     },
     [setAbiObject, setAbiName]
@@ -47,5 +47,5 @@ export const useAbi = (address: string) => {
     clearAllAbiNames()
   }, [clearAllAbiObjects, clearAllAbiNames])
 
-  return { abi, abiName, error, setAbi, clearAbi, clearAllAbis }
+  return { abi: abiObject, abiName, error, setAbi, clearAbi, clearAllAbis }
 }
