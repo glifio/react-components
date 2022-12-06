@@ -103,8 +103,6 @@ export const LinesReturn = ({
     <DataTypeLines label='Return' dataType={describedReturnVal} />
   ) : isDelegated && !abi ? (
     <Line label='Return (upload abi to decode)'>{returnVal}</Line>
-  ) : isDelegated ? (
-    <NullishLine label='Return' />
   ) : returnVal ? (
     <Line label='Return (failed to decode)'>{returnVal}</Line>
   ) : (
