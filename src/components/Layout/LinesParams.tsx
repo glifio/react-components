@@ -40,10 +40,10 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
   const { params: decodedParams, error: decodeParamsError } =
     useStateDecodeParams(address, method, params)
 
-  // Log decode parameter errors
+  // Log decode parameter errors (if not delegated)
   useEffect(
-    () => decodeParamsError && logger.error(decodeParamsError),
-    [decodeParamsError, logger]
+    () => !isDelegated && decodeParamsError && logger.error(decodeParamsError),
+    [isDelegated, decodeParamsError, logger]
   )
 
   // Get actor code and name
