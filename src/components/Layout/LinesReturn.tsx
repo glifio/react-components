@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   DataType,
   describeMessageReturn,
@@ -23,6 +23,7 @@ export const LinesReturn = ({
   params,
   returnVal
 }: LinesReturnProps) => {
+  const [describeError, setDescribeError] = useState<boolean>(false)
   const { coinType, networkName } = useEnvironment()
   const { abi } = useAbi(address)
   const logger = useLogger()
@@ -64,11 +65,13 @@ export const LinesReturn = ({
 
   // Get described return value
   const describedReturnVal = useMemo<DataType | null>(() => {
+    setDescribeError(false)
     if (isDelegated) {
       try {
         // Describe delegated actor message return
         if (abi) return describeFEVMTxReturn(params, returnVal, abi)
       } catch (e) {
+        setDescribeError(true)
         logger.error(
           `Failed to describe FEVM tx return for network: ${networkName}, address: ${address}, method: ${method}, params: ${params}, return: ${returnVal}, with message: ${e.message}`
         )
@@ -79,6 +82,7 @@ export const LinesReturn = ({
         if (actorName && decodedReturnVal)
           return describeMessageReturn(actorName, method, decodedReturnVal)
       } catch (e) {
+        setDescribeError(true)
         logger.error(
           `Failed to describe message return for network: ${networkName}, address: ${address}, method: ${method}, return: ${returnVal}, with message: ${e.message}`
         )
@@ -99,15 +103,24 @@ export const LinesReturn = ({
   ])
 
   // Return most verbose return value first
-  return describedReturnVal ? (
-    <DataTypeLines label='Return' dataType={describedReturnVal} />
-  ) : isDelegated && !abi ? (
-    <Line label='Return (upload abi to decode)'>{returnVal}</Line>
-  ) : returnVal ? (
-    <Line label='Return (failed to decode)'>{returnVal}</Line>
-  ) : (
-    <NullishLine label='Return' />
-  )
+  if (describedReturnVal)
+    return <DataTypeLines label='Return' dataType={describedReturnVal} />
+
+  if (returnVal) {
+    if (isDelegated) {
+      return !abi ? (
+        <Line label={`Return (upload abi to decode)`}>{returnVal}</Line>
+      ) : describeError ? (
+        <Line label={`Return (failed to decode)`}>{returnVal}</Line>
+      ) : (
+        <NullishLine label='Return' />
+      )
+    } else {
+      return <Line label='Return (failed to decode)'>{returnVal}</Line>
+    }
+  }
+
+  return <NullishLine label='Return' />
 }
 
 export interface LinesReturnProps {

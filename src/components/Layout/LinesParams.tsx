@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   DataType,
   describeMessageParams,
@@ -17,6 +17,7 @@ import { isDelegatedAddress } from '../../utils/isAddress'
 import { useAbi } from '../../utils/useAbi'
 
 export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
+  const [describeError, setDescribeError] = useState<boolean>(false)
   const { coinType, networkName } = useEnvironment()
   const { abi } = useAbi(address)
   const logger = useLogger()
@@ -59,11 +60,13 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
 
   // Get described parameters
   const describedParams = useMemo<DataType | null>(() => {
+    setDescribeError(false)
     if (isDelegated) {
       try {
         // Describe delegated actor message params
         if (abi) return describeFEVMTxParams(params, abi)
       } catch (e) {
+        setDescribeError(true)
         logger.error(
           `Failed to describe FEVM tx params for network: ${networkName}, address: ${address}, method: ${method}, params: ${params}, with message: ${e.message}`
         )
@@ -74,6 +77,7 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
         if (actorName && decodedParams)
           return describeMessageParams(actorName, method, decodedParams)
       } catch (e) {
+        setDescribeError(true)
         logger.error(
           `Failed to describe message params for network: ${networkName}, address: ${address}, method: ${method}, params: ${params}, with message: ${e.message}`
         )
@@ -101,8 +105,13 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
 
   if (params) {
     if (isDelegated) {
-      const suffix = abi ? 'failed to decode' : 'upload abi to decode'
-      return <Line label={`Params (${suffix})`}>{params}</Line>
+      return !abi ? (
+        <Line label={`Params (upload abi to decode)`}>{params}</Line>
+      ) : describeError ? (
+        <Line label={`Params (failed to decode)`}>{params}</Line>
+      ) : (
+        <NullishLine label='Return' />
+      )
     } else {
       const suffix = decodeParamsError ? 'failed to decode' : 'decoding...'
       return <Line label={`Params (${suffix})`}>{params}</Line>
