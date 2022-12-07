@@ -162,11 +162,10 @@ export const MessageDetailBase = ({
 
   const { abiName } = useAbi(message?.to?.robust)
 
-  const badgeText = useMemo<string | null>(() => {
-    if (isFEVMActor && abiName) return abiName
-    else if (isFEVMActor) return 'Smart contract'
-    return null
-  }, [abiName, isFEVMActor])
+  const contractName = useMemo<string | null>(
+    () => isFEVMActor ? abiName || 'Smart contract' : null,
+    [isFEVMActor, abiName]
+  )
 
   return (
     <>
@@ -212,9 +211,9 @@ export const MessageDetailBase = ({
         <AddressLink
           id={message.to.id}
           address={message.to.robust}
-          hideCopyText={!!badgeText}
+          hideCopyText={!!contractName}
         />
-        {badgeText && <Badge color='blue' text='Contract' />}
+        {contractName && <Badge color='blue' text={contractName} />}
       </Line>
       <hr />
       <Line label='Value'>{attoFilToFil(message.value)}</Line>
