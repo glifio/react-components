@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { DataType, describeFEVMLogs } from '@glif/filecoin-actor-utils'
-import { useAbi } from '../../utils'
-import { useChainGetMsgEvents } from '../../utils/useChainGetMsgEvents'
+import { useAbi } from '../../utils/useAbi'
+import { useGetFEVMLogs } from '../../utils/useGetFEVMLogs'
 import { BaseTypeLines, DataTypeLines } from './DataTypes'
 import { Line, NullishLine } from './Lines'
 import { useLogger } from '../../services'
@@ -9,7 +9,7 @@ import { useLogger } from '../../services'
 export const LinesEventLogs = ({ txID, abiSelector }: LinesEventLogsProps) => {
   const logger = useLogger()
   const { abi } = useAbi(abiSelector)
-  const { logs } = useChainGetMsgEvents(txID, abi)
+  const { logs } = useGetFEVMLogs(txID)
 
   const events = useMemo<DataType | null>(() => {
     try {
