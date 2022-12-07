@@ -20,7 +20,7 @@ import {
 import { TxLink } from '../LabeledText/TxLink'
 import { LinesParams } from '../Layout/LinesParams'
 import { LinesReturn } from '../Layout/LinesReturn'
-import { LinesEventLogs } from '../Layout/LinesEventLogs'
+import { LinesFEVMLogs } from '../Layout/LinesFEVMLogs'
 import { AbiSelector } from '../AbiSelector'
 import { useIsFEVMActor } from '../../utils/useIsFEVMActor'
 import { useAbi } from '../../utils'
@@ -163,7 +163,7 @@ export const MessageDetailBase = ({
   const { abiName } = useAbi(message?.to?.robust)
 
   const contractName = useMemo<string | null>(
-    () => isFEVMActor ? abiName || 'Smart contract' : null,
+    () => (isFEVMActor ? abiName || 'Smart contract' : null),
     [isFEVMActor, abiName]
   )
 
@@ -314,7 +314,7 @@ export const SeeMoreContent = ({
             <AbiSelector address={message.to.robust} />
           </Line>
           <hr />
-          <LinesEventLogs txID={fevmHex} abiSelector={message.to.robust} />
+          <LinesFEVMLogs txHash={fevmHex} address={message.to.robust} />
           <hr />
         </>
       )}
