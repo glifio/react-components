@@ -14,7 +14,6 @@ export const LinesFEVMLogs = ({ txHash, address }: LinesEventLogsProps) => {
 
   const describedLogs = useMemo<DataType | null>(() => {
     try {
-      console.log(logs, abi)
       if (abi) return describeFEVMLogs(logs, abi)
     } catch (e) {
       const logsStr = JSON.stringify(logs)
