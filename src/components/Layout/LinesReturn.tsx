@@ -42,7 +42,7 @@ export const LinesReturn = ({
     [actorDataError, logger]
   )
 
-  // Decode return value
+  // Decode return value (returns null for delegated actors)
   const decodedReturnVal = useMemo<Record<string, any> | null>(
     () =>
       !isDelegated && returnVal
