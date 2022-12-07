@@ -25,18 +25,23 @@ export const LinesFEVMLogs = ({ txHash, address }: LinesEventLogsProps) => {
     return null
   }, [logs, abi, logger, txHash, address])
 
-  return describedLogs ? (
-    <DataTypeLines label='Event logs' dataType={describedLogs} />
-  ) : logs?.length ? (
-    <BaseTypeLines
-      label='Event logs (upload abi to decode)'
-      data={Object.fromEntries(
-        logs.map(({ data, topics }, i) => [`Event log ${i}`, { data, topics }])
-      )}
-    />
-  ) : (
-    <NullishLine label='Event logs' />
-  )
+  if (describedLogs)
+    return <DataTypeLines label='Event logs' dataType={describedLogs} />
+
+  if (logs?.length)
+    return (
+      <BaseTypeLines
+        label='Event logs (upload abi to decode)'
+        data={Object.fromEntries(
+          logs.map(({ data, topics }, i) => [
+            `Event log ${i}`,
+            { data, topics }
+          ])
+        )}
+      />
+    )
+
+  return <NullishLine label='Event logs' />
 }
 
 type LinesEventLogsProps = {
