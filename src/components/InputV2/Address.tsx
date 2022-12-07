@@ -57,7 +57,7 @@ export const AddressInput = ({
       !error && isEthAddress(value)
         ? delegatedFromEthAddress(value, coinType)
         : null,
-    [error, value]
+    [error, value, coinType]
   )
 
   // Convert to eth if delegated
