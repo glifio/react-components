@@ -50,7 +50,7 @@ export const AbiSelector = ({ address }: AbiSelectorProps) => {
     />
   ) : (
     <>
-      <Badge color='blue' text={abiName} />
+      <Badge color='blue' text={abiName || 'ABI'} />
       <IconCloseStyled
         height='1em'
         color={Colors.BLUE_DARK}
