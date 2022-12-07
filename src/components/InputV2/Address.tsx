@@ -8,6 +8,7 @@ import { useEffect, useState, useMemo, ReactNode } from 'react'
 import { BaseInput, BaseInputProps, BaseInputPropTypes } from './Base'
 import { AddressLink } from '../LabeledText/AddressLink'
 import { truncateString } from '../../utils/truncateString'
+import { useEnvironment } from '../../services/EnvironmentProvider'
 import {
   isAddress,
   isDelegatedAddress,
@@ -32,6 +33,7 @@ export const AddressInput = ({
   actor,
   ...baseProps
 }: AddressInputProps) => {
+  const { coinType } = useEnvironment()
   const [hasFocus, setHasFocus] = useState<boolean>(false)
   const [hasChanged, setHasChanged] = useState<boolean>(false)
 
@@ -52,7 +54,9 @@ export const AddressInput = ({
   // Convert to delegated if eth
   const delegatedFromEth = useMemo<string | null>(
     () =>
-      !error && isEthAddress(value) ? delegatedFromEthAddress(value) : null,
+      !error && isEthAddress(value)
+        ? delegatedFromEthAddress(value, coinType)
+        : null,
     [error, value]
   )
 

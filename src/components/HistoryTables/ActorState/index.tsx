@@ -41,7 +41,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   const address = useMemo<string>(
     () =>
       isEthAddress(addressProp)
-        ? delegatedFromEthAddress(addressProp)
+        ? delegatedFromEthAddress(addressProp, coinType)
         : convertAddrToPrefix(addressProp, coinType),
     [addressProp, coinType]
   )
