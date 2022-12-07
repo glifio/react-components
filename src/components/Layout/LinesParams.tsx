@@ -36,11 +36,11 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
     [actorDataError, logger]
   )
 
-  // Decode parameters
+  // Decode parameters (will error for delegated actors)
   const { params: decodedParams, error: decodeParamsError } =
     useStateDecodeParams(address, method, params)
 
-  // Log decode parameter errors (if not delegated)
+  // Log decode parameter errors (if not a delegated actor)
   useEffect(
     () => !isDelegated && decodeParamsError && logger.error(decodeParamsError),
     [isDelegated, decodeParamsError, logger]
@@ -93,19 +93,23 @@ export const LinesParams = ({ address, method, params }: LinesParamsProps) => {
   ])
 
   // Return most verbose params first
-  return describedParams ? (
-    <DataTypeLines label='Params' dataType={describedParams} />
-  ) : decodedParams ? (
-    <BaseTypeObjLines label='Params' data={decodedParams} />
-  ) : isDelegated && !abi ? (
-    <Line label='Params (upload abi to decode)'>{params}</Line>
-  ) : params && decodeParamsError ? (
-    <Line label='Params (failed to decode)'>{params}</Line>
-  ) : params && !isDelegated ? (
-    <Line label='Params (decoding...)'>{params}</Line>
-  ) : (
-    <NullishLine label='Params' />
-  )
+  if (describedParams)
+    return <DataTypeLines label='Params' dataType={describedParams} />
+
+  if (decodedParams)
+    return <BaseTypeObjLines label='Params' data={decodedParams} />
+
+  if (params) {
+    if (isDelegated) {
+      const suffix = abi ? 'failed to decode' : 'upload abi to decode'
+      return <Line label={`Params (${suffix})`}>{params}</Line>
+    } else {
+      const suffix = decodeParamsError ? 'failed to decode' : 'decoding...'
+      return <Line label={`Params (${suffix})`}>{params}</Line>
+    }
+  }
+
+  return <NullishLine label='Params' />
 }
 
 export interface LinesParamsProps {
