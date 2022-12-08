@@ -1,9 +1,5 @@
 import PropTypes from 'prop-types'
-import {
-  DataType,
-  DataTypeMap,
-  Type
-} from '@glif/filecoin-actor-utils'
+import { DataType, DataTypeMap, Type } from '@glif/filecoin-actor-utils'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
 import { Line, NullishLine } from './Lines'
