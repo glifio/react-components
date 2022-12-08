@@ -324,7 +324,7 @@ exports[`ActorState it renders the actor state correctly 1`] = `
       class="c4"
     >
       <div>
-        Signers
+        Signers[0]
       </div>
       <div>
         <div
