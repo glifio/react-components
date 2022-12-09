@@ -125,7 +125,7 @@ describe('ActorState', () => {
     expect(
       getByText(result!.container, 'PendingTxns (CID)')
     ).toBeInTheDocument()
-    expect(getByText(result!.container, 'Signers')).toBeInTheDocument()
+    expect(getByText(result!.container, 'Signers[0]')).toBeInTheDocument()
     expect(getByText(result!.container, 'StartEpoch')).toBeInTheDocument()
     expect(getByText(result!.container, 'UnlockDuration')).toBeInTheDocument()
 

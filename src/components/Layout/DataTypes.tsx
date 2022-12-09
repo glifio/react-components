@@ -1,10 +1,5 @@
 import PropTypes from 'prop-types'
-import {
-  BaseValue,
-  DataType,
-  DataTypeMap,
-  Type
-} from '@glif/filecoin-actor-utils'
+import { DataType, DataTypeMap, Type } from '@glif/filecoin-actor-utils'
 import { FilecoinNumber } from '@glif/filecoin-number'
 
 import { Line, NullishLine } from './Lines'
@@ -29,16 +24,14 @@ export const DataTypeLines = ({
       return <DataTypeLine label={label} depth={depth} dataType={dataType} />
 
     case Type.Array:
-      const { Contains } = dataType
-      const value = dataType.Value as Array<BaseValue>
       return (
         <>
-          {value.map((v, i) => (
-            <DataTypeLine
+          {dataType.Values.map((value, i) => (
+            <DataTypeLines
               key={i}
-              label={i === 0 ? label : ''}
+              label={`${label}[${i}]`}
               depth={depth}
-              dataType={{ ...Contains, Value: v }}
+              dataType={value}
             />
           ))}
         </>
