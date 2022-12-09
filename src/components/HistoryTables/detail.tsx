@@ -20,8 +20,10 @@ import {
 import { TxLink } from '../LabeledText/TxLink'
 import { LinesParams } from '../Layout/LinesParams'
 import { LinesReturn } from '../Layout/LinesReturn'
+import { LinesFEVMLogs } from '../Layout/LinesFEVMLogs'
 import { AbiSelector } from '../AbiSelector'
-import { isDelegatedAddress } from '../../utils/isAddress'
+import { useIsFEVMActor } from '../../utils/useIsFEVMActor'
+import { useAbi } from '../../utils'
 
 const CAPTION = styled.div`
   line-height: 1.5em;
@@ -132,10 +134,11 @@ Confirmations.propTypes = {
 }
 
 export const MessageDetailBase = ({
+  msgCID,
+  fevmHex,
   message,
   pending,
   exitCode,
-  txID,
   methodName,
   confirmations
 }: MessageDetailBaseProps) => {
@@ -155,16 +158,26 @@ export const MessageDetailBase = ({
     [message.height, chainHeadSubscription.data?.chainHead.height]
   )
 
+  const isFEVMActor = useIsFEVMActor(message?.to?.robust)
+
+  const { abiName } = useAbi(message?.to?.robust)
+
+  const contractName = useMemo<string | null>(
+    () => (isFEVMActor ? abiName || 'Smart contract' : null),
+    [isFEVMActor, abiName]
+  )
+
   return (
     <>
       <Line label='CID'>
         <TxLink
-          txID={txID}
+          txID={msgCID}
           hideCopyText={false}
           hideCopy={false}
           shouldTruncate={false}
         />
       </Line>
+      {fevmHex && <Line label='EVM Transaction hash'>{fevmHex}</Line>}
       {exitCode >= 0 && (
         <Line label='Status and Confirmations'>
           <Status exitCode={exitCode} pending={pending} />
@@ -198,8 +211,9 @@ export const MessageDetailBase = ({
         <AddressLink
           id={message.to.id}
           address={message.to.robust}
-          hideCopyText={false}
+          hideCopyText={!!contractName}
         />
+        {contractName && <Badge color='blue' text={contractName} />}
       </Line>
       <hr />
       <Line label='Value'>{attoFilToFil(message.value)}</Line>
@@ -216,7 +230,8 @@ export const MessageDetailBase = ({
 }
 
 type MessageDetailBaseProps = {
-  txID: string
+  msgCID: string
+  fevmHex?: string
   message: GqlMessage | GqlMessagePending
   methodName: string
   time: number
@@ -226,7 +241,8 @@ type MessageDetailBaseProps = {
 }
 
 MessageDetailBase.propTypes = {
-  txID: PropTypes.string.isRequired,
+  msgCID: PropTypes.string.isRequired,
+  fevmHex: PropTypes.string,
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   time: PropTypes.number.isRequired,
   pending: PropTypes.bool,
@@ -240,15 +256,13 @@ const SpanGray = styled.span`
 `
 
 export const SeeMoreContent = ({
+  fevmHex,
   message,
   gasUsed,
   gasCost,
   executionTrace
 }: SeeMoreContentProps) => {
-  const isToDelegated = useMemo(
-    () => isDelegatedAddress(message.to.robust),
-    [message]
-  )
+  const isFEVMActor = useIsFEVMActor(message?.to?.robust)
   const gasPercentage = useMemo<string>(() => {
     const gasLimit = new FilecoinNumber(message.gasLimit, 'attofil')
     return (
@@ -294,11 +308,13 @@ export const SeeMoreContent = ({
       </Line>
       <Line label='Gas Burned'>{gasBurned} attoFIL</Line>
       <hr />
-      {isToDelegated && (
+      {isFEVMActor && fevmHex && (
         <>
           <Line label='ABI'>
             <AbiSelector address={message.to.robust} />
           </Line>
+          <hr />
+          <LinesFEVMLogs txHash={fevmHex} address={message.to.robust} />
           <hr />
         </>
       )}
@@ -319,6 +335,7 @@ export const SeeMoreContent = ({
 }
 
 type SeeMoreContentProps = {
+  fevmHex?: string
   message: GqlMessage
   gasUsed: number
   gasCost: GasCost
@@ -326,6 +343,7 @@ type SeeMoreContentProps = {
 }
 
 SeeMoreContent.propTypes = {
+  fevmHex: PropTypes.string,
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   gasUsed: PropTypes.number.isRequired,
   gasCost: GRAPHQL_GAS_COST_PROPTYPE.isRequired,

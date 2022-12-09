@@ -11,6 +11,8 @@ import { useMethodName } from '../hooks/useMethodName'
 import { Lines, Line, StandardBox, PageTitle } from '../../../Layout'
 import { makeFriendlyBalance } from '../../../../utils/makeFriendlyBalance'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
+import { txIDToMsgCID, txIDToTxHash } from '../../../../utils/isTxID'
+import { isFEVMTx } from '../../../../utils/isFEVMTx'
 import {
   ExecReturn,
   getAddrFromReceipt
@@ -57,6 +59,18 @@ export default function MessageDetail({
       // give the message time to execute on-chain before fetching
       skip: !txID || confirmations < 2
     })
+
+  const isFEVM = useMemo<boolean>(
+    () => !!message && isFEVMTx(message),
+    [message]
+  )
+
+  const msgCID = useMemo<string | null>(() => txIDToMsgCID(txID), [txID])
+
+  const fevmHex = useMemo<string | null>(
+    () => (isFEVM ? txIDToTxHash(txID) : null),
+    [isFEVM, txID]
+  )
 
   const transactionFee = useMemo<string>(() => {
     if (pending) return 'Pending...'
@@ -158,7 +172,8 @@ export default function MessageDetail({
         )}
         {messageState === MessageState.Pending && (
           <MessageDetailBase
-            txID={txID}
+            msgCID={msgCID}
+            fevmHex={fevmHex}
             methodName={methodName}
             message={message}
             time={time}
@@ -168,7 +183,8 @@ export default function MessageDetail({
         {messageState === MessageState.Confirmed && (
           <>
             <MessageDetailBase
-              txID={txID}
+              msgCID={msgCID}
+              fevmHex={fevmHex}
               methodName={methodName}
               confirmations={confirmations}
               time={time}
@@ -184,7 +200,8 @@ export default function MessageDetail({
         {messageState === MessageState.Executed && (
           <>
             <MessageDetailBase
-              txID={txID}
+              msgCID={msgCID}
+              fevmHex={fevmHex}
               methodName={methodName}
               exitCode={stateReplayQuery?.stateReplay?.receipt?.exitCode}
               confirmations={confirmations}
@@ -213,6 +230,7 @@ export default function MessageDetail({
             )}
             {seeMore && (
               <SeeMoreContent
+                fevmHex={fevmHex}
                 message={message as GqlMessage}
                 gasUsed={gasUsed}
                 gasCost={stateReplayQuery?.stateReplay?.gasCost}
