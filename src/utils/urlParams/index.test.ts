@@ -82,7 +82,7 @@ describe('getParam', () => {
 
 describe('removeQueryParam', () => {
   test('it removes a query param', () => {
-    const URL = 'https://wallet.glif.io/?network=wallaby'
+    const URL = 'https://wallet.glif.io/?network=calibration'
     expect(removeQueryParam(URL, 'network')).toBe('https://wallet.glif.io/')
   })
 
@@ -209,13 +209,13 @@ describe('navigate', () => {
       )
     })
     test('it can switch from another network to mainnet via query params', () => {
-      const url = '/address/t0100/?network=wallaby'
+      const url = '/address/t0100/?network=calibration'
       expect(switchNetworkUrl(url, Network.MAINNET)).toBe('/address/t0100/')
     })
     test('it can switch from another network to mainnet via path params', () => {
       const expected = '/address/t0100/'
-      const url = '/wallabynet/address/t0100/'
-      const url2 = '/wallaby/address/t0100/'
+      const url = '/calibrationnet/address/t0100/'
+      const url2 = '/calibration/address/t0100/'
       expect(switchNetworkUrl(url, Network.MAINNET)).toBe(expected)
       expect(switchNetworkUrl(url2, Network.MAINNET)).toBe(expected)
     })
