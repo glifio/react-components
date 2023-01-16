@@ -116,7 +116,7 @@ export const networks: Record<Network, NetworkInfo> = {
     coinType: CoinType.TEST
   },
   [Network.HYPERSPACE]: {
-    nodeStatusApiKey: 'm792585234-2e992345ecb11cd5846f7161',
+    nodeStatusApiKey: 'm793485228-aeeb03f93349e7fc1596791c',
     graphUrl: 'graph-hyperspace.glif.link/query',
     graphSecure: true,
     lotusApiUrl: 'https://api.hyperspace.node.glif.io/rpc/v0',
