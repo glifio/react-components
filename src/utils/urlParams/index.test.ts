@@ -204,8 +204,8 @@ describe('navigate', () => {
   describe('switchNetworkUrl', () => {
     test('it can switch from mainnet to another network via query params', () => {
       const url = '/address/t0100/'
-      expect(switchNetworkUrl(url, Network.WALLABY)).toBe(
-        '/address/t0100/?network=wallabynet'
+      expect(switchNetworkUrl(url, Network.HYPERSPACE)).toBe(
+        '/address/t0100/?network=hyperspacenet'
       )
     })
     test('it can switch from another network to mainnet via query params', () => {
@@ -221,8 +221,8 @@ describe('navigate', () => {
     })
     test('it can switch from one non mainnet network to another non mainnet network via path params', () => {
       const url = '/calibration/address/t0100/'
-      expect(switchNetworkUrl(url, Network.WALLABY)).toBe(
-        '/wallabynet/address/t0100/'
+      expect(switchNetworkUrl(url, Network.HYPERSPACE)).toBe(
+        '/hyperspacenet/address/t0100/'
       )
     })
   })

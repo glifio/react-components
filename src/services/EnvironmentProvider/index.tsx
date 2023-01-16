@@ -18,7 +18,7 @@ import { getQueryParam, switchNetworkUrl } from '../../utils/urlParams'
 export enum Network {
   MAINNET = 'mainnet',
   CALIBRATION = 'calibrationnet',
-  WALLABY = 'wallabynet'
+  HYPERSPACE = 'hyperspacenet'
 }
 
 export type NetworkInfo = Pick<
@@ -115,12 +115,12 @@ export const networks: Record<Network, NetworkInfo> = {
     networkName: Network.CALIBRATION,
     coinType: CoinType.TEST
   },
-  [Network.WALLABY]: {
+  [Network.HYPERSPACE]: {
     nodeStatusApiKey: 'm792585234-2e992345ecb11cd5846f7161',
-    graphUrl: 'graph-wallaby.glif.link/query',
+    graphUrl: 'graph-hyperspace.glif.link/query',
     graphSecure: true,
-    lotusApiUrl: 'https://wallaby.node.glif.io',
-    networkName: Network.WALLABY,
+    lotusApiUrl: 'https://api.hyperspace.node.glif.io/rpc/v0',
+    networkName: Network.HYPERSPACE,
     coinType: CoinType.TEST
   }
 }
