@@ -211,7 +211,7 @@ exports[`NetworkSelector interactions it renders the network options 1`] = `
       role="button"
       tabindex="3"
     >
-      wallabynet
+      hyperspacenet
     </div>
   </div>
 </div>

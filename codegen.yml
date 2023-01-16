@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'https://graph-wallaby.glif.link/query'
+schema: 'https://graph-hyperspace.glif.link/query'
 documents: './src/graphql/**/*.graphql'
 generates:
   src/generated/graphql.tsx:

@@ -68,7 +68,7 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
   }>(() => {
     if (
       _actorError &&
-      networkName === Network.WALLABY &&
+      networkName === Network.HYPERSPACE &&
       _actorError.message.includes('dumping actor state')
     ) {
       return { actorError: null, tmpPatchWlbyActorErr: true }
