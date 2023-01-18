@@ -117,7 +117,7 @@ export const networks: Record<Network, NetworkInfo> = {
   },
   [Network.HYPERSPACE]: {
     nodeStatusApiKey: 'm793485228-aeeb03f93349e7fc1596791c',
-    graphUrl: 'graph-hyperspace.glif.link/query',
+    graphUrl: 'graph-wallaby.glif.link/query',
     graphSecure: true,
     lotusApiUrl: 'https://api.hyperspace.node.glif.io/rpc/v0',
     networkName: Network.HYPERSPACE,
