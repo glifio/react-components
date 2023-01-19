@@ -63,20 +63,21 @@ export default function MessageDetail({
       skip: !txID || confirmations < 2
     })
 
+  const skipTxIdQuery = networkName !== Network.HYPERSPACE
   const { data: txIdQuery, error: txIdError } = useTxIdQuery({
     variables: {
       str: txID
     },
-    skip: networkName !== Network.HYPERSPACE
+    skip: skipTxIdQuery
   })
 
   const msgCID = useMemo<string | null>(() => {
-    if (networkName !== Network.HYPERSPACE) return txID
+    if (skipTxIdQuery) return txID
     return isMsgCID(txID) ? txID : txIdQuery.txID?.cid ?? null
   }, [networkName, txIdQuery, txID])
 
   const fevmHex = useMemo<string | null>(() => {
-    if (networkName !== Network.HYPERSPACE) return null
+    if (skipTxIdQuery) return null
     return isTxHash(txID) ? txID : txIdQuery.txID?.ethHash ?? null
   }, [networkName, txIdQuery, txID])
 
