@@ -73,13 +73,13 @@ export default function MessageDetail({
 
   const msgCID = useMemo<string | null>(() => {
     if (skipTxIdQuery) return txID
-    return isMsgCID(txID) ? txID : txIdQuery.txID?.cid ?? null
-  }, [networkName, txIdQuery, txID])
+    return isMsgCID(txID) ? txID : txIdQuery?.txID?.cid ?? null
+  }, [skipTxIdQuery, txIdQuery?.txID?.cid, txID])
 
   const fevmHex = useMemo<string | null>(() => {
     if (skipTxIdQuery) return null
-    return isTxHash(txID) ? txID : txIdQuery.txID?.ethHash ?? null
-  }, [networkName, txIdQuery, txID])
+    return isTxHash(txID) ? txID : txIdQuery?.txID?.ethHash ?? null
+  }, [skipTxIdQuery, txIdQuery?.txID?.ethHash, txID])
 
   const transactionFee = useMemo<string>(() => {
     if (pending) return 'Pending...'
