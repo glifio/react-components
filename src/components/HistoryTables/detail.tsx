@@ -230,7 +230,7 @@ export const MessageDetailBase = ({
 }
 
 type MessageDetailBaseProps = {
-  msgCID: string
+  msgCID?: string
   fevmHex?: string
   message: GqlMessage | GqlMessagePending
   methodName: string
@@ -241,7 +241,7 @@ type MessageDetailBaseProps = {
 }
 
 MessageDetailBase.propTypes = {
-  msgCID: PropTypes.string.isRequired,
+  msgCID: PropTypes.string,
   fevmHex: PropTypes.string,
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   time: PropTypes.number.isRequired,
