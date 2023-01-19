@@ -1,0 +1,6 @@
+query TxID($str: String!) {
+  txID(str: $str) {
+    cid
+    ethHash
+  }
+}
