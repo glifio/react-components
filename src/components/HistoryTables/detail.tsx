@@ -170,14 +170,27 @@ export const MessageDetailBase = ({
   return (
     <>
       <Line label='CID'>
-        <TxLink
-          txID={msgCID}
-          hideCopyText={false}
-          hideCopy={false}
-          shouldTruncate={false}
-        />
+        {msgCID ? (
+          <TxLink
+            txID={msgCID}
+            hideCopyText={false}
+            hideCopy={false}
+            shouldTruncate={false}
+          />
+        ) : (
+          <>Loading...</>
+        )}
       </Line>
-      {fevmHex && <Line label='EVM Transaction hash'>{fevmHex}</Line>}
+      {fevmHex && (
+        <Line label='EVM Transaction hash'>
+          <TxLink
+            txID={fevmHex}
+            hideCopyText={false}
+            hideCopy={false}
+            shouldTruncate={false}
+          />
+        </Line>
+      )}
       {exitCode >= 0 && (
         <Line label='Status and Confirmations'>
           <Status exitCode={exitCode} pending={pending} />
@@ -230,7 +243,7 @@ export const MessageDetailBase = ({
 }
 
 type MessageDetailBaseProps = {
-  msgCID: string
+  msgCID?: string
   fevmHex?: string
   message: GqlMessage | GqlMessagePending
   methodName: string
@@ -241,7 +254,7 @@ type MessageDetailBaseProps = {
 }
 
 MessageDetailBase.propTypes = {
-  msgCID: PropTypes.string.isRequired,
+  msgCID: PropTypes.string,
   fevmHex: PropTypes.string,
   message: GRAPHQL_MESSAGE_PROPTYPE.isRequired,
   time: PropTypes.number.isRequired,
