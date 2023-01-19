@@ -170,12 +170,14 @@ export const MessageDetailBase = ({
   return (
     <>
       <Line label='CID'>
-        <TxLink
-          txID={msgCID}
-          hideCopyText={false}
-          hideCopy={false}
-          shouldTruncate={false}
-        />
+        {msgCID ? (
+          <TxLink
+            txID={msgCID}
+            hideCopyText={false}
+            hideCopy={false}
+            shouldTruncate={false}
+          />
+        ) : <>Loading...</>}
       </Line>
       {fevmHex && <Line label='EVM Transaction hash'>{fevmHex}</Line>}
       {exitCode >= 0 && (
