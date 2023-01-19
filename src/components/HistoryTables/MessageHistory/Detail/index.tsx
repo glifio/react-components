@@ -3,7 +3,10 @@ import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
 
-import { useStateReplayQuery } from '../../../../generated/graphql'
+import {
+  useStateReplayQuery,
+  useTxIdQuery
+} from '../../../../generated/graphql'
 import { AddressLink } from '../../../LabeledText/AddressLink'
 import { DetailCaption, MessageDetailBase, SeeMoreContent } from '../../detail'
 import { useMessage } from '../hooks/useAllMessages'
@@ -11,8 +14,7 @@ import { useMethodName } from '../hooks/useMethodName'
 import { Lines, Line, StandardBox, PageTitle } from '../../../Layout'
 import { makeFriendlyBalance } from '../../../../utils/makeFriendlyBalance'
 import { isAddrEqual } from '../../../../utils/isAddrEqual'
-import { txIDToMsgCID, txIDToTxHash } from '../../../../utils/isTxID'
-import { isFEVMTx } from '../../../../utils/isFEVMTx'
+import { isMsgCID, isTxHash } from '../../../../utils/isTxID'
 import {
   ExecReturn,
   getAddrFromReceipt
@@ -22,7 +24,8 @@ import { ButtonV2Link } from '../../../Button/V2'
 import { IconCancel, IconSpeedUp } from '../../../Icons'
 import {
   useEnvironment,
-  useLogger
+  useLogger,
+  Network
 } from '../../../../services/EnvironmentProvider'
 import { GqlMessage } from '../../../../customPropTypes'
 
@@ -48,7 +51,7 @@ export default function MessageDetail({
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(txID)
-  const { isProd } = useEnvironment()
+  const { isProd, networkName } = useEnvironment()
   const logger = useLogger()
 
   const { data: stateReplayQuery, error: stateReplayError } =
@@ -60,17 +63,22 @@ export default function MessageDetail({
       skip: !txID || confirmations < 2
     })
 
-  const isFEVM = useMemo<boolean>(
-    () => !!message && isFEVMTx(message),
-    [message]
-  )
+  const { data: txIdQuery, error: txIdError } = useTxIdQuery({
+    variables: {
+      str: txID
+    },
+    skip: networkName !== Network.HYPERSPACE
+  })
 
-  const msgCID = useMemo<string | null>(() => txIDToMsgCID(txID), [txID])
+  const msgCID = useMemo<string | null>(() => {
+    if (networkName !== Network.HYPERSPACE) return txID
+    return isMsgCID(txID) ? txID : txIdQuery.txID?.cid ?? null
+  }, [networkName, txIdQuery, txID])
 
-  const fevmHex = useMemo<string | null>(
-    () => (isFEVM ? txIDToTxHash(txID) : null),
-    [isFEVM, txID]
-  )
+  const fevmHex = useMemo<string | null>(() => {
+    if (networkName !== Network.HYPERSPACE) return null
+    return isTxHash(txID) ? txID : txIdQuery.txID?.ethHash ?? null
+  }, [networkName, txIdQuery, txID])
 
   const transactionFee = useMemo<string>(() => {
     if (pending) return 'Pending...'
@@ -125,6 +133,7 @@ export default function MessageDetail({
     () => stateReplayError && logger.error(stateReplayError),
     [stateReplayError, logger]
   )
+  useEffect(() => txIdError && logger.error(txIdError), [txIdError, logger])
 
   return (
     <>
