@@ -404,7 +404,7 @@ exports[`ActorState it renders the actor state correctly 1`] = `
         InitialBalance
       </div>
       <div>
-        6 FIL
+        1 FIL
       </div>
     </div>
     <div
