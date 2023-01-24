@@ -158,7 +158,7 @@ export const DataTypeValue = ({ dataType, label }: DataTypeValueProps) => {
 
       if (Name === 'FilecoinNumber') {
         const filVal = new FilecoinNumber(strVal, 'attofil')
-        return <>{`${(makeFriendlyBalance(filVal), 6)} FIL`}</>
+        return <>{`${makeFriendlyBalance(filVal, 6)} FIL`}</>
       }
 
       return <>{Value}</>
