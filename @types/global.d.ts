@@ -7,7 +7,7 @@ interface MetaMaskWindowProvider {
 interface Ethereum {
   _metamask: MetaMaskWindowProvider
   request: <T>(
-    request: SnapRpcMethodRequest | { method: string; params?: any[] }
+    request: SnapRpcMethodRequest | { method: string; params?: any }
   ) => Promise<T>
 }
 
