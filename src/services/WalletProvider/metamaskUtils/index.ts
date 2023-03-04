@@ -7,7 +7,7 @@ export const connectFILSnap = async (snapId: string = FILSNAP) => {
   await window.ethereum.request({
     method: 'wallet_enable',
     params: {
-      [snapId]: {},
+      [snapId]: {}
     }
   })
 }
