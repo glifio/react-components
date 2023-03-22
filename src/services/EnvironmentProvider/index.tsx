@@ -103,7 +103,7 @@ export const networks: Record<Network, NetworkInfo> = {
     nodeStatusApiKey: 'm786191525-b3192b91db66217a44f7d4be',
     graphUrl: 'graph.glif.link/query',
     graphSecure: true,
-    lotusApiUrl: 'https://mainnet.glif.host',
+    lotusApiUrl: 'https://api.node.glif.io',
     networkName: Network.MAINNET,
     coinType: CoinType.MAIN
   },
