@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useMemo, useEffect } from 'react'
 import { ExecutionTrace } from '@glif/filecoin-wallet-provider'
 import { FilecoinNumber } from '@glif/filecoin-number'
 import PropTypes from 'prop-types'
@@ -49,7 +49,6 @@ export default function MessageDetail({
   confirmations
 }: MessageDetailProps) {
   const time = useMemo(() => Date.now(), [])
-  const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(txID)
   const { isProd, networkName } = useEnvironment()
   const logger = useLogger()
@@ -229,24 +228,13 @@ export default function MessageDetail({
               </Line>
             )}
             <hr />
-            {seeMore ? (
-              <p role='button' onClick={() => setSeeMore(false)}>
-                Click to see less ↑
-              </p>
-            ) : (
-              <p role='button' onClick={() => setSeeMore(true)}>
-                Click to see more ↓
-              </p>
-            )}
-            {seeMore && (
-              <SeeMoreContent
-                fevmHex={fevmHex}
-                message={message as GqlMessage}
-                gasUsed={gasUsed}
-                gasCost={stateReplayQuery?.stateReplay?.gasCost}
-                executionTrace={executionTrace}
-              />
-            )}
+            <SeeMoreContent
+              fevmHex={fevmHex}
+              message={message as GqlMessage}
+              gasUsed={gasUsed}
+              gasCost={stateReplayQuery?.stateReplay?.gasCost}
+              executionTrace={executionTrace}
+            />
           </>
         )}
       </Lines>

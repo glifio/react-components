@@ -12,23 +12,23 @@ import PreStake from '../abi/PreStake'
 import wfil from '../abi/wfil'
 
 const abiMap = new Map<string, ABI>([
-  ['0x2B3ef6906429b580b7b2080de5CA893BC282c225', FilForwarder],
-  ['0x690908f7fa93afC040CFbD9fE1dDd2C2668Aa0e0', PoolToken],
+  ['0x2b3ef6906429b580b7b2080de5ca893bc282c225', FilForwarder],
+  ['0x690908f7fa93afc040cfbd9fe1ddd2c2668aa0e0', PoolToken],
   ['0x6d3fe695248336472a4242a1b3765f81ef197dea', PoolToken],
   ['0x0ec46ad7aa8600118da4bd64239c3dc364fd0274', PreStake],
   ['0x08d0361c92f0cbdb1e2fe49c2e98e6725ac71867', PreStake],
-  ['0x60E1773636CF5E4A227d9AC24F20fEca034ee25A', wfil],
-  ['0x6C297AeD654816dc5d211c956DE816Ba923475D2', wfil]
+  ['0x60e1773636cf5e4a227d9ac24f20feca034ee25a', wfil],
+  ['0x6c297aed654816dc5d211c956de816ba923475d2', wfil]
 ])
 
 const abiNameMap = new Map<string, string>([
-  ['0x2B3ef6906429b580b7b2080de5CA893BC282c225', 'FilForwarder'],
-  ['0x690908f7fa93afC040CFbD9fE1dDd2C2668Aa0e0', 'PoolToken'],
+  ['0x2b3ef6906429b580b7b2080de5ca893bc282c225', 'FilForwarder'],
+  ['0x690908f7fa93afc040cfbd9fe1ddd2c2668aa0e0', 'PoolToken'],
   ['0x6d3fe695248336472a4242a1b3765f81ef197dea', 'PoolToken'],
   ['0x0ec46ad7aa8600118da4bd64239c3dc364fd0274', 'PreStake'],
   ['0x08d0361c92f0cbdb1e2fe49c2e98e6725ac71867', 'PreStake'],
-  ['0x60E1773636CF5E4A227d9AC24F20fEca034ee25A', 'wfil'],
-  ['0x6C297AeD654816dc5d211c956DE816Ba923475D2', 'wfil']
+  ['0x60e1773636cf5e4a227d9ac24f20feca034ee25a', 'wfil'],
+  ['0x6c297aed654816dc5d211c956de816ba923475d2', 'wfil']
 ])
 
 export const useAbi = (address: string) => {
@@ -38,12 +38,12 @@ export const useAbi = (address: string) => {
   }, [address])
 
   const abiFromMap = useMemo<ABI | null>(
-    () => abiMap.get(ethAddress) ?? null,
+    () => abiMap.get(ethAddress?.toLowerCase()) ?? null,
     [ethAddress]
   )
 
   const abiNameFromMap = useMemo<string | null>(
-    () => abiNameMap.get(ethAddress) ?? null,
+    () => abiNameMap.get(ethAddress?.toLowerCase()) ?? null,
     [ethAddress]
   )
 
