@@ -21,6 +21,16 @@ const abiMap = new Map<string, ABI>([
   ['0x6C297AeD654816dc5d211c956DE816Ba923475D2', wfil]
 ])
 
+const abiNameMap = new Map<string, string>([
+  ['0x2B3ef6906429b580b7b2080de5CA893BC282c225', 'FilForwarder'],
+  ['0x690908f7fa93afC040CFbD9fE1dDd2C2668Aa0e0', 'PoolToken'],
+  ['0x6d3fe695248336472a4242a1b3765f81ef197dea', 'PoolToken'],
+  ['0x0ec46ad7aa8600118da4bd64239c3dc364fd0274', 'PreStake'],
+  ['0x08d0361c92f0cbdb1e2fe49c2e98e6725ac71867', 'PreStake'],
+  ['0x60E1773636CF5E4A227d9AC24F20fEca034ee25A', 'wfil'],
+  ['0x6C297AeD654816dc5d211c956DE816Ba923475D2', 'wfil']
+])
+
 export const useAbi = (address: string) => {
   const ethAddress = useMemo(() => {
     if (isEthAddress(address)) return address
@@ -29,6 +39,11 @@ export const useAbi = (address: string) => {
 
   const abiFromMap = useMemo<ABI | null>(
     () => abiMap.get(ethAddress) ?? null,
+    [ethAddress]
+  )
+
+  const abiNameFromMap = useMemo<string | null>(
+    () => abiNameMap.get(ethAddress) ?? null,
     [ethAddress]
   )
 
@@ -78,7 +93,7 @@ export const useAbi = (address: string) => {
 
   return {
     abi: abiFromMap ?? abiObject,
-    abiName,
+    abiName: abiNameFromMap ?? abiName,
     error,
     setAbi,
     clearAbi,
