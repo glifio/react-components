@@ -1,79 +1,79 @@
 export default [
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "int256",
-        "name": "errorCode",
-        "type": "int256"
+        internalType: 'int256',
+        name: 'errorCode',
+        type: 'int256'
       }
     ],
-    "name": "ActorError",
-    "type": "error"
+    name: 'ActorError',
+    type: 'error'
   },
   {
-    "inputs": [],
-    "name": "FailToCallActor",
-    "type": "error"
+    inputs: [],
+    name: 'FailToCallActor',
+    type: 'error'
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "bytes",
-        "name": "addr",
-        "type": "bytes"
+        internalType: 'bytes',
+        name: 'addr',
+        type: 'bytes'
       }
     ],
-    "name": "InvalidAddress",
-    "type": "error"
+    name: 'InvalidAddress',
+    type: 'error'
   },
   {
-    "inputs": [],
-    "name": "InvalidAddress",
-    "type": "error"
+    inputs: [],
+    name: 'InvalidAddress',
+    type: 'error'
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "uint64",
-        "name": "",
-        "type": "uint64"
+        internalType: 'uint64',
+        name: '',
+        type: 'uint64'
       }
     ],
-    "name": "InvalidCodec",
-    "type": "error"
+    name: 'InvalidCodec',
+    type: 'error'
   },
   {
-    "inputs": [],
-    "name": "InvalidResponseLength",
-    "type": "error"
+    inputs: [],
+    name: 'InvalidResponseLength',
+    type: 'error'
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "uint256",
-        "name": "balance",
-        "type": "uint256"
+        internalType: 'uint256',
+        name: 'balance',
+        type: 'uint256'
       },
       {
-        "internalType": "uint256",
-        "name": "value",
-        "type": "uint256"
+        internalType: 'uint256',
+        name: 'value',
+        type: 'uint256'
       }
     ],
-    "name": "NotEnoughBalance",
-    "type": "error"
+    name: 'NotEnoughBalance',
+    type: 'error'
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "bytes",
-        "name": "destination",
-        "type": "bytes"
+        internalType: 'bytes',
+        name: 'destination',
+        type: 'bytes'
       }
     ],
-    "name": "forward",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
+    name: 'forward',
+    outputs: [],
+    stateMutability: 'payable',
+    type: 'function'
   }
 ]
