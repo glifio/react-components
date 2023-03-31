@@ -6,10 +6,10 @@ import { isEthAddress } from './isAddress'
 import { isDelegatedAddress } from './isAddress'
 import { useLocalStorage } from './useLocalStorage'
 
-import FilForwarder from '../abi/FilForwarder.json'
-import PoolToken from '../abi/PoolToken.json'
-import PreStake from '../abi/PreStake.json'
-import wfil from '../abi/wfil.json'
+import FilForwarder from '../abi/FilForwarder'
+import PoolToken from '../abi/PoolToken'
+import PreStake from '../abi/PreStake'
+import wfil from '../abi/wfil'
 
 const abiMap = new Map<string, ABI>([
   ['0x2B3ef6906429b580b7b2080de5CA893BC282c225', FilForwarder],
