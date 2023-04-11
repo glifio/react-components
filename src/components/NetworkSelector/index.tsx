@@ -75,8 +75,7 @@ export function NetworkSelector({
   const [showOptions, setShowOptions] = useState<boolean>(false)
   const {
     setNetwork,
-    nodeStatusApiUrl,
-    nodeStatusApiKey,
+    nodeStatusUrl,
     networkName: networkNameInState
   } = useEnvironment()
 
@@ -87,10 +86,8 @@ export function NetworkSelector({
     loading: networkNameLoading
   } = useNetworkName()
 
-  const { networkConnected, error: networkConnectedErr } = useNetworkStatus(
-    nodeStatusApiUrl,
-    nodeStatusApiKey
-  )
+  const { networkConnected, error: networkConnectedErr } =
+    useNetworkStatus(nodeStatusUrl)
 
   const error = useMemo(
     () => networkNameErr || networkConnectedErr,

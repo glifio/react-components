@@ -19,7 +19,7 @@ export const TestEnvironment = ({
   <Environment
     coinType={CoinType.TEST}
     networkName={Network.CALIBRATION}
-    nodeStatusApiKey={networks[Network.CALIBRATION].nodeStatusApiKey}
+    nodeStatusUrl={networks[Network.CALIBRATION].nodeStatusUrl}
     graphUrl={networks[Network.CALIBRATION].graphUrl}
     graphSecure={networks[Network.CALIBRATION].graphSecure}
     lotusApiUrl={networks[Network.CALIBRATION].lotusApiUrl}

@@ -23,7 +23,7 @@ export enum Network {
 
 export type NetworkInfo = Pick<
   EnvironmentContextType,
-  | 'nodeStatusApiKey'
+  | 'nodeStatusUrl'
   | 'graphUrl'
   | 'graphSecure'
   | 'lotusApiUrl'
@@ -32,7 +32,7 @@ export type NetworkInfo = Pick<
 >
 
 const networkInfoKeys: Array<keyof NetworkInfo> = [
-  'nodeStatusApiKey',
+  'nodeStatusUrl',
   'graphUrl',
   'graphSecure',
   'lotusApiUrl',
@@ -52,8 +52,7 @@ export interface EnvironmentContextType {
   discordUrl: string
   twitterUrl: string
   contactEmail: string
-  nodeStatusApiUrl: string
-  nodeStatusApiKey: string
+  nodeStatusUrl: string
   graphUrl: string
   graphSecure: boolean
   lotusApiUrl: string
@@ -80,8 +79,7 @@ export const emptyEnvironmentContext = {
   discordUrl: 'https://discord.gg/B9ju5Eu4Rq',
   twitterUrl: 'https://twitter.com/glifio',
   contactEmail: 'squad@infinitescroll.org',
-  nodeStatusApiUrl: 'https://api.uptimerobot.com/v2/getMonitors',
-  nodeStatusApiKey: '',
+  nodeStatusUrl: '',
   graphUrl: '',
   graphSecure: true,
   lotusApiUrl: '',
@@ -100,7 +98,7 @@ export const EnvironmentContext = createContext<EnvironmentContextType>(
 
 export const networks: Record<Network, NetworkInfo> = {
   [Network.MAINNET]: {
-    nodeStatusApiKey: 'm786191525-b3192b91db66217a44f7d4be',
+    nodeStatusUrl: 'https://uptimerobot.node.glif.io/mainnet.json',
     graphUrl: 'graph.glif.link/query',
     graphSecure: true,
     lotusApiUrl: 'https://api.node.glif.io',
@@ -108,7 +106,7 @@ export const networks: Record<Network, NetworkInfo> = {
     coinType: CoinType.MAIN
   },
   [Network.CALIBRATION]: {
-    nodeStatusApiKey: 'm787669344-2a9b90eb03dbff3e503c93c7',
+    nodeStatusUrl: 'https://uptimerobot.node.glif.io/calibration.json',
     graphUrl: 'graph-calibration.glif.link/query',
     graphSecure: true,
     lotusApiUrl: 'https://api.calibration.node.glif.io/',
@@ -116,7 +114,7 @@ export const networks: Record<Network, NetworkInfo> = {
     coinType: CoinType.TEST
   },
   [Network.HYPERSPACE]: {
-    nodeStatusApiKey: 'm793485228-aeeb03f93349e7fc1596791c',
+    nodeStatusUrl: 'https://uptimerobot.node.glif.io/hyperspace.json',
     graphUrl: 'graph-wallaby.glif.link/query',
     graphSecure: true,
     lotusApiUrl: 'https://api.hyperspace.node.glif.io/rpc/v0',
