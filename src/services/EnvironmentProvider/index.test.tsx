@@ -28,8 +28,7 @@ describe('EnvironmentProvider', () => {
     expect(result.current.discordUrl).toBeTruthy()
     expect(result.current.twitterUrl).toBeTruthy()
     expect(result.current.contactEmail).toBeTruthy()
-    expect(result.current.nodeStatusApiUrl).toBeTruthy()
-    expect(result.current.nodeStatusApiKey).toBeTruthy()
+    expect(result.current.nodeStatusUrl).toBeTruthy()
     expect(result.current.graphUrl).toBeTruthy()
     expect(result.current.graphSecure).toBeTruthy()
     expect(result.current.lotusApiUrl).toBeTruthy()
@@ -72,8 +71,8 @@ describe('EnvironmentProvider', () => {
 
       waitFor(() => {
         expect(result.current.coinType).toBe(CoinType.MAIN)
-        expect(result.current.nodeStatusApiKey).toBe(
-          networks[Network.MAINNET].nodeStatusApiKey
+        expect(result.current.nodeStatusUrl).toBe(
+          networks[Network.MAINNET].nodeStatusUrl
         )
         expect(result.current.graphUrl).toBe(networks[Network.MAINNET].graphUrl)
         expect(result.current.lotusApiUrl).toBe(

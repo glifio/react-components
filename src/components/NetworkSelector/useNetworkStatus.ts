@@ -21,26 +21,11 @@ interface UseNetworkStatusResult {
   error: Error | null
 }
 
-const fetcher = async (
-  url: string,
-  key: string
-): Promise<NetworkStatusResponse> =>
-  (
-    await axios.post<NetworkStatusResponse>(url, {
-      api_key: key,
-      format: 'json',
-      logs: 1
-    })
-  ).data
+const fetcher = async (url: string): Promise<NetworkStatusResponse> =>
+  (await axios.get<NetworkStatusResponse>(url)).data
 
-export const useNetworkStatus = (
-  statusApiAddr: string,
-  apiKey: string
-): UseNetworkStatusResult => {
-  const { data, error } = useSWR<NetworkStatusResponse, Error>(
-    [statusApiAddr, apiKey],
-    fetcher
-  )
+export const useNetworkStatus = (url: string): UseNetworkStatusResult => {
+  const { data, error } = useSWR<NetworkStatusResponse, Error>(url, fetcher)
 
   return {
     networkConnected: data?.monitors[0].status === NetworkStatus.SUCCESS,
