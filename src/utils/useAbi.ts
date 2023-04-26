@@ -48,7 +48,6 @@ const KnownAbis: KnownAbi[] = [
     addresses: [
       '0x3bc5b7822b3a73a3f5916a590e32488dfc6f3a01',
       '0xd632a8ece5a5ef690eddd0847e70c39daf5fba07'
-      // '',
     ]
   },
   {
