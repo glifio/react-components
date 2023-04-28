@@ -22,42 +22,45 @@ const KnownAbis: KnownAbi[] = [
   {
     abi: FilForwarder,
     name: 'FilForwarder',
-    addresses: ['0x2b3ef6906429b580b7b2080de5ca893bc282c225']
+    addresses: ['0x2B3ef6906429b580b7b2080de5CA893BC282c225'].map(a =>
+      a.toLowerCase()
+    )
   },
   {
     abi: PoolToken,
     name: 'PoolToken',
     addresses: [
-      '0x690908f7fa93afc040cfbd9fe1ddd2c2668aa0e0',
-      '0x6d3fe695248336472a4242a1b3765f81ef197dea',
-      '0xc61f959a0da2b3b703f283d05b924878447c8048'
-    ]
+      '0x690908f7fa93afC040CFbD9fE1dDd2C2668Aa0e0',
+      '0x1c0F47A9C97b304ad7CAdf31649E3A6c6999DC39',
+      '0xe3d4f91bbe256405403d253b990ffac96c24f06f'
+    ].map(a => a.toLowerCase())
   },
   {
     abi: PreStake,
     name: 'PreStake',
     addresses: [
       '0x0ec46ad7aa8600118da4bd64239c3dc364fd0274',
-      '0x08d0361c92f0cbdb1e2fe49c2e98e6725ac71867',
-      '0x546275ffe542db3a8cf877316fda7bbdbf515005'
-    ]
+      '0x3Ea98B5c34935921E9CCf8a0e1710c864efF15c1',
+      '0xa38aaa4691f3b4bce3fc556b05bfa6fd55c71f8c'
+    ].map(a => a.toLowerCase())
   },
   {
     abi: PublicGoods,
     name: 'PublicGoods',
     addresses: [
       '0x3bc5b7822b3a73a3f5916a590e32488dfc6f3a01',
-      '0xd632a8ece5a5ef690eddd0847e70c39daf5fba07'
-    ]
+      '0xfD6ba95B3cb24F1412b25e8d44D4e1CF3949916A',
+      '0xff9ac1b845d354b3fa7346946decf0befaa53189'
+    ].map(a => a.toLowerCase())
   },
   {
     abi: WFIL,
     name: 'WFIL',
     addresses: [
-      '0x60e1773636cf5e4a227d9ac24f20feca034ee25a',
-      '0x6c297aed654816dc5d211c956de816ba923475d2',
-      '0xfbeafeec0e5df7cf78169036521efba5576d9faf'
-    ]
+      '0x60E1773636CF5E4A227d9AC24F20fEca034ee25A',
+      '0x6C297AeD654816dc5d211c956DE816Ba923475D2',
+      '0x4e8a1223bed939721c9a9db6e2a301ee94baec8e'
+    ].map(a => a.toLowerCase())
   }
 ]
 
