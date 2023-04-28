@@ -65,17 +65,17 @@ export default [
       {
         indexed: true,
         internalType: 'address',
-        name: 'currentOwner',
+        name: 'previousOwner',
         type: 'address'
       },
       {
         indexed: true,
         internalType: 'address',
-        name: 'pendingOwner',
+        name: 'newOwner',
         type: 'address'
       }
     ],
-    name: 'OwnershipPending',
+    name: 'OwnershipTransferStarted',
     type: 'event'
   },
   {
@@ -84,7 +84,7 @@ export default [
       {
         indexed: true,
         internalType: 'address',
-        name: 'oldOwner',
+        name: 'previousOwner',
         type: 'address'
       },
       {
@@ -179,6 +179,19 @@ export default [
   },
   {
     inputs: [],
+    name: 'pendingOwner',
+    outputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  {
+    inputs: [],
     name: 'preStake',
     outputs: [
       {
@@ -191,17 +204,10 @@ export default [
     type: 'function'
   },
   {
-    inputs: [],
-    name: 'revokeOwnership',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function'
-  },
-  {
     inputs: [
       {
         internalType: 'address',
-        name: '_newOwner',
+        name: 'newOwner',
         type: 'address'
       }
     ],
