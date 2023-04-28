@@ -23,7 +23,7 @@ export const TestEnvironment = ({
     graphUrl={networks[Network.CALIBRATION].graphUrl}
     graphSecure={networks[Network.CALIBRATION].graphSecure}
     lotusApiUrl={networks[Network.CALIBRATION].lotusApiUrl}
-    explorerUrl='https://explorer-calibration.glif.link'
+    explorerUrl='https://explorer.glif.io/calibration'
     lotusApi={
       new LotusRPCEngine({
         apiAddress: networks[Network.CALIBRATION].lotusApiUrl
