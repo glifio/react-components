@@ -16,5 +16,5 @@ export const Base = Template.bind({})
 Base.args = {
   num: 12,
   word: 'hello',
-  onValidChange: valid => console.log(valid)
+  onValidChange: () => {}
 }
