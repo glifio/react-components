@@ -260,7 +260,7 @@ exports[`AccountCard renders the card 1`] = `
         color="var(--white)"
       >
         <a
-          href="https://explorer-calibration.glif.link/address/t0123456789"
+          href="https://explorer.glif.io/calibration/address/t0123456789"
           rel="noreferrer noopener"
           target="_blank"
         >
@@ -582,7 +582,7 @@ exports[`AccountCard renders the card CREATE_MNEMONIC 1`] = `
         color="var(--white)"
       >
         <a
-          href="https://explorer-calibration.glif.link/address/t0123456789"
+          href="https://explorer.glif.io/calibration/address/t0123456789"
           rel="noreferrer noopener"
           target="_blank"
         >
@@ -899,7 +899,7 @@ exports[`AccountCard renders the story 1`] = `
         color="var(--white)"
       >
         <a
-          href="https://explorer-calibration.glif.link/address/t0123456789"
+          href="https://explorer.glif.io/calibration/address/t0123456789"
           rel="noreferrer noopener"
           target="_blank"
         >

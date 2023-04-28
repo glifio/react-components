@@ -335,7 +335,7 @@ exports[`ActorState it renders the actor state correctly 1`] = `
             color="var(--purple-medium)"
           >
             <a
-              href="https://explorer-calibration.glif.link/address/f2m4f2dv7m35skytoqzsyrh5wqz3kxxfflxsha5za"
+              href="https://explorer.glif.io/calibration/address/f2m4f2dv7m35skytoqzsyrh5wqz3kxxfflxsha5za"
               rel="noreferrer noopener"
               target="_blank"
             >
