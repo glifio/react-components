@@ -135,7 +135,7 @@ export const Footer = () => {
             Freeport, Grand Bahamas
           </Address>
 
-          <Copyright>2022 Glif for life</Copyright>
+          <Copyright>2023 Glif for life</Copyright>
         </FooterContent>
       </FooterWrapper>
     </>
