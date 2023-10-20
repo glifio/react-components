@@ -206,13 +206,6 @@ exports[`NetworkSelector interactions it renders the network options 1`] = `
     >
       calibrationnet
     </div>
-    <div
-      class="c4"
-      role="button"
-      tabindex="3"
-    >
-      hyperspacenet
-    </div>
   </div>
 </div>
 `;
