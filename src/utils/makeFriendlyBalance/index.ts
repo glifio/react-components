@@ -39,7 +39,7 @@ export const makeFriendlyBalance = (
   }
 
   // Less than 1000
-  if (absValue.isLessThan(1000)) {
+  if (absValue.isLessThan(new FilecoinNumber('1000', 'fil'))) {
     return (
       minus + absValue.decimalPlaces(decimals, BigNumber.ROUND_DOWN).toString()
     )
