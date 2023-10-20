@@ -77,7 +77,6 @@ describe('NetworkSelector', () => {
 
       expect(getAllByText(Network.CALIBRATION).length).toBe(2)
       expect(getByText(Network.MAINNET)).toBeInTheDocument()
-      expect(getByText(Network.HYPERSPACE)).toBeInTheDocument()
       expect(container.firstChild).toMatchSnapshot()
     })
 

@@ -24,8 +24,7 @@ import { ButtonV2Link } from '../../../Button/V2'
 import { IconCancel, IconSpeedUp } from '../../../Icons'
 import {
   useEnvironment,
-  useLogger,
-  Network
+  useLogger
 } from '../../../../services/EnvironmentProvider'
 import { GqlMessage } from '../../../../customPropTypes'
 
@@ -51,7 +50,7 @@ export default function MessageDetail({
   const time = useMemo(() => Date.now(), [])
   const [seeMore, setSeeMore] = useState(false)
   const { message, error, loading, pending } = useMessage(txID)
-  const { isProd, networkName } = useEnvironment()
+  const { isProd } = useEnvironment()
   const logger = useLogger()
 
   const { data: stateReplayQuery, error: stateReplayError } =
@@ -63,23 +62,19 @@ export default function MessageDetail({
       skip: !txID || confirmations < 2
     })
 
-  const skipTxIdQuery = networkName !== Network.HYPERSPACE
   const { data: txIdQuery, error: txIdError } = useTxIdQuery({
     variables: {
       str: txID
-    },
-    skip: skipTxIdQuery
+    }
   })
 
   const msgCID = useMemo<string | null>(() => {
-    if (skipTxIdQuery) return txID
     return isMsgCID(txID) ? txID : txIdQuery?.txID?.cid ?? null
-  }, [skipTxIdQuery, txIdQuery?.txID?.cid, txID])
+  }, [txIdQuery?.txID?.cid, txID])
 
   const fevmHex = useMemo<string | null>(() => {
-    if (skipTxIdQuery) return null
     return isTxHash(txID) ? txID : txIdQuery?.txID?.ethHash ?? null
-  }, [skipTxIdQuery, txIdQuery?.txID?.ethHash, txID])
+  }, [txIdQuery?.txID?.ethHash, txID])
 
   const transactionFee = useMemo<string>(() => {
     if (pending) return 'Pending...'
