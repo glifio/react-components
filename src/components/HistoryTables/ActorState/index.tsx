@@ -27,7 +27,6 @@ import {
 import { AbiSelector } from '../../AbiSelector'
 import { DetailCaption } from '../detail'
 import {
-  Network,
   useEnvironment,
   useLogger
 } from '../../../services/EnvironmentProvider'
@@ -66,16 +65,12 @@ export const ActorState = ({ address: addressProp }: ActorStateProps) => {
     actorError: Error
     tmpPatchWlbyActorErr: boolean
   }>(() => {
-    if (
-      _actorError &&
-      networkName === Network.HYPERSPACE &&
-      _actorError.message.includes('dumping actor state')
-    ) {
+    if (_actorError && _actorError.message.includes('dumping actor state')) {
       return { actorError: null, tmpPatchWlbyActorErr: true }
     }
 
     return { actorError: _actorError, tmpPatchWlbyActorErr: false }
-  }, [_actorError, networkName])
+  }, [_actorError])
 
   // Load the address
   const {
